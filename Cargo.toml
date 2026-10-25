@@ -1,0 +1,92 @@
+[package]
+name = "vkrust"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+readme = "README.md"
+documentation = "https://docs.rs/vkrust"
+keywords = ["vulkan", "graphics", "bindings", "gpu"]
+categories = ["api-bindings", "graphics", "rendering::graphics-api"]
+publish = ["crates-io"]
+autotests = false
+description = "Registry-generated Vulkan ABI and per-device dispatch for Rust"
+include = [
+  "/Cargo.toml", "/Cargo.lock", "/src/rs/**", "/test/rs/core/**",
+  "/test/rs/load/**", "/test/rs/memory/**", "/test/rs/test_*.rs",
+  "/README.md", "/CHANGELOG.md", "/NOTICE.md", "/rustfmt.toml",
+  "/LICENSE", "/license/khronos/Apache-2.0.txt", "/LICENSE-VMA-MIT",
+  "/docs/external/qualification.md", "/registry/SOURCES.md",
+]
+
+[package.metadata.docs.rs]
+all-features = true
+targets = ["x86_64-unknown-linux-gnu"]
+
+[lib]
+name = "vk"
+path = "src/rs/lib.rs"
+
+[workspace]
+resolver = "3"
+members = ["tool/gen"]
+default-members = [".", "tool/gen"]
+
+[workspace.package]
+version = "0.3.0"
+edition = "2024"
+rust-version = "1.98.1"
+license = "MIT"
+repository = "https://github.com/realminc/vk"
+
+[workspace.dependencies]
+quick-xml = "0.37"
+anyhow = "1"
+
+[features]
+default = ["loader"]
+loader = ["dep:libloading"]
+platform-xlib = []
+platform-xcb = []
+platform-wayland = []
+platform-win32 = []
+platform-xlib-xrandr = []
+platform-ubm = []
+platform-directfb = []
+platform-android = []
+platform-vi = []
+platform-ios = []
+platform-macos = []
+platform-metal = []
+platform-fuchsia = []
+platform-ggp = []
+platform-sci = []
+platform-screen = []
+platform-ohos = []
+provisional = []
+allocator = ["loader"]
+vk-enable-beta-extensions = ["provisional"]
+
+[dependencies]
+libloading = { version = "0.8", optional = true }
+
+[profile.dev]
+debug = 0
+incremental = false
+
+[profile.test]
+debug = 0
+incremental = false
+
+[[test]]
+name = "core"
+path = "test/rs/test_core.rs"
+
+[[test]]
+name = "load"
+path = "test/rs/test_load.rs"
+
+[[test]]
+name = "memory"
+path = "test/rs/test_memory.rs"

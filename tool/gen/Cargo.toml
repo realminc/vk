@@ -1,0 +1,22 @@
+[package]
+name = "vkrust-gen"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+publish = false
+description = "Code generator: Khronos vk.xml + video.xml → vk generated source"
+autotests = false
+
+[[bin]]
+name = "vk-gen"
+path = "main.rs"
+
+[[test]]
+name = "generation"
+path = "../../test/rs/tool/gen/test_generation.rs"
+
+[dependencies]
+quick-xml.workspace = true
+anyhow.workspace = true

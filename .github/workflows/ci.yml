@@ -1,0 +1,203 @@
+name: CI
+
+on:
+  push:
+    tags: ['v*']
+  pull_request:
+    branches: [main, dev]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  CARGO_INCREMENTAL: "0"
+  CARGO_BUILD_JOBS: "2"
+  CC: clang
+  CXX: clang++
+  AR: llvm-ar
+  CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER: clang
+  CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUSTFLAGS: "-C link-arg=-fuse-ld=lld"
+
+jobs:
+  verify:
+    name: Linux generation, ABI and packaged consumer
+    if: github.repository == 'realminc/vk'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify public inventory and release identity
+        run: |
+          python3 tool/audit_public.py
+          python3 tool/check_release.py
+      - name: Install Clang and pinned Rust
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends clang llvm lld libclang-rt-dev
+          toolchain=$(python3 -c 'import tomllib; print(tomllib.load(open("rust-toolchain.toml", "rb"))["toolchain"]["channel"])')
+          rustup toolchain install "$toolchain" --profile minimal --component rustfmt --component clippy
+      - name: Verify generation, tooling and Rust contracts
+        run: |
+          python3 -m unittest discover -s test/py/tool -v
+          sha256sum --check registry/SHA256SUMS
+          cargo run -p vkrust-gen --locked -- --registry registry/vk.xml --video-registry registry/video.xml --output . --check
+          cargo fmt --all --check
+          cargo clippy --workspace --all-targets --all-features --locked -- -D warnings
+          cargo test --workspace --all-features --locked
+          cargo test -p vkrust --no-default-features --locked
+          cargo test -p vkrust --locked
+          RUSTDOCFLAGS="-D warnings" cargo doc -p vkrust --all-features --no-deps --locked
+          git diff --check
+          git diff --exit-code
+      - name: Verify actual registry archive and external consumer
+        run: python3 tool/verify_package.py
+      - name: Fetch hash-pinned C headers
+        run: python3 tool/fetch_headers.py
+      - name: Compare pinned C ABI, PFNs and feature records
+        run: |
+          python3 tool/verify_abi.py --headers target/headers
+          python3 tool/verify_pfn.py --headers target/headers
+          python3 tool/verify_features.py
+      - name: Compare allocator policies against pinned VMA
+        run: |
+          python3 tool/verify_memory/fetch_donor.py
+          python3 tool/verify_memory/verify_virtual.py --headers target/headers --sanitize
+          python3 tool/verify_memory/verify_native.py --headers target/headers --sanitize
+      - name: Stage API reference and build evidence
+        run: |
+          mkdir -p dist
+          version=$(python3 -c 'import tomllib; print(tomllib.load(open("Cargo.toml", "rb"))["workspace"]["package"]["version"])')
+          cp target/package/vkrust-*.crate dist/
+          cp target/verification/package/results.json dist/package-proof.json
+          tar -czf "dist/vk-${version}-rustdoc.tar.gz" -C target doc
+          {
+            git rev-parse HEAD
+            rustc -Vv
+            cargo -V
+            clang --version
+            cargo tree -p vkrust --all-features --locked
+          } > dist/build-info.txt
+          (cd dist && sha256sum *.crate *.tar.gz *.json *.txt > SHA256SUMS)
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: vk-release
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
+
+  host:
+    name: Host tests / ${{ matrix.os }}
+    if: github.repository == 'realminc/vk'
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, macos-14]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Install pinned Rust
+        shell: bash
+        run: |
+          toolchain=$(sed -n 's/^channel = "\([^"]*\)"/\1/p' rust-toolchain.toml)
+          rustup toolchain install "$toolchain" --profile minimal
+      - name: Test runtime APIs without a driver
+        run: |
+          cargo test -p vkrust --all-features --locked
+          cargo test -p vkrust --no-default-features --locked
+
+  software-vulkan:
+    name: Explicit Lavapipe load and compute
+    if: github.repository == 'realminc/vk'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Install loader, software driver and pinned Rust
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends mesa-vulkan-drivers libvulkan1 clang lld
+          toolchain=$(python3 -c 'import tomllib; print(tomllib.load(open("rust-toolchain.toml", "rb"))["toolchain"]["channel"])')
+          rustup toolchain install "$toolchain" --profile minimal
+      - name: Execute software Vulkan profiles explicitly
+        shell: bash
+        run: |
+          set -euo pipefail
+          icd=$(find /usr/share/vulkan/icd.d -name 'lvp_icd*.json' -print -quit)
+          test -n "$icd"
+          export VK_DRIVER_FILES="$icd"
+          export VK_ICD_FILENAMES="$icd"
+          export VULKAN_AVAILABLE=1 VULKAN_1_1_AVAILABLE=1 VULKAN_1_2_AVAILABLE=1
+          export VULKAN_TIMELINE_AVAILABLE=1
+          cargo test -p vkrust --test load --all-features --locked -- --nocapture --test-threads=1
+          cargo test -p vkrust --test memory --all-features --locked -- --nocapture --test-threads=1
+
+  release:
+    name: Publish GitHub development release
+    if: github.repository == 'realminc/vk' && startsWith(github.ref, 'refs/tags/v')
+    needs: [verify, host, software-vulkan]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - run: python3 tool/check_release.py
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: vk-release
+          path: dist
+      - name: Verify assets and create development release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          (cd dist && sha256sum --check SHA256SUMS)
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            echo "Release already exists; refusing to replace published assets"
+            exit 0
+          fi
+          gh release create "$GITHUB_REF_NAME" dist/* --verify-tag --prerelease \
+            --title "vk $GITHUB_REF_NAME — development release" \
+            --notes-file "docs/external/release/${GITHUB_REF_NAME}.md"
+
+  crates:
+    name: Publish verified vkrust crate
+    if: github.repository == 'realminc/vk' && startsWith(github.ref, 'refs/tags/v') && vars.CRATES_IO_PUBLISH == 'true'
+    needs: [verify, host, software-vulkan]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment: crates-io
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - run: python3 tool/check_release.py
+      - name: Install pinned Rust
+        run: |
+          toolchain=$(python3 -c 'import tomllib; print(tomllib.load(open("rust-toolchain.toml", "rb"))["toolchain"]["channel"])')
+          rustup toolchain install "$toolchain" --profile minimal
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: vk-release
+          path: verified-crate
+      - name: Publish exact verified artifact and confirm registry bytes
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
+        run: |
+          python3 tool/publish_crate.py "verified-crate/vkrust-${GITHUB_REF_NAME#v}.crate"

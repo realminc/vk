@@ -1,0 +1,6242 @@
+// @generated — do not edit by hand.
+use super::{pfn::*, types::*};
+#[derive(Clone, Default)]
+pub struct FnEntry {
+	pub create_instance: PFN_vkCreateInstance,
+	pub get_instance_proc_addr: PFN_vkGetInstanceProcAddr,
+	pub enumerate_instance_version: PFN_vkEnumerateInstanceVersion,
+	pub enumerate_instance_layer_properties: PFN_vkEnumerateInstanceLayerProperties,
+	pub enumerate_instance_extension_properties: PFN_vkEnumerateInstanceExtensionProperties,
+}
+
+#[derive(Clone, Default)]
+pub struct FnInstance {
+	pub destroy_instance: PFN_vkDestroyInstance,
+	pub enumerate_physical_devices: PFN_vkEnumeratePhysicalDevices,
+	pub get_device_proc_addr: PFN_vkGetDeviceProcAddr,
+	pub get_physical_device_properties: PFN_vkGetPhysicalDeviceProperties,
+	pub get_physical_device_queue_family_properties: PFN_vkGetPhysicalDeviceQueueFamilyProperties,
+	pub get_physical_device_memory_properties: PFN_vkGetPhysicalDeviceMemoryProperties,
+	pub get_physical_device_features: PFN_vkGetPhysicalDeviceFeatures,
+	pub get_physical_device_format_properties: PFN_vkGetPhysicalDeviceFormatProperties,
+	pub get_physical_device_image_format_properties: PFN_vkGetPhysicalDeviceImageFormatProperties,
+	pub create_device: PFN_vkCreateDevice,
+	pub enumerate_device_layer_properties: PFN_vkEnumerateDeviceLayerProperties,
+	pub enumerate_device_extension_properties: PFN_vkEnumerateDeviceExtensionProperties,
+	pub get_physical_device_sparse_image_format_properties:
+		PFN_vkGetPhysicalDeviceSparseImageFormatProperties,
+	#[cfg(feature = "platform-android")]
+	pub create_android_surface_khr: PFN_vkCreateAndroidSurfaceKHR,
+	#[cfg(feature = "platform-ohos")]
+	pub create_surface_ohos: PFN_vkCreateSurfaceOHOS,
+	pub get_physical_device_display_properties_khr: PFN_vkGetPhysicalDeviceDisplayPropertiesKHR,
+	pub get_physical_device_display_plane_properties_khr:
+		PFN_vkGetPhysicalDeviceDisplayPlanePropertiesKHR,
+	pub get_display_plane_supported_displays_khr: PFN_vkGetDisplayPlaneSupportedDisplaysKHR,
+	pub get_display_mode_properties_khr: PFN_vkGetDisplayModePropertiesKHR,
+	pub create_display_mode_khr: PFN_vkCreateDisplayModeKHR,
+	pub get_display_plane_capabilities_khr: PFN_vkGetDisplayPlaneCapabilitiesKHR,
+	pub create_display_plane_surface_khr: PFN_vkCreateDisplayPlaneSurfaceKHR,
+	pub destroy_surface_khr: PFN_vkDestroySurfaceKHR,
+	pub get_physical_device_surface_support_khr: PFN_vkGetPhysicalDeviceSurfaceSupportKHR,
+	pub get_physical_device_surface_capabilities_khr: PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR,
+	pub get_physical_device_surface_formats_khr: PFN_vkGetPhysicalDeviceSurfaceFormatsKHR,
+	pub get_physical_device_surface_present_modes_khr: PFN_vkGetPhysicalDeviceSurfacePresentModesKHR,
+	#[cfg(feature = "platform-vi")]
+	pub create_vi_surface_nn: PFN_vkCreateViSurfaceNN,
+	#[cfg(feature = "platform-wayland")]
+	pub create_wayland_surface_khr: PFN_vkCreateWaylandSurfaceKHR,
+	#[cfg(feature = "platform-wayland")]
+	pub get_physical_device_wayland_presentation_support_khr:
+		PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR,
+	#[cfg(feature = "platform-ubm")]
+	pub create_ubm_surface_sec: PFN_vkCreateUbmSurfaceSEC,
+	#[cfg(feature = "platform-ubm")]
+	pub get_physical_device_ubm_presentation_support_sec:
+		PFN_vkGetPhysicalDeviceUbmPresentationSupportSEC,
+	#[cfg(feature = "platform-win32")]
+	pub create_win32_surface_khr: PFN_vkCreateWin32SurfaceKHR,
+	#[cfg(feature = "platform-win32")]
+	pub get_physical_device_win32_presentation_support_khr:
+		PFN_vkGetPhysicalDeviceWin32PresentationSupportKHR,
+	#[cfg(feature = "platform-xlib")]
+	pub create_xlib_surface_khr: PFN_vkCreateXlibSurfaceKHR,
+	#[cfg(feature = "platform-xlib")]
+	pub get_physical_device_xlib_presentation_support_khr:
+		PFN_vkGetPhysicalDeviceXlibPresentationSupportKHR,
+	#[cfg(feature = "platform-xcb")]
+	pub create_xcb_surface_khr: PFN_vkCreateXcbSurfaceKHR,
+	#[cfg(feature = "platform-xcb")]
+	pub get_physical_device_xcb_presentation_support_khr:
+		PFN_vkGetPhysicalDeviceXcbPresentationSupportKHR,
+	#[cfg(feature = "platform-directfb")]
+	pub create_direct_fb_surface_ext: PFN_vkCreateDirectFBSurfaceEXT,
+	#[cfg(feature = "platform-directfb")]
+	pub get_physical_device_direct_fb_presentation_support_ext:
+		PFN_vkGetPhysicalDeviceDirectFBPresentationSupportEXT,
+	#[cfg(feature = "platform-fuchsia")]
+	pub create_image_pipe_surface_fuchsia: PFN_vkCreateImagePipeSurfaceFUCHSIA,
+	#[cfg(feature = "platform-ggp")]
+	pub create_stream_descriptor_surface_ggp: PFN_vkCreateStreamDescriptorSurfaceGGP,
+	#[cfg(feature = "platform-screen")]
+	pub create_screen_surface_qnx: PFN_vkCreateScreenSurfaceQNX,
+	#[cfg(feature = "platform-screen")]
+	pub get_physical_device_screen_presentation_support_qnx:
+		PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX,
+	pub create_debug_report_callback_ext: PFN_vkCreateDebugReportCallbackEXT,
+	pub destroy_debug_report_callback_ext: PFN_vkDestroyDebugReportCallbackEXT,
+	pub debug_report_message_ext: PFN_vkDebugReportMessageEXT,
+	pub get_physical_device_external_image_format_properties_nv:
+		PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV,
+	pub get_physical_device_features2: PFN_vkGetPhysicalDeviceFeatures2,
+	pub get_physical_device_features2_khr: PFN_vkGetPhysicalDeviceFeatures2KHR,
+	pub get_physical_device_properties2: PFN_vkGetPhysicalDeviceProperties2,
+	pub get_physical_device_properties2_khr: PFN_vkGetPhysicalDeviceProperties2KHR,
+	pub get_physical_device_format_properties2: PFN_vkGetPhysicalDeviceFormatProperties2,
+	pub get_physical_device_format_properties2_khr: PFN_vkGetPhysicalDeviceFormatProperties2KHR,
+	pub get_physical_device_image_format_properties2: PFN_vkGetPhysicalDeviceImageFormatProperties2,
+	pub get_physical_device_image_format_properties2_khr:
+		PFN_vkGetPhysicalDeviceImageFormatProperties2KHR,
+	pub get_physical_device_queue_family_properties2: PFN_vkGetPhysicalDeviceQueueFamilyProperties2,
+	pub get_physical_device_queue_family_properties2_khr:
+		PFN_vkGetPhysicalDeviceQueueFamilyProperties2KHR,
+	pub get_physical_device_memory_properties2: PFN_vkGetPhysicalDeviceMemoryProperties2,
+	pub get_physical_device_memory_properties2_khr: PFN_vkGetPhysicalDeviceMemoryProperties2KHR,
+	pub get_physical_device_sparse_image_format_properties2:
+		PFN_vkGetPhysicalDeviceSparseImageFormatProperties2,
+	pub get_physical_device_sparse_image_format_properties2_khr:
+		PFN_vkGetPhysicalDeviceSparseImageFormatProperties2KHR,
+	pub get_physical_device_external_buffer_properties:
+		PFN_vkGetPhysicalDeviceExternalBufferProperties,
+	pub get_physical_device_external_buffer_properties_khr:
+		PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR,
+	pub get_physical_device_external_semaphore_properties:
+		PFN_vkGetPhysicalDeviceExternalSemaphoreProperties,
+	pub get_physical_device_external_semaphore_properties_khr:
+		PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR,
+	pub get_physical_device_external_fence_properties: PFN_vkGetPhysicalDeviceExternalFenceProperties,
+	pub get_physical_device_external_fence_properties_khr:
+		PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR,
+	pub release_display_ext: PFN_vkReleaseDisplayEXT,
+	#[cfg(feature = "platform-xlib-xrandr")]
+	pub acquire_xlib_display_ext: PFN_vkAcquireXlibDisplayEXT,
+	#[cfg(feature = "platform-xlib-xrandr")]
+	pub get_rand_r_output_display_ext: PFN_vkGetRandROutputDisplayEXT,
+	#[cfg(feature = "platform-win32")]
+	pub acquire_winrt_display_nv: PFN_vkAcquireWinrtDisplayNV,
+	#[cfg(feature = "platform-win32")]
+	pub get_winrt_display_nv: PFN_vkGetWinrtDisplayNV,
+	pub get_physical_device_surface_capabilities2_ext: PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT,
+	pub enumerate_physical_device_groups: PFN_vkEnumeratePhysicalDeviceGroups,
+	pub enumerate_physical_device_groups_khr: PFN_vkEnumeratePhysicalDeviceGroupsKHR,
+	pub get_physical_device_present_rectangles_khr: PFN_vkGetPhysicalDevicePresentRectanglesKHR,
+	#[cfg(feature = "platform-ios")]
+	pub create_ios_surface_mvk: PFN_vkCreateIOSSurfaceMVK,
+	#[cfg(feature = "platform-macos")]
+	pub create_mac_os_surface_mvk: PFN_vkCreateMacOSSurfaceMVK,
+	#[cfg(feature = "platform-metal")]
+	pub create_metal_surface_ext: PFN_vkCreateMetalSurfaceEXT,
+	pub get_physical_device_multisample_properties_ext:
+		PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT,
+	pub get_physical_device_surface_capabilities2_khr: PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR,
+	pub get_physical_device_surface_formats2_khr: PFN_vkGetPhysicalDeviceSurfaceFormats2KHR,
+	pub get_physical_device_display_properties2_khr: PFN_vkGetPhysicalDeviceDisplayProperties2KHR,
+	pub get_physical_device_display_plane_properties2_khr:
+		PFN_vkGetPhysicalDeviceDisplayPlaneProperties2KHR,
+	pub get_display_mode_properties2_khr: PFN_vkGetDisplayModeProperties2KHR,
+	pub get_display_plane_capabilities2_khr: PFN_vkGetDisplayPlaneCapabilities2KHR,
+	pub get_physical_device_calibrateable_time_domains_khr:
+		PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR,
+	pub get_physical_device_calibrateable_time_domains_ext:
+		PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT,
+	pub create_debug_utils_messenger_ext: PFN_vkCreateDebugUtilsMessengerEXT,
+	pub destroy_debug_utils_messenger_ext: PFN_vkDestroyDebugUtilsMessengerEXT,
+	pub submit_debug_utils_message_ext: PFN_vkSubmitDebugUtilsMessageEXT,
+	pub get_physical_device_cooperative_matrix_properties_nv:
+		PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesNV,
+	#[cfg(feature = "platform-win32")]
+	pub get_physical_device_surface_present_modes2_ext:
+		PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT,
+	pub enumerate_physical_device_queue_family_performance_query_counters_khr:
+		PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR,
+	pub get_physical_device_queue_family_performance_query_passes_khr:
+		PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR,
+	pub create_headless_surface_ext: PFN_vkCreateHeadlessSurfaceEXT,
+	pub get_physical_device_supported_framebuffer_mixed_samples_combinations_nv:
+		PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV,
+	pub get_physical_device_tool_properties: PFN_vkGetPhysicalDeviceToolProperties,
+	pub get_physical_device_tool_properties_ext: PFN_vkGetPhysicalDeviceToolPropertiesEXT,
+	pub get_physical_device_fragment_shading_rates_khr:
+		PFN_vkGetPhysicalDeviceFragmentShadingRatesKHR,
+	pub get_physical_device_video_capabilities_khr: PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR,
+	pub get_physical_device_video_format_properties_khr:
+		PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR,
+	pub get_physical_device_video_encode_quality_level_properties_khr:
+		PFN_vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR,
+	pub acquire_drm_display_ext: PFN_vkAcquireDrmDisplayEXT,
+	pub get_drm_display_ext: PFN_vkGetDrmDisplayEXT,
+	pub get_physical_device_optical_flow_image_formats_nv:
+		PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV,
+	pub get_physical_device_cooperative_matrix_properties_khr:
+		PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR,
+	pub get_physical_device_cooperative_matrix_properties2_ext:
+		PFN_vkGetPhysicalDeviceCooperativeMatrixProperties2EXT,
+	pub get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv:
+		PFN_vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV,
+	pub get_physical_device_cooperative_vector_properties_nv:
+		PFN_vkGetPhysicalDeviceCooperativeVectorPropertiesNV,
+	pub enumerate_physical_device_shader_instrumentation_metrics_arm:
+		PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM,
+	pub get_physical_device_external_tensor_properties_arm:
+		PFN_vkGetPhysicalDeviceExternalTensorPropertiesARM,
+	pub get_physical_device_queue_family_data_graph_properties_arm:
+		PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM,
+	pub get_physical_device_queue_family_data_graph_processing_engine_properties_arm:
+		PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM,
+	pub enumerate_physical_device_queue_family_performance_counters_by_region_arm:
+		PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM,
+	pub get_physical_device_descriptor_size_ext: PFN_vkGetPhysicalDeviceDescriptorSizeEXT,
+	pub get_physical_device_queue_family_data_graph_engine_operation_properties_arm:
+		PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM,
+	pub get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm:
+		PFN_vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM,
+}
+
+#[derive(Clone, Default)]
+pub struct FnDevice {
+	pub destroy_device: PFN_vkDestroyDevice,
+	pub get_device_queue: PFN_vkGetDeviceQueue,
+	pub queue_submit: PFN_vkQueueSubmit,
+	pub queue_wait_idle: PFN_vkQueueWaitIdle,
+	pub device_wait_idle: PFN_vkDeviceWaitIdle,
+	pub allocate_memory: PFN_vkAllocateMemory,
+	pub free_memory: PFN_vkFreeMemory,
+	pub map_memory: PFN_vkMapMemory,
+	pub unmap_memory: PFN_vkUnmapMemory,
+	pub flush_mapped_memory_ranges: PFN_vkFlushMappedMemoryRanges,
+	pub invalidate_mapped_memory_ranges: PFN_vkInvalidateMappedMemoryRanges,
+	pub get_device_memory_commitment: PFN_vkGetDeviceMemoryCommitment,
+	pub get_buffer_memory_requirements: PFN_vkGetBufferMemoryRequirements,
+	pub bind_buffer_memory: PFN_vkBindBufferMemory,
+	pub get_image_memory_requirements: PFN_vkGetImageMemoryRequirements,
+	pub bind_image_memory: PFN_vkBindImageMemory,
+	pub get_image_sparse_memory_requirements: PFN_vkGetImageSparseMemoryRequirements,
+	pub queue_bind_sparse: PFN_vkQueueBindSparse,
+	pub create_fence: PFN_vkCreateFence,
+	pub destroy_fence: PFN_vkDestroyFence,
+	pub reset_fences: PFN_vkResetFences,
+	pub get_fence_status: PFN_vkGetFenceStatus,
+	pub wait_for_fences: PFN_vkWaitForFences,
+	pub create_semaphore: PFN_vkCreateSemaphore,
+	pub destroy_semaphore: PFN_vkDestroySemaphore,
+	pub create_event: PFN_vkCreateEvent,
+	pub destroy_event: PFN_vkDestroyEvent,
+	pub get_event_status: PFN_vkGetEventStatus,
+	pub set_event: PFN_vkSetEvent,
+	pub reset_event: PFN_vkResetEvent,
+	pub create_query_pool: PFN_vkCreateQueryPool,
+	pub destroy_query_pool: PFN_vkDestroyQueryPool,
+	pub get_query_pool_results: PFN_vkGetQueryPoolResults,
+	pub reset_query_pool: PFN_vkResetQueryPool,
+	pub reset_query_pool_ext: PFN_vkResetQueryPoolEXT,
+	pub create_buffer: PFN_vkCreateBuffer,
+	pub destroy_buffer: PFN_vkDestroyBuffer,
+	pub create_buffer_view: PFN_vkCreateBufferView,
+	pub destroy_buffer_view: PFN_vkDestroyBufferView,
+	pub create_image: PFN_vkCreateImage,
+	pub destroy_image: PFN_vkDestroyImage,
+	pub get_image_subresource_layout: PFN_vkGetImageSubresourceLayout,
+	pub create_image_view: PFN_vkCreateImageView,
+	pub destroy_image_view: PFN_vkDestroyImageView,
+	pub create_shader_module: PFN_vkCreateShaderModule,
+	pub destroy_shader_module: PFN_vkDestroyShaderModule,
+	pub create_pipeline_cache: PFN_vkCreatePipelineCache,
+	pub destroy_pipeline_cache: PFN_vkDestroyPipelineCache,
+	pub get_pipeline_cache_data: PFN_vkGetPipelineCacheData,
+	pub merge_pipeline_caches: PFN_vkMergePipelineCaches,
+	pub create_pipeline_binaries_khr: PFN_vkCreatePipelineBinariesKHR,
+	pub destroy_pipeline_binary_khr: PFN_vkDestroyPipelineBinaryKHR,
+	pub get_pipeline_key_khr: PFN_vkGetPipelineKeyKHR,
+	pub get_pipeline_binary_data_khr: PFN_vkGetPipelineBinaryDataKHR,
+	pub release_captured_pipeline_data_khr: PFN_vkReleaseCapturedPipelineDataKHR,
+	pub create_graphics_pipelines: PFN_vkCreateGraphicsPipelines,
+	pub create_compute_pipelines: PFN_vkCreateComputePipelines,
+	pub get_device_subpass_shading_max_workgroup_size_huawei:
+		PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI,
+	pub destroy_pipeline: PFN_vkDestroyPipeline,
+	pub create_pipeline_layout: PFN_vkCreatePipelineLayout,
+	pub destroy_pipeline_layout: PFN_vkDestroyPipelineLayout,
+	pub create_sampler: PFN_vkCreateSampler,
+	pub destroy_sampler: PFN_vkDestroySampler,
+	pub create_descriptor_set_layout: PFN_vkCreateDescriptorSetLayout,
+	pub destroy_descriptor_set_layout: PFN_vkDestroyDescriptorSetLayout,
+	pub create_descriptor_pool: PFN_vkCreateDescriptorPool,
+	pub destroy_descriptor_pool: PFN_vkDestroyDescriptorPool,
+	pub reset_descriptor_pool: PFN_vkResetDescriptorPool,
+	pub allocate_descriptor_sets: PFN_vkAllocateDescriptorSets,
+	pub free_descriptor_sets: PFN_vkFreeDescriptorSets,
+	pub update_descriptor_sets: PFN_vkUpdateDescriptorSets,
+	pub create_framebuffer: PFN_vkCreateFramebuffer,
+	pub destroy_framebuffer: PFN_vkDestroyFramebuffer,
+	pub create_render_pass: PFN_vkCreateRenderPass,
+	pub destroy_render_pass: PFN_vkDestroyRenderPass,
+	pub get_render_area_granularity: PFN_vkGetRenderAreaGranularity,
+	pub get_rendering_area_granularity: PFN_vkGetRenderingAreaGranularity,
+	pub get_rendering_area_granularity_khr: PFN_vkGetRenderingAreaGranularityKHR,
+	pub create_command_pool: PFN_vkCreateCommandPool,
+	pub destroy_command_pool: PFN_vkDestroyCommandPool,
+	pub reset_command_pool: PFN_vkResetCommandPool,
+	pub allocate_command_buffers: PFN_vkAllocateCommandBuffers,
+	pub free_command_buffers: PFN_vkFreeCommandBuffers,
+	pub begin_command_buffer: PFN_vkBeginCommandBuffer,
+	pub end_command_buffer: PFN_vkEndCommandBuffer,
+	pub reset_command_buffer: PFN_vkResetCommandBuffer,
+	pub cmd_bind_pipeline: PFN_vkCmdBindPipeline,
+	pub cmd_set_primitive_restart_index_ext: PFN_vkCmdSetPrimitiveRestartIndexEXT,
+	pub cmd_set_attachment_feedback_loop_enable_ext: PFN_vkCmdSetAttachmentFeedbackLoopEnableEXT,
+	pub cmd_set_viewport: PFN_vkCmdSetViewport,
+	pub cmd_set_scissor: PFN_vkCmdSetScissor,
+	pub cmd_set_line_width: PFN_vkCmdSetLineWidth,
+	pub cmd_set_depth_bias: PFN_vkCmdSetDepthBias,
+	pub cmd_set_blend_constants: PFN_vkCmdSetBlendConstants,
+	pub cmd_set_depth_bounds: PFN_vkCmdSetDepthBounds,
+	pub cmd_set_stencil_compare_mask: PFN_vkCmdSetStencilCompareMask,
+	pub cmd_set_stencil_write_mask: PFN_vkCmdSetStencilWriteMask,
+	pub cmd_set_stencil_reference: PFN_vkCmdSetStencilReference,
+	pub cmd_bind_descriptor_sets: PFN_vkCmdBindDescriptorSets,
+	pub cmd_bind_index_buffer: PFN_vkCmdBindIndexBuffer,
+	pub cmd_bind_vertex_buffers: PFN_vkCmdBindVertexBuffers,
+	pub cmd_draw: PFN_vkCmdDraw,
+	pub cmd_draw_indexed: PFN_vkCmdDrawIndexed,
+	pub cmd_draw_multi_ext: PFN_vkCmdDrawMultiEXT,
+	pub cmd_draw_multi_indexed_ext: PFN_vkCmdDrawMultiIndexedEXT,
+	pub cmd_draw_indirect: PFN_vkCmdDrawIndirect,
+	pub cmd_draw_indexed_indirect: PFN_vkCmdDrawIndexedIndirect,
+	pub cmd_dispatch: PFN_vkCmdDispatch,
+	pub cmd_dispatch_indirect: PFN_vkCmdDispatchIndirect,
+	pub cmd_subpass_shading_huawei: PFN_vkCmdSubpassShadingHUAWEI,
+	pub cmd_draw_cluster_huawei: PFN_vkCmdDrawClusterHUAWEI,
+	pub cmd_draw_cluster_indirect_huawei: PFN_vkCmdDrawClusterIndirectHUAWEI,
+	pub cmd_update_pipeline_indirect_buffer_nv: PFN_vkCmdUpdatePipelineIndirectBufferNV,
+	pub cmd_copy_buffer: PFN_vkCmdCopyBuffer,
+	pub cmd_copy_image: PFN_vkCmdCopyImage,
+	pub cmd_blit_image: PFN_vkCmdBlitImage,
+	pub cmd_copy_buffer_to_image: PFN_vkCmdCopyBufferToImage,
+	pub cmd_copy_image_to_buffer: PFN_vkCmdCopyImageToBuffer,
+	pub cmd_copy_memory_indirect_nv: PFN_vkCmdCopyMemoryIndirectNV,
+	pub cmd_copy_memory_indirect_khr: PFN_vkCmdCopyMemoryIndirectKHR,
+	pub cmd_copy_memory_to_image_indirect_nv: PFN_vkCmdCopyMemoryToImageIndirectNV,
+	pub cmd_copy_memory_to_image_indirect_khr: PFN_vkCmdCopyMemoryToImageIndirectKHR,
+	pub cmd_update_buffer: PFN_vkCmdUpdateBuffer,
+	pub cmd_fill_buffer: PFN_vkCmdFillBuffer,
+	pub cmd_clear_color_image: PFN_vkCmdClearColorImage,
+	pub cmd_clear_depth_stencil_image: PFN_vkCmdClearDepthStencilImage,
+	pub cmd_clear_attachments: PFN_vkCmdClearAttachments,
+	pub cmd_resolve_image: PFN_vkCmdResolveImage,
+	pub cmd_set_event: PFN_vkCmdSetEvent,
+	pub cmd_reset_event: PFN_vkCmdResetEvent,
+	pub cmd_wait_events: PFN_vkCmdWaitEvents,
+	pub cmd_pipeline_barrier: PFN_vkCmdPipelineBarrier,
+	pub cmd_begin_query: PFN_vkCmdBeginQuery,
+	pub cmd_end_query: PFN_vkCmdEndQuery,
+	pub cmd_begin_conditional_rendering_ext: PFN_vkCmdBeginConditionalRenderingEXT,
+	pub cmd_end_conditional_rendering_ext: PFN_vkCmdEndConditionalRenderingEXT,
+	pub cmd_begin_custom_resolve_ext: PFN_vkCmdBeginCustomResolveEXT,
+	pub cmd_reset_query_pool: PFN_vkCmdResetQueryPool,
+	pub cmd_write_timestamp: PFN_vkCmdWriteTimestamp,
+	pub cmd_copy_query_pool_results: PFN_vkCmdCopyQueryPoolResults,
+	pub cmd_push_constants: PFN_vkCmdPushConstants,
+	pub cmd_begin_render_pass: PFN_vkCmdBeginRenderPass,
+	pub cmd_next_subpass: PFN_vkCmdNextSubpass,
+	pub cmd_end_render_pass: PFN_vkCmdEndRenderPass,
+	pub cmd_execute_commands: PFN_vkCmdExecuteCommands,
+	pub create_shared_swapchains_khr: PFN_vkCreateSharedSwapchainsKHR,
+	pub create_swapchain_khr: PFN_vkCreateSwapchainKHR,
+	pub destroy_swapchain_khr: PFN_vkDestroySwapchainKHR,
+	pub get_swapchain_images_khr: PFN_vkGetSwapchainImagesKHR,
+	pub acquire_next_image_khr: PFN_vkAcquireNextImageKHR,
+	pub queue_present_khr: PFN_vkQueuePresentKHR,
+	pub debug_marker_set_object_name_ext: PFN_vkDebugMarkerSetObjectNameEXT,
+	pub debug_marker_set_object_tag_ext: PFN_vkDebugMarkerSetObjectTagEXT,
+	pub cmd_debug_marker_begin_ext: PFN_vkCmdDebugMarkerBeginEXT,
+	pub cmd_debug_marker_end_ext: PFN_vkCmdDebugMarkerEndEXT,
+	pub cmd_debug_marker_insert_ext: PFN_vkCmdDebugMarkerInsertEXT,
+	#[cfg(feature = "platform-win32")]
+	pub get_memory_win32_handle_nv: PFN_vkGetMemoryWin32HandleNV,
+	pub cmd_execute_generated_commands_nv: PFN_vkCmdExecuteGeneratedCommandsNV,
+	pub cmd_preprocess_generated_commands_nv: PFN_vkCmdPreprocessGeneratedCommandsNV,
+	pub cmd_bind_pipeline_shader_group_nv: PFN_vkCmdBindPipelineShaderGroupNV,
+	pub get_generated_commands_memory_requirements_nv: PFN_vkGetGeneratedCommandsMemoryRequirementsNV,
+	pub create_indirect_commands_layout_nv: PFN_vkCreateIndirectCommandsLayoutNV,
+	pub destroy_indirect_commands_layout_nv: PFN_vkDestroyIndirectCommandsLayoutNV,
+	pub cmd_execute_generated_commands_ext: PFN_vkCmdExecuteGeneratedCommandsEXT,
+	pub cmd_preprocess_generated_commands_ext: PFN_vkCmdPreprocessGeneratedCommandsEXT,
+	pub get_generated_commands_memory_requirements_ext:
+		PFN_vkGetGeneratedCommandsMemoryRequirementsEXT,
+	pub create_indirect_commands_layout_ext: PFN_vkCreateIndirectCommandsLayoutEXT,
+	pub destroy_indirect_commands_layout_ext: PFN_vkDestroyIndirectCommandsLayoutEXT,
+	pub create_indirect_execution_set_ext: PFN_vkCreateIndirectExecutionSetEXT,
+	pub destroy_indirect_execution_set_ext: PFN_vkDestroyIndirectExecutionSetEXT,
+	pub update_indirect_execution_set_pipeline_ext: PFN_vkUpdateIndirectExecutionSetPipelineEXT,
+	pub update_indirect_execution_set_shader_ext: PFN_vkUpdateIndirectExecutionSetShaderEXT,
+	pub cmd_push_descriptor_set: PFN_vkCmdPushDescriptorSet,
+	pub cmd_push_descriptor_set_khr: PFN_vkCmdPushDescriptorSetKHR,
+	pub trim_command_pool: PFN_vkTrimCommandPool,
+	pub trim_command_pool_khr: PFN_vkTrimCommandPoolKHR,
+	#[cfg(feature = "platform-win32")]
+	pub get_memory_win32_handle_khr: PFN_vkGetMemoryWin32HandleKHR,
+	#[cfg(feature = "platform-win32")]
+	pub get_memory_win32_handle_properties_khr: PFN_vkGetMemoryWin32HandlePropertiesKHR,
+	pub get_memory_fd_khr: PFN_vkGetMemoryFdKHR,
+	pub get_memory_fd_properties_khr: PFN_vkGetMemoryFdPropertiesKHR,
+	#[cfg(feature = "platform-fuchsia")]
+	pub get_memory_zircon_handle_fuchsia: PFN_vkGetMemoryZirconHandleFUCHSIA,
+	#[cfg(feature = "platform-fuchsia")]
+	pub get_memory_zircon_handle_properties_fuchsia: PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA,
+	pub get_memory_remote_address_nv: PFN_vkGetMemoryRemoteAddressNV,
+	#[cfg(feature = "platform-win32")]
+	pub get_semaphore_win32_handle_khr: PFN_vkGetSemaphoreWin32HandleKHR,
+	#[cfg(feature = "platform-win32")]
+	pub import_semaphore_win32_handle_khr: PFN_vkImportSemaphoreWin32HandleKHR,
+	pub get_semaphore_fd_khr: PFN_vkGetSemaphoreFdKHR,
+	pub import_semaphore_fd_khr: PFN_vkImportSemaphoreFdKHR,
+	#[cfg(feature = "platform-fuchsia")]
+	pub get_semaphore_zircon_handle_fuchsia: PFN_vkGetSemaphoreZirconHandleFUCHSIA,
+	#[cfg(feature = "platform-fuchsia")]
+	pub import_semaphore_zircon_handle_fuchsia: PFN_vkImportSemaphoreZirconHandleFUCHSIA,
+	#[cfg(feature = "platform-win32")]
+	pub get_fence_win32_handle_khr: PFN_vkGetFenceWin32HandleKHR,
+	#[cfg(feature = "platform-win32")]
+	pub import_fence_win32_handle_khr: PFN_vkImportFenceWin32HandleKHR,
+	pub get_fence_fd_khr: PFN_vkGetFenceFdKHR,
+	pub import_fence_fd_khr: PFN_vkImportFenceFdKHR,
+	pub display_power_control_ext: PFN_vkDisplayPowerControlEXT,
+	pub register_device_event_ext: PFN_vkRegisterDeviceEventEXT,
+	pub register_display_event_ext: PFN_vkRegisterDisplayEventEXT,
+	pub get_swapchain_counter_ext: PFN_vkGetSwapchainCounterEXT,
+	pub get_device_group_peer_memory_features: PFN_vkGetDeviceGroupPeerMemoryFeatures,
+	pub get_device_group_peer_memory_features_khr: PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR,
+	pub bind_buffer_memory2: PFN_vkBindBufferMemory2,
+	pub bind_buffer_memory2_khr: PFN_vkBindBufferMemory2KHR,
+	pub bind_image_memory2: PFN_vkBindImageMemory2,
+	pub bind_image_memory2_khr: PFN_vkBindImageMemory2KHR,
+	pub cmd_set_device_mask: PFN_vkCmdSetDeviceMask,
+	pub cmd_set_device_mask_khr: PFN_vkCmdSetDeviceMaskKHR,
+	pub get_device_group_present_capabilities_khr: PFN_vkGetDeviceGroupPresentCapabilitiesKHR,
+	pub get_device_group_surface_present_modes_khr: PFN_vkGetDeviceGroupSurfacePresentModesKHR,
+	pub acquire_next_image2_khr: PFN_vkAcquireNextImage2KHR,
+	pub cmd_dispatch_base: PFN_vkCmdDispatchBase,
+	pub cmd_dispatch_base_khr: PFN_vkCmdDispatchBaseKHR,
+	pub create_descriptor_update_template: PFN_vkCreateDescriptorUpdateTemplate,
+	pub create_descriptor_update_template_khr: PFN_vkCreateDescriptorUpdateTemplateKHR,
+	pub destroy_descriptor_update_template: PFN_vkDestroyDescriptorUpdateTemplate,
+	pub destroy_descriptor_update_template_khr: PFN_vkDestroyDescriptorUpdateTemplateKHR,
+	pub update_descriptor_set_with_template: PFN_vkUpdateDescriptorSetWithTemplate,
+	pub update_descriptor_set_with_template_khr: PFN_vkUpdateDescriptorSetWithTemplateKHR,
+	pub cmd_push_descriptor_set_with_template: PFN_vkCmdPushDescriptorSetWithTemplate,
+	pub cmd_push_descriptor_set_with_template_khr: PFN_vkCmdPushDescriptorSetWithTemplateKHR,
+	pub set_hdr_metadata_ext: PFN_vkSetHdrMetadataEXT,
+	pub get_swapchain_status_khr: PFN_vkGetSwapchainStatusKHR,
+	pub get_refresh_cycle_duration_google: PFN_vkGetRefreshCycleDurationGOOGLE,
+	pub get_past_presentation_timing_google: PFN_vkGetPastPresentationTimingGOOGLE,
+	pub cmd_set_viewport_w_scaling_nv: PFN_vkCmdSetViewportWScalingNV,
+	pub cmd_set_discard_rectangle_ext: PFN_vkCmdSetDiscardRectangleEXT,
+	pub cmd_set_discard_rectangle_enable_ext: PFN_vkCmdSetDiscardRectangleEnableEXT,
+	pub cmd_set_discard_rectangle_mode_ext: PFN_vkCmdSetDiscardRectangleModeEXT,
+	pub cmd_set_sample_locations_ext: PFN_vkCmdSetSampleLocationsEXT,
+	pub get_buffer_memory_requirements2: PFN_vkGetBufferMemoryRequirements2,
+	pub get_buffer_memory_requirements2_khr: PFN_vkGetBufferMemoryRequirements2KHR,
+	pub get_image_memory_requirements2: PFN_vkGetImageMemoryRequirements2,
+	pub get_image_memory_requirements2_khr: PFN_vkGetImageMemoryRequirements2KHR,
+	pub get_image_sparse_memory_requirements2: PFN_vkGetImageSparseMemoryRequirements2,
+	pub get_image_sparse_memory_requirements2_khr: PFN_vkGetImageSparseMemoryRequirements2KHR,
+	pub get_device_buffer_memory_requirements: PFN_vkGetDeviceBufferMemoryRequirements,
+	pub get_device_buffer_memory_requirements_khr: PFN_vkGetDeviceBufferMemoryRequirementsKHR,
+	pub get_device_image_memory_requirements: PFN_vkGetDeviceImageMemoryRequirements,
+	pub get_device_image_memory_requirements_khr: PFN_vkGetDeviceImageMemoryRequirementsKHR,
+	pub get_device_image_sparse_memory_requirements: PFN_vkGetDeviceImageSparseMemoryRequirements,
+	pub get_device_image_sparse_memory_requirements_khr:
+		PFN_vkGetDeviceImageSparseMemoryRequirementsKHR,
+	pub create_sampler_ycbcr_conversion: PFN_vkCreateSamplerYcbcrConversion,
+	pub create_sampler_ycbcr_conversion_khr: PFN_vkCreateSamplerYcbcrConversionKHR,
+	pub destroy_sampler_ycbcr_conversion: PFN_vkDestroySamplerYcbcrConversion,
+	pub destroy_sampler_ycbcr_conversion_khr: PFN_vkDestroySamplerYcbcrConversionKHR,
+	pub get_device_queue2: PFN_vkGetDeviceQueue2,
+	pub create_validation_cache_ext: PFN_vkCreateValidationCacheEXT,
+	pub destroy_validation_cache_ext: PFN_vkDestroyValidationCacheEXT,
+	pub get_validation_cache_data_ext: PFN_vkGetValidationCacheDataEXT,
+	pub merge_validation_caches_ext: PFN_vkMergeValidationCachesEXT,
+	pub get_descriptor_set_layout_support: PFN_vkGetDescriptorSetLayoutSupport,
+	pub get_descriptor_set_layout_support_khr: PFN_vkGetDescriptorSetLayoutSupportKHR,
+	pub get_shader_info_amd: PFN_vkGetShaderInfoAMD,
+	pub set_local_dimming_amd: PFN_vkSetLocalDimmingAMD,
+	pub get_calibrated_timestamps_khr: PFN_vkGetCalibratedTimestampsKHR,
+	pub get_calibrated_timestamps_ext: PFN_vkGetCalibratedTimestampsEXT,
+	pub set_debug_utils_object_name_ext: PFN_vkSetDebugUtilsObjectNameEXT,
+	pub set_debug_utils_object_tag_ext: PFN_vkSetDebugUtilsObjectTagEXT,
+	pub queue_begin_debug_utils_label_ext: PFN_vkQueueBeginDebugUtilsLabelEXT,
+	pub queue_end_debug_utils_label_ext: PFN_vkQueueEndDebugUtilsLabelEXT,
+	pub queue_insert_debug_utils_label_ext: PFN_vkQueueInsertDebugUtilsLabelEXT,
+	pub cmd_begin_debug_utils_label_ext: PFN_vkCmdBeginDebugUtilsLabelEXT,
+	pub cmd_end_debug_utils_label_ext: PFN_vkCmdEndDebugUtilsLabelEXT,
+	pub cmd_insert_debug_utils_label_ext: PFN_vkCmdInsertDebugUtilsLabelEXT,
+	pub get_memory_host_pointer_properties_ext: PFN_vkGetMemoryHostPointerPropertiesEXT,
+	pub cmd_write_buffer_marker_amd: PFN_vkCmdWriteBufferMarkerAMD,
+	pub create_render_pass2: PFN_vkCreateRenderPass2,
+	pub create_render_pass2_khr: PFN_vkCreateRenderPass2KHR,
+	pub cmd_begin_render_pass2: PFN_vkCmdBeginRenderPass2,
+	pub cmd_begin_render_pass2_khr: PFN_vkCmdBeginRenderPass2KHR,
+	pub cmd_next_subpass2: PFN_vkCmdNextSubpass2,
+	pub cmd_next_subpass2_khr: PFN_vkCmdNextSubpass2KHR,
+	pub cmd_end_render_pass2: PFN_vkCmdEndRenderPass2,
+	pub cmd_end_render_pass2_khr: PFN_vkCmdEndRenderPass2KHR,
+	pub get_semaphore_counter_value: PFN_vkGetSemaphoreCounterValue,
+	pub get_semaphore_counter_value_khr: PFN_vkGetSemaphoreCounterValueKHR,
+	pub wait_semaphores: PFN_vkWaitSemaphores,
+	pub wait_semaphores_khr: PFN_vkWaitSemaphoresKHR,
+	pub signal_semaphore: PFN_vkSignalSemaphore,
+	pub signal_semaphore_khr: PFN_vkSignalSemaphoreKHR,
+	#[cfg(feature = "platform-android")]
+	pub get_android_hardware_buffer_properties_android:
+		PFN_vkGetAndroidHardwareBufferPropertiesANDROID,
+	#[cfg(feature = "platform-android")]
+	pub get_memory_android_hardware_buffer_android: PFN_vkGetMemoryAndroidHardwareBufferANDROID,
+	pub cmd_draw_indirect_count: PFN_vkCmdDrawIndirectCount,
+	pub cmd_draw_indirect_count_khr: PFN_vkCmdDrawIndirectCountKHR,
+	pub cmd_draw_indirect_count_amd: PFN_vkCmdDrawIndirectCountAMD,
+	pub cmd_draw_indexed_indirect_count: PFN_vkCmdDrawIndexedIndirectCount,
+	pub cmd_draw_indexed_indirect_count_khr: PFN_vkCmdDrawIndexedIndirectCountKHR,
+	pub cmd_draw_indexed_indirect_count_amd: PFN_vkCmdDrawIndexedIndirectCountAMD,
+	pub cmd_set_checkpoint_nv: PFN_vkCmdSetCheckpointNV,
+	pub get_queue_checkpoint_data_nv: PFN_vkGetQueueCheckpointDataNV,
+	pub cmd_bind_transform_feedback_buffers_ext: PFN_vkCmdBindTransformFeedbackBuffersEXT,
+	pub cmd_begin_transform_feedback_ext: PFN_vkCmdBeginTransformFeedbackEXT,
+	pub cmd_end_transform_feedback_ext: PFN_vkCmdEndTransformFeedbackEXT,
+	pub cmd_begin_query_indexed_ext: PFN_vkCmdBeginQueryIndexedEXT,
+	pub cmd_end_query_indexed_ext: PFN_vkCmdEndQueryIndexedEXT,
+	pub cmd_draw_indirect_byte_count_ext: PFN_vkCmdDrawIndirectByteCountEXT,
+	pub cmd_set_exclusive_scissor_nv: PFN_vkCmdSetExclusiveScissorNV,
+	pub cmd_set_exclusive_scissor_enable_nv: PFN_vkCmdSetExclusiveScissorEnableNV,
+	pub cmd_bind_shading_rate_image_nv: PFN_vkCmdBindShadingRateImageNV,
+	pub cmd_set_viewport_shading_rate_palette_nv: PFN_vkCmdSetViewportShadingRatePaletteNV,
+	pub cmd_set_coarse_sample_order_nv: PFN_vkCmdSetCoarseSampleOrderNV,
+	pub cmd_draw_mesh_tasks_nv: PFN_vkCmdDrawMeshTasksNV,
+	pub cmd_draw_mesh_tasks_indirect_nv: PFN_vkCmdDrawMeshTasksIndirectNV,
+	pub cmd_draw_mesh_tasks_indirect_count_nv: PFN_vkCmdDrawMeshTasksIndirectCountNV,
+	pub cmd_draw_mesh_tasks_ext: PFN_vkCmdDrawMeshTasksEXT,
+	pub cmd_draw_mesh_tasks_indirect_ext: PFN_vkCmdDrawMeshTasksIndirectEXT,
+	pub cmd_draw_mesh_tasks_indirect_count_ext: PFN_vkCmdDrawMeshTasksIndirectCountEXT,
+	pub compile_deferred_nv: PFN_vkCompileDeferredNV,
+	pub create_acceleration_structure_nv: PFN_vkCreateAccelerationStructureNV,
+	pub cmd_bind_invocation_mask_huawei: PFN_vkCmdBindInvocationMaskHUAWEI,
+	pub destroy_acceleration_structure_khr: PFN_vkDestroyAccelerationStructureKHR,
+	pub destroy_acceleration_structure_nv: PFN_vkDestroyAccelerationStructureNV,
+	pub get_acceleration_structure_memory_requirements_nv:
+		PFN_vkGetAccelerationStructureMemoryRequirementsNV,
+	pub bind_acceleration_structure_memory_nv: PFN_vkBindAccelerationStructureMemoryNV,
+	pub cmd_copy_acceleration_structure_nv: PFN_vkCmdCopyAccelerationStructureNV,
+	pub cmd_copy_acceleration_structure_khr: PFN_vkCmdCopyAccelerationStructureKHR,
+	pub copy_acceleration_structure_khr: PFN_vkCopyAccelerationStructureKHR,
+	pub cmd_copy_acceleration_structure_to_memory_khr: PFN_vkCmdCopyAccelerationStructureToMemoryKHR,
+	pub copy_acceleration_structure_to_memory_khr: PFN_vkCopyAccelerationStructureToMemoryKHR,
+	pub cmd_copy_memory_to_acceleration_structure_khr: PFN_vkCmdCopyMemoryToAccelerationStructureKHR,
+	pub copy_memory_to_acceleration_structure_khr: PFN_vkCopyMemoryToAccelerationStructureKHR,
+	pub cmd_write_acceleration_structures_properties_khr:
+		PFN_vkCmdWriteAccelerationStructuresPropertiesKHR,
+	pub cmd_write_acceleration_structures_properties_nv:
+		PFN_vkCmdWriteAccelerationStructuresPropertiesNV,
+	pub cmd_build_acceleration_structure_nv: PFN_vkCmdBuildAccelerationStructureNV,
+	pub write_acceleration_structures_properties_khr: PFN_vkWriteAccelerationStructuresPropertiesKHR,
+	pub cmd_trace_rays_khr: PFN_vkCmdTraceRaysKHR,
+	pub cmd_trace_rays_nv: PFN_vkCmdTraceRaysNV,
+	pub get_ray_tracing_shader_group_handles_khr: PFN_vkGetRayTracingShaderGroupHandlesKHR,
+	pub get_ray_tracing_shader_group_handles_nv: PFN_vkGetRayTracingShaderGroupHandlesNV,
+	pub get_ray_tracing_capture_replay_shader_group_handles_khr:
+		PFN_vkGetRayTracingCaptureReplayShaderGroupHandlesKHR,
+	pub get_acceleration_structure_handle_nv: PFN_vkGetAccelerationStructureHandleNV,
+	pub create_ray_tracing_pipelines_nv: PFN_vkCreateRayTracingPipelinesNV,
+	pub create_ray_tracing_pipelines_khr: PFN_vkCreateRayTracingPipelinesKHR,
+	pub cmd_trace_rays_indirect_khr: PFN_vkCmdTraceRaysIndirectKHR,
+	pub cmd_trace_rays_indirect2_khr: PFN_vkCmdTraceRaysIndirect2KHR,
+	pub get_cluster_acceleration_structure_build_sizes_nv:
+		PFN_vkGetClusterAccelerationStructureBuildSizesNV,
+	pub cmd_build_cluster_acceleration_structure_indirect_nv:
+		PFN_vkCmdBuildClusterAccelerationStructureIndirectNV,
+	pub get_device_acceleration_structure_compatibility_khr:
+		PFN_vkGetDeviceAccelerationStructureCompatibilityKHR,
+	pub get_ray_tracing_shader_group_stack_size_khr: PFN_vkGetRayTracingShaderGroupStackSizeKHR,
+	pub cmd_set_ray_tracing_pipeline_stack_size_khr: PFN_vkCmdSetRayTracingPipelineStackSizeKHR,
+	pub get_image_view_handle_nvx: PFN_vkGetImageViewHandleNVX,
+	pub get_image_view_handle64_nvx: PFN_vkGetImageViewHandle64NVX,
+	pub get_image_view_address_nvx: PFN_vkGetImageViewAddressNVX,
+	pub get_device_combined_image_sampler_index_nvx: PFN_vkGetDeviceCombinedImageSamplerIndexNVX,
+	#[cfg(feature = "platform-win32")]
+	pub get_device_group_surface_present_modes2_ext: PFN_vkGetDeviceGroupSurfacePresentModes2EXT,
+	#[cfg(feature = "platform-win32")]
+	pub acquire_full_screen_exclusive_mode_ext: PFN_vkAcquireFullScreenExclusiveModeEXT,
+	#[cfg(feature = "platform-win32")]
+	pub release_full_screen_exclusive_mode_ext: PFN_vkReleaseFullScreenExclusiveModeEXT,
+	pub acquire_profiling_lock_khr: PFN_vkAcquireProfilingLockKHR,
+	pub release_profiling_lock_khr: PFN_vkReleaseProfilingLockKHR,
+	pub get_image_drm_format_modifier_properties_ext: PFN_vkGetImageDrmFormatModifierPropertiesEXT,
+	pub get_buffer_opaque_capture_address: PFN_vkGetBufferOpaqueCaptureAddress,
+	pub get_buffer_opaque_capture_address_khr: PFN_vkGetBufferOpaqueCaptureAddressKHR,
+	pub get_buffer_device_address: PFN_vkGetBufferDeviceAddress,
+	pub get_buffer_device_address_khr: PFN_vkGetBufferDeviceAddressKHR,
+	pub get_buffer_device_address_ext: PFN_vkGetBufferDeviceAddressEXT,
+	pub initialize_performance_api_intel: PFN_vkInitializePerformanceApiINTEL,
+	pub uninitialize_performance_api_intel: PFN_vkUninitializePerformanceApiINTEL,
+	pub cmd_set_performance_marker_intel: PFN_vkCmdSetPerformanceMarkerINTEL,
+	pub cmd_set_performance_stream_marker_intel: PFN_vkCmdSetPerformanceStreamMarkerINTEL,
+	pub cmd_set_performance_override_intel: PFN_vkCmdSetPerformanceOverrideINTEL,
+	pub acquire_performance_configuration_intel: PFN_vkAcquirePerformanceConfigurationINTEL,
+	pub release_performance_configuration_intel: PFN_vkReleasePerformanceConfigurationINTEL,
+	pub queue_set_performance_configuration_intel: PFN_vkQueueSetPerformanceConfigurationINTEL,
+	pub get_performance_parameter_intel: PFN_vkGetPerformanceParameterINTEL,
+	pub get_device_memory_opaque_capture_address: PFN_vkGetDeviceMemoryOpaqueCaptureAddress,
+	pub get_device_memory_opaque_capture_address_khr: PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR,
+	pub get_pipeline_executable_properties_khr: PFN_vkGetPipelineExecutablePropertiesKHR,
+	pub get_pipeline_executable_statistics_khr: PFN_vkGetPipelineExecutableStatisticsKHR,
+	pub get_pipeline_executable_internal_representations_khr:
+		PFN_vkGetPipelineExecutableInternalRepresentationsKHR,
+	pub cmd_set_line_stipple: PFN_vkCmdSetLineStipple,
+	pub cmd_set_line_stipple_khr: PFN_vkCmdSetLineStippleKHR,
+	pub cmd_set_line_stipple_ext: PFN_vkCmdSetLineStippleEXT,
+	pub create_acceleration_structure_khr: PFN_vkCreateAccelerationStructureKHR,
+	pub cmd_build_acceleration_structures_khr: PFN_vkCmdBuildAccelerationStructuresKHR,
+	pub cmd_build_acceleration_structures_indirect_khr:
+		PFN_vkCmdBuildAccelerationStructuresIndirectKHR,
+	pub build_acceleration_structures_khr: PFN_vkBuildAccelerationStructuresKHR,
+	pub get_acceleration_structure_device_address_khr: PFN_vkGetAccelerationStructureDeviceAddressKHR,
+	pub create_deferred_operation_khr: PFN_vkCreateDeferredOperationKHR,
+	pub destroy_deferred_operation_khr: PFN_vkDestroyDeferredOperationKHR,
+	pub get_deferred_operation_max_concurrency_khr: PFN_vkGetDeferredOperationMaxConcurrencyKHR,
+	pub get_deferred_operation_result_khr: PFN_vkGetDeferredOperationResultKHR,
+	pub deferred_operation_join_khr: PFN_vkDeferredOperationJoinKHR,
+	pub get_pipeline_indirect_memory_requirements_nv: PFN_vkGetPipelineIndirectMemoryRequirementsNV,
+	pub get_pipeline_indirect_device_address_nv: PFN_vkGetPipelineIndirectDeviceAddressNV,
+	pub anti_lag_update_amd: PFN_vkAntiLagUpdateAMD,
+	pub cmd_set_cull_mode: PFN_vkCmdSetCullMode,
+	pub cmd_set_cull_mode_ext: PFN_vkCmdSetCullModeEXT,
+	pub cmd_set_front_face: PFN_vkCmdSetFrontFace,
+	pub cmd_set_front_face_ext: PFN_vkCmdSetFrontFaceEXT,
+	pub cmd_set_primitive_topology: PFN_vkCmdSetPrimitiveTopology,
+	pub cmd_set_primitive_topology_ext: PFN_vkCmdSetPrimitiveTopologyEXT,
+	pub cmd_set_viewport_with_count: PFN_vkCmdSetViewportWithCount,
+	pub cmd_set_viewport_with_count_ext: PFN_vkCmdSetViewportWithCountEXT,
+	pub cmd_set_scissor_with_count: PFN_vkCmdSetScissorWithCount,
+	pub cmd_set_scissor_with_count_ext: PFN_vkCmdSetScissorWithCountEXT,
+	pub cmd_bind_index_buffer2: PFN_vkCmdBindIndexBuffer2,
+	pub cmd_bind_index_buffer2_khr: PFN_vkCmdBindIndexBuffer2KHR,
+	pub cmd_bind_vertex_buffers2: PFN_vkCmdBindVertexBuffers2,
+	pub cmd_bind_vertex_buffers2_ext: PFN_vkCmdBindVertexBuffers2EXT,
+	pub cmd_set_depth_test_enable: PFN_vkCmdSetDepthTestEnable,
+	pub cmd_set_depth_test_enable_ext: PFN_vkCmdSetDepthTestEnableEXT,
+	pub cmd_set_depth_write_enable: PFN_vkCmdSetDepthWriteEnable,
+	pub cmd_set_depth_write_enable_ext: PFN_vkCmdSetDepthWriteEnableEXT,
+	pub cmd_set_depth_compare_op: PFN_vkCmdSetDepthCompareOp,
+	pub cmd_set_depth_compare_op_ext: PFN_vkCmdSetDepthCompareOpEXT,
+	pub cmd_set_depth_bounds_test_enable: PFN_vkCmdSetDepthBoundsTestEnable,
+	pub cmd_set_depth_bounds_test_enable_ext: PFN_vkCmdSetDepthBoundsTestEnableEXT,
+	pub cmd_set_stencil_test_enable: PFN_vkCmdSetStencilTestEnable,
+	pub cmd_set_stencil_test_enable_ext: PFN_vkCmdSetStencilTestEnableEXT,
+	pub cmd_set_stencil_op: PFN_vkCmdSetStencilOp,
+	pub cmd_set_stencil_op_ext: PFN_vkCmdSetStencilOpEXT,
+	pub cmd_set_patch_control_points_ext: PFN_vkCmdSetPatchControlPointsEXT,
+	pub cmd_set_rasterizer_discard_enable: PFN_vkCmdSetRasterizerDiscardEnable,
+	pub cmd_set_rasterizer_discard_enable_ext: PFN_vkCmdSetRasterizerDiscardEnableEXT,
+	pub cmd_set_depth_bias_enable: PFN_vkCmdSetDepthBiasEnable,
+	pub cmd_set_depth_bias_enable_ext: PFN_vkCmdSetDepthBiasEnableEXT,
+	pub cmd_set_logic_op_ext: PFN_vkCmdSetLogicOpEXT,
+	pub cmd_set_primitive_restart_enable: PFN_vkCmdSetPrimitiveRestartEnable,
+	pub cmd_set_primitive_restart_enable_ext: PFN_vkCmdSetPrimitiveRestartEnableEXT,
+	pub cmd_set_tessellation_domain_origin_ext: PFN_vkCmdSetTessellationDomainOriginEXT,
+	pub cmd_set_depth_clamp_enable_ext: PFN_vkCmdSetDepthClampEnableEXT,
+	pub cmd_set_polygon_mode_ext: PFN_vkCmdSetPolygonModeEXT,
+	pub cmd_set_rasterization_samples_ext: PFN_vkCmdSetRasterizationSamplesEXT,
+	pub cmd_set_sample_mask_ext: PFN_vkCmdSetSampleMaskEXT,
+	pub cmd_set_alpha_to_coverage_enable_ext: PFN_vkCmdSetAlphaToCoverageEnableEXT,
+	pub cmd_set_alpha_to_one_enable_ext: PFN_vkCmdSetAlphaToOneEnableEXT,
+	pub cmd_set_logic_op_enable_ext: PFN_vkCmdSetLogicOpEnableEXT,
+	pub cmd_set_color_blend_enable_ext: PFN_vkCmdSetColorBlendEnableEXT,
+	pub cmd_set_color_blend_equation_ext: PFN_vkCmdSetColorBlendEquationEXT,
+	pub cmd_set_color_write_mask_ext: PFN_vkCmdSetColorWriteMaskEXT,
+	pub cmd_set_rasterization_stream_ext: PFN_vkCmdSetRasterizationStreamEXT,
+	pub cmd_set_conservative_rasterization_mode_ext: PFN_vkCmdSetConservativeRasterizationModeEXT,
+	pub cmd_set_extra_primitive_overestimation_size_ext:
+		PFN_vkCmdSetExtraPrimitiveOverestimationSizeEXT,
+	pub cmd_set_depth_clip_enable_ext: PFN_vkCmdSetDepthClipEnableEXT,
+	pub cmd_set_sample_locations_enable_ext: PFN_vkCmdSetSampleLocationsEnableEXT,
+	pub cmd_set_color_blend_advanced_ext: PFN_vkCmdSetColorBlendAdvancedEXT,
+	pub cmd_set_provoking_vertex_mode_ext: PFN_vkCmdSetProvokingVertexModeEXT,
+	pub cmd_set_line_rasterization_mode_ext: PFN_vkCmdSetLineRasterizationModeEXT,
+	pub cmd_set_line_stipple_enable_ext: PFN_vkCmdSetLineStippleEnableEXT,
+	pub cmd_set_depth_clip_negative_one_to_one_ext: PFN_vkCmdSetDepthClipNegativeOneToOneEXT,
+	pub cmd_set_viewport_w_scaling_enable_nv: PFN_vkCmdSetViewportWScalingEnableNV,
+	pub cmd_set_viewport_swizzle_nv: PFN_vkCmdSetViewportSwizzleNV,
+	pub cmd_set_coverage_to_color_enable_nv: PFN_vkCmdSetCoverageToColorEnableNV,
+	pub cmd_set_coverage_to_color_location_nv: PFN_vkCmdSetCoverageToColorLocationNV,
+	pub cmd_set_coverage_modulation_mode_nv: PFN_vkCmdSetCoverageModulationModeNV,
+	pub cmd_set_coverage_modulation_table_enable_nv: PFN_vkCmdSetCoverageModulationTableEnableNV,
+	pub cmd_set_coverage_modulation_table_nv: PFN_vkCmdSetCoverageModulationTableNV,
+	pub cmd_set_shading_rate_image_enable_nv: PFN_vkCmdSetShadingRateImageEnableNV,
+	pub cmd_set_coverage_reduction_mode_nv: PFN_vkCmdSetCoverageReductionModeNV,
+	pub cmd_set_representative_fragment_test_enable_nv:
+		PFN_vkCmdSetRepresentativeFragmentTestEnableNV,
+	pub create_private_data_slot: PFN_vkCreatePrivateDataSlot,
+	pub create_private_data_slot_ext: PFN_vkCreatePrivateDataSlotEXT,
+	pub destroy_private_data_slot: PFN_vkDestroyPrivateDataSlot,
+	pub destroy_private_data_slot_ext: PFN_vkDestroyPrivateDataSlotEXT,
+	pub set_private_data: PFN_vkSetPrivateData,
+	pub set_private_data_ext: PFN_vkSetPrivateDataEXT,
+	pub get_private_data: PFN_vkGetPrivateData,
+	pub get_private_data_ext: PFN_vkGetPrivateDataEXT,
+	pub cmd_copy_buffer2: PFN_vkCmdCopyBuffer2,
+	pub cmd_copy_buffer2_khr: PFN_vkCmdCopyBuffer2KHR,
+	pub cmd_copy_image2: PFN_vkCmdCopyImage2,
+	pub cmd_copy_image2_khr: PFN_vkCmdCopyImage2KHR,
+	pub cmd_blit_image2: PFN_vkCmdBlitImage2,
+	pub cmd_blit_image2_khr: PFN_vkCmdBlitImage2KHR,
+	pub cmd_copy_buffer_to_image2: PFN_vkCmdCopyBufferToImage2,
+	pub cmd_copy_buffer_to_image2_khr: PFN_vkCmdCopyBufferToImage2KHR,
+	pub cmd_copy_image_to_buffer2: PFN_vkCmdCopyImageToBuffer2,
+	pub cmd_copy_image_to_buffer2_khr: PFN_vkCmdCopyImageToBuffer2KHR,
+	pub cmd_resolve_image2: PFN_vkCmdResolveImage2,
+	pub cmd_resolve_image2_khr: PFN_vkCmdResolveImage2KHR,
+	pub cmd_set_fragment_shading_rate_khr: PFN_vkCmdSetFragmentShadingRateKHR,
+	pub cmd_set_fragment_shading_rate_enum_nv: PFN_vkCmdSetFragmentShadingRateEnumNV,
+	pub get_acceleration_structure_build_sizes_khr: PFN_vkGetAccelerationStructureBuildSizesKHR,
+	pub cmd_set_vertex_input_ext: PFN_vkCmdSetVertexInputEXT,
+	pub cmd_set_color_write_enable_ext: PFN_vkCmdSetColorWriteEnableEXT,
+	pub cmd_set_event2: PFN_vkCmdSetEvent2,
+	pub cmd_set_event2_khr: PFN_vkCmdSetEvent2KHR,
+	pub cmd_reset_event2: PFN_vkCmdResetEvent2,
+	pub cmd_reset_event2_khr: PFN_vkCmdResetEvent2KHR,
+	pub cmd_wait_events2: PFN_vkCmdWaitEvents2,
+	pub cmd_wait_events2_khr: PFN_vkCmdWaitEvents2KHR,
+	pub cmd_pipeline_barrier2: PFN_vkCmdPipelineBarrier2,
+	pub cmd_pipeline_barrier2_khr: PFN_vkCmdPipelineBarrier2KHR,
+	pub queue_submit2: PFN_vkQueueSubmit2,
+	pub queue_submit2_khr: PFN_vkQueueSubmit2KHR,
+	pub cmd_write_timestamp2: PFN_vkCmdWriteTimestamp2,
+	pub cmd_write_timestamp2_khr: PFN_vkCmdWriteTimestamp2KHR,
+	pub cmd_write_buffer_marker2_amd: PFN_vkCmdWriteBufferMarker2AMD,
+	pub get_queue_checkpoint_data2_nv: PFN_vkGetQueueCheckpointData2NV,
+	pub copy_memory_to_image: PFN_vkCopyMemoryToImage,
+	pub copy_memory_to_image_ext: PFN_vkCopyMemoryToImageEXT,
+	pub copy_image_to_memory: PFN_vkCopyImageToMemory,
+	pub copy_image_to_memory_ext: PFN_vkCopyImageToMemoryEXT,
+	pub copy_image_to_image: PFN_vkCopyImageToImage,
+	pub copy_image_to_image_ext: PFN_vkCopyImageToImageEXT,
+	pub transition_image_layout: PFN_vkTransitionImageLayout,
+	pub transition_image_layout_ext: PFN_vkTransitionImageLayoutEXT,
+	pub create_video_session_khr: PFN_vkCreateVideoSessionKHR,
+	pub destroy_video_session_khr: PFN_vkDestroyVideoSessionKHR,
+	pub create_video_session_parameters_khr: PFN_vkCreateVideoSessionParametersKHR,
+	pub update_video_session_parameters_khr: PFN_vkUpdateVideoSessionParametersKHR,
+	pub get_encoded_video_session_parameters_khr: PFN_vkGetEncodedVideoSessionParametersKHR,
+	pub destroy_video_session_parameters_khr: PFN_vkDestroyVideoSessionParametersKHR,
+	pub get_video_session_memory_requirements_khr: PFN_vkGetVideoSessionMemoryRequirementsKHR,
+	pub bind_video_session_memory_khr: PFN_vkBindVideoSessionMemoryKHR,
+	pub cmd_decode_video_khr: PFN_vkCmdDecodeVideoKHR,
+	pub cmd_begin_video_coding_khr: PFN_vkCmdBeginVideoCodingKHR,
+	pub cmd_control_video_coding_khr: PFN_vkCmdControlVideoCodingKHR,
+	pub cmd_end_video_coding_khr: PFN_vkCmdEndVideoCodingKHR,
+	pub cmd_encode_video_khr: PFN_vkCmdEncodeVideoKHR,
+	pub cmd_decompress_memory_nv: PFN_vkCmdDecompressMemoryNV,
+	pub cmd_decompress_memory_indirect_count_nv: PFN_vkCmdDecompressMemoryIndirectCountNV,
+	pub get_partitioned_acceleration_structures_build_sizes_nv:
+		PFN_vkGetPartitionedAccelerationStructuresBuildSizesNV,
+	pub cmd_build_partitioned_acceleration_structures_nv:
+		PFN_vkCmdBuildPartitionedAccelerationStructuresNV,
+	pub cmd_decompress_memory_ext: PFN_vkCmdDecompressMemoryEXT,
+	pub cmd_decompress_memory_indirect_count_ext: PFN_vkCmdDecompressMemoryIndirectCountEXT,
+	pub create_cu_module_nvx: PFN_vkCreateCuModuleNVX,
+	pub create_cu_function_nvx: PFN_vkCreateCuFunctionNVX,
+	pub destroy_cu_module_nvx: PFN_vkDestroyCuModuleNVX,
+	pub destroy_cu_function_nvx: PFN_vkDestroyCuFunctionNVX,
+	pub cmd_cu_launch_kernel_nvx: PFN_vkCmdCuLaunchKernelNVX,
+	pub get_descriptor_set_layout_size_ext: PFN_vkGetDescriptorSetLayoutSizeEXT,
+	pub get_descriptor_set_layout_binding_offset_ext: PFN_vkGetDescriptorSetLayoutBindingOffsetEXT,
+	pub get_descriptor_ext: PFN_vkGetDescriptorEXT,
+	pub cmd_bind_descriptor_buffers_ext: PFN_vkCmdBindDescriptorBuffersEXT,
+	pub cmd_set_descriptor_buffer_offsets_ext: PFN_vkCmdSetDescriptorBufferOffsetsEXT,
+	pub cmd_bind_descriptor_buffer_embedded_samplers_ext:
+		PFN_vkCmdBindDescriptorBufferEmbeddedSamplersEXT,
+	pub get_buffer_opaque_capture_descriptor_data_ext: PFN_vkGetBufferOpaqueCaptureDescriptorDataEXT,
+	pub get_image_opaque_capture_descriptor_data_ext: PFN_vkGetImageOpaqueCaptureDescriptorDataEXT,
+	pub get_image_view_opaque_capture_descriptor_data_ext:
+		PFN_vkGetImageViewOpaqueCaptureDescriptorDataEXT,
+	pub get_sampler_opaque_capture_descriptor_data_ext:
+		PFN_vkGetSamplerOpaqueCaptureDescriptorDataEXT,
+	pub get_acceleration_structure_opaque_capture_descriptor_data_ext:
+		PFN_vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT,
+	pub set_device_memory_priority_ext: PFN_vkSetDeviceMemoryPriorityEXT,
+	pub wait_for_present2_khr: PFN_vkWaitForPresent2KHR,
+	pub wait_for_present_khr: PFN_vkWaitForPresentKHR,
+	#[cfg(feature = "platform-fuchsia")]
+	pub create_buffer_collection_fuchsia: PFN_vkCreateBufferCollectionFUCHSIA,
+	#[cfg(feature = "platform-fuchsia")]
+	pub set_buffer_collection_buffer_constraints_fuchsia:
+		PFN_vkSetBufferCollectionBufferConstraintsFUCHSIA,
+	#[cfg(feature = "platform-fuchsia")]
+	pub set_buffer_collection_image_constraints_fuchsia:
+		PFN_vkSetBufferCollectionImageConstraintsFUCHSIA,
+	#[cfg(feature = "platform-fuchsia")]
+	pub destroy_buffer_collection_fuchsia: PFN_vkDestroyBufferCollectionFUCHSIA,
+	#[cfg(feature = "platform-fuchsia")]
+	pub get_buffer_collection_properties_fuchsia: PFN_vkGetBufferCollectionPropertiesFUCHSIA,
+	#[cfg(feature = "provisional")]
+	pub create_cuda_module_nv: PFN_vkCreateCudaModuleNV,
+	#[cfg(feature = "provisional")]
+	pub get_cuda_module_cache_nv: PFN_vkGetCudaModuleCacheNV,
+	#[cfg(feature = "provisional")]
+	pub create_cuda_function_nv: PFN_vkCreateCudaFunctionNV,
+	#[cfg(feature = "provisional")]
+	pub destroy_cuda_module_nv: PFN_vkDestroyCudaModuleNV,
+	#[cfg(feature = "provisional")]
+	pub destroy_cuda_function_nv: PFN_vkDestroyCudaFunctionNV,
+	#[cfg(feature = "provisional")]
+	pub cmd_cuda_launch_kernel_nv: PFN_vkCmdCudaLaunchKernelNV,
+	pub cmd_begin_rendering: PFN_vkCmdBeginRendering,
+	pub cmd_begin_rendering_khr: PFN_vkCmdBeginRenderingKHR,
+	pub cmd_end_rendering: PFN_vkCmdEndRendering,
+	pub cmd_end_rendering2_khr: PFN_vkCmdEndRendering2KHR,
+	pub cmd_end_rendering2_ext: PFN_vkCmdEndRendering2EXT,
+	pub cmd_end_rendering_khr: PFN_vkCmdEndRenderingKHR,
+	pub get_descriptor_set_layout_host_mapping_info_valve:
+		PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE,
+	pub get_descriptor_set_host_mapping_valve: PFN_vkGetDescriptorSetHostMappingVALVE,
+	pub create_micromap_ext: PFN_vkCreateMicromapEXT,
+	pub cmd_build_micromaps_ext: PFN_vkCmdBuildMicromapsEXT,
+	pub build_micromaps_ext: PFN_vkBuildMicromapsEXT,
+	pub destroy_micromap_ext: PFN_vkDestroyMicromapEXT,
+	pub cmd_copy_micromap_ext: PFN_vkCmdCopyMicromapEXT,
+	pub copy_micromap_ext: PFN_vkCopyMicromapEXT,
+	pub cmd_copy_micromap_to_memory_ext: PFN_vkCmdCopyMicromapToMemoryEXT,
+	pub copy_micromap_to_memory_ext: PFN_vkCopyMicromapToMemoryEXT,
+	pub cmd_copy_memory_to_micromap_ext: PFN_vkCmdCopyMemoryToMicromapEXT,
+	pub copy_memory_to_micromap_ext: PFN_vkCopyMemoryToMicromapEXT,
+	pub cmd_write_micromaps_properties_ext: PFN_vkCmdWriteMicromapsPropertiesEXT,
+	pub write_micromaps_properties_ext: PFN_vkWriteMicromapsPropertiesEXT,
+	pub get_device_micromap_compatibility_ext: PFN_vkGetDeviceMicromapCompatibilityEXT,
+	pub get_micromap_build_sizes_ext: PFN_vkGetMicromapBuildSizesEXT,
+	pub get_shader_module_identifier_ext: PFN_vkGetShaderModuleIdentifierEXT,
+	pub get_shader_module_create_info_identifier_ext: PFN_vkGetShaderModuleCreateInfoIdentifierEXT,
+	pub get_image_subresource_layout2: PFN_vkGetImageSubresourceLayout2,
+	pub get_image_subresource_layout2_khr: PFN_vkGetImageSubresourceLayout2KHR,
+	pub get_image_subresource_layout2_ext: PFN_vkGetImageSubresourceLayout2EXT,
+	pub get_pipeline_properties_ext: PFN_vkGetPipelinePropertiesEXT,
+	#[cfg(feature = "platform-metal")]
+	pub export_metal_objects_ext: PFN_vkExportMetalObjectsEXT,
+	pub cmd_bind_tile_memory_qcom: PFN_vkCmdBindTileMemoryQCOM,
+	pub get_framebuffer_tile_properties_qcom: PFN_vkGetFramebufferTilePropertiesQCOM,
+	pub get_dynamic_rendering_tile_properties_qcom: PFN_vkGetDynamicRenderingTilePropertiesQCOM,
+	pub create_optical_flow_session_nv: PFN_vkCreateOpticalFlowSessionNV,
+	pub destroy_optical_flow_session_nv: PFN_vkDestroyOpticalFlowSessionNV,
+	pub bind_optical_flow_session_image_nv: PFN_vkBindOpticalFlowSessionImageNV,
+	pub cmd_optical_flow_execute_nv: PFN_vkCmdOpticalFlowExecuteNV,
+	pub get_device_fault_info_ext: PFN_vkGetDeviceFaultInfoEXT,
+	pub get_device_fault_reports_khr: PFN_vkGetDeviceFaultReportsKHR,
+	pub get_device_fault_debug_info_khr: PFN_vkGetDeviceFaultDebugInfoKHR,
+	pub cmd_set_depth_bias2_ext: PFN_vkCmdSetDepthBias2EXT,
+	pub release_swapchain_images_khr: PFN_vkReleaseSwapchainImagesKHR,
+	pub release_swapchain_images_ext: PFN_vkReleaseSwapchainImagesEXT,
+	pub get_device_image_subresource_layout: PFN_vkGetDeviceImageSubresourceLayout,
+	pub get_device_image_subresource_layout_khr: PFN_vkGetDeviceImageSubresourceLayoutKHR,
+	pub map_memory2: PFN_vkMapMemory2,
+	pub map_memory2_khr: PFN_vkMapMemory2KHR,
+	pub unmap_memory2: PFN_vkUnmapMemory2,
+	pub unmap_memory2_khr: PFN_vkUnmapMemory2KHR,
+	pub create_shaders_ext: PFN_vkCreateShadersEXT,
+	pub destroy_shader_ext: PFN_vkDestroyShaderEXT,
+	pub get_shader_binary_data_ext: PFN_vkGetShaderBinaryDataEXT,
+	pub cmd_bind_shaders_ext: PFN_vkCmdBindShadersEXT,
+	pub set_swapchain_present_timing_queue_size_ext: PFN_vkSetSwapchainPresentTimingQueueSizeEXT,
+	pub get_swapchain_timing_properties_ext: PFN_vkGetSwapchainTimingPropertiesEXT,
+	pub get_swapchain_time_domain_properties_ext: PFN_vkGetSwapchainTimeDomainPropertiesEXT,
+	pub get_past_presentation_timing_ext: PFN_vkGetPastPresentationTimingEXT,
+	#[cfg(feature = "platform-screen")]
+	pub get_screen_buffer_properties_qnx: PFN_vkGetScreenBufferPropertiesQNX,
+	#[cfg(feature = "provisional")]
+	pub get_execution_graph_pipeline_scratch_size_amdx:
+		PFN_vkGetExecutionGraphPipelineScratchSizeAMDX,
+	#[cfg(feature = "provisional")]
+	pub get_execution_graph_pipeline_node_index_amdx: PFN_vkGetExecutionGraphPipelineNodeIndexAMDX,
+	#[cfg(feature = "provisional")]
+	pub create_execution_graph_pipelines_amdx: PFN_vkCreateExecutionGraphPipelinesAMDX,
+	#[cfg(feature = "provisional")]
+	pub cmd_initialize_graph_scratch_memory_amdx: PFN_vkCmdInitializeGraphScratchMemoryAMDX,
+	#[cfg(feature = "provisional")]
+	pub cmd_dispatch_graph_amdx: PFN_vkCmdDispatchGraphAMDX,
+	#[cfg(feature = "provisional")]
+	pub cmd_dispatch_graph_indirect_amdx: PFN_vkCmdDispatchGraphIndirectAMDX,
+	#[cfg(feature = "provisional")]
+	pub cmd_dispatch_graph_indirect_count_amdx: PFN_vkCmdDispatchGraphIndirectCountAMDX,
+	pub create_gpa_session_amd: PFN_vkCreateGpaSessionAMD,
+	pub destroy_gpa_session_amd: PFN_vkDestroyGpaSessionAMD,
+	pub set_gpa_device_clock_mode_amd: PFN_vkSetGpaDeviceClockModeAMD,
+	pub get_gpa_device_clock_info_amd: PFN_vkGetGpaDeviceClockInfoAMD,
+	pub cmd_begin_gpa_session_amd: PFN_vkCmdBeginGpaSessionAMD,
+	pub cmd_end_gpa_session_amd: PFN_vkCmdEndGpaSessionAMD,
+	pub cmd_begin_gpa_sample_amd: PFN_vkCmdBeginGpaSampleAMD,
+	pub cmd_end_gpa_sample_amd: PFN_vkCmdEndGpaSampleAMD,
+	pub get_gpa_session_status_amd: PFN_vkGetGpaSessionStatusAMD,
+	pub get_gpa_session_results_amd: PFN_vkGetGpaSessionResultsAMD,
+	pub reset_gpa_session_amd: PFN_vkResetGpaSessionAMD,
+	pub cmd_copy_gpa_session_results_amd: PFN_vkCmdCopyGpaSessionResultsAMD,
+	pub cmd_bind_descriptor_sets2: PFN_vkCmdBindDescriptorSets2,
+	pub cmd_bind_descriptor_sets2_khr: PFN_vkCmdBindDescriptorSets2KHR,
+	pub cmd_push_constants2: PFN_vkCmdPushConstants2,
+	pub cmd_push_constants2_khr: PFN_vkCmdPushConstants2KHR,
+	pub cmd_push_descriptor_set2: PFN_vkCmdPushDescriptorSet2,
+	pub cmd_push_descriptor_set2_khr: PFN_vkCmdPushDescriptorSet2KHR,
+	pub cmd_push_descriptor_set_with_template2: PFN_vkCmdPushDescriptorSetWithTemplate2,
+	pub cmd_push_descriptor_set_with_template2_khr: PFN_vkCmdPushDescriptorSetWithTemplate2KHR,
+	pub cmd_set_descriptor_buffer_offsets2_ext: PFN_vkCmdSetDescriptorBufferOffsets2EXT,
+	pub cmd_bind_descriptor_buffer_embedded_samplers2_ext:
+		PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT,
+	pub set_latency_sleep_mode_nv: PFN_vkSetLatencySleepModeNV,
+	pub latency_sleep_nv: PFN_vkLatencySleepNV,
+	pub set_latency_marker_nv: PFN_vkSetLatencyMarkerNV,
+	pub get_latency_timings_nv: PFN_vkGetLatencyTimingsNV,
+	pub queue_notify_out_of_band_nv: PFN_vkQueueNotifyOutOfBandNV,
+	pub set_latency_sleep_mode_legacy_nv: PFN_vkSetLatencySleepModeLegacyNV,
+	pub latency_sleep_legacy_nv: PFN_vkLatencySleepLegacyNV,
+	pub set_latency_marker_legacy_nv: PFN_vkSetLatencyMarkerLegacyNV,
+	pub get_latency_timings_legacy_nv: PFN_vkGetLatencyTimingsLegacyNV,
+	pub queue_notify_out_of_band_legacy_nv: PFN_vkQueueNotifyOutOfBandLegacyNV,
+	pub get_sleep_status_legacy_nv: PFN_vkGetSleepStatusLegacyNV,
+	pub shutdown_latency_device_legacy_nv: PFN_vkShutdownLatencyDeviceLegacyNV,
+	pub cmd_set_rendering_attachment_locations: PFN_vkCmdSetRenderingAttachmentLocations,
+	pub cmd_set_rendering_attachment_locations_khr: PFN_vkCmdSetRenderingAttachmentLocationsKHR,
+	pub cmd_set_rendering_input_attachment_indices: PFN_vkCmdSetRenderingInputAttachmentIndices,
+	pub cmd_set_rendering_input_attachment_indices_khr:
+		PFN_vkCmdSetRenderingInputAttachmentIndicesKHR,
+	pub cmd_set_depth_clamp_range_ext: PFN_vkCmdSetDepthClampRangeEXT,
+	#[cfg(feature = "platform-metal")]
+	pub get_memory_metal_handle_ext: PFN_vkGetMemoryMetalHandleEXT,
+	#[cfg(feature = "platform-metal")]
+	pub get_memory_metal_handle_properties_ext: PFN_vkGetMemoryMetalHandlePropertiesEXT,
+	pub convert_cooperative_vector_matrix_nv: PFN_vkConvertCooperativeVectorMatrixNV,
+	pub cmd_convert_cooperative_vector_matrix_nv: PFN_vkCmdConvertCooperativeVectorMatrixNV,
+	pub cmd_dispatch_tile_qcom: PFN_vkCmdDispatchTileQCOM,
+	pub cmd_begin_per_tile_execution_qcom: PFN_vkCmdBeginPerTileExecutionQCOM,
+	pub cmd_end_per_tile_execution_qcom: PFN_vkCmdEndPerTileExecutionQCOM,
+	pub create_external_compute_queue_nv: PFN_vkCreateExternalComputeQueueNV,
+	pub destroy_external_compute_queue_nv: PFN_vkDestroyExternalComputeQueueNV,
+	pub get_external_compute_queue_data_nv: PFN_vkGetExternalComputeQueueDataNV,
+	pub create_shader_instrumentation_arm: PFN_vkCreateShaderInstrumentationARM,
+	pub destroy_shader_instrumentation_arm: PFN_vkDestroyShaderInstrumentationARM,
+	pub cmd_begin_shader_instrumentation_arm: PFN_vkCmdBeginShaderInstrumentationARM,
+	pub cmd_end_shader_instrumentation_arm: PFN_vkCmdEndShaderInstrumentationARM,
+	pub get_shader_instrumentation_values_arm: PFN_vkGetShaderInstrumentationValuesARM,
+	pub clear_shader_instrumentation_metrics_arm: PFN_vkClearShaderInstrumentationMetricsARM,
+	pub create_tensor_arm: PFN_vkCreateTensorARM,
+	pub destroy_tensor_arm: PFN_vkDestroyTensorARM,
+	pub create_tensor_view_arm: PFN_vkCreateTensorViewARM,
+	pub destroy_tensor_view_arm: PFN_vkDestroyTensorViewARM,
+	pub get_tensor_memory_requirements_arm: PFN_vkGetTensorMemoryRequirementsARM,
+	pub bind_tensor_memory_arm: PFN_vkBindTensorMemoryARM,
+	pub get_device_tensor_memory_requirements_arm: PFN_vkGetDeviceTensorMemoryRequirementsARM,
+	pub cmd_copy_tensor_arm: PFN_vkCmdCopyTensorARM,
+	pub get_tensor_opaque_capture_descriptor_data_arm: PFN_vkGetTensorOpaqueCaptureDescriptorDataARM,
+	pub get_tensor_view_opaque_capture_descriptor_data_arm:
+		PFN_vkGetTensorViewOpaqueCaptureDescriptorDataARM,
+	pub create_data_graph_pipelines_arm: PFN_vkCreateDataGraphPipelinesARM,
+	pub create_data_graph_pipeline_session_arm: PFN_vkCreateDataGraphPipelineSessionARM,
+	pub get_data_graph_pipeline_session_bind_point_requirements_arm:
+		PFN_vkGetDataGraphPipelineSessionBindPointRequirementsARM,
+	pub get_data_graph_pipeline_session_memory_requirements_arm:
+		PFN_vkGetDataGraphPipelineSessionMemoryRequirementsARM,
+	pub bind_data_graph_pipeline_session_memory_arm: PFN_vkBindDataGraphPipelineSessionMemoryARM,
+	pub destroy_data_graph_pipeline_session_arm: PFN_vkDestroyDataGraphPipelineSessionARM,
+	pub cmd_dispatch_data_graph_arm: PFN_vkCmdDispatchDataGraphARM,
+	pub get_data_graph_pipeline_available_properties_arm:
+		PFN_vkGetDataGraphPipelineAvailablePropertiesARM,
+	pub get_data_graph_pipeline_properties_arm: PFN_vkGetDataGraphPipelinePropertiesARM,
+	#[cfg(feature = "platform-ohos")]
+	pub get_native_buffer_properties_ohos: PFN_vkGetNativeBufferPropertiesOHOS,
+	#[cfg(feature = "platform-ohos")]
+	pub get_memory_native_buffer_ohos: PFN_vkGetMemoryNativeBufferOHOS,
+	pub queue_set_perf_hint_qcom: PFN_vkQueueSetPerfHintQCOM,
+	pub cmd_set_compute_occupancy_priority_nv: PFN_vkCmdSetComputeOccupancyPriorityNV,
+	pub write_sampler_descriptors_ext: PFN_vkWriteSamplerDescriptorsEXT,
+	pub write_resource_descriptors_ext: PFN_vkWriteResourceDescriptorsEXT,
+	pub cmd_bind_sampler_heap_ext: PFN_vkCmdBindSamplerHeapEXT,
+	pub cmd_bind_resource_heap_ext: PFN_vkCmdBindResourceHeapEXT,
+	pub cmd_push_data_ext: PFN_vkCmdPushDataEXT,
+	pub register_custom_border_color_ext: PFN_vkRegisterCustomBorderColorEXT,
+	pub unregister_custom_border_color_ext: PFN_vkUnregisterCustomBorderColorEXT,
+	pub get_image_opaque_capture_data_ext: PFN_vkGetImageOpaqueCaptureDataEXT,
+	pub get_tensor_opaque_capture_data_arm: PFN_vkGetTensorOpaqueCaptureDataARM,
+	pub cmd_copy_memory_khr: PFN_vkCmdCopyMemoryKHR,
+	pub cmd_copy_memory_to_image_khr: PFN_vkCmdCopyMemoryToImageKHR,
+	pub cmd_copy_image_to_memory_khr: PFN_vkCmdCopyImageToMemoryKHR,
+	pub cmd_update_memory_khr: PFN_vkCmdUpdateMemoryKHR,
+	pub cmd_fill_memory_khr: PFN_vkCmdFillMemoryKHR,
+	pub cmd_copy_query_pool_results_to_memory_khr: PFN_vkCmdCopyQueryPoolResultsToMemoryKHR,
+	pub cmd_begin_conditional_rendering2_ext: PFN_vkCmdBeginConditionalRendering2EXT,
+	pub cmd_bind_transform_feedback_buffers2_ext: PFN_vkCmdBindTransformFeedbackBuffers2EXT,
+	pub cmd_begin_transform_feedback2_ext: PFN_vkCmdBeginTransformFeedback2EXT,
+	pub cmd_end_transform_feedback2_ext: PFN_vkCmdEndTransformFeedback2EXT,
+	pub cmd_draw_indirect_byte_count2_ext: PFN_vkCmdDrawIndirectByteCount2EXT,
+	pub cmd_write_marker_to_memory_amd: PFN_vkCmdWriteMarkerToMemoryAMD,
+	pub cmd_bind_index_buffer3_khr: PFN_vkCmdBindIndexBuffer3KHR,
+	pub cmd_bind_vertex_buffers3_khr: PFN_vkCmdBindVertexBuffers3KHR,
+	pub cmd_draw_indirect2_khr: PFN_vkCmdDrawIndirect2KHR,
+	pub cmd_draw_indexed_indirect2_khr: PFN_vkCmdDrawIndexedIndirect2KHR,
+	pub cmd_draw_indirect_count2_khr: PFN_vkCmdDrawIndirectCount2KHR,
+	pub cmd_draw_indexed_indirect_count2_khr: PFN_vkCmdDrawIndexedIndirectCount2KHR,
+	pub cmd_draw_mesh_tasks_indirect2_ext: PFN_vkCmdDrawMeshTasksIndirect2EXT,
+	pub cmd_draw_mesh_tasks_indirect_count2_ext: PFN_vkCmdDrawMeshTasksIndirectCount2EXT,
+	pub cmd_dispatch_indirect2_khr: PFN_vkCmdDispatchIndirect2KHR,
+	pub create_acceleration_structure2_khr: PFN_vkCreateAccelerationStructure2KHR,
+	pub cmd_set_dispatch_parameters_arm: PFN_vkCmdSetDispatchParametersARM,
+}
+
+impl FnEntry {
+	/// Load all commands for this dispatch level.
+	///
+	/// # Safety
+	/// `load` must implement the Vulkan proc-addr contract and remain callable
+	/// for the lifetime of this table and all derived raw function pointers.
+	pub unsafe fn new_from_resolver(
+		load: unsafe extern "system" fn(InstanceHandle, *const std::ffi::c_char) -> PFN_vkVoidFunction,
+	) -> Self {
+		macro_rules! resolve {
+			($name:literal, $ty:ty) => {
+				unsafe {
+					std::mem::transmute::<PFN_vkVoidFunction, $ty>(load(InstanceHandle::NULL, $name.as_ptr()))
+				}
+			};
+		}
+		Self {
+			create_instance: resolve!(c"vkCreateInstance", PFN_vkCreateInstance),
+			get_instance_proc_addr: resolve!(c"vkGetInstanceProcAddr", PFN_vkGetInstanceProcAddr),
+			enumerate_instance_version: resolve!(
+				c"vkEnumerateInstanceVersion",
+				PFN_vkEnumerateInstanceVersion
+			),
+			enumerate_instance_layer_properties: resolve!(
+				c"vkEnumerateInstanceLayerProperties",
+				PFN_vkEnumerateInstanceLayerProperties
+			),
+			enumerate_instance_extension_properties: resolve!(
+				c"vkEnumerateInstanceExtensionProperties",
+				PFN_vkEnumerateInstanceExtensionProperties
+			),
+		}
+	}
+}
+
+impl FnInstance {
+	/// Load all commands for this dispatch level.
+	///
+	/// # Safety
+	/// `load` must implement the Vulkan proc-addr contract and remain callable
+	/// for the lifetime of this table and all derived raw function pointers.
+	pub unsafe fn new_from_resolver(
+		load: unsafe extern "system" fn(InstanceHandle, *const std::ffi::c_char) -> PFN_vkVoidFunction,
+		instance: InstanceHandle,
+	) -> Self {
+		macro_rules! resolve {
+			($name:literal, $ty:ty) => {
+				unsafe { std::mem::transmute::<PFN_vkVoidFunction, $ty>(load(instance, $name.as_ptr())) }
+			};
+		}
+		Self {
+			destroy_instance: resolve!(c"vkDestroyInstance", PFN_vkDestroyInstance),
+			enumerate_physical_devices: resolve!(
+				c"vkEnumeratePhysicalDevices",
+				PFN_vkEnumeratePhysicalDevices
+			),
+			get_device_proc_addr: resolve!(c"vkGetDeviceProcAddr", PFN_vkGetDeviceProcAddr),
+			get_physical_device_properties: resolve!(
+				c"vkGetPhysicalDeviceProperties",
+				PFN_vkGetPhysicalDeviceProperties
+			),
+			get_physical_device_queue_family_properties: resolve!(
+				c"vkGetPhysicalDeviceQueueFamilyProperties",
+				PFN_vkGetPhysicalDeviceQueueFamilyProperties
+			),
+			get_physical_device_memory_properties: resolve!(
+				c"vkGetPhysicalDeviceMemoryProperties",
+				PFN_vkGetPhysicalDeviceMemoryProperties
+			),
+			get_physical_device_features: resolve!(
+				c"vkGetPhysicalDeviceFeatures",
+				PFN_vkGetPhysicalDeviceFeatures
+			),
+			get_physical_device_format_properties: resolve!(
+				c"vkGetPhysicalDeviceFormatProperties",
+				PFN_vkGetPhysicalDeviceFormatProperties
+			),
+			get_physical_device_image_format_properties: resolve!(
+				c"vkGetPhysicalDeviceImageFormatProperties",
+				PFN_vkGetPhysicalDeviceImageFormatProperties
+			),
+			create_device: resolve!(c"vkCreateDevice", PFN_vkCreateDevice),
+			enumerate_device_layer_properties: resolve!(
+				c"vkEnumerateDeviceLayerProperties",
+				PFN_vkEnumerateDeviceLayerProperties
+			),
+			enumerate_device_extension_properties: resolve!(
+				c"vkEnumerateDeviceExtensionProperties",
+				PFN_vkEnumerateDeviceExtensionProperties
+			),
+			get_physical_device_sparse_image_format_properties: resolve!(
+				c"vkGetPhysicalDeviceSparseImageFormatProperties",
+				PFN_vkGetPhysicalDeviceSparseImageFormatProperties
+			),
+			#[cfg(feature = "platform-android")]
+			create_android_surface_khr: resolve!(
+				c"vkCreateAndroidSurfaceKHR",
+				PFN_vkCreateAndroidSurfaceKHR
+			),
+			#[cfg(feature = "platform-ohos")]
+			create_surface_ohos: resolve!(c"vkCreateSurfaceOHOS", PFN_vkCreateSurfaceOHOS),
+			get_physical_device_display_properties_khr: resolve!(
+				c"vkGetPhysicalDeviceDisplayPropertiesKHR",
+				PFN_vkGetPhysicalDeviceDisplayPropertiesKHR
+			),
+			get_physical_device_display_plane_properties_khr: resolve!(
+				c"vkGetPhysicalDeviceDisplayPlanePropertiesKHR",
+				PFN_vkGetPhysicalDeviceDisplayPlanePropertiesKHR
+			),
+			get_display_plane_supported_displays_khr: resolve!(
+				c"vkGetDisplayPlaneSupportedDisplaysKHR",
+				PFN_vkGetDisplayPlaneSupportedDisplaysKHR
+			),
+			get_display_mode_properties_khr: resolve!(
+				c"vkGetDisplayModePropertiesKHR",
+				PFN_vkGetDisplayModePropertiesKHR
+			),
+			create_display_mode_khr: resolve!(c"vkCreateDisplayModeKHR", PFN_vkCreateDisplayModeKHR),
+			get_display_plane_capabilities_khr: resolve!(
+				c"vkGetDisplayPlaneCapabilitiesKHR",
+				PFN_vkGetDisplayPlaneCapabilitiesKHR
+			),
+			create_display_plane_surface_khr: resolve!(
+				c"vkCreateDisplayPlaneSurfaceKHR",
+				PFN_vkCreateDisplayPlaneSurfaceKHR
+			),
+			destroy_surface_khr: resolve!(c"vkDestroySurfaceKHR", PFN_vkDestroySurfaceKHR),
+			get_physical_device_surface_support_khr: resolve!(
+				c"vkGetPhysicalDeviceSurfaceSupportKHR",
+				PFN_vkGetPhysicalDeviceSurfaceSupportKHR
+			),
+			get_physical_device_surface_capabilities_khr: resolve!(
+				c"vkGetPhysicalDeviceSurfaceCapabilitiesKHR",
+				PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR
+			),
+			get_physical_device_surface_formats_khr: resolve!(
+				c"vkGetPhysicalDeviceSurfaceFormatsKHR",
+				PFN_vkGetPhysicalDeviceSurfaceFormatsKHR
+			),
+			get_physical_device_surface_present_modes_khr: resolve!(
+				c"vkGetPhysicalDeviceSurfacePresentModesKHR",
+				PFN_vkGetPhysicalDeviceSurfacePresentModesKHR
+			),
+			#[cfg(feature = "platform-vi")]
+			create_vi_surface_nn: resolve!(c"vkCreateViSurfaceNN", PFN_vkCreateViSurfaceNN),
+			#[cfg(feature = "platform-wayland")]
+			create_wayland_surface_khr: resolve!(
+				c"vkCreateWaylandSurfaceKHR",
+				PFN_vkCreateWaylandSurfaceKHR
+			),
+			#[cfg(feature = "platform-wayland")]
+			get_physical_device_wayland_presentation_support_khr: resolve!(
+				c"vkGetPhysicalDeviceWaylandPresentationSupportKHR",
+				PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR
+			),
+			#[cfg(feature = "platform-ubm")]
+			create_ubm_surface_sec: resolve!(c"vkCreateUbmSurfaceSEC", PFN_vkCreateUbmSurfaceSEC),
+			#[cfg(feature = "platform-ubm")]
+			get_physical_device_ubm_presentation_support_sec: resolve!(
+				c"vkGetPhysicalDeviceUbmPresentationSupportSEC",
+				PFN_vkGetPhysicalDeviceUbmPresentationSupportSEC
+			),
+			#[cfg(feature = "platform-win32")]
+			create_win32_surface_khr: resolve!(c"vkCreateWin32SurfaceKHR", PFN_vkCreateWin32SurfaceKHR),
+			#[cfg(feature = "platform-win32")]
+			get_physical_device_win32_presentation_support_khr: resolve!(
+				c"vkGetPhysicalDeviceWin32PresentationSupportKHR",
+				PFN_vkGetPhysicalDeviceWin32PresentationSupportKHR
+			),
+			#[cfg(feature = "platform-xlib")]
+			create_xlib_surface_khr: resolve!(c"vkCreateXlibSurfaceKHR", PFN_vkCreateXlibSurfaceKHR),
+			#[cfg(feature = "platform-xlib")]
+			get_physical_device_xlib_presentation_support_khr: resolve!(
+				c"vkGetPhysicalDeviceXlibPresentationSupportKHR",
+				PFN_vkGetPhysicalDeviceXlibPresentationSupportKHR
+			),
+			#[cfg(feature = "platform-xcb")]
+			create_xcb_surface_khr: resolve!(c"vkCreateXcbSurfaceKHR", PFN_vkCreateXcbSurfaceKHR),
+			#[cfg(feature = "platform-xcb")]
+			get_physical_device_xcb_presentation_support_khr: resolve!(
+				c"vkGetPhysicalDeviceXcbPresentationSupportKHR",
+				PFN_vkGetPhysicalDeviceXcbPresentationSupportKHR
+			),
+			#[cfg(feature = "platform-directfb")]
+			create_direct_fb_surface_ext: resolve!(
+				c"vkCreateDirectFBSurfaceEXT",
+				PFN_vkCreateDirectFBSurfaceEXT
+			),
+			#[cfg(feature = "platform-directfb")]
+			get_physical_device_direct_fb_presentation_support_ext: resolve!(
+				c"vkGetPhysicalDeviceDirectFBPresentationSupportEXT",
+				PFN_vkGetPhysicalDeviceDirectFBPresentationSupportEXT
+			),
+			#[cfg(feature = "platform-fuchsia")]
+			create_image_pipe_surface_fuchsia: resolve!(
+				c"vkCreateImagePipeSurfaceFUCHSIA",
+				PFN_vkCreateImagePipeSurfaceFUCHSIA
+			),
+			#[cfg(feature = "platform-ggp")]
+			create_stream_descriptor_surface_ggp: resolve!(
+				c"vkCreateStreamDescriptorSurfaceGGP",
+				PFN_vkCreateStreamDescriptorSurfaceGGP
+			),
+			#[cfg(feature = "platform-screen")]
+			create_screen_surface_qnx: resolve!(
+				c"vkCreateScreenSurfaceQNX",
+				PFN_vkCreateScreenSurfaceQNX
+			),
+			#[cfg(feature = "platform-screen")]
+			get_physical_device_screen_presentation_support_qnx: resolve!(
+				c"vkGetPhysicalDeviceScreenPresentationSupportQNX",
+				PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX
+			),
+			create_debug_report_callback_ext: resolve!(
+				c"vkCreateDebugReportCallbackEXT",
+				PFN_vkCreateDebugReportCallbackEXT
+			),
+			destroy_debug_report_callback_ext: resolve!(
+				c"vkDestroyDebugReportCallbackEXT",
+				PFN_vkDestroyDebugReportCallbackEXT
+			),
+			debug_report_message_ext: resolve!(c"vkDebugReportMessageEXT", PFN_vkDebugReportMessageEXT),
+			get_physical_device_external_image_format_properties_nv: resolve!(
+				c"vkGetPhysicalDeviceExternalImageFormatPropertiesNV",
+				PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV
+			),
+			get_physical_device_features2: resolve!(
+				c"vkGetPhysicalDeviceFeatures2",
+				PFN_vkGetPhysicalDeviceFeatures2
+			),
+			get_physical_device_features2_khr: resolve!(
+				c"vkGetPhysicalDeviceFeatures2KHR",
+				PFN_vkGetPhysicalDeviceFeatures2KHR
+			),
+			get_physical_device_properties2: resolve!(
+				c"vkGetPhysicalDeviceProperties2",
+				PFN_vkGetPhysicalDeviceProperties2
+			),
+			get_physical_device_properties2_khr: resolve!(
+				c"vkGetPhysicalDeviceProperties2KHR",
+				PFN_vkGetPhysicalDeviceProperties2KHR
+			),
+			get_physical_device_format_properties2: resolve!(
+				c"vkGetPhysicalDeviceFormatProperties2",
+				PFN_vkGetPhysicalDeviceFormatProperties2
+			),
+			get_physical_device_format_properties2_khr: resolve!(
+				c"vkGetPhysicalDeviceFormatProperties2KHR",
+				PFN_vkGetPhysicalDeviceFormatProperties2KHR
+			),
+			get_physical_device_image_format_properties2: resolve!(
+				c"vkGetPhysicalDeviceImageFormatProperties2",
+				PFN_vkGetPhysicalDeviceImageFormatProperties2
+			),
+			get_physical_device_image_format_properties2_khr: resolve!(
+				c"vkGetPhysicalDeviceImageFormatProperties2KHR",
+				PFN_vkGetPhysicalDeviceImageFormatProperties2KHR
+			),
+			get_physical_device_queue_family_properties2: resolve!(
+				c"vkGetPhysicalDeviceQueueFamilyProperties2",
+				PFN_vkGetPhysicalDeviceQueueFamilyProperties2
+			),
+			get_physical_device_queue_family_properties2_khr: resolve!(
+				c"vkGetPhysicalDeviceQueueFamilyProperties2KHR",
+				PFN_vkGetPhysicalDeviceQueueFamilyProperties2KHR
+			),
+			get_physical_device_memory_properties2: resolve!(
+				c"vkGetPhysicalDeviceMemoryProperties2",
+				PFN_vkGetPhysicalDeviceMemoryProperties2
+			),
+			get_physical_device_memory_properties2_khr: resolve!(
+				c"vkGetPhysicalDeviceMemoryProperties2KHR",
+				PFN_vkGetPhysicalDeviceMemoryProperties2KHR
+			),
+			get_physical_device_sparse_image_format_properties2: resolve!(
+				c"vkGetPhysicalDeviceSparseImageFormatProperties2",
+				PFN_vkGetPhysicalDeviceSparseImageFormatProperties2
+			),
+			get_physical_device_sparse_image_format_properties2_khr: resolve!(
+				c"vkGetPhysicalDeviceSparseImageFormatProperties2KHR",
+				PFN_vkGetPhysicalDeviceSparseImageFormatProperties2KHR
+			),
+			get_physical_device_external_buffer_properties: resolve!(
+				c"vkGetPhysicalDeviceExternalBufferProperties",
+				PFN_vkGetPhysicalDeviceExternalBufferProperties
+			),
+			get_physical_device_external_buffer_properties_khr: resolve!(
+				c"vkGetPhysicalDeviceExternalBufferPropertiesKHR",
+				PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR
+			),
+			get_physical_device_external_semaphore_properties: resolve!(
+				c"vkGetPhysicalDeviceExternalSemaphoreProperties",
+				PFN_vkGetPhysicalDeviceExternalSemaphoreProperties
+			),
+			get_physical_device_external_semaphore_properties_khr: resolve!(
+				c"vkGetPhysicalDeviceExternalSemaphorePropertiesKHR",
+				PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR
+			),
+			get_physical_device_external_fence_properties: resolve!(
+				c"vkGetPhysicalDeviceExternalFenceProperties",
+				PFN_vkGetPhysicalDeviceExternalFenceProperties
+			),
+			get_physical_device_external_fence_properties_khr: resolve!(
+				c"vkGetPhysicalDeviceExternalFencePropertiesKHR",
+				PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR
+			),
+			release_display_ext: resolve!(c"vkReleaseDisplayEXT", PFN_vkReleaseDisplayEXT),
+			#[cfg(feature = "platform-xlib-xrandr")]
+			acquire_xlib_display_ext: resolve!(c"vkAcquireXlibDisplayEXT", PFN_vkAcquireXlibDisplayEXT),
+			#[cfg(feature = "platform-xlib-xrandr")]
+			get_rand_r_output_display_ext: resolve!(
+				c"vkGetRandROutputDisplayEXT",
+				PFN_vkGetRandROutputDisplayEXT
+			),
+			#[cfg(feature = "platform-win32")]
+			acquire_winrt_display_nv: resolve!(c"vkAcquireWinrtDisplayNV", PFN_vkAcquireWinrtDisplayNV),
+			#[cfg(feature = "platform-win32")]
+			get_winrt_display_nv: resolve!(c"vkGetWinrtDisplayNV", PFN_vkGetWinrtDisplayNV),
+			get_physical_device_surface_capabilities2_ext: resolve!(
+				c"vkGetPhysicalDeviceSurfaceCapabilities2EXT",
+				PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT
+			),
+			enumerate_physical_device_groups: resolve!(
+				c"vkEnumeratePhysicalDeviceGroups",
+				PFN_vkEnumeratePhysicalDeviceGroups
+			),
+			enumerate_physical_device_groups_khr: resolve!(
+				c"vkEnumeratePhysicalDeviceGroupsKHR",
+				PFN_vkEnumeratePhysicalDeviceGroupsKHR
+			),
+			get_physical_device_present_rectangles_khr: resolve!(
+				c"vkGetPhysicalDevicePresentRectanglesKHR",
+				PFN_vkGetPhysicalDevicePresentRectanglesKHR
+			),
+			#[cfg(feature = "platform-ios")]
+			create_ios_surface_mvk: resolve!(c"vkCreateIOSSurfaceMVK", PFN_vkCreateIOSSurfaceMVK),
+			#[cfg(feature = "platform-macos")]
+			create_mac_os_surface_mvk: resolve!(c"vkCreateMacOSSurfaceMVK", PFN_vkCreateMacOSSurfaceMVK),
+			#[cfg(feature = "platform-metal")]
+			create_metal_surface_ext: resolve!(c"vkCreateMetalSurfaceEXT", PFN_vkCreateMetalSurfaceEXT),
+			get_physical_device_multisample_properties_ext: resolve!(
+				c"vkGetPhysicalDeviceMultisamplePropertiesEXT",
+				PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT
+			),
+			get_physical_device_surface_capabilities2_khr: resolve!(
+				c"vkGetPhysicalDeviceSurfaceCapabilities2KHR",
+				PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR
+			),
+			get_physical_device_surface_formats2_khr: resolve!(
+				c"vkGetPhysicalDeviceSurfaceFormats2KHR",
+				PFN_vkGetPhysicalDeviceSurfaceFormats2KHR
+			),
+			get_physical_device_display_properties2_khr: resolve!(
+				c"vkGetPhysicalDeviceDisplayProperties2KHR",
+				PFN_vkGetPhysicalDeviceDisplayProperties2KHR
+			),
+			get_physical_device_display_plane_properties2_khr: resolve!(
+				c"vkGetPhysicalDeviceDisplayPlaneProperties2KHR",
+				PFN_vkGetPhysicalDeviceDisplayPlaneProperties2KHR
+			),
+			get_display_mode_properties2_khr: resolve!(
+				c"vkGetDisplayModeProperties2KHR",
+				PFN_vkGetDisplayModeProperties2KHR
+			),
+			get_display_plane_capabilities2_khr: resolve!(
+				c"vkGetDisplayPlaneCapabilities2KHR",
+				PFN_vkGetDisplayPlaneCapabilities2KHR
+			),
+			get_physical_device_calibrateable_time_domains_khr: resolve!(
+				c"vkGetPhysicalDeviceCalibrateableTimeDomainsKHR",
+				PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR
+			),
+			get_physical_device_calibrateable_time_domains_ext: resolve!(
+				c"vkGetPhysicalDeviceCalibrateableTimeDomainsEXT",
+				PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT
+			),
+			create_debug_utils_messenger_ext: resolve!(
+				c"vkCreateDebugUtilsMessengerEXT",
+				PFN_vkCreateDebugUtilsMessengerEXT
+			),
+			destroy_debug_utils_messenger_ext: resolve!(
+				c"vkDestroyDebugUtilsMessengerEXT",
+				PFN_vkDestroyDebugUtilsMessengerEXT
+			),
+			submit_debug_utils_message_ext: resolve!(
+				c"vkSubmitDebugUtilsMessageEXT",
+				PFN_vkSubmitDebugUtilsMessageEXT
+			),
+			get_physical_device_cooperative_matrix_properties_nv: resolve!(
+				c"vkGetPhysicalDeviceCooperativeMatrixPropertiesNV",
+				PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesNV
+			),
+			#[cfg(feature = "platform-win32")]
+			get_physical_device_surface_present_modes2_ext: resolve!(
+				c"vkGetPhysicalDeviceSurfacePresentModes2EXT",
+				PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT
+			),
+			enumerate_physical_device_queue_family_performance_query_counters_khr: resolve!(
+				c"vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR",
+				PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR
+			),
+			get_physical_device_queue_family_performance_query_passes_khr: resolve!(
+				c"vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR",
+				PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR
+			),
+			create_headless_surface_ext: resolve!(
+				c"vkCreateHeadlessSurfaceEXT",
+				PFN_vkCreateHeadlessSurfaceEXT
+			),
+			get_physical_device_supported_framebuffer_mixed_samples_combinations_nv: resolve!(
+				c"vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV",
+				PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV
+			),
+			get_physical_device_tool_properties: resolve!(
+				c"vkGetPhysicalDeviceToolProperties",
+				PFN_vkGetPhysicalDeviceToolProperties
+			),
+			get_physical_device_tool_properties_ext: resolve!(
+				c"vkGetPhysicalDeviceToolPropertiesEXT",
+				PFN_vkGetPhysicalDeviceToolPropertiesEXT
+			),
+			get_physical_device_fragment_shading_rates_khr: resolve!(
+				c"vkGetPhysicalDeviceFragmentShadingRatesKHR",
+				PFN_vkGetPhysicalDeviceFragmentShadingRatesKHR
+			),
+			get_physical_device_video_capabilities_khr: resolve!(
+				c"vkGetPhysicalDeviceVideoCapabilitiesKHR",
+				PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR
+			),
+			get_physical_device_video_format_properties_khr: resolve!(
+				c"vkGetPhysicalDeviceVideoFormatPropertiesKHR",
+				PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR
+			),
+			get_physical_device_video_encode_quality_level_properties_khr: resolve!(
+				c"vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR",
+				PFN_vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR
+			),
+			acquire_drm_display_ext: resolve!(c"vkAcquireDrmDisplayEXT", PFN_vkAcquireDrmDisplayEXT),
+			get_drm_display_ext: resolve!(c"vkGetDrmDisplayEXT", PFN_vkGetDrmDisplayEXT),
+			get_physical_device_optical_flow_image_formats_nv: resolve!(
+				c"vkGetPhysicalDeviceOpticalFlowImageFormatsNV",
+				PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV
+			),
+			get_physical_device_cooperative_matrix_properties_khr: resolve!(
+				c"vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR",
+				PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR
+			),
+			get_physical_device_cooperative_matrix_properties2_ext: resolve!(
+				c"vkGetPhysicalDeviceCooperativeMatrixProperties2EXT",
+				PFN_vkGetPhysicalDeviceCooperativeMatrixProperties2EXT
+			),
+			get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv: resolve!(
+				c"vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV",
+				PFN_vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV
+			),
+			get_physical_device_cooperative_vector_properties_nv: resolve!(
+				c"vkGetPhysicalDeviceCooperativeVectorPropertiesNV",
+				PFN_vkGetPhysicalDeviceCooperativeVectorPropertiesNV
+			),
+			enumerate_physical_device_shader_instrumentation_metrics_arm: resolve!(
+				c"vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM",
+				PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM
+			),
+			get_physical_device_external_tensor_properties_arm: resolve!(
+				c"vkGetPhysicalDeviceExternalTensorPropertiesARM",
+				PFN_vkGetPhysicalDeviceExternalTensorPropertiesARM
+			),
+			get_physical_device_queue_family_data_graph_properties_arm: resolve!(
+				c"vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM",
+				PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM
+			),
+			get_physical_device_queue_family_data_graph_processing_engine_properties_arm: resolve!(
+				c"vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM",
+				PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM
+			),
+			enumerate_physical_device_queue_family_performance_counters_by_region_arm: resolve!(
+				c"vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM",
+				PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM
+			),
+			get_physical_device_descriptor_size_ext: resolve!(
+				c"vkGetPhysicalDeviceDescriptorSizeEXT",
+				PFN_vkGetPhysicalDeviceDescriptorSizeEXT
+			),
+			get_physical_device_queue_family_data_graph_engine_operation_properties_arm: resolve!(
+				c"vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM",
+				PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM
+			),
+			get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm: resolve!(
+				c"vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM",
+				PFN_vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM
+			),
+		}
+	}
+
+	#[cfg(feature = "loader")]
+	pub(crate) fn retain_enabled(
+		&mut self,
+		mut enabled: impl FnMut(&super::extensions::CommandMetadata) -> bool,
+	) {
+		if !enabled(&super::extensions::COMMANDS[1]) {
+			self.destroy_instance = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[2]) {
+			self.enumerate_physical_devices = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[3]) {
+			self.get_device_proc_addr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[5]) {
+			self.get_physical_device_properties = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[6]) {
+			self.get_physical_device_queue_family_properties = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[7]) {
+			self.get_physical_device_memory_properties = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[8]) {
+			self.get_physical_device_features = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[9]) {
+			self.get_physical_device_format_properties = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[10]) {
+			self.get_physical_device_image_format_properties = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[11]) {
+			self.create_device = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[16]) {
+			self.enumerate_device_layer_properties = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[17]) {
+			self.enumerate_device_extension_properties = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[34]) {
+			self.get_physical_device_sparse_image_format_properties = None;
+		}
+
+		#[cfg(feature = "platform-android")]
+		if !enabled(&super::extensions::COMMANDS[163]) {
+			self.create_android_surface_khr = None;
+		}
+
+		#[cfg(feature = "platform-ohos")]
+		if !enabled(&super::extensions::COMMANDS[164]) {
+			self.create_surface_ohos = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[165]) {
+			self.get_physical_device_display_properties_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[166]) {
+			self.get_physical_device_display_plane_properties_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[167]) {
+			self.get_display_plane_supported_displays_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[168]) {
+			self.get_display_mode_properties_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[169]) {
+			self.create_display_mode_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[170]) {
+			self.get_display_plane_capabilities_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[171]) {
+			self.create_display_plane_surface_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[173]) {
+			self.destroy_surface_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[174]) {
+			self.get_physical_device_surface_support_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[175]) {
+			self.get_physical_device_surface_capabilities_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[176]) {
+			self.get_physical_device_surface_formats_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[177]) {
+			self.get_physical_device_surface_present_modes_khr = None;
+		}
+
+		#[cfg(feature = "platform-vi")]
+		if !enabled(&super::extensions::COMMANDS[183]) {
+			self.create_vi_surface_nn = None;
+		}
+
+		#[cfg(feature = "platform-wayland")]
+		if !enabled(&super::extensions::COMMANDS[184]) {
+			self.create_wayland_surface_khr = None;
+		}
+
+		#[cfg(feature = "platform-wayland")]
+		if !enabled(&super::extensions::COMMANDS[185]) {
+			self.get_physical_device_wayland_presentation_support_khr = None;
+		}
+
+		#[cfg(feature = "platform-ubm")]
+		if !enabled(&super::extensions::COMMANDS[186]) {
+			self.create_ubm_surface_sec = None;
+		}
+
+		#[cfg(feature = "platform-ubm")]
+		if !enabled(&super::extensions::COMMANDS[187]) {
+			self.get_physical_device_ubm_presentation_support_sec = None;
+		}
+
+		#[cfg(feature = "platform-win32")]
+		if !enabled(&super::extensions::COMMANDS[188]) {
+			self.create_win32_surface_khr = None;
+		}
+
+		#[cfg(feature = "platform-win32")]
+		if !enabled(&super::extensions::COMMANDS[189]) {
+			self.get_physical_device_win32_presentation_support_khr = None;
+		}
+
+		#[cfg(feature = "platform-xlib")]
+		if !enabled(&super::extensions::COMMANDS[190]) {
+			self.create_xlib_surface_khr = None;
+		}
+
+		#[cfg(feature = "platform-xlib")]
+		if !enabled(&super::extensions::COMMANDS[191]) {
+			self.get_physical_device_xlib_presentation_support_khr = None;
+		}
+
+		#[cfg(feature = "platform-xcb")]
+		if !enabled(&super::extensions::COMMANDS[192]) {
+			self.create_xcb_surface_khr = None;
+		}
+
+		#[cfg(feature = "platform-xcb")]
+		if !enabled(&super::extensions::COMMANDS[193]) {
+			self.get_physical_device_xcb_presentation_support_khr = None;
+		}
+
+		#[cfg(feature = "platform-directfb")]
+		if !enabled(&super::extensions::COMMANDS[194]) {
+			self.create_direct_fb_surface_ext = None;
+		}
+
+		#[cfg(feature = "platform-directfb")]
+		if !enabled(&super::extensions::COMMANDS[195]) {
+			self.get_physical_device_direct_fb_presentation_support_ext = None;
+		}
+
+		#[cfg(feature = "platform-fuchsia")]
+		if !enabled(&super::extensions::COMMANDS[196]) {
+			self.create_image_pipe_surface_fuchsia = None;
+		}
+
+		#[cfg(feature = "platform-ggp")]
+		if !enabled(&super::extensions::COMMANDS[197]) {
+			self.create_stream_descriptor_surface_ggp = None;
+		}
+
+		#[cfg(feature = "platform-screen")]
+		if !enabled(&super::extensions::COMMANDS[198]) {
+			self.create_screen_surface_qnx = None;
+		}
+
+		#[cfg(feature = "platform-screen")]
+		if !enabled(&super::extensions::COMMANDS[199]) {
+			self.get_physical_device_screen_presentation_support_qnx = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[200]) {
+			self.create_debug_report_callback_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[201]) {
+			self.destroy_debug_report_callback_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[202]) {
+			self.debug_report_message_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[208]) {
+			self.get_physical_device_external_image_format_properties_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[225]) {
+			self.get_physical_device_features2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[226]) {
+			self.get_physical_device_features2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[227]) {
+			self.get_physical_device_properties2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[228]) {
+			self.get_physical_device_properties2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[229]) {
+			self.get_physical_device_format_properties2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[230]) {
+			self.get_physical_device_format_properties2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[231]) {
+			self.get_physical_device_image_format_properties2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[232]) {
+			self.get_physical_device_image_format_properties2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[233]) {
+			self.get_physical_device_queue_family_properties2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[234]) {
+			self.get_physical_device_queue_family_properties2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[235]) {
+			self.get_physical_device_memory_properties2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[236]) {
+			self.get_physical_device_memory_properties2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[237]) {
+			self.get_physical_device_sparse_image_format_properties2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[238]) {
+			self.get_physical_device_sparse_image_format_properties2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[243]) {
+			self.get_physical_device_external_buffer_properties = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[244]) {
+			self.get_physical_device_external_buffer_properties_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[252]) {
+			self.get_physical_device_external_semaphore_properties = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[253]) {
+			self.get_physical_device_external_semaphore_properties_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[260]) {
+			self.get_physical_device_external_fence_properties = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[261]) {
+			self.get_physical_device_external_fence_properties_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[266]) {
+			self.release_display_ext = None;
+		}
+
+		#[cfg(feature = "platform-xlib-xrandr")]
+		if !enabled(&super::extensions::COMMANDS[267]) {
+			self.acquire_xlib_display_ext = None;
+		}
+
+		#[cfg(feature = "platform-xlib-xrandr")]
+		if !enabled(&super::extensions::COMMANDS[268]) {
+			self.get_rand_r_output_display_ext = None;
+		}
+
+		#[cfg(feature = "platform-win32")]
+		if !enabled(&super::extensions::COMMANDS[269]) {
+			self.acquire_winrt_display_nv = None;
+		}
+
+		#[cfg(feature = "platform-win32")]
+		if !enabled(&super::extensions::COMMANDS[270]) {
+			self.get_winrt_display_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[275]) {
+			self.get_physical_device_surface_capabilities2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[276]) {
+			self.enumerate_physical_device_groups = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[277]) {
+			self.enumerate_physical_device_groups_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[291]) {
+			self.get_physical_device_present_rectangles_khr = None;
+		}
+
+		#[cfg(feature = "platform-ios")]
+		if !enabled(&super::extensions::COMMANDS[304]) {
+			self.create_ios_surface_mvk = None;
+		}
+
+		#[cfg(feature = "platform-macos")]
+		if !enabled(&super::extensions::COMMANDS[305]) {
+			self.create_mac_os_surface_mvk = None;
+		}
+
+		#[cfg(feature = "platform-metal")]
+		if !enabled(&super::extensions::COMMANDS[306]) {
+			self.create_metal_surface_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[312]) {
+			self.get_physical_device_multisample_properties_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[313]) {
+			self.get_physical_device_surface_capabilities2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[314]) {
+			self.get_physical_device_surface_formats2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[315]) {
+			self.get_physical_device_display_properties2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[316]) {
+			self.get_physical_device_display_plane_properties2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[317]) {
+			self.get_display_mode_properties2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[318]) {
+			self.get_display_plane_capabilities2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[344]) {
+			self.get_physical_device_calibrateable_time_domains_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[345]) {
+			self.get_physical_device_calibrateable_time_domains_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[356]) {
+			self.create_debug_utils_messenger_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[357]) {
+			self.destroy_debug_utils_messenger_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[358]) {
+			self.submit_debug_utils_message_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[428]) {
+			self.get_physical_device_cooperative_matrix_properties_nv = None;
+		}
+
+		#[cfg(feature = "platform-win32")]
+		if !enabled(&super::extensions::COMMANDS[440]) {
+			self.get_physical_device_surface_present_modes2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[444]) {
+			self.enumerate_physical_device_queue_family_performance_query_counters_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[445]) {
+			self.get_physical_device_queue_family_performance_query_passes_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[454]) {
+			self.create_headless_surface_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[455]) {
+			self.get_physical_device_supported_framebuffer_mixed_samples_combinations_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[473]) {
+			self.get_physical_device_tool_properties = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[474]) {
+			self.get_physical_device_tool_properties_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[574]) {
+			self.get_physical_device_fragment_shading_rates_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[601]) {
+			self.get_physical_device_video_capabilities_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[602]) {
+			self.get_physical_device_video_format_properties_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[603]) {
+			self.get_physical_device_video_encode_quality_level_properties_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[640]) {
+			self.acquire_drm_display_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[641]) {
+			self.get_drm_display_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[687]) {
+			self.get_physical_device_optical_flow_image_formats_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[713]) {
+			self.get_physical_device_cooperative_matrix_properties_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[714]) {
+			self.get_physical_device_cooperative_matrix_properties2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[761]) {
+			self.get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[764]) {
+			self.get_physical_device_cooperative_vector_properties_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[773]) {
+			self.enumerate_physical_device_shader_instrumentation_metrics_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[790]) {
+			self.get_physical_device_external_tensor_properties_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[800]) {
+			self.get_physical_device_queue_family_data_graph_properties_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[801]) {
+			self.get_physical_device_queue_family_data_graph_processing_engine_properties_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[805]) {
+			self.enumerate_physical_device_queue_family_performance_counters_by_region_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[815]) {
+			self.get_physical_device_descriptor_size_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[839]) {
+			self.get_physical_device_queue_family_data_graph_engine_operation_properties_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[841]) {
+			self.get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm = None;
+		}
+	}
+}
+
+impl FnDevice {
+	/// Load all commands for this dispatch level.
+	///
+	/// # Safety
+	/// `load` must implement the Vulkan proc-addr contract and remain callable
+	/// for the lifetime of this table and all derived raw function pointers.
+	pub unsafe fn new_from_resolver(
+		load: unsafe extern "system" fn(DeviceHandle, *const std::ffi::c_char) -> PFN_vkVoidFunction,
+		device: DeviceHandle,
+	) -> Self {
+		macro_rules! resolve {
+			($name:literal, $ty:ty) => {
+				unsafe { std::mem::transmute::<PFN_vkVoidFunction, $ty>(load(device, $name.as_ptr())) }
+			};
+		}
+		Self {
+			destroy_device: resolve!(c"vkDestroyDevice", PFN_vkDestroyDevice),
+			get_device_queue: resolve!(c"vkGetDeviceQueue", PFN_vkGetDeviceQueue),
+			queue_submit: resolve!(c"vkQueueSubmit", PFN_vkQueueSubmit),
+			queue_wait_idle: resolve!(c"vkQueueWaitIdle", PFN_vkQueueWaitIdle),
+			device_wait_idle: resolve!(c"vkDeviceWaitIdle", PFN_vkDeviceWaitIdle),
+			allocate_memory: resolve!(c"vkAllocateMemory", PFN_vkAllocateMemory),
+			free_memory: resolve!(c"vkFreeMemory", PFN_vkFreeMemory),
+			map_memory: resolve!(c"vkMapMemory", PFN_vkMapMemory),
+			unmap_memory: resolve!(c"vkUnmapMemory", PFN_vkUnmapMemory),
+			flush_mapped_memory_ranges: resolve!(
+				c"vkFlushMappedMemoryRanges",
+				PFN_vkFlushMappedMemoryRanges
+			),
+			invalidate_mapped_memory_ranges: resolve!(
+				c"vkInvalidateMappedMemoryRanges",
+				PFN_vkInvalidateMappedMemoryRanges
+			),
+			get_device_memory_commitment: resolve!(
+				c"vkGetDeviceMemoryCommitment",
+				PFN_vkGetDeviceMemoryCommitment
+			),
+			get_buffer_memory_requirements: resolve!(
+				c"vkGetBufferMemoryRequirements",
+				PFN_vkGetBufferMemoryRequirements
+			),
+			bind_buffer_memory: resolve!(c"vkBindBufferMemory", PFN_vkBindBufferMemory),
+			get_image_memory_requirements: resolve!(
+				c"vkGetImageMemoryRequirements",
+				PFN_vkGetImageMemoryRequirements
+			),
+			bind_image_memory: resolve!(c"vkBindImageMemory", PFN_vkBindImageMemory),
+			get_image_sparse_memory_requirements: resolve!(
+				c"vkGetImageSparseMemoryRequirements",
+				PFN_vkGetImageSparseMemoryRequirements
+			),
+			queue_bind_sparse: resolve!(c"vkQueueBindSparse", PFN_vkQueueBindSparse),
+			create_fence: resolve!(c"vkCreateFence", PFN_vkCreateFence),
+			destroy_fence: resolve!(c"vkDestroyFence", PFN_vkDestroyFence),
+			reset_fences: resolve!(c"vkResetFences", PFN_vkResetFences),
+			get_fence_status: resolve!(c"vkGetFenceStatus", PFN_vkGetFenceStatus),
+			wait_for_fences: resolve!(c"vkWaitForFences", PFN_vkWaitForFences),
+			create_semaphore: resolve!(c"vkCreateSemaphore", PFN_vkCreateSemaphore),
+			destroy_semaphore: resolve!(c"vkDestroySemaphore", PFN_vkDestroySemaphore),
+			create_event: resolve!(c"vkCreateEvent", PFN_vkCreateEvent),
+			destroy_event: resolve!(c"vkDestroyEvent", PFN_vkDestroyEvent),
+			get_event_status: resolve!(c"vkGetEventStatus", PFN_vkGetEventStatus),
+			set_event: resolve!(c"vkSetEvent", PFN_vkSetEvent),
+			reset_event: resolve!(c"vkResetEvent", PFN_vkResetEvent),
+			create_query_pool: resolve!(c"vkCreateQueryPool", PFN_vkCreateQueryPool),
+			destroy_query_pool: resolve!(c"vkDestroyQueryPool", PFN_vkDestroyQueryPool),
+			get_query_pool_results: resolve!(c"vkGetQueryPoolResults", PFN_vkGetQueryPoolResults),
+			reset_query_pool: resolve!(c"vkResetQueryPool", PFN_vkResetQueryPool),
+			reset_query_pool_ext: resolve!(c"vkResetQueryPoolEXT", PFN_vkResetQueryPoolEXT),
+			create_buffer: resolve!(c"vkCreateBuffer", PFN_vkCreateBuffer),
+			destroy_buffer: resolve!(c"vkDestroyBuffer", PFN_vkDestroyBuffer),
+			create_buffer_view: resolve!(c"vkCreateBufferView", PFN_vkCreateBufferView),
+			destroy_buffer_view: resolve!(c"vkDestroyBufferView", PFN_vkDestroyBufferView),
+			create_image: resolve!(c"vkCreateImage", PFN_vkCreateImage),
+			destroy_image: resolve!(c"vkDestroyImage", PFN_vkDestroyImage),
+			get_image_subresource_layout: resolve!(
+				c"vkGetImageSubresourceLayout",
+				PFN_vkGetImageSubresourceLayout
+			),
+			create_image_view: resolve!(c"vkCreateImageView", PFN_vkCreateImageView),
+			destroy_image_view: resolve!(c"vkDestroyImageView", PFN_vkDestroyImageView),
+			create_shader_module: resolve!(c"vkCreateShaderModule", PFN_vkCreateShaderModule),
+			destroy_shader_module: resolve!(c"vkDestroyShaderModule", PFN_vkDestroyShaderModule),
+			create_pipeline_cache: resolve!(c"vkCreatePipelineCache", PFN_vkCreatePipelineCache),
+			destroy_pipeline_cache: resolve!(c"vkDestroyPipelineCache", PFN_vkDestroyPipelineCache),
+			get_pipeline_cache_data: resolve!(c"vkGetPipelineCacheData", PFN_vkGetPipelineCacheData),
+			merge_pipeline_caches: resolve!(c"vkMergePipelineCaches", PFN_vkMergePipelineCaches),
+			create_pipeline_binaries_khr: resolve!(
+				c"vkCreatePipelineBinariesKHR",
+				PFN_vkCreatePipelineBinariesKHR
+			),
+			destroy_pipeline_binary_khr: resolve!(
+				c"vkDestroyPipelineBinaryKHR",
+				PFN_vkDestroyPipelineBinaryKHR
+			),
+			get_pipeline_key_khr: resolve!(c"vkGetPipelineKeyKHR", PFN_vkGetPipelineKeyKHR),
+			get_pipeline_binary_data_khr: resolve!(
+				c"vkGetPipelineBinaryDataKHR",
+				PFN_vkGetPipelineBinaryDataKHR
+			),
+			release_captured_pipeline_data_khr: resolve!(
+				c"vkReleaseCapturedPipelineDataKHR",
+				PFN_vkReleaseCapturedPipelineDataKHR
+			),
+			create_graphics_pipelines: resolve!(
+				c"vkCreateGraphicsPipelines",
+				PFN_vkCreateGraphicsPipelines
+			),
+			create_compute_pipelines: resolve!(c"vkCreateComputePipelines", PFN_vkCreateComputePipelines),
+			get_device_subpass_shading_max_workgroup_size_huawei: resolve!(
+				c"vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI",
+				PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI
+			),
+			destroy_pipeline: resolve!(c"vkDestroyPipeline", PFN_vkDestroyPipeline),
+			create_pipeline_layout: resolve!(c"vkCreatePipelineLayout", PFN_vkCreatePipelineLayout),
+			destroy_pipeline_layout: resolve!(c"vkDestroyPipelineLayout", PFN_vkDestroyPipelineLayout),
+			create_sampler: resolve!(c"vkCreateSampler", PFN_vkCreateSampler),
+			destroy_sampler: resolve!(c"vkDestroySampler", PFN_vkDestroySampler),
+			create_descriptor_set_layout: resolve!(
+				c"vkCreateDescriptorSetLayout",
+				PFN_vkCreateDescriptorSetLayout
+			),
+			destroy_descriptor_set_layout: resolve!(
+				c"vkDestroyDescriptorSetLayout",
+				PFN_vkDestroyDescriptorSetLayout
+			),
+			create_descriptor_pool: resolve!(c"vkCreateDescriptorPool", PFN_vkCreateDescriptorPool),
+			destroy_descriptor_pool: resolve!(c"vkDestroyDescriptorPool", PFN_vkDestroyDescriptorPool),
+			reset_descriptor_pool: resolve!(c"vkResetDescriptorPool", PFN_vkResetDescriptorPool),
+			allocate_descriptor_sets: resolve!(c"vkAllocateDescriptorSets", PFN_vkAllocateDescriptorSets),
+			free_descriptor_sets: resolve!(c"vkFreeDescriptorSets", PFN_vkFreeDescriptorSets),
+			update_descriptor_sets: resolve!(c"vkUpdateDescriptorSets", PFN_vkUpdateDescriptorSets),
+			create_framebuffer: resolve!(c"vkCreateFramebuffer", PFN_vkCreateFramebuffer),
+			destroy_framebuffer: resolve!(c"vkDestroyFramebuffer", PFN_vkDestroyFramebuffer),
+			create_render_pass: resolve!(c"vkCreateRenderPass", PFN_vkCreateRenderPass),
+			destroy_render_pass: resolve!(c"vkDestroyRenderPass", PFN_vkDestroyRenderPass),
+			get_render_area_granularity: resolve!(
+				c"vkGetRenderAreaGranularity",
+				PFN_vkGetRenderAreaGranularity
+			),
+			get_rendering_area_granularity: resolve!(
+				c"vkGetRenderingAreaGranularity",
+				PFN_vkGetRenderingAreaGranularity
+			),
+			get_rendering_area_granularity_khr: resolve!(
+				c"vkGetRenderingAreaGranularityKHR",
+				PFN_vkGetRenderingAreaGranularityKHR
+			),
+			create_command_pool: resolve!(c"vkCreateCommandPool", PFN_vkCreateCommandPool),
+			destroy_command_pool: resolve!(c"vkDestroyCommandPool", PFN_vkDestroyCommandPool),
+			reset_command_pool: resolve!(c"vkResetCommandPool", PFN_vkResetCommandPool),
+			allocate_command_buffers: resolve!(c"vkAllocateCommandBuffers", PFN_vkAllocateCommandBuffers),
+			free_command_buffers: resolve!(c"vkFreeCommandBuffers", PFN_vkFreeCommandBuffers),
+			begin_command_buffer: resolve!(c"vkBeginCommandBuffer", PFN_vkBeginCommandBuffer),
+			end_command_buffer: resolve!(c"vkEndCommandBuffer", PFN_vkEndCommandBuffer),
+			reset_command_buffer: resolve!(c"vkResetCommandBuffer", PFN_vkResetCommandBuffer),
+			cmd_bind_pipeline: resolve!(c"vkCmdBindPipeline", PFN_vkCmdBindPipeline),
+			cmd_set_primitive_restart_index_ext: resolve!(
+				c"vkCmdSetPrimitiveRestartIndexEXT",
+				PFN_vkCmdSetPrimitiveRestartIndexEXT
+			),
+			cmd_set_attachment_feedback_loop_enable_ext: resolve!(
+				c"vkCmdSetAttachmentFeedbackLoopEnableEXT",
+				PFN_vkCmdSetAttachmentFeedbackLoopEnableEXT
+			),
+			cmd_set_viewport: resolve!(c"vkCmdSetViewport", PFN_vkCmdSetViewport),
+			cmd_set_scissor: resolve!(c"vkCmdSetScissor", PFN_vkCmdSetScissor),
+			cmd_set_line_width: resolve!(c"vkCmdSetLineWidth", PFN_vkCmdSetLineWidth),
+			cmd_set_depth_bias: resolve!(c"vkCmdSetDepthBias", PFN_vkCmdSetDepthBias),
+			cmd_set_blend_constants: resolve!(c"vkCmdSetBlendConstants", PFN_vkCmdSetBlendConstants),
+			cmd_set_depth_bounds: resolve!(c"vkCmdSetDepthBounds", PFN_vkCmdSetDepthBounds),
+			cmd_set_stencil_compare_mask: resolve!(
+				c"vkCmdSetStencilCompareMask",
+				PFN_vkCmdSetStencilCompareMask
+			),
+			cmd_set_stencil_write_mask: resolve!(
+				c"vkCmdSetStencilWriteMask",
+				PFN_vkCmdSetStencilWriteMask
+			),
+			cmd_set_stencil_reference: resolve!(
+				c"vkCmdSetStencilReference",
+				PFN_vkCmdSetStencilReference
+			),
+			cmd_bind_descriptor_sets: resolve!(c"vkCmdBindDescriptorSets", PFN_vkCmdBindDescriptorSets),
+			cmd_bind_index_buffer: resolve!(c"vkCmdBindIndexBuffer", PFN_vkCmdBindIndexBuffer),
+			cmd_bind_vertex_buffers: resolve!(c"vkCmdBindVertexBuffers", PFN_vkCmdBindVertexBuffers),
+			cmd_draw: resolve!(c"vkCmdDraw", PFN_vkCmdDraw),
+			cmd_draw_indexed: resolve!(c"vkCmdDrawIndexed", PFN_vkCmdDrawIndexed),
+			cmd_draw_multi_ext: resolve!(c"vkCmdDrawMultiEXT", PFN_vkCmdDrawMultiEXT),
+			cmd_draw_multi_indexed_ext: resolve!(
+				c"vkCmdDrawMultiIndexedEXT",
+				PFN_vkCmdDrawMultiIndexedEXT
+			),
+			cmd_draw_indirect: resolve!(c"vkCmdDrawIndirect", PFN_vkCmdDrawIndirect),
+			cmd_draw_indexed_indirect: resolve!(
+				c"vkCmdDrawIndexedIndirect",
+				PFN_vkCmdDrawIndexedIndirect
+			),
+			cmd_dispatch: resolve!(c"vkCmdDispatch", PFN_vkCmdDispatch),
+			cmd_dispatch_indirect: resolve!(c"vkCmdDispatchIndirect", PFN_vkCmdDispatchIndirect),
+			cmd_subpass_shading_huawei: resolve!(
+				c"vkCmdSubpassShadingHUAWEI",
+				PFN_vkCmdSubpassShadingHUAWEI
+			),
+			cmd_draw_cluster_huawei: resolve!(c"vkCmdDrawClusterHUAWEI", PFN_vkCmdDrawClusterHUAWEI),
+			cmd_draw_cluster_indirect_huawei: resolve!(
+				c"vkCmdDrawClusterIndirectHUAWEI",
+				PFN_vkCmdDrawClusterIndirectHUAWEI
+			),
+			cmd_update_pipeline_indirect_buffer_nv: resolve!(
+				c"vkCmdUpdatePipelineIndirectBufferNV",
+				PFN_vkCmdUpdatePipelineIndirectBufferNV
+			),
+			cmd_copy_buffer: resolve!(c"vkCmdCopyBuffer", PFN_vkCmdCopyBuffer),
+			cmd_copy_image: resolve!(c"vkCmdCopyImage", PFN_vkCmdCopyImage),
+			cmd_blit_image: resolve!(c"vkCmdBlitImage", PFN_vkCmdBlitImage),
+			cmd_copy_buffer_to_image: resolve!(c"vkCmdCopyBufferToImage", PFN_vkCmdCopyBufferToImage),
+			cmd_copy_image_to_buffer: resolve!(c"vkCmdCopyImageToBuffer", PFN_vkCmdCopyImageToBuffer),
+			cmd_copy_memory_indirect_nv: resolve!(
+				c"vkCmdCopyMemoryIndirectNV",
+				PFN_vkCmdCopyMemoryIndirectNV
+			),
+			cmd_copy_memory_indirect_khr: resolve!(
+				c"vkCmdCopyMemoryIndirectKHR",
+				PFN_vkCmdCopyMemoryIndirectKHR
+			),
+			cmd_copy_memory_to_image_indirect_nv: resolve!(
+				c"vkCmdCopyMemoryToImageIndirectNV",
+				PFN_vkCmdCopyMemoryToImageIndirectNV
+			),
+			cmd_copy_memory_to_image_indirect_khr: resolve!(
+				c"vkCmdCopyMemoryToImageIndirectKHR",
+				PFN_vkCmdCopyMemoryToImageIndirectKHR
+			),
+			cmd_update_buffer: resolve!(c"vkCmdUpdateBuffer", PFN_vkCmdUpdateBuffer),
+			cmd_fill_buffer: resolve!(c"vkCmdFillBuffer", PFN_vkCmdFillBuffer),
+			cmd_clear_color_image: resolve!(c"vkCmdClearColorImage", PFN_vkCmdClearColorImage),
+			cmd_clear_depth_stencil_image: resolve!(
+				c"vkCmdClearDepthStencilImage",
+				PFN_vkCmdClearDepthStencilImage
+			),
+			cmd_clear_attachments: resolve!(c"vkCmdClearAttachments", PFN_vkCmdClearAttachments),
+			cmd_resolve_image: resolve!(c"vkCmdResolveImage", PFN_vkCmdResolveImage),
+			cmd_set_event: resolve!(c"vkCmdSetEvent", PFN_vkCmdSetEvent),
+			cmd_reset_event: resolve!(c"vkCmdResetEvent", PFN_vkCmdResetEvent),
+			cmd_wait_events: resolve!(c"vkCmdWaitEvents", PFN_vkCmdWaitEvents),
+			cmd_pipeline_barrier: resolve!(c"vkCmdPipelineBarrier", PFN_vkCmdPipelineBarrier),
+			cmd_begin_query: resolve!(c"vkCmdBeginQuery", PFN_vkCmdBeginQuery),
+			cmd_end_query: resolve!(c"vkCmdEndQuery", PFN_vkCmdEndQuery),
+			cmd_begin_conditional_rendering_ext: resolve!(
+				c"vkCmdBeginConditionalRenderingEXT",
+				PFN_vkCmdBeginConditionalRenderingEXT
+			),
+			cmd_end_conditional_rendering_ext: resolve!(
+				c"vkCmdEndConditionalRenderingEXT",
+				PFN_vkCmdEndConditionalRenderingEXT
+			),
+			cmd_begin_custom_resolve_ext: resolve!(
+				c"vkCmdBeginCustomResolveEXT",
+				PFN_vkCmdBeginCustomResolveEXT
+			),
+			cmd_reset_query_pool: resolve!(c"vkCmdResetQueryPool", PFN_vkCmdResetQueryPool),
+			cmd_write_timestamp: resolve!(c"vkCmdWriteTimestamp", PFN_vkCmdWriteTimestamp),
+			cmd_copy_query_pool_results: resolve!(
+				c"vkCmdCopyQueryPoolResults",
+				PFN_vkCmdCopyQueryPoolResults
+			),
+			cmd_push_constants: resolve!(c"vkCmdPushConstants", PFN_vkCmdPushConstants),
+			cmd_begin_render_pass: resolve!(c"vkCmdBeginRenderPass", PFN_vkCmdBeginRenderPass),
+			cmd_next_subpass: resolve!(c"vkCmdNextSubpass", PFN_vkCmdNextSubpass),
+			cmd_end_render_pass: resolve!(c"vkCmdEndRenderPass", PFN_vkCmdEndRenderPass),
+			cmd_execute_commands: resolve!(c"vkCmdExecuteCommands", PFN_vkCmdExecuteCommands),
+			create_shared_swapchains_khr: resolve!(
+				c"vkCreateSharedSwapchainsKHR",
+				PFN_vkCreateSharedSwapchainsKHR
+			),
+			create_swapchain_khr: resolve!(c"vkCreateSwapchainKHR", PFN_vkCreateSwapchainKHR),
+			destroy_swapchain_khr: resolve!(c"vkDestroySwapchainKHR", PFN_vkDestroySwapchainKHR),
+			get_swapchain_images_khr: resolve!(c"vkGetSwapchainImagesKHR", PFN_vkGetSwapchainImagesKHR),
+			acquire_next_image_khr: resolve!(c"vkAcquireNextImageKHR", PFN_vkAcquireNextImageKHR),
+			queue_present_khr: resolve!(c"vkQueuePresentKHR", PFN_vkQueuePresentKHR),
+			debug_marker_set_object_name_ext: resolve!(
+				c"vkDebugMarkerSetObjectNameEXT",
+				PFN_vkDebugMarkerSetObjectNameEXT
+			),
+			debug_marker_set_object_tag_ext: resolve!(
+				c"vkDebugMarkerSetObjectTagEXT",
+				PFN_vkDebugMarkerSetObjectTagEXT
+			),
+			cmd_debug_marker_begin_ext: resolve!(
+				c"vkCmdDebugMarkerBeginEXT",
+				PFN_vkCmdDebugMarkerBeginEXT
+			),
+			cmd_debug_marker_end_ext: resolve!(c"vkCmdDebugMarkerEndEXT", PFN_vkCmdDebugMarkerEndEXT),
+			cmd_debug_marker_insert_ext: resolve!(
+				c"vkCmdDebugMarkerInsertEXT",
+				PFN_vkCmdDebugMarkerInsertEXT
+			),
+			#[cfg(feature = "platform-win32")]
+			get_memory_win32_handle_nv: resolve!(
+				c"vkGetMemoryWin32HandleNV",
+				PFN_vkGetMemoryWin32HandleNV
+			),
+			cmd_execute_generated_commands_nv: resolve!(
+				c"vkCmdExecuteGeneratedCommandsNV",
+				PFN_vkCmdExecuteGeneratedCommandsNV
+			),
+			cmd_preprocess_generated_commands_nv: resolve!(
+				c"vkCmdPreprocessGeneratedCommandsNV",
+				PFN_vkCmdPreprocessGeneratedCommandsNV
+			),
+			cmd_bind_pipeline_shader_group_nv: resolve!(
+				c"vkCmdBindPipelineShaderGroupNV",
+				PFN_vkCmdBindPipelineShaderGroupNV
+			),
+			get_generated_commands_memory_requirements_nv: resolve!(
+				c"vkGetGeneratedCommandsMemoryRequirementsNV",
+				PFN_vkGetGeneratedCommandsMemoryRequirementsNV
+			),
+			create_indirect_commands_layout_nv: resolve!(
+				c"vkCreateIndirectCommandsLayoutNV",
+				PFN_vkCreateIndirectCommandsLayoutNV
+			),
+			destroy_indirect_commands_layout_nv: resolve!(
+				c"vkDestroyIndirectCommandsLayoutNV",
+				PFN_vkDestroyIndirectCommandsLayoutNV
+			),
+			cmd_execute_generated_commands_ext: resolve!(
+				c"vkCmdExecuteGeneratedCommandsEXT",
+				PFN_vkCmdExecuteGeneratedCommandsEXT
+			),
+			cmd_preprocess_generated_commands_ext: resolve!(
+				c"vkCmdPreprocessGeneratedCommandsEXT",
+				PFN_vkCmdPreprocessGeneratedCommandsEXT
+			),
+			get_generated_commands_memory_requirements_ext: resolve!(
+				c"vkGetGeneratedCommandsMemoryRequirementsEXT",
+				PFN_vkGetGeneratedCommandsMemoryRequirementsEXT
+			),
+			create_indirect_commands_layout_ext: resolve!(
+				c"vkCreateIndirectCommandsLayoutEXT",
+				PFN_vkCreateIndirectCommandsLayoutEXT
+			),
+			destroy_indirect_commands_layout_ext: resolve!(
+				c"vkDestroyIndirectCommandsLayoutEXT",
+				PFN_vkDestroyIndirectCommandsLayoutEXT
+			),
+			create_indirect_execution_set_ext: resolve!(
+				c"vkCreateIndirectExecutionSetEXT",
+				PFN_vkCreateIndirectExecutionSetEXT
+			),
+			destroy_indirect_execution_set_ext: resolve!(
+				c"vkDestroyIndirectExecutionSetEXT",
+				PFN_vkDestroyIndirectExecutionSetEXT
+			),
+			update_indirect_execution_set_pipeline_ext: resolve!(
+				c"vkUpdateIndirectExecutionSetPipelineEXT",
+				PFN_vkUpdateIndirectExecutionSetPipelineEXT
+			),
+			update_indirect_execution_set_shader_ext: resolve!(
+				c"vkUpdateIndirectExecutionSetShaderEXT",
+				PFN_vkUpdateIndirectExecutionSetShaderEXT
+			),
+			cmd_push_descriptor_set: resolve!(c"vkCmdPushDescriptorSet", PFN_vkCmdPushDescriptorSet),
+			cmd_push_descriptor_set_khr: resolve!(
+				c"vkCmdPushDescriptorSetKHR",
+				PFN_vkCmdPushDescriptorSetKHR
+			),
+			trim_command_pool: resolve!(c"vkTrimCommandPool", PFN_vkTrimCommandPool),
+			trim_command_pool_khr: resolve!(c"vkTrimCommandPoolKHR", PFN_vkTrimCommandPoolKHR),
+			#[cfg(feature = "platform-win32")]
+			get_memory_win32_handle_khr: resolve!(
+				c"vkGetMemoryWin32HandleKHR",
+				PFN_vkGetMemoryWin32HandleKHR
+			),
+			#[cfg(feature = "platform-win32")]
+			get_memory_win32_handle_properties_khr: resolve!(
+				c"vkGetMemoryWin32HandlePropertiesKHR",
+				PFN_vkGetMemoryWin32HandlePropertiesKHR
+			),
+			get_memory_fd_khr: resolve!(c"vkGetMemoryFdKHR", PFN_vkGetMemoryFdKHR),
+			get_memory_fd_properties_khr: resolve!(
+				c"vkGetMemoryFdPropertiesKHR",
+				PFN_vkGetMemoryFdPropertiesKHR
+			),
+			#[cfg(feature = "platform-fuchsia")]
+			get_memory_zircon_handle_fuchsia: resolve!(
+				c"vkGetMemoryZirconHandleFUCHSIA",
+				PFN_vkGetMemoryZirconHandleFUCHSIA
+			),
+			#[cfg(feature = "platform-fuchsia")]
+			get_memory_zircon_handle_properties_fuchsia: resolve!(
+				c"vkGetMemoryZirconHandlePropertiesFUCHSIA",
+				PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA
+			),
+			get_memory_remote_address_nv: resolve!(
+				c"vkGetMemoryRemoteAddressNV",
+				PFN_vkGetMemoryRemoteAddressNV
+			),
+			#[cfg(feature = "platform-win32")]
+			get_semaphore_win32_handle_khr: resolve!(
+				c"vkGetSemaphoreWin32HandleKHR",
+				PFN_vkGetSemaphoreWin32HandleKHR
+			),
+			#[cfg(feature = "platform-win32")]
+			import_semaphore_win32_handle_khr: resolve!(
+				c"vkImportSemaphoreWin32HandleKHR",
+				PFN_vkImportSemaphoreWin32HandleKHR
+			),
+			get_semaphore_fd_khr: resolve!(c"vkGetSemaphoreFdKHR", PFN_vkGetSemaphoreFdKHR),
+			import_semaphore_fd_khr: resolve!(c"vkImportSemaphoreFdKHR", PFN_vkImportSemaphoreFdKHR),
+			#[cfg(feature = "platform-fuchsia")]
+			get_semaphore_zircon_handle_fuchsia: resolve!(
+				c"vkGetSemaphoreZirconHandleFUCHSIA",
+				PFN_vkGetSemaphoreZirconHandleFUCHSIA
+			),
+			#[cfg(feature = "platform-fuchsia")]
+			import_semaphore_zircon_handle_fuchsia: resolve!(
+				c"vkImportSemaphoreZirconHandleFUCHSIA",
+				PFN_vkImportSemaphoreZirconHandleFUCHSIA
+			),
+			#[cfg(feature = "platform-win32")]
+			get_fence_win32_handle_khr: resolve!(
+				c"vkGetFenceWin32HandleKHR",
+				PFN_vkGetFenceWin32HandleKHR
+			),
+			#[cfg(feature = "platform-win32")]
+			import_fence_win32_handle_khr: resolve!(
+				c"vkImportFenceWin32HandleKHR",
+				PFN_vkImportFenceWin32HandleKHR
+			),
+			get_fence_fd_khr: resolve!(c"vkGetFenceFdKHR", PFN_vkGetFenceFdKHR),
+			import_fence_fd_khr: resolve!(c"vkImportFenceFdKHR", PFN_vkImportFenceFdKHR),
+			display_power_control_ext: resolve!(
+				c"vkDisplayPowerControlEXT",
+				PFN_vkDisplayPowerControlEXT
+			),
+			register_device_event_ext: resolve!(
+				c"vkRegisterDeviceEventEXT",
+				PFN_vkRegisterDeviceEventEXT
+			),
+			register_display_event_ext: resolve!(
+				c"vkRegisterDisplayEventEXT",
+				PFN_vkRegisterDisplayEventEXT
+			),
+			get_swapchain_counter_ext: resolve!(
+				c"vkGetSwapchainCounterEXT",
+				PFN_vkGetSwapchainCounterEXT
+			),
+			get_device_group_peer_memory_features: resolve!(
+				c"vkGetDeviceGroupPeerMemoryFeatures",
+				PFN_vkGetDeviceGroupPeerMemoryFeatures
+			),
+			get_device_group_peer_memory_features_khr: resolve!(
+				c"vkGetDeviceGroupPeerMemoryFeaturesKHR",
+				PFN_vkGetDeviceGroupPeerMemoryFeaturesKHR
+			),
+			bind_buffer_memory2: resolve!(c"vkBindBufferMemory2", PFN_vkBindBufferMemory2),
+			bind_buffer_memory2_khr: resolve!(c"vkBindBufferMemory2KHR", PFN_vkBindBufferMemory2KHR),
+			bind_image_memory2: resolve!(c"vkBindImageMemory2", PFN_vkBindImageMemory2),
+			bind_image_memory2_khr: resolve!(c"vkBindImageMemory2KHR", PFN_vkBindImageMemory2KHR),
+			cmd_set_device_mask: resolve!(c"vkCmdSetDeviceMask", PFN_vkCmdSetDeviceMask),
+			cmd_set_device_mask_khr: resolve!(c"vkCmdSetDeviceMaskKHR", PFN_vkCmdSetDeviceMaskKHR),
+			get_device_group_present_capabilities_khr: resolve!(
+				c"vkGetDeviceGroupPresentCapabilitiesKHR",
+				PFN_vkGetDeviceGroupPresentCapabilitiesKHR
+			),
+			get_device_group_surface_present_modes_khr: resolve!(
+				c"vkGetDeviceGroupSurfacePresentModesKHR",
+				PFN_vkGetDeviceGroupSurfacePresentModesKHR
+			),
+			acquire_next_image2_khr: resolve!(c"vkAcquireNextImage2KHR", PFN_vkAcquireNextImage2KHR),
+			cmd_dispatch_base: resolve!(c"vkCmdDispatchBase", PFN_vkCmdDispatchBase),
+			cmd_dispatch_base_khr: resolve!(c"vkCmdDispatchBaseKHR", PFN_vkCmdDispatchBaseKHR),
+			create_descriptor_update_template: resolve!(
+				c"vkCreateDescriptorUpdateTemplate",
+				PFN_vkCreateDescriptorUpdateTemplate
+			),
+			create_descriptor_update_template_khr: resolve!(
+				c"vkCreateDescriptorUpdateTemplateKHR",
+				PFN_vkCreateDescriptorUpdateTemplateKHR
+			),
+			destroy_descriptor_update_template: resolve!(
+				c"vkDestroyDescriptorUpdateTemplate",
+				PFN_vkDestroyDescriptorUpdateTemplate
+			),
+			destroy_descriptor_update_template_khr: resolve!(
+				c"vkDestroyDescriptorUpdateTemplateKHR",
+				PFN_vkDestroyDescriptorUpdateTemplateKHR
+			),
+			update_descriptor_set_with_template: resolve!(
+				c"vkUpdateDescriptorSetWithTemplate",
+				PFN_vkUpdateDescriptorSetWithTemplate
+			),
+			update_descriptor_set_with_template_khr: resolve!(
+				c"vkUpdateDescriptorSetWithTemplateKHR",
+				PFN_vkUpdateDescriptorSetWithTemplateKHR
+			),
+			cmd_push_descriptor_set_with_template: resolve!(
+				c"vkCmdPushDescriptorSetWithTemplate",
+				PFN_vkCmdPushDescriptorSetWithTemplate
+			),
+			cmd_push_descriptor_set_with_template_khr: resolve!(
+				c"vkCmdPushDescriptorSetWithTemplateKHR",
+				PFN_vkCmdPushDescriptorSetWithTemplateKHR
+			),
+			set_hdr_metadata_ext: resolve!(c"vkSetHdrMetadataEXT", PFN_vkSetHdrMetadataEXT),
+			get_swapchain_status_khr: resolve!(c"vkGetSwapchainStatusKHR", PFN_vkGetSwapchainStatusKHR),
+			get_refresh_cycle_duration_google: resolve!(
+				c"vkGetRefreshCycleDurationGOOGLE",
+				PFN_vkGetRefreshCycleDurationGOOGLE
+			),
+			get_past_presentation_timing_google: resolve!(
+				c"vkGetPastPresentationTimingGOOGLE",
+				PFN_vkGetPastPresentationTimingGOOGLE
+			),
+			cmd_set_viewport_w_scaling_nv: resolve!(
+				c"vkCmdSetViewportWScalingNV",
+				PFN_vkCmdSetViewportWScalingNV
+			),
+			cmd_set_discard_rectangle_ext: resolve!(
+				c"vkCmdSetDiscardRectangleEXT",
+				PFN_vkCmdSetDiscardRectangleEXT
+			),
+			cmd_set_discard_rectangle_enable_ext: resolve!(
+				c"vkCmdSetDiscardRectangleEnableEXT",
+				PFN_vkCmdSetDiscardRectangleEnableEXT
+			),
+			cmd_set_discard_rectangle_mode_ext: resolve!(
+				c"vkCmdSetDiscardRectangleModeEXT",
+				PFN_vkCmdSetDiscardRectangleModeEXT
+			),
+			cmd_set_sample_locations_ext: resolve!(
+				c"vkCmdSetSampleLocationsEXT",
+				PFN_vkCmdSetSampleLocationsEXT
+			),
+			get_buffer_memory_requirements2: resolve!(
+				c"vkGetBufferMemoryRequirements2",
+				PFN_vkGetBufferMemoryRequirements2
+			),
+			get_buffer_memory_requirements2_khr: resolve!(
+				c"vkGetBufferMemoryRequirements2KHR",
+				PFN_vkGetBufferMemoryRequirements2KHR
+			),
+			get_image_memory_requirements2: resolve!(
+				c"vkGetImageMemoryRequirements2",
+				PFN_vkGetImageMemoryRequirements2
+			),
+			get_image_memory_requirements2_khr: resolve!(
+				c"vkGetImageMemoryRequirements2KHR",
+				PFN_vkGetImageMemoryRequirements2KHR
+			),
+			get_image_sparse_memory_requirements2: resolve!(
+				c"vkGetImageSparseMemoryRequirements2",
+				PFN_vkGetImageSparseMemoryRequirements2
+			),
+			get_image_sparse_memory_requirements2_khr: resolve!(
+				c"vkGetImageSparseMemoryRequirements2KHR",
+				PFN_vkGetImageSparseMemoryRequirements2KHR
+			),
+			get_device_buffer_memory_requirements: resolve!(
+				c"vkGetDeviceBufferMemoryRequirements",
+				PFN_vkGetDeviceBufferMemoryRequirements
+			),
+			get_device_buffer_memory_requirements_khr: resolve!(
+				c"vkGetDeviceBufferMemoryRequirementsKHR",
+				PFN_vkGetDeviceBufferMemoryRequirementsKHR
+			),
+			get_device_image_memory_requirements: resolve!(
+				c"vkGetDeviceImageMemoryRequirements",
+				PFN_vkGetDeviceImageMemoryRequirements
+			),
+			get_device_image_memory_requirements_khr: resolve!(
+				c"vkGetDeviceImageMemoryRequirementsKHR",
+				PFN_vkGetDeviceImageMemoryRequirementsKHR
+			),
+			get_device_image_sparse_memory_requirements: resolve!(
+				c"vkGetDeviceImageSparseMemoryRequirements",
+				PFN_vkGetDeviceImageSparseMemoryRequirements
+			),
+			get_device_image_sparse_memory_requirements_khr: resolve!(
+				c"vkGetDeviceImageSparseMemoryRequirementsKHR",
+				PFN_vkGetDeviceImageSparseMemoryRequirementsKHR
+			),
+			create_sampler_ycbcr_conversion: resolve!(
+				c"vkCreateSamplerYcbcrConversion",
+				PFN_vkCreateSamplerYcbcrConversion
+			),
+			create_sampler_ycbcr_conversion_khr: resolve!(
+				c"vkCreateSamplerYcbcrConversionKHR",
+				PFN_vkCreateSamplerYcbcrConversionKHR
+			),
+			destroy_sampler_ycbcr_conversion: resolve!(
+				c"vkDestroySamplerYcbcrConversion",
+				PFN_vkDestroySamplerYcbcrConversion
+			),
+			destroy_sampler_ycbcr_conversion_khr: resolve!(
+				c"vkDestroySamplerYcbcrConversionKHR",
+				PFN_vkDestroySamplerYcbcrConversionKHR
+			),
+			get_device_queue2: resolve!(c"vkGetDeviceQueue2", PFN_vkGetDeviceQueue2),
+			create_validation_cache_ext: resolve!(
+				c"vkCreateValidationCacheEXT",
+				PFN_vkCreateValidationCacheEXT
+			),
+			destroy_validation_cache_ext: resolve!(
+				c"vkDestroyValidationCacheEXT",
+				PFN_vkDestroyValidationCacheEXT
+			),
+			get_validation_cache_data_ext: resolve!(
+				c"vkGetValidationCacheDataEXT",
+				PFN_vkGetValidationCacheDataEXT
+			),
+			merge_validation_caches_ext: resolve!(
+				c"vkMergeValidationCachesEXT",
+				PFN_vkMergeValidationCachesEXT
+			),
+			get_descriptor_set_layout_support: resolve!(
+				c"vkGetDescriptorSetLayoutSupport",
+				PFN_vkGetDescriptorSetLayoutSupport
+			),
+			get_descriptor_set_layout_support_khr: resolve!(
+				c"vkGetDescriptorSetLayoutSupportKHR",
+				PFN_vkGetDescriptorSetLayoutSupportKHR
+			),
+			get_shader_info_amd: resolve!(c"vkGetShaderInfoAMD", PFN_vkGetShaderInfoAMD),
+			set_local_dimming_amd: resolve!(c"vkSetLocalDimmingAMD", PFN_vkSetLocalDimmingAMD),
+			get_calibrated_timestamps_khr: resolve!(
+				c"vkGetCalibratedTimestampsKHR",
+				PFN_vkGetCalibratedTimestampsKHR
+			),
+			get_calibrated_timestamps_ext: resolve!(
+				c"vkGetCalibratedTimestampsEXT",
+				PFN_vkGetCalibratedTimestampsEXT
+			),
+			set_debug_utils_object_name_ext: resolve!(
+				c"vkSetDebugUtilsObjectNameEXT",
+				PFN_vkSetDebugUtilsObjectNameEXT
+			),
+			set_debug_utils_object_tag_ext: resolve!(
+				c"vkSetDebugUtilsObjectTagEXT",
+				PFN_vkSetDebugUtilsObjectTagEXT
+			),
+			queue_begin_debug_utils_label_ext: resolve!(
+				c"vkQueueBeginDebugUtilsLabelEXT",
+				PFN_vkQueueBeginDebugUtilsLabelEXT
+			),
+			queue_end_debug_utils_label_ext: resolve!(
+				c"vkQueueEndDebugUtilsLabelEXT",
+				PFN_vkQueueEndDebugUtilsLabelEXT
+			),
+			queue_insert_debug_utils_label_ext: resolve!(
+				c"vkQueueInsertDebugUtilsLabelEXT",
+				PFN_vkQueueInsertDebugUtilsLabelEXT
+			),
+			cmd_begin_debug_utils_label_ext: resolve!(
+				c"vkCmdBeginDebugUtilsLabelEXT",
+				PFN_vkCmdBeginDebugUtilsLabelEXT
+			),
+			cmd_end_debug_utils_label_ext: resolve!(
+				c"vkCmdEndDebugUtilsLabelEXT",
+				PFN_vkCmdEndDebugUtilsLabelEXT
+			),
+			cmd_insert_debug_utils_label_ext: resolve!(
+				c"vkCmdInsertDebugUtilsLabelEXT",
+				PFN_vkCmdInsertDebugUtilsLabelEXT
+			),
+			get_memory_host_pointer_properties_ext: resolve!(
+				c"vkGetMemoryHostPointerPropertiesEXT",
+				PFN_vkGetMemoryHostPointerPropertiesEXT
+			),
+			cmd_write_buffer_marker_amd: resolve!(
+				c"vkCmdWriteBufferMarkerAMD",
+				PFN_vkCmdWriteBufferMarkerAMD
+			),
+			create_render_pass2: resolve!(c"vkCreateRenderPass2", PFN_vkCreateRenderPass2),
+			create_render_pass2_khr: resolve!(c"vkCreateRenderPass2KHR", PFN_vkCreateRenderPass2KHR),
+			cmd_begin_render_pass2: resolve!(c"vkCmdBeginRenderPass2", PFN_vkCmdBeginRenderPass2),
+			cmd_begin_render_pass2_khr: resolve!(
+				c"vkCmdBeginRenderPass2KHR",
+				PFN_vkCmdBeginRenderPass2KHR
+			),
+			cmd_next_subpass2: resolve!(c"vkCmdNextSubpass2", PFN_vkCmdNextSubpass2),
+			cmd_next_subpass2_khr: resolve!(c"vkCmdNextSubpass2KHR", PFN_vkCmdNextSubpass2KHR),
+			cmd_end_render_pass2: resolve!(c"vkCmdEndRenderPass2", PFN_vkCmdEndRenderPass2),
+			cmd_end_render_pass2_khr: resolve!(c"vkCmdEndRenderPass2KHR", PFN_vkCmdEndRenderPass2KHR),
+			get_semaphore_counter_value: resolve!(
+				c"vkGetSemaphoreCounterValue",
+				PFN_vkGetSemaphoreCounterValue
+			),
+			get_semaphore_counter_value_khr: resolve!(
+				c"vkGetSemaphoreCounterValueKHR",
+				PFN_vkGetSemaphoreCounterValueKHR
+			),
+			wait_semaphores: resolve!(c"vkWaitSemaphores", PFN_vkWaitSemaphores),
+			wait_semaphores_khr: resolve!(c"vkWaitSemaphoresKHR", PFN_vkWaitSemaphoresKHR),
+			signal_semaphore: resolve!(c"vkSignalSemaphore", PFN_vkSignalSemaphore),
+			signal_semaphore_khr: resolve!(c"vkSignalSemaphoreKHR", PFN_vkSignalSemaphoreKHR),
+			#[cfg(feature = "platform-android")]
+			get_android_hardware_buffer_properties_android: resolve!(
+				c"vkGetAndroidHardwareBufferPropertiesANDROID",
+				PFN_vkGetAndroidHardwareBufferPropertiesANDROID
+			),
+			#[cfg(feature = "platform-android")]
+			get_memory_android_hardware_buffer_android: resolve!(
+				c"vkGetMemoryAndroidHardwareBufferANDROID",
+				PFN_vkGetMemoryAndroidHardwareBufferANDROID
+			),
+			cmd_draw_indirect_count: resolve!(c"vkCmdDrawIndirectCount", PFN_vkCmdDrawIndirectCount),
+			cmd_draw_indirect_count_khr: resolve!(
+				c"vkCmdDrawIndirectCountKHR",
+				PFN_vkCmdDrawIndirectCountKHR
+			),
+			cmd_draw_indirect_count_amd: resolve!(
+				c"vkCmdDrawIndirectCountAMD",
+				PFN_vkCmdDrawIndirectCountAMD
+			),
+			cmd_draw_indexed_indirect_count: resolve!(
+				c"vkCmdDrawIndexedIndirectCount",
+				PFN_vkCmdDrawIndexedIndirectCount
+			),
+			cmd_draw_indexed_indirect_count_khr: resolve!(
+				c"vkCmdDrawIndexedIndirectCountKHR",
+				PFN_vkCmdDrawIndexedIndirectCountKHR
+			),
+			cmd_draw_indexed_indirect_count_amd: resolve!(
+				c"vkCmdDrawIndexedIndirectCountAMD",
+				PFN_vkCmdDrawIndexedIndirectCountAMD
+			),
+			cmd_set_checkpoint_nv: resolve!(c"vkCmdSetCheckpointNV", PFN_vkCmdSetCheckpointNV),
+			get_queue_checkpoint_data_nv: resolve!(
+				c"vkGetQueueCheckpointDataNV",
+				PFN_vkGetQueueCheckpointDataNV
+			),
+			cmd_bind_transform_feedback_buffers_ext: resolve!(
+				c"vkCmdBindTransformFeedbackBuffersEXT",
+				PFN_vkCmdBindTransformFeedbackBuffersEXT
+			),
+			cmd_begin_transform_feedback_ext: resolve!(
+				c"vkCmdBeginTransformFeedbackEXT",
+				PFN_vkCmdBeginTransformFeedbackEXT
+			),
+			cmd_end_transform_feedback_ext: resolve!(
+				c"vkCmdEndTransformFeedbackEXT",
+				PFN_vkCmdEndTransformFeedbackEXT
+			),
+			cmd_begin_query_indexed_ext: resolve!(
+				c"vkCmdBeginQueryIndexedEXT",
+				PFN_vkCmdBeginQueryIndexedEXT
+			),
+			cmd_end_query_indexed_ext: resolve!(c"vkCmdEndQueryIndexedEXT", PFN_vkCmdEndQueryIndexedEXT),
+			cmd_draw_indirect_byte_count_ext: resolve!(
+				c"vkCmdDrawIndirectByteCountEXT",
+				PFN_vkCmdDrawIndirectByteCountEXT
+			),
+			cmd_set_exclusive_scissor_nv: resolve!(
+				c"vkCmdSetExclusiveScissorNV",
+				PFN_vkCmdSetExclusiveScissorNV
+			),
+			cmd_set_exclusive_scissor_enable_nv: resolve!(
+				c"vkCmdSetExclusiveScissorEnableNV",
+				PFN_vkCmdSetExclusiveScissorEnableNV
+			),
+			cmd_bind_shading_rate_image_nv: resolve!(
+				c"vkCmdBindShadingRateImageNV",
+				PFN_vkCmdBindShadingRateImageNV
+			),
+			cmd_set_viewport_shading_rate_palette_nv: resolve!(
+				c"vkCmdSetViewportShadingRatePaletteNV",
+				PFN_vkCmdSetViewportShadingRatePaletteNV
+			),
+			cmd_set_coarse_sample_order_nv: resolve!(
+				c"vkCmdSetCoarseSampleOrderNV",
+				PFN_vkCmdSetCoarseSampleOrderNV
+			),
+			cmd_draw_mesh_tasks_nv: resolve!(c"vkCmdDrawMeshTasksNV", PFN_vkCmdDrawMeshTasksNV),
+			cmd_draw_mesh_tasks_indirect_nv: resolve!(
+				c"vkCmdDrawMeshTasksIndirectNV",
+				PFN_vkCmdDrawMeshTasksIndirectNV
+			),
+			cmd_draw_mesh_tasks_indirect_count_nv: resolve!(
+				c"vkCmdDrawMeshTasksIndirectCountNV",
+				PFN_vkCmdDrawMeshTasksIndirectCountNV
+			),
+			cmd_draw_mesh_tasks_ext: resolve!(c"vkCmdDrawMeshTasksEXT", PFN_vkCmdDrawMeshTasksEXT),
+			cmd_draw_mesh_tasks_indirect_ext: resolve!(
+				c"vkCmdDrawMeshTasksIndirectEXT",
+				PFN_vkCmdDrawMeshTasksIndirectEXT
+			),
+			cmd_draw_mesh_tasks_indirect_count_ext: resolve!(
+				c"vkCmdDrawMeshTasksIndirectCountEXT",
+				PFN_vkCmdDrawMeshTasksIndirectCountEXT
+			),
+			compile_deferred_nv: resolve!(c"vkCompileDeferredNV", PFN_vkCompileDeferredNV),
+			create_acceleration_structure_nv: resolve!(
+				c"vkCreateAccelerationStructureNV",
+				PFN_vkCreateAccelerationStructureNV
+			),
+			cmd_bind_invocation_mask_huawei: resolve!(
+				c"vkCmdBindInvocationMaskHUAWEI",
+				PFN_vkCmdBindInvocationMaskHUAWEI
+			),
+			destroy_acceleration_structure_khr: resolve!(
+				c"vkDestroyAccelerationStructureKHR",
+				PFN_vkDestroyAccelerationStructureKHR
+			),
+			destroy_acceleration_structure_nv: resolve!(
+				c"vkDestroyAccelerationStructureNV",
+				PFN_vkDestroyAccelerationStructureNV
+			),
+			get_acceleration_structure_memory_requirements_nv: resolve!(
+				c"vkGetAccelerationStructureMemoryRequirementsNV",
+				PFN_vkGetAccelerationStructureMemoryRequirementsNV
+			),
+			bind_acceleration_structure_memory_nv: resolve!(
+				c"vkBindAccelerationStructureMemoryNV",
+				PFN_vkBindAccelerationStructureMemoryNV
+			),
+			cmd_copy_acceleration_structure_nv: resolve!(
+				c"vkCmdCopyAccelerationStructureNV",
+				PFN_vkCmdCopyAccelerationStructureNV
+			),
+			cmd_copy_acceleration_structure_khr: resolve!(
+				c"vkCmdCopyAccelerationStructureKHR",
+				PFN_vkCmdCopyAccelerationStructureKHR
+			),
+			copy_acceleration_structure_khr: resolve!(
+				c"vkCopyAccelerationStructureKHR",
+				PFN_vkCopyAccelerationStructureKHR
+			),
+			cmd_copy_acceleration_structure_to_memory_khr: resolve!(
+				c"vkCmdCopyAccelerationStructureToMemoryKHR",
+				PFN_vkCmdCopyAccelerationStructureToMemoryKHR
+			),
+			copy_acceleration_structure_to_memory_khr: resolve!(
+				c"vkCopyAccelerationStructureToMemoryKHR",
+				PFN_vkCopyAccelerationStructureToMemoryKHR
+			),
+			cmd_copy_memory_to_acceleration_structure_khr: resolve!(
+				c"vkCmdCopyMemoryToAccelerationStructureKHR",
+				PFN_vkCmdCopyMemoryToAccelerationStructureKHR
+			),
+			copy_memory_to_acceleration_structure_khr: resolve!(
+				c"vkCopyMemoryToAccelerationStructureKHR",
+				PFN_vkCopyMemoryToAccelerationStructureKHR
+			),
+			cmd_write_acceleration_structures_properties_khr: resolve!(
+				c"vkCmdWriteAccelerationStructuresPropertiesKHR",
+				PFN_vkCmdWriteAccelerationStructuresPropertiesKHR
+			),
+			cmd_write_acceleration_structures_properties_nv: resolve!(
+				c"vkCmdWriteAccelerationStructuresPropertiesNV",
+				PFN_vkCmdWriteAccelerationStructuresPropertiesNV
+			),
+			cmd_build_acceleration_structure_nv: resolve!(
+				c"vkCmdBuildAccelerationStructureNV",
+				PFN_vkCmdBuildAccelerationStructureNV
+			),
+			write_acceleration_structures_properties_khr: resolve!(
+				c"vkWriteAccelerationStructuresPropertiesKHR",
+				PFN_vkWriteAccelerationStructuresPropertiesKHR
+			),
+			cmd_trace_rays_khr: resolve!(c"vkCmdTraceRaysKHR", PFN_vkCmdTraceRaysKHR),
+			cmd_trace_rays_nv: resolve!(c"vkCmdTraceRaysNV", PFN_vkCmdTraceRaysNV),
+			get_ray_tracing_shader_group_handles_khr: resolve!(
+				c"vkGetRayTracingShaderGroupHandlesKHR",
+				PFN_vkGetRayTracingShaderGroupHandlesKHR
+			),
+			get_ray_tracing_shader_group_handles_nv: resolve!(
+				c"vkGetRayTracingShaderGroupHandlesNV",
+				PFN_vkGetRayTracingShaderGroupHandlesNV
+			),
+			get_ray_tracing_capture_replay_shader_group_handles_khr: resolve!(
+				c"vkGetRayTracingCaptureReplayShaderGroupHandlesKHR",
+				PFN_vkGetRayTracingCaptureReplayShaderGroupHandlesKHR
+			),
+			get_acceleration_structure_handle_nv: resolve!(
+				c"vkGetAccelerationStructureHandleNV",
+				PFN_vkGetAccelerationStructureHandleNV
+			),
+			create_ray_tracing_pipelines_nv: resolve!(
+				c"vkCreateRayTracingPipelinesNV",
+				PFN_vkCreateRayTracingPipelinesNV
+			),
+			create_ray_tracing_pipelines_khr: resolve!(
+				c"vkCreateRayTracingPipelinesKHR",
+				PFN_vkCreateRayTracingPipelinesKHR
+			),
+			cmd_trace_rays_indirect_khr: resolve!(
+				c"vkCmdTraceRaysIndirectKHR",
+				PFN_vkCmdTraceRaysIndirectKHR
+			),
+			cmd_trace_rays_indirect2_khr: resolve!(
+				c"vkCmdTraceRaysIndirect2KHR",
+				PFN_vkCmdTraceRaysIndirect2KHR
+			),
+			get_cluster_acceleration_structure_build_sizes_nv: resolve!(
+				c"vkGetClusterAccelerationStructureBuildSizesNV",
+				PFN_vkGetClusterAccelerationStructureBuildSizesNV
+			),
+			cmd_build_cluster_acceleration_structure_indirect_nv: resolve!(
+				c"vkCmdBuildClusterAccelerationStructureIndirectNV",
+				PFN_vkCmdBuildClusterAccelerationStructureIndirectNV
+			),
+			get_device_acceleration_structure_compatibility_khr: resolve!(
+				c"vkGetDeviceAccelerationStructureCompatibilityKHR",
+				PFN_vkGetDeviceAccelerationStructureCompatibilityKHR
+			),
+			get_ray_tracing_shader_group_stack_size_khr: resolve!(
+				c"vkGetRayTracingShaderGroupStackSizeKHR",
+				PFN_vkGetRayTracingShaderGroupStackSizeKHR
+			),
+			cmd_set_ray_tracing_pipeline_stack_size_khr: resolve!(
+				c"vkCmdSetRayTracingPipelineStackSizeKHR",
+				PFN_vkCmdSetRayTracingPipelineStackSizeKHR
+			),
+			get_image_view_handle_nvx: resolve!(c"vkGetImageViewHandleNVX", PFN_vkGetImageViewHandleNVX),
+			get_image_view_handle64_nvx: resolve!(
+				c"vkGetImageViewHandle64NVX",
+				PFN_vkGetImageViewHandle64NVX
+			),
+			get_image_view_address_nvx: resolve!(
+				c"vkGetImageViewAddressNVX",
+				PFN_vkGetImageViewAddressNVX
+			),
+			get_device_combined_image_sampler_index_nvx: resolve!(
+				c"vkGetDeviceCombinedImageSamplerIndexNVX",
+				PFN_vkGetDeviceCombinedImageSamplerIndexNVX
+			),
+			#[cfg(feature = "platform-win32")]
+			get_device_group_surface_present_modes2_ext: resolve!(
+				c"vkGetDeviceGroupSurfacePresentModes2EXT",
+				PFN_vkGetDeviceGroupSurfacePresentModes2EXT
+			),
+			#[cfg(feature = "platform-win32")]
+			acquire_full_screen_exclusive_mode_ext: resolve!(
+				c"vkAcquireFullScreenExclusiveModeEXT",
+				PFN_vkAcquireFullScreenExclusiveModeEXT
+			),
+			#[cfg(feature = "platform-win32")]
+			release_full_screen_exclusive_mode_ext: resolve!(
+				c"vkReleaseFullScreenExclusiveModeEXT",
+				PFN_vkReleaseFullScreenExclusiveModeEXT
+			),
+			acquire_profiling_lock_khr: resolve!(
+				c"vkAcquireProfilingLockKHR",
+				PFN_vkAcquireProfilingLockKHR
+			),
+			release_profiling_lock_khr: resolve!(
+				c"vkReleaseProfilingLockKHR",
+				PFN_vkReleaseProfilingLockKHR
+			),
+			get_image_drm_format_modifier_properties_ext: resolve!(
+				c"vkGetImageDrmFormatModifierPropertiesEXT",
+				PFN_vkGetImageDrmFormatModifierPropertiesEXT
+			),
+			get_buffer_opaque_capture_address: resolve!(
+				c"vkGetBufferOpaqueCaptureAddress",
+				PFN_vkGetBufferOpaqueCaptureAddress
+			),
+			get_buffer_opaque_capture_address_khr: resolve!(
+				c"vkGetBufferOpaqueCaptureAddressKHR",
+				PFN_vkGetBufferOpaqueCaptureAddressKHR
+			),
+			get_buffer_device_address: resolve!(
+				c"vkGetBufferDeviceAddress",
+				PFN_vkGetBufferDeviceAddress
+			),
+			get_buffer_device_address_khr: resolve!(
+				c"vkGetBufferDeviceAddressKHR",
+				PFN_vkGetBufferDeviceAddressKHR
+			),
+			get_buffer_device_address_ext: resolve!(
+				c"vkGetBufferDeviceAddressEXT",
+				PFN_vkGetBufferDeviceAddressEXT
+			),
+			initialize_performance_api_intel: resolve!(
+				c"vkInitializePerformanceApiINTEL",
+				PFN_vkInitializePerformanceApiINTEL
+			),
+			uninitialize_performance_api_intel: resolve!(
+				c"vkUninitializePerformanceApiINTEL",
+				PFN_vkUninitializePerformanceApiINTEL
+			),
+			cmd_set_performance_marker_intel: resolve!(
+				c"vkCmdSetPerformanceMarkerINTEL",
+				PFN_vkCmdSetPerformanceMarkerINTEL
+			),
+			cmd_set_performance_stream_marker_intel: resolve!(
+				c"vkCmdSetPerformanceStreamMarkerINTEL",
+				PFN_vkCmdSetPerformanceStreamMarkerINTEL
+			),
+			cmd_set_performance_override_intel: resolve!(
+				c"vkCmdSetPerformanceOverrideINTEL",
+				PFN_vkCmdSetPerformanceOverrideINTEL
+			),
+			acquire_performance_configuration_intel: resolve!(
+				c"vkAcquirePerformanceConfigurationINTEL",
+				PFN_vkAcquirePerformanceConfigurationINTEL
+			),
+			release_performance_configuration_intel: resolve!(
+				c"vkReleasePerformanceConfigurationINTEL",
+				PFN_vkReleasePerformanceConfigurationINTEL
+			),
+			queue_set_performance_configuration_intel: resolve!(
+				c"vkQueueSetPerformanceConfigurationINTEL",
+				PFN_vkQueueSetPerformanceConfigurationINTEL
+			),
+			get_performance_parameter_intel: resolve!(
+				c"vkGetPerformanceParameterINTEL",
+				PFN_vkGetPerformanceParameterINTEL
+			),
+			get_device_memory_opaque_capture_address: resolve!(
+				c"vkGetDeviceMemoryOpaqueCaptureAddress",
+				PFN_vkGetDeviceMemoryOpaqueCaptureAddress
+			),
+			get_device_memory_opaque_capture_address_khr: resolve!(
+				c"vkGetDeviceMemoryOpaqueCaptureAddressKHR",
+				PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR
+			),
+			get_pipeline_executable_properties_khr: resolve!(
+				c"vkGetPipelineExecutablePropertiesKHR",
+				PFN_vkGetPipelineExecutablePropertiesKHR
+			),
+			get_pipeline_executable_statistics_khr: resolve!(
+				c"vkGetPipelineExecutableStatisticsKHR",
+				PFN_vkGetPipelineExecutableStatisticsKHR
+			),
+			get_pipeline_executable_internal_representations_khr: resolve!(
+				c"vkGetPipelineExecutableInternalRepresentationsKHR",
+				PFN_vkGetPipelineExecutableInternalRepresentationsKHR
+			),
+			cmd_set_line_stipple: resolve!(c"vkCmdSetLineStipple", PFN_vkCmdSetLineStipple),
+			cmd_set_line_stipple_khr: resolve!(c"vkCmdSetLineStippleKHR", PFN_vkCmdSetLineStippleKHR),
+			cmd_set_line_stipple_ext: resolve!(c"vkCmdSetLineStippleEXT", PFN_vkCmdSetLineStippleEXT),
+			create_acceleration_structure_khr: resolve!(
+				c"vkCreateAccelerationStructureKHR",
+				PFN_vkCreateAccelerationStructureKHR
+			),
+			cmd_build_acceleration_structures_khr: resolve!(
+				c"vkCmdBuildAccelerationStructuresKHR",
+				PFN_vkCmdBuildAccelerationStructuresKHR
+			),
+			cmd_build_acceleration_structures_indirect_khr: resolve!(
+				c"vkCmdBuildAccelerationStructuresIndirectKHR",
+				PFN_vkCmdBuildAccelerationStructuresIndirectKHR
+			),
+			build_acceleration_structures_khr: resolve!(
+				c"vkBuildAccelerationStructuresKHR",
+				PFN_vkBuildAccelerationStructuresKHR
+			),
+			get_acceleration_structure_device_address_khr: resolve!(
+				c"vkGetAccelerationStructureDeviceAddressKHR",
+				PFN_vkGetAccelerationStructureDeviceAddressKHR
+			),
+			create_deferred_operation_khr: resolve!(
+				c"vkCreateDeferredOperationKHR",
+				PFN_vkCreateDeferredOperationKHR
+			),
+			destroy_deferred_operation_khr: resolve!(
+				c"vkDestroyDeferredOperationKHR",
+				PFN_vkDestroyDeferredOperationKHR
+			),
+			get_deferred_operation_max_concurrency_khr: resolve!(
+				c"vkGetDeferredOperationMaxConcurrencyKHR",
+				PFN_vkGetDeferredOperationMaxConcurrencyKHR
+			),
+			get_deferred_operation_result_khr: resolve!(
+				c"vkGetDeferredOperationResultKHR",
+				PFN_vkGetDeferredOperationResultKHR
+			),
+			deferred_operation_join_khr: resolve!(
+				c"vkDeferredOperationJoinKHR",
+				PFN_vkDeferredOperationJoinKHR
+			),
+			get_pipeline_indirect_memory_requirements_nv: resolve!(
+				c"vkGetPipelineIndirectMemoryRequirementsNV",
+				PFN_vkGetPipelineIndirectMemoryRequirementsNV
+			),
+			get_pipeline_indirect_device_address_nv: resolve!(
+				c"vkGetPipelineIndirectDeviceAddressNV",
+				PFN_vkGetPipelineIndirectDeviceAddressNV
+			),
+			anti_lag_update_amd: resolve!(c"vkAntiLagUpdateAMD", PFN_vkAntiLagUpdateAMD),
+			cmd_set_cull_mode: resolve!(c"vkCmdSetCullMode", PFN_vkCmdSetCullMode),
+			cmd_set_cull_mode_ext: resolve!(c"vkCmdSetCullModeEXT", PFN_vkCmdSetCullModeEXT),
+			cmd_set_front_face: resolve!(c"vkCmdSetFrontFace", PFN_vkCmdSetFrontFace),
+			cmd_set_front_face_ext: resolve!(c"vkCmdSetFrontFaceEXT", PFN_vkCmdSetFrontFaceEXT),
+			cmd_set_primitive_topology: resolve!(
+				c"vkCmdSetPrimitiveTopology",
+				PFN_vkCmdSetPrimitiveTopology
+			),
+			cmd_set_primitive_topology_ext: resolve!(
+				c"vkCmdSetPrimitiveTopologyEXT",
+				PFN_vkCmdSetPrimitiveTopologyEXT
+			),
+			cmd_set_viewport_with_count: resolve!(
+				c"vkCmdSetViewportWithCount",
+				PFN_vkCmdSetViewportWithCount
+			),
+			cmd_set_viewport_with_count_ext: resolve!(
+				c"vkCmdSetViewportWithCountEXT",
+				PFN_vkCmdSetViewportWithCountEXT
+			),
+			cmd_set_scissor_with_count: resolve!(
+				c"vkCmdSetScissorWithCount",
+				PFN_vkCmdSetScissorWithCount
+			),
+			cmd_set_scissor_with_count_ext: resolve!(
+				c"vkCmdSetScissorWithCountEXT",
+				PFN_vkCmdSetScissorWithCountEXT
+			),
+			cmd_bind_index_buffer2: resolve!(c"vkCmdBindIndexBuffer2", PFN_vkCmdBindIndexBuffer2),
+			cmd_bind_index_buffer2_khr: resolve!(
+				c"vkCmdBindIndexBuffer2KHR",
+				PFN_vkCmdBindIndexBuffer2KHR
+			),
+			cmd_bind_vertex_buffers2: resolve!(c"vkCmdBindVertexBuffers2", PFN_vkCmdBindVertexBuffers2),
+			cmd_bind_vertex_buffers2_ext: resolve!(
+				c"vkCmdBindVertexBuffers2EXT",
+				PFN_vkCmdBindVertexBuffers2EXT
+			),
+			cmd_set_depth_test_enable: resolve!(c"vkCmdSetDepthTestEnable", PFN_vkCmdSetDepthTestEnable),
+			cmd_set_depth_test_enable_ext: resolve!(
+				c"vkCmdSetDepthTestEnableEXT",
+				PFN_vkCmdSetDepthTestEnableEXT
+			),
+			cmd_set_depth_write_enable: resolve!(
+				c"vkCmdSetDepthWriteEnable",
+				PFN_vkCmdSetDepthWriteEnable
+			),
+			cmd_set_depth_write_enable_ext: resolve!(
+				c"vkCmdSetDepthWriteEnableEXT",
+				PFN_vkCmdSetDepthWriteEnableEXT
+			),
+			cmd_set_depth_compare_op: resolve!(c"vkCmdSetDepthCompareOp", PFN_vkCmdSetDepthCompareOp),
+			cmd_set_depth_compare_op_ext: resolve!(
+				c"vkCmdSetDepthCompareOpEXT",
+				PFN_vkCmdSetDepthCompareOpEXT
+			),
+			cmd_set_depth_bounds_test_enable: resolve!(
+				c"vkCmdSetDepthBoundsTestEnable",
+				PFN_vkCmdSetDepthBoundsTestEnable
+			),
+			cmd_set_depth_bounds_test_enable_ext: resolve!(
+				c"vkCmdSetDepthBoundsTestEnableEXT",
+				PFN_vkCmdSetDepthBoundsTestEnableEXT
+			),
+			cmd_set_stencil_test_enable: resolve!(
+				c"vkCmdSetStencilTestEnable",
+				PFN_vkCmdSetStencilTestEnable
+			),
+			cmd_set_stencil_test_enable_ext: resolve!(
+				c"vkCmdSetStencilTestEnableEXT",
+				PFN_vkCmdSetStencilTestEnableEXT
+			),
+			cmd_set_stencil_op: resolve!(c"vkCmdSetStencilOp", PFN_vkCmdSetStencilOp),
+			cmd_set_stencil_op_ext: resolve!(c"vkCmdSetStencilOpEXT", PFN_vkCmdSetStencilOpEXT),
+			cmd_set_patch_control_points_ext: resolve!(
+				c"vkCmdSetPatchControlPointsEXT",
+				PFN_vkCmdSetPatchControlPointsEXT
+			),
+			cmd_set_rasterizer_discard_enable: resolve!(
+				c"vkCmdSetRasterizerDiscardEnable",
+				PFN_vkCmdSetRasterizerDiscardEnable
+			),
+			cmd_set_rasterizer_discard_enable_ext: resolve!(
+				c"vkCmdSetRasterizerDiscardEnableEXT",
+				PFN_vkCmdSetRasterizerDiscardEnableEXT
+			),
+			cmd_set_depth_bias_enable: resolve!(c"vkCmdSetDepthBiasEnable", PFN_vkCmdSetDepthBiasEnable),
+			cmd_set_depth_bias_enable_ext: resolve!(
+				c"vkCmdSetDepthBiasEnableEXT",
+				PFN_vkCmdSetDepthBiasEnableEXT
+			),
+			cmd_set_logic_op_ext: resolve!(c"vkCmdSetLogicOpEXT", PFN_vkCmdSetLogicOpEXT),
+			cmd_set_primitive_restart_enable: resolve!(
+				c"vkCmdSetPrimitiveRestartEnable",
+				PFN_vkCmdSetPrimitiveRestartEnable
+			),
+			cmd_set_primitive_restart_enable_ext: resolve!(
+				c"vkCmdSetPrimitiveRestartEnableEXT",
+				PFN_vkCmdSetPrimitiveRestartEnableEXT
+			),
+			cmd_set_tessellation_domain_origin_ext: resolve!(
+				c"vkCmdSetTessellationDomainOriginEXT",
+				PFN_vkCmdSetTessellationDomainOriginEXT
+			),
+			cmd_set_depth_clamp_enable_ext: resolve!(
+				c"vkCmdSetDepthClampEnableEXT",
+				PFN_vkCmdSetDepthClampEnableEXT
+			),
+			cmd_set_polygon_mode_ext: resolve!(c"vkCmdSetPolygonModeEXT", PFN_vkCmdSetPolygonModeEXT),
+			cmd_set_rasterization_samples_ext: resolve!(
+				c"vkCmdSetRasterizationSamplesEXT",
+				PFN_vkCmdSetRasterizationSamplesEXT
+			),
+			cmd_set_sample_mask_ext: resolve!(c"vkCmdSetSampleMaskEXT", PFN_vkCmdSetSampleMaskEXT),
+			cmd_set_alpha_to_coverage_enable_ext: resolve!(
+				c"vkCmdSetAlphaToCoverageEnableEXT",
+				PFN_vkCmdSetAlphaToCoverageEnableEXT
+			),
+			cmd_set_alpha_to_one_enable_ext: resolve!(
+				c"vkCmdSetAlphaToOneEnableEXT",
+				PFN_vkCmdSetAlphaToOneEnableEXT
+			),
+			cmd_set_logic_op_enable_ext: resolve!(
+				c"vkCmdSetLogicOpEnableEXT",
+				PFN_vkCmdSetLogicOpEnableEXT
+			),
+			cmd_set_color_blend_enable_ext: resolve!(
+				c"vkCmdSetColorBlendEnableEXT",
+				PFN_vkCmdSetColorBlendEnableEXT
+			),
+			cmd_set_color_blend_equation_ext: resolve!(
+				c"vkCmdSetColorBlendEquationEXT",
+				PFN_vkCmdSetColorBlendEquationEXT
+			),
+			cmd_set_color_write_mask_ext: resolve!(
+				c"vkCmdSetColorWriteMaskEXT",
+				PFN_vkCmdSetColorWriteMaskEXT
+			),
+			cmd_set_rasterization_stream_ext: resolve!(
+				c"vkCmdSetRasterizationStreamEXT",
+				PFN_vkCmdSetRasterizationStreamEXT
+			),
+			cmd_set_conservative_rasterization_mode_ext: resolve!(
+				c"vkCmdSetConservativeRasterizationModeEXT",
+				PFN_vkCmdSetConservativeRasterizationModeEXT
+			),
+			cmd_set_extra_primitive_overestimation_size_ext: resolve!(
+				c"vkCmdSetExtraPrimitiveOverestimationSizeEXT",
+				PFN_vkCmdSetExtraPrimitiveOverestimationSizeEXT
+			),
+			cmd_set_depth_clip_enable_ext: resolve!(
+				c"vkCmdSetDepthClipEnableEXT",
+				PFN_vkCmdSetDepthClipEnableEXT
+			),
+			cmd_set_sample_locations_enable_ext: resolve!(
+				c"vkCmdSetSampleLocationsEnableEXT",
+				PFN_vkCmdSetSampleLocationsEnableEXT
+			),
+			cmd_set_color_blend_advanced_ext: resolve!(
+				c"vkCmdSetColorBlendAdvancedEXT",
+				PFN_vkCmdSetColorBlendAdvancedEXT
+			),
+			cmd_set_provoking_vertex_mode_ext: resolve!(
+				c"vkCmdSetProvokingVertexModeEXT",
+				PFN_vkCmdSetProvokingVertexModeEXT
+			),
+			cmd_set_line_rasterization_mode_ext: resolve!(
+				c"vkCmdSetLineRasterizationModeEXT",
+				PFN_vkCmdSetLineRasterizationModeEXT
+			),
+			cmd_set_line_stipple_enable_ext: resolve!(
+				c"vkCmdSetLineStippleEnableEXT",
+				PFN_vkCmdSetLineStippleEnableEXT
+			),
+			cmd_set_depth_clip_negative_one_to_one_ext: resolve!(
+				c"vkCmdSetDepthClipNegativeOneToOneEXT",
+				PFN_vkCmdSetDepthClipNegativeOneToOneEXT
+			),
+			cmd_set_viewport_w_scaling_enable_nv: resolve!(
+				c"vkCmdSetViewportWScalingEnableNV",
+				PFN_vkCmdSetViewportWScalingEnableNV
+			),
+			cmd_set_viewport_swizzle_nv: resolve!(
+				c"vkCmdSetViewportSwizzleNV",
+				PFN_vkCmdSetViewportSwizzleNV
+			),
+			cmd_set_coverage_to_color_enable_nv: resolve!(
+				c"vkCmdSetCoverageToColorEnableNV",
+				PFN_vkCmdSetCoverageToColorEnableNV
+			),
+			cmd_set_coverage_to_color_location_nv: resolve!(
+				c"vkCmdSetCoverageToColorLocationNV",
+				PFN_vkCmdSetCoverageToColorLocationNV
+			),
+			cmd_set_coverage_modulation_mode_nv: resolve!(
+				c"vkCmdSetCoverageModulationModeNV",
+				PFN_vkCmdSetCoverageModulationModeNV
+			),
+			cmd_set_coverage_modulation_table_enable_nv: resolve!(
+				c"vkCmdSetCoverageModulationTableEnableNV",
+				PFN_vkCmdSetCoverageModulationTableEnableNV
+			),
+			cmd_set_coverage_modulation_table_nv: resolve!(
+				c"vkCmdSetCoverageModulationTableNV",
+				PFN_vkCmdSetCoverageModulationTableNV
+			),
+			cmd_set_shading_rate_image_enable_nv: resolve!(
+				c"vkCmdSetShadingRateImageEnableNV",
+				PFN_vkCmdSetShadingRateImageEnableNV
+			),
+			cmd_set_coverage_reduction_mode_nv: resolve!(
+				c"vkCmdSetCoverageReductionModeNV",
+				PFN_vkCmdSetCoverageReductionModeNV
+			),
+			cmd_set_representative_fragment_test_enable_nv: resolve!(
+				c"vkCmdSetRepresentativeFragmentTestEnableNV",
+				PFN_vkCmdSetRepresentativeFragmentTestEnableNV
+			),
+			create_private_data_slot: resolve!(c"vkCreatePrivateDataSlot", PFN_vkCreatePrivateDataSlot),
+			create_private_data_slot_ext: resolve!(
+				c"vkCreatePrivateDataSlotEXT",
+				PFN_vkCreatePrivateDataSlotEXT
+			),
+			destroy_private_data_slot: resolve!(
+				c"vkDestroyPrivateDataSlot",
+				PFN_vkDestroyPrivateDataSlot
+			),
+			destroy_private_data_slot_ext: resolve!(
+				c"vkDestroyPrivateDataSlotEXT",
+				PFN_vkDestroyPrivateDataSlotEXT
+			),
+			set_private_data: resolve!(c"vkSetPrivateData", PFN_vkSetPrivateData),
+			set_private_data_ext: resolve!(c"vkSetPrivateDataEXT", PFN_vkSetPrivateDataEXT),
+			get_private_data: resolve!(c"vkGetPrivateData", PFN_vkGetPrivateData),
+			get_private_data_ext: resolve!(c"vkGetPrivateDataEXT", PFN_vkGetPrivateDataEXT),
+			cmd_copy_buffer2: resolve!(c"vkCmdCopyBuffer2", PFN_vkCmdCopyBuffer2),
+			cmd_copy_buffer2_khr: resolve!(c"vkCmdCopyBuffer2KHR", PFN_vkCmdCopyBuffer2KHR),
+			cmd_copy_image2: resolve!(c"vkCmdCopyImage2", PFN_vkCmdCopyImage2),
+			cmd_copy_image2_khr: resolve!(c"vkCmdCopyImage2KHR", PFN_vkCmdCopyImage2KHR),
+			cmd_blit_image2: resolve!(c"vkCmdBlitImage2", PFN_vkCmdBlitImage2),
+			cmd_blit_image2_khr: resolve!(c"vkCmdBlitImage2KHR", PFN_vkCmdBlitImage2KHR),
+			cmd_copy_buffer_to_image2: resolve!(c"vkCmdCopyBufferToImage2", PFN_vkCmdCopyBufferToImage2),
+			cmd_copy_buffer_to_image2_khr: resolve!(
+				c"vkCmdCopyBufferToImage2KHR",
+				PFN_vkCmdCopyBufferToImage2KHR
+			),
+			cmd_copy_image_to_buffer2: resolve!(c"vkCmdCopyImageToBuffer2", PFN_vkCmdCopyImageToBuffer2),
+			cmd_copy_image_to_buffer2_khr: resolve!(
+				c"vkCmdCopyImageToBuffer2KHR",
+				PFN_vkCmdCopyImageToBuffer2KHR
+			),
+			cmd_resolve_image2: resolve!(c"vkCmdResolveImage2", PFN_vkCmdResolveImage2),
+			cmd_resolve_image2_khr: resolve!(c"vkCmdResolveImage2KHR", PFN_vkCmdResolveImage2KHR),
+			cmd_set_fragment_shading_rate_khr: resolve!(
+				c"vkCmdSetFragmentShadingRateKHR",
+				PFN_vkCmdSetFragmentShadingRateKHR
+			),
+			cmd_set_fragment_shading_rate_enum_nv: resolve!(
+				c"vkCmdSetFragmentShadingRateEnumNV",
+				PFN_vkCmdSetFragmentShadingRateEnumNV
+			),
+			get_acceleration_structure_build_sizes_khr: resolve!(
+				c"vkGetAccelerationStructureBuildSizesKHR",
+				PFN_vkGetAccelerationStructureBuildSizesKHR
+			),
+			cmd_set_vertex_input_ext: resolve!(c"vkCmdSetVertexInputEXT", PFN_vkCmdSetVertexInputEXT),
+			cmd_set_color_write_enable_ext: resolve!(
+				c"vkCmdSetColorWriteEnableEXT",
+				PFN_vkCmdSetColorWriteEnableEXT
+			),
+			cmd_set_event2: resolve!(c"vkCmdSetEvent2", PFN_vkCmdSetEvent2),
+			cmd_set_event2_khr: resolve!(c"vkCmdSetEvent2KHR", PFN_vkCmdSetEvent2KHR),
+			cmd_reset_event2: resolve!(c"vkCmdResetEvent2", PFN_vkCmdResetEvent2),
+			cmd_reset_event2_khr: resolve!(c"vkCmdResetEvent2KHR", PFN_vkCmdResetEvent2KHR),
+			cmd_wait_events2: resolve!(c"vkCmdWaitEvents2", PFN_vkCmdWaitEvents2),
+			cmd_wait_events2_khr: resolve!(c"vkCmdWaitEvents2KHR", PFN_vkCmdWaitEvents2KHR),
+			cmd_pipeline_barrier2: resolve!(c"vkCmdPipelineBarrier2", PFN_vkCmdPipelineBarrier2),
+			cmd_pipeline_barrier2_khr: resolve!(
+				c"vkCmdPipelineBarrier2KHR",
+				PFN_vkCmdPipelineBarrier2KHR
+			),
+			queue_submit2: resolve!(c"vkQueueSubmit2", PFN_vkQueueSubmit2),
+			queue_submit2_khr: resolve!(c"vkQueueSubmit2KHR", PFN_vkQueueSubmit2KHR),
+			cmd_write_timestamp2: resolve!(c"vkCmdWriteTimestamp2", PFN_vkCmdWriteTimestamp2),
+			cmd_write_timestamp2_khr: resolve!(c"vkCmdWriteTimestamp2KHR", PFN_vkCmdWriteTimestamp2KHR),
+			cmd_write_buffer_marker2_amd: resolve!(
+				c"vkCmdWriteBufferMarker2AMD",
+				PFN_vkCmdWriteBufferMarker2AMD
+			),
+			get_queue_checkpoint_data2_nv: resolve!(
+				c"vkGetQueueCheckpointData2NV",
+				PFN_vkGetQueueCheckpointData2NV
+			),
+			copy_memory_to_image: resolve!(c"vkCopyMemoryToImage", PFN_vkCopyMemoryToImage),
+			copy_memory_to_image_ext: resolve!(c"vkCopyMemoryToImageEXT", PFN_vkCopyMemoryToImageEXT),
+			copy_image_to_memory: resolve!(c"vkCopyImageToMemory", PFN_vkCopyImageToMemory),
+			copy_image_to_memory_ext: resolve!(c"vkCopyImageToMemoryEXT", PFN_vkCopyImageToMemoryEXT),
+			copy_image_to_image: resolve!(c"vkCopyImageToImage", PFN_vkCopyImageToImage),
+			copy_image_to_image_ext: resolve!(c"vkCopyImageToImageEXT", PFN_vkCopyImageToImageEXT),
+			transition_image_layout: resolve!(c"vkTransitionImageLayout", PFN_vkTransitionImageLayout),
+			transition_image_layout_ext: resolve!(
+				c"vkTransitionImageLayoutEXT",
+				PFN_vkTransitionImageLayoutEXT
+			),
+			create_video_session_khr: resolve!(c"vkCreateVideoSessionKHR", PFN_vkCreateVideoSessionKHR),
+			destroy_video_session_khr: resolve!(
+				c"vkDestroyVideoSessionKHR",
+				PFN_vkDestroyVideoSessionKHR
+			),
+			create_video_session_parameters_khr: resolve!(
+				c"vkCreateVideoSessionParametersKHR",
+				PFN_vkCreateVideoSessionParametersKHR
+			),
+			update_video_session_parameters_khr: resolve!(
+				c"vkUpdateVideoSessionParametersKHR",
+				PFN_vkUpdateVideoSessionParametersKHR
+			),
+			get_encoded_video_session_parameters_khr: resolve!(
+				c"vkGetEncodedVideoSessionParametersKHR",
+				PFN_vkGetEncodedVideoSessionParametersKHR
+			),
+			destroy_video_session_parameters_khr: resolve!(
+				c"vkDestroyVideoSessionParametersKHR",
+				PFN_vkDestroyVideoSessionParametersKHR
+			),
+			get_video_session_memory_requirements_khr: resolve!(
+				c"vkGetVideoSessionMemoryRequirementsKHR",
+				PFN_vkGetVideoSessionMemoryRequirementsKHR
+			),
+			bind_video_session_memory_khr: resolve!(
+				c"vkBindVideoSessionMemoryKHR",
+				PFN_vkBindVideoSessionMemoryKHR
+			),
+			cmd_decode_video_khr: resolve!(c"vkCmdDecodeVideoKHR", PFN_vkCmdDecodeVideoKHR),
+			cmd_begin_video_coding_khr: resolve!(
+				c"vkCmdBeginVideoCodingKHR",
+				PFN_vkCmdBeginVideoCodingKHR
+			),
+			cmd_control_video_coding_khr: resolve!(
+				c"vkCmdControlVideoCodingKHR",
+				PFN_vkCmdControlVideoCodingKHR
+			),
+			cmd_end_video_coding_khr: resolve!(c"vkCmdEndVideoCodingKHR", PFN_vkCmdEndVideoCodingKHR),
+			cmd_encode_video_khr: resolve!(c"vkCmdEncodeVideoKHR", PFN_vkCmdEncodeVideoKHR),
+			cmd_decompress_memory_nv: resolve!(c"vkCmdDecompressMemoryNV", PFN_vkCmdDecompressMemoryNV),
+			cmd_decompress_memory_indirect_count_nv: resolve!(
+				c"vkCmdDecompressMemoryIndirectCountNV",
+				PFN_vkCmdDecompressMemoryIndirectCountNV
+			),
+			get_partitioned_acceleration_structures_build_sizes_nv: resolve!(
+				c"vkGetPartitionedAccelerationStructuresBuildSizesNV",
+				PFN_vkGetPartitionedAccelerationStructuresBuildSizesNV
+			),
+			cmd_build_partitioned_acceleration_structures_nv: resolve!(
+				c"vkCmdBuildPartitionedAccelerationStructuresNV",
+				PFN_vkCmdBuildPartitionedAccelerationStructuresNV
+			),
+			cmd_decompress_memory_ext: resolve!(
+				c"vkCmdDecompressMemoryEXT",
+				PFN_vkCmdDecompressMemoryEXT
+			),
+			cmd_decompress_memory_indirect_count_ext: resolve!(
+				c"vkCmdDecompressMemoryIndirectCountEXT",
+				PFN_vkCmdDecompressMemoryIndirectCountEXT
+			),
+			create_cu_module_nvx: resolve!(c"vkCreateCuModuleNVX", PFN_vkCreateCuModuleNVX),
+			create_cu_function_nvx: resolve!(c"vkCreateCuFunctionNVX", PFN_vkCreateCuFunctionNVX),
+			destroy_cu_module_nvx: resolve!(c"vkDestroyCuModuleNVX", PFN_vkDestroyCuModuleNVX),
+			destroy_cu_function_nvx: resolve!(c"vkDestroyCuFunctionNVX", PFN_vkDestroyCuFunctionNVX),
+			cmd_cu_launch_kernel_nvx: resolve!(c"vkCmdCuLaunchKernelNVX", PFN_vkCmdCuLaunchKernelNVX),
+			get_descriptor_set_layout_size_ext: resolve!(
+				c"vkGetDescriptorSetLayoutSizeEXT",
+				PFN_vkGetDescriptorSetLayoutSizeEXT
+			),
+			get_descriptor_set_layout_binding_offset_ext: resolve!(
+				c"vkGetDescriptorSetLayoutBindingOffsetEXT",
+				PFN_vkGetDescriptorSetLayoutBindingOffsetEXT
+			),
+			get_descriptor_ext: resolve!(c"vkGetDescriptorEXT", PFN_vkGetDescriptorEXT),
+			cmd_bind_descriptor_buffers_ext: resolve!(
+				c"vkCmdBindDescriptorBuffersEXT",
+				PFN_vkCmdBindDescriptorBuffersEXT
+			),
+			cmd_set_descriptor_buffer_offsets_ext: resolve!(
+				c"vkCmdSetDescriptorBufferOffsetsEXT",
+				PFN_vkCmdSetDescriptorBufferOffsetsEXT
+			),
+			cmd_bind_descriptor_buffer_embedded_samplers_ext: resolve!(
+				c"vkCmdBindDescriptorBufferEmbeddedSamplersEXT",
+				PFN_vkCmdBindDescriptorBufferEmbeddedSamplersEXT
+			),
+			get_buffer_opaque_capture_descriptor_data_ext: resolve!(
+				c"vkGetBufferOpaqueCaptureDescriptorDataEXT",
+				PFN_vkGetBufferOpaqueCaptureDescriptorDataEXT
+			),
+			get_image_opaque_capture_descriptor_data_ext: resolve!(
+				c"vkGetImageOpaqueCaptureDescriptorDataEXT",
+				PFN_vkGetImageOpaqueCaptureDescriptorDataEXT
+			),
+			get_image_view_opaque_capture_descriptor_data_ext: resolve!(
+				c"vkGetImageViewOpaqueCaptureDescriptorDataEXT",
+				PFN_vkGetImageViewOpaqueCaptureDescriptorDataEXT
+			),
+			get_sampler_opaque_capture_descriptor_data_ext: resolve!(
+				c"vkGetSamplerOpaqueCaptureDescriptorDataEXT",
+				PFN_vkGetSamplerOpaqueCaptureDescriptorDataEXT
+			),
+			get_acceleration_structure_opaque_capture_descriptor_data_ext: resolve!(
+				c"vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT",
+				PFN_vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT
+			),
+			set_device_memory_priority_ext: resolve!(
+				c"vkSetDeviceMemoryPriorityEXT",
+				PFN_vkSetDeviceMemoryPriorityEXT
+			),
+			wait_for_present2_khr: resolve!(c"vkWaitForPresent2KHR", PFN_vkWaitForPresent2KHR),
+			wait_for_present_khr: resolve!(c"vkWaitForPresentKHR", PFN_vkWaitForPresentKHR),
+			#[cfg(feature = "platform-fuchsia")]
+			create_buffer_collection_fuchsia: resolve!(
+				c"vkCreateBufferCollectionFUCHSIA",
+				PFN_vkCreateBufferCollectionFUCHSIA
+			),
+			#[cfg(feature = "platform-fuchsia")]
+			set_buffer_collection_buffer_constraints_fuchsia: resolve!(
+				c"vkSetBufferCollectionBufferConstraintsFUCHSIA",
+				PFN_vkSetBufferCollectionBufferConstraintsFUCHSIA
+			),
+			#[cfg(feature = "platform-fuchsia")]
+			set_buffer_collection_image_constraints_fuchsia: resolve!(
+				c"vkSetBufferCollectionImageConstraintsFUCHSIA",
+				PFN_vkSetBufferCollectionImageConstraintsFUCHSIA
+			),
+			#[cfg(feature = "platform-fuchsia")]
+			destroy_buffer_collection_fuchsia: resolve!(
+				c"vkDestroyBufferCollectionFUCHSIA",
+				PFN_vkDestroyBufferCollectionFUCHSIA
+			),
+			#[cfg(feature = "platform-fuchsia")]
+			get_buffer_collection_properties_fuchsia: resolve!(
+				c"vkGetBufferCollectionPropertiesFUCHSIA",
+				PFN_vkGetBufferCollectionPropertiesFUCHSIA
+			),
+			#[cfg(feature = "provisional")]
+			create_cuda_module_nv: resolve!(c"vkCreateCudaModuleNV", PFN_vkCreateCudaModuleNV),
+			#[cfg(feature = "provisional")]
+			get_cuda_module_cache_nv: resolve!(c"vkGetCudaModuleCacheNV", PFN_vkGetCudaModuleCacheNV),
+			#[cfg(feature = "provisional")]
+			create_cuda_function_nv: resolve!(c"vkCreateCudaFunctionNV", PFN_vkCreateCudaFunctionNV),
+			#[cfg(feature = "provisional")]
+			destroy_cuda_module_nv: resolve!(c"vkDestroyCudaModuleNV", PFN_vkDestroyCudaModuleNV),
+			#[cfg(feature = "provisional")]
+			destroy_cuda_function_nv: resolve!(c"vkDestroyCudaFunctionNV", PFN_vkDestroyCudaFunctionNV),
+			#[cfg(feature = "provisional")]
+			cmd_cuda_launch_kernel_nv: resolve!(c"vkCmdCudaLaunchKernelNV", PFN_vkCmdCudaLaunchKernelNV),
+			cmd_begin_rendering: resolve!(c"vkCmdBeginRendering", PFN_vkCmdBeginRendering),
+			cmd_begin_rendering_khr: resolve!(c"vkCmdBeginRenderingKHR", PFN_vkCmdBeginRenderingKHR),
+			cmd_end_rendering: resolve!(c"vkCmdEndRendering", PFN_vkCmdEndRendering),
+			cmd_end_rendering2_khr: resolve!(c"vkCmdEndRendering2KHR", PFN_vkCmdEndRendering2KHR),
+			cmd_end_rendering2_ext: resolve!(c"vkCmdEndRendering2EXT", PFN_vkCmdEndRendering2EXT),
+			cmd_end_rendering_khr: resolve!(c"vkCmdEndRenderingKHR", PFN_vkCmdEndRenderingKHR),
+			get_descriptor_set_layout_host_mapping_info_valve: resolve!(
+				c"vkGetDescriptorSetLayoutHostMappingInfoVALVE",
+				PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE
+			),
+			get_descriptor_set_host_mapping_valve: resolve!(
+				c"vkGetDescriptorSetHostMappingVALVE",
+				PFN_vkGetDescriptorSetHostMappingVALVE
+			),
+			create_micromap_ext: resolve!(c"vkCreateMicromapEXT", PFN_vkCreateMicromapEXT),
+			cmd_build_micromaps_ext: resolve!(c"vkCmdBuildMicromapsEXT", PFN_vkCmdBuildMicromapsEXT),
+			build_micromaps_ext: resolve!(c"vkBuildMicromapsEXT", PFN_vkBuildMicromapsEXT),
+			destroy_micromap_ext: resolve!(c"vkDestroyMicromapEXT", PFN_vkDestroyMicromapEXT),
+			cmd_copy_micromap_ext: resolve!(c"vkCmdCopyMicromapEXT", PFN_vkCmdCopyMicromapEXT),
+			copy_micromap_ext: resolve!(c"vkCopyMicromapEXT", PFN_vkCopyMicromapEXT),
+			cmd_copy_micromap_to_memory_ext: resolve!(
+				c"vkCmdCopyMicromapToMemoryEXT",
+				PFN_vkCmdCopyMicromapToMemoryEXT
+			),
+			copy_micromap_to_memory_ext: resolve!(
+				c"vkCopyMicromapToMemoryEXT",
+				PFN_vkCopyMicromapToMemoryEXT
+			),
+			cmd_copy_memory_to_micromap_ext: resolve!(
+				c"vkCmdCopyMemoryToMicromapEXT",
+				PFN_vkCmdCopyMemoryToMicromapEXT
+			),
+			copy_memory_to_micromap_ext: resolve!(
+				c"vkCopyMemoryToMicromapEXT",
+				PFN_vkCopyMemoryToMicromapEXT
+			),
+			cmd_write_micromaps_properties_ext: resolve!(
+				c"vkCmdWriteMicromapsPropertiesEXT",
+				PFN_vkCmdWriteMicromapsPropertiesEXT
+			),
+			write_micromaps_properties_ext: resolve!(
+				c"vkWriteMicromapsPropertiesEXT",
+				PFN_vkWriteMicromapsPropertiesEXT
+			),
+			get_device_micromap_compatibility_ext: resolve!(
+				c"vkGetDeviceMicromapCompatibilityEXT",
+				PFN_vkGetDeviceMicromapCompatibilityEXT
+			),
+			get_micromap_build_sizes_ext: resolve!(
+				c"vkGetMicromapBuildSizesEXT",
+				PFN_vkGetMicromapBuildSizesEXT
+			),
+			get_shader_module_identifier_ext: resolve!(
+				c"vkGetShaderModuleIdentifierEXT",
+				PFN_vkGetShaderModuleIdentifierEXT
+			),
+			get_shader_module_create_info_identifier_ext: resolve!(
+				c"vkGetShaderModuleCreateInfoIdentifierEXT",
+				PFN_vkGetShaderModuleCreateInfoIdentifierEXT
+			),
+			get_image_subresource_layout2: resolve!(
+				c"vkGetImageSubresourceLayout2",
+				PFN_vkGetImageSubresourceLayout2
+			),
+			get_image_subresource_layout2_khr: resolve!(
+				c"vkGetImageSubresourceLayout2KHR",
+				PFN_vkGetImageSubresourceLayout2KHR
+			),
+			get_image_subresource_layout2_ext: resolve!(
+				c"vkGetImageSubresourceLayout2EXT",
+				PFN_vkGetImageSubresourceLayout2EXT
+			),
+			get_pipeline_properties_ext: resolve!(
+				c"vkGetPipelinePropertiesEXT",
+				PFN_vkGetPipelinePropertiesEXT
+			),
+			#[cfg(feature = "platform-metal")]
+			export_metal_objects_ext: resolve!(c"vkExportMetalObjectsEXT", PFN_vkExportMetalObjectsEXT),
+			cmd_bind_tile_memory_qcom: resolve!(c"vkCmdBindTileMemoryQCOM", PFN_vkCmdBindTileMemoryQCOM),
+			get_framebuffer_tile_properties_qcom: resolve!(
+				c"vkGetFramebufferTilePropertiesQCOM",
+				PFN_vkGetFramebufferTilePropertiesQCOM
+			),
+			get_dynamic_rendering_tile_properties_qcom: resolve!(
+				c"vkGetDynamicRenderingTilePropertiesQCOM",
+				PFN_vkGetDynamicRenderingTilePropertiesQCOM
+			),
+			create_optical_flow_session_nv: resolve!(
+				c"vkCreateOpticalFlowSessionNV",
+				PFN_vkCreateOpticalFlowSessionNV
+			),
+			destroy_optical_flow_session_nv: resolve!(
+				c"vkDestroyOpticalFlowSessionNV",
+				PFN_vkDestroyOpticalFlowSessionNV
+			),
+			bind_optical_flow_session_image_nv: resolve!(
+				c"vkBindOpticalFlowSessionImageNV",
+				PFN_vkBindOpticalFlowSessionImageNV
+			),
+			cmd_optical_flow_execute_nv: resolve!(
+				c"vkCmdOpticalFlowExecuteNV",
+				PFN_vkCmdOpticalFlowExecuteNV
+			),
+			get_device_fault_info_ext: resolve!(c"vkGetDeviceFaultInfoEXT", PFN_vkGetDeviceFaultInfoEXT),
+			get_device_fault_reports_khr: resolve!(
+				c"vkGetDeviceFaultReportsKHR",
+				PFN_vkGetDeviceFaultReportsKHR
+			),
+			get_device_fault_debug_info_khr: resolve!(
+				c"vkGetDeviceFaultDebugInfoKHR",
+				PFN_vkGetDeviceFaultDebugInfoKHR
+			),
+			cmd_set_depth_bias2_ext: resolve!(c"vkCmdSetDepthBias2EXT", PFN_vkCmdSetDepthBias2EXT),
+			release_swapchain_images_khr: resolve!(
+				c"vkReleaseSwapchainImagesKHR",
+				PFN_vkReleaseSwapchainImagesKHR
+			),
+			release_swapchain_images_ext: resolve!(
+				c"vkReleaseSwapchainImagesEXT",
+				PFN_vkReleaseSwapchainImagesEXT
+			),
+			get_device_image_subresource_layout: resolve!(
+				c"vkGetDeviceImageSubresourceLayout",
+				PFN_vkGetDeviceImageSubresourceLayout
+			),
+			get_device_image_subresource_layout_khr: resolve!(
+				c"vkGetDeviceImageSubresourceLayoutKHR",
+				PFN_vkGetDeviceImageSubresourceLayoutKHR
+			),
+			map_memory2: resolve!(c"vkMapMemory2", PFN_vkMapMemory2),
+			map_memory2_khr: resolve!(c"vkMapMemory2KHR", PFN_vkMapMemory2KHR),
+			unmap_memory2: resolve!(c"vkUnmapMemory2", PFN_vkUnmapMemory2),
+			unmap_memory2_khr: resolve!(c"vkUnmapMemory2KHR", PFN_vkUnmapMemory2KHR),
+			create_shaders_ext: resolve!(c"vkCreateShadersEXT", PFN_vkCreateShadersEXT),
+			destroy_shader_ext: resolve!(c"vkDestroyShaderEXT", PFN_vkDestroyShaderEXT),
+			get_shader_binary_data_ext: resolve!(
+				c"vkGetShaderBinaryDataEXT",
+				PFN_vkGetShaderBinaryDataEXT
+			),
+			cmd_bind_shaders_ext: resolve!(c"vkCmdBindShadersEXT", PFN_vkCmdBindShadersEXT),
+			set_swapchain_present_timing_queue_size_ext: resolve!(
+				c"vkSetSwapchainPresentTimingQueueSizeEXT",
+				PFN_vkSetSwapchainPresentTimingQueueSizeEXT
+			),
+			get_swapchain_timing_properties_ext: resolve!(
+				c"vkGetSwapchainTimingPropertiesEXT",
+				PFN_vkGetSwapchainTimingPropertiesEXT
+			),
+			get_swapchain_time_domain_properties_ext: resolve!(
+				c"vkGetSwapchainTimeDomainPropertiesEXT",
+				PFN_vkGetSwapchainTimeDomainPropertiesEXT
+			),
+			get_past_presentation_timing_ext: resolve!(
+				c"vkGetPastPresentationTimingEXT",
+				PFN_vkGetPastPresentationTimingEXT
+			),
+			#[cfg(feature = "platform-screen")]
+			get_screen_buffer_properties_qnx: resolve!(
+				c"vkGetScreenBufferPropertiesQNX",
+				PFN_vkGetScreenBufferPropertiesQNX
+			),
+			#[cfg(feature = "provisional")]
+			get_execution_graph_pipeline_scratch_size_amdx: resolve!(
+				c"vkGetExecutionGraphPipelineScratchSizeAMDX",
+				PFN_vkGetExecutionGraphPipelineScratchSizeAMDX
+			),
+			#[cfg(feature = "provisional")]
+			get_execution_graph_pipeline_node_index_amdx: resolve!(
+				c"vkGetExecutionGraphPipelineNodeIndexAMDX",
+				PFN_vkGetExecutionGraphPipelineNodeIndexAMDX
+			),
+			#[cfg(feature = "provisional")]
+			create_execution_graph_pipelines_amdx: resolve!(
+				c"vkCreateExecutionGraphPipelinesAMDX",
+				PFN_vkCreateExecutionGraphPipelinesAMDX
+			),
+			#[cfg(feature = "provisional")]
+			cmd_initialize_graph_scratch_memory_amdx: resolve!(
+				c"vkCmdInitializeGraphScratchMemoryAMDX",
+				PFN_vkCmdInitializeGraphScratchMemoryAMDX
+			),
+			#[cfg(feature = "provisional")]
+			cmd_dispatch_graph_amdx: resolve!(c"vkCmdDispatchGraphAMDX", PFN_vkCmdDispatchGraphAMDX),
+			#[cfg(feature = "provisional")]
+			cmd_dispatch_graph_indirect_amdx: resolve!(
+				c"vkCmdDispatchGraphIndirectAMDX",
+				PFN_vkCmdDispatchGraphIndirectAMDX
+			),
+			#[cfg(feature = "provisional")]
+			cmd_dispatch_graph_indirect_count_amdx: resolve!(
+				c"vkCmdDispatchGraphIndirectCountAMDX",
+				PFN_vkCmdDispatchGraphIndirectCountAMDX
+			),
+			create_gpa_session_amd: resolve!(c"vkCreateGpaSessionAMD", PFN_vkCreateGpaSessionAMD),
+			destroy_gpa_session_amd: resolve!(c"vkDestroyGpaSessionAMD", PFN_vkDestroyGpaSessionAMD),
+			set_gpa_device_clock_mode_amd: resolve!(
+				c"vkSetGpaDeviceClockModeAMD",
+				PFN_vkSetGpaDeviceClockModeAMD
+			),
+			get_gpa_device_clock_info_amd: resolve!(
+				c"vkGetGpaDeviceClockInfoAMD",
+				PFN_vkGetGpaDeviceClockInfoAMD
+			),
+			cmd_begin_gpa_session_amd: resolve!(c"vkCmdBeginGpaSessionAMD", PFN_vkCmdBeginGpaSessionAMD),
+			cmd_end_gpa_session_amd: resolve!(c"vkCmdEndGpaSessionAMD", PFN_vkCmdEndGpaSessionAMD),
+			cmd_begin_gpa_sample_amd: resolve!(c"vkCmdBeginGpaSampleAMD", PFN_vkCmdBeginGpaSampleAMD),
+			cmd_end_gpa_sample_amd: resolve!(c"vkCmdEndGpaSampleAMD", PFN_vkCmdEndGpaSampleAMD),
+			get_gpa_session_status_amd: resolve!(
+				c"vkGetGpaSessionStatusAMD",
+				PFN_vkGetGpaSessionStatusAMD
+			),
+			get_gpa_session_results_amd: resolve!(
+				c"vkGetGpaSessionResultsAMD",
+				PFN_vkGetGpaSessionResultsAMD
+			),
+			reset_gpa_session_amd: resolve!(c"vkResetGpaSessionAMD", PFN_vkResetGpaSessionAMD),
+			cmd_copy_gpa_session_results_amd: resolve!(
+				c"vkCmdCopyGpaSessionResultsAMD",
+				PFN_vkCmdCopyGpaSessionResultsAMD
+			),
+			cmd_bind_descriptor_sets2: resolve!(
+				c"vkCmdBindDescriptorSets2",
+				PFN_vkCmdBindDescriptorSets2
+			),
+			cmd_bind_descriptor_sets2_khr: resolve!(
+				c"vkCmdBindDescriptorSets2KHR",
+				PFN_vkCmdBindDescriptorSets2KHR
+			),
+			cmd_push_constants2: resolve!(c"vkCmdPushConstants2", PFN_vkCmdPushConstants2),
+			cmd_push_constants2_khr: resolve!(c"vkCmdPushConstants2KHR", PFN_vkCmdPushConstants2KHR),
+			cmd_push_descriptor_set2: resolve!(c"vkCmdPushDescriptorSet2", PFN_vkCmdPushDescriptorSet2),
+			cmd_push_descriptor_set2_khr: resolve!(
+				c"vkCmdPushDescriptorSet2KHR",
+				PFN_vkCmdPushDescriptorSet2KHR
+			),
+			cmd_push_descriptor_set_with_template2: resolve!(
+				c"vkCmdPushDescriptorSetWithTemplate2",
+				PFN_vkCmdPushDescriptorSetWithTemplate2
+			),
+			cmd_push_descriptor_set_with_template2_khr: resolve!(
+				c"vkCmdPushDescriptorSetWithTemplate2KHR",
+				PFN_vkCmdPushDescriptorSetWithTemplate2KHR
+			),
+			cmd_set_descriptor_buffer_offsets2_ext: resolve!(
+				c"vkCmdSetDescriptorBufferOffsets2EXT",
+				PFN_vkCmdSetDescriptorBufferOffsets2EXT
+			),
+			cmd_bind_descriptor_buffer_embedded_samplers2_ext: resolve!(
+				c"vkCmdBindDescriptorBufferEmbeddedSamplers2EXT",
+				PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT
+			),
+			set_latency_sleep_mode_nv: resolve!(c"vkSetLatencySleepModeNV", PFN_vkSetLatencySleepModeNV),
+			latency_sleep_nv: resolve!(c"vkLatencySleepNV", PFN_vkLatencySleepNV),
+			set_latency_marker_nv: resolve!(c"vkSetLatencyMarkerNV", PFN_vkSetLatencyMarkerNV),
+			get_latency_timings_nv: resolve!(c"vkGetLatencyTimingsNV", PFN_vkGetLatencyTimingsNV),
+			queue_notify_out_of_band_nv: resolve!(
+				c"vkQueueNotifyOutOfBandNV",
+				PFN_vkQueueNotifyOutOfBandNV
+			),
+			set_latency_sleep_mode_legacy_nv: resolve!(
+				c"vkSetLatencySleepModeLegacyNV",
+				PFN_vkSetLatencySleepModeLegacyNV
+			),
+			latency_sleep_legacy_nv: resolve!(c"vkLatencySleepLegacyNV", PFN_vkLatencySleepLegacyNV),
+			set_latency_marker_legacy_nv: resolve!(
+				c"vkSetLatencyMarkerLegacyNV",
+				PFN_vkSetLatencyMarkerLegacyNV
+			),
+			get_latency_timings_legacy_nv: resolve!(
+				c"vkGetLatencyTimingsLegacyNV",
+				PFN_vkGetLatencyTimingsLegacyNV
+			),
+			queue_notify_out_of_band_legacy_nv: resolve!(
+				c"vkQueueNotifyOutOfBandLegacyNV",
+				PFN_vkQueueNotifyOutOfBandLegacyNV
+			),
+			get_sleep_status_legacy_nv: resolve!(
+				c"vkGetSleepStatusLegacyNV",
+				PFN_vkGetSleepStatusLegacyNV
+			),
+			shutdown_latency_device_legacy_nv: resolve!(
+				c"vkShutdownLatencyDeviceLegacyNV",
+				PFN_vkShutdownLatencyDeviceLegacyNV
+			),
+			cmd_set_rendering_attachment_locations: resolve!(
+				c"vkCmdSetRenderingAttachmentLocations",
+				PFN_vkCmdSetRenderingAttachmentLocations
+			),
+			cmd_set_rendering_attachment_locations_khr: resolve!(
+				c"vkCmdSetRenderingAttachmentLocationsKHR",
+				PFN_vkCmdSetRenderingAttachmentLocationsKHR
+			),
+			cmd_set_rendering_input_attachment_indices: resolve!(
+				c"vkCmdSetRenderingInputAttachmentIndices",
+				PFN_vkCmdSetRenderingInputAttachmentIndices
+			),
+			cmd_set_rendering_input_attachment_indices_khr: resolve!(
+				c"vkCmdSetRenderingInputAttachmentIndicesKHR",
+				PFN_vkCmdSetRenderingInputAttachmentIndicesKHR
+			),
+			cmd_set_depth_clamp_range_ext: resolve!(
+				c"vkCmdSetDepthClampRangeEXT",
+				PFN_vkCmdSetDepthClampRangeEXT
+			),
+			#[cfg(feature = "platform-metal")]
+			get_memory_metal_handle_ext: resolve!(
+				c"vkGetMemoryMetalHandleEXT",
+				PFN_vkGetMemoryMetalHandleEXT
+			),
+			#[cfg(feature = "platform-metal")]
+			get_memory_metal_handle_properties_ext: resolve!(
+				c"vkGetMemoryMetalHandlePropertiesEXT",
+				PFN_vkGetMemoryMetalHandlePropertiesEXT
+			),
+			convert_cooperative_vector_matrix_nv: resolve!(
+				c"vkConvertCooperativeVectorMatrixNV",
+				PFN_vkConvertCooperativeVectorMatrixNV
+			),
+			cmd_convert_cooperative_vector_matrix_nv: resolve!(
+				c"vkCmdConvertCooperativeVectorMatrixNV",
+				PFN_vkCmdConvertCooperativeVectorMatrixNV
+			),
+			cmd_dispatch_tile_qcom: resolve!(c"vkCmdDispatchTileQCOM", PFN_vkCmdDispatchTileQCOM),
+			cmd_begin_per_tile_execution_qcom: resolve!(
+				c"vkCmdBeginPerTileExecutionQCOM",
+				PFN_vkCmdBeginPerTileExecutionQCOM
+			),
+			cmd_end_per_tile_execution_qcom: resolve!(
+				c"vkCmdEndPerTileExecutionQCOM",
+				PFN_vkCmdEndPerTileExecutionQCOM
+			),
+			create_external_compute_queue_nv: resolve!(
+				c"vkCreateExternalComputeQueueNV",
+				PFN_vkCreateExternalComputeQueueNV
+			),
+			destroy_external_compute_queue_nv: resolve!(
+				c"vkDestroyExternalComputeQueueNV",
+				PFN_vkDestroyExternalComputeQueueNV
+			),
+			get_external_compute_queue_data_nv: resolve!(
+				c"vkGetExternalComputeQueueDataNV",
+				PFN_vkGetExternalComputeQueueDataNV
+			),
+			create_shader_instrumentation_arm: resolve!(
+				c"vkCreateShaderInstrumentationARM",
+				PFN_vkCreateShaderInstrumentationARM
+			),
+			destroy_shader_instrumentation_arm: resolve!(
+				c"vkDestroyShaderInstrumentationARM",
+				PFN_vkDestroyShaderInstrumentationARM
+			),
+			cmd_begin_shader_instrumentation_arm: resolve!(
+				c"vkCmdBeginShaderInstrumentationARM",
+				PFN_vkCmdBeginShaderInstrumentationARM
+			),
+			cmd_end_shader_instrumentation_arm: resolve!(
+				c"vkCmdEndShaderInstrumentationARM",
+				PFN_vkCmdEndShaderInstrumentationARM
+			),
+			get_shader_instrumentation_values_arm: resolve!(
+				c"vkGetShaderInstrumentationValuesARM",
+				PFN_vkGetShaderInstrumentationValuesARM
+			),
+			clear_shader_instrumentation_metrics_arm: resolve!(
+				c"vkClearShaderInstrumentationMetricsARM",
+				PFN_vkClearShaderInstrumentationMetricsARM
+			),
+			create_tensor_arm: resolve!(c"vkCreateTensorARM", PFN_vkCreateTensorARM),
+			destroy_tensor_arm: resolve!(c"vkDestroyTensorARM", PFN_vkDestroyTensorARM),
+			create_tensor_view_arm: resolve!(c"vkCreateTensorViewARM", PFN_vkCreateTensorViewARM),
+			destroy_tensor_view_arm: resolve!(c"vkDestroyTensorViewARM", PFN_vkDestroyTensorViewARM),
+			get_tensor_memory_requirements_arm: resolve!(
+				c"vkGetTensorMemoryRequirementsARM",
+				PFN_vkGetTensorMemoryRequirementsARM
+			),
+			bind_tensor_memory_arm: resolve!(c"vkBindTensorMemoryARM", PFN_vkBindTensorMemoryARM),
+			get_device_tensor_memory_requirements_arm: resolve!(
+				c"vkGetDeviceTensorMemoryRequirementsARM",
+				PFN_vkGetDeviceTensorMemoryRequirementsARM
+			),
+			cmd_copy_tensor_arm: resolve!(c"vkCmdCopyTensorARM", PFN_vkCmdCopyTensorARM),
+			get_tensor_opaque_capture_descriptor_data_arm: resolve!(
+				c"vkGetTensorOpaqueCaptureDescriptorDataARM",
+				PFN_vkGetTensorOpaqueCaptureDescriptorDataARM
+			),
+			get_tensor_view_opaque_capture_descriptor_data_arm: resolve!(
+				c"vkGetTensorViewOpaqueCaptureDescriptorDataARM",
+				PFN_vkGetTensorViewOpaqueCaptureDescriptorDataARM
+			),
+			create_data_graph_pipelines_arm: resolve!(
+				c"vkCreateDataGraphPipelinesARM",
+				PFN_vkCreateDataGraphPipelinesARM
+			),
+			create_data_graph_pipeline_session_arm: resolve!(
+				c"vkCreateDataGraphPipelineSessionARM",
+				PFN_vkCreateDataGraphPipelineSessionARM
+			),
+			get_data_graph_pipeline_session_bind_point_requirements_arm: resolve!(
+				c"vkGetDataGraphPipelineSessionBindPointRequirementsARM",
+				PFN_vkGetDataGraphPipelineSessionBindPointRequirementsARM
+			),
+			get_data_graph_pipeline_session_memory_requirements_arm: resolve!(
+				c"vkGetDataGraphPipelineSessionMemoryRequirementsARM",
+				PFN_vkGetDataGraphPipelineSessionMemoryRequirementsARM
+			),
+			bind_data_graph_pipeline_session_memory_arm: resolve!(
+				c"vkBindDataGraphPipelineSessionMemoryARM",
+				PFN_vkBindDataGraphPipelineSessionMemoryARM
+			),
+			destroy_data_graph_pipeline_session_arm: resolve!(
+				c"vkDestroyDataGraphPipelineSessionARM",
+				PFN_vkDestroyDataGraphPipelineSessionARM
+			),
+			cmd_dispatch_data_graph_arm: resolve!(
+				c"vkCmdDispatchDataGraphARM",
+				PFN_vkCmdDispatchDataGraphARM
+			),
+			get_data_graph_pipeline_available_properties_arm: resolve!(
+				c"vkGetDataGraphPipelineAvailablePropertiesARM",
+				PFN_vkGetDataGraphPipelineAvailablePropertiesARM
+			),
+			get_data_graph_pipeline_properties_arm: resolve!(
+				c"vkGetDataGraphPipelinePropertiesARM",
+				PFN_vkGetDataGraphPipelinePropertiesARM
+			),
+			#[cfg(feature = "platform-ohos")]
+			get_native_buffer_properties_ohos: resolve!(
+				c"vkGetNativeBufferPropertiesOHOS",
+				PFN_vkGetNativeBufferPropertiesOHOS
+			),
+			#[cfg(feature = "platform-ohos")]
+			get_memory_native_buffer_ohos: resolve!(
+				c"vkGetMemoryNativeBufferOHOS",
+				PFN_vkGetMemoryNativeBufferOHOS
+			),
+			queue_set_perf_hint_qcom: resolve!(c"vkQueueSetPerfHintQCOM", PFN_vkQueueSetPerfHintQCOM),
+			cmd_set_compute_occupancy_priority_nv: resolve!(
+				c"vkCmdSetComputeOccupancyPriorityNV",
+				PFN_vkCmdSetComputeOccupancyPriorityNV
+			),
+			write_sampler_descriptors_ext: resolve!(
+				c"vkWriteSamplerDescriptorsEXT",
+				PFN_vkWriteSamplerDescriptorsEXT
+			),
+			write_resource_descriptors_ext: resolve!(
+				c"vkWriteResourceDescriptorsEXT",
+				PFN_vkWriteResourceDescriptorsEXT
+			),
+			cmd_bind_sampler_heap_ext: resolve!(c"vkCmdBindSamplerHeapEXT", PFN_vkCmdBindSamplerHeapEXT),
+			cmd_bind_resource_heap_ext: resolve!(
+				c"vkCmdBindResourceHeapEXT",
+				PFN_vkCmdBindResourceHeapEXT
+			),
+			cmd_push_data_ext: resolve!(c"vkCmdPushDataEXT", PFN_vkCmdPushDataEXT),
+			register_custom_border_color_ext: resolve!(
+				c"vkRegisterCustomBorderColorEXT",
+				PFN_vkRegisterCustomBorderColorEXT
+			),
+			unregister_custom_border_color_ext: resolve!(
+				c"vkUnregisterCustomBorderColorEXT",
+				PFN_vkUnregisterCustomBorderColorEXT
+			),
+			get_image_opaque_capture_data_ext: resolve!(
+				c"vkGetImageOpaqueCaptureDataEXT",
+				PFN_vkGetImageOpaqueCaptureDataEXT
+			),
+			get_tensor_opaque_capture_data_arm: resolve!(
+				c"vkGetTensorOpaqueCaptureDataARM",
+				PFN_vkGetTensorOpaqueCaptureDataARM
+			),
+			cmd_copy_memory_khr: resolve!(c"vkCmdCopyMemoryKHR", PFN_vkCmdCopyMemoryKHR),
+			cmd_copy_memory_to_image_khr: resolve!(
+				c"vkCmdCopyMemoryToImageKHR",
+				PFN_vkCmdCopyMemoryToImageKHR
+			),
+			cmd_copy_image_to_memory_khr: resolve!(
+				c"vkCmdCopyImageToMemoryKHR",
+				PFN_vkCmdCopyImageToMemoryKHR
+			),
+			cmd_update_memory_khr: resolve!(c"vkCmdUpdateMemoryKHR", PFN_vkCmdUpdateMemoryKHR),
+			cmd_fill_memory_khr: resolve!(c"vkCmdFillMemoryKHR", PFN_vkCmdFillMemoryKHR),
+			cmd_copy_query_pool_results_to_memory_khr: resolve!(
+				c"vkCmdCopyQueryPoolResultsToMemoryKHR",
+				PFN_vkCmdCopyQueryPoolResultsToMemoryKHR
+			),
+			cmd_begin_conditional_rendering2_ext: resolve!(
+				c"vkCmdBeginConditionalRendering2EXT",
+				PFN_vkCmdBeginConditionalRendering2EXT
+			),
+			cmd_bind_transform_feedback_buffers2_ext: resolve!(
+				c"vkCmdBindTransformFeedbackBuffers2EXT",
+				PFN_vkCmdBindTransformFeedbackBuffers2EXT
+			),
+			cmd_begin_transform_feedback2_ext: resolve!(
+				c"vkCmdBeginTransformFeedback2EXT",
+				PFN_vkCmdBeginTransformFeedback2EXT
+			),
+			cmd_end_transform_feedback2_ext: resolve!(
+				c"vkCmdEndTransformFeedback2EXT",
+				PFN_vkCmdEndTransformFeedback2EXT
+			),
+			cmd_draw_indirect_byte_count2_ext: resolve!(
+				c"vkCmdDrawIndirectByteCount2EXT",
+				PFN_vkCmdDrawIndirectByteCount2EXT
+			),
+			cmd_write_marker_to_memory_amd: resolve!(
+				c"vkCmdWriteMarkerToMemoryAMD",
+				PFN_vkCmdWriteMarkerToMemoryAMD
+			),
+			cmd_bind_index_buffer3_khr: resolve!(
+				c"vkCmdBindIndexBuffer3KHR",
+				PFN_vkCmdBindIndexBuffer3KHR
+			),
+			cmd_bind_vertex_buffers3_khr: resolve!(
+				c"vkCmdBindVertexBuffers3KHR",
+				PFN_vkCmdBindVertexBuffers3KHR
+			),
+			cmd_draw_indirect2_khr: resolve!(c"vkCmdDrawIndirect2KHR", PFN_vkCmdDrawIndirect2KHR),
+			cmd_draw_indexed_indirect2_khr: resolve!(
+				c"vkCmdDrawIndexedIndirect2KHR",
+				PFN_vkCmdDrawIndexedIndirect2KHR
+			),
+			cmd_draw_indirect_count2_khr: resolve!(
+				c"vkCmdDrawIndirectCount2KHR",
+				PFN_vkCmdDrawIndirectCount2KHR
+			),
+			cmd_draw_indexed_indirect_count2_khr: resolve!(
+				c"vkCmdDrawIndexedIndirectCount2KHR",
+				PFN_vkCmdDrawIndexedIndirectCount2KHR
+			),
+			cmd_draw_mesh_tasks_indirect2_ext: resolve!(
+				c"vkCmdDrawMeshTasksIndirect2EXT",
+				PFN_vkCmdDrawMeshTasksIndirect2EXT
+			),
+			cmd_draw_mesh_tasks_indirect_count2_ext: resolve!(
+				c"vkCmdDrawMeshTasksIndirectCount2EXT",
+				PFN_vkCmdDrawMeshTasksIndirectCount2EXT
+			),
+			cmd_dispatch_indirect2_khr: resolve!(
+				c"vkCmdDispatchIndirect2KHR",
+				PFN_vkCmdDispatchIndirect2KHR
+			),
+			create_acceleration_structure2_khr: resolve!(
+				c"vkCreateAccelerationStructure2KHR",
+				PFN_vkCreateAccelerationStructure2KHR
+			),
+			cmd_set_dispatch_parameters_arm: resolve!(
+				c"vkCmdSetDispatchParametersARM",
+				PFN_vkCmdSetDispatchParametersARM
+			),
+		}
+	}
+
+	#[cfg(feature = "loader")]
+	pub(crate) fn retain_enabled(
+		&mut self,
+		mut enabled: impl FnMut(&super::extensions::CommandMetadata) -> bool,
+	) {
+		if !enabled(&super::extensions::COMMANDS[12]) {
+			self.destroy_device = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[18]) {
+			self.get_device_queue = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[19]) {
+			self.queue_submit = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[20]) {
+			self.queue_wait_idle = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[21]) {
+			self.device_wait_idle = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[22]) {
+			self.allocate_memory = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[23]) {
+			self.free_memory = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[24]) {
+			self.map_memory = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[25]) {
+			self.unmap_memory = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[26]) {
+			self.flush_mapped_memory_ranges = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[27]) {
+			self.invalidate_mapped_memory_ranges = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[28]) {
+			self.get_device_memory_commitment = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[29]) {
+			self.get_buffer_memory_requirements = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[30]) {
+			self.bind_buffer_memory = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[31]) {
+			self.get_image_memory_requirements = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[32]) {
+			self.bind_image_memory = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[33]) {
+			self.get_image_sparse_memory_requirements = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[35]) {
+			self.queue_bind_sparse = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[36]) {
+			self.create_fence = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[37]) {
+			self.destroy_fence = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[38]) {
+			self.reset_fences = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[39]) {
+			self.get_fence_status = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[40]) {
+			self.wait_for_fences = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[41]) {
+			self.create_semaphore = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[42]) {
+			self.destroy_semaphore = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[43]) {
+			self.create_event = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[44]) {
+			self.destroy_event = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[45]) {
+			self.get_event_status = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[46]) {
+			self.set_event = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[47]) {
+			self.reset_event = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[48]) {
+			self.create_query_pool = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[49]) {
+			self.destroy_query_pool = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[50]) {
+			self.get_query_pool_results = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[51]) {
+			self.reset_query_pool = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[52]) {
+			self.reset_query_pool_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[53]) {
+			self.create_buffer = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[54]) {
+			self.destroy_buffer = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[55]) {
+			self.create_buffer_view = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[56]) {
+			self.destroy_buffer_view = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[57]) {
+			self.create_image = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[58]) {
+			self.destroy_image = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[59]) {
+			self.get_image_subresource_layout = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[60]) {
+			self.create_image_view = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[61]) {
+			self.destroy_image_view = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[62]) {
+			self.create_shader_module = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[63]) {
+			self.destroy_shader_module = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[64]) {
+			self.create_pipeline_cache = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[65]) {
+			self.destroy_pipeline_cache = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[66]) {
+			self.get_pipeline_cache_data = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[67]) {
+			self.merge_pipeline_caches = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[68]) {
+			self.create_pipeline_binaries_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[69]) {
+			self.destroy_pipeline_binary_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[70]) {
+			self.get_pipeline_key_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[71]) {
+			self.get_pipeline_binary_data_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[72]) {
+			self.release_captured_pipeline_data_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[73]) {
+			self.create_graphics_pipelines = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[74]) {
+			self.create_compute_pipelines = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[75]) {
+			self.get_device_subpass_shading_max_workgroup_size_huawei = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[76]) {
+			self.destroy_pipeline = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[77]) {
+			self.create_pipeline_layout = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[78]) {
+			self.destroy_pipeline_layout = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[79]) {
+			self.create_sampler = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[80]) {
+			self.destroy_sampler = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[81]) {
+			self.create_descriptor_set_layout = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[82]) {
+			self.destroy_descriptor_set_layout = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[83]) {
+			self.create_descriptor_pool = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[84]) {
+			self.destroy_descriptor_pool = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[85]) {
+			self.reset_descriptor_pool = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[86]) {
+			self.allocate_descriptor_sets = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[87]) {
+			self.free_descriptor_sets = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[88]) {
+			self.update_descriptor_sets = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[89]) {
+			self.create_framebuffer = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[90]) {
+			self.destroy_framebuffer = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[91]) {
+			self.create_render_pass = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[92]) {
+			self.destroy_render_pass = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[93]) {
+			self.get_render_area_granularity = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[94]) {
+			self.get_rendering_area_granularity = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[95]) {
+			self.get_rendering_area_granularity_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[96]) {
+			self.create_command_pool = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[97]) {
+			self.destroy_command_pool = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[98]) {
+			self.reset_command_pool = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[99]) {
+			self.allocate_command_buffers = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[100]) {
+			self.free_command_buffers = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[101]) {
+			self.begin_command_buffer = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[102]) {
+			self.end_command_buffer = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[103]) {
+			self.reset_command_buffer = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[104]) {
+			self.cmd_bind_pipeline = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[105]) {
+			self.cmd_set_primitive_restart_index_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[106]) {
+			self.cmd_set_attachment_feedback_loop_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[107]) {
+			self.cmd_set_viewport = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[108]) {
+			self.cmd_set_scissor = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[109]) {
+			self.cmd_set_line_width = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[110]) {
+			self.cmd_set_depth_bias = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[111]) {
+			self.cmd_set_blend_constants = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[112]) {
+			self.cmd_set_depth_bounds = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[113]) {
+			self.cmd_set_stencil_compare_mask = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[114]) {
+			self.cmd_set_stencil_write_mask = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[115]) {
+			self.cmd_set_stencil_reference = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[116]) {
+			self.cmd_bind_descriptor_sets = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[117]) {
+			self.cmd_bind_index_buffer = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[118]) {
+			self.cmd_bind_vertex_buffers = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[119]) {
+			self.cmd_draw = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[120]) {
+			self.cmd_draw_indexed = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[121]) {
+			self.cmd_draw_multi_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[122]) {
+			self.cmd_draw_multi_indexed_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[123]) {
+			self.cmd_draw_indirect = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[124]) {
+			self.cmd_draw_indexed_indirect = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[125]) {
+			self.cmd_dispatch = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[126]) {
+			self.cmd_dispatch_indirect = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[127]) {
+			self.cmd_subpass_shading_huawei = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[128]) {
+			self.cmd_draw_cluster_huawei = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[129]) {
+			self.cmd_draw_cluster_indirect_huawei = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[130]) {
+			self.cmd_update_pipeline_indirect_buffer_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[131]) {
+			self.cmd_copy_buffer = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[132]) {
+			self.cmd_copy_image = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[133]) {
+			self.cmd_blit_image = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[134]) {
+			self.cmd_copy_buffer_to_image = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[135]) {
+			self.cmd_copy_image_to_buffer = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[136]) {
+			self.cmd_copy_memory_indirect_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[137]) {
+			self.cmd_copy_memory_indirect_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[138]) {
+			self.cmd_copy_memory_to_image_indirect_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[139]) {
+			self.cmd_copy_memory_to_image_indirect_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[140]) {
+			self.cmd_update_buffer = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[141]) {
+			self.cmd_fill_buffer = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[142]) {
+			self.cmd_clear_color_image = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[143]) {
+			self.cmd_clear_depth_stencil_image = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[144]) {
+			self.cmd_clear_attachments = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[145]) {
+			self.cmd_resolve_image = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[146]) {
+			self.cmd_set_event = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[147]) {
+			self.cmd_reset_event = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[148]) {
+			self.cmd_wait_events = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[149]) {
+			self.cmd_pipeline_barrier = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[150]) {
+			self.cmd_begin_query = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[151]) {
+			self.cmd_end_query = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[152]) {
+			self.cmd_begin_conditional_rendering_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[153]) {
+			self.cmd_end_conditional_rendering_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[154]) {
+			self.cmd_begin_custom_resolve_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[155]) {
+			self.cmd_reset_query_pool = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[156]) {
+			self.cmd_write_timestamp = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[157]) {
+			self.cmd_copy_query_pool_results = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[158]) {
+			self.cmd_push_constants = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[159]) {
+			self.cmd_begin_render_pass = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[160]) {
+			self.cmd_next_subpass = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[161]) {
+			self.cmd_end_render_pass = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[162]) {
+			self.cmd_execute_commands = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[172]) {
+			self.create_shared_swapchains_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[178]) {
+			self.create_swapchain_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[179]) {
+			self.destroy_swapchain_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[180]) {
+			self.get_swapchain_images_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[181]) {
+			self.acquire_next_image_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[182]) {
+			self.queue_present_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[203]) {
+			self.debug_marker_set_object_name_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[204]) {
+			self.debug_marker_set_object_tag_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[205]) {
+			self.cmd_debug_marker_begin_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[206]) {
+			self.cmd_debug_marker_end_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[207]) {
+			self.cmd_debug_marker_insert_ext = None;
+		}
+
+		#[cfg(feature = "platform-win32")]
+		if !enabled(&super::extensions::COMMANDS[209]) {
+			self.get_memory_win32_handle_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[210]) {
+			self.cmd_execute_generated_commands_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[211]) {
+			self.cmd_preprocess_generated_commands_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[212]) {
+			self.cmd_bind_pipeline_shader_group_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[213]) {
+			self.get_generated_commands_memory_requirements_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[214]) {
+			self.create_indirect_commands_layout_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[215]) {
+			self.destroy_indirect_commands_layout_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[216]) {
+			self.cmd_execute_generated_commands_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[217]) {
+			self.cmd_preprocess_generated_commands_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[218]) {
+			self.get_generated_commands_memory_requirements_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[219]) {
+			self.create_indirect_commands_layout_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[220]) {
+			self.destroy_indirect_commands_layout_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[221]) {
+			self.create_indirect_execution_set_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[222]) {
+			self.destroy_indirect_execution_set_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[223]) {
+			self.update_indirect_execution_set_pipeline_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[224]) {
+			self.update_indirect_execution_set_shader_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[239]) {
+			self.cmd_push_descriptor_set = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[240]) {
+			self.cmd_push_descriptor_set_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[241]) {
+			self.trim_command_pool = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[242]) {
+			self.trim_command_pool_khr = None;
+		}
+
+		#[cfg(feature = "platform-win32")]
+		if !enabled(&super::extensions::COMMANDS[245]) {
+			self.get_memory_win32_handle_khr = None;
+		}
+
+		#[cfg(feature = "platform-win32")]
+		if !enabled(&super::extensions::COMMANDS[246]) {
+			self.get_memory_win32_handle_properties_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[247]) {
+			self.get_memory_fd_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[248]) {
+			self.get_memory_fd_properties_khr = None;
+		}
+
+		#[cfg(feature = "platform-fuchsia")]
+		if !enabled(&super::extensions::COMMANDS[249]) {
+			self.get_memory_zircon_handle_fuchsia = None;
+		}
+
+		#[cfg(feature = "platform-fuchsia")]
+		if !enabled(&super::extensions::COMMANDS[250]) {
+			self.get_memory_zircon_handle_properties_fuchsia = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[251]) {
+			self.get_memory_remote_address_nv = None;
+		}
+
+		#[cfg(feature = "platform-win32")]
+		if !enabled(&super::extensions::COMMANDS[254]) {
+			self.get_semaphore_win32_handle_khr = None;
+		}
+
+		#[cfg(feature = "platform-win32")]
+		if !enabled(&super::extensions::COMMANDS[255]) {
+			self.import_semaphore_win32_handle_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[256]) {
+			self.get_semaphore_fd_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[257]) {
+			self.import_semaphore_fd_khr = None;
+		}
+
+		#[cfg(feature = "platform-fuchsia")]
+		if !enabled(&super::extensions::COMMANDS[258]) {
+			self.get_semaphore_zircon_handle_fuchsia = None;
+		}
+
+		#[cfg(feature = "platform-fuchsia")]
+		if !enabled(&super::extensions::COMMANDS[259]) {
+			self.import_semaphore_zircon_handle_fuchsia = None;
+		}
+
+		#[cfg(feature = "platform-win32")]
+		if !enabled(&super::extensions::COMMANDS[262]) {
+			self.get_fence_win32_handle_khr = None;
+		}
+
+		#[cfg(feature = "platform-win32")]
+		if !enabled(&super::extensions::COMMANDS[263]) {
+			self.import_fence_win32_handle_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[264]) {
+			self.get_fence_fd_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[265]) {
+			self.import_fence_fd_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[271]) {
+			self.display_power_control_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[272]) {
+			self.register_device_event_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[273]) {
+			self.register_display_event_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[274]) {
+			self.get_swapchain_counter_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[278]) {
+			self.get_device_group_peer_memory_features = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[279]) {
+			self.get_device_group_peer_memory_features_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[280]) {
+			self.bind_buffer_memory2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[281]) {
+			self.bind_buffer_memory2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[282]) {
+			self.bind_image_memory2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[283]) {
+			self.bind_image_memory2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[284]) {
+			self.cmd_set_device_mask = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[285]) {
+			self.cmd_set_device_mask_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[286]) {
+			self.get_device_group_present_capabilities_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[287]) {
+			self.get_device_group_surface_present_modes_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[288]) {
+			self.acquire_next_image2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[289]) {
+			self.cmd_dispatch_base = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[290]) {
+			self.cmd_dispatch_base_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[292]) {
+			self.create_descriptor_update_template = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[293]) {
+			self.create_descriptor_update_template_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[294]) {
+			self.destroy_descriptor_update_template = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[295]) {
+			self.destroy_descriptor_update_template_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[296]) {
+			self.update_descriptor_set_with_template = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[297]) {
+			self.update_descriptor_set_with_template_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[298]) {
+			self.cmd_push_descriptor_set_with_template = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[299]) {
+			self.cmd_push_descriptor_set_with_template_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[300]) {
+			self.set_hdr_metadata_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[301]) {
+			self.get_swapchain_status_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[302]) {
+			self.get_refresh_cycle_duration_google = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[303]) {
+			self.get_past_presentation_timing_google = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[307]) {
+			self.cmd_set_viewport_w_scaling_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[308]) {
+			self.cmd_set_discard_rectangle_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[309]) {
+			self.cmd_set_discard_rectangle_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[310]) {
+			self.cmd_set_discard_rectangle_mode_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[311]) {
+			self.cmd_set_sample_locations_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[319]) {
+			self.get_buffer_memory_requirements2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[320]) {
+			self.get_buffer_memory_requirements2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[321]) {
+			self.get_image_memory_requirements2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[322]) {
+			self.get_image_memory_requirements2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[323]) {
+			self.get_image_sparse_memory_requirements2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[324]) {
+			self.get_image_sparse_memory_requirements2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[325]) {
+			self.get_device_buffer_memory_requirements = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[326]) {
+			self.get_device_buffer_memory_requirements_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[327]) {
+			self.get_device_image_memory_requirements = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[328]) {
+			self.get_device_image_memory_requirements_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[329]) {
+			self.get_device_image_sparse_memory_requirements = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[330]) {
+			self.get_device_image_sparse_memory_requirements_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[331]) {
+			self.create_sampler_ycbcr_conversion = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[332]) {
+			self.create_sampler_ycbcr_conversion_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[333]) {
+			self.destroy_sampler_ycbcr_conversion = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[334]) {
+			self.destroy_sampler_ycbcr_conversion_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[335]) {
+			self.get_device_queue2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[336]) {
+			self.create_validation_cache_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[337]) {
+			self.destroy_validation_cache_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[338]) {
+			self.get_validation_cache_data_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[339]) {
+			self.merge_validation_caches_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[340]) {
+			self.get_descriptor_set_layout_support = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[341]) {
+			self.get_descriptor_set_layout_support_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[342]) {
+			self.get_shader_info_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[343]) {
+			self.set_local_dimming_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[346]) {
+			self.get_calibrated_timestamps_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[347]) {
+			self.get_calibrated_timestamps_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[348]) {
+			self.set_debug_utils_object_name_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[349]) {
+			self.set_debug_utils_object_tag_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[350]) {
+			self.queue_begin_debug_utils_label_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[351]) {
+			self.queue_end_debug_utils_label_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[352]) {
+			self.queue_insert_debug_utils_label_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[353]) {
+			self.cmd_begin_debug_utils_label_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[354]) {
+			self.cmd_end_debug_utils_label_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[355]) {
+			self.cmd_insert_debug_utils_label_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[359]) {
+			self.get_memory_host_pointer_properties_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[360]) {
+			self.cmd_write_buffer_marker_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[361]) {
+			self.create_render_pass2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[362]) {
+			self.create_render_pass2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[363]) {
+			self.cmd_begin_render_pass2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[364]) {
+			self.cmd_begin_render_pass2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[365]) {
+			self.cmd_next_subpass2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[366]) {
+			self.cmd_next_subpass2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[367]) {
+			self.cmd_end_render_pass2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[368]) {
+			self.cmd_end_render_pass2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[369]) {
+			self.get_semaphore_counter_value = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[370]) {
+			self.get_semaphore_counter_value_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[371]) {
+			self.wait_semaphores = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[372]) {
+			self.wait_semaphores_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[373]) {
+			self.signal_semaphore = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[374]) {
+			self.signal_semaphore_khr = None;
+		}
+
+		#[cfg(feature = "platform-android")]
+		if !enabled(&super::extensions::COMMANDS[375]) {
+			self.get_android_hardware_buffer_properties_android = None;
+		}
+
+		#[cfg(feature = "platform-android")]
+		if !enabled(&super::extensions::COMMANDS[376]) {
+			self.get_memory_android_hardware_buffer_android = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[377]) {
+			self.cmd_draw_indirect_count = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[378]) {
+			self.cmd_draw_indirect_count_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[379]) {
+			self.cmd_draw_indirect_count_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[380]) {
+			self.cmd_draw_indexed_indirect_count = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[381]) {
+			self.cmd_draw_indexed_indirect_count_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[382]) {
+			self.cmd_draw_indexed_indirect_count_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[383]) {
+			self.cmd_set_checkpoint_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[384]) {
+			self.get_queue_checkpoint_data_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[385]) {
+			self.cmd_bind_transform_feedback_buffers_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[386]) {
+			self.cmd_begin_transform_feedback_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[387]) {
+			self.cmd_end_transform_feedback_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[388]) {
+			self.cmd_begin_query_indexed_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[389]) {
+			self.cmd_end_query_indexed_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[390]) {
+			self.cmd_draw_indirect_byte_count_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[391]) {
+			self.cmd_set_exclusive_scissor_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[392]) {
+			self.cmd_set_exclusive_scissor_enable_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[393]) {
+			self.cmd_bind_shading_rate_image_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[394]) {
+			self.cmd_set_viewport_shading_rate_palette_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[395]) {
+			self.cmd_set_coarse_sample_order_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[396]) {
+			self.cmd_draw_mesh_tasks_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[397]) {
+			self.cmd_draw_mesh_tasks_indirect_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[398]) {
+			self.cmd_draw_mesh_tasks_indirect_count_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[399]) {
+			self.cmd_draw_mesh_tasks_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[400]) {
+			self.cmd_draw_mesh_tasks_indirect_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[401]) {
+			self.cmd_draw_mesh_tasks_indirect_count_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[402]) {
+			self.compile_deferred_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[403]) {
+			self.create_acceleration_structure_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[404]) {
+			self.cmd_bind_invocation_mask_huawei = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[405]) {
+			self.destroy_acceleration_structure_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[406]) {
+			self.destroy_acceleration_structure_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[407]) {
+			self.get_acceleration_structure_memory_requirements_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[408]) {
+			self.bind_acceleration_structure_memory_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[409]) {
+			self.cmd_copy_acceleration_structure_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[410]) {
+			self.cmd_copy_acceleration_structure_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[411]) {
+			self.copy_acceleration_structure_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[412]) {
+			self.cmd_copy_acceleration_structure_to_memory_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[413]) {
+			self.copy_acceleration_structure_to_memory_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[414]) {
+			self.cmd_copy_memory_to_acceleration_structure_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[415]) {
+			self.copy_memory_to_acceleration_structure_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[416]) {
+			self.cmd_write_acceleration_structures_properties_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[417]) {
+			self.cmd_write_acceleration_structures_properties_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[418]) {
+			self.cmd_build_acceleration_structure_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[419]) {
+			self.write_acceleration_structures_properties_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[420]) {
+			self.cmd_trace_rays_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[421]) {
+			self.cmd_trace_rays_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[422]) {
+			self.get_ray_tracing_shader_group_handles_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[423]) {
+			self.get_ray_tracing_shader_group_handles_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[424]) {
+			self.get_ray_tracing_capture_replay_shader_group_handles_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[425]) {
+			self.get_acceleration_structure_handle_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[426]) {
+			self.create_ray_tracing_pipelines_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[427]) {
+			self.create_ray_tracing_pipelines_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[429]) {
+			self.cmd_trace_rays_indirect_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[430]) {
+			self.cmd_trace_rays_indirect2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[431]) {
+			self.get_cluster_acceleration_structure_build_sizes_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[432]) {
+			self.cmd_build_cluster_acceleration_structure_indirect_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[433]) {
+			self.get_device_acceleration_structure_compatibility_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[434]) {
+			self.get_ray_tracing_shader_group_stack_size_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[435]) {
+			self.cmd_set_ray_tracing_pipeline_stack_size_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[436]) {
+			self.get_image_view_handle_nvx = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[437]) {
+			self.get_image_view_handle64_nvx = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[438]) {
+			self.get_image_view_address_nvx = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[439]) {
+			self.get_device_combined_image_sampler_index_nvx = None;
+		}
+
+		#[cfg(feature = "platform-win32")]
+		if !enabled(&super::extensions::COMMANDS[441]) {
+			self.get_device_group_surface_present_modes2_ext = None;
+		}
+
+		#[cfg(feature = "platform-win32")]
+		if !enabled(&super::extensions::COMMANDS[442]) {
+			self.acquire_full_screen_exclusive_mode_ext = None;
+		}
+
+		#[cfg(feature = "platform-win32")]
+		if !enabled(&super::extensions::COMMANDS[443]) {
+			self.release_full_screen_exclusive_mode_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[446]) {
+			self.acquire_profiling_lock_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[447]) {
+			self.release_profiling_lock_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[448]) {
+			self.get_image_drm_format_modifier_properties_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[449]) {
+			self.get_buffer_opaque_capture_address = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[450]) {
+			self.get_buffer_opaque_capture_address_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[451]) {
+			self.get_buffer_device_address = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[452]) {
+			self.get_buffer_device_address_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[453]) {
+			self.get_buffer_device_address_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[456]) {
+			self.initialize_performance_api_intel = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[457]) {
+			self.uninitialize_performance_api_intel = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[458]) {
+			self.cmd_set_performance_marker_intel = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[459]) {
+			self.cmd_set_performance_stream_marker_intel = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[460]) {
+			self.cmd_set_performance_override_intel = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[461]) {
+			self.acquire_performance_configuration_intel = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[462]) {
+			self.release_performance_configuration_intel = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[463]) {
+			self.queue_set_performance_configuration_intel = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[464]) {
+			self.get_performance_parameter_intel = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[465]) {
+			self.get_device_memory_opaque_capture_address = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[466]) {
+			self.get_device_memory_opaque_capture_address_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[467]) {
+			self.get_pipeline_executable_properties_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[468]) {
+			self.get_pipeline_executable_statistics_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[469]) {
+			self.get_pipeline_executable_internal_representations_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[470]) {
+			self.cmd_set_line_stipple = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[471]) {
+			self.cmd_set_line_stipple_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[472]) {
+			self.cmd_set_line_stipple_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[475]) {
+			self.create_acceleration_structure_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[476]) {
+			self.cmd_build_acceleration_structures_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[477]) {
+			self.cmd_build_acceleration_structures_indirect_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[478]) {
+			self.build_acceleration_structures_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[479]) {
+			self.get_acceleration_structure_device_address_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[480]) {
+			self.create_deferred_operation_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[481]) {
+			self.destroy_deferred_operation_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[482]) {
+			self.get_deferred_operation_max_concurrency_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[483]) {
+			self.get_deferred_operation_result_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[484]) {
+			self.deferred_operation_join_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[485]) {
+			self.get_pipeline_indirect_memory_requirements_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[486]) {
+			self.get_pipeline_indirect_device_address_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[487]) {
+			self.anti_lag_update_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[488]) {
+			self.cmd_set_cull_mode = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[489]) {
+			self.cmd_set_cull_mode_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[490]) {
+			self.cmd_set_front_face = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[491]) {
+			self.cmd_set_front_face_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[492]) {
+			self.cmd_set_primitive_topology = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[493]) {
+			self.cmd_set_primitive_topology_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[494]) {
+			self.cmd_set_viewport_with_count = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[495]) {
+			self.cmd_set_viewport_with_count_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[496]) {
+			self.cmd_set_scissor_with_count = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[497]) {
+			self.cmd_set_scissor_with_count_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[498]) {
+			self.cmd_bind_index_buffer2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[499]) {
+			self.cmd_bind_index_buffer2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[500]) {
+			self.cmd_bind_vertex_buffers2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[501]) {
+			self.cmd_bind_vertex_buffers2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[502]) {
+			self.cmd_set_depth_test_enable = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[503]) {
+			self.cmd_set_depth_test_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[504]) {
+			self.cmd_set_depth_write_enable = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[505]) {
+			self.cmd_set_depth_write_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[506]) {
+			self.cmd_set_depth_compare_op = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[507]) {
+			self.cmd_set_depth_compare_op_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[508]) {
+			self.cmd_set_depth_bounds_test_enable = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[509]) {
+			self.cmd_set_depth_bounds_test_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[510]) {
+			self.cmd_set_stencil_test_enable = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[511]) {
+			self.cmd_set_stencil_test_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[512]) {
+			self.cmd_set_stencil_op = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[513]) {
+			self.cmd_set_stencil_op_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[514]) {
+			self.cmd_set_patch_control_points_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[515]) {
+			self.cmd_set_rasterizer_discard_enable = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[516]) {
+			self.cmd_set_rasterizer_discard_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[517]) {
+			self.cmd_set_depth_bias_enable = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[518]) {
+			self.cmd_set_depth_bias_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[519]) {
+			self.cmd_set_logic_op_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[520]) {
+			self.cmd_set_primitive_restart_enable = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[521]) {
+			self.cmd_set_primitive_restart_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[522]) {
+			self.cmd_set_tessellation_domain_origin_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[523]) {
+			self.cmd_set_depth_clamp_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[524]) {
+			self.cmd_set_polygon_mode_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[525]) {
+			self.cmd_set_rasterization_samples_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[526]) {
+			self.cmd_set_sample_mask_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[527]) {
+			self.cmd_set_alpha_to_coverage_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[528]) {
+			self.cmd_set_alpha_to_one_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[529]) {
+			self.cmd_set_logic_op_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[530]) {
+			self.cmd_set_color_blend_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[531]) {
+			self.cmd_set_color_blend_equation_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[532]) {
+			self.cmd_set_color_write_mask_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[533]) {
+			self.cmd_set_rasterization_stream_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[534]) {
+			self.cmd_set_conservative_rasterization_mode_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[535]) {
+			self.cmd_set_extra_primitive_overestimation_size_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[536]) {
+			self.cmd_set_depth_clip_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[537]) {
+			self.cmd_set_sample_locations_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[538]) {
+			self.cmd_set_color_blend_advanced_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[539]) {
+			self.cmd_set_provoking_vertex_mode_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[540]) {
+			self.cmd_set_line_rasterization_mode_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[541]) {
+			self.cmd_set_line_stipple_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[542]) {
+			self.cmd_set_depth_clip_negative_one_to_one_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[543]) {
+			self.cmd_set_viewport_w_scaling_enable_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[544]) {
+			self.cmd_set_viewport_swizzle_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[545]) {
+			self.cmd_set_coverage_to_color_enable_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[546]) {
+			self.cmd_set_coverage_to_color_location_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[547]) {
+			self.cmd_set_coverage_modulation_mode_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[548]) {
+			self.cmd_set_coverage_modulation_table_enable_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[549]) {
+			self.cmd_set_coverage_modulation_table_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[550]) {
+			self.cmd_set_shading_rate_image_enable_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[551]) {
+			self.cmd_set_coverage_reduction_mode_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[552]) {
+			self.cmd_set_representative_fragment_test_enable_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[553]) {
+			self.create_private_data_slot = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[554]) {
+			self.create_private_data_slot_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[555]) {
+			self.destroy_private_data_slot = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[556]) {
+			self.destroy_private_data_slot_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[557]) {
+			self.set_private_data = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[558]) {
+			self.set_private_data_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[559]) {
+			self.get_private_data = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[560]) {
+			self.get_private_data_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[561]) {
+			self.cmd_copy_buffer2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[562]) {
+			self.cmd_copy_buffer2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[563]) {
+			self.cmd_copy_image2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[564]) {
+			self.cmd_copy_image2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[565]) {
+			self.cmd_blit_image2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[566]) {
+			self.cmd_blit_image2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[567]) {
+			self.cmd_copy_buffer_to_image2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[568]) {
+			self.cmd_copy_buffer_to_image2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[569]) {
+			self.cmd_copy_image_to_buffer2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[570]) {
+			self.cmd_copy_image_to_buffer2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[571]) {
+			self.cmd_resolve_image2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[572]) {
+			self.cmd_resolve_image2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[573]) {
+			self.cmd_set_fragment_shading_rate_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[575]) {
+			self.cmd_set_fragment_shading_rate_enum_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[576]) {
+			self.get_acceleration_structure_build_sizes_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[577]) {
+			self.cmd_set_vertex_input_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[578]) {
+			self.cmd_set_color_write_enable_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[579]) {
+			self.cmd_set_event2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[580]) {
+			self.cmd_set_event2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[581]) {
+			self.cmd_reset_event2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[582]) {
+			self.cmd_reset_event2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[583]) {
+			self.cmd_wait_events2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[584]) {
+			self.cmd_wait_events2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[585]) {
+			self.cmd_pipeline_barrier2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[586]) {
+			self.cmd_pipeline_barrier2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[587]) {
+			self.queue_submit2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[588]) {
+			self.queue_submit2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[589]) {
+			self.cmd_write_timestamp2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[590]) {
+			self.cmd_write_timestamp2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[591]) {
+			self.cmd_write_buffer_marker2_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[592]) {
+			self.get_queue_checkpoint_data2_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[593]) {
+			self.copy_memory_to_image = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[594]) {
+			self.copy_memory_to_image_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[595]) {
+			self.copy_image_to_memory = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[596]) {
+			self.copy_image_to_memory_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[597]) {
+			self.copy_image_to_image = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[598]) {
+			self.copy_image_to_image_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[599]) {
+			self.transition_image_layout = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[600]) {
+			self.transition_image_layout_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[604]) {
+			self.create_video_session_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[605]) {
+			self.destroy_video_session_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[606]) {
+			self.create_video_session_parameters_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[607]) {
+			self.update_video_session_parameters_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[608]) {
+			self.get_encoded_video_session_parameters_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[609]) {
+			self.destroy_video_session_parameters_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[610]) {
+			self.get_video_session_memory_requirements_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[611]) {
+			self.bind_video_session_memory_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[612]) {
+			self.cmd_decode_video_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[613]) {
+			self.cmd_begin_video_coding_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[614]) {
+			self.cmd_control_video_coding_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[615]) {
+			self.cmd_end_video_coding_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[616]) {
+			self.cmd_encode_video_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[617]) {
+			self.cmd_decompress_memory_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[618]) {
+			self.cmd_decompress_memory_indirect_count_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[619]) {
+			self.get_partitioned_acceleration_structures_build_sizes_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[620]) {
+			self.cmd_build_partitioned_acceleration_structures_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[621]) {
+			self.cmd_decompress_memory_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[622]) {
+			self.cmd_decompress_memory_indirect_count_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[623]) {
+			self.create_cu_module_nvx = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[624]) {
+			self.create_cu_function_nvx = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[625]) {
+			self.destroy_cu_module_nvx = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[626]) {
+			self.destroy_cu_function_nvx = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[627]) {
+			self.cmd_cu_launch_kernel_nvx = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[628]) {
+			self.get_descriptor_set_layout_size_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[629]) {
+			self.get_descriptor_set_layout_binding_offset_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[630]) {
+			self.get_descriptor_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[631]) {
+			self.cmd_bind_descriptor_buffers_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[632]) {
+			self.cmd_set_descriptor_buffer_offsets_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[633]) {
+			self.cmd_bind_descriptor_buffer_embedded_samplers_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[634]) {
+			self.get_buffer_opaque_capture_descriptor_data_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[635]) {
+			self.get_image_opaque_capture_descriptor_data_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[636]) {
+			self.get_image_view_opaque_capture_descriptor_data_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[637]) {
+			self.get_sampler_opaque_capture_descriptor_data_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[638]) {
+			self.get_acceleration_structure_opaque_capture_descriptor_data_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[639]) {
+			self.set_device_memory_priority_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[642]) {
+			self.wait_for_present2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[643]) {
+			self.wait_for_present_khr = None;
+		}
+
+		#[cfg(feature = "platform-fuchsia")]
+		if !enabled(&super::extensions::COMMANDS[644]) {
+			self.create_buffer_collection_fuchsia = None;
+		}
+
+		#[cfg(feature = "platform-fuchsia")]
+		if !enabled(&super::extensions::COMMANDS[645]) {
+			self.set_buffer_collection_buffer_constraints_fuchsia = None;
+		}
+
+		#[cfg(feature = "platform-fuchsia")]
+		if !enabled(&super::extensions::COMMANDS[646]) {
+			self.set_buffer_collection_image_constraints_fuchsia = None;
+		}
+
+		#[cfg(feature = "platform-fuchsia")]
+		if !enabled(&super::extensions::COMMANDS[647]) {
+			self.destroy_buffer_collection_fuchsia = None;
+		}
+
+		#[cfg(feature = "platform-fuchsia")]
+		if !enabled(&super::extensions::COMMANDS[648]) {
+			self.get_buffer_collection_properties_fuchsia = None;
+		}
+
+		#[cfg(feature = "provisional")]
+		if !enabled(&super::extensions::COMMANDS[649]) {
+			self.create_cuda_module_nv = None;
+		}
+
+		#[cfg(feature = "provisional")]
+		if !enabled(&super::extensions::COMMANDS[650]) {
+			self.get_cuda_module_cache_nv = None;
+		}
+
+		#[cfg(feature = "provisional")]
+		if !enabled(&super::extensions::COMMANDS[651]) {
+			self.create_cuda_function_nv = None;
+		}
+
+		#[cfg(feature = "provisional")]
+		if !enabled(&super::extensions::COMMANDS[652]) {
+			self.destroy_cuda_module_nv = None;
+		}
+
+		#[cfg(feature = "provisional")]
+		if !enabled(&super::extensions::COMMANDS[653]) {
+			self.destroy_cuda_function_nv = None;
+		}
+
+		#[cfg(feature = "provisional")]
+		if !enabled(&super::extensions::COMMANDS[654]) {
+			self.cmd_cuda_launch_kernel_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[655]) {
+			self.cmd_begin_rendering = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[656]) {
+			self.cmd_begin_rendering_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[657]) {
+			self.cmd_end_rendering = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[658]) {
+			self.cmd_end_rendering2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[659]) {
+			self.cmd_end_rendering2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[660]) {
+			self.cmd_end_rendering_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[661]) {
+			self.get_descriptor_set_layout_host_mapping_info_valve = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[662]) {
+			self.get_descriptor_set_host_mapping_valve = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[663]) {
+			self.create_micromap_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[664]) {
+			self.cmd_build_micromaps_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[665]) {
+			self.build_micromaps_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[666]) {
+			self.destroy_micromap_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[667]) {
+			self.cmd_copy_micromap_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[668]) {
+			self.copy_micromap_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[669]) {
+			self.cmd_copy_micromap_to_memory_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[670]) {
+			self.copy_micromap_to_memory_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[671]) {
+			self.cmd_copy_memory_to_micromap_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[672]) {
+			self.copy_memory_to_micromap_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[673]) {
+			self.cmd_write_micromaps_properties_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[674]) {
+			self.write_micromaps_properties_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[675]) {
+			self.get_device_micromap_compatibility_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[676]) {
+			self.get_micromap_build_sizes_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[677]) {
+			self.get_shader_module_identifier_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[678]) {
+			self.get_shader_module_create_info_identifier_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[679]) {
+			self.get_image_subresource_layout2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[680]) {
+			self.get_image_subresource_layout2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[681]) {
+			self.get_image_subresource_layout2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[682]) {
+			self.get_pipeline_properties_ext = None;
+		}
+
+		#[cfg(feature = "platform-metal")]
+		if !enabled(&super::extensions::COMMANDS[683]) {
+			self.export_metal_objects_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[684]) {
+			self.cmd_bind_tile_memory_qcom = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[685]) {
+			self.get_framebuffer_tile_properties_qcom = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[686]) {
+			self.get_dynamic_rendering_tile_properties_qcom = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[688]) {
+			self.create_optical_flow_session_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[689]) {
+			self.destroy_optical_flow_session_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[690]) {
+			self.bind_optical_flow_session_image_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[691]) {
+			self.cmd_optical_flow_execute_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[692]) {
+			self.get_device_fault_info_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[693]) {
+			self.get_device_fault_reports_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[694]) {
+			self.get_device_fault_debug_info_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[695]) {
+			self.cmd_set_depth_bias2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[696]) {
+			self.release_swapchain_images_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[697]) {
+			self.release_swapchain_images_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[698]) {
+			self.get_device_image_subresource_layout = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[699]) {
+			self.get_device_image_subresource_layout_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[700]) {
+			self.map_memory2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[701]) {
+			self.map_memory2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[702]) {
+			self.unmap_memory2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[703]) {
+			self.unmap_memory2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[704]) {
+			self.create_shaders_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[705]) {
+			self.destroy_shader_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[706]) {
+			self.get_shader_binary_data_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[707]) {
+			self.cmd_bind_shaders_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[708]) {
+			self.set_swapchain_present_timing_queue_size_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[709]) {
+			self.get_swapchain_timing_properties_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[710]) {
+			self.get_swapchain_time_domain_properties_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[711]) {
+			self.get_past_presentation_timing_ext = None;
+		}
+
+		#[cfg(feature = "platform-screen")]
+		if !enabled(&super::extensions::COMMANDS[712]) {
+			self.get_screen_buffer_properties_qnx = None;
+		}
+
+		#[cfg(feature = "provisional")]
+		if !enabled(&super::extensions::COMMANDS[715]) {
+			self.get_execution_graph_pipeline_scratch_size_amdx = None;
+		}
+
+		#[cfg(feature = "provisional")]
+		if !enabled(&super::extensions::COMMANDS[716]) {
+			self.get_execution_graph_pipeline_node_index_amdx = None;
+		}
+
+		#[cfg(feature = "provisional")]
+		if !enabled(&super::extensions::COMMANDS[717]) {
+			self.create_execution_graph_pipelines_amdx = None;
+		}
+
+		#[cfg(feature = "provisional")]
+		if !enabled(&super::extensions::COMMANDS[718]) {
+			self.cmd_initialize_graph_scratch_memory_amdx = None;
+		}
+
+		#[cfg(feature = "provisional")]
+		if !enabled(&super::extensions::COMMANDS[719]) {
+			self.cmd_dispatch_graph_amdx = None;
+		}
+
+		#[cfg(feature = "provisional")]
+		if !enabled(&super::extensions::COMMANDS[720]) {
+			self.cmd_dispatch_graph_indirect_amdx = None;
+		}
+
+		#[cfg(feature = "provisional")]
+		if !enabled(&super::extensions::COMMANDS[721]) {
+			self.cmd_dispatch_graph_indirect_count_amdx = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[722]) {
+			self.create_gpa_session_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[723]) {
+			self.destroy_gpa_session_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[724]) {
+			self.set_gpa_device_clock_mode_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[725]) {
+			self.get_gpa_device_clock_info_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[726]) {
+			self.cmd_begin_gpa_session_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[727]) {
+			self.cmd_end_gpa_session_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[728]) {
+			self.cmd_begin_gpa_sample_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[729]) {
+			self.cmd_end_gpa_sample_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[730]) {
+			self.get_gpa_session_status_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[731]) {
+			self.get_gpa_session_results_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[732]) {
+			self.reset_gpa_session_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[733]) {
+			self.cmd_copy_gpa_session_results_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[734]) {
+			self.cmd_bind_descriptor_sets2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[735]) {
+			self.cmd_bind_descriptor_sets2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[736]) {
+			self.cmd_push_constants2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[737]) {
+			self.cmd_push_constants2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[738]) {
+			self.cmd_push_descriptor_set2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[739]) {
+			self.cmd_push_descriptor_set2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[740]) {
+			self.cmd_push_descriptor_set_with_template2 = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[741]) {
+			self.cmd_push_descriptor_set_with_template2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[742]) {
+			self.cmd_set_descriptor_buffer_offsets2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[743]) {
+			self.cmd_bind_descriptor_buffer_embedded_samplers2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[744]) {
+			self.set_latency_sleep_mode_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[745]) {
+			self.latency_sleep_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[746]) {
+			self.set_latency_marker_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[747]) {
+			self.get_latency_timings_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[748]) {
+			self.queue_notify_out_of_band_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[749]) {
+			self.set_latency_sleep_mode_legacy_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[750]) {
+			self.latency_sleep_legacy_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[751]) {
+			self.set_latency_marker_legacy_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[752]) {
+			self.get_latency_timings_legacy_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[753]) {
+			self.queue_notify_out_of_band_legacy_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[754]) {
+			self.get_sleep_status_legacy_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[755]) {
+			self.shutdown_latency_device_legacy_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[756]) {
+			self.cmd_set_rendering_attachment_locations = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[757]) {
+			self.cmd_set_rendering_attachment_locations_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[758]) {
+			self.cmd_set_rendering_input_attachment_indices = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[759]) {
+			self.cmd_set_rendering_input_attachment_indices_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[760]) {
+			self.cmd_set_depth_clamp_range_ext = None;
+		}
+
+		#[cfg(feature = "platform-metal")]
+		if !enabled(&super::extensions::COMMANDS[762]) {
+			self.get_memory_metal_handle_ext = None;
+		}
+
+		#[cfg(feature = "platform-metal")]
+		if !enabled(&super::extensions::COMMANDS[763]) {
+			self.get_memory_metal_handle_properties_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[765]) {
+			self.convert_cooperative_vector_matrix_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[766]) {
+			self.cmd_convert_cooperative_vector_matrix_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[767]) {
+			self.cmd_dispatch_tile_qcom = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[768]) {
+			self.cmd_begin_per_tile_execution_qcom = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[769]) {
+			self.cmd_end_per_tile_execution_qcom = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[770]) {
+			self.create_external_compute_queue_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[771]) {
+			self.destroy_external_compute_queue_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[772]) {
+			self.get_external_compute_queue_data_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[774]) {
+			self.create_shader_instrumentation_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[775]) {
+			self.destroy_shader_instrumentation_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[776]) {
+			self.cmd_begin_shader_instrumentation_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[777]) {
+			self.cmd_end_shader_instrumentation_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[778]) {
+			self.get_shader_instrumentation_values_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[779]) {
+			self.clear_shader_instrumentation_metrics_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[780]) {
+			self.create_tensor_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[781]) {
+			self.destroy_tensor_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[782]) {
+			self.create_tensor_view_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[783]) {
+			self.destroy_tensor_view_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[784]) {
+			self.get_tensor_memory_requirements_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[785]) {
+			self.bind_tensor_memory_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[786]) {
+			self.get_device_tensor_memory_requirements_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[787]) {
+			self.cmd_copy_tensor_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[788]) {
+			self.get_tensor_opaque_capture_descriptor_data_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[789]) {
+			self.get_tensor_view_opaque_capture_descriptor_data_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[791]) {
+			self.create_data_graph_pipelines_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[792]) {
+			self.create_data_graph_pipeline_session_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[793]) {
+			self.get_data_graph_pipeline_session_bind_point_requirements_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[794]) {
+			self.get_data_graph_pipeline_session_memory_requirements_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[795]) {
+			self.bind_data_graph_pipeline_session_memory_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[796]) {
+			self.destroy_data_graph_pipeline_session_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[797]) {
+			self.cmd_dispatch_data_graph_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[798]) {
+			self.get_data_graph_pipeline_available_properties_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[799]) {
+			self.get_data_graph_pipeline_properties_arm = None;
+		}
+
+		#[cfg(feature = "platform-ohos")]
+		if !enabled(&super::extensions::COMMANDS[802]) {
+			self.get_native_buffer_properties_ohos = None;
+		}
+
+		#[cfg(feature = "platform-ohos")]
+		if !enabled(&super::extensions::COMMANDS[803]) {
+			self.get_memory_native_buffer_ohos = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[804]) {
+			self.queue_set_perf_hint_qcom = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[806]) {
+			self.cmd_set_compute_occupancy_priority_nv = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[807]) {
+			self.write_sampler_descriptors_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[808]) {
+			self.write_resource_descriptors_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[809]) {
+			self.cmd_bind_sampler_heap_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[810]) {
+			self.cmd_bind_resource_heap_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[811]) {
+			self.cmd_push_data_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[812]) {
+			self.register_custom_border_color_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[813]) {
+			self.unregister_custom_border_color_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[814]) {
+			self.get_image_opaque_capture_data_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[816]) {
+			self.get_tensor_opaque_capture_data_arm = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[817]) {
+			self.cmd_copy_memory_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[818]) {
+			self.cmd_copy_memory_to_image_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[819]) {
+			self.cmd_copy_image_to_memory_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[820]) {
+			self.cmd_update_memory_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[821]) {
+			self.cmd_fill_memory_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[822]) {
+			self.cmd_copy_query_pool_results_to_memory_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[823]) {
+			self.cmd_begin_conditional_rendering2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[824]) {
+			self.cmd_bind_transform_feedback_buffers2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[825]) {
+			self.cmd_begin_transform_feedback2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[826]) {
+			self.cmd_end_transform_feedback2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[827]) {
+			self.cmd_draw_indirect_byte_count2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[828]) {
+			self.cmd_write_marker_to_memory_amd = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[829]) {
+			self.cmd_bind_index_buffer3_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[830]) {
+			self.cmd_bind_vertex_buffers3_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[831]) {
+			self.cmd_draw_indirect2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[832]) {
+			self.cmd_draw_indexed_indirect2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[833]) {
+			self.cmd_draw_indirect_count2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[834]) {
+			self.cmd_draw_indexed_indirect_count2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[835]) {
+			self.cmd_draw_mesh_tasks_indirect2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[836]) {
+			self.cmd_draw_mesh_tasks_indirect_count2_ext = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[837]) {
+			self.cmd_dispatch_indirect2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[838]) {
+			self.create_acceleration_structure2_khr = None;
+		}
+		if !enabled(&super::extensions::COMMANDS[840]) {
+			self.cmd_set_dispatch_parameters_arm = None;
+		}
+	}
+}
