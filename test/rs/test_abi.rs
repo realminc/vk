@@ -1,5 +1,4 @@
 //! Core ABI and public-consumer checks, independent of driver availability.
-use ::vk::core as vk;
 use std::{
 	ffi::c_void,
 	mem::{align_of, offset_of, size_of},

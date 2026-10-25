@@ -15,6 +15,10 @@ struct State {
 	next_memory: u64,
 	next_buffer: u64,
 	dedicated: vk::Buffer,
+	dedicated_image: vk::Image,
+	create_chain: usize,
+	budget: u64,
+	usage: u64,
 	required: bool,
 	preferred: bool,
 	bad_requirements: bool,
@@ -26,6 +30,7 @@ struct State {
 	bindings: Vec<(u64, u64)>,
 	ranges: Vec<(u64, u64)>,
 	fail_type: Option<u32>,
+	fail_above: Option<u64>,
 	requirements_size: Option<u64>,
 	requirements_bits: Option<u32>,
 }
@@ -164,7 +169,7 @@ impl Fixture {
 }
 
 macro_rules! pointer {
-	($ty:ty, $function:ident) => {{
+	($ty:ty, $function:path) => {{
 		// SAFETY: each match arm erases exactly the named command's native PFN.
 		unsafe { std::mem::transmute::<$ty, vk::PFN_vkVoidFunction>(Some($function)) }
 	}};
@@ -200,6 +205,14 @@ unsafe extern "system" fn gipa(
 		b"vkGetPhysicalDeviceProperties" => {
 			pointer!(vk::PFN_vkGetPhysicalDeviceProperties, physical_properties)
 		}
+		b"vkGetPhysicalDeviceMemoryProperties2" => pointer!(
+			vk::PFN_vkGetPhysicalDeviceMemoryProperties2,
+			budget::properties_core
+		),
+		b"vkGetPhysicalDeviceMemoryProperties2KHR" => pointer!(
+			vk::PFN_vkGetPhysicalDeviceMemoryProperties2KHR,
+			budget::properties_khr
+		),
 		b"vkGetPhysicalDeviceMemoryProperties" => pointer!(
 			vk::PFN_vkGetPhysicalDeviceMemoryProperties,
 			memory_properties
@@ -221,6 +234,21 @@ unsafe extern "system" fn gdpa(_: vk::DeviceHandle, name: *const c_char) -> vk::
 		b"vkDestroyDevice" => pointer!(vk::PFN_vkDestroyDevice, destroy_device),
 		b"vkAllocateMemory" => pointer!(vk::PFN_vkAllocateMemory, allocate_memory),
 		b"vkFreeMemory" => pointer!(vk::PFN_vkFreeMemory, free_memory),
+		b"vkCreateImage" => pointer!(vk::PFN_vkCreateImage, image::create_native_image),
+		b"vkDestroyImage" => pointer!(vk::PFN_vkDestroyImage, image::destroy_native_image),
+		b"vkGetImageMemoryRequirements" => pointer!(
+			vk::PFN_vkGetImageMemoryRequirements,
+			image::requirements_legacy
+		),
+		b"vkGetImageMemoryRequirements2" => pointer!(
+			vk::PFN_vkGetImageMemoryRequirements2,
+			image::requirements_core
+		),
+		b"vkGetImageMemoryRequirements2KHR" => pointer!(
+			vk::PFN_vkGetImageMemoryRequirements2KHR,
+			image::requirements_khr
+		),
+		b"vkBindImageMemory" => pointer!(vk::PFN_vkBindImageMemory, image::bind_image),
 		b"vkCreateBuffer" => pointer!(vk::PFN_vkCreateBuffer, create_native_buffer),
 		b"vkDestroyBuffer" => pointer!(vk::PFN_vkDestroyBuffer, destroy_native_buffer),
 		b"vkGetBufferMemoryRequirements" => {
@@ -310,7 +338,11 @@ unsafe extern "system" fn allocate_memory(
 				s.allocated
 					.push(((*info).memory_type_index, (*info).allocation_size));
 			}
-			if s.fail_type == Some((*info).memory_type_index) {
+			if s.fail_type == Some((*info).memory_type_index)
+				|| s
+					.fail_above
+					.is_some_and(|limit| (*info).allocation_size > limit)
+			{
 				status = vk::Result::ERROR_OUT_OF_DEVICE_MEMORY;
 			}
 		});
@@ -331,7 +363,8 @@ unsafe extern "system" fn allocate_memory(
 					dedication.s_type,
 					vk::StructureType::MEMORY_DEDICATED_ALLOCATE_INFO
 				);
-				assert!(dedication.image.is_null());
+				s.dedicated_image = dedication.image;
+				assert!(dedication.image.is_null() || dedication.buffer.is_null());
 				assert!(dedication.p_next.is_null());
 				dedication.buffer
 			};
@@ -359,11 +392,13 @@ unsafe extern "system" fn free_memory(
 
 unsafe extern "system" fn create_native_buffer(
 	_: vk::DeviceHandle,
-	_: *const vk::BufferCreateInfo,
+	info: *const vk::BufferCreateInfo,
 	callbacks: *const vk::AllocationCallbacks,
 	output: *mut vk::Buffer,
 ) -> vk::Result {
 	assert!(callbacks.is_null());
+	// SAFETY: exact synchronous native input owned by the caller for this call.
+	STATE.with_borrow_mut(|s| s.create_chain = unsafe { (*info).p_next } as usize);
 	let status = event("create");
 	if status == vk::Result::SUCCESS {
 		// SAFETY: wrapper supplies one writable output handle.
@@ -1348,3 +1383,9 @@ fn size_query_missing_pfn_invalid_metadata_and_zero_limit_cannot_publish_an_allo
 
 #[path = "test_pooled.rs"]
 mod pooled;
+
+#[path = "test_image.rs"]
+mod image;
+
+#[path = "test_budget.rs"]
+mod budget;

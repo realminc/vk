@@ -24,6 +24,10 @@ pub fn emit_types(reg: &Registry) -> Result<String> {
 fn emit_type(out: &mut String, ty: &TypeDecl) -> Result<()> {
 	let name = names::type_name(&ty.c_name);
 	let guard = crate::protect::cfg(&ty.guards);
+	if matches!(&ty.kind, TypeKind::ExternalType { requires: Some(requires) } if matches!(requires.as_str(), "vk_platform" | "stdint"))
+	{
+		return Ok(());
+	}
 	if !matches!(
 		ty.kind,
 		TypeKind::Struct { .. }
@@ -35,6 +39,7 @@ fn emit_type(out: &mut String, ty: &TypeDecl) -> Result<()> {
 			| TypeKind::Bitmask { requires: None, .. }
 	) {
 		out.push_str(&guard);
+		crate::doc::item(out, &ty.c_name, &name, "Native type", ty.from_video);
 	}
 	match &ty.kind {
 		TypeKind::Alias { target } => writeln!(out, "pub type {name} = {};", names::type_name(target))?,
@@ -64,8 +69,8 @@ fn emit_type(out: &mut String, ty: &TypeDecl) -> Result<()> {
 		}
 		TypeKind::Enum | TypeKind::FuncPointer { .. } => {}
 		TypeKind::ExternalType { requires } => emit_external(out, &name, requires.as_deref())?,
-		TypeKind::Struct { members, .. } => emit_record(out, &name, members, false, &guard)?,
-		TypeKind::Union { members } => emit_record(out, &name, members, true, &guard)?,
+		TypeKind::Struct { members, .. } => emit_record(out, ty, members, false, &guard)?,
+		TypeKind::Union { members } => emit_record(out, ty, members, true, &guard)?,
 	}
 	Ok(())
 }
@@ -99,13 +104,25 @@ fn emit_external(out: &mut String, name: &str, requires: Option<&str>) -> Result
 
 fn emit_record(
 	out: &mut String,
-	name: &str,
+	ty: &TypeDecl,
 	members: &[StructMember],
 	union: bool,
 	guard: &str,
 ) -> Result<()> {
+	let name = names::type_name(&ty.c_name);
 	ensure!(!members.is_empty(), "defined record {name} has no members");
 	out.push_str(guard);
+	crate::doc::item(
+		out,
+		&ty.c_name,
+		&name,
+		if union {
+			"Native union"
+		} else {
+			"Native structure"
+		},
+		ty.from_video,
+	);
 	writeln!(
 		out,
 		"#[repr(C)]\n#[derive(Copy, Clone)]\npub {} {name} {{",
@@ -159,9 +176,11 @@ fn emit_record(
 			} else {
 				format!("({mask}u32 << {bits})")
 			};
+			crate::doc::alias(&mut accessors, &member.name, &field);
 			writeln!(
 				accessors,
-				"pub const fn {field}(&self) -> u32 {{ {read} & {mask} }}\npub fn set_{field}(&mut self, value: u32) {{ self._bitfield_{bitfield_group} = (self._bitfield_{bitfield_group} & !{clear}) | {write}; }}"
+				"/// Read native bitfield `{}`.\npub const fn {field}(&self) -> u32 {{ {read} & {mask} }}\n/// Set native bitfield `{}`, retaining its low {width} bits.\npub fn set_{field}(&mut self, value: u32) {{ self._bitfield_{bitfield_group} = (self._bitfield_{bitfield_group} & !{clear}) | {write}; }}",
+				member.name, member.name
 			)?;
 			bits += width;
 			if bits == 32 {
@@ -169,6 +188,8 @@ fn emit_record(
 			}
 		} else {
 			bits = 0;
+			writeln!(out, "/// Native field `{}`.", member.name)?;
+			crate::doc::alias(out, &member.name, &field);
 			writeln!(out, "pub {field}: {},", type_str(&member.ty))?;
 		}
 	}

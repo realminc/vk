@@ -55,6 +55,7 @@ jobs:
           cargo test -p vkrust --no-default-features --locked
           cargo test -p vkrust --locked
           RUSTDOCFLAGS="-D warnings" cargo doc -p vkrust --all-features --no-deps --locked
+          node tool/verify_docs.cjs
           git diff --check
           git diff --exit-code
       - name: Verify actual registry archive and external consumer
@@ -69,6 +70,7 @@ jobs:
       - name: Compare allocator policies against pinned VMA
         run: |
           python3 tool/verify_memory/fetch_donor.py
+          python3 tool/verify_memory/verify_policy.py --headers target/headers
           python3 tool/verify_memory/verify_virtual.py --headers target/headers --sanitize
           python3 tool/verify_memory/verify_native.py --headers target/headers --sanitize
       - name: Stage API reference and build evidence
@@ -171,8 +173,9 @@ jobs:
             echo "Release already exists; refusing to replace published assets"
             exit 0
           fi
+          package_version=$(python3 tool/release_version.py package)
           gh release create "$GITHUB_REF_NAME" dist/* --verify-tag --prerelease \
-            --title "vk $GITHUB_REF_NAME — development release" \
+            --title "vk $package_version — development release" \
             --notes-file "docs/external/release/${GITHUB_REF_NAME}.md"
 
   crates:
@@ -200,4 +203,5 @@ jobs:
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
         run: |
-          python3 tool/publish_crate.py "verified-crate/vkrust-${GITHUB_REF_NAME#v}.crate"
+          package_version=$(python3 tool/release_version.py package)
+          python3 tool/publish_crate.py "verified-crate/vkrust-${package_version}.crate"

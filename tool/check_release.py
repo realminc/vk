@@ -3,15 +3,18 @@
 
 import os
 from pathlib import Path
-import re
 import subprocess
 import tomllib
+
+from release_version import release_version, validate_registry_version
 
 
 def main():
     root = Path(__file__).resolve().parents[1]
     manifest = tomllib.loads((root / "Cargo.toml").read_text())
     version = manifest["workspace"]["package"]["version"]
+    release = release_version(version)
+    validate_registry_version(root, version)
     lock = tomllib.loads((root / "Cargo.lock").read_text())["package"]
     for name in ("vkrust", "vkrust-gen"):
         rows = [row for row in lock if row["name"] == name]
@@ -22,10 +25,10 @@ def main():
         raise ValueError("toolchain and declared Rust baseline disagree")
     ref = os.environ.get("GITHUB_REF", "")
     if ref.startswith("refs/tags/"):
-        if ref != f"refs/tags/v{version}" or not re.fullmatch(r"\d+\.\d+\.\d+", version):
+        if ref != f"refs/tags/v{release}":
             raise ValueError("release tag and manifest version disagree")
         subprocess.run(["git", "merge-base", "--is-ancestor", "HEAD", "origin/main"], cwd=root, check=True)
-        if not (root / f"docs/external/release/v{version}.md").is_file():
+        if not (root / f"docs/external/release/v{release}.md").is_file():
             raise ValueError("missing versioned release notes")
     print(f"Verified release identity: vkrust/vk {version}, Rust {toolchain}")
 

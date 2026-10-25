@@ -12,7 +12,6 @@ fn get_physical_device_format_properties_signature_and_missing_command() {
 		&mut vk::FormatProperties,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_format_properties;
-	let _: Signature = vk::core::get_physical_device_format_properties;
 	let _: Signature = vk::Instance::get_physical_device_format_properties;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -54,7 +53,6 @@ fn get_physical_device_image_format_properties_signature_and_missing_command() {
 		&mut vk::ImageFormatProperties,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_image_format_properties;
-	let _: Signature = vk::core::get_physical_device_image_format_properties;
 	let _: Signature = vk::Instance::get_physical_device_image_format_properties;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -98,7 +96,6 @@ fn enumerate_device_layer_properties_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Instance, vk::PhysicalDevice) -> Result<Vec<vk::LayerProperties>, CallError>;
 	let _: Signature = vk::enumerate_device_layer_properties;
-	let _: Signature = vk::core::enumerate_device_layer_properties;
 	let _: Signature = vk::Instance::enumerate_device_layer_properties;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -124,7 +121,6 @@ fn enumerate_device_layer_properties_signature_and_missing_command() {
 fn device_wait_idle_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device) -> Result<(), CallError>;
 	let _: Signature = vk::device_wait_idle;
-	let _: Signature = vk::core::device_wait_idle;
 	let _: Signature = vk::Device::device_wait_idle;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -145,7 +141,6 @@ fn get_device_memory_commitment_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::DeviceMemory, &mut vk::DeviceSize) -> Result<(), CallError>;
 	let _: Signature = vk::get_device_memory_commitment;
-	let _: Signature = vk::core::get_device_memory_commitment;
 	let _: Signature = vk::Device::get_device_memory_commitment;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -173,7 +168,6 @@ fn get_image_memory_requirements_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Image, &mut vk::MemoryRequirements) -> Result<(), CallError>;
 	let _: Signature = vk::get_image_memory_requirements;
-	let _: Signature = vk::core::get_image_memory_requirements;
 	let _: Signature = vk::Device::get_image_memory_requirements;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -201,7 +195,6 @@ fn bind_image_memory_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Image, vk::DeviceMemory, vk::DeviceSize) -> Result<(), CallError>;
 	let _: Signature = vk::bind_image_memory;
-	let _: Signature = vk::core::bind_image_memory;
 	let _: Signature = vk::Device::bind_image_memory;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -229,7 +222,6 @@ fn get_image_sparse_memory_requirements_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Image) -> Result<Vec<vk::SparseImageMemoryRequirements>, CallError>;
 	let _: Signature = vk::get_image_sparse_memory_requirements;
-	let _: Signature = vk::core::get_image_sparse_memory_requirements;
 	let _: Signature = vk::Device::get_image_sparse_memory_requirements;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -263,7 +255,6 @@ fn get_physical_device_sparse_image_format_properties_signature_and_missing_comm
 		vk::ImageTiling,
 	) -> Result<Vec<vk::SparseImageFormatProperties>, CallError>;
 	let _: Signature = vk::get_physical_device_sparse_image_format_properties;
-	let _: Signature = vk::core::get_physical_device_sparse_image_format_properties;
 	let _: Signature = vk::Instance::get_physical_device_sparse_image_format_properties;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -305,7 +296,6 @@ fn queue_bind_sparse_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Queue, &[vk::BindSparseInfo], vk::Fence) -> Result<(), CallError>;
 	let _: Signature = vk::queue_bind_sparse;
-	let _: Signature = vk::core::queue_bind_sparse;
 	let _: Signature = vk::Device::queue_bind_sparse;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -327,7 +317,6 @@ fn queue_bind_sparse_signature_and_missing_command() {
 fn get_fence_status_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::Fence) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_fence_status;
-	let _: Signature = vk::core::get_fence_status;
 	let _: Signature = vk::Device::get_fence_status;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -351,7 +340,6 @@ fn create_semaphore_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::Semaphore, CallError>;
 	let _: Signature = vk::create_semaphore;
-	let _: Signature = vk::core::create_semaphore;
 	let _: Signature = vk::Device::create_semaphore;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -381,7 +369,6 @@ fn destroy_semaphore_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_semaphore;
-	let _: Signature = vk::core::destroy_semaphore;
 	let _: Signature = vk::Device::destroy_semaphore;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -405,7 +392,6 @@ fn create_event_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::Event, CallError>;
 	let _: Signature = vk::create_event;
-	let _: Signature = vk::core::create_event;
 	let _: Signature = vk::Device::create_event;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -432,7 +418,6 @@ fn destroy_event_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Event, Option<&vk::AllocationCallbacks>) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_event;
-	let _: Signature = vk::core::destroy_event;
 	let _: Signature = vk::Device::destroy_event;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -452,7 +437,6 @@ fn destroy_event_signature_and_missing_command() {
 fn get_event_status_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::Event) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_event_status;
-	let _: Signature = vk::core::get_event_status;
 	let _: Signature = vk::Device::get_event_status;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -472,7 +456,6 @@ fn get_event_status_signature_and_missing_command() {
 fn set_event_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::Event) -> Result<(), CallError>;
 	let _: Signature = vk::set_event;
-	let _: Signature = vk::core::set_event;
 	let _: Signature = vk::Device::set_event;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -492,7 +475,6 @@ fn set_event_signature_and_missing_command() {
 fn reset_event_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::Event) -> Result<(), CallError>;
 	let _: Signature = vk::reset_event;
-	let _: Signature = vk::core::reset_event;
 	let _: Signature = vk::Device::reset_event;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -516,7 +498,6 @@ fn create_query_pool_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::QueryPool, CallError>;
 	let _: Signature = vk::create_query_pool;
-	let _: Signature = vk::core::create_query_pool;
 	let _: Signature = vk::Device::create_query_pool;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -546,7 +527,6 @@ fn destroy_query_pool_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_query_pool;
-	let _: Signature = vk::core::destroy_query_pool;
 	let _: Signature = vk::Device::destroy_query_pool;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -574,7 +554,6 @@ fn get_query_pool_results_signature_and_missing_command() {
 		vk::QueryResultFlags,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_query_pool_results;
-	let _: Signature = vk::core::get_query_pool_results;
 	let _: Signature = vk::Device::get_query_pool_results;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -609,7 +588,6 @@ fn get_query_pool_results_signature_and_missing_command() {
 fn reset_query_pool_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::QueryPool, u32, u32) -> Result<(), CallError>;
 	let _: Signature = vk::reset_query_pool;
-	let _: Signature = vk::core::reset_query_pool;
 	let _: Signature = vk::Device::reset_query_pool;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -636,7 +614,6 @@ fn reset_query_pool_signature_and_missing_command() {
 fn reset_query_pool_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::QueryPool, u32, u32) -> Result<(), CallError>;
 	let _: Signature = vk::reset_query_pool_ext;
-	let _: Signature = vk::core::reset_query_pool_ext;
 	let _: Signature = vk::Device::reset_query_pool_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -669,7 +646,6 @@ fn create_buffer_view_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::BufferView, CallError>;
 	let _: Signature = vk::create_buffer_view;
-	let _: Signature = vk::core::create_buffer_view;
 	let _: Signature = vk::Device::create_buffer_view;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -699,7 +675,6 @@ fn destroy_buffer_view_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_buffer_view;
-	let _: Signature = vk::core::destroy_buffer_view;
 	let _: Signature = vk::Device::destroy_buffer_view;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -723,7 +698,6 @@ fn create_image_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::Image, CallError>;
 	let _: Signature = vk::create_image;
-	let _: Signature = vk::core::create_image;
 	let _: Signature = vk::Device::create_image;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -750,7 +724,6 @@ fn destroy_image_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Image, Option<&vk::AllocationCallbacks>) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_image;
-	let _: Signature = vk::core::destroy_image;
 	let _: Signature = vk::Device::destroy_image;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -775,7 +748,6 @@ fn get_image_subresource_layout_signature_and_missing_command() {
 		&mut vk::SubresourceLayout,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_image_subresource_layout;
-	let _: Signature = vk::core::get_image_subresource_layout;
 	let _: Signature = vk::Device::get_image_subresource_layout;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -808,7 +780,6 @@ fn create_image_view_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::ImageView, CallError>;
 	let _: Signature = vk::create_image_view;
-	let _: Signature = vk::core::create_image_view;
 	let _: Signature = vk::Device::create_image_view;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -838,7 +809,6 @@ fn destroy_image_view_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_image_view;
-	let _: Signature = vk::core::destroy_image_view;
 	let _: Signature = vk::Device::destroy_image_view;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -862,7 +832,6 @@ fn create_shader_module_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::ShaderModule, CallError>;
 	let _: Signature = vk::create_shader_module;
-	let _: Signature = vk::core::create_shader_module;
 	let _: Signature = vk::Device::create_shader_module;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -892,7 +861,6 @@ fn destroy_shader_module_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_shader_module;
-	let _: Signature = vk::core::destroy_shader_module;
 	let _: Signature = vk::Device::destroy_shader_module;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -918,7 +886,6 @@ fn create_pipeline_cache_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::PipelineCache, CallError>;
 	let _: Signature = vk::create_pipeline_cache;
-	let _: Signature = vk::core::create_pipeline_cache;
 	let _: Signature = vk::Device::create_pipeline_cache;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -948,7 +915,6 @@ fn destroy_pipeline_cache_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_pipeline_cache;
-	let _: Signature = vk::core::destroy_pipeline_cache;
 	let _: Signature = vk::Device::destroy_pipeline_cache;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -970,7 +936,6 @@ fn destroy_pipeline_cache_signature_and_missing_command() {
 fn get_pipeline_cache_data_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::PipelineCache) -> Result<Vec<u8>, CallError>;
 	let _: Signature = vk::get_pipeline_cache_data;
-	let _: Signature = vk::core::get_pipeline_cache_data;
 	let _: Signature = vk::Device::get_pipeline_cache_data;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -991,7 +956,6 @@ fn merge_pipeline_caches_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::PipelineCache, &[vk::PipelineCache]) -> Result<(), CallError>;
 	let _: Signature = vk::merge_pipeline_caches;
-	let _: Signature = vk::core::merge_pipeline_caches;
 	let _: Signature = vk::Device::merge_pipeline_caches;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1018,7 +982,6 @@ fn create_pipeline_binaries_khr_signature_and_missing_command() {
 		*mut vk::PipelineBinaryHandlesInfoKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_pipeline_binaries_khr;
-	let _: Signature = vk::core::create_pipeline_binaries_khr;
 	let _: Signature = vk::Device::create_pipeline_binaries_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1132,7 +1095,6 @@ fn destroy_pipeline_binary_khr_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_pipeline_binary_khr;
-	let _: Signature = vk::core::destroy_pipeline_binary_khr;
 	let _: Signature = vk::Device::destroy_pipeline_binary_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1210,7 +1172,6 @@ fn get_pipeline_key_khr_signature_and_missing_command() {
 		*mut vk::PipelineBinaryKeyKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_pipeline_key_khr;
-	let _: Signature = vk::core::get_pipeline_key_khr;
 	let _: Signature = vk::Device::get_pipeline_key_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1314,7 +1275,6 @@ fn get_pipeline_binary_data_khr_signature_and_missing_command() {
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_pipeline_binary_data_khr;
-	let _: Signature = vk::core::get_pipeline_binary_data_khr;
 	let _: Signature = vk::Device::get_pipeline_binary_data_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1433,7 +1393,6 @@ fn release_captured_pipeline_data_khr_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::release_captured_pipeline_data_khr;
-	let _: Signature = vk::core::release_captured_pipeline_data_khr;
 	let _: Signature = vk::Device::release_captured_pipeline_data_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1544,7 +1503,6 @@ fn create_graphics_pipelines_signature_and_missing_command() {
 		&mut [vk::Pipeline],
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_graphics_pipelines;
-	let _: Signature = vk::core::create_graphics_pipelines;
 	let _: Signature = vk::Device::create_graphics_pipelines;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1572,7 +1530,6 @@ fn create_compute_pipelines_signature_and_missing_command() {
 		&mut [vk::Pipeline],
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_compute_pipelines;
-	let _: Signature = vk::core::create_compute_pipelines;
 	let _: Signature = vk::Device::create_compute_pipelines;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1595,7 +1552,6 @@ fn get_device_subpass_shading_max_workgroup_size_huawei_signature_and_missing_co
 	type Signature =
 		unsafe fn(&vk::Device, vk::RenderPass, *mut vk::Extent2D) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_device_subpass_shading_max_workgroup_size_huawei;
-	let _: Signature = vk::core::get_device_subpass_shading_max_workgroup_size_huawei;
 	let _: Signature = vk::Device::get_device_subpass_shading_max_workgroup_size_huawei;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1696,7 +1652,6 @@ fn destroy_pipeline_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Pipeline, Option<&vk::AllocationCallbacks>) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_pipeline;
-	let _: Signature = vk::core::destroy_pipeline;
 	let _: Signature = vk::Device::destroy_pipeline;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1720,7 +1675,6 @@ fn create_pipeline_layout_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::PipelineLayout, CallError>;
 	let _: Signature = vk::create_pipeline_layout;
-	let _: Signature = vk::core::create_pipeline_layout;
 	let _: Signature = vk::Device::create_pipeline_layout;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1750,7 +1704,6 @@ fn destroy_pipeline_layout_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_pipeline_layout;
-	let _: Signature = vk::core::destroy_pipeline_layout;
 	let _: Signature = vk::Device::destroy_pipeline_layout;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1776,7 +1729,6 @@ fn create_sampler_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::Sampler, CallError>;
 	let _: Signature = vk::create_sampler;
-	let _: Signature = vk::core::create_sampler;
 	let _: Signature = vk::Device::create_sampler;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1803,7 +1755,6 @@ fn destroy_sampler_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Sampler, Option<&vk::AllocationCallbacks>) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_sampler;
-	let _: Signature = vk::core::destroy_sampler;
 	let _: Signature = vk::Device::destroy_sampler;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1827,7 +1778,6 @@ fn create_descriptor_set_layout_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::DescriptorSetLayout, CallError>;
 	let _: Signature = vk::create_descriptor_set_layout;
-	let _: Signature = vk::core::create_descriptor_set_layout;
 	let _: Signature = vk::Device::create_descriptor_set_layout;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1858,7 +1808,6 @@ fn destroy_descriptor_set_layout_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_descriptor_set_layout;
-	let _: Signature = vk::core::destroy_descriptor_set_layout;
 	let _: Signature = vk::Device::destroy_descriptor_set_layout;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1884,7 +1833,6 @@ fn create_descriptor_pool_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::DescriptorPool, CallError>;
 	let _: Signature = vk::create_descriptor_pool;
-	let _: Signature = vk::core::create_descriptor_pool;
 	let _: Signature = vk::Device::create_descriptor_pool;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1914,7 +1862,6 @@ fn destroy_descriptor_pool_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_descriptor_pool;
-	let _: Signature = vk::core::destroy_descriptor_pool;
 	let _: Signature = vk::Device::destroy_descriptor_pool;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1940,7 +1887,6 @@ fn reset_descriptor_pool_signature_and_missing_command() {
 		vk::DescriptorPoolResetFlags,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::reset_descriptor_pool;
-	let _: Signature = vk::core::reset_descriptor_pool;
 	let _: Signature = vk::Device::reset_descriptor_pool;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1966,7 +1912,6 @@ fn allocate_descriptor_sets_signature_and_missing_command() {
 		&mut [vk::DescriptorSet],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::allocate_descriptor_sets;
-	let _: Signature = vk::core::allocate_descriptor_sets;
 	let _: Signature = vk::Device::allocate_descriptor_sets;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -1994,7 +1939,6 @@ fn free_descriptor_sets_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::DescriptorPool, &[vk::DescriptorSet]) -> Result<(), CallError>;
 	let _: Signature = vk::free_descriptor_sets;
-	let _: Signature = vk::core::free_descriptor_sets;
 	let _: Signature = vk::Device::free_descriptor_sets;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2018,7 +1962,6 @@ fn update_descriptor_sets_signature_and_missing_command() {
 		&[vk::CopyDescriptorSet],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::update_descriptor_sets;
-	let _: Signature = vk::core::update_descriptor_sets;
 	let _: Signature = vk::Device::update_descriptor_sets;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2042,7 +1985,6 @@ fn create_framebuffer_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::Framebuffer, CallError>;
 	let _: Signature = vk::create_framebuffer;
-	let _: Signature = vk::core::create_framebuffer;
 	let _: Signature = vk::Device::create_framebuffer;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2072,7 +2014,6 @@ fn destroy_framebuffer_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_framebuffer;
-	let _: Signature = vk::core::destroy_framebuffer;
 	let _: Signature = vk::Device::destroy_framebuffer;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2096,7 +2037,6 @@ fn create_render_pass_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::RenderPass, CallError>;
 	let _: Signature = vk::create_render_pass;
-	let _: Signature = vk::core::create_render_pass;
 	let _: Signature = vk::Device::create_render_pass;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2126,7 +2066,6 @@ fn destroy_render_pass_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_render_pass;
-	let _: Signature = vk::core::destroy_render_pass;
 	let _: Signature = vk::Device::destroy_render_pass;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2147,7 +2086,6 @@ fn get_render_area_granularity_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::RenderPass, &mut vk::Extent2D) -> Result<(), CallError>;
 	let _: Signature = vk::get_render_area_granularity;
-	let _: Signature = vk::core::get_render_area_granularity;
 	let _: Signature = vk::Device::get_render_area_granularity;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2177,7 +2115,6 @@ fn get_rendering_area_granularity_signature_and_missing_command() {
 		*mut vk::Extent2D,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_rendering_area_granularity;
-	let _: Signature = vk::core::get_rendering_area_granularity;
 	let _: Signature = vk::Device::get_rendering_area_granularity;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2257,7 +2194,6 @@ fn get_rendering_area_granularity_khr_signature_and_missing_command() {
 		*mut vk::Extent2D,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_rendering_area_granularity_khr;
-	let _: Signature = vk::core::get_rendering_area_granularity_khr;
 	let _: Signature = vk::Device::get_rendering_area_granularity_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2340,7 +2276,6 @@ fn reset_command_pool_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandPool, vk::CommandPoolResetFlags) -> Result<(), CallError>;
 	let _: Signature = vk::reset_command_pool;
-	let _: Signature = vk::core::reset_command_pool;
 	let _: Signature = vk::Device::reset_command_pool;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2363,7 +2298,6 @@ fn reset_command_buffer_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::CommandBufferResetFlags) -> Result<(), CallError>;
 	let _: Signature = vk::reset_command_buffer;
-	let _: Signature = vk::core::reset_command_buffer;
 	let _: Signature = vk::Device::reset_command_buffer;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2390,7 +2324,6 @@ fn cmd_bind_pipeline_signature_and_missing_command() {
 		vk::Pipeline,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_pipeline;
-	let _: Signature = vk::core::cmd_bind_pipeline;
 	let _: Signature = vk::Device::cmd_bind_pipeline;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2417,7 +2350,6 @@ fn cmd_bind_pipeline_signature_and_missing_command() {
 fn cmd_set_primitive_restart_index_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_primitive_restart_index_ext;
-	let _: Signature = vk::core::cmd_set_primitive_restart_index_ext;
 	let _: Signature = vk::Device::cmd_set_primitive_restart_index_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2487,7 +2419,6 @@ fn cmd_set_attachment_feedback_loop_enable_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::ImageAspectFlags) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_attachment_feedback_loop_enable_ext;
-	let _: Signature = vk::core::cmd_set_attachment_feedback_loop_enable_ext;
 	let _: Signature = vk::Device::cmd_set_attachment_feedback_loop_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2557,7 +2488,6 @@ fn cmd_set_viewport_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, &[vk::Viewport]) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_viewport;
-	let _: Signature = vk::core::cmd_set_viewport;
 	let _: Signature = vk::Device::cmd_set_viewport;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2580,7 +2510,6 @@ fn cmd_set_scissor_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, &[vk::Rect2D]) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_scissor;
-	let _: Signature = vk::core::cmd_set_scissor;
 	let _: Signature = vk::Device::cmd_set_scissor;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2602,7 +2531,6 @@ fn cmd_set_scissor_signature_and_missing_command() {
 fn cmd_set_line_width_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, f32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_line_width;
-	let _: Signature = vk::core::cmd_set_line_width;
 	let _: Signature = vk::Device::cmd_set_line_width;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2625,7 +2553,6 @@ fn cmd_set_depth_bias_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, f32, f32, f32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_bias;
-	let _: Signature = vk::core::cmd_set_depth_bias;
 	let _: Signature = vk::Device::cmd_set_depth_bias;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2656,7 +2583,6 @@ fn cmd_set_depth_bias_signature_and_missing_command() {
 fn cmd_set_blend_constants_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, &[f32; 4]) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_blend_constants;
-	let _: Signature = vk::core::cmd_set_blend_constants;
 	let _: Signature = vk::Device::cmd_set_blend_constants;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2682,7 +2608,6 @@ fn cmd_set_blend_constants_signature_and_missing_command() {
 fn cmd_set_depth_bounds_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, f32, f32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_bounds;
-	let _: Signature = vk::core::cmd_set_depth_bounds;
 	let _: Signature = vk::Device::cmd_set_depth_bounds;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2712,7 +2637,6 @@ fn cmd_set_stencil_compare_mask_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::StencilFaceFlags, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_stencil_compare_mask;
-	let _: Signature = vk::core::cmd_set_stencil_compare_mask;
 	let _: Signature = vk::Device::cmd_set_stencil_compare_mask;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2742,7 +2666,6 @@ fn cmd_set_stencil_write_mask_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::StencilFaceFlags, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_stencil_write_mask;
-	let _: Signature = vk::core::cmd_set_stencil_write_mask;
 	let _: Signature = vk::Device::cmd_set_stencil_write_mask;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2772,7 +2695,6 @@ fn cmd_set_stencil_reference_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::StencilFaceFlags, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_stencil_reference;
-	let _: Signature = vk::core::cmd_set_stencil_reference;
 	let _: Signature = vk::Device::cmd_set_stencil_reference;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2809,7 +2731,6 @@ fn cmd_bind_descriptor_sets_signature_and_missing_command() {
 		&[u32],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_descriptor_sets;
-	let _: Signature = vk::core::cmd_bind_descriptor_sets;
 	let _: Signature = vk::Device::cmd_bind_descriptor_sets;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2850,7 +2771,6 @@ fn cmd_bind_index_buffer_signature_and_missing_command() {
 		vk::IndexType,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_index_buffer;
-	let _: Signature = vk::core::cmd_bind_index_buffer;
 	let _: Signature = vk::Device::cmd_bind_index_buffer;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2887,7 +2807,6 @@ fn cmd_bind_vertex_buffers_signature_and_missing_command() {
 		&[vk::DeviceSize],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_vertex_buffers;
-	let _: Signature = vk::core::cmd_bind_vertex_buffers;
 	let _: Signature = vk::Device::cmd_bind_vertex_buffers;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2916,7 +2835,6 @@ fn cmd_draw_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, u32, u32, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw;
-	let _: Signature = vk::core::cmd_draw;
 	let _: Signature = vk::Device::cmd_draw;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2950,7 +2868,6 @@ fn cmd_draw_indexed_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, u32, u32, i32, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_indexed;
-	let _: Signature = vk::core::cmd_draw_indexed;
 	let _: Signature = vk::Device::cmd_draw_indexed;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -2993,7 +2910,6 @@ fn cmd_draw_multi_ext_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_multi_ext;
-	let _: Signature = vk::core::cmd_draw_multi_ext;
 	let _: Signature = vk::Device::cmd_draw_multi_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3096,7 +3012,6 @@ fn cmd_draw_multi_indexed_ext_signature_and_missing_command() {
 		*const i32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_multi_indexed_ext;
-	let _: Signature = vk::core::cmd_draw_multi_indexed_ext;
 	let _: Signature = vk::Device::cmd_draw_multi_indexed_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3207,7 +3122,6 @@ fn cmd_draw_indirect_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_indirect;
-	let _: Signature = vk::core::cmd_draw_indirect;
 	let _: Signature = vk::Device::cmd_draw_indirect;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3247,7 +3161,6 @@ fn cmd_draw_indexed_indirect_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_indexed_indirect;
-	let _: Signature = vk::core::cmd_draw_indexed_indirect;
 	let _: Signature = vk::Device::cmd_draw_indexed_indirect;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3281,7 +3194,6 @@ fn cmd_dispatch_indirect_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::Buffer, vk::DeviceSize) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_dispatch_indirect;
-	let _: Signature = vk::core::cmd_dispatch_indirect;
 	let _: Signature = vk::Device::cmd_dispatch_indirect;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3310,7 +3222,6 @@ fn cmd_dispatch_indirect_signature_and_missing_command() {
 fn cmd_subpass_shading_huawei_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_subpass_shading_huawei;
-	let _: Signature = vk::core::cmd_subpass_shading_huawei;
 	let _: Signature = vk::Device::cmd_subpass_shading_huawei;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3363,7 +3274,6 @@ fn cmd_draw_cluster_huawei_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, u32, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_cluster_huawei;
-	let _: Signature = vk::core::cmd_draw_cluster_huawei;
 	let _: Signature = vk::Device::cmd_draw_cluster_huawei;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3437,7 +3347,6 @@ fn cmd_draw_cluster_indirect_huawei_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::Buffer, vk::DeviceSize) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_cluster_indirect_huawei;
-	let _: Signature = vk::core::cmd_draw_cluster_indirect_huawei;
 	let _: Signature = vk::Device::cmd_draw_cluster_indirect_huawei;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3514,7 +3423,6 @@ fn cmd_update_pipeline_indirect_buffer_nv_signature_and_missing_command() {
 		vk::Pipeline,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_update_pipeline_indirect_buffer_nv;
-	let _: Signature = vk::core::cmd_update_pipeline_indirect_buffer_nv;
 	let _: Signature = vk::Device::cmd_update_pipeline_indirect_buffer_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3598,7 +3506,6 @@ fn cmd_copy_buffer_signature_and_missing_command() {
 		&[vk::BufferCopy],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_buffer;
-	let _: Signature = vk::core::cmd_copy_buffer;
 	let _: Signature = vk::Device::cmd_copy_buffer;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3637,7 +3544,6 @@ fn cmd_copy_image_signature_and_missing_command() {
 		&[vk::ImageCopy],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_image;
-	let _: Signature = vk::core::cmd_copy_image;
 	let _: Signature = vk::Device::cmd_copy_image;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3681,7 +3587,6 @@ fn cmd_blit_image_signature_and_missing_command() {
 		vk::Filter,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_blit_image;
-	let _: Signature = vk::core::cmd_blit_image;
 	let _: Signature = vk::Device::cmd_blit_image;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3725,7 +3630,6 @@ fn cmd_copy_buffer_to_image_signature_and_missing_command() {
 		&[vk::BufferImageCopy],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_buffer_to_image;
-	let _: Signature = vk::core::cmd_copy_buffer_to_image;
 	let _: Signature = vk::Device::cmd_copy_buffer_to_image;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3765,7 +3669,6 @@ fn cmd_copy_image_to_buffer_signature_and_missing_command() {
 		&[vk::BufferImageCopy],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_image_to_buffer;
-	let _: Signature = vk::core::cmd_copy_image_to_buffer;
 	let _: Signature = vk::Device::cmd_copy_image_to_buffer;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3799,7 +3702,6 @@ fn cmd_copy_memory_indirect_nv_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::DeviceAddress, u32, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_memory_indirect_nv;
-	let _: Signature = vk::core::cmd_copy_memory_indirect_nv;
 	let _: Signature = vk::Device::cmd_copy_memory_indirect_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3881,7 +3783,6 @@ fn cmd_copy_memory_indirect_khr_signature_and_missing_command() {
 		*const vk::CopyMemoryIndirectInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_memory_indirect_khr;
-	let _: Signature = vk::core::cmd_copy_memory_indirect_khr;
 	let _: Signature = vk::Device::cmd_copy_memory_indirect_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -3962,7 +3863,6 @@ fn cmd_copy_memory_to_image_indirect_nv_signature_and_missing_command() {
 		*const vk::ImageSubresourceLayers,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_memory_to_image_indirect_nv;
-	let _: Signature = vk::core::cmd_copy_memory_to_image_indirect_nv;
 	let _: Signature = vk::Device::cmd_copy_memory_to_image_indirect_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4074,7 +3974,6 @@ fn cmd_copy_memory_to_image_indirect_khr_signature_and_missing_command() {
 		*const vk::CopyMemoryToImageIndirectInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_memory_to_image_indirect_khr;
-	let _: Signature = vk::core::cmd_copy_memory_to_image_indirect_khr;
 	let _: Signature = vk::Device::cmd_copy_memory_to_image_indirect_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4158,7 +4057,6 @@ fn cmd_update_buffer_signature_and_missing_command() {
 		&[u8],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_update_buffer;
-	let _: Signature = vk::core::cmd_update_buffer;
 	let _: Signature = vk::Device::cmd_update_buffer;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4196,7 +4094,6 @@ fn cmd_clear_color_image_signature_and_missing_command() {
 		&[vk::ImageSubresourceRange],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_clear_color_image;
-	let _: Signature = vk::core::cmd_clear_color_image;
 	let _: Signature = vk::Device::cmd_clear_color_image;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4236,7 +4133,6 @@ fn cmd_clear_depth_stencil_image_signature_and_missing_command() {
 		&[vk::ImageSubresourceRange],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_clear_depth_stencil_image;
-	let _: Signature = vk::core::cmd_clear_depth_stencil_image;
 	let _: Signature = vk::Device::cmd_clear_depth_stencil_image;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4274,7 +4170,6 @@ fn cmd_clear_attachments_signature_and_missing_command() {
 		&[vk::ClearRect],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_clear_attachments;
-	let _: Signature = vk::core::cmd_clear_attachments;
 	let _: Signature = vk::Device::cmd_clear_attachments;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4304,7 +4199,6 @@ fn cmd_resolve_image_signature_and_missing_command() {
 		&[vk::ImageResolve],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_resolve_image;
-	let _: Signature = vk::core::cmd_resolve_image;
 	let _: Signature = vk::Device::cmd_resolve_image;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4344,7 +4238,6 @@ fn cmd_set_event_signature_and_missing_command() {
 		vk::PipelineStageFlags,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_event;
-	let _: Signature = vk::core::cmd_set_event;
 	let _: Signature = vk::Device::cmd_set_event;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4376,7 +4269,6 @@ fn cmd_reset_event_signature_and_missing_command() {
 		vk::PipelineStageFlags,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_reset_event;
-	let _: Signature = vk::core::cmd_reset_event;
 	let _: Signature = vk::Device::cmd_reset_event;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4412,7 +4304,6 @@ fn cmd_wait_events_signature_and_missing_command() {
 		&[vk::ImageMemoryBarrier],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_wait_events;
-	let _: Signature = vk::core::cmd_wait_events;
 	let _: Signature = vk::Device::cmd_wait_events;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4458,7 +4349,6 @@ fn cmd_pipeline_barrier_signature_and_missing_command() {
 		&[vk::ImageMemoryBarrier],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_pipeline_barrier;
-	let _: Signature = vk::core::cmd_pipeline_barrier;
 	let _: Signature = vk::Device::cmd_pipeline_barrier;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4501,7 +4391,6 @@ fn cmd_begin_query_signature_and_missing_command() {
 		vk::QueryControlFlags,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_query;
-	let _: Signature = vk::core::cmd_begin_query;
 	let _: Signature = vk::Device::cmd_begin_query;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4533,7 +4422,6 @@ fn cmd_end_query_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::QueryPool, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_query;
-	let _: Signature = vk::core::cmd_end_query;
 	let _: Signature = vk::Device::cmd_end_query;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4564,7 +4452,6 @@ fn cmd_begin_conditional_rendering_ext_signature_and_missing_command() {
 		*const vk::ConditionalRenderingBeginInfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_conditional_rendering_ext;
-	let _: Signature = vk::core::cmd_begin_conditional_rendering_ext;
 	let _: Signature = vk::Device::cmd_begin_conditional_rendering_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4642,7 +4529,6 @@ fn cmd_begin_conditional_rendering_ext_native_forwarding() {
 fn cmd_end_conditional_rendering_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_conditional_rendering_ext;
-	let _: Signature = vk::core::cmd_end_conditional_rendering_ext;
 	let _: Signature = vk::Device::cmd_end_conditional_rendering_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4701,7 +4587,6 @@ fn cmd_begin_custom_resolve_ext_signature_and_missing_command() {
 		*const vk::BeginCustomResolveInfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_custom_resolve_ext;
-	let _: Signature = vk::core::cmd_begin_custom_resolve_ext;
 	let _: Signature = vk::Device::cmd_begin_custom_resolve_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4774,7 +4659,6 @@ fn cmd_reset_query_pool_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::QueryPool, u32, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_reset_query_pool;
-	let _: Signature = vk::core::cmd_reset_query_pool;
 	let _: Signature = vk::Device::cmd_reset_query_pool;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4811,7 +4695,6 @@ fn cmd_write_timestamp_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_write_timestamp;
-	let _: Signature = vk::core::cmd_write_timestamp;
 	let _: Signature = vk::Device::cmd_write_timestamp;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4852,7 +4735,6 @@ fn cmd_copy_query_pool_results_signature_and_missing_command() {
 		vk::QueryResultFlags,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_query_pool_results;
-	let _: Signature = vk::core::cmd_copy_query_pool_results;
 	let _: Signature = vk::Device::cmd_copy_query_pool_results;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4898,7 +4780,6 @@ fn cmd_push_constants_signature_and_missing_command() {
 		&[u8],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_push_constants;
-	let _: Signature = vk::core::cmd_push_constants;
 	let _: Signature = vk::Device::cmd_push_constants;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4936,7 +4817,6 @@ fn cmd_begin_render_pass_signature_and_missing_command() {
 		vk::SubpassContents,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_render_pass;
-	let _: Signature = vk::core::cmd_begin_render_pass;
 	let _: Signature = vk::Device::cmd_begin_render_pass;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4966,7 +4846,6 @@ fn cmd_next_subpass_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::SubpassContents) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_next_subpass;
-	let _: Signature = vk::core::cmd_next_subpass;
 	let _: Signature = vk::Device::cmd_next_subpass;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -4988,7 +4867,6 @@ fn cmd_next_subpass_signature_and_missing_command() {
 fn cmd_end_render_pass_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_render_pass;
-	let _: Signature = vk::core::cmd_end_render_pass;
 	let _: Signature = vk::Device::cmd_end_render_pass;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -5009,7 +4887,6 @@ fn cmd_execute_commands_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &[vk::CommandBuffer]) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_execute_commands;
-	let _: Signature = vk::core::cmd_execute_commands;
 	let _: Signature = vk::Device::cmd_execute_commands;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -5035,7 +4912,6 @@ fn create_android_surface_khr_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_android_surface_khr;
-	let _: Signature = vk::core::create_android_surface_khr;
 	let _: Signature = vk::Instance::create_android_surface_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -5149,7 +5025,6 @@ fn create_surface_ohos_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_surface_ohos;
-	let _: Signature = vk::core::create_surface_ohos;
 	let _: Signature = vk::Instance::create_surface_ohos;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -5261,7 +5136,6 @@ fn get_physical_device_display_properties_khr_signature_and_missing_command() {
 		*mut vk::DisplayPropertiesKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_display_properties_khr;
-	let _: Signature = vk::core::get_physical_device_display_properties_khr;
 	let _: Signature = vk::Instance::get_physical_device_display_properties_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -5372,7 +5246,6 @@ fn get_physical_device_display_plane_properties_khr_signature_and_missing_comman
 		*mut vk::DisplayPlanePropertiesKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_display_plane_properties_khr;
-	let _: Signature = vk::core::get_physical_device_display_plane_properties_khr;
 	let _: Signature = vk::Instance::get_physical_device_display_plane_properties_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -5487,7 +5360,6 @@ fn get_display_plane_supported_displays_khr_signature_and_missing_command() {
 		*mut vk::DisplayKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_display_plane_supported_displays_khr;
-	let _: Signature = vk::core::get_display_plane_supported_displays_khr;
 	let _: Signature = vk::Instance::get_display_plane_supported_displays_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -5602,7 +5474,6 @@ fn get_display_mode_properties_khr_signature_and_missing_command() {
 		*mut vk::DisplayModePropertiesKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_display_mode_properties_khr;
-	let _: Signature = vk::core::get_display_mode_properties_khr;
 	let _: Signature = vk::Instance::get_display_mode_properties_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -5715,7 +5586,6 @@ fn create_display_mode_khr_signature_and_missing_command() {
 		*mut vk::DisplayModeKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_display_mode_khr;
-	let _: Signature = vk::core::create_display_mode_khr;
 	let _: Signature = vk::Instance::create_display_mode_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -5841,7 +5711,6 @@ fn get_display_plane_capabilities_khr_signature_and_missing_command() {
 		*mut vk::DisplayPlaneCapabilitiesKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_display_plane_capabilities_khr;
-	let _: Signature = vk::core::get_display_plane_capabilities_khr;
 	let _: Signature = vk::Instance::get_display_plane_capabilities_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -5956,7 +5825,6 @@ fn create_display_plane_surface_khr_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_display_plane_surface_khr;
-	let _: Signature = vk::core::create_display_plane_surface_khr;
 	let _: Signature = vk::Instance::create_display_plane_surface_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -6069,7 +5937,6 @@ fn create_shared_swapchains_khr_signature_and_missing_command() {
 		*mut vk::SwapchainKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_shared_swapchains_khr;
-	let _: Signature = vk::core::create_shared_swapchains_khr;
 	let _: Signature = vk::Device::create_shared_swapchains_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -6186,7 +6053,6 @@ fn destroy_surface_khr_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_surface_khr;
-	let _: Signature = vk::core::destroy_surface_khr;
 	let _: Signature = vk::Instance::destroy_surface_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -6265,7 +6131,6 @@ fn get_physical_device_surface_support_khr_signature_and_missing_command() {
 		*mut vk::Bool32,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_surface_support_khr;
-	let _: Signature = vk::core::get_physical_device_surface_support_khr;
 	let _: Signature = vk::Instance::get_physical_device_surface_support_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -6377,7 +6242,6 @@ fn get_physical_device_surface_capabilities_khr_signature_and_missing_command() 
 		*mut vk::SurfaceCapabilitiesKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_surface_capabilities_khr;
-	let _: Signature = vk::core::get_physical_device_surface_capabilities_khr;
 	let _: Signature = vk::Instance::get_physical_device_surface_capabilities_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -6489,7 +6353,6 @@ fn get_physical_device_surface_formats_khr_signature_and_missing_command() {
 		*mut vk::SurfaceFormatKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_surface_formats_khr;
-	let _: Signature = vk::core::get_physical_device_surface_formats_khr;
 	let _: Signature = vk::Instance::get_physical_device_surface_formats_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -6607,7 +6470,6 @@ fn get_physical_device_surface_present_modes_khr_signature_and_missing_command()
 		*mut vk::PresentModeKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_surface_present_modes_khr;
-	let _: Signature = vk::core::get_physical_device_surface_present_modes_khr;
 	let _: Signature = vk::Instance::get_physical_device_surface_present_modes_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -6726,7 +6588,6 @@ fn create_swapchain_khr_signature_and_missing_command() {
 		*mut vk::SwapchainKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_swapchain_khr;
-	let _: Signature = vk::core::create_swapchain_khr;
 	let _: Signature = vk::Device::create_swapchain_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -6836,7 +6697,6 @@ fn destroy_swapchain_khr_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_swapchain_khr;
-	let _: Signature = vk::core::destroy_swapchain_khr;
 	let _: Signature = vk::Device::destroy_swapchain_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -6915,7 +6775,6 @@ fn get_swapchain_images_khr_signature_and_missing_command() {
 		*mut vk::Image,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_swapchain_images_khr;
-	let _: Signature = vk::core::get_swapchain_images_khr;
 	let _: Signature = vk::Device::get_swapchain_images_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -7021,7 +6880,6 @@ fn acquire_next_image_khr_signature_and_missing_command() {
 		*mut u32,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::acquire_next_image_khr;
-	let _: Signature = vk::core::acquire_next_image_khr;
 	let _: Signature = vk::Device::acquire_next_image_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -7131,7 +6989,6 @@ fn queue_present_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Queue, *const vk::PresentInfoKHR) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::queue_present_khr;
-	let _: Signature = vk::core::queue_present_khr;
 	let _: Signature = vk::Device::queue_present_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -7225,7 +7082,6 @@ fn create_vi_surface_nn_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_vi_surface_nn;
-	let _: Signature = vk::core::create_vi_surface_nn;
 	let _: Signature = vk::Instance::create_vi_surface_nn;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -7338,7 +7194,6 @@ fn create_wayland_surface_khr_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_wayland_surface_khr;
-	let _: Signature = vk::core::create_wayland_surface_khr;
 	let _: Signature = vk::Instance::create_wayland_surface_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -7452,7 +7307,6 @@ fn get_physical_device_wayland_presentation_support_khr_signature_and_missing_co
 		*mut vk::wl_display,
 	) -> Result<vk::Bool32, CallError>;
 	let _: Signature = vk::get_physical_device_wayland_presentation_support_khr;
-	let _: Signature = vk::core::get_physical_device_wayland_presentation_support_khr;
 	let _: Signature = vk::Instance::get_physical_device_wayland_presentation_support_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -7550,7 +7404,6 @@ fn create_ubm_surface_sec_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_ubm_surface_sec;
-	let _: Signature = vk::core::create_ubm_surface_sec;
 	let _: Signature = vk::Instance::create_ubm_surface_sec;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -7664,7 +7517,6 @@ fn get_physical_device_ubm_presentation_support_sec_signature_and_missing_comman
 		*mut vk::ubm_device,
 	) -> Result<vk::Bool32, CallError>;
 	let _: Signature = vk::get_physical_device_ubm_presentation_support_sec;
-	let _: Signature = vk::core::get_physical_device_ubm_presentation_support_sec;
 	let _: Signature = vk::Instance::get_physical_device_ubm_presentation_support_sec;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -7762,7 +7614,6 @@ fn create_win32_surface_khr_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_win32_surface_khr;
-	let _: Signature = vk::core::create_win32_surface_khr;
 	let _: Signature = vk::Instance::create_win32_surface_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -7872,7 +7723,6 @@ fn get_physical_device_win32_presentation_support_khr_signature_and_missing_comm
 	type Signature =
 		unsafe fn(&vk::Instance, vk::PhysicalDevice, u32) -> Result<vk::Bool32, CallError>;
 	let _: Signature = vk::get_physical_device_win32_presentation_support_khr;
-	let _: Signature = vk::core::get_physical_device_win32_presentation_support_khr;
 	let _: Signature = vk::Instance::get_physical_device_win32_presentation_support_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -7958,7 +7808,6 @@ fn create_xlib_surface_khr_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_xlib_surface_khr;
-	let _: Signature = vk::core::create_xlib_surface_khr;
 	let _: Signature = vk::Instance::create_xlib_surface_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -8073,7 +7922,6 @@ fn get_physical_device_xlib_presentation_support_khr_signature_and_missing_comma
 		vk::VisualID,
 	) -> Result<vk::Bool32, CallError>;
 	let _: Signature = vk::get_physical_device_xlib_presentation_support_khr;
-	let _: Signature = vk::core::get_physical_device_xlib_presentation_support_khr;
 	let _: Signature = vk::Instance::get_physical_device_xlib_presentation_support_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -8176,7 +8024,6 @@ fn create_xcb_surface_khr_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_xcb_surface_khr;
-	let _: Signature = vk::core::create_xcb_surface_khr;
 	let _: Signature = vk::Instance::create_xcb_surface_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -8291,7 +8138,6 @@ fn get_physical_device_xcb_presentation_support_khr_signature_and_missing_comman
 		vk::xcb_visualid_t,
 	) -> Result<vk::Bool32, CallError>;
 	let _: Signature = vk::get_physical_device_xcb_presentation_support_khr;
-	let _: Signature = vk::core::get_physical_device_xcb_presentation_support_khr;
 	let _: Signature = vk::Instance::get_physical_device_xcb_presentation_support_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -8397,7 +8243,6 @@ fn create_direct_fb_surface_ext_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_direct_fb_surface_ext;
-	let _: Signature = vk::core::create_direct_fb_surface_ext;
 	let _: Signature = vk::Instance::create_direct_fb_surface_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -8511,7 +8356,6 @@ fn get_physical_device_direct_fb_presentation_support_ext_signature_and_missing_
 		*mut vk::IDirectFB,
 	) -> Result<vk::Bool32, CallError>;
 	let _: Signature = vk::get_physical_device_direct_fb_presentation_support_ext;
-	let _: Signature = vk::core::get_physical_device_direct_fb_presentation_support_ext;
 	let _: Signature = vk::Instance::get_physical_device_direct_fb_presentation_support_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -8609,7 +8453,6 @@ fn create_image_pipe_surface_fuchsia_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_image_pipe_surface_fuchsia;
-	let _: Signature = vk::core::create_image_pipe_surface_fuchsia;
 	let _: Signature = vk::Instance::create_image_pipe_surface_fuchsia;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -8723,7 +8566,6 @@ fn create_stream_descriptor_surface_ggp_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_stream_descriptor_surface_ggp;
-	let _: Signature = vk::core::create_stream_descriptor_surface_ggp;
 	let _: Signature = vk::Instance::create_stream_descriptor_surface_ggp;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -8843,7 +8685,6 @@ fn create_screen_surface_qnx_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_screen_surface_qnx;
-	let _: Signature = vk::core::create_screen_surface_qnx;
 	let _: Signature = vk::Instance::create_screen_surface_qnx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -8957,7 +8798,6 @@ fn get_physical_device_screen_presentation_support_qnx_signature_and_missing_com
 		*mut vk::_screen_window,
 	) -> Result<vk::Bool32, CallError>;
 	let _: Signature = vk::get_physical_device_screen_presentation_support_qnx;
-	let _: Signature = vk::core::get_physical_device_screen_presentation_support_qnx;
 	let _: Signature = vk::Instance::get_physical_device_screen_presentation_support_qnx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -9055,7 +8895,6 @@ fn create_debug_report_callback_ext_signature_and_missing_command() {
 		*mut vk::DebugReportCallbackEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_debug_report_callback_ext;
-	let _: Signature = vk::core::create_debug_report_callback_ext;
 	let _: Signature = vk::Instance::create_debug_report_callback_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -9169,7 +9008,6 @@ fn destroy_debug_report_callback_ext_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_debug_report_callback_ext;
-	let _: Signature = vk::core::destroy_debug_report_callback_ext;
 	let _: Signature = vk::Instance::destroy_debug_report_callback_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -9252,7 +9090,6 @@ fn debug_report_message_ext_signature_and_missing_command() {
 		*const std::ffi::c_char,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::debug_report_message_ext;
-	let _: Signature = vk::core::debug_report_message_ext;
 	let _: Signature = vk::Instance::debug_report_message_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -9362,7 +9199,6 @@ fn debug_marker_set_object_name_ext_signature_and_missing_command() {
 		*const vk::DebugMarkerObjectNameInfoEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::debug_marker_set_object_name_ext;
-	let _: Signature = vk::core::debug_marker_set_object_name_ext;
 	let _: Signature = vk::Device::debug_marker_set_object_name_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -9453,7 +9289,6 @@ fn debug_marker_set_object_tag_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::DebugMarkerObjectTagInfoEXT) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::debug_marker_set_object_tag_ext;
-	let _: Signature = vk::core::debug_marker_set_object_tag_ext;
 	let _: Signature = vk::Device::debug_marker_set_object_tag_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -9547,7 +9382,6 @@ fn cmd_debug_marker_begin_ext_signature_and_missing_command() {
 		*const vk::DebugMarkerMarkerInfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_debug_marker_begin_ext;
-	let _: Signature = vk::core::cmd_debug_marker_begin_ext;
 	let _: Signature = vk::Device::cmd_debug_marker_begin_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -9619,7 +9453,6 @@ fn cmd_debug_marker_begin_ext_native_forwarding() {
 fn cmd_debug_marker_end_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_debug_marker_end_ext;
-	let _: Signature = vk::core::cmd_debug_marker_end_ext;
 	let _: Signature = vk::Device::cmd_debug_marker_end_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -9675,7 +9508,6 @@ fn cmd_debug_marker_insert_ext_signature_and_missing_command() {
 		*const vk::DebugMarkerMarkerInfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_debug_marker_insert_ext;
-	let _: Signature = vk::core::cmd_debug_marker_insert_ext;
 	let _: Signature = vk::Device::cmd_debug_marker_insert_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -9757,7 +9589,6 @@ fn get_physical_device_external_image_format_properties_nv_signature_and_missing
 		*mut vk::ExternalImageFormatPropertiesNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_external_image_format_properties_nv;
-	let _: Signature = vk::core::get_physical_device_external_image_format_properties_nv;
 	let _: Signature = vk::Instance::get_physical_device_external_image_format_properties_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -9904,7 +9735,6 @@ fn get_memory_win32_handle_nv_signature_and_missing_command() {
 		*mut vk::HANDLE,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_memory_win32_handle_nv;
-	let _: Signature = vk::core::get_memory_win32_handle_nv;
 	let _: Signature = vk::Device::get_memory_win32_handle_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -10007,7 +9837,6 @@ fn cmd_execute_generated_commands_nv_signature_and_missing_command() {
 		*const vk::GeneratedCommandsInfoNV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_execute_generated_commands_nv;
-	let _: Signature = vk::core::cmd_execute_generated_commands_nv;
 	let _: Signature = vk::Device::cmd_execute_generated_commands_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -10089,7 +9918,6 @@ fn cmd_preprocess_generated_commands_nv_signature_and_missing_command() {
 		*const vk::GeneratedCommandsInfoNV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_preprocess_generated_commands_nv;
-	let _: Signature = vk::core::cmd_preprocess_generated_commands_nv;
 	let _: Signature = vk::Device::cmd_preprocess_generated_commands_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -10173,7 +10001,6 @@ fn cmd_bind_pipeline_shader_group_nv_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_pipeline_shader_group_nv;
-	let _: Signature = vk::core::cmd_bind_pipeline_shader_group_nv;
 	let _: Signature = vk::Device::cmd_bind_pipeline_shader_group_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -10255,7 +10082,6 @@ fn get_generated_commands_memory_requirements_nv_signature_and_missing_command()
 		*mut vk::MemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_generated_commands_memory_requirements_nv;
-	let _: Signature = vk::core::get_generated_commands_memory_requirements_nv;
 	let _: Signature = vk::Device::get_generated_commands_memory_requirements_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -10347,7 +10173,6 @@ fn create_indirect_commands_layout_nv_signature_and_missing_command() {
 		*mut vk::IndirectCommandsLayoutNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_indirect_commands_layout_nv;
-	let _: Signature = vk::core::create_indirect_commands_layout_nv;
 	let _: Signature = vk::Device::create_indirect_commands_layout_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -10467,7 +10292,6 @@ fn destroy_indirect_commands_layout_nv_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_indirect_commands_layout_nv;
-	let _: Signature = vk::core::destroy_indirect_commands_layout_nv;
 	let _: Signature = vk::Device::destroy_indirect_commands_layout_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -10552,7 +10376,6 @@ fn cmd_execute_generated_commands_ext_signature_and_missing_command() {
 		*const vk::GeneratedCommandsInfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_execute_generated_commands_ext;
-	let _: Signature = vk::core::cmd_execute_generated_commands_ext;
 	let _: Signature = vk::Device::cmd_execute_generated_commands_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -10641,7 +10464,6 @@ fn cmd_preprocess_generated_commands_ext_signature_and_missing_command() {
 		vk::CommandBuffer,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_preprocess_generated_commands_ext;
-	let _: Signature = vk::core::cmd_preprocess_generated_commands_ext;
 	let _: Signature = vk::Device::cmd_preprocess_generated_commands_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -10728,7 +10550,6 @@ fn get_generated_commands_memory_requirements_ext_signature_and_missing_command(
 		*mut vk::MemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_generated_commands_memory_requirements_ext;
-	let _: Signature = vk::core::get_generated_commands_memory_requirements_ext;
 	let _: Signature = vk::Device::get_generated_commands_memory_requirements_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -10820,7 +10641,6 @@ fn create_indirect_commands_layout_ext_signature_and_missing_command() {
 		*mut vk::IndirectCommandsLayoutEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_indirect_commands_layout_ext;
-	let _: Signature = vk::core::create_indirect_commands_layout_ext;
 	let _: Signature = vk::Device::create_indirect_commands_layout_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -10940,7 +10760,6 @@ fn destroy_indirect_commands_layout_ext_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_indirect_commands_layout_ext;
-	let _: Signature = vk::core::destroy_indirect_commands_layout_ext;
 	let _: Signature = vk::Device::destroy_indirect_commands_layout_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11025,7 +10844,6 @@ fn create_indirect_execution_set_ext_signature_and_missing_command() {
 		*mut vk::IndirectExecutionSetEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_indirect_execution_set_ext;
-	let _: Signature = vk::core::create_indirect_execution_set_ext;
 	let _: Signature = vk::Device::create_indirect_execution_set_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11139,7 +10957,6 @@ fn destroy_indirect_execution_set_ext_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_indirect_execution_set_ext;
-	let _: Signature = vk::core::destroy_indirect_execution_set_ext;
 	let _: Signature = vk::Device::destroy_indirect_execution_set_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11224,7 +11041,6 @@ fn update_indirect_execution_set_pipeline_ext_signature_and_missing_command() {
 		*const vk::WriteIndirectExecutionSetPipelineEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::update_indirect_execution_set_pipeline_ext;
-	let _: Signature = vk::core::update_indirect_execution_set_pipeline_ext;
 	let _: Signature = vk::Device::update_indirect_execution_set_pipeline_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11315,7 +11131,6 @@ fn update_indirect_execution_set_shader_ext_signature_and_missing_command() {
 		*const vk::WriteIndirectExecutionSetShaderEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::update_indirect_execution_set_shader_ext;
-	let _: Signature = vk::core::update_indirect_execution_set_shader_ext;
 	let _: Signature = vk::Device::update_indirect_execution_set_shader_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11405,7 +11220,6 @@ fn get_physical_device_features2_signature_and_missing_command() {
 		&mut vk::PhysicalDeviceFeatures2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_features2;
-	let _: Signature = vk::core::get_physical_device_features2;
 	let _: Signature = vk::Instance::get_physical_device_features2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11436,7 +11250,6 @@ fn get_physical_device_features2_khr_signature_and_missing_command() {
 		&mut vk::PhysicalDeviceFeatures2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_features2_khr;
-	let _: Signature = vk::core::get_physical_device_features2_khr;
 	let _: Signature = vk::Instance::get_physical_device_features2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11467,7 +11280,6 @@ fn get_physical_device_properties2_signature_and_missing_command() {
 		&mut vk::PhysicalDeviceProperties2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_properties2;
-	let _: Signature = vk::core::get_physical_device_properties2;
 	let _: Signature = vk::Instance::get_physical_device_properties2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11498,7 +11310,6 @@ fn get_physical_device_properties2_khr_signature_and_missing_command() {
 		&mut vk::PhysicalDeviceProperties2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_properties2_khr;
-	let _: Signature = vk::core::get_physical_device_properties2_khr;
 	let _: Signature = vk::Instance::get_physical_device_properties2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11534,7 +11345,6 @@ fn get_physical_device_format_properties2_signature_and_missing_command() {
 		&mut vk::FormatProperties2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_format_properties2;
-	let _: Signature = vk::core::get_physical_device_format_properties2;
 	let _: Signature = vk::Instance::get_physical_device_format_properties2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11572,7 +11382,6 @@ fn get_physical_device_format_properties2_khr_signature_and_missing_command() {
 		&mut vk::FormatProperties2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_format_properties2_khr;
-	let _: Signature = vk::core::get_physical_device_format_properties2_khr;
 	let _: Signature = vk::Instance::get_physical_device_format_properties2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11610,7 +11419,6 @@ fn get_physical_device_image_format_properties2_signature_and_missing_command() 
 		&mut vk::ImageFormatProperties2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_image_format_properties2;
-	let _: Signature = vk::core::get_physical_device_image_format_properties2;
 	let _: Signature = vk::Instance::get_physical_device_image_format_properties2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11650,7 +11458,6 @@ fn get_physical_device_image_format_properties2_khr_signature_and_missing_comman
 		&mut vk::ImageFormatProperties2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_image_format_properties2_khr;
-	let _: Signature = vk::core::get_physical_device_image_format_properties2_khr;
 	let _: Signature = vk::Instance::get_physical_device_image_format_properties2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11690,7 +11497,6 @@ fn get_physical_device_queue_family_properties2_signature_and_missing_command() 
 		Option<&mut [vk::QueueFamilyProperties2]>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_queue_family_properties2;
-	let _: Signature = vk::core::get_physical_device_queue_family_properties2;
 	let _: Signature = vk::Instance::get_physical_device_queue_family_properties2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11726,7 +11532,6 @@ fn get_physical_device_queue_family_properties2_khr_signature_and_missing_comman
 		Option<&mut [vk::QueueFamilyProperties2]>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_queue_family_properties2_khr;
-	let _: Signature = vk::core::get_physical_device_queue_family_properties2_khr;
 	let _: Signature = vk::Instance::get_physical_device_queue_family_properties2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11761,7 +11566,6 @@ fn get_physical_device_memory_properties2_signature_and_missing_command() {
 		&mut vk::PhysicalDeviceMemoryProperties2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_memory_properties2;
-	let _: Signature = vk::core::get_physical_device_memory_properties2;
 	let _: Signature = vk::Instance::get_physical_device_memory_properties2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11796,7 +11600,6 @@ fn get_physical_device_memory_properties2_khr_signature_and_missing_command() {
 		&mut vk::PhysicalDeviceMemoryProperties2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_memory_properties2_khr;
-	let _: Signature = vk::core::get_physical_device_memory_properties2_khr;
 	let _: Signature = vk::Instance::get_physical_device_memory_properties2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11833,7 +11636,6 @@ fn get_physical_device_sparse_image_format_properties2_signature_and_missing_com
 		Option<&mut [vk::SparseImageFormatProperties2]>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_sparse_image_format_properties2;
-	let _: Signature = vk::core::get_physical_device_sparse_image_format_properties2;
 	let _: Signature = vk::Instance::get_physical_device_sparse_image_format_properties2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11876,7 +11678,6 @@ fn get_physical_device_sparse_image_format_properties2_khr_signature_and_missing
 		Option<&mut [vk::SparseImageFormatProperties2]>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_sparse_image_format_properties2_khr;
-	let _: Signature = vk::core::get_physical_device_sparse_image_format_properties2_khr;
 	let _: Signature = vk::Instance::get_physical_device_sparse_image_format_properties2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -11921,7 +11722,6 @@ fn cmd_push_descriptor_set_signature_and_missing_command() {
 		*const vk::WriteDescriptorSet,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_push_descriptor_set;
-	let _: Signature = vk::core::cmd_push_descriptor_set;
 	let _: Signature = vk::Device::cmd_push_descriptor_set;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -12025,7 +11825,6 @@ fn cmd_push_descriptor_set_khr_signature_and_missing_command() {
 		*const vk::WriteDescriptorSet,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_push_descriptor_set_khr;
-	let _: Signature = vk::core::cmd_push_descriptor_set_khr;
 	let _: Signature = vk::Device::cmd_push_descriptor_set_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -12122,7 +11921,6 @@ fn trim_command_pool_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandPool, vk::CommandPoolTrimFlags) -> Result<(), CallError>;
 	let _: Signature = vk::trim_command_pool;
-	let _: Signature = vk::core::trim_command_pool;
 	let _: Signature = vk::Device::trim_command_pool;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -12145,7 +11943,6 @@ fn trim_command_pool_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandPool, vk::CommandPoolTrimFlags) -> Result<(), CallError>;
 	let _: Signature = vk::trim_command_pool_khr;
-	let _: Signature = vk::core::trim_command_pool_khr;
 	let _: Signature = vk::Device::trim_command_pool_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -12172,7 +11969,6 @@ fn get_physical_device_external_buffer_properties_signature_and_missing_command(
 		&mut vk::ExternalBufferProperties,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_external_buffer_properties;
-	let _: Signature = vk::core::get_physical_device_external_buffer_properties;
 	let _: Signature = vk::Instance::get_physical_device_external_buffer_properties;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -12212,7 +12008,6 @@ fn get_physical_device_external_buffer_properties_khr_signature_and_missing_comm
 		&mut vk::ExternalBufferProperties,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_external_buffer_properties_khr;
-	let _: Signature = vk::core::get_physical_device_external_buffer_properties_khr;
 	let _: Signature = vk::Instance::get_physical_device_external_buffer_properties_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -12252,7 +12047,6 @@ fn get_memory_win32_handle_khr_signature_and_missing_command() {
 		*mut vk::HANDLE,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_memory_win32_handle_khr;
-	let _: Signature = vk::core::get_memory_win32_handle_khr;
 	let _: Signature = vk::Device::get_memory_win32_handle_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -12355,7 +12149,6 @@ fn get_memory_win32_handle_properties_khr_signature_and_missing_command() {
 		*mut vk::MemoryWin32HandlePropertiesKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_memory_win32_handle_properties_khr;
-	let _: Signature = vk::core::get_memory_win32_handle_properties_khr;
 	let _: Signature = vk::Device::get_memory_win32_handle_properties_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -12466,7 +12259,6 @@ fn get_memory_fd_khr_signature_and_missing_command() {
 		*mut i32,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_memory_fd_khr;
-	let _: Signature = vk::core::get_memory_fd_khr;
 	let _: Signature = vk::Device::get_memory_fd_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -12566,7 +12358,6 @@ fn get_memory_fd_properties_khr_signature_and_missing_command() {
 		*mut vk::MemoryFdPropertiesKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_memory_fd_properties_khr;
-	let _: Signature = vk::core::get_memory_fd_properties_khr;
 	let _: Signature = vk::Device::get_memory_fd_properties_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -12671,7 +12462,6 @@ fn get_memory_zircon_handle_fuchsia_signature_and_missing_command() {
 		*mut vk::zx_handle_t,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_memory_zircon_handle_fuchsia;
-	let _: Signature = vk::core::get_memory_zircon_handle_fuchsia;
 	let _: Signature = vk::Device::get_memory_zircon_handle_fuchsia;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -12774,7 +12564,6 @@ fn get_memory_zircon_handle_properties_fuchsia_signature_and_missing_command() {
 		*mut vk::MemoryZirconHandlePropertiesFUCHSIA,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_memory_zircon_handle_properties_fuchsia;
-	let _: Signature = vk::core::get_memory_zircon_handle_properties_fuchsia;
 	let _: Signature = vk::Device::get_memory_zircon_handle_properties_fuchsia;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -12885,7 +12674,6 @@ fn get_memory_remote_address_nv_signature_and_missing_command() {
 		*mut vk::RemoteAddressNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_memory_remote_address_nv;
-	let _: Signature = vk::core::get_memory_remote_address_nv;
 	let _: Signature = vk::Device::get_memory_remote_address_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -12989,7 +12777,6 @@ fn get_physical_device_external_semaphore_properties_signature_and_missing_comma
 		&mut vk::ExternalSemaphoreProperties,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_external_semaphore_properties;
-	let _: Signature = vk::core::get_physical_device_external_semaphore_properties;
 	let _: Signature = vk::Instance::get_physical_device_external_semaphore_properties;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -13029,7 +12816,6 @@ fn get_physical_device_external_semaphore_properties_khr_signature_and_missing_c
 		&mut vk::ExternalSemaphoreProperties,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_external_semaphore_properties_khr;
-	let _: Signature = vk::core::get_physical_device_external_semaphore_properties_khr;
 	let _: Signature = vk::Instance::get_physical_device_external_semaphore_properties_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -13069,7 +12855,6 @@ fn get_semaphore_win32_handle_khr_signature_and_missing_command() {
 		*mut vk::HANDLE,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_semaphore_win32_handle_khr;
-	let _: Signature = vk::core::get_semaphore_win32_handle_khr;
 	let _: Signature = vk::Device::get_semaphore_win32_handle_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -13170,7 +12955,6 @@ fn import_semaphore_win32_handle_khr_signature_and_missing_command() {
 		*const vk::ImportSemaphoreWin32HandleInfoKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::import_semaphore_win32_handle_khr;
-	let _: Signature = vk::core::import_semaphore_win32_handle_khr;
 	let _: Signature = vk::Device::import_semaphore_win32_handle_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -13265,7 +13049,6 @@ fn get_semaphore_fd_khr_signature_and_missing_command() {
 		*mut i32,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_semaphore_fd_khr;
-	let _: Signature = vk::core::get_semaphore_fd_khr;
 	let _: Signature = vk::Device::get_semaphore_fd_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -13361,7 +13144,6 @@ fn import_semaphore_fd_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::ImportSemaphoreFdInfoKHR) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::import_semaphore_fd_khr;
-	let _: Signature = vk::core::import_semaphore_fd_khr;
 	let _: Signature = vk::Device::import_semaphore_fd_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -13454,7 +13236,6 @@ fn get_semaphore_zircon_handle_fuchsia_signature_and_missing_command() {
 		*mut vk::zx_handle_t,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_semaphore_zircon_handle_fuchsia;
-	let _: Signature = vk::core::get_semaphore_zircon_handle_fuchsia;
 	let _: Signature = vk::Device::get_semaphore_zircon_handle_fuchsia;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -13561,7 +13342,6 @@ fn import_semaphore_zircon_handle_fuchsia_signature_and_missing_command() {
 		*const vk::ImportSemaphoreZirconHandleInfoFUCHSIA,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::import_semaphore_zircon_handle_fuchsia;
-	let _: Signature = vk::core::import_semaphore_zircon_handle_fuchsia;
 	let _: Signature = vk::Device::import_semaphore_zircon_handle_fuchsia;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -13663,7 +13443,6 @@ fn get_physical_device_external_fence_properties_signature_and_missing_command()
 		&mut vk::ExternalFenceProperties,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_external_fence_properties;
-	let _: Signature = vk::core::get_physical_device_external_fence_properties;
 	let _: Signature = vk::Instance::get_physical_device_external_fence_properties;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -13703,7 +13482,6 @@ fn get_physical_device_external_fence_properties_khr_signature_and_missing_comma
 		&mut vk::ExternalFenceProperties,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_external_fence_properties_khr;
-	let _: Signature = vk::core::get_physical_device_external_fence_properties_khr;
 	let _: Signature = vk::Instance::get_physical_device_external_fence_properties_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -13743,7 +13521,6 @@ fn get_fence_win32_handle_khr_signature_and_missing_command() {
 		*mut vk::HANDLE,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_fence_win32_handle_khr;
-	let _: Signature = vk::core::get_fence_win32_handle_khr;
 	let _: Signature = vk::Device::get_fence_win32_handle_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -13844,7 +13621,6 @@ fn import_fence_win32_handle_khr_signature_and_missing_command() {
 		*const vk::ImportFenceWin32HandleInfoKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::import_fence_win32_handle_khr;
-	let _: Signature = vk::core::import_fence_win32_handle_khr;
 	let _: Signature = vk::Device::import_fence_win32_handle_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -13936,7 +13712,6 @@ fn get_fence_fd_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::FenceGetFdInfoKHR, *mut i32) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_fence_fd_khr;
-	let _: Signature = vk::core::get_fence_fd_khr;
 	let _: Signature = vk::Device::get_fence_fd_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -14032,7 +13807,6 @@ fn import_fence_fd_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::ImportFenceFdInfoKHR) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::import_fence_fd_khr;
-	let _: Signature = vk::core::import_fence_fd_khr;
 	let _: Signature = vk::Device::import_fence_fd_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -14120,7 +13894,6 @@ fn release_display_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Instance, vk::PhysicalDevice, vk::DisplayKHR) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::release_display_ext;
-	let _: Signature = vk::core::release_display_ext;
 	let _: Signature = vk::Instance::release_display_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -14208,7 +13981,6 @@ fn acquire_xlib_display_ext_signature_and_missing_command() {
 		vk::DisplayKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::acquire_xlib_display_ext;
-	let _: Signature = vk::core::acquire_xlib_display_ext;
 	let _: Signature = vk::Instance::acquire_xlib_display_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -14310,7 +14082,6 @@ fn get_rand_r_output_display_ext_signature_and_missing_command() {
 		*mut vk::DisplayKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_rand_r_output_display_ext;
-	let _: Signature = vk::core::get_rand_r_output_display_ext;
 	let _: Signature = vk::Instance::get_rand_r_output_display_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -14416,7 +14187,6 @@ fn acquire_winrt_display_nv_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Instance, vk::PhysicalDevice, vk::DisplayKHR) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::acquire_winrt_display_nv;
-	let _: Signature = vk::core::acquire_winrt_display_nv;
 	let _: Signature = vk::Instance::acquire_winrt_display_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -14506,7 +14276,6 @@ fn get_winrt_display_nv_signature_and_missing_command() {
 		*mut vk::DisplayKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_winrt_display_nv;
-	let _: Signature = vk::core::get_winrt_display_nv;
 	let _: Signature = vk::Instance::get_winrt_display_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -14605,7 +14374,6 @@ fn display_power_control_ext_signature_and_missing_command() {
 		*const vk::DisplayPowerInfoEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::display_power_control_ext;
-	let _: Signature = vk::core::display_power_control_ext;
 	let _: Signature = vk::Device::display_power_control_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -14704,7 +14472,6 @@ fn register_device_event_ext_signature_and_missing_command() {
 		*mut vk::Fence,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::register_device_event_ext;
-	let _: Signature = vk::core::register_device_event_ext;
 	let _: Signature = vk::Device::register_device_event_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -14817,7 +14584,6 @@ fn register_display_event_ext_signature_and_missing_command() {
 		*mut vk::Fence,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::register_display_event_ext;
-	let _: Signature = vk::core::register_display_event_ext;
 	let _: Signature = vk::Device::register_display_event_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -14935,7 +14701,6 @@ fn get_swapchain_counter_ext_signature_and_missing_command() {
 		*mut u64,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_swapchain_counter_ext;
-	let _: Signature = vk::core::get_swapchain_counter_ext;
 	let _: Signature = vk::Device::get_swapchain_counter_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15037,7 +14802,6 @@ fn get_physical_device_surface_capabilities2_ext_signature_and_missing_command()
 		*mut vk::SurfaceCapabilities2EXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_surface_capabilities2_ext;
-	let _: Signature = vk::core::get_physical_device_surface_capabilities2_ext;
 	let _: Signature = vk::Instance::get_physical_device_surface_capabilities2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15147,7 +14911,6 @@ fn enumerate_physical_device_groups_signature_and_missing_command() {
 		Option<&mut [vk::PhysicalDeviceGroupProperties]>,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::enumerate_physical_device_groups;
-	let _: Signature = vk::core::enumerate_physical_device_groups;
 	let _: Signature = vk::Instance::enumerate_physical_device_groups;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15173,7 +14936,6 @@ fn enumerate_physical_device_groups_khr_signature_and_missing_command() {
 		Option<&mut [vk::PhysicalDeviceGroupProperties]>,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::enumerate_physical_device_groups_khr;
-	let _: Signature = vk::core::enumerate_physical_device_groups_khr;
 	let _: Signature = vk::Instance::enumerate_physical_device_groups_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15200,7 +14962,6 @@ fn get_device_group_peer_memory_features_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, u32, u32, u32, &mut vk::PeerMemoryFeatureFlags) -> Result<(), CallError>;
 	let _: Signature = vk::get_device_group_peer_memory_features;
-	let _: Signature = vk::core::get_device_group_peer_memory_features;
 	let _: Signature = vk::Device::get_device_group_peer_memory_features;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15236,7 +14997,6 @@ fn get_device_group_peer_memory_features_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, u32, u32, u32, &mut vk::PeerMemoryFeatureFlags) -> Result<(), CallError>;
 	let _: Signature = vk::get_device_group_peer_memory_features_khr;
-	let _: Signature = vk::core::get_device_group_peer_memory_features_khr;
 	let _: Signature = vk::Device::get_device_group_peer_memory_features_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15271,7 +15031,6 @@ fn get_device_group_peer_memory_features_khr_signature_and_missing_command() {
 fn bind_buffer_memory2_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, &[vk::BindBufferMemoryInfo]) -> Result<(), CallError>;
 	let _: Signature = vk::bind_buffer_memory2;
-	let _: Signature = vk::core::bind_buffer_memory2;
 	let _: Signature = vk::Device::bind_buffer_memory2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15291,7 +15050,6 @@ fn bind_buffer_memory2_signature_and_missing_command() {
 fn bind_buffer_memory2_khr_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, &[vk::BindBufferMemoryInfo]) -> Result<(), CallError>;
 	let _: Signature = vk::bind_buffer_memory2_khr;
-	let _: Signature = vk::core::bind_buffer_memory2_khr;
 	let _: Signature = vk::Device::bind_buffer_memory2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15311,7 +15069,6 @@ fn bind_buffer_memory2_khr_signature_and_missing_command() {
 fn bind_image_memory2_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, &[vk::BindImageMemoryInfo]) -> Result<(), CallError>;
 	let _: Signature = vk::bind_image_memory2;
-	let _: Signature = vk::core::bind_image_memory2;
 	let _: Signature = vk::Device::bind_image_memory2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15331,7 +15088,6 @@ fn bind_image_memory2_signature_and_missing_command() {
 fn bind_image_memory2_khr_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, &[vk::BindImageMemoryInfo]) -> Result<(), CallError>;
 	let _: Signature = vk::bind_image_memory2_khr;
-	let _: Signature = vk::core::bind_image_memory2_khr;
 	let _: Signature = vk::Device::bind_image_memory2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15351,7 +15107,6 @@ fn bind_image_memory2_khr_signature_and_missing_command() {
 fn cmd_set_device_mask_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_device_mask;
-	let _: Signature = vk::core::cmd_set_device_mask;
 	let _: Signature = vk::Device::cmd_set_device_mask;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15373,7 +15128,6 @@ fn cmd_set_device_mask_signature_and_missing_command() {
 fn cmd_set_device_mask_khr_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_device_mask_khr;
-	let _: Signature = vk::core::cmd_set_device_mask_khr;
 	let _: Signature = vk::Device::cmd_set_device_mask_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15398,7 +15152,6 @@ fn get_device_group_present_capabilities_khr_signature_and_missing_command() {
 		*mut vk::DeviceGroupPresentCapabilitiesKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_device_group_present_capabilities_khr;
-	let _: Signature = vk::core::get_device_group_present_capabilities_khr;
 	let _: Signature = vk::Device::get_device_group_present_capabilities_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15498,7 +15251,6 @@ fn get_device_group_surface_present_modes_khr_signature_and_missing_command() {
 		*mut vk::DeviceGroupPresentModeFlagsKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_device_group_surface_present_modes_khr;
-	let _: Signature = vk::core::get_device_group_surface_present_modes_khr;
 	let _: Signature = vk::Device::get_device_group_surface_present_modes_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15602,7 +15354,6 @@ fn acquire_next_image2_khr_signature_and_missing_command() {
 		*mut u32,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::acquire_next_image2_khr;
-	let _: Signature = vk::core::acquire_next_image2_khr;
 	let _: Signature = vk::Device::acquire_next_image2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15707,7 +15458,6 @@ fn cmd_dispatch_base_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_dispatch_base;
-	let _: Signature = vk::core::cmd_dispatch_base;
 	let _: Signature = vk::Device::cmd_dispatch_base;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15753,7 +15503,6 @@ fn cmd_dispatch_base_khr_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_dispatch_base_khr;
-	let _: Signature = vk::core::cmd_dispatch_base_khr;
 	let _: Signature = vk::Device::cmd_dispatch_base_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15796,7 +15545,6 @@ fn get_physical_device_present_rectangles_khr_signature_and_missing_command() {
 		*mut vk::Rect2D,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_present_rectangles_khr;
-	let _: Signature = vk::core::get_physical_device_present_rectangles_khr;
 	let _: Signature = vk::Instance::get_physical_device_present_rectangles_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15909,7 +15657,6 @@ fn create_descriptor_update_template_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::DescriptorUpdateTemplate, CallError>;
 	let _: Signature = vk::create_descriptor_update_template;
-	let _: Signature = vk::core::create_descriptor_update_template;
 	let _: Signature = vk::Device::create_descriptor_update_template;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15944,7 +15691,6 @@ fn create_descriptor_update_template_khr_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::DescriptorUpdateTemplate, CallError>;
 	let _: Signature = vk::create_descriptor_update_template_khr;
-	let _: Signature = vk::core::create_descriptor_update_template_khr;
 	let _: Signature = vk::Device::create_descriptor_update_template_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -15979,7 +15725,6 @@ fn destroy_descriptor_update_template_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_descriptor_update_template;
-	let _: Signature = vk::core::destroy_descriptor_update_template;
 	let _: Signature = vk::Device::destroy_descriptor_update_template;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -16009,7 +15754,6 @@ fn destroy_descriptor_update_template_khr_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_descriptor_update_template_khr;
-	let _: Signature = vk::core::destroy_descriptor_update_template_khr;
 	let _: Signature = vk::Device::destroy_descriptor_update_template_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -16040,7 +15784,6 @@ fn update_descriptor_set_with_template_signature_and_missing_command() {
 		*const std::ffi::c_void,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::update_descriptor_set_with_template;
-	let _: Signature = vk::core::update_descriptor_set_with_template;
 	let _: Signature = vk::Device::update_descriptor_set_with_template;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -16078,7 +15821,6 @@ fn update_descriptor_set_with_template_khr_signature_and_missing_command() {
 		*const std::ffi::c_void,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::update_descriptor_set_with_template_khr;
-	let _: Signature = vk::core::update_descriptor_set_with_template_khr;
 	let _: Signature = vk::Device::update_descriptor_set_with_template_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -16118,7 +15860,6 @@ fn cmd_push_descriptor_set_with_template_signature_and_missing_command() {
 		*const std::ffi::c_void,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_push_descriptor_set_with_template;
-	let _: Signature = vk::core::cmd_push_descriptor_set_with_template;
 	let _: Signature = vk::Device::cmd_push_descriptor_set_with_template;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -16219,7 +15960,6 @@ fn cmd_push_descriptor_set_with_template_khr_signature_and_missing_command() {
 		*const std::ffi::c_void,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_push_descriptor_set_with_template_khr;
-	let _: Signature = vk::core::cmd_push_descriptor_set_with_template_khr;
 	let _: Signature = vk::Device::cmd_push_descriptor_set_with_template_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -16318,7 +16058,6 @@ fn set_hdr_metadata_ext_signature_and_missing_command() {
 		*const vk::HdrMetadataEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::set_hdr_metadata_ext;
-	let _: Signature = vk::core::set_hdr_metadata_ext;
 	let _: Signature = vk::Device::set_hdr_metadata_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -16398,7 +16137,6 @@ fn set_hdr_metadata_ext_native_forwarding() {
 fn get_swapchain_status_khr_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::SwapchainKHR) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_swapchain_status_khr;
-	let _: Signature = vk::core::get_swapchain_status_khr;
 	let _: Signature = vk::Device::get_swapchain_status_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -16478,7 +16216,6 @@ fn get_refresh_cycle_duration_google_signature_and_missing_command() {
 		*mut vk::RefreshCycleDurationGOOGLE,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_refresh_cycle_duration_google;
-	let _: Signature = vk::core::get_refresh_cycle_duration_google;
 	let _: Signature = vk::Device::get_refresh_cycle_duration_google;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -16577,7 +16314,6 @@ fn get_past_presentation_timing_google_signature_and_missing_command() {
 		*mut vk::PastPresentationTimingGOOGLE,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_past_presentation_timing_google;
-	let _: Signature = vk::core::get_past_presentation_timing_google;
 	let _: Signature = vk::Device::get_past_presentation_timing_google;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -16691,7 +16427,6 @@ fn create_ios_surface_mvk_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_ios_surface_mvk;
-	let _: Signature = vk::core::create_ios_surface_mvk;
 	let _: Signature = vk::Instance::create_ios_surface_mvk;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -16805,7 +16540,6 @@ fn create_mac_os_surface_mvk_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_mac_os_surface_mvk;
-	let _: Signature = vk::core::create_mac_os_surface_mvk;
 	let _: Signature = vk::Instance::create_mac_os_surface_mvk;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -16919,7 +16653,6 @@ fn create_metal_surface_ext_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_metal_surface_ext;
-	let _: Signature = vk::core::create_metal_surface_ext;
 	let _: Signature = vk::Instance::create_metal_surface_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -17033,7 +16766,6 @@ fn cmd_set_viewport_w_scaling_nv_signature_and_missing_command() {
 		*const vk::ViewportWScalingNV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_viewport_w_scaling_nv;
-	let _: Signature = vk::core::cmd_set_viewport_w_scaling_nv;
 	let _: Signature = vk::Device::cmd_set_viewport_w_scaling_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -17118,7 +16850,6 @@ fn cmd_set_discard_rectangle_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, u32, *const vk::Rect2D) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_discard_rectangle_ext;
-	let _: Signature = vk::core::cmd_set_discard_rectangle_ext;
 	let _: Signature = vk::Device::cmd_set_discard_rectangle_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -17199,7 +16930,6 @@ fn cmd_set_discard_rectangle_ext_native_forwarding() {
 fn cmd_set_discard_rectangle_enable_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_discard_rectangle_enable_ext;
-	let _: Signature = vk::core::cmd_set_discard_rectangle_enable_ext;
 	let _: Signature = vk::Device::cmd_set_discard_rectangle_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -17269,7 +16999,6 @@ fn cmd_set_discard_rectangle_mode_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::DiscardRectangleModeEXT) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_discard_rectangle_mode_ext;
-	let _: Signature = vk::core::cmd_set_discard_rectangle_mode_ext;
 	let _: Signature = vk::Device::cmd_set_discard_rectangle_mode_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -17336,7 +17065,6 @@ fn cmd_set_sample_locations_ext_signature_and_missing_command() {
 		*const vk::SampleLocationsInfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_sample_locations_ext;
-	let _: Signature = vk::core::cmd_set_sample_locations_ext;
 	let _: Signature = vk::Device::cmd_set_sample_locations_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -17413,7 +17141,6 @@ fn get_physical_device_multisample_properties_ext_signature_and_missing_command(
 		*mut vk::MultisamplePropertiesEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_multisample_properties_ext;
-	let _: Signature = vk::core::get_physical_device_multisample_properties_ext;
 	let _: Signature = vk::Instance::get_physical_device_multisample_properties_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -17504,7 +17231,6 @@ fn get_physical_device_surface_capabilities2_khr_signature_and_missing_command()
 		*mut vk::SurfaceCapabilities2KHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_surface_capabilities2_khr;
-	let _: Signature = vk::core::get_physical_device_surface_capabilities2_khr;
 	let _: Signature = vk::Instance::get_physical_device_surface_capabilities2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -17621,7 +17347,6 @@ fn get_physical_device_surface_formats2_khr_signature_and_missing_command() {
 		*mut vk::SurfaceFormat2KHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_surface_formats2_khr;
-	let _: Signature = vk::core::get_physical_device_surface_formats2_khr;
 	let _: Signature = vk::Instance::get_physical_device_surface_formats2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -17743,7 +17468,6 @@ fn get_physical_device_display_properties2_khr_signature_and_missing_command() {
 		*mut vk::DisplayProperties2KHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_display_properties2_khr;
-	let _: Signature = vk::core::get_physical_device_display_properties2_khr;
 	let _: Signature = vk::Instance::get_physical_device_display_properties2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -17856,7 +17580,6 @@ fn get_physical_device_display_plane_properties2_khr_signature_and_missing_comma
 		*mut vk::DisplayPlaneProperties2KHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_display_plane_properties2_khr;
-	let _: Signature = vk::core::get_physical_device_display_plane_properties2_khr;
 	let _: Signature = vk::Instance::get_physical_device_display_plane_properties2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -17971,7 +17694,6 @@ fn get_display_mode_properties2_khr_signature_and_missing_command() {
 		*mut vk::DisplayModeProperties2KHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_display_mode_properties2_khr;
-	let _: Signature = vk::core::get_display_mode_properties2_khr;
 	let _: Signature = vk::Instance::get_display_mode_properties2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -18082,7 +17804,6 @@ fn get_display_plane_capabilities2_khr_signature_and_missing_command() {
 		*mut vk::DisplayPlaneCapabilities2KHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_display_plane_capabilities2_khr;
-	let _: Signature = vk::core::get_display_plane_capabilities2_khr;
 	let _: Signature = vk::Instance::get_display_plane_capabilities2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -18195,7 +17916,6 @@ fn get_buffer_memory_requirements2_signature_and_missing_command() {
 		&mut vk::MemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_buffer_memory_requirements2;
-	let _: Signature = vk::core::get_buffer_memory_requirements2;
 	let _: Signature = vk::Device::get_buffer_memory_requirements2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -18226,7 +17946,6 @@ fn get_buffer_memory_requirements2_khr_signature_and_missing_command() {
 		&mut vk::MemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_buffer_memory_requirements2_khr;
-	let _: Signature = vk::core::get_buffer_memory_requirements2_khr;
 	let _: Signature = vk::Device::get_buffer_memory_requirements2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -18261,7 +17980,6 @@ fn get_image_memory_requirements2_signature_and_missing_command() {
 		&mut vk::MemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_image_memory_requirements2;
-	let _: Signature = vk::core::get_image_memory_requirements2;
 	let _: Signature = vk::Device::get_image_memory_requirements2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -18292,7 +18010,6 @@ fn get_image_memory_requirements2_khr_signature_and_missing_command() {
 		&mut vk::MemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_image_memory_requirements2_khr;
-	let _: Signature = vk::core::get_image_memory_requirements2_khr;
 	let _: Signature = vk::Device::get_image_memory_requirements2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -18328,7 +18045,6 @@ fn get_image_sparse_memory_requirements2_signature_and_missing_command() {
 		Option<&mut [vk::SparseImageMemoryRequirements2]>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_image_sparse_memory_requirements2;
-	let _: Signature = vk::core::get_image_sparse_memory_requirements2;
 	let _: Signature = vk::Device::get_image_sparse_memory_requirements2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -18366,7 +18082,6 @@ fn get_image_sparse_memory_requirements2_khr_signature_and_missing_command() {
 		Option<&mut [vk::SparseImageMemoryRequirements2]>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_image_sparse_memory_requirements2_khr;
-	let _: Signature = vk::core::get_image_sparse_memory_requirements2_khr;
 	let _: Signature = vk::Device::get_image_sparse_memory_requirements2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -18403,7 +18118,6 @@ fn get_device_buffer_memory_requirements_signature_and_missing_command() {
 		*mut vk::MemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_device_buffer_memory_requirements;
-	let _: Signature = vk::core::get_device_buffer_memory_requirements;
 	let _: Signature = vk::Device::get_device_buffer_memory_requirements;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -18492,7 +18206,6 @@ fn get_device_buffer_memory_requirements_khr_signature_and_missing_command() {
 		*mut vk::MemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_device_buffer_memory_requirements_khr;
-	let _: Signature = vk::core::get_device_buffer_memory_requirements_khr;
 	let _: Signature = vk::Device::get_device_buffer_memory_requirements_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -18581,7 +18294,6 @@ fn get_device_image_memory_requirements_signature_and_missing_command() {
 		*mut vk::MemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_device_image_memory_requirements;
-	let _: Signature = vk::core::get_device_image_memory_requirements;
 	let _: Signature = vk::Device::get_device_image_memory_requirements;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -18670,7 +18382,6 @@ fn get_device_image_memory_requirements_khr_signature_and_missing_command() {
 		*mut vk::MemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_device_image_memory_requirements_khr;
-	let _: Signature = vk::core::get_device_image_memory_requirements_khr;
 	let _: Signature = vk::Device::get_device_image_memory_requirements_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -18760,7 +18471,6 @@ fn get_device_image_sparse_memory_requirements_signature_and_missing_command() {
 		*mut vk::SparseImageMemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_device_image_sparse_memory_requirements;
-	let _: Signature = vk::core::get_device_image_sparse_memory_requirements;
 	let _: Signature = vk::Device::get_device_image_sparse_memory_requirements;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -18858,7 +18568,6 @@ fn get_device_image_sparse_memory_requirements_khr_signature_and_missing_command
 		*mut vk::SparseImageMemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_device_image_sparse_memory_requirements_khr;
-	let _: Signature = vk::core::get_device_image_sparse_memory_requirements_khr;
 	let _: Signature = vk::Device::get_device_image_sparse_memory_requirements_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -18957,7 +18666,6 @@ fn create_sampler_ycbcr_conversion_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::SamplerYcbcrConversion, CallError>;
 	let _: Signature = vk::create_sampler_ycbcr_conversion;
-	let _: Signature = vk::core::create_sampler_ycbcr_conversion;
 	let _: Signature = vk::Device::create_sampler_ycbcr_conversion;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -18988,7 +18696,6 @@ fn create_sampler_ycbcr_conversion_khr_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::SamplerYcbcrConversion, CallError>;
 	let _: Signature = vk::create_sampler_ycbcr_conversion_khr;
-	let _: Signature = vk::core::create_sampler_ycbcr_conversion_khr;
 	let _: Signature = vk::Device::create_sampler_ycbcr_conversion_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -19023,7 +18730,6 @@ fn destroy_sampler_ycbcr_conversion_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_sampler_ycbcr_conversion;
-	let _: Signature = vk::core::destroy_sampler_ycbcr_conversion;
 	let _: Signature = vk::Device::destroy_sampler_ycbcr_conversion;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -19049,7 +18755,6 @@ fn destroy_sampler_ycbcr_conversion_khr_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_sampler_ycbcr_conversion_khr;
-	let _: Signature = vk::core::destroy_sampler_ycbcr_conversion_khr;
 	let _: Signature = vk::Device::destroy_sampler_ycbcr_conversion_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -19076,7 +18781,6 @@ fn get_device_queue2_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, &vk::DeviceQueueInfo2, &mut vk::Queue) -> Result<(), CallError>;
 	let _: Signature = vk::get_device_queue2;
-	let _: Signature = vk::core::get_device_queue2;
 	let _: Signature = vk::Device::get_device_queue2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -19108,7 +18812,6 @@ fn create_validation_cache_ext_signature_and_missing_command() {
 		*mut vk::ValidationCacheEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_validation_cache_ext;
-	let _: Signature = vk::core::create_validation_cache_ext;
 	let _: Signature = vk::Device::create_validation_cache_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -19222,7 +18925,6 @@ fn destroy_validation_cache_ext_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_validation_cache_ext;
-	let _: Signature = vk::core::destroy_validation_cache_ext;
 	let _: Signature = vk::Device::destroy_validation_cache_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -19301,7 +19003,6 @@ fn get_validation_cache_data_ext_signature_and_missing_command() {
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_validation_cache_data_ext;
-	let _: Signature = vk::core::get_validation_cache_data_ext;
 	let _: Signature = vk::Device::get_validation_cache_data_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -19405,7 +19106,6 @@ fn merge_validation_caches_ext_signature_and_missing_command() {
 		*const vk::ValidationCacheEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::merge_validation_caches_ext;
-	let _: Signature = vk::core::merge_validation_caches_ext;
 	let _: Signature = vk::Device::merge_validation_caches_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -19509,7 +19209,6 @@ fn get_descriptor_set_layout_support_signature_and_missing_command() {
 		&mut vk::DescriptorSetLayoutSupport,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_descriptor_set_layout_support;
-	let _: Signature = vk::core::get_descriptor_set_layout_support;
 	let _: Signature = vk::Device::get_descriptor_set_layout_support;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -19540,7 +19239,6 @@ fn get_descriptor_set_layout_support_khr_signature_and_missing_command() {
 		&mut vk::DescriptorSetLayoutSupport,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_descriptor_set_layout_support_khr;
-	let _: Signature = vk::core::get_descriptor_set_layout_support_khr;
 	let _: Signature = vk::Device::get_descriptor_set_layout_support_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -19578,7 +19276,6 @@ fn get_shader_info_amd_signature_and_missing_command() {
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_shader_info_amd;
-	let _: Signature = vk::core::get_shader_info_amd;
 	let _: Signature = vk::Device::get_shader_info_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -19688,7 +19385,6 @@ fn get_shader_info_amd_native_forwarding() {
 fn set_local_dimming_amd_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::SwapchainKHR, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::set_local_dimming_amd;
-	let _: Signature = vk::core::set_local_dimming_amd;
 	let _: Signature = vk::Device::set_local_dimming_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -19760,7 +19456,6 @@ fn get_physical_device_calibrateable_time_domains_khr_signature_and_missing_comm
 		*mut vk::TimeDomainKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_calibrateable_time_domains_khr;
-	let _: Signature = vk::core::get_physical_device_calibrateable_time_domains_khr;
 	let _: Signature = vk::Instance::get_physical_device_calibrateable_time_domains_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -19871,7 +19566,6 @@ fn get_physical_device_calibrateable_time_domains_ext_signature_and_missing_comm
 		*mut vk::TimeDomainKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_calibrateable_time_domains_ext;
-	let _: Signature = vk::core::get_physical_device_calibrateable_time_domains_ext;
 	let _: Signature = vk::Instance::get_physical_device_calibrateable_time_domains_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -19983,7 +19677,6 @@ fn get_calibrated_timestamps_khr_signature_and_missing_command() {
 		*mut u64,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_calibrated_timestamps_khr;
-	let _: Signature = vk::core::get_calibrated_timestamps_khr;
 	let _: Signature = vk::Device::get_calibrated_timestamps_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -20099,7 +19792,6 @@ fn get_calibrated_timestamps_ext_signature_and_missing_command() {
 		*mut u64,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_calibrated_timestamps_ext;
-	let _: Signature = vk::core::get_calibrated_timestamps_ext;
 	let _: Signature = vk::Device::get_calibrated_timestamps_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -20210,7 +19902,6 @@ fn set_debug_utils_object_name_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::DebugUtilsObjectNameInfoEXT) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::set_debug_utils_object_name_ext;
-	let _: Signature = vk::core::set_debug_utils_object_name_ext;
 	let _: Signature = vk::Device::set_debug_utils_object_name_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -20301,7 +19992,6 @@ fn set_debug_utils_object_tag_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::DebugUtilsObjectTagInfoEXT) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::set_debug_utils_object_tag_ext;
-	let _: Signature = vk::core::set_debug_utils_object_tag_ext;
 	let _: Signature = vk::Device::set_debug_utils_object_tag_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -20390,7 +20080,6 @@ fn queue_begin_debug_utils_label_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Queue, *const vk::DebugUtilsLabelEXT) -> Result<(), CallError>;
 	let _: Signature = vk::queue_begin_debug_utils_label_ext;
-	let _: Signature = vk::core::queue_begin_debug_utils_label_ext;
 	let _: Signature = vk::Device::queue_begin_debug_utils_label_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -20459,7 +20148,6 @@ fn queue_begin_debug_utils_label_ext_native_forwarding() {
 fn queue_end_debug_utils_label_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::Queue) -> Result<(), CallError>;
 	let _: Signature = vk::queue_end_debug_utils_label_ext;
-	let _: Signature = vk::core::queue_end_debug_utils_label_ext;
 	let _: Signature = vk::Device::queue_end_debug_utils_label_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -20509,7 +20197,6 @@ fn queue_insert_debug_utils_label_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Queue, *const vk::DebugUtilsLabelEXT) -> Result<(), CallError>;
 	let _: Signature = vk::queue_insert_debug_utils_label_ext;
-	let _: Signature = vk::core::queue_insert_debug_utils_label_ext;
 	let _: Signature = vk::Device::queue_insert_debug_utils_label_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -20582,7 +20269,6 @@ fn cmd_begin_debug_utils_label_ext_signature_and_missing_command() {
 		*const vk::DebugUtilsLabelEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_debug_utils_label_ext;
-	let _: Signature = vk::core::cmd_begin_debug_utils_label_ext;
 	let _: Signature = vk::Device::cmd_begin_debug_utils_label_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -20651,7 +20337,6 @@ fn cmd_begin_debug_utils_label_ext_native_forwarding() {
 fn cmd_end_debug_utils_label_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_debug_utils_label_ext;
-	let _: Signature = vk::core::cmd_end_debug_utils_label_ext;
 	let _: Signature = vk::Device::cmd_end_debug_utils_label_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -20707,7 +20392,6 @@ fn cmd_insert_debug_utils_label_ext_signature_and_missing_command() {
 		*const vk::DebugUtilsLabelEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_insert_debug_utils_label_ext;
-	let _: Signature = vk::core::cmd_insert_debug_utils_label_ext;
 	let _: Signature = vk::Device::cmd_insert_debug_utils_label_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -20781,7 +20465,6 @@ fn create_debug_utils_messenger_ext_signature_and_missing_command() {
 		*mut vk::DebugUtilsMessengerEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_debug_utils_messenger_ext;
-	let _: Signature = vk::core::create_debug_utils_messenger_ext;
 	let _: Signature = vk::Instance::create_debug_utils_messenger_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -20895,7 +20578,6 @@ fn destroy_debug_utils_messenger_ext_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_debug_utils_messenger_ext;
-	let _: Signature = vk::core::destroy_debug_utils_messenger_ext;
 	let _: Signature = vk::Instance::destroy_debug_utils_messenger_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -20974,7 +20656,6 @@ fn submit_debug_utils_message_ext_signature_and_missing_command() {
 		*const vk::DebugUtilsMessengerCallbackDataEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::submit_debug_utils_message_ext;
-	let _: Signature = vk::core::submit_debug_utils_message_ext;
 	let _: Signature = vk::Instance::submit_debug_utils_message_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21059,7 +20740,6 @@ fn get_memory_host_pointer_properties_ext_signature_and_missing_command() {
 		*mut vk::MemoryHostPointerPropertiesEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_memory_host_pointer_properties_ext;
-	let _: Signature = vk::core::get_memory_host_pointer_properties_ext;
 	let _: Signature = vk::Device::get_memory_host_pointer_properties_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21177,7 +20857,6 @@ fn cmd_write_buffer_marker_amd_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_write_buffer_marker_amd;
-	let _: Signature = vk::core::cmd_write_buffer_marker_amd;
 	let _: Signature = vk::Device::cmd_write_buffer_marker_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21265,7 +20944,6 @@ fn create_render_pass2_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::RenderPass, CallError>;
 	let _: Signature = vk::create_render_pass2;
-	let _: Signature = vk::core::create_render_pass2;
 	let _: Signature = vk::Device::create_render_pass2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21295,7 +20973,6 @@ fn create_render_pass2_khr_signature_and_missing_command() {
 		Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::RenderPass, CallError>;
 	let _: Signature = vk::create_render_pass2_khr;
-	let _: Signature = vk::core::create_render_pass2_khr;
 	let _: Signature = vk::Device::create_render_pass2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21326,7 +21003,6 @@ fn cmd_begin_render_pass2_signature_and_missing_command() {
 		&vk::SubpassBeginInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_render_pass2;
-	let _: Signature = vk::core::cmd_begin_render_pass2;
 	let _: Signature = vk::Device::cmd_begin_render_pass2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21360,7 +21036,6 @@ fn cmd_begin_render_pass2_khr_signature_and_missing_command() {
 		&vk::SubpassBeginInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_render_pass2_khr;
-	let _: Signature = vk::core::cmd_begin_render_pass2_khr;
 	let _: Signature = vk::Device::cmd_begin_render_pass2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21394,7 +21069,6 @@ fn cmd_next_subpass2_signature_and_missing_command() {
 		&vk::SubpassEndInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_next_subpass2;
-	let _: Signature = vk::core::cmd_next_subpass2;
 	let _: Signature = vk::Device::cmd_next_subpass2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21428,7 +21102,6 @@ fn cmd_next_subpass2_khr_signature_and_missing_command() {
 		&vk::SubpassEndInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_next_subpass2_khr;
-	let _: Signature = vk::core::cmd_next_subpass2_khr;
 	let _: Signature = vk::Device::cmd_next_subpass2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21458,7 +21131,6 @@ fn cmd_end_render_pass2_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::SubpassEndInfo) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_render_pass2;
-	let _: Signature = vk::core::cmd_end_render_pass2;
 	let _: Signature = vk::Device::cmd_end_render_pass2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21486,7 +21158,6 @@ fn cmd_end_render_pass2_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::SubpassEndInfo) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_render_pass2_khr;
-	let _: Signature = vk::core::cmd_end_render_pass2_khr;
 	let _: Signature = vk::Device::cmd_end_render_pass2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21513,7 +21184,6 @@ fn cmd_end_render_pass2_khr_signature_and_missing_command() {
 fn get_semaphore_counter_value_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::Semaphore, &mut u64) -> Result<(), CallError>;
 	let _: Signature = vk::get_semaphore_counter_value;
-	let _: Signature = vk::core::get_semaphore_counter_value;
 	let _: Signature = vk::Device::get_semaphore_counter_value;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21539,7 +21209,6 @@ fn get_semaphore_counter_value_signature_and_missing_command() {
 fn get_semaphore_counter_value_khr_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::Semaphore, &mut u64) -> Result<(), CallError>;
 	let _: Signature = vk::get_semaphore_counter_value_khr;
-	let _: Signature = vk::core::get_semaphore_counter_value_khr;
 	let _: Signature = vk::Device::get_semaphore_counter_value_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21566,7 +21235,6 @@ fn wait_semaphores_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, &vk::SemaphoreWaitInfo, u64) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::wait_semaphores;
-	let _: Signature = vk::core::wait_semaphores;
 	let _: Signature = vk::Device::wait_semaphores;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21594,7 +21262,6 @@ fn wait_semaphores_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, &vk::SemaphoreWaitInfo, u64) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::wait_semaphores_khr;
-	let _: Signature = vk::core::wait_semaphores_khr;
 	let _: Signature = vk::Device::wait_semaphores_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21621,7 +21288,6 @@ fn wait_semaphores_khr_signature_and_missing_command() {
 fn signal_semaphore_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, &vk::SemaphoreSignalInfo) -> Result<(), CallError>;
 	let _: Signature = vk::signal_semaphore;
-	let _: Signature = vk::core::signal_semaphore;
 	let _: Signature = vk::Device::signal_semaphore;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21646,7 +21312,6 @@ fn signal_semaphore_signature_and_missing_command() {
 fn signal_semaphore_khr_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, &vk::SemaphoreSignalInfo) -> Result<(), CallError>;
 	let _: Signature = vk::signal_semaphore_khr;
-	let _: Signature = vk::core::signal_semaphore_khr;
 	let _: Signature = vk::Device::signal_semaphore_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21676,7 +21341,6 @@ fn get_android_hardware_buffer_properties_android_signature_and_missing_command(
 		*mut vk::AndroidHardwareBufferPropertiesANDROID,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_android_hardware_buffer_properties_android;
-	let _: Signature = vk::core::get_android_hardware_buffer_properties_android;
 	let _: Signature = vk::Device::get_android_hardware_buffer_properties_android;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21789,7 +21453,6 @@ fn get_memory_android_hardware_buffer_android_signature_and_missing_command() {
 		*mut *mut vk::AHardwareBuffer,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_memory_android_hardware_buffer_android;
-	let _: Signature = vk::core::get_memory_android_hardware_buffer_android;
 	let _: Signature = vk::Device::get_memory_android_hardware_buffer_android;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21904,7 +21567,6 @@ fn cmd_draw_indirect_count_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_indirect_count;
-	let _: Signature = vk::core::cmd_draw_indirect_count;
 	let _: Signature = vk::Device::cmd_draw_indirect_count;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21950,7 +21612,6 @@ fn cmd_draw_indirect_count_khr_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_indirect_count_khr;
-	let _: Signature = vk::core::cmd_draw_indirect_count_khr;
 	let _: Signature = vk::Device::cmd_draw_indirect_count_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -21996,7 +21657,6 @@ fn cmd_draw_indirect_count_amd_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_indirect_count_amd;
-	let _: Signature = vk::core::cmd_draw_indirect_count_amd;
 	let _: Signature = vk::Device::cmd_draw_indirect_count_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -22042,7 +21702,6 @@ fn cmd_draw_indexed_indirect_count_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_indexed_indirect_count;
-	let _: Signature = vk::core::cmd_draw_indexed_indirect_count;
 	let _: Signature = vk::Device::cmd_draw_indexed_indirect_count;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -22088,7 +21747,6 @@ fn cmd_draw_indexed_indirect_count_khr_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_indexed_indirect_count_khr;
-	let _: Signature = vk::core::cmd_draw_indexed_indirect_count_khr;
 	let _: Signature = vk::Device::cmd_draw_indexed_indirect_count_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -22138,7 +21796,6 @@ fn cmd_draw_indexed_indirect_count_amd_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_indexed_indirect_count_amd;
-	let _: Signature = vk::core::cmd_draw_indexed_indirect_count_amd;
 	let _: Signature = vk::Device::cmd_draw_indexed_indirect_count_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -22180,7 +21837,6 @@ fn cmd_set_checkpoint_nv_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, *const std::ffi::c_void) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_checkpoint_nv;
-	let _: Signature = vk::core::cmd_set_checkpoint_nv;
 	let _: Signature = vk::Device::cmd_set_checkpoint_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -22247,7 +21903,6 @@ fn get_queue_checkpoint_data_nv_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Queue, *mut u32, *mut vk::CheckpointDataNV) -> Result<(), CallError>;
 	let _: Signature = vk::get_queue_checkpoint_data_nv;
-	let _: Signature = vk::core::get_queue_checkpoint_data_nv;
 	let _: Signature = vk::Device::get_queue_checkpoint_data_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -22333,7 +21988,6 @@ fn cmd_bind_transform_feedback_buffers_ext_signature_and_missing_command() {
 		*const vk::DeviceSize,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_transform_feedback_buffers_ext;
-	let _: Signature = vk::core::cmd_bind_transform_feedback_buffers_ext;
 	let _: Signature = vk::Device::cmd_bind_transform_feedback_buffers_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -22443,7 +22097,6 @@ fn cmd_begin_transform_feedback_ext_signature_and_missing_command() {
 		*const vk::DeviceSize,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_transform_feedback_ext;
-	let _: Signature = vk::core::cmd_begin_transform_feedback_ext;
 	let _: Signature = vk::Device::cmd_begin_transform_feedback_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -22539,7 +22192,6 @@ fn cmd_end_transform_feedback_ext_signature_and_missing_command() {
 		*const vk::DeviceSize,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_transform_feedback_ext;
-	let _: Signature = vk::core::cmd_end_transform_feedback_ext;
 	let _: Signature = vk::Device::cmd_end_transform_feedback_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -22635,7 +22287,6 @@ fn cmd_begin_query_indexed_ext_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_query_indexed_ext;
-	let _: Signature = vk::core::cmd_begin_query_indexed_ext;
 	let _: Signature = vk::Device::cmd_begin_query_indexed_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -22720,7 +22371,6 @@ fn cmd_end_query_indexed_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::QueryPool, u32, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_query_indexed_ext;
-	let _: Signature = vk::core::cmd_end_query_indexed_ext;
 	let _: Signature = vk::Device::cmd_end_query_indexed_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -22807,7 +22457,6 @@ fn cmd_draw_indirect_byte_count_ext_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_indirect_byte_count_ext;
-	let _: Signature = vk::core::cmd_draw_indirect_byte_count_ext;
 	let _: Signature = vk::Device::cmd_draw_indirect_byte_count_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -22904,7 +22553,6 @@ fn cmd_set_exclusive_scissor_nv_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, u32, *const vk::Rect2D) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_exclusive_scissor_nv;
-	let _: Signature = vk::core::cmd_set_exclusive_scissor_nv;
 	let _: Signature = vk::Device::cmd_set_exclusive_scissor_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -22986,7 +22634,6 @@ fn cmd_set_exclusive_scissor_enable_nv_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, u32, *const vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_exclusive_scissor_enable_nv;
-	let _: Signature = vk::core::cmd_set_exclusive_scissor_enable_nv;
 	let _: Signature = vk::Device::cmd_set_exclusive_scissor_enable_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -23078,7 +22725,6 @@ fn cmd_bind_shading_rate_image_nv_signature_and_missing_command() {
 		vk::ImageLayout,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_shading_rate_image_nv;
-	let _: Signature = vk::core::cmd_bind_shading_rate_image_nv;
 	let _: Signature = vk::Device::cmd_bind_shading_rate_image_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -23156,7 +22802,6 @@ fn cmd_set_viewport_shading_rate_palette_nv_signature_and_missing_command() {
 		*const vk::ShadingRatePaletteNV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_viewport_shading_rate_palette_nv;
-	let _: Signature = vk::core::cmd_set_viewport_shading_rate_palette_nv;
 	let _: Signature = vk::Device::cmd_set_viewport_shading_rate_palette_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -23252,7 +22897,6 @@ fn cmd_set_coarse_sample_order_nv_signature_and_missing_command() {
 		*const vk::CoarseSampleOrderCustomNV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_coarse_sample_order_nv;
-	let _: Signature = vk::core::cmd_set_coarse_sample_order_nv;
 	let _: Signature = vk::Device::cmd_set_coarse_sample_order_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -23336,7 +22980,6 @@ fn cmd_set_coarse_sample_order_nv_native_forwarding() {
 fn cmd_draw_mesh_tasks_nv_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, u32, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_mesh_tasks_nv;
-	let _: Signature = vk::core::cmd_draw_mesh_tasks_nv;
 	let _: Signature = vk::Device::cmd_draw_mesh_tasks_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -23410,7 +23053,6 @@ fn cmd_draw_mesh_tasks_indirect_nv_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_mesh_tasks_indirect_nv;
-	let _: Signature = vk::core::cmd_draw_mesh_tasks_indirect_nv;
 	let _: Signature = vk::Device::cmd_draw_mesh_tasks_indirect_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -23503,7 +23145,6 @@ fn cmd_draw_mesh_tasks_indirect_count_nv_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_mesh_tasks_indirect_count_nv;
-	let _: Signature = vk::core::cmd_draw_mesh_tasks_indirect_count_nv;
 	let _: Signature = vk::Device::cmd_draw_mesh_tasks_indirect_count_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -23606,7 +23247,6 @@ fn cmd_draw_mesh_tasks_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, u32, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_mesh_tasks_ext;
-	let _: Signature = vk::core::cmd_draw_mesh_tasks_ext;
 	let _: Signature = vk::Device::cmd_draw_mesh_tasks_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -23686,7 +23326,6 @@ fn cmd_draw_mesh_tasks_indirect_ext_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_mesh_tasks_indirect_ext;
-	let _: Signature = vk::core::cmd_draw_mesh_tasks_indirect_ext;
 	let _: Signature = vk::Device::cmd_draw_mesh_tasks_indirect_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -23779,7 +23418,6 @@ fn cmd_draw_mesh_tasks_indirect_count_ext_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_mesh_tasks_indirect_count_ext;
-	let _: Signature = vk::core::cmd_draw_mesh_tasks_indirect_count_ext;
 	let _: Signature = vk::Device::cmd_draw_mesh_tasks_indirect_count_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -23881,7 +23519,6 @@ fn cmd_draw_mesh_tasks_indirect_count_ext_native_forwarding() {
 fn compile_deferred_nv_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::Pipeline, u32) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::compile_deferred_nv;
-	let _: Signature = vk::core::compile_deferred_nv;
 	let _: Signature = vk::Device::compile_deferred_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -23973,7 +23610,6 @@ fn create_acceleration_structure_nv_signature_and_missing_command() {
 		*mut vk::AccelerationStructureNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_acceleration_structure_nv;
-	let _: Signature = vk::core::create_acceleration_structure_nv;
 	let _: Signature = vk::Device::create_acceleration_structure_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -24088,7 +23724,6 @@ fn cmd_bind_invocation_mask_huawei_signature_and_missing_command() {
 		vk::ImageLayout,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_invocation_mask_huawei;
-	let _: Signature = vk::core::cmd_bind_invocation_mask_huawei;
 	let _: Signature = vk::Device::cmd_bind_invocation_mask_huawei;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -24164,7 +23799,6 @@ fn destroy_acceleration_structure_khr_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_acceleration_structure_khr;
-	let _: Signature = vk::core::destroy_acceleration_structure_khr;
 	let _: Signature = vk::Device::destroy_acceleration_structure_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -24248,7 +23882,6 @@ fn destroy_acceleration_structure_nv_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_acceleration_structure_nv;
-	let _: Signature = vk::core::destroy_acceleration_structure_nv;
 	let _: Signature = vk::Device::destroy_acceleration_structure_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -24332,7 +23965,6 @@ fn get_acceleration_structure_memory_requirements_nv_signature_and_missing_comma
 		*mut vk::MemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_acceleration_structure_memory_requirements_nv;
-	let _: Signature = vk::core::get_acceleration_structure_memory_requirements_nv;
 	let _: Signature = vk::Device::get_acceleration_structure_memory_requirements_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -24424,7 +24056,6 @@ fn bind_acceleration_structure_memory_nv_signature_and_missing_command() {
 		*const vk::BindAccelerationStructureMemoryInfoNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::bind_acceleration_structure_memory_nv;
-	let _: Signature = vk::core::bind_acceleration_structure_memory_nv;
 	let _: Signature = vk::Device::bind_acceleration_structure_memory_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -24530,7 +24161,6 @@ fn cmd_copy_acceleration_structure_nv_signature_and_missing_command() {
 		vk::CopyAccelerationStructureModeKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_acceleration_structure_nv;
-	let _: Signature = vk::core::cmd_copy_acceleration_structure_nv;
 	let _: Signature = vk::Device::cmd_copy_acceleration_structure_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -24618,7 +24248,6 @@ fn cmd_copy_acceleration_structure_khr_signature_and_missing_command() {
 		*const vk::CopyAccelerationStructureInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_acceleration_structure_khr;
-	let _: Signature = vk::core::cmd_copy_acceleration_structure_khr;
 	let _: Signature = vk::Device::cmd_copy_acceleration_structure_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -24700,7 +24329,6 @@ fn copy_acceleration_structure_khr_signature_and_missing_command() {
 		*const vk::CopyAccelerationStructureInfoKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::copy_acceleration_structure_khr;
-	let _: Signature = vk::core::copy_acceleration_structure_khr;
 	let _: Signature = vk::Device::copy_acceleration_structure_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -24798,7 +24426,6 @@ fn cmd_copy_acceleration_structure_to_memory_khr_signature_and_missing_command()
 		*const vk::CopyAccelerationStructureToMemoryInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_acceleration_structure_to_memory_khr;
-	let _: Signature = vk::core::cmd_copy_acceleration_structure_to_memory_khr;
 	let _: Signature = vk::Device::cmd_copy_acceleration_structure_to_memory_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -24882,7 +24509,6 @@ fn copy_acceleration_structure_to_memory_khr_signature_and_missing_command() {
 		*const vk::CopyAccelerationStructureToMemoryInfoKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::copy_acceleration_structure_to_memory_khr;
-	let _: Signature = vk::core::copy_acceleration_structure_to_memory_khr;
 	let _: Signature = vk::Device::copy_acceleration_structure_to_memory_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -24986,7 +24612,6 @@ fn cmd_copy_memory_to_acceleration_structure_khr_signature_and_missing_command()
 		*const vk::CopyMemoryToAccelerationStructureInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_memory_to_acceleration_structure_khr;
-	let _: Signature = vk::core::cmd_copy_memory_to_acceleration_structure_khr;
 	let _: Signature = vk::Device::cmd_copy_memory_to_acceleration_structure_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -25070,7 +24695,6 @@ fn copy_memory_to_acceleration_structure_khr_signature_and_missing_command() {
 		*const vk::CopyMemoryToAccelerationStructureInfoKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::copy_memory_to_acceleration_structure_khr;
-	let _: Signature = vk::core::copy_memory_to_acceleration_structure_khr;
 	let _: Signature = vk::Device::copy_memory_to_acceleration_structure_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -25178,7 +24802,6 @@ fn cmd_write_acceleration_structures_properties_khr_signature_and_missing_comman
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_write_acceleration_structures_properties_khr;
-	let _: Signature = vk::core::cmd_write_acceleration_structures_properties_khr;
 	let _: Signature = vk::Device::cmd_write_acceleration_structures_properties_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -25290,7 +24913,6 @@ fn cmd_write_acceleration_structures_properties_nv_signature_and_missing_command
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_write_acceleration_structures_properties_nv;
-	let _: Signature = vk::core::cmd_write_acceleration_structures_properties_nv;
 	let _: Signature = vk::Device::cmd_write_acceleration_structures_properties_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -25405,7 +25027,6 @@ fn cmd_build_acceleration_structure_nv_signature_and_missing_command() {
 		vk::DeviceSize,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_build_acceleration_structure_nv;
-	let _: Signature = vk::core::cmd_build_acceleration_structure_nv;
 	let _: Signature = vk::Device::cmd_build_acceleration_structure_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -25534,7 +25155,6 @@ fn write_acceleration_structures_properties_khr_signature_and_missing_command() 
 		usize,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::write_acceleration_structures_properties_khr;
-	let _: Signature = vk::core::write_acceleration_structures_properties_khr;
 	let _: Signature = vk::Device::write_acceleration_structures_properties_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -25669,7 +25289,6 @@ fn cmd_trace_rays_khr_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_trace_rays_khr;
-	let _: Signature = vk::core::cmd_trace_rays_khr;
 	let _: Signature = vk::Device::cmd_trace_rays_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -25809,7 +25428,6 @@ fn cmd_trace_rays_nv_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_trace_rays_nv;
-	let _: Signature = vk::core::cmd_trace_rays_nv;
 	let _: Signature = vk::Device::cmd_trace_rays_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -25961,7 +25579,6 @@ fn get_ray_tracing_shader_group_handles_khr_signature_and_missing_command() {
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_ray_tracing_shader_group_handles_khr;
-	let _: Signature = vk::core::get_ray_tracing_shader_group_handles_khr;
 	let _: Signature = vk::Device::get_ray_tracing_shader_group_handles_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -26083,7 +25700,6 @@ fn get_ray_tracing_shader_group_handles_nv_signature_and_missing_command() {
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_ray_tracing_shader_group_handles_nv;
-	let _: Signature = vk::core::get_ray_tracing_shader_group_handles_nv;
 	let _: Signature = vk::Device::get_ray_tracing_shader_group_handles_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -26205,7 +25821,6 @@ fn get_ray_tracing_capture_replay_shader_group_handles_khr_signature_and_missing
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_ray_tracing_capture_replay_shader_group_handles_khr;
-	let _: Signature = vk::core::get_ray_tracing_capture_replay_shader_group_handles_khr;
 	let _: Signature = vk::Device::get_ray_tracing_capture_replay_shader_group_handles_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -26328,7 +25943,6 @@ fn get_acceleration_structure_handle_nv_signature_and_missing_command() {
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_acceleration_structure_handle_nv;
-	let _: Signature = vk::core::get_acceleration_structure_handle_nv;
 	let _: Signature = vk::Device::get_acceleration_structure_handle_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -26438,7 +26052,6 @@ fn create_ray_tracing_pipelines_nv_signature_and_missing_command() {
 		*mut vk::Pipeline,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_ray_tracing_pipelines_nv;
-	let _: Signature = vk::core::create_ray_tracing_pipelines_nv;
 	let _: Signature = vk::Device::create_ray_tracing_pipelines_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -26565,7 +26178,6 @@ fn create_ray_tracing_pipelines_khr_signature_and_missing_command() {
 		*mut vk::Pipeline,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_ray_tracing_pipelines_khr;
-	let _: Signature = vk::core::create_ray_tracing_pipelines_khr;
 	let _: Signature = vk::Device::create_ray_tracing_pipelines_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -26695,7 +26307,6 @@ fn get_physical_device_cooperative_matrix_properties_nv_signature_and_missing_co
 		*mut vk::CooperativeMatrixPropertiesNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_cooperative_matrix_properties_nv;
-	let _: Signature = vk::core::get_physical_device_cooperative_matrix_properties_nv;
 	let _: Signature = vk::Instance::get_physical_device_cooperative_matrix_properties_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -26812,7 +26423,6 @@ fn cmd_trace_rays_indirect_khr_signature_and_missing_command() {
 		vk::DeviceAddress,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_trace_rays_indirect_khr;
-	let _: Signature = vk::core::cmd_trace_rays_indirect_khr;
 	let _: Signature = vk::Device::cmd_trace_rays_indirect_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -26923,7 +26533,6 @@ fn cmd_trace_rays_indirect2_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::DeviceAddress) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_trace_rays_indirect2_khr;
-	let _: Signature = vk::core::cmd_trace_rays_indirect2_khr;
 	let _: Signature = vk::Device::cmd_trace_rays_indirect2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -26990,7 +26599,6 @@ fn get_cluster_acceleration_structure_build_sizes_nv_signature_and_missing_comma
 		*mut vk::AccelerationStructureBuildSizesInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_cluster_acceleration_structure_build_sizes_nv;
-	let _: Signature = vk::core::get_cluster_acceleration_structure_build_sizes_nv;
 	let _: Signature = vk::Device::get_cluster_acceleration_structure_build_sizes_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -27082,7 +26690,6 @@ fn cmd_build_cluster_acceleration_structure_indirect_nv_signature_and_missing_co
 		*const vk::ClusterAccelerationStructureCommandsInfoNV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_build_cluster_acceleration_structure_indirect_nv;
-	let _: Signature = vk::core::cmd_build_cluster_acceleration_structure_indirect_nv;
 	let _: Signature = vk::Device::cmd_build_cluster_acceleration_structure_indirect_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -27167,7 +26774,6 @@ fn get_device_acceleration_structure_compatibility_khr_signature_and_missing_com
 		*mut vk::AccelerationStructureCompatibilityKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_device_acceleration_structure_compatibility_khr;
-	let _: Signature = vk::core::get_device_acceleration_structure_compatibility_khr;
 	let _: Signature = vk::Device::get_device_acceleration_structure_compatibility_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -27260,7 +26866,6 @@ fn get_ray_tracing_shader_group_stack_size_khr_signature_and_missing_command() {
 		vk::ShaderGroupShaderKHR,
 	) -> Result<vk::DeviceSize, CallError>;
 	let _: Signature = vk::get_ray_tracing_shader_group_stack_size_khr;
-	let _: Signature = vk::core::get_ray_tracing_shader_group_stack_size_khr;
 	let _: Signature = vk::Device::get_ray_tracing_shader_group_stack_size_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -27347,7 +26952,6 @@ fn get_ray_tracing_shader_group_stack_size_khr_native_forwarding() {
 fn cmd_set_ray_tracing_pipeline_stack_size_khr_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_ray_tracing_pipeline_stack_size_khr;
-	let _: Signature = vk::core::cmd_set_ray_tracing_pipeline_stack_size_khr;
 	let _: Signature = vk::Device::cmd_set_ray_tracing_pipeline_stack_size_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -27417,7 +27021,6 @@ fn get_image_view_handle_nvx_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::ImageViewHandleInfoNVX) -> Result<u32, CallError>;
 	let _: Signature = vk::get_image_view_handle_nvx;
-	let _: Signature = vk::core::get_image_view_handle_nvx;
 	let _: Signature = vk::Device::get_image_view_handle_nvx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -27493,7 +27096,6 @@ fn get_image_view_handle64_nvx_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::ImageViewHandleInfoNVX) -> Result<u64, CallError>;
 	let _: Signature = vk::get_image_view_handle64_nvx;
-	let _: Signature = vk::core::get_image_view_handle64_nvx;
 	let _: Signature = vk::Device::get_image_view_handle64_nvx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -27572,7 +27174,6 @@ fn get_image_view_address_nvx_signature_and_missing_command() {
 		*mut vk::ImageViewAddressPropertiesNVX,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_image_view_address_nvx;
-	let _: Signature = vk::core::get_image_view_address_nvx;
 	let _: Signature = vk::Device::get_image_view_address_nvx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -27666,7 +27267,6 @@ fn get_image_view_address_nvx_native_forwarding() {
 fn get_device_combined_image_sampler_index_nvx_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, u64, u64) -> Result<u64, CallError>;
 	let _: Signature = vk::get_device_combined_image_sampler_index_nvx;
-	let _: Signature = vk::core::get_device_combined_image_sampler_index_nvx;
 	let _: Signature = vk::Device::get_device_combined_image_sampler_index_nvx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -27750,7 +27350,6 @@ fn get_physical_device_surface_present_modes2_ext_signature_and_missing_command(
 		*mut vk::PresentModeKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_surface_present_modes2_ext;
-	let _: Signature = vk::core::get_physical_device_surface_present_modes2_ext;
 	let _: Signature = vk::Instance::get_physical_device_surface_present_modes2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -27875,7 +27474,6 @@ fn get_device_group_surface_present_modes2_ext_signature_and_missing_command() {
 		*mut vk::DeviceGroupPresentModeFlagsKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_device_group_surface_present_modes2_ext;
-	let _: Signature = vk::core::get_device_group_surface_present_modes2_ext;
 	let _: Signature = vk::Device::get_device_group_surface_present_modes2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -27982,7 +27580,6 @@ fn get_device_group_surface_present_modes2_ext_native_forwarding() {
 fn acquire_full_screen_exclusive_mode_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::SwapchainKHR) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::acquire_full_screen_exclusive_mode_ext;
-	let _: Signature = vk::core::acquire_full_screen_exclusive_mode_ext;
 	let _: Signature = vk::Device::acquire_full_screen_exclusive_mode_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -28069,7 +27666,6 @@ fn acquire_full_screen_exclusive_mode_ext_native_forwarding() {
 fn release_full_screen_exclusive_mode_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::SwapchainKHR) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::release_full_screen_exclusive_mode_ext;
-	let _: Signature = vk::core::release_full_screen_exclusive_mode_ext;
 	let _: Signature = vk::Device::release_full_screen_exclusive_mode_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -28163,8 +27759,6 @@ fn enumerate_physical_device_queue_family_performance_query_counters_khr_signatu
 		*mut vk::PerformanceCounterDescriptionKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::enumerate_physical_device_queue_family_performance_query_counters_khr;
-	let _: Signature =
-		vk::core::enumerate_physical_device_queue_family_performance_query_counters_khr;
 	let _: Signature =
 		vk::Instance::enumerate_physical_device_queue_family_performance_query_counters_khr;
 	let fixture = Fixture::new();
@@ -28298,7 +27892,6 @@ fn get_physical_device_queue_family_performance_query_passes_khr_signature_and_m
 		*mut u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_queue_family_performance_query_passes_khr;
-	let _: Signature = vk::core::get_physical_device_queue_family_performance_query_passes_khr;
 	let _: Signature = vk::Instance::get_physical_device_queue_family_performance_query_passes_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -28390,7 +27983,6 @@ fn acquire_profiling_lock_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::AcquireProfilingLockInfoKHR) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::acquire_profiling_lock_khr;
-	let _: Signature = vk::core::acquire_profiling_lock_khr;
 	let _: Signature = vk::Device::acquire_profiling_lock_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -28478,7 +28070,6 @@ fn acquire_profiling_lock_khr_native_forwarding() {
 fn release_profiling_lock_khr_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device) -> Result<(), CallError>;
 	let _: Signature = vk::release_profiling_lock_khr;
-	let _: Signature = vk::core::release_profiling_lock_khr;
 	let _: Signature = vk::Device::release_profiling_lock_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -28524,7 +28115,6 @@ fn get_image_drm_format_modifier_properties_ext_signature_and_missing_command() 
 		*mut vk::ImageDrmFormatModifierPropertiesEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_image_drm_format_modifier_properties_ext;
-	let _: Signature = vk::core::get_image_drm_format_modifier_properties_ext;
 	let _: Signature = vk::Device::get_image_drm_format_modifier_properties_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -28624,7 +28214,6 @@ fn get_image_drm_format_modifier_properties_ext_native_forwarding() {
 fn get_buffer_opaque_capture_address_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, &vk::BufferDeviceAddressInfo) -> Result<u64, CallError>;
 	let _: Signature = vk::get_buffer_opaque_capture_address;
-	let _: Signature = vk::core::get_buffer_opaque_capture_address;
 	let _: Signature = vk::Device::get_buffer_opaque_capture_address;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -28649,7 +28238,6 @@ fn get_buffer_opaque_capture_address_signature_and_missing_command() {
 fn get_buffer_opaque_capture_address_khr_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, &vk::BufferDeviceAddressInfo) -> Result<u64, CallError>;
 	let _: Signature = vk::get_buffer_opaque_capture_address_khr;
-	let _: Signature = vk::core::get_buffer_opaque_capture_address_khr;
 	let _: Signature = vk::Device::get_buffer_opaque_capture_address_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -28679,7 +28267,6 @@ fn get_buffer_device_address_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, &vk::BufferDeviceAddressInfo) -> Result<vk::DeviceAddress, CallError>;
 	let _: Signature = vk::get_buffer_device_address;
-	let _: Signature = vk::core::get_buffer_device_address;
 	let _: Signature = vk::Device::get_buffer_device_address;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -28705,7 +28292,6 @@ fn get_buffer_device_address_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, &vk::BufferDeviceAddressInfo) -> Result<vk::DeviceAddress, CallError>;
 	let _: Signature = vk::get_buffer_device_address_khr;
-	let _: Signature = vk::core::get_buffer_device_address_khr;
 	let _: Signature = vk::Device::get_buffer_device_address_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -28731,7 +28317,6 @@ fn get_buffer_device_address_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, &vk::BufferDeviceAddressInfo) -> Result<vk::DeviceAddress, CallError>;
 	let _: Signature = vk::get_buffer_device_address_ext;
-	let _: Signature = vk::core::get_buffer_device_address_ext;
 	let _: Signature = vk::Device::get_buffer_device_address_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -28761,7 +28346,6 @@ fn create_headless_surface_ext_signature_and_missing_command() {
 		*mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_headless_surface_ext;
-	let _: Signature = vk::core::create_headless_surface_ext;
 	let _: Signature = vk::Instance::create_headless_surface_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -28874,8 +28458,6 @@ fn get_physical_device_supported_framebuffer_mixed_samples_combinations_nv_signa
 		*mut vk::FramebufferMixedSamplesCombinationNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_supported_framebuffer_mixed_samples_combinations_nv;
-	let _: Signature =
-		vk::core::get_physical_device_supported_framebuffer_mixed_samples_combinations_nv;
 	let _: Signature =
 		vk::Instance::get_physical_device_supported_framebuffer_mixed_samples_combinations_nv;
 	let fixture = Fixture::new();
@@ -28991,7 +28573,6 @@ fn initialize_performance_api_intel_signature_and_missing_command() {
 		*const vk::InitializePerformanceApiInfoINTEL,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::initialize_performance_api_intel;
-	let _: Signature = vk::core::initialize_performance_api_intel;
 	let _: Signature = vk::Device::initialize_performance_api_intel;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -29081,7 +28662,6 @@ fn initialize_performance_api_intel_native_forwarding() {
 fn uninitialize_performance_api_intel_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device) -> Result<(), CallError>;
 	let _: Signature = vk::uninitialize_performance_api_intel;
-	let _: Signature = vk::core::uninitialize_performance_api_intel;
 	let _: Signature = vk::Device::uninitialize_performance_api_intel;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -29133,7 +28713,6 @@ fn cmd_set_performance_marker_intel_signature_and_missing_command() {
 		*const vk::PerformanceMarkerInfoINTEL,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::cmd_set_performance_marker_intel;
-	let _: Signature = vk::core::cmd_set_performance_marker_intel;
 	let _: Signature = vk::Device::cmd_set_performance_marker_intel;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -29229,7 +28808,6 @@ fn cmd_set_performance_stream_marker_intel_signature_and_missing_command() {
 		*const vk::PerformanceStreamMarkerInfoINTEL,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::cmd_set_performance_stream_marker_intel;
-	let _: Signature = vk::core::cmd_set_performance_stream_marker_intel;
 	let _: Signature = vk::Device::cmd_set_performance_stream_marker_intel;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -29331,7 +28909,6 @@ fn cmd_set_performance_override_intel_signature_and_missing_command() {
 		*const vk::PerformanceOverrideInfoINTEL,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::cmd_set_performance_override_intel;
-	let _: Signature = vk::core::cmd_set_performance_override_intel;
 	let _: Signature = vk::Device::cmd_set_performance_override_intel;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -29433,7 +29010,6 @@ fn acquire_performance_configuration_intel_signature_and_missing_command() {
 		*mut vk::PerformanceConfigurationINTEL,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::acquire_performance_configuration_intel;
-	let _: Signature = vk::core::acquire_performance_configuration_intel;
 	let _: Signature = vk::Device::acquire_performance_configuration_intel;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -29539,7 +29115,6 @@ fn release_performance_configuration_intel_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::PerformanceConfigurationINTEL) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::release_performance_configuration_intel;
-	let _: Signature = vk::core::release_performance_configuration_intel;
 	let _: Signature = vk::Device::release_performance_configuration_intel;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -29633,7 +29208,6 @@ fn queue_set_performance_configuration_intel_signature_and_missing_command() {
 		vk::PerformanceConfigurationINTEL,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::queue_set_performance_configuration_intel;
-	let _: Signature = vk::core::queue_set_performance_configuration_intel;
 	let _: Signature = vk::Device::queue_set_performance_configuration_intel;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -29729,7 +29303,6 @@ fn get_performance_parameter_intel_signature_and_missing_command() {
 		*mut vk::PerformanceValueINTEL,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_performance_parameter_intel;
-	let _: Signature = vk::core::get_performance_parameter_intel;
 	let _: Signature = vk::Device::get_performance_parameter_intel;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -29824,7 +29397,6 @@ fn get_device_memory_opaque_capture_address_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, &vk::DeviceMemoryOpaqueCaptureAddressInfo) -> Result<u64, CallError>;
 	let _: Signature = vk::get_device_memory_opaque_capture_address;
-	let _: Signature = vk::core::get_device_memory_opaque_capture_address;
 	let _: Signature = vk::Device::get_device_memory_opaque_capture_address;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -29856,7 +29428,6 @@ fn get_device_memory_opaque_capture_address_khr_signature_and_missing_command() 
 	type Signature =
 		unsafe fn(&vk::Device, &vk::DeviceMemoryOpaqueCaptureAddressInfo) -> Result<u64, CallError>;
 	let _: Signature = vk::get_device_memory_opaque_capture_address_khr;
-	let _: Signature = vk::core::get_device_memory_opaque_capture_address_khr;
 	let _: Signature = vk::Device::get_device_memory_opaque_capture_address_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -29892,7 +29463,6 @@ fn get_pipeline_executable_properties_khr_signature_and_missing_command() {
 		*mut vk::PipelineExecutablePropertiesKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_pipeline_executable_properties_khr;
-	let _: Signature = vk::core::get_pipeline_executable_properties_khr;
 	let _: Signature = vk::Device::get_pipeline_executable_properties_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -30010,7 +29580,6 @@ fn get_pipeline_executable_statistics_khr_signature_and_missing_command() {
 		*mut vk::PipelineExecutableStatisticKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_pipeline_executable_statistics_khr;
-	let _: Signature = vk::core::get_pipeline_executable_statistics_khr;
 	let _: Signature = vk::Device::get_pipeline_executable_statistics_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -30128,7 +29697,6 @@ fn get_pipeline_executable_internal_representations_khr_signature_and_missing_co
 		*mut vk::PipelineExecutableInternalRepresentationKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_pipeline_executable_internal_representations_khr;
-	let _: Signature = vk::core::get_pipeline_executable_internal_representations_khr;
 	let _: Signature = vk::Device::get_pipeline_executable_internal_representations_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -30244,7 +29812,6 @@ fn get_pipeline_executable_internal_representations_khr_native_forwarding() {
 fn cmd_set_line_stipple_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, u32, u16) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_line_stipple;
-	let _: Signature = vk::core::cmd_set_line_stipple;
 	let _: Signature = vk::Device::cmd_set_line_stipple;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -30311,7 +29878,6 @@ fn cmd_set_line_stipple_native_forwarding() {
 fn cmd_set_line_stipple_khr_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, u32, u16) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_line_stipple_khr;
-	let _: Signature = vk::core::cmd_set_line_stipple_khr;
 	let _: Signature = vk::Device::cmd_set_line_stipple_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -30379,7 +29945,6 @@ fn cmd_set_line_stipple_khr_native_forwarding() {
 fn cmd_set_line_stipple_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, u32, u16) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_line_stipple_ext;
-	let _: Signature = vk::core::cmd_set_line_stipple_ext;
 	let _: Signature = vk::Device::cmd_set_line_stipple_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -30452,7 +30017,6 @@ fn get_physical_device_tool_properties_signature_and_missing_command() {
 		*mut vk::PhysicalDeviceToolProperties,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_tool_properties;
-	let _: Signature = vk::core::get_physical_device_tool_properties;
 	let _: Signature = vk::Instance::get_physical_device_tool_properties;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -30563,7 +30127,6 @@ fn get_physical_device_tool_properties_ext_signature_and_missing_command() {
 		*mut vk::PhysicalDeviceToolProperties,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_tool_properties_ext;
-	let _: Signature = vk::core::get_physical_device_tool_properties_ext;
 	let _: Signature = vk::Instance::get_physical_device_tool_properties_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -30674,7 +30237,6 @@ fn create_acceleration_structure_khr_signature_and_missing_command() {
 		*mut vk::AccelerationStructureKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_acceleration_structure_khr;
-	let _: Signature = vk::core::create_acceleration_structure_khr;
 	let _: Signature = vk::Device::create_acceleration_structure_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -30796,7 +30358,6 @@ fn cmd_build_acceleration_structures_khr_signature_and_missing_command() {
 		*const *const vk::AccelerationStructureBuildRangeInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_build_acceleration_structures_khr;
-	let _: Signature = vk::core::cmd_build_acceleration_structures_khr;
 	let _: Signature = vk::Device::cmd_build_acceleration_structures_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -30899,7 +30460,6 @@ fn cmd_build_acceleration_structures_indirect_khr_signature_and_missing_command(
 		*const *const u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_build_acceleration_structures_indirect_khr;
-	let _: Signature = vk::core::cmd_build_acceleration_structures_indirect_khr;
 	let _: Signature = vk::Device::cmd_build_acceleration_structures_indirect_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -31016,7 +30576,6 @@ fn build_acceleration_structures_khr_signature_and_missing_command() {
 		*const *const vk::AccelerationStructureBuildRangeInfoKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::build_acceleration_structures_khr;
-	let _: Signature = vk::core::build_acceleration_structures_khr;
 	let _: Signature = vk::Device::build_acceleration_structures_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -31136,7 +30695,6 @@ fn get_acceleration_structure_device_address_khr_signature_and_missing_command()
 		*const vk::AccelerationStructureDeviceAddressInfoKHR,
 	) -> Result<vk::DeviceAddress, CallError>;
 	let _: Signature = vk::get_acceleration_structure_device_address_khr;
-	let _: Signature = vk::core::get_acceleration_structure_device_address_khr;
 	let _: Signature = vk::Device::get_acceleration_structure_device_address_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -31223,7 +30781,6 @@ fn create_deferred_operation_khr_signature_and_missing_command() {
 		*mut vk::DeferredOperationKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_deferred_operation_khr;
-	let _: Signature = vk::core::create_deferred_operation_khr;
 	let _: Signature = vk::Device::create_deferred_operation_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -31326,7 +30883,6 @@ fn destroy_deferred_operation_khr_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_deferred_operation_khr;
-	let _: Signature = vk::core::destroy_deferred_operation_khr;
 	let _: Signature = vk::Device::destroy_deferred_operation_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -31400,7 +30956,6 @@ fn destroy_deferred_operation_khr_native_forwarding() {
 fn get_deferred_operation_max_concurrency_khr_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::DeferredOperationKHR) -> Result<u32, CallError>;
 	let _: Signature = vk::get_deferred_operation_max_concurrency_khr;
-	let _: Signature = vk::core::get_deferred_operation_max_concurrency_khr;
 	let _: Signature = vk::Device::get_deferred_operation_max_concurrency_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -31473,7 +31028,6 @@ fn get_deferred_operation_result_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::DeferredOperationKHR) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_deferred_operation_result_khr;
-	let _: Signature = vk::core::get_deferred_operation_result_khr;
 	let _: Signature = vk::Device::get_deferred_operation_result_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -31556,7 +31110,6 @@ fn deferred_operation_join_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::DeferredOperationKHR) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::deferred_operation_join_khr;
-	let _: Signature = vk::core::deferred_operation_join_khr;
 	let _: Signature = vk::Device::deferred_operation_join_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -31642,7 +31195,6 @@ fn get_pipeline_indirect_memory_requirements_nv_signature_and_missing_command() 
 		*mut vk::MemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_pipeline_indirect_memory_requirements_nv;
-	let _: Signature = vk::core::get_pipeline_indirect_memory_requirements_nv;
 	let _: Signature = vk::Device::get_pipeline_indirect_memory_requirements_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -31730,7 +31282,6 @@ fn get_pipeline_indirect_device_address_nv_signature_and_missing_command() {
 		*const vk::PipelineIndirectDeviceAddressInfoNV,
 	) -> Result<vk::DeviceAddress, CallError>;
 	let _: Signature = vk::get_pipeline_indirect_device_address_nv;
-	let _: Signature = vk::core::get_pipeline_indirect_device_address_nv;
 	let _: Signature = vk::Device::get_pipeline_indirect_device_address_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -31813,7 +31364,6 @@ fn get_pipeline_indirect_device_address_nv_native_forwarding() {
 fn anti_lag_update_amd_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, *const vk::AntiLagDataAMD) -> Result<(), CallError>;
 	let _: Signature = vk::anti_lag_update_amd;
-	let _: Signature = vk::core::anti_lag_update_amd;
 	let _: Signature = vk::Device::anti_lag_update_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -31876,7 +31426,6 @@ fn cmd_set_cull_mode_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::CullModeFlags) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_cull_mode;
-	let _: Signature = vk::core::cmd_set_cull_mode;
 	let _: Signature = vk::Device::cmd_set_cull_mode;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -31939,7 +31488,6 @@ fn cmd_set_cull_mode_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::CullModeFlags) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_cull_mode_ext;
-	let _: Signature = vk::core::cmd_set_cull_mode_ext;
 	let _: Signature = vk::Device::cmd_set_cull_mode_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -32002,7 +31550,6 @@ fn cmd_set_front_face_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::FrontFace) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_front_face;
-	let _: Signature = vk::core::cmd_set_front_face;
 	let _: Signature = vk::Device::cmd_set_front_face;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -32065,7 +31612,6 @@ fn cmd_set_front_face_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::FrontFace) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_front_face_ext;
-	let _: Signature = vk::core::cmd_set_front_face_ext;
 	let _: Signature = vk::Device::cmd_set_front_face_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -32128,7 +31674,6 @@ fn cmd_set_primitive_topology_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::PrimitiveTopology) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_primitive_topology;
-	let _: Signature = vk::core::cmd_set_primitive_topology;
 	let _: Signature = vk::Device::cmd_set_primitive_topology;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -32192,7 +31737,6 @@ fn cmd_set_primitive_topology_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::PrimitiveTopology) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_primitive_topology_ext;
-	let _: Signature = vk::core::cmd_set_primitive_topology_ext;
 	let _: Signature = vk::Device::cmd_set_primitive_topology_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -32256,7 +31800,6 @@ fn cmd_set_viewport_with_count_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, *const vk::Viewport) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_viewport_with_count;
-	let _: Signature = vk::core::cmd_set_viewport_with_count;
 	let _: Signature = vk::Device::cmd_set_viewport_with_count;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -32328,7 +31871,6 @@ fn cmd_set_viewport_with_count_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, *const vk::Viewport) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_viewport_with_count_ext;
-	let _: Signature = vk::core::cmd_set_viewport_with_count_ext;
 	let _: Signature = vk::Device::cmd_set_viewport_with_count_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -32400,7 +31942,6 @@ fn cmd_set_scissor_with_count_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, *const vk::Rect2D) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_scissor_with_count;
-	let _: Signature = vk::core::cmd_set_scissor_with_count;
 	let _: Signature = vk::Device::cmd_set_scissor_with_count;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -32472,7 +32013,6 @@ fn cmd_set_scissor_with_count_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, *const vk::Rect2D) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_scissor_with_count_ext;
-	let _: Signature = vk::core::cmd_set_scissor_with_count_ext;
 	let _: Signature = vk::Device::cmd_set_scissor_with_count_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -32550,7 +32090,6 @@ fn cmd_bind_index_buffer2_signature_and_missing_command() {
 		vk::IndexType,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_index_buffer2;
-	let _: Signature = vk::core::cmd_bind_index_buffer2;
 	let _: Signature = vk::Device::cmd_bind_index_buffer2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -32641,7 +32180,6 @@ fn cmd_bind_index_buffer2_khr_signature_and_missing_command() {
 		vk::IndexType,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_index_buffer2_khr;
-	let _: Signature = vk::core::cmd_bind_index_buffer2_khr;
 	let _: Signature = vk::Device::cmd_bind_index_buffer2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -32734,7 +32272,6 @@ fn cmd_bind_vertex_buffers2_signature_and_missing_command() {
 		*const vk::DeviceSize,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_vertex_buffers2;
-	let _: Signature = vk::core::cmd_bind_vertex_buffers2;
 	let _: Signature = vk::Device::cmd_bind_vertex_buffers2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -32848,7 +32385,6 @@ fn cmd_bind_vertex_buffers2_ext_signature_and_missing_command() {
 		*const vk::DeviceSize,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_vertex_buffers2_ext;
-	let _: Signature = vk::core::cmd_bind_vertex_buffers2_ext;
 	let _: Signature = vk::Device::cmd_bind_vertex_buffers2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -32953,7 +32489,6 @@ fn cmd_bind_vertex_buffers2_ext_native_forwarding() {
 fn cmd_set_depth_test_enable_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_test_enable;
-	let _: Signature = vk::core::cmd_set_depth_test_enable;
 	let _: Signature = vk::Device::cmd_set_depth_test_enable;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -33016,7 +32551,6 @@ fn cmd_set_depth_test_enable_native_forwarding() {
 fn cmd_set_depth_test_enable_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_test_enable_ext;
-	let _: Signature = vk::core::cmd_set_depth_test_enable_ext;
 	let _: Signature = vk::Device::cmd_set_depth_test_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -33079,7 +32613,6 @@ fn cmd_set_depth_test_enable_ext_native_forwarding() {
 fn cmd_set_depth_write_enable_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_write_enable;
-	let _: Signature = vk::core::cmd_set_depth_write_enable;
 	let _: Signature = vk::Device::cmd_set_depth_write_enable;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -33142,7 +32675,6 @@ fn cmd_set_depth_write_enable_native_forwarding() {
 fn cmd_set_depth_write_enable_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_write_enable_ext;
-	let _: Signature = vk::core::cmd_set_depth_write_enable_ext;
 	let _: Signature = vk::Device::cmd_set_depth_write_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -33206,7 +32738,6 @@ fn cmd_set_depth_compare_op_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::CompareOp) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_compare_op;
-	let _: Signature = vk::core::cmd_set_depth_compare_op;
 	let _: Signature = vk::Device::cmd_set_depth_compare_op;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -33270,7 +32801,6 @@ fn cmd_set_depth_compare_op_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::CompareOp) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_compare_op_ext;
-	let _: Signature = vk::core::cmd_set_depth_compare_op_ext;
 	let _: Signature = vk::Device::cmd_set_depth_compare_op_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -33333,7 +32863,6 @@ fn cmd_set_depth_compare_op_ext_native_forwarding() {
 fn cmd_set_depth_bounds_test_enable_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_bounds_test_enable;
-	let _: Signature = vk::core::cmd_set_depth_bounds_test_enable;
 	let _: Signature = vk::Device::cmd_set_depth_bounds_test_enable;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -33396,7 +32925,6 @@ fn cmd_set_depth_bounds_test_enable_native_forwarding() {
 fn cmd_set_depth_bounds_test_enable_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_bounds_test_enable_ext;
-	let _: Signature = vk::core::cmd_set_depth_bounds_test_enable_ext;
 	let _: Signature = vk::Device::cmd_set_depth_bounds_test_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -33465,7 +32993,6 @@ fn cmd_set_depth_bounds_test_enable_ext_native_forwarding() {
 fn cmd_set_stencil_test_enable_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_stencil_test_enable;
-	let _: Signature = vk::core::cmd_set_stencil_test_enable;
 	let _: Signature = vk::Device::cmd_set_stencil_test_enable;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -33528,7 +33055,6 @@ fn cmd_set_stencil_test_enable_native_forwarding() {
 fn cmd_set_stencil_test_enable_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_stencil_test_enable_ext;
-	let _: Signature = vk::core::cmd_set_stencil_test_enable_ext;
 	let _: Signature = vk::Device::cmd_set_stencil_test_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -33599,7 +33125,6 @@ fn cmd_set_stencil_op_signature_and_missing_command() {
 		vk::CompareOp,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_stencil_op;
-	let _: Signature = vk::core::cmd_set_stencil_op;
 	let _: Signature = vk::Device::cmd_set_stencil_op;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -33696,7 +33221,6 @@ fn cmd_set_stencil_op_ext_signature_and_missing_command() {
 		vk::CompareOp,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_stencil_op_ext;
-	let _: Signature = vk::core::cmd_set_stencil_op_ext;
 	let _: Signature = vk::Device::cmd_set_stencil_op_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -33785,7 +33309,6 @@ fn cmd_set_stencil_op_ext_native_forwarding() {
 fn cmd_set_patch_control_points_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_patch_control_points_ext;
-	let _: Signature = vk::core::cmd_set_patch_control_points_ext;
 	let _: Signature = vk::Device::cmd_set_patch_control_points_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -33848,7 +33371,6 @@ fn cmd_set_patch_control_points_ext_native_forwarding() {
 fn cmd_set_rasterizer_discard_enable_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_rasterizer_discard_enable;
-	let _: Signature = vk::core::cmd_set_rasterizer_discard_enable;
 	let _: Signature = vk::Device::cmd_set_rasterizer_discard_enable;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -33911,7 +33433,6 @@ fn cmd_set_rasterizer_discard_enable_native_forwarding() {
 fn cmd_set_rasterizer_discard_enable_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_rasterizer_discard_enable_ext;
-	let _: Signature = vk::core::cmd_set_rasterizer_discard_enable_ext;
 	let _: Signature = vk::Device::cmd_set_rasterizer_discard_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -33980,7 +33501,6 @@ fn cmd_set_rasterizer_discard_enable_ext_native_forwarding() {
 fn cmd_set_depth_bias_enable_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_bias_enable;
-	let _: Signature = vk::core::cmd_set_depth_bias_enable;
 	let _: Signature = vk::Device::cmd_set_depth_bias_enable;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -34043,7 +33563,6 @@ fn cmd_set_depth_bias_enable_native_forwarding() {
 fn cmd_set_depth_bias_enable_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_bias_enable_ext;
-	let _: Signature = vk::core::cmd_set_depth_bias_enable_ext;
 	let _: Signature = vk::Device::cmd_set_depth_bias_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -34106,7 +33625,6 @@ fn cmd_set_depth_bias_enable_ext_native_forwarding() {
 fn cmd_set_logic_op_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::LogicOp) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_logic_op_ext;
-	let _: Signature = vk::core::cmd_set_logic_op_ext;
 	let _: Signature = vk::Device::cmd_set_logic_op_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -34168,7 +33686,6 @@ fn cmd_set_logic_op_ext_native_forwarding() {
 fn cmd_set_primitive_restart_enable_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_primitive_restart_enable;
-	let _: Signature = vk::core::cmd_set_primitive_restart_enable;
 	let _: Signature = vk::Device::cmd_set_primitive_restart_enable;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -34231,7 +33748,6 @@ fn cmd_set_primitive_restart_enable_native_forwarding() {
 fn cmd_set_primitive_restart_enable_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_primitive_restart_enable_ext;
-	let _: Signature = vk::core::cmd_set_primitive_restart_enable_ext;
 	let _: Signature = vk::Device::cmd_set_primitive_restart_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -34304,7 +33820,6 @@ fn cmd_set_tessellation_domain_origin_ext_signature_and_missing_command() {
 		vk::TessellationDomainOrigin,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_tessellation_domain_origin_ext;
-	let _: Signature = vk::core::cmd_set_tessellation_domain_origin_ext;
 	let _: Signature = vk::Device::cmd_set_tessellation_domain_origin_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -34373,7 +33888,6 @@ fn cmd_set_tessellation_domain_origin_ext_native_forwarding() {
 fn cmd_set_depth_clamp_enable_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_clamp_enable_ext;
-	let _: Signature = vk::core::cmd_set_depth_clamp_enable_ext;
 	let _: Signature = vk::Device::cmd_set_depth_clamp_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -34437,7 +33951,6 @@ fn cmd_set_polygon_mode_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::PolygonMode) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_polygon_mode_ext;
-	let _: Signature = vk::core::cmd_set_polygon_mode_ext;
 	let _: Signature = vk::Device::cmd_set_polygon_mode_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -34501,7 +34014,6 @@ fn cmd_set_rasterization_samples_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::SampleCountFlagBits) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_rasterization_samples_ext;
-	let _: Signature = vk::core::cmd_set_rasterization_samples_ext;
 	let _: Signature = vk::Device::cmd_set_rasterization_samples_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -34569,7 +34081,6 @@ fn cmd_set_sample_mask_ext_signature_and_missing_command() {
 		*const vk::SampleMask,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_sample_mask_ext;
-	let _: Signature = vk::core::cmd_set_sample_mask_ext;
 	let _: Signature = vk::Device::cmd_set_sample_mask_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -34645,7 +34156,6 @@ fn cmd_set_sample_mask_ext_native_forwarding() {
 fn cmd_set_alpha_to_coverage_enable_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_alpha_to_coverage_enable_ext;
-	let _: Signature = vk::core::cmd_set_alpha_to_coverage_enable_ext;
 	let _: Signature = vk::Device::cmd_set_alpha_to_coverage_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -34714,7 +34224,6 @@ fn cmd_set_alpha_to_coverage_enable_ext_native_forwarding() {
 fn cmd_set_alpha_to_one_enable_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_alpha_to_one_enable_ext;
-	let _: Signature = vk::core::cmd_set_alpha_to_one_enable_ext;
 	let _: Signature = vk::Device::cmd_set_alpha_to_one_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -34777,7 +34286,6 @@ fn cmd_set_alpha_to_one_enable_ext_native_forwarding() {
 fn cmd_set_logic_op_enable_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_logic_op_enable_ext;
-	let _: Signature = vk::core::cmd_set_logic_op_enable_ext;
 	let _: Signature = vk::Device::cmd_set_logic_op_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -34841,7 +34349,6 @@ fn cmd_set_color_blend_enable_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, u32, *const vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_color_blend_enable_ext;
-	let _: Signature = vk::core::cmd_set_color_blend_enable_ext;
 	let _: Signature = vk::Device::cmd_set_color_blend_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -34928,7 +34435,6 @@ fn cmd_set_color_blend_equation_ext_signature_and_missing_command() {
 		*const vk::ColorBlendEquationEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_color_blend_equation_ext;
-	let _: Signature = vk::core::cmd_set_color_blend_equation_ext;
 	let _: Signature = vk::Device::cmd_set_color_blend_equation_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -35018,7 +34524,6 @@ fn cmd_set_color_write_mask_ext_signature_and_missing_command() {
 		*const vk::ColorComponentFlags,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_color_write_mask_ext;
-	let _: Signature = vk::core::cmd_set_color_write_mask_ext;
 	let _: Signature = vk::Device::cmd_set_color_write_mask_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -35102,7 +34607,6 @@ fn cmd_set_color_write_mask_ext_native_forwarding() {
 fn cmd_set_rasterization_stream_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_rasterization_stream_ext;
-	let _: Signature = vk::core::cmd_set_rasterization_stream_ext;
 	let _: Signature = vk::Device::cmd_set_rasterization_stream_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -35169,7 +34673,6 @@ fn cmd_set_conservative_rasterization_mode_ext_signature_and_missing_command() {
 		vk::ConservativeRasterizationModeEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_conservative_rasterization_mode_ext;
-	let _: Signature = vk::core::cmd_set_conservative_rasterization_mode_ext;
 	let _: Signature = vk::Device::cmd_set_conservative_rasterization_mode_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -35241,7 +34744,6 @@ fn cmd_set_conservative_rasterization_mode_ext_native_forwarding() {
 fn cmd_set_extra_primitive_overestimation_size_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, f32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_extra_primitive_overestimation_size_ext;
-	let _: Signature = vk::core::cmd_set_extra_primitive_overestimation_size_ext;
 	let _: Signature = vk::Device::cmd_set_extra_primitive_overestimation_size_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -35312,7 +34814,6 @@ fn cmd_set_extra_primitive_overestimation_size_ext_native_forwarding() {
 fn cmd_set_depth_clip_enable_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_clip_enable_ext;
-	let _: Signature = vk::core::cmd_set_depth_clip_enable_ext;
 	let _: Signature = vk::Device::cmd_set_depth_clip_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -35375,7 +34876,6 @@ fn cmd_set_depth_clip_enable_ext_native_forwarding() {
 fn cmd_set_sample_locations_enable_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_sample_locations_enable_ext;
-	let _: Signature = vk::core::cmd_set_sample_locations_enable_ext;
 	let _: Signature = vk::Device::cmd_set_sample_locations_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -35450,7 +34950,6 @@ fn cmd_set_color_blend_advanced_ext_signature_and_missing_command() {
 		*const vk::ColorBlendAdvancedEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_color_blend_advanced_ext;
-	let _: Signature = vk::core::cmd_set_color_blend_advanced_ext;
 	let _: Signature = vk::Device::cmd_set_color_blend_advanced_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -35535,7 +35034,6 @@ fn cmd_set_provoking_vertex_mode_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::ProvokingVertexModeEXT) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_provoking_vertex_mode_ext;
-	let _: Signature = vk::core::cmd_set_provoking_vertex_mode_ext;
 	let _: Signature = vk::Device::cmd_set_provoking_vertex_mode_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -35602,7 +35100,6 @@ fn cmd_set_line_rasterization_mode_ext_signature_and_missing_command() {
 		vk::LineRasterizationModeEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_line_rasterization_mode_ext;
-	let _: Signature = vk::core::cmd_set_line_rasterization_mode_ext;
 	let _: Signature = vk::Device::cmd_set_line_rasterization_mode_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -35671,7 +35168,6 @@ fn cmd_set_line_rasterization_mode_ext_native_forwarding() {
 fn cmd_set_line_stipple_enable_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_line_stipple_enable_ext;
-	let _: Signature = vk::core::cmd_set_line_stipple_enable_ext;
 	let _: Signature = vk::Device::cmd_set_line_stipple_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -35734,7 +35230,6 @@ fn cmd_set_line_stipple_enable_ext_native_forwarding() {
 fn cmd_set_depth_clip_negative_one_to_one_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_clip_negative_one_to_one_ext;
-	let _: Signature = vk::core::cmd_set_depth_clip_negative_one_to_one_ext;
 	let _: Signature = vk::Device::cmd_set_depth_clip_negative_one_to_one_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -35803,7 +35298,6 @@ fn cmd_set_depth_clip_negative_one_to_one_ext_native_forwarding() {
 fn cmd_set_viewport_w_scaling_enable_nv_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_viewport_w_scaling_enable_nv;
-	let _: Signature = vk::core::cmd_set_viewport_w_scaling_enable_nv;
 	let _: Signature = vk::Device::cmd_set_viewport_w_scaling_enable_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -35878,7 +35372,6 @@ fn cmd_set_viewport_swizzle_nv_signature_and_missing_command() {
 		*const vk::ViewportSwizzleNV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_viewport_swizzle_nv;
-	let _: Signature = vk::core::cmd_set_viewport_swizzle_nv;
 	let _: Signature = vk::Device::cmd_set_viewport_swizzle_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -35962,7 +35455,6 @@ fn cmd_set_viewport_swizzle_nv_native_forwarding() {
 fn cmd_set_coverage_to_color_enable_nv_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_coverage_to_color_enable_nv;
-	let _: Signature = vk::core::cmd_set_coverage_to_color_enable_nv;
 	let _: Signature = vk::Device::cmd_set_coverage_to_color_enable_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -36025,7 +35517,6 @@ fn cmd_set_coverage_to_color_enable_nv_native_forwarding() {
 fn cmd_set_coverage_to_color_location_nv_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_coverage_to_color_location_nv;
-	let _: Signature = vk::core::cmd_set_coverage_to_color_location_nv;
 	let _: Signature = vk::Device::cmd_set_coverage_to_color_location_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -36098,7 +35589,6 @@ fn cmd_set_coverage_modulation_mode_nv_signature_and_missing_command() {
 		vk::CoverageModulationModeNV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_coverage_modulation_mode_nv;
-	let _: Signature = vk::core::cmd_set_coverage_modulation_mode_nv;
 	let _: Signature = vk::Device::cmd_set_coverage_modulation_mode_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -36167,7 +35657,6 @@ fn cmd_set_coverage_modulation_mode_nv_native_forwarding() {
 fn cmd_set_coverage_modulation_table_enable_nv_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_coverage_modulation_table_enable_nv;
-	let _: Signature = vk::core::cmd_set_coverage_modulation_table_enable_nv;
 	let _: Signature = vk::Device::cmd_set_coverage_modulation_table_enable_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -36237,7 +35726,6 @@ fn cmd_set_coverage_modulation_table_nv_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, *const f32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_coverage_modulation_table_nv;
-	let _: Signature = vk::core::cmd_set_coverage_modulation_table_nv;
 	let _: Signature = vk::Device::cmd_set_coverage_modulation_table_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -36314,7 +35802,6 @@ fn cmd_set_coverage_modulation_table_nv_native_forwarding() {
 fn cmd_set_shading_rate_image_enable_nv_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_shading_rate_image_enable_nv;
-	let _: Signature = vk::core::cmd_set_shading_rate_image_enable_nv;
 	let _: Signature = vk::Device::cmd_set_shading_rate_image_enable_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -36384,7 +35871,6 @@ fn cmd_set_coverage_reduction_mode_nv_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::CoverageReductionModeNV) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_coverage_reduction_mode_nv;
-	let _: Signature = vk::core::cmd_set_coverage_reduction_mode_nv;
 	let _: Signature = vk::Device::cmd_set_coverage_reduction_mode_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -36447,7 +35933,6 @@ fn cmd_set_coverage_reduction_mode_nv_native_forwarding() {
 fn cmd_set_representative_fragment_test_enable_nv_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer, vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_representative_fragment_test_enable_nv;
-	let _: Signature = vk::core::cmd_set_representative_fragment_test_enable_nv;
 	let _: Signature = vk::Device::cmd_set_representative_fragment_test_enable_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -36523,7 +36008,6 @@ fn create_private_data_slot_signature_and_missing_command() {
 		*mut vk::PrivateDataSlot,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_private_data_slot;
-	let _: Signature = vk::core::create_private_data_slot;
 	let _: Signature = vk::Device::create_private_data_slot;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -36638,7 +36122,6 @@ fn create_private_data_slot_ext_signature_and_missing_command() {
 		*mut vk::PrivateDataSlot,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_private_data_slot_ext;
-	let _: Signature = vk::core::create_private_data_slot_ext;
 	let _: Signature = vk::Device::create_private_data_slot_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -36752,7 +36235,6 @@ fn destroy_private_data_slot_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_private_data_slot;
-	let _: Signature = vk::core::destroy_private_data_slot;
 	let _: Signature = vk::Device::destroy_private_data_slot;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -36830,7 +36312,6 @@ fn destroy_private_data_slot_ext_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_private_data_slot_ext;
-	let _: Signature = vk::core::destroy_private_data_slot_ext;
 	let _: Signature = vk::Device::destroy_private_data_slot_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -36910,7 +36391,6 @@ fn set_private_data_signature_and_missing_command() {
 		u64,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::set_private_data;
-	let _: Signature = vk::core::set_private_data;
 	let _: Signature = vk::Device::set_private_data;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37015,7 +36495,6 @@ fn set_private_data_ext_signature_and_missing_command() {
 		u64,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::set_private_data_ext;
-	let _: Signature = vk::core::set_private_data_ext;
 	let _: Signature = vk::Device::set_private_data_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37120,7 +36599,6 @@ fn get_private_data_signature_and_missing_command() {
 		*mut u64,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_private_data;
-	let _: Signature = vk::core::get_private_data;
 	let _: Signature = vk::Device::get_private_data;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37208,7 +36686,6 @@ fn get_private_data_ext_signature_and_missing_command() {
 		*mut u64,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_private_data_ext;
-	let _: Signature = vk::core::get_private_data_ext;
 	let _: Signature = vk::Device::get_private_data_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37291,7 +36768,6 @@ fn cmd_copy_buffer2_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::CopyBufferInfo2) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_buffer2;
-	let _: Signature = vk::core::cmd_copy_buffer2;
 	let _: Signature = vk::Device::cmd_copy_buffer2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37319,7 +36795,6 @@ fn cmd_copy_buffer2_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::CopyBufferInfo2) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_buffer2_khr;
-	let _: Signature = vk::core::cmd_copy_buffer2_khr;
 	let _: Signature = vk::Device::cmd_copy_buffer2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37347,7 +36822,6 @@ fn cmd_copy_image2_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::CopyImageInfo2) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_image2;
-	let _: Signature = vk::core::cmd_copy_image2;
 	let _: Signature = vk::Device::cmd_copy_image2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37375,7 +36849,6 @@ fn cmd_copy_image2_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::CopyImageInfo2) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_image2_khr;
-	let _: Signature = vk::core::cmd_copy_image2_khr;
 	let _: Signature = vk::Device::cmd_copy_image2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37403,7 +36876,6 @@ fn cmd_blit_image2_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::BlitImageInfo2) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_blit_image2;
-	let _: Signature = vk::core::cmd_blit_image2;
 	let _: Signature = vk::Device::cmd_blit_image2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37431,7 +36903,6 @@ fn cmd_blit_image2_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::BlitImageInfo2) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_blit_image2_khr;
-	let _: Signature = vk::core::cmd_blit_image2_khr;
 	let _: Signature = vk::Device::cmd_blit_image2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37459,7 +36930,6 @@ fn cmd_copy_buffer_to_image2_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::CopyBufferToImageInfo2) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_buffer_to_image2;
-	let _: Signature = vk::core::cmd_copy_buffer_to_image2;
 	let _: Signature = vk::Device::cmd_copy_buffer_to_image2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37487,7 +36957,6 @@ fn cmd_copy_buffer_to_image2_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::CopyBufferToImageInfo2) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_buffer_to_image2_khr;
-	let _: Signature = vk::core::cmd_copy_buffer_to_image2_khr;
 	let _: Signature = vk::Device::cmd_copy_buffer_to_image2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37515,7 +36984,6 @@ fn cmd_copy_image_to_buffer2_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::CopyImageToBufferInfo2) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_image_to_buffer2;
-	let _: Signature = vk::core::cmd_copy_image_to_buffer2;
 	let _: Signature = vk::Device::cmd_copy_image_to_buffer2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37543,7 +37011,6 @@ fn cmd_copy_image_to_buffer2_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::CopyImageToBufferInfo2) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_image_to_buffer2_khr;
-	let _: Signature = vk::core::cmd_copy_image_to_buffer2_khr;
 	let _: Signature = vk::Device::cmd_copy_image_to_buffer2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37571,7 +37038,6 @@ fn cmd_resolve_image2_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::ResolveImageInfo2) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_resolve_image2;
-	let _: Signature = vk::core::cmd_resolve_image2;
 	let _: Signature = vk::Device::cmd_resolve_image2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37599,7 +37065,6 @@ fn cmd_resolve_image2_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::ResolveImageInfo2) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_resolve_image2_khr;
-	let _: Signature = vk::core::cmd_resolve_image2_khr;
 	let _: Signature = vk::Device::cmd_resolve_image2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37631,7 +37096,6 @@ fn cmd_set_fragment_shading_rate_khr_signature_and_missing_command() {
 		*const vk::FragmentShadingRateCombinerOpKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_fragment_shading_rate_khr;
-	let _: Signature = vk::core::cmd_set_fragment_shading_rate_khr;
 	let _: Signature = vk::Device::cmd_set_fragment_shading_rate_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37716,7 +37180,6 @@ fn get_physical_device_fragment_shading_rates_khr_signature_and_missing_command(
 		*mut vk::PhysicalDeviceFragmentShadingRateKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_fragment_shading_rates_khr;
-	let _: Signature = vk::core::get_physical_device_fragment_shading_rates_khr;
 	let _: Signature = vk::Instance::get_physical_device_fragment_shading_rates_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37829,7 +37292,6 @@ fn cmd_set_fragment_shading_rate_enum_nv_signature_and_missing_command() {
 		*const vk::FragmentShadingRateCombinerOpKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_fragment_shading_rate_enum_nv;
-	let _: Signature = vk::core::cmd_set_fragment_shading_rate_enum_nv;
 	let _: Signature = vk::Device::cmd_set_fragment_shading_rate_enum_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -37919,7 +37381,6 @@ fn get_acceleration_structure_build_sizes_khr_signature_and_missing_command() {
 		*mut vk::AccelerationStructureBuildSizesInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_acceleration_structure_build_sizes_khr;
-	let _: Signature = vk::core::get_acceleration_structure_build_sizes_khr;
 	let _: Signature = vk::Device::get_acceleration_structure_build_sizes_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38025,7 +37486,6 @@ fn cmd_set_vertex_input_ext_signature_and_missing_command() {
 		*const vk::VertexInputAttributeDescription2EXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_vertex_input_ext;
-	let _: Signature = vk::core::cmd_set_vertex_input_ext;
 	let _: Signature = vk::Device::cmd_set_vertex_input_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38121,7 +37581,6 @@ fn cmd_set_color_write_enable_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, u32, *const vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_color_write_enable_ext;
-	let _: Signature = vk::core::cmd_set_color_write_enable_ext;
 	let _: Signature = vk::Device::cmd_set_color_write_enable_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38197,7 +37656,6 @@ fn cmd_set_event2_signature_and_missing_command() {
 		&vk::DependencyInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_event2;
-	let _: Signature = vk::core::cmd_set_event2;
 	let _: Signature = vk::Device::cmd_set_event2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38231,7 +37689,6 @@ fn cmd_set_event2_khr_signature_and_missing_command() {
 		&vk::DependencyInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_event2_khr;
-	let _: Signature = vk::core::cmd_set_event2_khr;
 	let _: Signature = vk::Device::cmd_set_event2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38265,7 +37722,6 @@ fn cmd_reset_event2_signature_and_missing_command() {
 		vk::PipelineStageFlags2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_reset_event2;
-	let _: Signature = vk::core::cmd_reset_event2;
 	let _: Signature = vk::Device::cmd_reset_event2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38297,7 +37753,6 @@ fn cmd_reset_event2_khr_signature_and_missing_command() {
 		vk::PipelineStageFlags2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_reset_event2_khr;
-	let _: Signature = vk::core::cmd_reset_event2_khr;
 	let _: Signature = vk::Device::cmd_reset_event2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38331,7 +37786,6 @@ fn cmd_wait_events2_signature_and_missing_command() {
 		&[vk::DependencyInfo],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_wait_events2;
-	let _: Signature = vk::core::cmd_wait_events2;
 	let _: Signature = vk::Device::cmd_wait_events2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38358,7 +37812,6 @@ fn cmd_wait_events2_khr_signature_and_missing_command() {
 		&[vk::DependencyInfo],
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_wait_events2_khr;
-	let _: Signature = vk::core::cmd_wait_events2_khr;
 	let _: Signature = vk::Device::cmd_wait_events2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38381,7 +37834,6 @@ fn cmd_pipeline_barrier2_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::DependencyInfo) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_pipeline_barrier2;
-	let _: Signature = vk::core::cmd_pipeline_barrier2;
 	let _: Signature = vk::Device::cmd_pipeline_barrier2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38409,7 +37861,6 @@ fn cmd_pipeline_barrier2_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, &vk::DependencyInfo) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_pipeline_barrier2_khr;
-	let _: Signature = vk::core::cmd_pipeline_barrier2_khr;
 	let _: Signature = vk::Device::cmd_pipeline_barrier2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38437,7 +37888,6 @@ fn queue_submit2_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Queue, &[vk::SubmitInfo2], vk::Fence) -> Result<(), CallError>;
 	let _: Signature = vk::queue_submit2;
-	let _: Signature = vk::core::queue_submit2;
 	let _: Signature = vk::Device::queue_submit2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38460,7 +37910,6 @@ fn queue_submit2_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Queue, &[vk::SubmitInfo2], vk::Fence) -> Result<(), CallError>;
 	let _: Signature = vk::queue_submit2_khr;
-	let _: Signature = vk::core::queue_submit2_khr;
 	let _: Signature = vk::Device::queue_submit2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38488,7 +37937,6 @@ fn cmd_write_timestamp2_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_write_timestamp2;
-	let _: Signature = vk::core::cmd_write_timestamp2;
 	let _: Signature = vk::Device::cmd_write_timestamp2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38525,7 +37973,6 @@ fn cmd_write_timestamp2_khr_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_write_timestamp2_khr;
-	let _: Signature = vk::core::cmd_write_timestamp2_khr;
 	let _: Signature = vk::Device::cmd_write_timestamp2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38563,7 +38010,6 @@ fn cmd_write_buffer_marker2_amd_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_write_buffer_marker2_amd;
-	let _: Signature = vk::core::cmd_write_buffer_marker2_amd;
 	let _: Signature = vk::Device::cmd_write_buffer_marker2_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38652,7 +38098,6 @@ fn get_queue_checkpoint_data2_nv_signature_and_missing_command() {
 		*mut vk::CheckpointData2NV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_queue_checkpoint_data2_nv;
-	let _: Signature = vk::core::get_queue_checkpoint_data2_nv;
 	let _: Signature = vk::Device::get_queue_checkpoint_data2_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38731,7 +38176,6 @@ fn copy_memory_to_image_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::CopyMemoryToImageInfo) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::copy_memory_to_image;
-	let _: Signature = vk::core::copy_memory_to_image;
 	let _: Signature = vk::Device::copy_memory_to_image;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38819,7 +38263,6 @@ fn copy_memory_to_image_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::CopyMemoryToImageInfo) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::copy_memory_to_image_ext;
-	let _: Signature = vk::core::copy_memory_to_image_ext;
 	let _: Signature = vk::Device::copy_memory_to_image_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38908,7 +38351,6 @@ fn copy_image_to_memory_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::CopyImageToMemoryInfo) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::copy_image_to_memory;
-	let _: Signature = vk::core::copy_image_to_memory;
 	let _: Signature = vk::Device::copy_image_to_memory;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -38996,7 +38438,6 @@ fn copy_image_to_memory_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::CopyImageToMemoryInfo) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::copy_image_to_memory_ext;
-	let _: Signature = vk::core::copy_image_to_memory_ext;
 	let _: Signature = vk::Device::copy_image_to_memory_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -39085,7 +38526,6 @@ fn copy_image_to_image_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::CopyImageToImageInfo) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::copy_image_to_image;
-	let _: Signature = vk::core::copy_image_to_image;
 	let _: Signature = vk::Device::copy_image_to_image;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -39173,7 +38613,6 @@ fn copy_image_to_image_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::CopyImageToImageInfo) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::copy_image_to_image_ext;
-	let _: Signature = vk::core::copy_image_to_image_ext;
 	let _: Signature = vk::Device::copy_image_to_image_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -39265,7 +38704,6 @@ fn transition_image_layout_signature_and_missing_command() {
 		*const vk::HostImageLayoutTransitionInfo,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::transition_image_layout;
-	let _: Signature = vk::core::transition_image_layout;
 	let _: Signature = vk::Device::transition_image_layout;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -39363,7 +38801,6 @@ fn transition_image_layout_ext_signature_and_missing_command() {
 		*const vk::HostImageLayoutTransitionInfo,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::transition_image_layout_ext;
-	let _: Signature = vk::core::transition_image_layout_ext;
 	let _: Signature = vk::Device::transition_image_layout_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -39462,7 +38899,6 @@ fn get_physical_device_video_capabilities_khr_signature_and_missing_command() {
 		*mut vk::VideoCapabilitiesKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_video_capabilities_khr;
-	let _: Signature = vk::core::get_physical_device_video_capabilities_khr;
 	let _: Signature = vk::Instance::get_physical_device_video_capabilities_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -39577,7 +39013,6 @@ fn get_physical_device_video_format_properties_khr_signature_and_missing_command
 		*mut vk::VideoFormatPropertiesKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_video_format_properties_khr;
-	let _: Signature = vk::core::get_physical_device_video_format_properties_khr;
 	let _: Signature = vk::Instance::get_physical_device_video_format_properties_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -39701,7 +39136,6 @@ fn get_physical_device_video_encode_quality_level_properties_khr_signature_and_m
 		*mut vk::VideoEncodeQualityLevelPropertiesKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_video_encode_quality_level_properties_khr;
-	let _: Signature = vk::core::get_physical_device_video_encode_quality_level_properties_khr;
 	let _: Signature = vk::Instance::get_physical_device_video_encode_quality_level_properties_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -39820,7 +39254,6 @@ fn create_video_session_khr_signature_and_missing_command() {
 		*mut vk::VideoSessionKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_video_session_khr;
-	let _: Signature = vk::core::create_video_session_khr;
 	let _: Signature = vk::Device::create_video_session_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -39934,7 +39367,6 @@ fn destroy_video_session_khr_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_video_session_khr;
-	let _: Signature = vk::core::destroy_video_session_khr;
 	let _: Signature = vk::Device::destroy_video_session_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -40013,7 +39445,6 @@ fn create_video_session_parameters_khr_signature_and_missing_command() {
 		*mut vk::VideoSessionParametersKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_video_session_parameters_khr;
-	let _: Signature = vk::core::create_video_session_parameters_khr;
 	let _: Signature = vk::Device::create_video_session_parameters_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -40133,7 +39564,6 @@ fn update_video_session_parameters_khr_signature_and_missing_command() {
 		*const vk::VideoSessionParametersUpdateInfoKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::update_video_session_parameters_khr;
-	let _: Signature = vk::core::update_video_session_parameters_khr;
 	let _: Signature = vk::Device::update_video_session_parameters_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -40239,7 +39669,6 @@ fn get_encoded_video_session_parameters_khr_signature_and_missing_command() {
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_encoded_video_session_parameters_khr;
-	let _: Signature = vk::core::get_encoded_video_session_parameters_khr;
 	let _: Signature = vk::Device::get_encoded_video_session_parameters_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -40364,7 +39793,6 @@ fn destroy_video_session_parameters_khr_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_video_session_parameters_khr;
-	let _: Signature = vk::core::destroy_video_session_parameters_khr;
 	let _: Signature = vk::Device::destroy_video_session_parameters_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -40449,7 +39877,6 @@ fn get_video_session_memory_requirements_khr_signature_and_missing_command() {
 		*mut vk::VideoSessionMemoryRequirementsKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_video_session_memory_requirements_khr;
-	let _: Signature = vk::core::get_video_session_memory_requirements_khr;
 	let _: Signature = vk::Device::get_video_session_memory_requirements_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -40562,7 +39989,6 @@ fn bind_video_session_memory_khr_signature_and_missing_command() {
 		*const vk::BindVideoSessionMemoryInfoKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::bind_video_session_memory_khr;
-	let _: Signature = vk::core::bind_video_session_memory_khr;
 	let _: Signature = vk::Device::bind_video_session_memory_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -40666,7 +40092,6 @@ fn cmd_decode_video_khr_signature_and_missing_command() {
 		*const vk::VideoDecodeInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_decode_video_khr;
-	let _: Signature = vk::core::cmd_decode_video_khr;
 	let _: Signature = vk::Device::cmd_decode_video_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -40738,7 +40163,6 @@ fn cmd_begin_video_coding_khr_signature_and_missing_command() {
 		*const vk::VideoBeginCodingInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_video_coding_khr;
-	let _: Signature = vk::core::cmd_begin_video_coding_khr;
 	let _: Signature = vk::Device::cmd_begin_video_coding_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -40814,7 +40238,6 @@ fn cmd_control_video_coding_khr_signature_and_missing_command() {
 		*const vk::VideoCodingControlInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_control_video_coding_khr;
-	let _: Signature = vk::core::cmd_control_video_coding_khr;
 	let _: Signature = vk::Device::cmd_control_video_coding_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -40890,7 +40313,6 @@ fn cmd_end_video_coding_khr_signature_and_missing_command() {
 		*const vk::VideoEndCodingInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_video_coding_khr;
-	let _: Signature = vk::core::cmd_end_video_coding_khr;
 	let _: Signature = vk::Device::cmd_end_video_coding_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -40966,7 +40388,6 @@ fn cmd_encode_video_khr_signature_and_missing_command() {
 		*const vk::VideoEncodeInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_encode_video_khr;
-	let _: Signature = vk::core::cmd_encode_video_khr;
 	let _: Signature = vk::Device::cmd_encode_video_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -41039,7 +40460,6 @@ fn cmd_decompress_memory_nv_signature_and_missing_command() {
 		*const vk::DecompressMemoryRegionNV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_decompress_memory_nv;
-	let _: Signature = vk::core::cmd_decompress_memory_nv;
 	let _: Signature = vk::Device::cmd_decompress_memory_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -41123,7 +40543,6 @@ fn cmd_decompress_memory_indirect_count_nv_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_decompress_memory_indirect_count_nv;
-	let _: Signature = vk::core::cmd_decompress_memory_indirect_count_nv;
 	let _: Signature = vk::Device::cmd_decompress_memory_indirect_count_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -41211,7 +40630,6 @@ fn get_partitioned_acceleration_structures_build_sizes_nv_signature_and_missing_
 		*mut vk::AccelerationStructureBuildSizesInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_partitioned_acceleration_structures_build_sizes_nv;
-	let _: Signature = vk::core::get_partitioned_acceleration_structures_build_sizes_nv;
 	let _: Signature = vk::Device::get_partitioned_acceleration_structures_build_sizes_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -41305,7 +40723,6 @@ fn cmd_build_partitioned_acceleration_structures_nv_signature_and_missing_comman
 		*const vk::BuildPartitionedAccelerationStructureInfoNV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_build_partitioned_acceleration_structures_nv;
-	let _: Signature = vk::core::cmd_build_partitioned_acceleration_structures_nv;
 	let _: Signature = vk::Device::cmd_build_partitioned_acceleration_structures_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -41390,7 +40807,6 @@ fn cmd_decompress_memory_ext_signature_and_missing_command() {
 		*const vk::DecompressMemoryInfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_decompress_memory_ext;
-	let _: Signature = vk::core::cmd_decompress_memory_ext;
 	let _: Signature = vk::Device::cmd_decompress_memory_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -41470,7 +40886,6 @@ fn cmd_decompress_memory_indirect_count_ext_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_decompress_memory_indirect_count_ext;
-	let _: Signature = vk::core::cmd_decompress_memory_indirect_count_ext;
 	let _: Signature = vk::Device::cmd_decompress_memory_indirect_count_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -41571,7 +40986,6 @@ fn create_cu_module_nvx_signature_and_missing_command() {
 		*mut vk::CuModuleNVX,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_cu_module_nvx;
-	let _: Signature = vk::core::create_cu_module_nvx;
 	let _: Signature = vk::Device::create_cu_module_nvx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -41682,7 +41096,6 @@ fn create_cu_function_nvx_signature_and_missing_command() {
 		*mut vk::CuFunctionNVX,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_cu_function_nvx;
-	let _: Signature = vk::core::create_cu_function_nvx;
 	let _: Signature = vk::Device::create_cu_function_nvx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -41793,7 +41206,6 @@ fn destroy_cu_module_nvx_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_cu_module_nvx;
-	let _: Signature = vk::core::destroy_cu_module_nvx;
 	let _: Signature = vk::Device::destroy_cu_module_nvx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -41870,7 +41282,6 @@ fn destroy_cu_function_nvx_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_cu_function_nvx;
-	let _: Signature = vk::core::destroy_cu_function_nvx;
 	let _: Signature = vk::Device::destroy_cu_function_nvx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -41945,7 +41356,6 @@ fn cmd_cu_launch_kernel_nvx_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, *const vk::CuLaunchInfoNVX) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_cu_launch_kernel_nvx;
-	let _: Signature = vk::core::cmd_cu_launch_kernel_nvx;
 	let _: Signature = vk::Device::cmd_cu_launch_kernel_nvx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -42013,7 +41423,6 @@ fn get_descriptor_set_layout_size_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::DescriptorSetLayout, *mut vk::DeviceSize) -> Result<(), CallError>;
 	let _: Signature = vk::get_descriptor_set_layout_size_ext;
-	let _: Signature = vk::core::get_descriptor_set_layout_size_ext;
 	let _: Signature = vk::Device::get_descriptor_set_layout_size_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -42089,7 +41498,6 @@ fn get_descriptor_set_layout_binding_offset_ext_signature_and_missing_command() 
 		*mut vk::DeviceSize,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_descriptor_set_layout_binding_offset_ext;
-	let _: Signature = vk::core::get_descriptor_set_layout_binding_offset_ext;
 	let _: Signature = vk::Device::get_descriptor_set_layout_binding_offset_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -42177,7 +41585,6 @@ fn get_descriptor_ext_signature_and_missing_command() {
 		*mut std::ffi::c_void,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_descriptor_ext;
-	let _: Signature = vk::core::get_descriptor_ext;
 	let _: Signature = vk::Device::get_descriptor_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -42263,7 +41670,6 @@ fn cmd_bind_descriptor_buffers_ext_signature_and_missing_command() {
 		*const vk::DescriptorBufferBindingInfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_descriptor_buffers_ext;
-	let _: Signature = vk::core::cmd_bind_descriptor_buffers_ext;
 	let _: Signature = vk::Device::cmd_bind_descriptor_buffers_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -42350,7 +41756,6 @@ fn cmd_set_descriptor_buffer_offsets_ext_signature_and_missing_command() {
 		*const vk::DeviceSize,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_descriptor_buffer_offsets_ext;
-	let _: Signature = vk::core::cmd_set_descriptor_buffer_offsets_ext;
 	let _: Signature = vk::Device::cmd_set_descriptor_buffer_offsets_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -42463,7 +41868,6 @@ fn cmd_bind_descriptor_buffer_embedded_samplers_ext_signature_and_missing_comman
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_descriptor_buffer_embedded_samplers_ext;
-	let _: Signature = vk::core::cmd_bind_descriptor_buffer_embedded_samplers_ext;
 	let _: Signature = vk::Device::cmd_bind_descriptor_buffer_embedded_samplers_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -42554,7 +41958,6 @@ fn get_buffer_opaque_capture_descriptor_data_ext_signature_and_missing_command()
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_buffer_opaque_capture_descriptor_data_ext;
-	let _: Signature = vk::core::get_buffer_opaque_capture_descriptor_data_ext;
 	let _: Signature = vk::Device::get_buffer_opaque_capture_descriptor_data_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -42662,7 +42065,6 @@ fn get_image_opaque_capture_descriptor_data_ext_signature_and_missing_command() 
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_image_opaque_capture_descriptor_data_ext;
-	let _: Signature = vk::core::get_image_opaque_capture_descriptor_data_ext;
 	let _: Signature = vk::Device::get_image_opaque_capture_descriptor_data_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -42768,7 +42170,6 @@ fn get_image_view_opaque_capture_descriptor_data_ext_signature_and_missing_comma
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_image_view_opaque_capture_descriptor_data_ext;
-	let _: Signature = vk::core::get_image_view_opaque_capture_descriptor_data_ext;
 	let _: Signature = vk::Device::get_image_view_opaque_capture_descriptor_data_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -42877,7 +42278,6 @@ fn get_sampler_opaque_capture_descriptor_data_ext_signature_and_missing_command(
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_sampler_opaque_capture_descriptor_data_ext;
-	let _: Signature = vk::core::get_sampler_opaque_capture_descriptor_data_ext;
 	let _: Signature = vk::Device::get_sampler_opaque_capture_descriptor_data_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -42985,7 +42385,6 @@ fn get_acceleration_structure_opaque_capture_descriptor_data_ext_signature_and_m
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_acceleration_structure_opaque_capture_descriptor_data_ext;
-	let _: Signature = vk::core::get_acceleration_structure_opaque_capture_descriptor_data_ext;
 	let _: Signature = vk::Device::get_acceleration_structure_opaque_capture_descriptor_data_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -43092,7 +42491,6 @@ fn get_acceleration_structure_opaque_capture_descriptor_data_ext_native_forwardi
 fn set_device_memory_priority_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::DeviceMemory, f32) -> Result<(), CallError>;
 	let _: Signature = vk::set_device_memory_priority_ext;
-	let _: Signature = vk::core::set_device_memory_priority_ext;
 	let _: Signature = vk::Device::set_device_memory_priority_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -43161,7 +42559,6 @@ fn acquire_drm_display_ext_signature_and_missing_command() {
 		vk::DisplayKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::acquire_drm_display_ext;
-	let _: Signature = vk::core::acquire_drm_display_ext;
 	let _: Signature = vk::Instance::acquire_drm_display_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -43259,7 +42656,6 @@ fn get_drm_display_ext_signature_and_missing_command() {
 		*mut vk::DisplayKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_drm_display_ext;
-	let _: Signature = vk::core::get_drm_display_ext;
 	let _: Signature = vk::Instance::get_drm_display_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -43363,7 +42759,6 @@ fn wait_for_present2_khr_signature_and_missing_command() {
 		*const vk::PresentWait2InfoKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::wait_for_present2_khr;
-	let _: Signature = vk::core::wait_for_present2_khr;
 	let _: Signature = vk::Device::wait_for_present2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -43457,7 +42852,6 @@ fn wait_for_present_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::SwapchainKHR, u64, u64) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::wait_for_present_khr;
-	let _: Signature = vk::core::wait_for_present_khr;
 	let _: Signature = vk::Device::wait_for_present_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -43556,7 +42950,6 @@ fn create_buffer_collection_fuchsia_signature_and_missing_command() {
 		*mut vk::BufferCollectionFUCHSIA,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_buffer_collection_fuchsia;
-	let _: Signature = vk::core::create_buffer_collection_fuchsia;
 	let _: Signature = vk::Device::create_buffer_collection_fuchsia;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -43672,7 +43065,6 @@ fn set_buffer_collection_buffer_constraints_fuchsia_signature_and_missing_comman
 		*const vk::BufferConstraintsInfoFUCHSIA,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::set_buffer_collection_buffer_constraints_fuchsia;
-	let _: Signature = vk::core::set_buffer_collection_buffer_constraints_fuchsia;
 	let _: Signature = vk::Device::set_buffer_collection_buffer_constraints_fuchsia;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -43781,7 +43173,6 @@ fn set_buffer_collection_image_constraints_fuchsia_signature_and_missing_command
 		*const vk::ImageConstraintsInfoFUCHSIA,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::set_buffer_collection_image_constraints_fuchsia;
-	let _: Signature = vk::core::set_buffer_collection_image_constraints_fuchsia;
 	let _: Signature = vk::Device::set_buffer_collection_image_constraints_fuchsia;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -43890,7 +43281,6 @@ fn destroy_buffer_collection_fuchsia_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_buffer_collection_fuchsia;
-	let _: Signature = vk::core::destroy_buffer_collection_fuchsia;
 	let _: Signature = vk::Device::destroy_buffer_collection_fuchsia;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -43976,7 +43366,6 @@ fn get_buffer_collection_properties_fuchsia_signature_and_missing_command() {
 		*mut vk::BufferCollectionPropertiesFUCHSIA,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_buffer_collection_properties_fuchsia;
-	let _: Signature = vk::core::get_buffer_collection_properties_fuchsia;
 	let _: Signature = vk::Device::get_buffer_collection_properties_fuchsia;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -44083,7 +43472,6 @@ fn create_cuda_module_nv_signature_and_missing_command() {
 		*mut vk::CudaModuleNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_cuda_module_nv;
-	let _: Signature = vk::core::create_cuda_module_nv;
 	let _: Signature = vk::Device::create_cuda_module_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -44196,7 +43584,6 @@ fn get_cuda_module_cache_nv_signature_and_missing_command() {
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_cuda_module_cache_nv;
-	let _: Signature = vk::core::get_cuda_module_cache_nv;
 	let _: Signature = vk::Device::get_cuda_module_cache_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -44302,7 +43689,6 @@ fn create_cuda_function_nv_signature_and_missing_command() {
 		*mut vk::CudaFunctionNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_cuda_function_nv;
-	let _: Signature = vk::core::create_cuda_function_nv;
 	let _: Signature = vk::Device::create_cuda_function_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -44418,7 +43804,6 @@ fn destroy_cuda_module_nv_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_cuda_module_nv;
-	let _: Signature = vk::core::destroy_cuda_module_nv;
 	let _: Signature = vk::Device::destroy_cuda_module_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -44498,7 +43883,6 @@ fn destroy_cuda_function_nv_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_cuda_function_nv;
-	let _: Signature = vk::core::destroy_cuda_function_nv;
 	let _: Signature = vk::Device::destroy_cuda_function_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -44575,7 +43959,6 @@ fn cmd_cuda_launch_kernel_nv_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, *const vk::CudaLaunchInfoNV) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_cuda_launch_kernel_nv;
-	let _: Signature = vk::core::cmd_cuda_launch_kernel_nv;
 	let _: Signature = vk::Device::cmd_cuda_launch_kernel_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -44646,7 +44029,6 @@ fn cmd_begin_rendering_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, *const vk::RenderingInfo) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_rendering;
-	let _: Signature = vk::core::cmd_begin_rendering;
 	let _: Signature = vk::Device::cmd_begin_rendering;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -44713,7 +44095,6 @@ fn cmd_begin_rendering_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, *const vk::RenderingInfo) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_rendering_khr;
-	let _: Signature = vk::core::cmd_begin_rendering_khr;
 	let _: Signature = vk::Device::cmd_begin_rendering_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -44780,7 +44161,6 @@ fn cmd_begin_rendering_khr_native_forwarding() {
 fn cmd_end_rendering_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_rendering;
-	let _: Signature = vk::core::cmd_end_rendering;
 	let _: Signature = vk::Device::cmd_end_rendering;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -44835,7 +44215,6 @@ fn cmd_end_rendering2_khr_signature_and_missing_command() {
 		*const vk::RenderingEndInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_rendering2_khr;
-	let _: Signature = vk::core::cmd_end_rendering2_khr;
 	let _: Signature = vk::Device::cmd_end_rendering2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -44908,7 +44287,6 @@ fn cmd_end_rendering2_ext_signature_and_missing_command() {
 		*const vk::RenderingEndInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_rendering2_ext;
-	let _: Signature = vk::core::cmd_end_rendering2_ext;
 	let _: Signature = vk::Device::cmd_end_rendering2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -44977,7 +44355,6 @@ fn cmd_end_rendering2_ext_native_forwarding() {
 fn cmd_end_rendering_khr_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_rendering_khr;
-	let _: Signature = vk::core::cmd_end_rendering_khr;
 	let _: Signature = vk::Device::cmd_end_rendering_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -45032,7 +44409,6 @@ fn get_descriptor_set_layout_host_mapping_info_valve_signature_and_missing_comma
 		*mut vk::DescriptorSetLayoutHostMappingInfoVALVE,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_descriptor_set_layout_host_mapping_info_valve;
-	let _: Signature = vk::core::get_descriptor_set_layout_host_mapping_info_valve;
 	let _: Signature = vk::Device::get_descriptor_set_layout_host_mapping_info_valve;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -45121,7 +44497,6 @@ fn get_descriptor_set_host_mapping_valve_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::DescriptorSet, *mut *mut std::ffi::c_void) -> Result<(), CallError>;
 	let _: Signature = vk::get_descriptor_set_host_mapping_valve;
-	let _: Signature = vk::core::get_descriptor_set_host_mapping_valve;
 	let _: Signature = vk::Device::get_descriptor_set_host_mapping_valve;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -45204,7 +44579,6 @@ fn create_micromap_ext_signature_and_missing_command() {
 		*mut vk::MicromapEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_micromap_ext;
-	let _: Signature = vk::core::create_micromap_ext;
 	let _: Signature = vk::Device::create_micromap_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -45315,7 +44689,6 @@ fn cmd_build_micromaps_ext_signature_and_missing_command() {
 		*const vk::MicromapBuildInfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_build_micromaps_ext;
-	let _: Signature = vk::core::cmd_build_micromaps_ext;
 	let _: Signature = vk::Device::cmd_build_micromaps_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -45398,7 +44771,6 @@ fn build_micromaps_ext_signature_and_missing_command() {
 		*const vk::MicromapBuildInfoEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::build_micromaps_ext;
-	let _: Signature = vk::core::build_micromaps_ext;
 	let _: Signature = vk::Device::build_micromaps_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -45501,7 +44873,6 @@ fn destroy_micromap_ext_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_micromap_ext;
-	let _: Signature = vk::core::destroy_micromap_ext;
 	let _: Signature = vk::Device::destroy_micromap_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -45578,7 +44949,6 @@ fn cmd_copy_micromap_ext_signature_and_missing_command() {
 		*const vk::CopyMicromapInfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_micromap_ext;
-	let _: Signature = vk::core::cmd_copy_micromap_ext;
 	let _: Signature = vk::Device::cmd_copy_micromap_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -45650,7 +45020,6 @@ fn copy_micromap_ext_signature_and_missing_command() {
 		*const vk::CopyMicromapInfoEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::copy_micromap_ext;
-	let _: Signature = vk::core::copy_micromap_ext;
 	let _: Signature = vk::Device::copy_micromap_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -45747,7 +45116,6 @@ fn cmd_copy_micromap_to_memory_ext_signature_and_missing_command() {
 		*const vk::CopyMicromapToMemoryInfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_micromap_to_memory_ext;
-	let _: Signature = vk::core::cmd_copy_micromap_to_memory_ext;
 	let _: Signature = vk::Device::cmd_copy_micromap_to_memory_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -45823,7 +45191,6 @@ fn copy_micromap_to_memory_ext_signature_and_missing_command() {
 		*const vk::CopyMicromapToMemoryInfoEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::copy_micromap_to_memory_ext;
-	let _: Signature = vk::core::copy_micromap_to_memory_ext;
 	let _: Signature = vk::Device::copy_micromap_to_memory_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -45921,7 +45288,6 @@ fn cmd_copy_memory_to_micromap_ext_signature_and_missing_command() {
 		*const vk::CopyMemoryToMicromapInfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_memory_to_micromap_ext;
-	let _: Signature = vk::core::cmd_copy_memory_to_micromap_ext;
 	let _: Signature = vk::Device::cmd_copy_memory_to_micromap_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -45997,7 +45363,6 @@ fn copy_memory_to_micromap_ext_signature_and_missing_command() {
 		*const vk::CopyMemoryToMicromapInfoEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::copy_memory_to_micromap_ext;
-	let _: Signature = vk::core::copy_memory_to_micromap_ext;
 	let _: Signature = vk::Device::copy_memory_to_micromap_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -46099,7 +45464,6 @@ fn cmd_write_micromaps_properties_ext_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_write_micromaps_properties_ext;
-	let _: Signature = vk::core::cmd_write_micromaps_properties_ext;
 	let _: Signature = vk::Device::cmd_write_micromaps_properties_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -46206,7 +45570,6 @@ fn write_micromaps_properties_ext_signature_and_missing_command() {
 		usize,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::write_micromaps_properties_ext;
-	let _: Signature = vk::core::write_micromaps_properties_ext;
 	let _: Signature = vk::Device::write_micromaps_properties_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -46327,7 +45690,6 @@ fn get_device_micromap_compatibility_ext_signature_and_missing_command() {
 		*mut vk::AccelerationStructureCompatibilityKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_device_micromap_compatibility_ext;
-	let _: Signature = vk::core::get_device_micromap_compatibility_ext;
 	let _: Signature = vk::Device::get_device_micromap_compatibility_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -46417,7 +45779,6 @@ fn get_micromap_build_sizes_ext_signature_and_missing_command() {
 		*mut vk::MicromapBuildSizesInfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_micromap_build_sizes_ext;
-	let _: Signature = vk::core::get_micromap_build_sizes_ext;
 	let _: Signature = vk::Device::get_micromap_build_sizes_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -46506,7 +45867,6 @@ fn get_shader_module_identifier_ext_signature_and_missing_command() {
 		*mut vk::ShaderModuleIdentifierEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_shader_module_identifier_ext;
-	let _: Signature = vk::core::get_shader_module_identifier_ext;
 	let _: Signature = vk::Device::get_shader_module_identifier_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -46584,7 +45944,6 @@ fn get_shader_module_create_info_identifier_ext_signature_and_missing_command() 
 		*mut vk::ShaderModuleIdentifierEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_shader_module_create_info_identifier_ext;
-	let _: Signature = vk::core::get_shader_module_create_info_identifier_ext;
 	let _: Signature = vk::Device::get_shader_module_create_info_identifier_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -46674,7 +46033,6 @@ fn get_image_subresource_layout2_signature_and_missing_command() {
 		*mut vk::SubresourceLayout2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_image_subresource_layout2;
-	let _: Signature = vk::core::get_image_subresource_layout2;
 	let _: Signature = vk::Device::get_image_subresource_layout2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -46764,7 +46122,6 @@ fn get_image_subresource_layout2_khr_signature_and_missing_command() {
 		*mut vk::SubresourceLayout2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_image_subresource_layout2_khr;
-	let _: Signature = vk::core::get_image_subresource_layout2_khr;
 	let _: Signature = vk::Device::get_image_subresource_layout2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -46854,7 +46211,6 @@ fn get_image_subresource_layout2_ext_signature_and_missing_command() {
 		*mut vk::SubresourceLayout2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_image_subresource_layout2_ext;
-	let _: Signature = vk::core::get_image_subresource_layout2_ext;
 	let _: Signature = vk::Device::get_image_subresource_layout2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -46943,7 +46299,6 @@ fn get_pipeline_properties_ext_signature_and_missing_command() {
 		*mut vk::BaseOutStructure,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_pipeline_properties_ext;
-	let _: Signature = vk::core::get_pipeline_properties_ext;
 	let _: Signature = vk::Device::get_pipeline_properties_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -47044,7 +46399,6 @@ fn export_metal_objects_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *mut vk::ExportMetalObjectsInfoEXT) -> Result<(), CallError>;
 	let _: Signature = vk::export_metal_objects_ext;
-	let _: Signature = vk::core::export_metal_objects_ext;
 	let _: Signature = vk::Device::export_metal_objects_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -47117,7 +46471,6 @@ fn cmd_bind_tile_memory_qcom_signature_and_missing_command() {
 		*const vk::TileMemoryBindInfoQCOM,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_tile_memory_qcom;
-	let _: Signature = vk::core::cmd_bind_tile_memory_qcom;
 	let _: Signature = vk::Device::cmd_bind_tile_memory_qcom;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -47194,7 +46547,6 @@ fn get_framebuffer_tile_properties_qcom_signature_and_missing_command() {
 		*mut vk::TilePropertiesQCOM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_framebuffer_tile_properties_qcom;
-	let _: Signature = vk::core::get_framebuffer_tile_properties_qcom;
 	let _: Signature = vk::Device::get_framebuffer_tile_properties_qcom;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -47306,7 +46658,6 @@ fn get_dynamic_rendering_tile_properties_qcom_signature_and_missing_command() {
 		*mut vk::TilePropertiesQCOM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_dynamic_rendering_tile_properties_qcom;
-	let _: Signature = vk::core::get_dynamic_rendering_tile_properties_qcom;
 	let _: Signature = vk::Device::get_dynamic_rendering_tile_properties_qcom;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -47417,7 +46768,6 @@ fn get_physical_device_optical_flow_image_formats_nv_signature_and_missing_comma
 		*mut vk::OpticalFlowImageFormatPropertiesNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_optical_flow_image_formats_nv;
-	let _: Signature = vk::core::get_physical_device_optical_flow_image_formats_nv;
 	let _: Signature = vk::Instance::get_physical_device_optical_flow_image_formats_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -47542,7 +46892,6 @@ fn create_optical_flow_session_nv_signature_and_missing_command() {
 		*mut vk::OpticalFlowSessionNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_optical_flow_session_nv;
-	let _: Signature = vk::core::create_optical_flow_session_nv;
 	let _: Signature = vk::Device::create_optical_flow_session_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -47656,7 +47005,6 @@ fn destroy_optical_flow_session_nv_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_optical_flow_session_nv;
-	let _: Signature = vk::core::destroy_optical_flow_session_nv;
 	let _: Signature = vk::Device::destroy_optical_flow_session_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -47736,7 +47084,6 @@ fn bind_optical_flow_session_image_nv_signature_and_missing_command() {
 		vk::ImageLayout,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::bind_optical_flow_session_image_nv;
-	let _: Signature = vk::core::bind_optical_flow_session_image_nv;
 	let _: Signature = vk::Device::bind_optical_flow_session_image_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -47841,7 +47188,6 @@ fn cmd_optical_flow_execute_nv_signature_and_missing_command() {
 		*const vk::OpticalFlowExecuteInfoNV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_optical_flow_execute_nv;
-	let _: Signature = vk::core::cmd_optical_flow_execute_nv;
 	let _: Signature = vk::Device::cmd_optical_flow_execute_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -47923,7 +47269,6 @@ fn get_device_fault_info_ext_signature_and_missing_command() {
 		*mut vk::DeviceFaultInfoEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_device_fault_info_ext;
-	let _: Signature = vk::core::get_device_fault_info_ext;
 	let _: Signature = vk::Device::get_device_fault_info_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -48027,7 +47372,6 @@ fn get_device_fault_reports_khr_signature_and_missing_command() {
 		*mut vk::DeviceFaultInfoKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_device_fault_reports_khr;
-	let _: Signature = vk::core::get_device_fault_reports_khr;
 	let _: Signature = vk::Device::get_device_fault_reports_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -48130,7 +47474,6 @@ fn get_device_fault_debug_info_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *mut vk::DeviceFaultDebugInfoKHR) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_device_fault_debug_info_khr;
-	let _: Signature = vk::core::get_device_fault_debug_info_khr;
 	let _: Signature = vk::Device::get_device_fault_debug_info_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -48219,7 +47562,6 @@ fn cmd_set_depth_bias2_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, *const vk::DepthBiasInfoEXT) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_bias2_ext;
-	let _: Signature = vk::core::cmd_set_depth_bias2_ext;
 	let _: Signature = vk::Device::cmd_set_depth_bias2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -48291,7 +47633,6 @@ fn release_swapchain_images_khr_signature_and_missing_command() {
 		*const vk::ReleaseSwapchainImagesInfoKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::release_swapchain_images_khr;
-	let _: Signature = vk::core::release_swapchain_images_khr;
 	let _: Signature = vk::Device::release_swapchain_images_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -48384,7 +47725,6 @@ fn release_swapchain_images_ext_signature_and_missing_command() {
 		*const vk::ReleaseSwapchainImagesInfoKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::release_swapchain_images_ext;
-	let _: Signature = vk::core::release_swapchain_images_ext;
 	let _: Signature = vk::Device::release_swapchain_images_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -48478,7 +47818,6 @@ fn get_device_image_subresource_layout_signature_and_missing_command() {
 		*mut vk::SubresourceLayout2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_device_image_subresource_layout;
-	let _: Signature = vk::core::get_device_image_subresource_layout;
 	let _: Signature = vk::Device::get_device_image_subresource_layout;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -48567,7 +47906,6 @@ fn get_device_image_subresource_layout_khr_signature_and_missing_command() {
 		*mut vk::SubresourceLayout2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_device_image_subresource_layout_khr;
-	let _: Signature = vk::core::get_device_image_subresource_layout_khr;
 	let _: Signature = vk::Device::get_device_image_subresource_layout_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -48656,7 +47994,6 @@ fn map_memory2_signature_and_missing_command() {
 		*mut *mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::map_memory2;
-	let _: Signature = vk::core::map_memory2;
 	let _: Signature = vk::Device::map_memory2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -48758,7 +48095,6 @@ fn map_memory2_khr_signature_and_missing_command() {
 		*mut *mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::map_memory2_khr;
-	let _: Signature = vk::core::map_memory2_khr;
 	let _: Signature = vk::Device::map_memory2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -48857,7 +48193,6 @@ fn unmap_memory2_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::MemoryUnmapInfo) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::unmap_memory2;
-	let _: Signature = vk::core::unmap_memory2;
 	let _: Signature = vk::Device::unmap_memory2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -48945,7 +48280,6 @@ fn unmap_memory2_khr_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *const vk::MemoryUnmapInfo) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::unmap_memory2_khr;
-	let _: Signature = vk::core::unmap_memory2_khr;
 	let _: Signature = vk::Device::unmap_memory2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -49038,7 +48372,6 @@ fn create_shaders_ext_signature_and_missing_command() {
 		*mut vk::ShaderEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_shaders_ext;
-	let _: Signature = vk::core::create_shaders_ext;
 	let _: Signature = vk::Device::create_shaders_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -49151,7 +48484,6 @@ fn destroy_shader_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::ShaderEXT, *const vk::AllocationCallbacks) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_shader_ext;
-	let _: Signature = vk::core::destroy_shader_ext;
 	let _: Signature = vk::Device::destroy_shader_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -49229,7 +48561,6 @@ fn get_shader_binary_data_ext_signature_and_missing_command() {
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_shader_binary_data_ext;
-	let _: Signature = vk::core::get_shader_binary_data_ext;
 	let _: Signature = vk::Device::get_shader_binary_data_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -49334,7 +48665,6 @@ fn cmd_bind_shaders_ext_signature_and_missing_command() {
 		*const vk::ShaderEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_shaders_ext;
-	let _: Signature = vk::core::cmd_bind_shaders_ext;
 	let _: Signature = vk::Device::cmd_bind_shaders_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -49419,7 +48749,6 @@ fn cmd_bind_shaders_ext_native_forwarding() {
 fn set_swapchain_present_timing_queue_size_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::SwapchainKHR, u32) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::set_swapchain_present_timing_queue_size_ext;
-	let _: Signature = vk::core::set_swapchain_present_timing_queue_size_ext;
 	let _: Signature = vk::Device::set_swapchain_present_timing_queue_size_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -49518,7 +48847,6 @@ fn get_swapchain_timing_properties_ext_signature_and_missing_command() {
 		*mut u64,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_swapchain_timing_properties_ext;
-	let _: Signature = vk::core::get_swapchain_timing_properties_ext;
 	let _: Signature = vk::Device::get_swapchain_timing_properties_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -49631,7 +48959,6 @@ fn get_swapchain_time_domain_properties_ext_signature_and_missing_command() {
 		*mut u64,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_swapchain_time_domain_properties_ext;
-	let _: Signature = vk::core::get_swapchain_time_domain_properties_ext;
 	let _: Signature = vk::Device::get_swapchain_time_domain_properties_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -49743,7 +49070,6 @@ fn get_past_presentation_timing_ext_signature_and_missing_command() {
 		*mut vk::PastPresentationTimingPropertiesEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_past_presentation_timing_ext;
-	let _: Signature = vk::core::get_past_presentation_timing_ext;
 	let _: Signature = vk::Device::get_past_presentation_timing_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -49847,7 +49173,6 @@ fn get_screen_buffer_properties_qnx_signature_and_missing_command() {
 		*mut vk::ScreenBufferPropertiesQNX,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_screen_buffer_properties_qnx;
-	let _: Signature = vk::core::get_screen_buffer_properties_qnx;
 	let _: Signature = vk::Device::get_screen_buffer_properties_qnx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -49952,7 +49277,6 @@ fn get_physical_device_cooperative_matrix_properties_khr_signature_and_missing_c
 		*mut vk::CooperativeMatrixPropertiesKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_cooperative_matrix_properties_khr;
-	let _: Signature = vk::core::get_physical_device_cooperative_matrix_properties_khr;
 	let _: Signature = vk::Instance::get_physical_device_cooperative_matrix_properties_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -50067,7 +49391,6 @@ fn get_physical_device_cooperative_matrix_properties2_ext_signature_and_missing_
 		*mut vk::CooperativeMatrixProperties2EXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_cooperative_matrix_properties2_ext;
-	let _: Signature = vk::core::get_physical_device_cooperative_matrix_properties2_ext;
 	let _: Signature = vk::Instance::get_physical_device_cooperative_matrix_properties2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -50194,7 +49517,6 @@ fn get_execution_graph_pipeline_scratch_size_amdx_signature_and_missing_command(
 		*mut vk::ExecutionGraphPipelineScratchSizeAMDX,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_execution_graph_pipeline_scratch_size_amdx;
-	let _: Signature = vk::core::get_execution_graph_pipeline_scratch_size_amdx;
 	let _: Signature = vk::Device::get_execution_graph_pipeline_scratch_size_amdx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -50303,7 +49625,6 @@ fn get_execution_graph_pipeline_node_index_amdx_signature_and_missing_command() 
 		*mut u32,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_execution_graph_pipeline_node_index_amdx;
-	let _: Signature = vk::core::get_execution_graph_pipeline_node_index_amdx;
 	let _: Signature = vk::Device::get_execution_graph_pipeline_node_index_amdx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -50420,7 +49741,6 @@ fn create_execution_graph_pipelines_amdx_signature_and_missing_command() {
 		*mut vk::Pipeline,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_execution_graph_pipelines_amdx;
-	let _: Signature = vk::core::create_execution_graph_pipelines_amdx;
 	let _: Signature = vk::Device::create_execution_graph_pipelines_amdx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -50553,7 +49873,6 @@ fn cmd_initialize_graph_scratch_memory_amdx_signature_and_missing_command() {
 		vk::DeviceSize,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_initialize_graph_scratch_memory_amdx;
-	let _: Signature = vk::core::cmd_initialize_graph_scratch_memory_amdx;
 	let _: Signature = vk::Device::cmd_initialize_graph_scratch_memory_amdx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -50645,7 +49964,6 @@ fn cmd_dispatch_graph_amdx_signature_and_missing_command() {
 		*const vk::DispatchGraphCountInfoAMDX,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_dispatch_graph_amdx;
-	let _: Signature = vk::core::cmd_dispatch_graph_amdx;
 	let _: Signature = vk::Device::cmd_dispatch_graph_amdx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -50737,7 +50055,6 @@ fn cmd_dispatch_graph_indirect_amdx_signature_and_missing_command() {
 		*const vk::DispatchGraphCountInfoAMDX,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_dispatch_graph_indirect_amdx;
-	let _: Signature = vk::core::cmd_dispatch_graph_indirect_amdx;
 	let _: Signature = vk::Device::cmd_dispatch_graph_indirect_amdx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -50829,7 +50146,6 @@ fn cmd_dispatch_graph_indirect_count_amdx_signature_and_missing_command() {
 		vk::DeviceAddress,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_dispatch_graph_indirect_count_amdx;
-	let _: Signature = vk::core::cmd_dispatch_graph_indirect_count_amdx;
 	let _: Signature = vk::Device::cmd_dispatch_graph_indirect_count_amdx;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -50919,7 +50235,6 @@ fn create_gpa_session_amd_signature_and_missing_command() {
 		*mut vk::GpaSessionAMD,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_gpa_session_amd;
-	let _: Signature = vk::core::create_gpa_session_amd;
 	let _: Signature = vk::Device::create_gpa_session_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -51030,7 +50345,6 @@ fn destroy_gpa_session_amd_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_gpa_session_amd;
-	let _: Signature = vk::core::destroy_gpa_session_amd;
 	let _: Signature = vk::Device::destroy_gpa_session_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -51105,7 +50419,6 @@ fn set_gpa_device_clock_mode_amd_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *mut vk::GpaDeviceClockModeInfoAMD) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::set_gpa_device_clock_mode_amd;
-	let _: Signature = vk::core::set_gpa_device_clock_mode_amd;
 	let _: Signature = vk::Device::set_gpa_device_clock_mode_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -51194,7 +50507,6 @@ fn get_gpa_device_clock_info_amd_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, *mut vk::GpaDeviceGetClockInfoAMD) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_gpa_device_clock_info_amd;
-	let _: Signature = vk::core::get_gpa_device_clock_info_amd;
 	let _: Signature = vk::Device::get_gpa_device_clock_info_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -51283,7 +50595,6 @@ fn cmd_begin_gpa_session_amd_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::GpaSessionAMD) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::cmd_begin_gpa_session_amd;
-	let _: Signature = vk::core::cmd_begin_gpa_session_amd;
 	let _: Signature = vk::Device::cmd_begin_gpa_session_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -51367,7 +50678,6 @@ fn cmd_end_gpa_session_amd_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::GpaSessionAMD) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::cmd_end_gpa_session_amd;
-	let _: Signature = vk::core::cmd_end_gpa_session_amd;
 	let _: Signature = vk::Device::cmd_end_gpa_session_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -51456,7 +50766,6 @@ fn cmd_begin_gpa_sample_amd_signature_and_missing_command() {
 		*mut u32,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::cmd_begin_gpa_sample_amd;
-	let _: Signature = vk::core::cmd_begin_gpa_sample_amd;
 	let _: Signature = vk::Device::cmd_begin_gpa_sample_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -51563,7 +50872,6 @@ fn cmd_end_gpa_sample_amd_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::GpaSessionAMD, u32) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_gpa_sample_amd;
-	let _: Signature = vk::core::cmd_end_gpa_sample_amd;
 	let _: Signature = vk::Device::cmd_end_gpa_sample_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -51630,7 +50938,6 @@ fn cmd_end_gpa_sample_amd_native_forwarding() {
 fn get_gpa_session_status_amd_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::GpaSessionAMD) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_gpa_session_status_amd;
-	let _: Signature = vk::core::get_gpa_session_status_amd;
 	let _: Signature = vk::Device::get_gpa_session_status_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -51712,7 +51019,6 @@ fn get_gpa_session_results_amd_signature_and_missing_command() {
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_gpa_session_results_amd;
-	let _: Signature = vk::core::get_gpa_session_results_amd;
 	let _: Signature = vk::Device::get_gpa_session_results_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -51817,7 +51123,6 @@ fn get_gpa_session_results_amd_native_forwarding() {
 fn reset_gpa_session_amd_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::GpaSessionAMD) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::reset_gpa_session_amd;
-	let _: Signature = vk::core::reset_gpa_session_amd;
 	let _: Signature = vk::Device::reset_gpa_session_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -51893,7 +51198,6 @@ fn cmd_copy_gpa_session_results_amd_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, vk::GpaSessionAMD) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_gpa_session_results_amd;
-	let _: Signature = vk::core::cmd_copy_gpa_session_results_amd;
 	let _: Signature = vk::Device::cmd_copy_gpa_session_results_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -51960,7 +51264,6 @@ fn cmd_bind_descriptor_sets2_signature_and_missing_command() {
 		*const vk::BindDescriptorSetsInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_descriptor_sets2;
-	let _: Signature = vk::core::cmd_bind_descriptor_sets2;
 	let _: Signature = vk::Device::cmd_bind_descriptor_sets2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -52036,7 +51339,6 @@ fn cmd_bind_descriptor_sets2_khr_signature_and_missing_command() {
 		*const vk::BindDescriptorSetsInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_descriptor_sets2_khr;
-	let _: Signature = vk::core::cmd_bind_descriptor_sets2_khr;
 	let _: Signature = vk::Device::cmd_bind_descriptor_sets2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -52112,7 +51414,6 @@ fn cmd_push_constants2_signature_and_missing_command() {
 		*const vk::PushConstantsInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_push_constants2;
-	let _: Signature = vk::core::cmd_push_constants2;
 	let _: Signature = vk::Device::cmd_push_constants2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -52184,7 +51485,6 @@ fn cmd_push_constants2_khr_signature_and_missing_command() {
 		*const vk::PushConstantsInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_push_constants2_khr;
-	let _: Signature = vk::core::cmd_push_constants2_khr;
 	let _: Signature = vk::Device::cmd_push_constants2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -52257,7 +51557,6 @@ fn cmd_push_descriptor_set2_signature_and_missing_command() {
 		*const vk::PushDescriptorSetInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_push_descriptor_set2;
-	let _: Signature = vk::core::cmd_push_descriptor_set2;
 	let _: Signature = vk::Device::cmd_push_descriptor_set2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -52333,7 +51632,6 @@ fn cmd_push_descriptor_set2_khr_signature_and_missing_command() {
 		*const vk::PushDescriptorSetInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_push_descriptor_set2_khr;
-	let _: Signature = vk::core::cmd_push_descriptor_set2_khr;
 	let _: Signature = vk::Device::cmd_push_descriptor_set2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -52409,7 +51707,6 @@ fn cmd_push_descriptor_set_with_template2_signature_and_missing_command() {
 		*const vk::PushDescriptorSetWithTemplateInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_push_descriptor_set_with_template2;
-	let _: Signature = vk::core::cmd_push_descriptor_set_with_template2;
 	let _: Signature = vk::Device::cmd_push_descriptor_set_with_template2;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -52491,7 +51788,6 @@ fn cmd_push_descriptor_set_with_template2_khr_signature_and_missing_command() {
 		*const vk::PushDescriptorSetWithTemplateInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_push_descriptor_set_with_template2_khr;
-	let _: Signature = vk::core::cmd_push_descriptor_set_with_template2_khr;
 	let _: Signature = vk::Device::cmd_push_descriptor_set_with_template2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -52573,7 +51869,6 @@ fn cmd_set_descriptor_buffer_offsets2_ext_signature_and_missing_command() {
 		*const vk::SetDescriptorBufferOffsetsInfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_descriptor_buffer_offsets2_ext;
-	let _: Signature = vk::core::cmd_set_descriptor_buffer_offsets2_ext;
 	let _: Signature = vk::Device::cmd_set_descriptor_buffer_offsets2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -52655,7 +51950,6 @@ fn cmd_bind_descriptor_buffer_embedded_samplers2_ext_signature_and_missing_comma
 		*const vk::BindDescriptorBufferEmbeddedSamplersInfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_descriptor_buffer_embedded_samplers2_ext;
-	let _: Signature = vk::core::cmd_bind_descriptor_buffer_embedded_samplers2_ext;
 	let _: Signature = vk::Device::cmd_bind_descriptor_buffer_embedded_samplers2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -52740,7 +52034,6 @@ fn set_latency_sleep_mode_nv_signature_and_missing_command() {
 		*const vk::LatencySleepModeInfoNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::set_latency_sleep_mode_nv;
-	let _: Signature = vk::core::set_latency_sleep_mode_nv;
 	let _: Signature = vk::Device::set_latency_sleep_mode_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -52838,7 +52131,6 @@ fn latency_sleep_nv_signature_and_missing_command() {
 		*const vk::LatencySleepInfoNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::latency_sleep_nv;
-	let _: Signature = vk::core::latency_sleep_nv;
 	let _: Signature = vk::Device::latency_sleep_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -52935,7 +52227,6 @@ fn set_latency_marker_nv_signature_and_missing_command() {
 		*const vk::SetLatencyMarkerInfoNV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::set_latency_marker_nv;
-	let _: Signature = vk::core::set_latency_marker_nv;
 	let _: Signature = vk::Device::set_latency_marker_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -53012,7 +52303,6 @@ fn get_latency_timings_nv_signature_and_missing_command() {
 		*mut vk::GetLatencyMarkerInfoNV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_latency_timings_nv;
-	let _: Signature = vk::core::get_latency_timings_nv;
 	let _: Signature = vk::Device::get_latency_timings_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -53087,7 +52377,6 @@ fn queue_notify_out_of_band_nv_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Queue, *const vk::OutOfBandQueueTypeInfoNV) -> Result<(), CallError>;
 	let _: Signature = vk::queue_notify_out_of_band_nv;
-	let _: Signature = vk::core::queue_notify_out_of_band_nv;
 	let _: Signature = vk::Device::queue_notify_out_of_band_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -53156,7 +52445,6 @@ fn queue_notify_out_of_band_nv_native_forwarding() {
 fn set_latency_sleep_mode_legacy_nv_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::Bool32, vk::Bool32, u32) -> Result<(), CallError>;
 	let _: Signature = vk::set_latency_sleep_mode_legacy_nv;
-	let _: Signature = vk::core::set_latency_sleep_mode_legacy_nv;
 	let _: Signature = vk::Device::set_latency_sleep_mode_legacy_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -53230,7 +52518,6 @@ fn set_latency_sleep_mode_legacy_nv_native_forwarding() {
 fn latency_sleep_legacy_nv_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::Semaphore, u64) -> Result<(), CallError>;
 	let _: Signature = vk::latency_sleep_legacy_nv;
-	let _: Signature = vk::core::latency_sleep_legacy_nv;
 	let _: Signature = vk::Device::latency_sleep_legacy_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -53294,7 +52581,6 @@ fn latency_sleep_legacy_nv_native_forwarding() {
 fn set_latency_marker_legacy_nv_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, u64, u32) -> Result<(), CallError>;
 	let _: Signature = vk::set_latency_marker_legacy_nv;
-	let _: Signature = vk::core::set_latency_marker_legacy_nv;
 	let _: Signature = vk::Device::set_latency_marker_legacy_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -53353,7 +52639,6 @@ fn set_latency_marker_legacy_nv_native_forwarding() {
 fn get_latency_timings_legacy_nv_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, *mut std::ffi::c_void) -> Result<(), CallError>;
 	let _: Signature = vk::get_latency_timings_legacy_nv;
-	let _: Signature = vk::core::get_latency_timings_legacy_nv;
 	let _: Signature = vk::Device::get_latency_timings_legacy_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -53415,7 +52700,6 @@ fn get_latency_timings_legacy_nv_native_forwarding() {
 fn queue_notify_out_of_band_legacy_nv_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::Queue, u32) -> Result<(), CallError>;
 	let _: Signature = vk::queue_notify_out_of_band_legacy_nv;
-	let _: Signature = vk::core::queue_notify_out_of_band_legacy_nv;
 	let _: Signature = vk::Device::queue_notify_out_of_band_legacy_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -53477,7 +52761,6 @@ fn queue_notify_out_of_band_legacy_nv_native_forwarding() {
 fn get_sleep_status_legacy_nv_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, *mut vk::Bool32) -> Result<(), CallError>;
 	let _: Signature = vk::get_sleep_status_legacy_nv;
-	let _: Signature = vk::core::get_sleep_status_legacy_nv;
 	let _: Signature = vk::Device::get_sleep_status_legacy_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -53536,7 +52819,6 @@ fn get_sleep_status_legacy_nv_native_forwarding() {
 fn shutdown_latency_device_legacy_nv_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device) -> Result<(), CallError>;
 	let _: Signature = vk::shutdown_latency_device_legacy_nv;
-	let _: Signature = vk::core::shutdown_latency_device_legacy_nv;
 	let _: Signature = vk::Device::shutdown_latency_device_legacy_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -53582,7 +52864,6 @@ fn cmd_set_rendering_attachment_locations_signature_and_missing_command() {
 		*const vk::RenderingAttachmentLocationInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_rendering_attachment_locations;
-	let _: Signature = vk::core::cmd_set_rendering_attachment_locations;
 	let _: Signature = vk::Device::cmd_set_rendering_attachment_locations;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -53664,7 +52945,6 @@ fn cmd_set_rendering_attachment_locations_khr_signature_and_missing_command() {
 		*const vk::RenderingAttachmentLocationInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_rendering_attachment_locations_khr;
-	let _: Signature = vk::core::cmd_set_rendering_attachment_locations_khr;
 	let _: Signature = vk::Device::cmd_set_rendering_attachment_locations_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -53746,7 +53026,6 @@ fn cmd_set_rendering_input_attachment_indices_signature_and_missing_command() {
 		*const vk::RenderingInputAttachmentIndexInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_rendering_input_attachment_indices;
-	let _: Signature = vk::core::cmd_set_rendering_input_attachment_indices;
 	let _: Signature = vk::Device::cmd_set_rendering_input_attachment_indices;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -53828,7 +53107,6 @@ fn cmd_set_rendering_input_attachment_indices_khr_signature_and_missing_command(
 		*const vk::RenderingInputAttachmentIndexInfo,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_rendering_input_attachment_indices_khr;
-	let _: Signature = vk::core::cmd_set_rendering_input_attachment_indices_khr;
 	let _: Signature = vk::Device::cmd_set_rendering_input_attachment_indices_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -53913,7 +53191,6 @@ fn cmd_set_depth_clamp_range_ext_signature_and_missing_command() {
 		*const vk::DepthClampRangeEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_depth_clamp_range_ext;
-	let _: Signature = vk::core::cmd_set_depth_clamp_range_ext;
 	let _: Signature = vk::Device::cmd_set_depth_clamp_range_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -53997,8 +53274,6 @@ fn get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv_sign
 		*mut vk::CooperativeMatrixFlexibleDimensionsPropertiesNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv;
-	let _: Signature =
-		vk::core::get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv;
 	let _: Signature =
 		vk::Instance::get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv;
 	let fixture = Fixture::new();
@@ -54116,7 +53391,6 @@ fn get_memory_metal_handle_ext_signature_and_missing_command() {
 		*mut *mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_memory_metal_handle_ext;
-	let _: Signature = vk::core::get_memory_metal_handle_ext;
 	let _: Signature = vk::Device::get_memory_metal_handle_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -54222,7 +53496,6 @@ fn get_memory_metal_handle_properties_ext_signature_and_missing_command() {
 		*mut vk::MemoryMetalHandlePropertiesEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_memory_metal_handle_properties_ext;
-	let _: Signature = vk::core::get_memory_metal_handle_properties_ext;
 	let _: Signature = vk::Device::get_memory_metal_handle_properties_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -54339,7 +53612,6 @@ fn get_physical_device_cooperative_vector_properties_nv_signature_and_missing_co
 		*mut vk::CooperativeVectorPropertiesNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_cooperative_vector_properties_nv;
-	let _: Signature = vk::core::get_physical_device_cooperative_vector_properties_nv;
 	let _: Signature = vk::Instance::get_physical_device_cooperative_vector_properties_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -54451,7 +53723,6 @@ fn convert_cooperative_vector_matrix_nv_signature_and_missing_command() {
 		*const vk::ConvertCooperativeVectorMatrixInfoNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::convert_cooperative_vector_matrix_nv;
-	let _: Signature = vk::core::convert_cooperative_vector_matrix_nv;
 	let _: Signature = vk::Device::convert_cooperative_vector_matrix_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -54552,7 +53823,6 @@ fn cmd_convert_cooperative_vector_matrix_nv_signature_and_missing_command() {
 		*const vk::ConvertCooperativeVectorMatrixInfoNV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_convert_cooperative_vector_matrix_nv;
-	let _: Signature = vk::core::cmd_convert_cooperative_vector_matrix_nv;
 	let _: Signature = vk::Device::cmd_convert_cooperative_vector_matrix_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -54640,7 +53910,6 @@ fn cmd_dispatch_tile_qcom_signature_and_missing_command() {
 		*const vk::DispatchTileInfoQCOM,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_dispatch_tile_qcom;
-	let _: Signature = vk::core::cmd_dispatch_tile_qcom;
 	let _: Signature = vk::Device::cmd_dispatch_tile_qcom;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -54713,7 +53982,6 @@ fn cmd_begin_per_tile_execution_qcom_signature_and_missing_command() {
 		*const vk::PerTileBeginInfoQCOM,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_per_tile_execution_qcom;
-	let _: Signature = vk::core::cmd_begin_per_tile_execution_qcom;
 	let _: Signature = vk::Device::cmd_begin_per_tile_execution_qcom;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -54786,7 +54054,6 @@ fn cmd_end_per_tile_execution_qcom_signature_and_missing_command() {
 		*const vk::PerTileEndInfoQCOM,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_per_tile_execution_qcom;
-	let _: Signature = vk::core::cmd_end_per_tile_execution_qcom;
 	let _: Signature = vk::Device::cmd_end_per_tile_execution_qcom;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -54860,7 +54127,6 @@ fn create_external_compute_queue_nv_signature_and_missing_command() {
 		*mut vk::ExternalComputeQueueNV,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_external_compute_queue_nv;
-	let _: Signature = vk::core::create_external_compute_queue_nv;
 	let _: Signature = vk::Device::create_external_compute_queue_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -54974,7 +54240,6 @@ fn destroy_external_compute_queue_nv_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_external_compute_queue_nv;
-	let _: Signature = vk::core::destroy_external_compute_queue_nv;
 	let _: Signature = vk::Device::destroy_external_compute_queue_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -55053,7 +54318,6 @@ fn get_external_compute_queue_data_nv_signature_and_missing_command() {
 		*mut std::ffi::c_void,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_external_compute_queue_data_nv;
-	let _: Signature = vk::core::get_external_compute_queue_data_nv;
 	let _: Signature = vk::Device::get_external_compute_queue_data_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -55138,7 +54402,6 @@ fn enumerate_physical_device_shader_instrumentation_metrics_arm_signature_and_mi
 		*mut vk::ShaderInstrumentationMetricDescriptionARM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::enumerate_physical_device_shader_instrumentation_metrics_arm;
-	let _: Signature = vk::core::enumerate_physical_device_shader_instrumentation_metrics_arm;
 	let _: Signature = vk::Instance::enumerate_physical_device_shader_instrumentation_metrics_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -55254,7 +54517,6 @@ fn create_shader_instrumentation_arm_signature_and_missing_command() {
 		*mut vk::ShaderInstrumentationARM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_shader_instrumentation_arm;
-	let _: Signature = vk::core::create_shader_instrumentation_arm;
 	let _: Signature = vk::Device::create_shader_instrumentation_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -55374,7 +54636,6 @@ fn destroy_shader_instrumentation_arm_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_shader_instrumentation_arm;
-	let _: Signature = vk::core::destroy_shader_instrumentation_arm;
 	let _: Signature = vk::Device::destroy_shader_instrumentation_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -55458,7 +54719,6 @@ fn cmd_begin_shader_instrumentation_arm_signature_and_missing_command() {
 		vk::ShaderInstrumentationARM,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_shader_instrumentation_arm;
-	let _: Signature = vk::core::cmd_begin_shader_instrumentation_arm;
 	let _: Signature = vk::Device::cmd_begin_shader_instrumentation_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -55527,7 +54787,6 @@ fn cmd_begin_shader_instrumentation_arm_native_forwarding() {
 fn cmd_end_shader_instrumentation_arm_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::CommandBuffer) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_shader_instrumentation_arm;
-	let _: Signature = vk::core::cmd_end_shader_instrumentation_arm;
 	let _: Signature = vk::Device::cmd_end_shader_instrumentation_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -55594,7 +54853,6 @@ fn get_shader_instrumentation_values_arm_signature_and_missing_command() {
 		vk::ShaderInstrumentationValuesFlagsARM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_shader_instrumentation_values_arm;
-	let _: Signature = vk::core::get_shader_instrumentation_values_arm;
 	let _: Signature = vk::Device::get_shader_instrumentation_values_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -55704,7 +54962,6 @@ fn get_shader_instrumentation_values_arm_native_forwarding() {
 fn clear_shader_instrumentation_metrics_arm_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, vk::ShaderInstrumentationARM) -> Result<(), CallError>;
 	let _: Signature = vk::clear_shader_instrumentation_metrics_arm;
-	let _: Signature = vk::core::clear_shader_instrumentation_metrics_arm;
 	let _: Signature = vk::Device::clear_shader_instrumentation_metrics_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -55776,7 +55033,6 @@ fn create_tensor_arm_signature_and_missing_command() {
 		*mut vk::TensorARM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_tensor_arm;
-	let _: Signature = vk::core::create_tensor_arm;
 	let _: Signature = vk::Device::create_tensor_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -55883,7 +55139,6 @@ fn destroy_tensor_arm_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::TensorARM, *const vk::AllocationCallbacks) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_tensor_arm;
-	let _: Signature = vk::core::destroy_tensor_arm;
 	let _: Signature = vk::Device::destroy_tensor_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -55961,7 +55216,6 @@ fn create_tensor_view_arm_signature_and_missing_command() {
 		*mut vk::TensorViewARM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_tensor_view_arm;
-	let _: Signature = vk::core::create_tensor_view_arm;
 	let _: Signature = vk::Device::create_tensor_view_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -56072,7 +55326,6 @@ fn destroy_tensor_view_arm_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_tensor_view_arm;
-	let _: Signature = vk::core::destroy_tensor_view_arm;
 	let _: Signature = vk::Device::destroy_tensor_view_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -56150,7 +55403,6 @@ fn get_tensor_memory_requirements_arm_signature_and_missing_command() {
 		*mut vk::MemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_tensor_memory_requirements_arm;
-	let _: Signature = vk::core::get_tensor_memory_requirements_arm;
 	let _: Signature = vk::Device::get_tensor_memory_requirements_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -56239,7 +55491,6 @@ fn bind_tensor_memory_arm_signature_and_missing_command() {
 		*const vk::BindTensorMemoryInfoARM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::bind_tensor_memory_arm;
-	let _: Signature = vk::core::bind_tensor_memory_arm;
 	let _: Signature = vk::Device::bind_tensor_memory_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -56337,7 +55588,6 @@ fn get_device_tensor_memory_requirements_arm_signature_and_missing_command() {
 		*mut vk::MemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_device_tensor_memory_requirements_arm;
-	let _: Signature = vk::core::get_device_tensor_memory_requirements_arm;
 	let _: Signature = vk::Device::get_device_tensor_memory_requirements_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -56426,7 +55676,6 @@ fn cmd_copy_tensor_arm_signature_and_missing_command() {
 		*const vk::CopyTensorInfoARM,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_tensor_arm;
-	let _: Signature = vk::core::cmd_copy_tensor_arm;
 	let _: Signature = vk::Device::cmd_copy_tensor_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -56498,7 +55747,6 @@ fn get_tensor_opaque_capture_descriptor_data_arm_signature_and_missing_command()
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_tensor_opaque_capture_descriptor_data_arm;
-	let _: Signature = vk::core::get_tensor_opaque_capture_descriptor_data_arm;
 	let _: Signature = vk::Device::get_tensor_opaque_capture_descriptor_data_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -56606,7 +55854,6 @@ fn get_tensor_view_opaque_capture_descriptor_data_arm_signature_and_missing_comm
 		*mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_tensor_view_opaque_capture_descriptor_data_arm;
-	let _: Signature = vk::core::get_tensor_view_opaque_capture_descriptor_data_arm;
 	let _: Signature = vk::Device::get_tensor_view_opaque_capture_descriptor_data_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -56716,7 +55963,6 @@ fn get_physical_device_external_tensor_properties_arm_signature_and_missing_comm
 		*mut vk::ExternalTensorPropertiesARM,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_physical_device_external_tensor_properties_arm;
-	let _: Signature = vk::core::get_physical_device_external_tensor_properties_arm;
 	let _: Signature = vk::Instance::get_physical_device_external_tensor_properties_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -56816,7 +56062,6 @@ fn create_data_graph_pipelines_arm_signature_and_missing_command() {
 		*mut vk::Pipeline,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_data_graph_pipelines_arm;
-	let _: Signature = vk::core::create_data_graph_pipelines_arm;
 	let _: Signature = vk::Device::create_data_graph_pipelines_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -56946,7 +56191,6 @@ fn create_data_graph_pipeline_session_arm_signature_and_missing_command() {
 		*mut vk::DataGraphPipelineSessionARM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_data_graph_pipeline_session_arm;
-	let _: Signature = vk::core::create_data_graph_pipeline_session_arm;
 	let _: Signature = vk::Device::create_data_graph_pipeline_session_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -57067,7 +56311,6 @@ fn get_data_graph_pipeline_session_bind_point_requirements_arm_signature_and_mis
 		*mut vk::DataGraphPipelineSessionBindPointRequirementARM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_data_graph_pipeline_session_bind_point_requirements_arm;
-	let _: Signature = vk::core::get_data_graph_pipeline_session_bind_point_requirements_arm;
 	let _: Signature = vk::Device::get_data_graph_pipeline_session_bind_point_requirements_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -57189,7 +56432,6 @@ fn get_data_graph_pipeline_session_memory_requirements_arm_signature_and_missing
 		*mut vk::MemoryRequirements2,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::get_data_graph_pipeline_session_memory_requirements_arm;
-	let _: Signature = vk::core::get_data_graph_pipeline_session_memory_requirements_arm;
 	let _: Signature = vk::Device::get_data_graph_pipeline_session_memory_requirements_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -57283,7 +56525,6 @@ fn bind_data_graph_pipeline_session_memory_arm_signature_and_missing_command() {
 		*const vk::BindDataGraphPipelineSessionMemoryInfoARM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::bind_data_graph_pipeline_session_memory_arm;
-	let _: Signature = vk::core::bind_data_graph_pipeline_session_memory_arm;
 	let _: Signature = vk::Device::bind_data_graph_pipeline_session_memory_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -57387,7 +56628,6 @@ fn destroy_data_graph_pipeline_session_arm_signature_and_missing_command() {
 		*const vk::AllocationCallbacks,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::destroy_data_graph_pipeline_session_arm;
-	let _: Signature = vk::core::destroy_data_graph_pipeline_session_arm;
 	let _: Signature = vk::Device::destroy_data_graph_pipeline_session_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -57472,7 +56712,6 @@ fn cmd_dispatch_data_graph_arm_signature_and_missing_command() {
 		*const vk::DataGraphPipelineDispatchInfoARM,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_dispatch_data_graph_arm;
-	let _: Signature = vk::core::cmd_dispatch_data_graph_arm;
 	let _: Signature = vk::Device::cmd_dispatch_data_graph_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -57555,7 +56794,6 @@ fn get_data_graph_pipeline_available_properties_arm_signature_and_missing_comman
 		*mut vk::DataGraphPipelinePropertyARM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_data_graph_pipeline_available_properties_arm;
-	let _: Signature = vk::core::get_data_graph_pipeline_available_properties_arm;
 	let _: Signature = vk::Device::get_data_graph_pipeline_available_properties_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -57676,7 +56914,6 @@ fn get_data_graph_pipeline_properties_arm_signature_and_missing_command() {
 		*mut vk::DataGraphPipelinePropertyQueryResultARM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_data_graph_pipeline_properties_arm;
-	let _: Signature = vk::core::get_data_graph_pipeline_properties_arm;
 	let _: Signature = vk::Device::get_data_graph_pipeline_properties_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -57793,7 +57030,6 @@ fn get_physical_device_queue_family_data_graph_properties_arm_signature_and_miss
 		*mut vk::QueueFamilyDataGraphPropertiesARM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_queue_family_data_graph_properties_arm;
-	let _: Signature = vk::core::get_physical_device_queue_family_data_graph_properties_arm;
 	let _: Signature = vk::Instance::get_physical_device_queue_family_data_graph_properties_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -57918,8 +57154,6 @@ fn get_physical_device_queue_family_data_graph_processing_engine_properties_arm_
 	let _: Signature =
 		vk::get_physical_device_queue_family_data_graph_processing_engine_properties_arm;
 	let _: Signature =
-		vk::core::get_physical_device_queue_family_data_graph_processing_engine_properties_arm;
-	let _: Signature =
 		vk::Instance::get_physical_device_queue_family_data_graph_processing_engine_properties_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -58021,7 +57255,6 @@ fn get_native_buffer_properties_ohos_signature_and_missing_command() {
 		*mut vk::NativeBufferPropertiesOHOS,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_native_buffer_properties_ohos;
-	let _: Signature = vk::core::get_native_buffer_properties_ohos;
 	let _: Signature = vk::Device::get_native_buffer_properties_ohos;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -58126,7 +57359,6 @@ fn get_memory_native_buffer_ohos_signature_and_missing_command() {
 		*mut *mut vk::OH_NativeBuffer,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_memory_native_buffer_ohos;
-	let _: Signature = vk::core::get_memory_native_buffer_ohos;
 	let _: Signature = vk::Device::get_memory_native_buffer_ohos;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -58227,7 +57459,6 @@ fn queue_set_perf_hint_qcom_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::Queue, *const vk::PerfHintInfoQCOM) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::queue_set_perf_hint_qcom;
-	let _: Signature = vk::core::queue_set_perf_hint_qcom;
 	let _: Signature = vk::Device::queue_set_perf_hint_qcom;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -58327,8 +57558,6 @@ fn enumerate_physical_device_queue_family_performance_counters_by_region_arm_sig
 		*mut vk::PerformanceCounterDescriptionARM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::enumerate_physical_device_queue_family_performance_counters_by_region_arm;
-	let _: Signature =
-		vk::core::enumerate_physical_device_queue_family_performance_counters_by_region_arm;
 	let _: Signature =
 		vk::Instance::enumerate_physical_device_queue_family_performance_counters_by_region_arm;
 	let fixture = Fixture::new();
@@ -58462,7 +57691,6 @@ fn cmd_set_compute_occupancy_priority_nv_signature_and_missing_command() {
 		*const vk::ComputeOccupancyPriorityParametersNV,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_compute_occupancy_priority_nv;
-	let _: Signature = vk::core::cmd_set_compute_occupancy_priority_nv;
 	let _: Signature = vk::Device::cmd_set_compute_occupancy_priority_nv;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -58545,7 +57773,6 @@ fn write_sampler_descriptors_ext_signature_and_missing_command() {
 		*const vk::HostAddressRangeEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::write_sampler_descriptors_ext;
-	let _: Signature = vk::core::write_sampler_descriptors_ext;
 	let _: Signature = vk::Device::write_sampler_descriptors_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -58655,7 +57882,6 @@ fn write_resource_descriptors_ext_signature_and_missing_command() {
 		*const vk::HostAddressRangeEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::write_resource_descriptors_ext;
-	let _: Signature = vk::core::write_resource_descriptors_ext;
 	let _: Signature = vk::Device::write_resource_descriptors_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -58761,7 +57987,6 @@ fn cmd_bind_sampler_heap_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, *const vk::BindHeapInfoEXT) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_sampler_heap_ext;
-	let _: Signature = vk::core::cmd_bind_sampler_heap_ext;
 	let _: Signature = vk::Device::cmd_bind_sampler_heap_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -58829,7 +58054,6 @@ fn cmd_bind_resource_heap_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, *const vk::BindHeapInfoEXT) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_resource_heap_ext;
-	let _: Signature = vk::core::cmd_bind_resource_heap_ext;
 	let _: Signature = vk::Device::cmd_bind_resource_heap_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -58897,7 +58121,6 @@ fn cmd_push_data_ext_signature_and_missing_command() {
 	type Signature =
 		unsafe fn(&vk::Device, vk::CommandBuffer, *const vk::PushDataInfoEXT) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_push_data_ext;
-	let _: Signature = vk::core::cmd_push_data_ext;
 	let _: Signature = vk::Device::cmd_push_data_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -58968,7 +58191,6 @@ fn register_custom_border_color_ext_signature_and_missing_command() {
 		*mut u32,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::register_custom_border_color_ext;
-	let _: Signature = vk::core::register_custom_border_color_ext;
 	let _: Signature = vk::Device::register_custom_border_color_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -59070,7 +58292,6 @@ fn register_custom_border_color_ext_native_forwarding() {
 fn unregister_custom_border_color_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(&vk::Device, u32) -> Result<(), CallError>;
 	let _: Signature = vk::unregister_custom_border_color_ext;
-	let _: Signature = vk::core::unregister_custom_border_color_ext;
 	let _: Signature = vk::Device::unregister_custom_border_color_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -59127,7 +58348,6 @@ fn get_image_opaque_capture_data_ext_signature_and_missing_command() {
 		*mut vk::HostAddressRangeEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_image_opaque_capture_data_ext;
-	let _: Signature = vk::core::get_image_opaque_capture_data_ext;
 	let _: Signature = vk::Device::get_image_opaque_capture_data_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -59233,7 +58453,6 @@ fn get_physical_device_descriptor_size_ext_signature_and_missing_command() {
 		vk::DescriptorType,
 	) -> Result<vk::DeviceSize, CallError>;
 	let _: Signature = vk::get_physical_device_descriptor_size_ext;
-	let _: Signature = vk::core::get_physical_device_descriptor_size_ext;
 	let _: Signature = vk::Instance::get_physical_device_descriptor_size_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -59317,7 +58536,6 @@ fn get_tensor_opaque_capture_data_arm_signature_and_missing_command() {
 		*mut vk::HostAddressRangeEXT,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_tensor_opaque_capture_data_arm;
-	let _: Signature = vk::core::get_tensor_opaque_capture_data_arm;
 	let _: Signature = vk::Device::get_tensor_opaque_capture_data_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -59423,7 +58641,6 @@ fn cmd_copy_memory_khr_signature_and_missing_command() {
 		*const vk::CopyDeviceMemoryInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_memory_khr;
-	let _: Signature = vk::core::cmd_copy_memory_khr;
 	let _: Signature = vk::Device::cmd_copy_memory_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -59498,7 +58715,6 @@ fn cmd_copy_memory_to_image_khr_signature_and_missing_command() {
 		*const vk::CopyDeviceMemoryImageInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_memory_to_image_khr;
-	let _: Signature = vk::core::cmd_copy_memory_to_image_khr;
 	let _: Signature = vk::Device::cmd_copy_memory_to_image_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -59574,7 +58790,6 @@ fn cmd_copy_image_to_memory_khr_signature_and_missing_command() {
 		*const vk::CopyDeviceMemoryImageInfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_image_to_memory_khr;
-	let _: Signature = vk::core::cmd_copy_image_to_memory_khr;
 	let _: Signature = vk::Device::cmd_copy_image_to_memory_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -59653,7 +58868,6 @@ fn cmd_update_memory_khr_signature_and_missing_command() {
 		*const std::ffi::c_void,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_update_memory_khr;
-	let _: Signature = vk::core::cmd_update_memory_khr;
 	let _: Signature = vk::Device::cmd_update_memory_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -59751,7 +58965,6 @@ fn cmd_fill_memory_khr_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_fill_memory_khr;
-	let _: Signature = vk::core::cmd_fill_memory_khr;
 	let _: Signature = vk::Device::cmd_fill_memory_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -59842,7 +59055,6 @@ fn cmd_copy_query_pool_results_to_memory_khr_signature_and_missing_command() {
 		vk::QueryResultFlags,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_copy_query_pool_results_to_memory_khr;
-	let _: Signature = vk::core::cmd_copy_query_pool_results_to_memory_khr;
 	let _: Signature = vk::Device::cmd_copy_query_pool_results_to_memory_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -59953,7 +59165,6 @@ fn cmd_begin_conditional_rendering2_ext_signature_and_missing_command() {
 		*const vk::ConditionalRenderingBeginInfo2EXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_conditional_rendering2_ext;
-	let _: Signature = vk::core::cmd_begin_conditional_rendering2_ext;
 	let _: Signature = vk::Device::cmd_begin_conditional_rendering2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -60037,7 +59248,6 @@ fn cmd_bind_transform_feedback_buffers2_ext_signature_and_missing_command() {
 		*const vk::BindTransformFeedbackBuffer2InfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_transform_feedback_buffers2_ext;
-	let _: Signature = vk::core::cmd_bind_transform_feedback_buffers2_ext;
 	let _: Signature = vk::Device::cmd_bind_transform_feedback_buffers2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -60133,7 +59343,6 @@ fn cmd_begin_transform_feedback2_ext_signature_and_missing_command() {
 		*const vk::BindTransformFeedbackBuffer2InfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_begin_transform_feedback2_ext;
-	let _: Signature = vk::core::cmd_begin_transform_feedback2_ext;
 	let _: Signature = vk::Device::cmd_begin_transform_feedback2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -60223,7 +59432,6 @@ fn cmd_end_transform_feedback2_ext_signature_and_missing_command() {
 		*const vk::BindTransformFeedbackBuffer2InfoEXT,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_end_transform_feedback2_ext;
-	let _: Signature = vk::core::cmd_end_transform_feedback2_ext;
 	let _: Signature = vk::Device::cmd_end_transform_feedback2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -60315,7 +59523,6 @@ fn cmd_draw_indirect_byte_count2_ext_signature_and_missing_command() {
 		u32,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_indirect_byte_count2_ext;
-	let _: Signature = vk::core::cmd_draw_indirect_byte_count2_ext;
 	let _: Signature = vk::Device::cmd_draw_indirect_byte_count2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -60414,7 +59621,6 @@ fn cmd_write_marker_to_memory_amd_signature_and_missing_command() {
 		*const vk::MemoryMarkerInfoAMD,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_write_marker_to_memory_amd;
-	let _: Signature = vk::core::cmd_write_marker_to_memory_amd;
 	let _: Signature = vk::Device::cmd_write_marker_to_memory_amd;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -60487,7 +59693,6 @@ fn cmd_bind_index_buffer3_khr_signature_and_missing_command() {
 		*const vk::BindIndexBuffer3InfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_index_buffer3_khr;
-	let _: Signature = vk::core::cmd_bind_index_buffer3_khr;
 	let _: Signature = vk::Device::cmd_bind_index_buffer3_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -60565,7 +59770,6 @@ fn cmd_bind_vertex_buffers3_khr_signature_and_missing_command() {
 		*const vk::BindVertexBuffer3InfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_bind_vertex_buffers3_khr;
-	let _: Signature = vk::core::cmd_bind_vertex_buffers3_khr;
 	let _: Signature = vk::Device::cmd_bind_vertex_buffers3_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -60653,7 +59857,6 @@ fn cmd_draw_indirect2_khr_signature_and_missing_command() {
 		*const vk::DrawIndirect2InfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_indirect2_khr;
-	let _: Signature = vk::core::cmd_draw_indirect2_khr;
 	let _: Signature = vk::Device::cmd_draw_indirect2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -60726,7 +59929,6 @@ fn cmd_draw_indexed_indirect2_khr_signature_and_missing_command() {
 		*const vk::DrawIndirect2InfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_indexed_indirect2_khr;
-	let _: Signature = vk::core::cmd_draw_indexed_indirect2_khr;
 	let _: Signature = vk::Device::cmd_draw_indexed_indirect2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -60799,7 +60001,6 @@ fn cmd_draw_indirect_count2_khr_signature_and_missing_command() {
 		*const vk::DrawIndirectCount2InfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_indirect_count2_khr;
-	let _: Signature = vk::core::cmd_draw_indirect_count2_khr;
 	let _: Signature = vk::Device::cmd_draw_indirect_count2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -60875,7 +60076,6 @@ fn cmd_draw_indexed_indirect_count2_khr_signature_and_missing_command() {
 		*const vk::DrawIndirectCount2InfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_indexed_indirect_count2_khr;
-	let _: Signature = vk::core::cmd_draw_indexed_indirect_count2_khr;
 	let _: Signature = vk::Device::cmd_draw_indexed_indirect_count2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -60957,7 +60157,6 @@ fn cmd_draw_mesh_tasks_indirect2_ext_signature_and_missing_command() {
 		*const vk::DrawIndirect2InfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_mesh_tasks_indirect2_ext;
-	let _: Signature = vk::core::cmd_draw_mesh_tasks_indirect2_ext;
 	let _: Signature = vk::Device::cmd_draw_mesh_tasks_indirect2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -61030,7 +60229,6 @@ fn cmd_draw_mesh_tasks_indirect_count2_ext_signature_and_missing_command() {
 		*const vk::DrawIndirectCount2InfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_draw_mesh_tasks_indirect_count2_ext;
-	let _: Signature = vk::core::cmd_draw_mesh_tasks_indirect_count2_ext;
 	let _: Signature = vk::Device::cmd_draw_mesh_tasks_indirect_count2_ext;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -61112,7 +60310,6 @@ fn cmd_dispatch_indirect2_khr_signature_and_missing_command() {
 		*const vk::DispatchIndirect2InfoKHR,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_dispatch_indirect2_khr;
-	let _: Signature = vk::core::cmd_dispatch_indirect2_khr;
 	let _: Signature = vk::Device::cmd_dispatch_indirect2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -61189,7 +60386,6 @@ fn create_acceleration_structure2_khr_signature_and_missing_command() {
 		*mut vk::AccelerationStructureKHR,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::create_acceleration_structure2_khr;
-	let _: Signature = vk::core::create_acceleration_structure2_khr;
 	let _: Signature = vk::Device::create_acceleration_structure2_khr;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -61313,8 +60509,6 @@ fn get_physical_device_queue_family_data_graph_engine_operation_properties_arm_s
 	) -> Result<vk::Result, CallError>;
 	let _: Signature =
 		vk::get_physical_device_queue_family_data_graph_engine_operation_properties_arm;
-	let _: Signature =
-		vk::core::get_physical_device_queue_family_data_graph_engine_operation_properties_arm;
 	let _: Signature =
 		vk::Instance::get_physical_device_queue_family_data_graph_engine_operation_properties_arm;
 	let fixture = Fixture::new();
@@ -61440,7 +60634,6 @@ fn cmd_set_dispatch_parameters_arm_signature_and_missing_command() {
 		*const vk::DispatchParametersARM,
 	) -> Result<(), CallError>;
 	let _: Signature = vk::cmd_set_dispatch_parameters_arm;
-	let _: Signature = vk::core::cmd_set_dispatch_parameters_arm;
 	let _: Signature = vk::Device::cmd_set_dispatch_parameters_arm;
 	let fixture = Fixture::new();
 	// SAFETY: the exact-ABI mock context has no native resources; the missing PFN returns before accessing arguments. Zeroed fixtures contain only zero-valid generated ABI values and are not native create/query inputs.
@@ -61521,8 +60714,6 @@ fn get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm_si
 		*mut vk::DataGraphOpticalFlowImageFormatPropertiesARM,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm;
-	let _: Signature =
-		vk::core::get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm;
 	let _: Signature =
 		vk::Instance::get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm;
 	let fixture = Fixture::new();

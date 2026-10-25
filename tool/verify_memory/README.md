@@ -86,3 +86,18 @@ and shared mapping also have mock/native tests in
 `test/rs/memory/test_pooled.rs` and `test_allocator.rs`;
 non-coherent physical hardware remains unqualified. See the
 [public qualification and limitations](../../docs/external/qualification.md).
+
+Resource-aware preferences are independently checked against executable pinned
+VMA `FindMemoryPreferences`. `verify_policy.py --headers <include-dir>` checks the
+1,600-case generated fixture used by ordinary Rust unit tests; `--refresh` is the
+explicit donor-vector update path. This oracle is development-only. Cargo consumers
+need neither the C++ compiler nor the donor. Managed image/failure/chain tests live
+in `test/rs/memory/test_image.rs`; gated real clear/copy/readback tests live in
+`test/rs/memory/test_image_native.rs`. Image blocks are partitioned by resource
+class; existing buffer differential traces do not qualify mixed-class packing.
+
+The preference oracle includes the pinned `vulkan_core.h` directly and tells
+VMA those declarations are already present, matching the other donor oracles.
+Its verifier stages only hash-verified headers and injects an error-only
+`vulkan/vulkan.h` sentinel, so an installed or cached SDK cannot conceal an
+accidental dependency on an unpinned umbrella header.

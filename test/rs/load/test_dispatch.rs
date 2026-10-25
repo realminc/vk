@@ -1,7 +1,7 @@
 #![cfg(feature = "loader")]
 //! Driver-independent checked-loader tests using exact Vulkan mock functions.
 use ::vk::{
-	core as vk,
+	self,
 	load::{CallError, Entry, LoadError},
 };
 use std::{
@@ -20,8 +20,6 @@ fn free_functions_and_methods_share_cached_dispatch_and_owner_types() {
 	let _: Option<&::vk::InitializationFailure> = None::<&::vk::load::InitializationFailure>;
 	let _: ::vk::CommandSupport = ::vk::load::CommandSupport::Disabled;
 	let _: ::vk::CreatedHandle = ::vk::load::CreatedHandle::Instance(vk::InstanceHandle::NULL);
-	let _: Option<&::vk::core::Instance> = None::<&::vk::Instance>;
-	let _: Option<&::vk::core::Device> = None::<&::vk::Device>;
 	let before = DEVICE_DESTROYED.get();
 	let calls = CMD_DISPATCH_CALLS.get();
 	// SAFETY: static exact-ABI mock resolvers; fake objects have no native resources.
@@ -33,7 +31,7 @@ fn free_functions_and_methods_share_cached_dispatch_and_owner_types() {
 		let device =
 			::vk::Device::new(&instance, physical, &vk::DeviceCreateInfo::default(), None).unwrap();
 		let resolved = RESOLVER_QUERIES.get();
-		let queue = ::vk::core::get_device_queue(&device, 0, 0).unwrap();
+		let queue = ::vk::get_device_queue(&device, 0, 0).unwrap();
 		assert_eq!(queue, device.get_device_queue(0, 0).unwrap());
 		::vk::cmd_dispatch(&device, vk::CommandBuffer::NULL, 1, 1, 1).unwrap();
 		device
@@ -49,8 +47,7 @@ fn free_functions_and_methods_share_cached_dispatch_and_owner_types() {
 		let instance = ::vk::Instance::new(&entry, &info, None).unwrap();
 		let physical = instance.enumerate_physical_devices().unwrap()[0];
 		let device =
-			::vk::core::create_device(&instance, physical, &vk::DeviceCreateInfo::default(), None)
-				.unwrap();
+			::vk::create_device(&instance, physical, &vk::DeviceCreateInfo::default(), None).unwrap();
 		device.destroy(None);
 		instance.destroy(None);
 	}

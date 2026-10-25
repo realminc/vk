@@ -1,12 +1,18 @@
 //! Explicit instance destruction with retained native-library ownership.
-use crate::core as vk;
+use crate as vk;
 use crate::load::{
 	CallError, Capabilities, CommandSupport, CreatedHandle, Entry, InitializationFailure, LoadError,
 };
 use libloading::Library;
 use std::sync::Arc;
 
-/// Instance handle and dispatch. Call `destroy` explicitly; Drop never destroys Vulkan objects.
+/// Vulkan instance with cached commands and optional creation-capability metadata.
+///
+/// The raw native identity is [`InstanceHandle`](crate::InstanceHandle), available
+/// through [`Self::handle`]. This wrapper is not a native ABI handle.
+/// Call [`Self::destroy`] explicitly; Drop never destroys Vulkan objects.
+///
+/// [Khronos object reference](https://docs.vulkan.org/refpages/latest/refpages/source/VkInstance.html)
 pub struct Instance {
 	handle: vk::InstanceHandle,
 	fp: vk::FnInstance,
@@ -96,6 +102,8 @@ impl Instance {
 	/// # Safety
 	/// All children and outstanding instance operations must be complete. The
 	/// allocator must match creation, with its user data and functions still live.
+	#[doc(alias = "vkDestroyInstance")]
+	#[doc = "\n\n[Khronos reference: `vkDestroyInstance`](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyInstance.html)"]
 	pub unsafe fn destroy(self, allocator: Option<&vk::AllocationCallbacks>) {
 		// SAFETY: caller supplies the canonical destruction guarantees.
 		unsafe { destroy_instance(self, allocator) };
@@ -112,6 +120,8 @@ impl Instance {
 /// # Safety
 /// The create info, its reachable pointers and allocator callbacks must meet
 /// Vulkan valid usage. Allocator state must remain alive until destruction.
+#[doc(alias = "vkCreateInstance")]
+#[doc = "\n\n[Khronos reference: `vkCreateInstance`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateInstance.html)"]
 pub unsafe fn create_instance(
 	entry: &Entry,
 	create_info: &vk::InstanceCreateInfo,
@@ -168,6 +178,8 @@ impl Instance {
 	///
 	/// # Safety
 	/// The create info and allocator must satisfy Vulkan instance creation and destruction requirements.
+	#[doc(alias = "vkCreateInstance")]
+	#[doc = "\n\n[Khronos reference: `vkCreateInstance`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateInstance.html)"]
 	pub unsafe fn new(
 		entry: &Entry,
 		create_info: &vk::InstanceCreateInfo,
@@ -185,6 +197,8 @@ commands! { Instance, instance;
 	/// # Safety
 	/// Cast to the command's exact ABI, obey its enabled-version/extension
 	/// requirements and keep the instance and native library alive during use.
+	#[doc(alias = "vkGetInstanceProcAddr")]
+	#[doc = "\n\n[Khronos reference: `vkGetInstanceProcAddr`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetInstanceProcAddr.html)"]
 	pub unsafe fn get_instance_proc_addr(name: &std::ffi::CStr) -> vk::PFN_vkVoidFunction {
 		// SAFETY: this wrapper retains the library and caller guarantees instance lifetime.
 		unsafe { (instance.gipa)(instance.handle, name.as_ptr()) }
@@ -194,6 +208,8 @@ commands! { Instance, instance;
 	///
 	/// # Safety
 	/// The instance must be live and not destroyed.
+	#[doc(alias = "vkEnumeratePhysicalDevices")]
+	#[doc = "\n\n[Khronos reference: `vkEnumeratePhysicalDevices`](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumeratePhysicalDevices.html)"]
 	pub unsafe fn enumerate_physical_devices() -> Result<Vec<vk::PhysicalDevice>, CallError> {
 		let f = instance
 			.fp
@@ -207,6 +223,8 @@ commands! { Instance, instance;
 	///
 	/// # Safety
 	/// The instance must be live and `physical_device` must belong to it.
+	#[doc(alias = "vkGetPhysicalDeviceProperties")]
+	#[doc = "\n\n[Khronos reference: `vkGetPhysicalDeviceProperties`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceProperties.html)"]
 	pub unsafe fn get_physical_device_properties(
 		physical_device: vk::PhysicalDevice,
 	) -> Result<vk::PhysicalDeviceProperties, CallError> {
@@ -225,6 +243,8 @@ commands! { Instance, instance;
 	///
 	/// # Safety
 	/// The instance must be live and `physical_device` must belong to it.
+	#[doc(alias = "vkGetPhysicalDeviceFeatures")]
+	#[doc = "\n\n[Khronos reference: `vkGetPhysicalDeviceFeatures`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceFeatures.html)"]
 	pub unsafe fn get_physical_device_features(
 		physical_device: vk::PhysicalDevice,
 	) -> Result<vk::PhysicalDeviceFeatures, CallError> {
@@ -243,6 +263,8 @@ commands! { Instance, instance;
 	///
 	/// # Safety
 	/// The instance must be live and `physical_device` must belong to it.
+	#[doc(alias = "vkGetPhysicalDeviceQueueFamilyProperties")]
+	#[doc = "\n\n[Khronos reference: `vkGetPhysicalDeviceQueueFamilyProperties`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceQueueFamilyProperties.html)"]
 	pub unsafe fn get_physical_device_queue_family_properties(
 		physical_device: vk::PhysicalDevice,
 	) -> Result<Vec<vk::QueueFamilyProperties>, CallError> {
@@ -262,6 +284,8 @@ commands! { Instance, instance;
 	///
 	/// # Safety
 	/// The instance must be live and `physical_device` must belong to it.
+	#[doc(alias = "vkEnumerateDeviceExtensionProperties")]
+	#[doc = "\n\n[Khronos reference: `vkEnumerateDeviceExtensionProperties`](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumerateDeviceExtensionProperties.html)"]
 	pub unsafe fn enumerate_device_extension_properties(
 		physical_device: vk::PhysicalDevice,
 		layer_name: Option<&std::ffi::CStr>,
@@ -283,6 +307,8 @@ commands! { Instance, instance;
 	///
 	/// # Safety
 	/// The instance must be live and `physical_device` must belong to it.
+	#[doc(alias = "vkGetPhysicalDeviceMemoryProperties")]
+	#[doc = "\n\n[Khronos reference: `vkGetPhysicalDeviceMemoryProperties`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceMemoryProperties.html)"]
 	pub unsafe fn get_physical_device_memory_properties(
 		physical_device: vk::PhysicalDevice,
 	) -> Result<vk::PhysicalDeviceMemoryProperties, CallError> {
@@ -306,6 +332,8 @@ commands! { Instance, instance;
 /// # Safety
 /// All children and outstanding instance operations must be complete. The
 /// allocator must match creation, with its user data and functions still live.
+#[doc(alias = "vkDestroyInstance")]
+#[doc = "\n\n[Khronos reference: `vkDestroyInstance`](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyInstance.html)"]
 pub unsafe fn destroy_instance(instance: Instance, allocator: Option<&vk::AllocationCallbacks>) {
 	// SAFETY: caller guarantees all destruction and allocator requirements.
 	unsafe {

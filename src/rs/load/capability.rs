@@ -1,6 +1,6 @@
 //! Immutable creation provenance and registry command admission.
 use super::{CallError, Features};
-use crate::core::{self as vk, CapabilityRequirement, CommandMetadata};
+use crate::{self as vk, CapabilityRequirement, CommandMetadata};
 use std::{
 	ffi::{CStr, c_char},
 	sync::Arc,

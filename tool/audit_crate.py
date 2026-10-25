@@ -16,8 +16,8 @@ def audit(path, version, repository=None):
         "README.md", "CHANGELOG.md", "NOTICE.md", "LICENSE", "license/khronos/Apache-2.0.txt",
         "LICENSE-VMA-MIT", "rustfmt.toml", "docs/external/qualification.md", "registry/SOURCES.md",
     }
-    prefixes = ("src/rs/", "test/rs/core/", "test/rs/load/", "test/rs/memory/")
-    umbrellas = {f"test/rs/test_{name}.rs" for name in ("core", "load", "memory")}
+    prefixes = ("src/rs/", "test/rs/load/", "test/rs/memory/")
+    umbrellas = {f"test/rs/test_{name}.rs" for name in ("lib", "load", "memory")}
     if path.stat().st_size > 10 * 1024 * 1024:
         raise ValueError("crate archive exceeds 10 MiB")
     files = {}
@@ -32,7 +32,7 @@ def audit(path, version, repository=None):
             if not member.isfile():
                 raise ValueError(f"non-file archive entry: {member.name}")
             name = "/".join(parts[1:])
-            if name in files or not (name in allowed or name in umbrellas or name.startswith(prefixes)):
+            if name in files or not (name in allowed or re.fullmatch(r"test/rs/test_[a-z_]+(?:\.gen)?\.rs", name) or name.startswith(prefixes)):
                 raise ValueError(f"unexpected archive path: {name}")
             total += member.size
             if total > 100 * 1024 * 1024:

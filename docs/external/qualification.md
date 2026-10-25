@@ -46,15 +46,16 @@ pointer availability alone does not establish command valid usage.
 
 ## Integrated memory
 
-The opt-in `allocator` feature supplies separate allocations, experimental
-homogeneous pooled buffers, shared explicit/persistent mapping, checked
+The opt-in `allocator` feature supplies managed buffers and non-disjoint images,
+separate and class-partitioned pooled storage, bounded block shrinking, automatic
+memory preferences, explicit budget snapshots/local limits, shared mapping, checked
 allocation-relative cache ranges and host-only virtual TLSF placement.
 Native objects still require explicit release after exact completion.
 
 Independent failure injection, interval models and pinned VMA differential
 oracles exercise selected policies. This is not VMA-equivalent memory
-management. Mixed-image granularity, broader image handling, budgets,
-defragmentation, concurrency and full cross-device policy qualification remain
+management. Mixed-class block packing, disjoint/external/protected image memory,
+custom pools, defragmentation, concurrency and full cross-device qualification remain
 open. No allocator speed advantage is claimed. Leave `allocator` disabled when
 using a separately qualified memory manager.
 
@@ -64,7 +65,7 @@ The crates.io package is `vkrust`; its library/import name is `vk`:
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.3" }
+vk = { package = "vkrust", version = "0.4" }
 ```
 
 The public source target is `realminc/vk`. Private engineering history and

@@ -2175,7 +2175,7 @@ fn address_queries_preserve_zero_high_bits_input_identity_and_alias_independence
 			let calls = CALLS.get();
 			for function in [
 				vk::get_buffer_device_address,
-				vk::core::get_buffer_device_address_khr,
+				vk::get_buffer_device_address_khr,
 				vk::Device::get_buffer_device_address_ext,
 				vk::get_buffer_opaque_capture_address,
 				vk::Device::get_buffer_opaque_capture_address_khr,
@@ -2310,7 +2310,7 @@ fn indirect_count_and_host_query_reset_keep_exact_native_scalar_arguments() {
 		for function in [
 			vk::cmd_draw_indirect_count,
 			vk::Device::cmd_draw_indirect_count_khr,
-			vk::core::cmd_draw_indirect_count_amd,
+			vk::cmd_draw_indirect_count_amd,
 			vk::Device::cmd_draw_indexed_indirect_count,
 			vk::cmd_draw_indexed_indirect_count_khr,
 			vk::cmd_draw_indexed_indirect_count_amd,
@@ -2475,7 +2475,7 @@ fn render_pass2_preserves_callbacks_errors_and_borrowed_record_identity() {
 		for function in [vk::Device::cmd_next_subpass2, vk::cmd_next_subpass2_khr] {
 			function(&fixture.device, command, &begin, &end).unwrap();
 		}
-		for function in [vk::cmd_end_render_pass2, vk::core::cmd_end_render_pass2_khr] {
+		for function in [vk::cmd_end_render_pass2, vk::cmd_end_render_pass2_khr] {
 			function(&fixture.device, command, &end).unwrap();
 		}
 		let begin_ptr = &begin as *const _ as usize as u64;

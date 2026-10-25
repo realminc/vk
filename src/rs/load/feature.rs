@@ -1,6 +1,6 @@
 //! Owned enabled feature records, independent of their input pointer chains.
 use super::CallError;
-use crate::core as vk;
+use crate as vk;
 
 /// One explicitly captured native feature member. Names use the registry's C
 /// spelling, so `shaderInt64` remains recognizable in specification diagnostics.

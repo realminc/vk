@@ -1,5 +1,4 @@
 //! Native library loading and instance lifetime proof.
-use ::vk::core as vk;
 
 /// Explicit opt-in: a requested driver test must not silently skip failures.
 #[cfg(feature = "loader")]

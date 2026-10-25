@@ -1,6 +1,30 @@
 # Changelog
 
-## Unreleased
+## 0.4.1+1.4.365 — 2026-10-25
+
+- Build the VMA preference oracle from hash-verified core/video headers only,
+  with an error-only umbrella sentinel to prevent a local SDK from hiding
+  unpinned include dependencies. Add regression coverage for staging and hashes.
+
+- Identify the pinned Vulkan headers in Cargo build metadata (`+1.4.365`),
+  independently of the library release tag and runtime API request. Verify the
+  suffix against pinned XML and generated header constants before publication.
+
+- Add generator-owned Khronos references and native-name rustdoc search aliases
+  for Vulkan declarations, commands, constants and record members. Share the
+  branded README with the crate introduction, compile its calling-style
+  examples, and check the rendered links/search index. Expand crate discovery
+  metadata for graphics, GPU compute, game development and AI/ML use cases.
+
+- Extend the native Rust allocator with managed images, isolated resource-class
+  pools, admitted video/format-list creation chains, VMA-derived automatic memory
+  preferences, bounded adaptive block retries, local heap limits and explicit
+  native/local budget snapshots. Native lifetime management remains explicit.
+
+- Flatten Vulkan and StdVideo binding source into `src/rs`, with mirrored flat
+  binding tests. Use `vk::` directly; the `vk::core` module path is removed.
+  `load` and `memory` remain public subsystem modules. Regenerate all binding
+  artifacts through the updated generator and run the `bindings` test target.
 
 ## 0.3.0 — 2026-10-25
 

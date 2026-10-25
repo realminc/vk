@@ -1,7 +1,7 @@
 //! Checked separate or pooled allocation identity and bounded cache ranges.
 
 use super::AllocError;
-use crate::core as vk;
+use crate as vk;
 use std::sync::Arc;
 
 /// One live native region. No implicit free, unmap, submission or wait in Drop.

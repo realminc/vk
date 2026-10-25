@@ -16,6 +16,13 @@ pub fn emit_pfn(reg: &Registry) -> String {
 		} = &ty.kind
 		{
 			out.push_str(&crate::protect::cfg(&ty.guards));
+			crate::doc::item(
+				&mut out,
+				&ty.c_name,
+				&ty.c_name,
+				"Nullable native callback",
+				ty.from_video,
+			);
 			let params: Vec<_> = parameters
 				.iter()
 				.map(|p| format!("{}: {}", escape_name(&p.name), parameter_type(&p.ty)))
@@ -33,6 +40,13 @@ pub fn emit_pfn(reg: &Registry) -> String {
 	for cmd in &reg.commands {
 		out.push_str(&crate::protect::cfg(&cmd.guards));
 		let pfn = format!("PFN_{}", cmd.c_name);
+		writeln!(
+			out,
+			"#[doc = {:?}]",
+			format!("Nullable function pointer for `{}`.", cmd.c_name)
+		)
+		.unwrap();
+		crate::doc::command(&mut out, &cmd.c_name, &pfn);
 		if let Some(target) = &cmd.alias_of {
 			writeln!(out, "pub type {pfn} = PFN_{target};\n").unwrap();
 			continue;

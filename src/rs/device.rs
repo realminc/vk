@@ -1,13 +1,19 @@
 //! Device dispatch: loaded via `vkGetDeviceProcAddr` for optimal routing.
 use super::Instance;
-use crate::core as vk;
+use crate as vk;
 use crate::load::{
 	CallError, Capabilities, CommandSupport, CreatedHandle, InitializationFailure, LoadError,
 };
 use libloading::Library;
 use std::sync::Arc;
 
-/// Device handle and dispatch. Call `destroy` explicitly; Drop never destroys Vulkan objects.
+/// Vulkan device with cached commands and optional creation-capability metadata.
+///
+/// The raw native identity is [`DeviceHandle`](crate::DeviceHandle), available
+/// through [`Self::handle`]. This wrapper is not a native ABI handle.
+/// Call [`Self::destroy`] explicitly; Drop never destroys Vulkan objects.
+///
+/// [Khronos object reference](https://docs.vulkan.org/refpages/latest/refpages/source/VkDevice.html)
 pub struct Device {
 	handle: vk::DeviceHandle,
 	fp: vk::FnDevice,
@@ -107,6 +113,8 @@ impl Device {
 	/// # Safety
 	/// All children and outstanding device operations must be complete. The
 	/// allocator must match creation, with its user data and functions still live.
+	#[doc(alias = "vkDestroyDevice")]
+	#[doc = "\n\n[Khronos reference: `vkDestroyDevice`](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDevice.html)"]
 	pub unsafe fn destroy(self, allocator: Option<&vk::AllocationCallbacks>) {
 		// SAFETY: caller supplies the canonical destruction guarantees.
 		unsafe { destroy_device(self, allocator) };
@@ -120,6 +128,8 @@ commands! { Device, device;
 	/// # Safety
 	/// `queue_family_index` and `queue_index` must be within the bounds of the
 	/// queue families requested at device creation.
+	#[doc(alias = "vkGetDeviceQueue")]
+	#[doc = "\n\n[Khronos reference: `vkGetDeviceQueue`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceQueue.html)"]
 	pub unsafe fn get_device_queue(
 		queue_family_index: u32,
 		queue_index: u32,
@@ -141,6 +151,8 @@ commands! { Device, device;
 	/// # Safety
 	/// `name` must be a valid NUL-terminated command name. The caller must cast
 	/// and use the returned pointer only while this device is live.
+	#[doc(alias = "vkGetDeviceProcAddr")]
+	#[doc = "\n\n[Khronos reference: `vkGetDeviceProcAddr`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceProcAddr.html)"]
 	pub unsafe fn get_device_proc_addr(name: &std::ffi::CStr) -> vk::PFN_vkVoidFunction {
 		// SAFETY: the caller keeps this device alive while using returned functions.
 		unsafe { (device.gdpa)(device.handle, name.as_ptr()) }
@@ -155,6 +167,8 @@ commands! { Device, device;
 	/// # Safety
 	/// `command_buffer` must be in the recording state. `group_count_*` must not
 	/// exceed `VkPhysicalDeviceLimits::max_compute_work_group_count`.
+	#[doc(alias = "vkCmdDispatch")]
+	#[doc = "\n\n[Khronos reference: `vkCmdDispatch`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdDispatch.html)"]
 	pub unsafe fn cmd_dispatch(
 		command_buffer: vk::CommandBuffer,
 		group_count_x: u32,
@@ -178,6 +192,8 @@ commands! { Device, device;
 	/// # Safety
 	/// The `allocate_info` must be valid and reference a legal memory type index.
 	/// The allocation must be freed exactly once via [`Device::free_memory`].
+	#[doc(alias = "vkAllocateMemory")]
+	#[doc = "\n\n[Khronos reference: `vkAllocateMemory`](https://docs.vulkan.org/refpages/latest/refpages/source/vkAllocateMemory.html)"]
 	pub unsafe fn allocate_memory(
 		allocate_info: &vk::MemoryAllocateInfo,
 		allocator: Option<&vk::AllocationCallbacks>,
@@ -207,6 +223,8 @@ commands! { Device, device;
 	/// # Safety
 	/// All resources bound to this memory must have been destroyed. The memory
 	/// must not be freed more than once.
+	#[doc(alias = "vkFreeMemory")]
+	#[doc = "\n\n[Khronos reference: `vkFreeMemory`](https://docs.vulkan.org/refpages/latest/refpages/source/vkFreeMemory.html)"]
 	pub unsafe fn free_memory(
 		memory: vk::DeviceMemory,
 		allocator: Option<&vk::AllocationCallbacks>,
@@ -232,6 +250,8 @@ commands! { Device, device;
 	/// # Safety
 	/// `memory` must be host-visible, not already mapped, and remain live until
 	/// [`Device::unmap_memory`] is called.
+	#[doc(alias = "vkMapMemory")]
+	#[doc = "\n\n[Khronos reference: `vkMapMemory`](https://docs.vulkan.org/refpages/latest/refpages/source/vkMapMemory.html)"]
 	pub unsafe fn map_memory(
 		memory: vk::DeviceMemory,
 		offset: vk::DeviceSize,
@@ -256,6 +276,8 @@ commands! { Device, device;
 	/// # Safety
 	/// `memory` must currently be mapped and must not be used from host
 	/// after this call.
+	#[doc(alias = "vkUnmapMemory")]
+	#[doc = "\n\n[Khronos reference: `vkUnmapMemory`](https://docs.vulkan.org/refpages/latest/refpages/source/vkUnmapMemory.html)"]
 	pub unsafe fn unmap_memory(memory: vk::DeviceMemory) -> Result<(), CallError> {
 		let f = device
 			.fp
@@ -271,6 +293,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// All ranges must be within currently mapped memory objects.
+	#[doc(alias = "vkFlushMappedMemoryRanges")]
+	#[doc = "\n\n[Khronos reference: `vkFlushMappedMemoryRanges`](https://docs.vulkan.org/refpages/latest/refpages/source/vkFlushMappedMemoryRanges.html)"]
 	pub unsafe fn flush_mapped_memory_ranges(
 		ranges: &[vk::MappedMemoryRange],
 	) -> Result<(), CallError> {
@@ -298,6 +322,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// All ranges must be within currently mapped memory objects.
+	#[doc(alias = "vkInvalidateMappedMemoryRanges")]
+	#[doc = "\n\n[Khronos reference: `vkInvalidateMappedMemoryRanges`](https://docs.vulkan.org/refpages/latest/refpages/source/vkInvalidateMappedMemoryRanges.html)"]
 	pub unsafe fn invalidate_mapped_memory_ranges(
 		ranges: &[vk::MappedMemoryRange],
 	) -> Result<(), CallError> {
@@ -323,6 +349,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// `create_info` must be valid. Memory must be bound before use.
+	#[doc(alias = "vkCreateBuffer")]
+	#[doc = "\n\n[Khronos reference: `vkCreateBuffer`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateBuffer.html)"]
 	pub unsafe fn create_buffer(
 		create_info: &vk::BufferCreateInfo,
 		allocator: Option<&vk::AllocationCallbacks>,
@@ -351,6 +379,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// The buffer must not be in use by the GPU and must not be destroyed twice.
+	#[doc(alias = "vkDestroyBuffer")]
+	#[doc = "\n\n[Khronos reference: `vkDestroyBuffer`](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyBuffer.html)"]
 	pub unsafe fn destroy_buffer(
 		buffer: vk::Buffer,
 		allocator: Option<&vk::AllocationCallbacks>,
@@ -373,6 +403,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// `buffer` must be a live handle created from this device.
+	#[doc(alias = "vkGetBufferMemoryRequirements")]
+	#[doc = "\n\n[Khronos reference: `vkGetBufferMemoryRequirements`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferMemoryRequirements.html)"]
 	pub unsafe fn get_buffer_memory_requirements(
 		buffer: vk::Buffer,
 	) -> Result<vk::MemoryRequirements, CallError> {
@@ -390,6 +422,8 @@ commands! { Device, device;
 	/// # Safety
 	/// `memory` must have been allocated with a compatible type and sufficient size.
 	/// The buffer must not already have memory bound.
+	#[doc(alias = "vkBindBufferMemory")]
+	#[doc = "\n\n[Khronos reference: `vkBindBufferMemory`](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindBufferMemory.html)"]
 	pub unsafe fn bind_buffer_memory(
 		buffer: vk::Buffer,
 		memory: vk::DeviceMemory,
@@ -411,6 +445,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// `create_info.queue_family_index` must be valid for this device.
+	#[doc(alias = "vkCreateCommandPool")]
+	#[doc = "\n\n[Khronos reference: `vkCreateCommandPool`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateCommandPool.html)"]
 	pub unsafe fn create_command_pool(
 		create_info: &vk::CommandPoolCreateInfo,
 		allocator: Option<&vk::AllocationCallbacks>,
@@ -439,6 +475,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// All command buffers from this pool must have finished execution on the GPU.
+	#[doc(alias = "vkDestroyCommandPool")]
+	#[doc = "\n\n[Khronos reference: `vkDestroyCommandPool`](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyCommandPool.html)"]
 	pub unsafe fn destroy_command_pool(
 		pool: vk::CommandPool,
 		allocator: Option<&vk::AllocationCallbacks>,
@@ -461,6 +499,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// `allocate_info.command_pool` must be a live pool from this device.
+	#[doc(alias = "vkAllocateCommandBuffers")]
+	#[doc = "\n\n[Khronos reference: `vkAllocateCommandBuffers`](https://docs.vulkan.org/refpages/latest/refpages/source/vkAllocateCommandBuffers.html)"]
 	pub unsafe fn allocate_command_buffers(
 		allocate_info: &vk::CommandBufferAllocateInfo,
 	) -> Result<Vec<vk::CommandBuffer>, CallError> {
@@ -482,6 +522,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// All buffers must have finished execution on the GPU.
+	#[doc(alias = "vkFreeCommandBuffers")]
+	#[doc = "\n\n[Khronos reference: `vkFreeCommandBuffers`](https://docs.vulkan.org/refpages/latest/refpages/source/vkFreeCommandBuffers.html)"]
 	pub unsafe fn free_command_buffers(
 		pool: vk::CommandPool,
 		buffers: &[vk::CommandBuffer],
@@ -505,6 +547,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// The command buffer must be in the initial or reset state.
+	#[doc(alias = "vkBeginCommandBuffer")]
+	#[doc = "\n\n[Khronos reference: `vkBeginCommandBuffer`](https://docs.vulkan.org/refpages/latest/refpages/source/vkBeginCommandBuffer.html)"]
 	pub unsafe fn begin_command_buffer(
 		command_buffer: vk::CommandBuffer,
 		begin_info: &vk::CommandBufferBeginInfo,
@@ -525,6 +569,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// The command buffer must be in the recording state.
+	#[doc(alias = "vkEndCommandBuffer")]
+	#[doc = "\n\n[Khronos reference: `vkEndCommandBuffer`](https://docs.vulkan.org/refpages/latest/refpages/source/vkEndCommandBuffer.html)"]
 	pub unsafe fn end_command_buffer(command_buffer: vk::CommandBuffer) -> Result<(), CallError> {
 		let f = device
 			.fp
@@ -543,6 +589,8 @@ commands! { Device, device;
 	/// # Safety
 	/// `buffer` must be bound to device memory, in the executable/pending state,
 	/// and `offset`/`size` must be 4-byte aligned.
+	#[doc(alias = "vkCmdFillBuffer")]
+	#[doc = "\n\n[Khronos reference: `vkCmdFillBuffer`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdFillBuffer.html)"]
 	pub unsafe fn cmd_fill_buffer(
 		command_buffer: vk::CommandBuffer,
 		buffer: vk::Buffer,
@@ -563,6 +611,8 @@ commands! { Device, device;
 	/// # Safety
 	/// All resources referenced by the command buffers must be live and not
 	/// mutated by the host until the fence signals.
+	#[doc(alias = "vkQueueSubmit")]
+	#[doc = "\n\n[Khronos reference: `vkQueueSubmit`](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueSubmit.html)"]
 	pub unsafe fn queue_submit(
 		queue: vk::Queue,
 		submits: &[vk::SubmitInfo],
@@ -591,6 +641,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// `queue` must be a live handle from this device.
+	#[doc(alias = "vkQueueWaitIdle")]
+	#[doc = "\n\n[Khronos reference: `vkQueueWaitIdle`](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueWaitIdle.html)"]
 	pub unsafe fn queue_wait_idle(queue: vk::Queue) -> Result<(), CallError> {
 		let f = device
 			.fp
@@ -608,6 +660,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// `create_info` must be valid. The fence must be destroyed exactly once.
+	#[doc(alias = "vkCreateFence")]
+	#[doc = "\n\n[Khronos reference: `vkCreateFence`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateFence.html)"]
 	pub unsafe fn create_fence(
 		create_info: &vk::FenceCreateInfo,
 		allocator: Option<&vk::AllocationCallbacks>,
@@ -636,6 +690,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// The fence must not be pending or in use by the GPU.
+	#[doc(alias = "vkDestroyFence")]
+	#[doc = "\n\n[Khronos reference: `vkDestroyFence`](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyFence.html)"]
 	pub unsafe fn destroy_fence(
 		fence: vk::Fence,
 		allocator: Option<&vk::AllocationCallbacks>,
@@ -661,6 +717,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// All fences must be live handles from this device.
+	#[doc(alias = "vkWaitForFences")]
+	#[doc = "\n\n[Khronos reference: `vkWaitForFences`](https://docs.vulkan.org/refpages/latest/refpages/source/vkWaitForFences.html)"]
 	pub unsafe fn wait_for_fences(
 		fences: &[vk::Fence],
 		wait_all: bool,
@@ -690,6 +748,8 @@ commands! { Device, device;
 	///
 	/// # Safety
 	/// No fences in the slice may be pending (submitted but not yet signalled).
+	#[doc(alias = "vkResetFences")]
+	#[doc = "\n\n[Khronos reference: `vkResetFences`](https://docs.vulkan.org/refpages/latest/refpages/source/vkResetFences.html)"]
 	pub unsafe fn reset_fences(fences: &[vk::Fence]) -> Result<(), CallError> {
 		let f = device
 			.fp
@@ -721,6 +781,8 @@ commands! { Device, device;
 /// # Safety
 /// The create info, its reachable pointers and allocator callbacks must meet
 /// Vulkan valid usage. Allocator state must remain alive until destruction.
+#[doc(alias = "vkCreateDevice")]
+#[doc = "\n\n[Khronos reference: `vkCreateDevice`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDevice.html)"]
 pub unsafe fn create_device(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
@@ -795,6 +857,8 @@ impl Device {
 	/// Create a logical device through its parent instance's cached dispatch.
 	/// # Safety
 	/// Device create info and callbacks must satisfy Vulkan valid usage and remain live as required.
+	#[doc(alias = "vkCreateDevice")]
+	#[doc = "\n\n[Khronos reference: `vkCreateDevice`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDevice.html)"]
 	pub unsafe fn new(
 		instance: &Instance,
 		physical_device: vk::PhysicalDevice,
@@ -810,6 +874,8 @@ impl Instance {
 	/// Create a logical device through this instance's cached dispatch.
 	/// # Safety
 	/// Device create info and callbacks must satisfy Vulkan valid usage and remain live as required.
+	#[doc(alias = "vkCreateDevice")]
+	#[doc = "\n\n[Khronos reference: `vkCreateDevice`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDevice.html)"]
 	pub unsafe fn create_device(
 		&self,
 		physical_device: vk::PhysicalDevice,
@@ -826,6 +892,8 @@ impl Instance {
 /// # Safety
 /// All children and outstanding device operations must be complete. The
 /// allocator must match creation, with its user data and functions still live.
+#[doc(alias = "vkDestroyDevice")]
+#[doc = "\n\n[Khronos reference: `vkDestroyDevice`](https://docs.vulkan.org/refpages/latest/refpages/source/vkDestroyDevice.html)"]
 pub unsafe fn destroy_device(device: Device, allocator: Option<&vk::AllocationCallbacks>) {
 	// SAFETY: caller guarantees all destruction and allocator requirements.
 	unsafe {

@@ -66,7 +66,7 @@ def main():
     assert_eq!(info.s_type, vk::StructureType::INSTANCE_CREATE_INFO);
     assert!(vk::InstanceHandle::NULL.is_null());
     assert_eq!(std::mem::size_of::<vk::PFN_vkCreateInstance>(), std::mem::size_of::<usize>());
-    let _: vk::core::DeviceHandle = vk::DeviceHandle::NULL;
+    let _: vk::DeviceHandle = vk::DeviceHandle::NULL;
     let _: Option<vk::StdVideoVP9ColorConfig> = None;
     #[cfg(feature = "loader")]
     {
@@ -76,6 +76,15 @@ def main():
     }
     #[cfg(feature = "allocator")]
     {
+        let _ = vk::Allocator::create_image_with_options;
+        let _ = vk::memory::create_image_with_options;
+        let _ = vk::Allocator::query_budget;
+        let options = vk::memory::AllocationCreateInfo {
+            usage: vk::memory::MemoryUsage::PreferDevice,
+            policy: vk::memory::AllocationPolicy::Adaptive { block_size: 65536, min_block_size: 4096 },
+            ..Default::default()
+        };
+        assert!(!options.persistent_map);
         let mut block = vk::VirtualBlock::new(4096).unwrap();
         let mut allocation = block.allocate(64, 16, vk::memory::PlacementStrategy::Default).unwrap();
         assert_eq!(block.allocation_info(&allocation).unwrap().offset, 0);

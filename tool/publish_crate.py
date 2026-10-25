@@ -15,14 +15,16 @@ import subprocess
 import time
 import urllib.error
 import urllib.request
+from urllib.parse import quote
 
 from audit_crate import audit
 from audit_public import PUBLIC_REPOSITORY
+from release_version import ROOT, package_version, release_version, validate_registry_version
 
 
 def metadata(version):
     request = urllib.request.Request(
-        f"https://crates.io/api/v1/crates/vkrust/{version}",
+        f"https://crates.io/api/v1/crates/vkrust/{quote(version, safe='')}",
         headers={"User-Agent": "vk-release (https://github.com/realminc/vk)"},
     )
     try:
@@ -47,8 +49,13 @@ def main():
     tag = os.environ.get("GITHUB_REF_NAME", "")
     if os.environ.get("GITHUB_REPOSITORY") != "realminc/vk" or not re.fullmatch(r"v\d+\.\d+\.\d+", tag):
         raise ValueError("publication requires a realminc/vk version tag")
-    version = tag[1:]
+    version = package_version()
+    if tag != f"v{release_version(version)}":
+        raise ValueError("publication tag and package release version disagree")
+    validate_registry_version(ROOT, version)
     archive = args.archive.resolve()
+    if archive.name != f"vkrust-{version}.crate":
+        raise ValueError("archive filename must include the complete package version")
     audit(archive, version, PUBLIC_REPOSITORY)
     digest = hashlib.sha256(archive.read_bytes()).hexdigest()
     existing = metadata(version)
@@ -80,7 +87,7 @@ def main():
             raise ValueError("upload completed but registry confirmation is pending")
     verify_existing(existing, digest)
     request = urllib.request.Request(
-        f"https://crates.io/api/v1/crates/vkrust/{version}/download",
+        f"https://crates.io/api/v1/crates/vkrust/{quote(version, safe='')}/download",
         headers={"User-Agent": "vk-release (https://github.com/realminc/vk)"},
     )
     with urllib.request.urlopen(request, timeout=60) as response:

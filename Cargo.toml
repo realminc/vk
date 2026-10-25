@@ -7,14 +7,14 @@ repository.workspace = true
 rust-version.workspace = true
 readme = "README.md"
 documentation = "https://docs.rs/vkrust"
-keywords = ["vulkan", "graphics", "bindings", "gpu"]
-categories = ["api-bindings", "graphics", "rendering::graphics-api"]
+keywords = ["vulkan", "gpu", "compute", "gamedev", "machine-learning"]
+categories = ["api-bindings", "graphics", "rendering::graphics-api", "game-development", "artificial-intelligence"]
 publish = ["crates-io"]
 autotests = false
-description = "Registry-generated Vulkan ABI and per-device dispatch for Rust"
+description = "Rust Vulkan bindings for graphics and GPU compute, with cached dispatch and a native allocator"
 include = [
-  "/Cargo.toml", "/Cargo.lock", "/src/rs/**", "/test/rs/core/**",
-  "/test/rs/load/**", "/test/rs/memory/**", "/test/rs/test_*.rs",
+  "/Cargo.toml", "/Cargo.lock", "/src/rs/**", "/test/rs/test_*.rs",
+  "/test/rs/load/**", "/test/rs/memory/**",
   "/README.md", "/CHANGELOG.md", "/NOTICE.md", "/rustfmt.toml",
   "/LICENSE", "/license/khronos/Apache-2.0.txt", "/LICENSE-VMA-MIT",
   "/docs/external/qualification.md", "/registry/SOURCES.md",
@@ -34,7 +34,7 @@ members = ["tool/gen"]
 default-members = [".", "tool/gen"]
 
 [workspace.package]
-version = "0.3.0"
+version = "0.4.1+1.4.365"
 edition = "2024"
 rust-version = "1.98.1"
 license = "MIT"
@@ -80,8 +80,8 @@ debug = 0
 incremental = false
 
 [[test]]
-name = "core"
-path = "test/rs/test_core.rs"
+name = "bindings"
+path = "test/rs/test_lib.rs"
 
 [[test]]
 name = "load"

@@ -50,7 +50,7 @@ def main():
     with tempfile.TemporaryDirectory(prefix='vk-abi-') as directory:
         tmp = Path(directory)
         c = [source, '#include <stdio.h>\n#include <stddef.h>\nint main(void) {']
-        rust = ['use vk::core::*;\nfn main() {']
+        rust = ['use vk::*;\nfn main() {']
         checks = 0
         bitfields = 0
         for name, node in sorted(records.items()):
@@ -99,7 +99,7 @@ def main():
         # Each emitted check is a complete statement; chunking preserves order.
         statements = rust[1:-1]
         chunks = [statements[i:i + 200] for i in range(0, len(statements), 200)]
-        rust = ['use vk::core::*;', 'fn main() {']
+        rust = ['use vk::*;', 'fn main() {']
         rust.extend(f'check_{i}();' for i in range(len(chunks)))
         rust.append('}')
         for i, chunk in enumerate(chunks):

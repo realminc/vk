@@ -1,12 +1,12 @@
-//! Native homogeneous-buffer block and shared mapping state.
+//! Native resource-class block and shared mapping state.
 //!
 //! Donor: pinned VMA `VmaDeviceMemoryBlock::{Map,Unmap}` and
 //! `GetMemoryTypeMinAlignment`. See LICENSE-VMA-MIT.
 //! Adaptation: exclusive allocator access, checked counts and explicit release;
-//! no mapping hysteresis or native Drop. Homogeneous buffers need no image neighbors.
+//! no mapping hysteresis or native Drop. Homogeneous resource classes need no incompatible neighbors.
 
 use super::{AllocError, tlsf::Tlsf};
-use crate::{core as vk, load::CallError};
+use crate::{self as vk, load::CallError};
 use std::ffi::c_void;
 
 pub(super) struct Mapping {
@@ -74,7 +74,16 @@ impl Mapping {
 	}
 }
 
+/// Separate block domains exclude buffer/image granularity conflicts by construction.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub(super) enum ResourceClass {
+	Buffer,
+	LinearImage,
+	OptimalImage,
+}
+
 pub(super) struct Block {
+	pub class: ResourceClass,
 	pub handle: vk::DeviceMemory,
 	pub size: u64,
 	pub memory_type_index: u32,

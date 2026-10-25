@@ -433,6 +433,7 @@ fn main() {
 						} else {
 							AllocationPolicy::Pooled { block_size: 65536 }
 						},
+						..Default::default()
 					};
 					match allocator.create_buffer_with_options(&info, &options) {
 						Ok((buffer, allocation)) => {

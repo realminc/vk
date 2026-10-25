@@ -7,7 +7,7 @@ use std::{
 // Compile the actual emitted metadata, without the generator's parser/model or
 // runtime capability evaluator, for an independent pinned-XML differential test.
 #[allow(dead_code)]
-#[path = "../../../../src/rs/core/extension.gen.rs"]
+#[path = "../../../../src/rs/extension.gen.rs"]
 mod emitted;
 
 #[derive(Debug)]
@@ -255,7 +255,7 @@ fn every_command_and_alias_through_vulkan_1_4_has_a_public_operation() {
 	commands.extend(promoted);
 	// Read actual nullable PFN fields to obtain native/Rust spelling pairs;
 	// do not reuse the generator's naming converter or recipe inventory.
-	let dispatch = std::fs::read_to_string(root.join("src/rs/core/dispatch.gen.rs")).unwrap();
+	let dispatch = std::fs::read_to_string(root.join("src/rs/dispatch.gen.rs")).unwrap();
 	let words: Vec<_> = dispatch.split_whitespace().collect();
 	let fields: BTreeMap<_, _> = words
 		.windows(3)
@@ -272,9 +272,9 @@ fn every_command_and_alias_through_vulkan_1_4_has_a_public_operation() {
 	let mut operations = BTreeSet::new();
 	for source in [
 		"load/entry.rs",
-		"core/instance.rs",
-		"core/device.rs",
-		"core/command.gen.rs",
+		"instance.rs",
+		"device.rs",
+		"command.gen.rs",
 	] {
 		let source = std::fs::read_to_string(root.join("src/rs").join(source)).unwrap();
 		for line in source.lines() {
@@ -390,9 +390,9 @@ fn generated_output_is_checked_without_writes() {
 		"repeat generation must preserve bytes and mtimes"
 	);
 	for name in [
-		"src/rs/core/command.gen.rs",
+		"src/rs/command.gen.rs",
 		"src/rs/load/feature.gen.rs",
-		"test/rs/core/test_command.gen.rs",
+		"test/rs/test_command.gen.rs",
 	] {
 		let path = out.join(name);
 		let bytes = std::fs::read(&path).unwrap();
@@ -404,13 +404,13 @@ fn generated_output_is_checked_without_writes() {
 		);
 		std::fs::write(&path, bytes).unwrap();
 	}
-	let generated_test = out.join("test/rs/core/test_command.gen.rs");
+	let generated_test = out.join("test/rs/test_command.gen.rs");
 	let test_bytes = std::fs::read(&generated_test).unwrap();
 	std::fs::remove_file(&generated_test).unwrap();
 	assert!(!run(&out, true, &xml).status.success());
 	assert!(!generated_test.exists());
 	std::fs::write(&generated_test, test_bytes).unwrap();
-	let file = out.join("src/rs/core/pfn.gen.rs");
+	let file = out.join("src/rs/pfn.gen.rs");
 	let bytes = std::fs::read(&file).unwrap();
 	std::fs::write(&file, b"stale output").unwrap();
 	assert!(!run(&out, true, &xml).status.success());
@@ -559,7 +559,7 @@ fn generated_families_follow_pinned_xml_declaration_order() {
 			.collect::<Vec<_>>()
 	};
 	assert_registry_order(
-		types(&source("src/rs/core/type.gen.rs")),
+		types(&source("src/rs/type.gen.rs")),
 		vk.types
 			.into_iter()
 			.chain(video.types)
@@ -567,14 +567,14 @@ fn generated_families_follow_pinned_xml_declaration_order() {
 		"types",
 	);
 	assert_registry_order(
-		types(&source("src/rs/core/enum.gen.rs")),
+		types(&source("src/rs/enum.gen.rs")),
 		vk.enums
 			.into_iter()
 			.chain(video.enums)
 			.map(|name| rust_type_name(&name)),
 		"enums",
 	);
-	let constants = source("src/rs/core/constant.gen.rs")
+	let constants = source("src/rs/constant.gen.rs")
 		.lines()
 		.filter_map(|line| line.strip_prefix("pub const "))
 		.map(|line| line.split(':').next().unwrap().to_owned())
@@ -587,14 +587,14 @@ fn generated_families_follow_pinned_xml_declaration_order() {
 			.map(|name| name.strip_prefix("VK_").unwrap_or(&name).to_owned()),
 		"constants",
 	);
-	let pfn = source("src/rs/core/pfn.gen.rs")
+	let pfn = source("src/rs/pfn.gen.rs")
 		.lines()
 		.filter_map(|line| line.strip_prefix("pub type PFN_"))
 		.map(|line| line.split(' ').next().unwrap().to_owned())
 		.filter(|name| vk.commands.contains(name))
 		.collect();
 	assert_registry_order(pfn, vk.commands.clone(), "command PFNs");
-	let commands: Vec<_> = source("src/rs/core/command.gen.rs")
+	let commands: Vec<_> = source("src/rs/command.gen.rs")
 		.lines()
 		.filter_map(|line| line.trim().strip_prefix("/// Call `"))
 		.map(|line| line.split('`').next().unwrap().to_owned())
@@ -602,7 +602,7 @@ fn generated_families_follow_pinned_xml_declaration_order() {
 	let mut commands = commands;
 	commands.dedup();
 	assert_registry_order(commands.clone(), vk.commands.clone(), "native operations");
-	let mut cases: Vec<_> = source("test/rs/core/test_command.gen.rs")
+	let mut cases: Vec<_> = source("test/rs/test_command.gen.rs")
 		.split("CallError::MissingCommand(")
 		.skip(1)
 		.map(|piece| {
@@ -622,7 +622,7 @@ fn generated_families_follow_pinned_xml_declaration_order() {
 		"every generated operation must have its API contract case"
 	);
 	assert_registry_order(cases, vk.commands.clone(), "generated API tests");
-	let tables = source("src/rs/core/dispatch.gen.rs");
+	let tables = source("src/rs/dispatch.gen.rs");
 	for table in ["FnEntry", "FnInstance", "FnDevice"] {
 		let fields = tables
 			.split(&format!("pub struct {table} {{"))
@@ -638,7 +638,7 @@ fn generated_families_follow_pinned_xml_declaration_order() {
 			.collect();
 		assert_registry_order(commands, vk.commands.clone(), table);
 	}
-	let metadata = source("src/rs/core/extension.gen.rs");
+	let metadata = source("src/rs/extension.gen.rs");
 	let commands = metadata
 		.split("CommandMetadata {")
 		.filter_map(|record| {

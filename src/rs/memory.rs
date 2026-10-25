@@ -6,21 +6,25 @@
 mod allocation;
 mod allocator;
 mod block;
+mod policy;
+mod resource;
 mod selector;
 mod tlsf;
 pub mod virtual_block;
 
 pub use allocation::Allocation;
 pub use allocator::{
-	Allocator, allocate, close, create_buffer, create_buffer_with_options, destroy_buffer, flush,
-	free, invalidate, map, mapped_pointer, statistics, unmap,
+	Allocator, allocate, budget_snapshot, close, create_buffer, create_buffer_with_options,
+	create_image, create_image_with_options, destroy_buffer, destroy_image, flush, free, invalidate,
+	map, mapped_pointer, query_budget, set_heap_limit, statistics, unmap,
 };
+pub use policy::{HostAccess, MemoryUsage};
 pub use selector::MemoryTypeSelector;
 pub use virtual_block::{
 	PlacementStrategy, VirtualAllocation, VirtualAllocationInfo, VirtualBlock, VirtualBlockStats,
 };
 
-use crate::{core as vk, load::CallError};
+use crate::{self as vk, load::CallError};
 
 #[derive(Debug, PartialEq)]
 pub enum AllocError {
@@ -67,7 +71,7 @@ pub struct AllocRequest {
 	pub preferred_flags: vk::MemoryPropertyFlags,
 }
 
-/// Buffer storage policy. Required or preferred native dedication takes precedence.
+/// Managed resource storage policy. Required or preferred native dedication takes precedence.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub enum AllocationPolicy {
 	#[default]
@@ -75,11 +79,23 @@ pub enum AllocationPolicy {
 	/// Reuse ordinary buffer blocks with this exact native size. No block shrinking.
 	/// Requests larger than the block use separate storage.
 	Pooled { block_size: u64 },
+	/// Try bounded power-of-two block sizes, shrinking only on recoverable storage failure.
+	/// Large regions and exhausted block attempts fall back to separate storage.
+	Adaptive {
+		block_size: u64,
+		min_block_size: u64,
+	},
 }
 
-/// Managed-buffer policy; not a Vulkan ABI record or an arbitrary allocation chain.
+/// Managed-resource policy; not a Vulkan ABI record or an arbitrary allocation chain.
 #[derive(Clone, Copy, Debug)]
 pub struct AllocationCreateInfo {
+	pub usage: MemoryUsage,
+	pub host_access: HostAccess,
+	/// Permit automatic selection of non-host-visible memory; caller supplies staging.
+	pub allow_transfer_instead: bool,
+	/// Properties penalized during memory-type selection; never a hard exclusion.
+	pub avoided_flags: vk::MemoryPropertyFlags,
 	pub required_flags: vk::MemoryPropertyFlags,
 	pub preferred_flags: vk::MemoryPropertyFlags,
 	/// Intersected with queried native requirements; zero admits no memory types.
@@ -93,6 +109,10 @@ pub struct AllocationCreateInfo {
 impl Default for AllocationCreateInfo {
 	fn default() -> Self {
 		Self {
+			usage: MemoryUsage::Explicit,
+			host_access: HostAccess::None,
+			allow_transfer_instead: false,
+			avoided_flags: vk::MemoryPropertyFlags::empty(),
 			required_flags: vk::MemoryPropertyFlags::empty(),
 			preferred_flags: vk::MemoryPropertyFlags::empty(),
 			memory_type_bits: u32::MAX,
@@ -120,3 +140,28 @@ pub struct AllocatorStats {
 #[cfg(test)]
 #[path = "../../test/rs/memory/test_host_allocator.rs"]
 pub(crate) mod test_host_allocator;
+
+/// Budget provenance. Heap-size/local accounting does not measure external pressure.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub enum BudgetSource {
+	#[default]
+	Local,
+	Extension,
+}
+
+/// One heap at the explicit snapshot boundary. Budget/usage can change immediately.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub struct HeapBudget {
+	pub size: u64,
+	pub limit: u64,
+	pub budget: u64,
+	pub usage: u64,
+	pub native_bytes: u64,
+}
+
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub struct BudgetSnapshot {
+	pub source: BudgetSource,
+	pub heap_count: u32,
+	pub heaps: [HeapBudget; 16],
+}

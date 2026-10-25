@@ -13,9 +13,17 @@ pub fn emit_dispatch(reg: &Registry) -> String {
 		("FnInstance", DispatchLevel::Instance),
 		("FnDevice", DispatchLevel::Device),
 	] {
+		writeln!(out, "/// Cached nullable PFNs for {level:?} dispatch.\n///\n/// A resolved pointer does not establish enabled API, extension or feature state.\n/// Keep the native objects and supplying library alive while using these pointers.").unwrap();
 		writeln!(out, "#[derive(Clone, Default)]\npub struct {name} {{").unwrap();
 		for cmd in reg.commands.iter().filter(|c| c.dispatch == level) {
 			out.push_str(&crate::protect::cfg(&cmd.guards));
+			crate::doc::item(
+				&mut out,
+				&cmd.c_name,
+				&names::command_name(&cmd.c_name),
+				"Cached function pointer for",
+				false,
+			);
 			writeln!(
 				out,
 				"pub {}: PFN_{},",

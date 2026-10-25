@@ -10,3 +10,6 @@ mod allocator;
 
 #[path = "memory/test_virtual_block.rs"]
 mod virtual_block;
+
+#[path = "memory/test_image_native.rs"]
+mod image;

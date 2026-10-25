@@ -1,7 +1,7 @@
 //! Shared retry policy for Vulkan count/data enumeration commands.
 
 use super::CallError;
-use crate::core as vk;
+use crate as vk;
 
 const MAX_ATTEMPTS: u32 = 8;
 

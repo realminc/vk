@@ -1,5 +1,4 @@
 //! Vulkan API version encoding.
-use ::vk::core as vk;
 
 #[test]
 fn version_variant_round_trip() {

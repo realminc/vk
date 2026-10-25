@@ -8,11 +8,17 @@
 use super::{
 	AllocError, AllocRequest, Allocation, AllocationCreateInfo, AllocationPolicy, AllocatorStats,
 	MemoryTypeSelector,
-	block::{Block, Mapping},
+	block::{Block, Mapping, ResourceClass},
 	tlsf::Tlsf,
 };
-use crate::{core as vk, core::Device, load::CallError};
+use crate::{self as vk, Device, load::CallError};
 use std::{collections::HashMap, sync::Arc};
+
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum Resource {
+	Buffer(vk::Buffer),
+	Image(vk::Image),
+}
 
 struct Live {
 	serial: u64,
@@ -21,7 +27,7 @@ struct Live {
 	reserved_size: u64,
 	mapped: bool,
 	persistent: bool,
-	buffer: Option<vk::Buffer>,
+	resource: Option<Resource>,
 	placement: Option<(usize, u64)>,
 	mapping: Mapping,
 }
@@ -47,10 +53,16 @@ pub struct Allocator<'device> {
 	native_count: usize,
 	native_bytes: u64,
 	heap_bytes: [u64; 16],
+	heap_limits: [Option<u64>; 16],
 	allocation_limit: u32,
 	allocation_size_limit: Option<u64>,
+	integrated: Option<bool>,
 	closed: bool,
 }
+
+#[path = "budget.rs"]
+mod budget;
+pub use budget::{budget_snapshot, query_budget, set_heap_limit};
 
 impl<'device> Allocator<'device> {
 	/// Construct from caller-supplied physical-device metadata.
@@ -81,8 +93,10 @@ impl<'device> Allocator<'device> {
 			native_count: 0,
 			native_bytes: 0,
 			heap_bytes: [0; 16],
+			heap_limits: [None; 16],
 			allocation_limit: u32::MAX,
 			allocation_size_limit: None,
+			integrated: None,
 			closed: false,
 		})
 	}
@@ -171,6 +185,7 @@ impl<'device> Allocator<'device> {
 		// SAFETY: metadata was queried from the caller's matching physical device.
 		let mut allocator =
 			unsafe { Self::new(device, memory, properties.limits.non_coherent_atom_size) }?;
+		allocator.integrated = Some(properties.device_type == vk::PhysicalDeviceType::INTEGRATED_GPU);
 		allocator.allocation_limit = properties.limits.max_memory_allocation_count;
 		allocator.allocation_size_limit = allocation_size_limit;
 		// Select/validate the exact admitted requirements command before publication.
@@ -294,6 +309,43 @@ impl<'device> Allocator<'device> {
 		unsafe { create_buffer_with_options(self, info, options) }
 	}
 
+	/// Create and bind an image using separate storage and explicit memory properties.
+	/// # Safety
+	/// All image/create-chain valid usage and host/GPU lifetimes remain caller obligations.
+	pub unsafe fn create_image(
+		&mut self,
+		info: &vk::ImageCreateInfo,
+		required: vk::MemoryPropertyFlags,
+		preferred: vk::MemoryPropertyFlags,
+	) -> Result<(vk::Image, Allocation), AllocError> {
+		// SAFETY: identical contract to the canonical operation.
+		unsafe { create_image(self, info, required, preferred) }
+	}
+
+	/// Create, allocate and bind an image using explicit or automatic memory policy.
+	/// # Safety
+	/// Match native image, feature, pointer-chain and synchronization valid usage.
+	pub unsafe fn create_image_with_options(
+		&mut self,
+		info: &vk::ImageCreateInfo,
+		options: &AllocationCreateInfo,
+	) -> Result<(vk::Image, Allocation), AllocError> {
+		// SAFETY: identical contract to the canonical operation.
+		unsafe { create_image_with_options(self, info, options) }
+	}
+
+	/// Destroy a managed image and release its allocation after exact completion.
+	/// # Safety
+	/// Destroy views first; complete all host/GPU uses and end explicit maps.
+	pub unsafe fn destroy_image(
+		&mut self,
+		image: vk::Image,
+		allocation: &mut Allocation,
+	) -> Result<(), AllocError> {
+		// SAFETY: identical contract to the canonical operation.
+		unsafe { destroy_image(self, image, allocation) }
+	}
+
 	/// Observe a current explicit or persistent mapping without acquiring a hold.
 	pub fn mapped_pointer(
 		&self,
@@ -356,7 +408,9 @@ impl<'device> Allocator<'device> {
 			return Err(AllocError::AllocationLimit);
 		}
 		let heap = self.selector.properties.memory_types[index as usize].heap_index as usize;
-		let available = self.selector.properties.memory_heaps[heap].size - self.heap_bytes[heap];
+		let available = self.heap_limits[heap]
+			.unwrap_or(self.selector.properties.memory_heaps[heap].size)
+			- self.heap_bytes[heap];
 		if size > available {
 			return Err(AllocError::OutOfSpace);
 		}
@@ -417,44 +471,62 @@ impl<'device> Allocator<'device> {
 	}
 
 	fn buffer_route(&self) -> Result<RequirementsRoute, AllocError> {
+		self.requirements_route(false)
+	}
+
+	fn requirements_route(&self, image: bool) -> Result<RequirementsRoute, AllocError> {
 		let capabilities = self
 			.device
 			.capabilities()
 			.ok_or(AllocError::UnsupportedCapability(
-				"managed buffers require device creation metadata",
+				"managed resources require device creation metadata",
 			))?;
+		let fp = self.device.fp();
+		let (core, khr, legacy) = if image {
+			(
+				(
+					fp.get_image_memory_requirements2.is_some(),
+					"vkGetImageMemoryRequirements2",
+				),
+				(
+					fp.get_image_memory_requirements2_khr.is_some(),
+					"vkGetImageMemoryRequirements2KHR",
+				),
+				(
+					fp.get_image_memory_requirements.is_some(),
+					"vkGetImageMemoryRequirements",
+				),
+			)
+		} else {
+			(
+				(
+					fp.get_buffer_memory_requirements2.is_some(),
+					"vkGetBufferMemoryRequirements2",
+				),
+				(
+					fp.get_buffer_memory_requirements2_khr.is_some(),
+					"vkGetBufferMemoryRequirements2KHR",
+				),
+				(
+					fp.get_buffer_memory_requirements.is_some(),
+					"vkGetBufferMemoryRequirements",
+				),
+			)
+		};
 		if capabilities.api_version() >= vk::API_VERSION_1_1 {
-			require(
-				self.device.fp().get_buffer_memory_requirements2.is_some(),
-				"vkGetBufferMemoryRequirements2",
-			)?;
+			require(core.0, core.1)?;
 			return Ok(RequirementsRoute::Core);
 		}
-		let enabled = |name| {
-			capabilities
-				.device_extensions()
-				.is_some_and(|mut extensions| extensions.any(|extension| extension == name))
-		};
-		if enabled(c"VK_KHR_dedicated_allocation") {
-			if !enabled(c"VK_KHR_get_memory_requirements2") {
+		if super::resource::extension(self.device, c"VK_KHR_dedicated_allocation") {
+			if !super::resource::extension(self.device, c"VK_KHR_get_memory_requirements2") {
 				return Err(AllocError::UnsupportedCapability(
 					"dedication requires VK_KHR_get_memory_requirements2",
 				));
 			}
-			require(
-				self
-					.device
-					.fp()
-					.get_buffer_memory_requirements2_khr
-					.is_some(),
-				"vkGetBufferMemoryRequirements2KHR",
-			)?;
+			require(khr.0, khr.1)?;
 			Ok(RequirementsRoute::Khr)
 		} else {
-			require(
-				self.device.fp().get_buffer_memory_requirements.is_some(),
-				"vkGetBufferMemoryRequirements",
-			)?;
+			require(legacy.0, legacy.1)?;
 			Ok(RequirementsRoute::Legacy)
 		}
 	}
@@ -486,13 +558,14 @@ pub unsafe fn allocate(
 	request: &AllocRequest,
 ) -> Result<Allocation, AllocError> {
 	// SAFETY: caller provides the requirements and ordinary allocation semantics.
-	unsafe { allocate_storage(allocator, request, None) }
+	unsafe { allocate_storage(allocator, request, None, vk::MemoryPropertyFlags::empty()) }
 }
 
 unsafe fn allocate_storage(
 	allocator: &mut Allocator<'_>,
 	request: &AllocRequest,
 	dedicated: Option<&vk::MemoryDedicatedAllocateInfo>,
+	avoided: vk::MemoryPropertyFlags,
 ) -> Result<Allocation, AllocError> {
 	allocator.ensure_open()?;
 	allocator.validate_size(request.size)?;
@@ -510,7 +583,10 @@ unsafe fn allocate_storage(
 			memory_type_bits: bits,
 			..*request
 		};
-		let index = match allocator.selector.find_memory_type(&candidate) {
+		let index = match allocator
+			.selector
+			.find_memory_type_with_preferences(&candidate, avoided)
+		{
 			Ok(index) => index,
 			Err(error) => return Err(last.unwrap_or(error)),
 		};
@@ -594,7 +670,7 @@ fn publish(allocator: &mut Allocator<'_>, region: Region) -> Allocation {
 			reserved_size,
 			mapped: false,
 			persistent: false,
-			buffer: None,
+			resource: None,
 			placement,
 			mapping: Mapping::default(),
 		},
@@ -850,15 +926,13 @@ pub unsafe fn create_buffer_with_options(
 	info: &vk::BufferCreateInfo,
 	options: &AllocationCreateInfo,
 ) -> Result<(vk::Buffer, Allocation), AllocError> {
-	let mut required = options.required_flags;
-	if options.persistent_map {
-		required = required | vk::MemoryPropertyFlagBits::HOST_VISIBLE_BIT;
-	}
-	let preferred = options.preferred_flags;
+	let (required, preferred, avoided) =
+		super::policy::preferences(options, info.usage.as_raw() & !3 != 0, allocator.integrated)?;
 	allocator.ensure_open()?;
+	// SAFETY: caller supplies a readable native create chain for this call.
+	unsafe { super::resource::validate_chain(allocator.device, info.p_next, false) }?;
 	allocator.validate_size(info.size)?;
-	if !info.p_next.is_null()
-		|| info.flags.as_raw() != 0
+	if info.flags.as_raw() != 0
 		|| info.size == 0
 		|| info.usage.as_raw() == 0
 		|| info.usage.as_raw()
@@ -871,11 +945,7 @@ pub unsafe fn create_buffer_with_options(
 	if required.as_raw() & vk::MemoryPropertyFlagBits::PROTECTED_BIT.as_raw() != 0 {
 		return Err(AllocError::UnsupportedCapability("protected allocation"));
 	}
-	if let AllocationPolicy::Pooled { block_size: 0 } = options.policy {
-		return Err(AllocError::InvalidRequest(
-			"pooled block size must be nonzero",
-		));
-	}
+	validate_policy(options.policy)?;
 	if options.policy == AllocationPolicy::Separate
 		&& allocator.native_count >= allocator.allocation_limit as usize
 	{
@@ -942,15 +1012,16 @@ pub unsafe fn create_buffer_with_options(
 		Ok(request) => {
 			let force_separate = dedication.requires_dedicated_allocation != 0
 				|| dedication.prefers_dedicated_allocation != 0;
-			if let AllocationPolicy::Pooled { block_size } = options.policy
-				&& !force_separate
-				&& request.size <= block_size
-			{
-				// SAFETY: queried ordinary buffer requirements and explicitly selected policy.
-				unsafe { allocate_pooled(allocator, &request, block_size, options.strategy) }
-			} else {
-				// SAFETY: queried matching requirements and admitted buffer dedication.
-				unsafe { allocate_storage(allocator, &request, dedicated) }
+			unsafe {
+				allocate_managed(
+					allocator,
+					&request,
+					dedicated,
+					force_separate,
+					options,
+					ResourceClass::Buffer,
+					avoided,
+				)
 			}
 		}
 		Err(error) => Err(error.into()),
@@ -999,8 +1070,97 @@ pub unsafe fn create_buffer_with_options(
 		}
 		return Err(error.into());
 	}
-	allocator.live.get_mut(&allocation.serial).unwrap().buffer = Some(buffer);
+	allocator.live.get_mut(&allocation.serial).unwrap().resource = Some(Resource::Buffer(buffer));
 	Ok((buffer, allocation))
+}
+
+fn validate_policy(policy: AllocationPolicy) -> Result<(), AllocError> {
+	match policy {
+		AllocationPolicy::Pooled { block_size: 0 } => Err(AllocError::InvalidRequest(
+			"pooled block size must be nonzero",
+		)),
+		AllocationPolicy::Adaptive {
+			block_size,
+			min_block_size,
+		} if !block_size.is_power_of_two()
+			|| !min_block_size.is_power_of_two()
+			|| min_block_size > block_size =>
+		{
+			Err(AllocError::InvalidRequest(
+				"adaptive block bounds must be ordered powers of two",
+			))
+		}
+		_ => Ok(()),
+	}
+}
+
+// Donor: VMA BlockVector existing-block-first and smaller-block OOM retries.
+// Adaptation: caller-visible finite bounds, no global growth history/hysteresis.
+unsafe fn allocate_managed(
+	allocator: &mut Allocator<'_>,
+	request: &AllocRequest,
+	dedicated: Option<&vk::MemoryDedicatedAllocateInfo>,
+	force_separate: bool,
+	options: &AllocationCreateInfo,
+	class: ResourceClass,
+	avoided: vk::MemoryPropertyFlags,
+) -> Result<Allocation, AllocError> {
+	if !force_separate {
+		match options.policy {
+			AllocationPolicy::Pooled { block_size } if request.size <= block_size => {
+				// SAFETY: matching native requirements and admitted homogeneous storage class.
+				return unsafe {
+					allocate_pooled(
+						allocator,
+						request,
+						block_size,
+						options.strategy,
+						class,
+						avoided,
+						true,
+					)
+				};
+			}
+			AllocationPolicy::Adaptive {
+				block_size,
+				min_block_size,
+			} => {
+				for grow in [false, true] {
+					let mut size = block_size;
+					while size >= request.size && size >= min_block_size {
+						// SAFETY: matching native requirements; failed attempts publish no placement.
+						match unsafe {
+							allocate_pooled(
+								allocator,
+								request,
+								size,
+								options.strategy,
+								class,
+								avoided,
+								grow,
+							)
+						} {
+							Ok(allocation) => return Ok(allocation),
+							Err(
+								AllocError::OutOfSpace
+								| AllocError::AllocationLimit
+								| AllocError::AllocationTooLarge { .. },
+							) => {}
+							Err(AllocError::Call(error)) if recoverable(&error) => {}
+							Err(error) => return Err(error),
+						}
+						if size == min_block_size {
+							break;
+						}
+						size /= 2;
+					}
+				}
+			}
+			_ => {}
+		}
+	}
+	// SAFETY: unchanged required flags and admitted buffer/image dedication chain.
+	unsafe { allocate_storage(allocator, request, dedicated, avoided) }
 }
 
 // Donor: VMA BlockVector existing-block-first policy, explicit-size blocks,
@@ -1012,6 +1172,9 @@ unsafe fn allocate_pooled(
 	request: &AllocRequest,
 	block_size: u64,
 	strategy: super::PlacementStrategy,
+	class: ResourceClass,
+	avoided: vk::MemoryPropertyFlags,
+	grow: bool,
 ) -> Result<Allocation, AllocError> {
 	allocator.validate_size(block_size)?;
 	let mut bits = request.memory_type_bits;
@@ -1021,7 +1184,10 @@ unsafe fn allocate_pooled(
 			memory_type_bits: bits,
 			..*request
 		};
-		let index = match allocator.selector.find_memory_type(&candidate) {
+		let index = match allocator
+			.selector
+			.find_memory_type_with_preferences(&candidate, avoided)
+		{
 			Ok(index) => index,
 			Err(error) => return Err(last.unwrap_or(error)),
 		};
@@ -1053,7 +1219,7 @@ unsafe fn allocate_pooled(
 			continue;
 		}
 		for block in &mut allocator.blocks {
-			if block.memory_type_index != index || block.size != block_size {
+			if block.memory_type_index != index || block.size != block_size || block.class != class {
 				continue;
 			}
 			let placement = match block.metadata.allocate(reserved, alignment, strategy) {
@@ -1079,6 +1245,10 @@ unsafe fn allocate_pooled(
 					placement: Some(placement),
 				},
 			));
+		}
+		if !grow {
+			last = Some(AllocError::OutOfSpace);
+			continue;
 		}
 		if let Err(error) = allocator.check_native(block_size, index) {
 			// A count ceiling prevents growth, not reuse of another compatible type.
@@ -1114,6 +1284,7 @@ unsafe fn allocate_pooled(
 			);
 		}
 		allocator.blocks.push(Block {
+			class,
 			handle,
 			size: block_size,
 			memory_type_index: index,
@@ -1145,7 +1316,7 @@ pub unsafe fn destroy_buffer(
 	allocation: &mut Allocation,
 ) -> Result<(), AllocError> {
 	let live = allocator.validate(allocation)?;
-	if live.buffer != Some(buffer) {
+	if live.resource != Some(Resource::Buffer(buffer)) {
 		return Err(AllocError::WrongResource);
 	}
 	if live.mapped {
@@ -1167,3 +1338,215 @@ pub unsafe fn destroy_buffer(
 #[cfg(test)]
 #[path = "../../../test/rs/memory/test_lifecycle.rs"]
 mod tests;
+
+/// Create an ordinary image with separate storage and explicit memory properties.
+/// # Safety
+/// Caller establishes all native image, create-chain and synchronization valid usage.
+pub unsafe fn create_image(
+	allocator: &mut Allocator<'_>,
+	info: &vk::ImageCreateInfo,
+	required: vk::MemoryPropertyFlags,
+	preferred: vk::MemoryPropertyFlags,
+) -> Result<(vk::Image, Allocation), AllocError> {
+	let options = AllocationCreateInfo {
+		required_flags: required,
+		preferred_flags: preferred,
+		..Default::default()
+	};
+	// SAFETY: same native guarantees and separate-storage policy.
+	unsafe { create_image_with_options(allocator, info, &options) }
+}
+
+/// Create, query, allocate, optionally map and bind a non-disjoint image transactionally.
+///
+/// Donor: pinned VMA `CreateImage`, `GetImageMemoryRequirements`, `AllocateDedicatedMemory`.
+/// Adaptation: separate buffer/linear/optimal block domains replace mixed-neighbor granularity
+/// tracking. This can use more native blocks, but incompatible domains never share memory.
+/// Video-profile and image-format-list chains are forwarded unchanged after admission.
+/// Sparse, disjoint, aliasing, external, protected and unknown allocation chains are excluded.
+/// # Safety
+/// Meet image/format/feature and pointer-chain valid usage. A mapped optimal image is not a
+/// linear pixel array. Callers use native subresource layouts for host access to linear images.
+pub unsafe fn create_image_with_options(
+	allocator: &mut Allocator<'_>,
+	info: &vk::ImageCreateInfo,
+	options: &AllocationCreateInfo,
+) -> Result<(vk::Image, Allocation), AllocError> {
+	allocator.ensure_open()?;
+	use vk::ImageCreateFlagBits as Flag;
+	let allowed = Flag::MUTABLE_FORMAT_BIT
+		| Flag::CUBE_COMPATIBLE_BIT
+		| Flag::_2D_ARRAY_COMPATIBLE_BIT
+		| Flag::BLOCK_TEXEL_VIEW_COMPATIBLE_BIT
+		| Flag::EXTENDED_USAGE_BIT;
+	if info.flags.as_raw() & !allowed.as_raw() != 0
+		|| info.extent.width == 0
+		|| info.extent.height == 0
+		|| info.extent.depth == 0
+		|| info.mip_levels == 0
+		|| info.array_layers == 0
+		|| info.usage.as_raw() == 0
+	{
+		return Err(AllocError::InvalidRequest(
+			"ordinary nonempty non-disjoint images only",
+		));
+	}
+	let class = match info.tiling {
+		vk::ImageTiling::LINEAR => ResourceClass::LinearImage,
+		vk::ImageTiling::OPTIMAL => ResourceClass::OptimalImage,
+		_ => return Err(AllocError::UnsupportedCapability("image tiling")),
+	};
+	// SAFETY: caller supplies readable native create records and pointed-to storage.
+	unsafe { super::resource::validate_chain(allocator.device, info.p_next, true) }?;
+	let (required, preferred, avoided) =
+		super::policy::preferences(options, info.usage.as_raw() & !3 != 0, allocator.integrated)?;
+	if required.as_raw() & vk::MemoryPropertyFlagBits::PROTECTED_BIT.as_raw() != 0 {
+		return Err(AllocError::UnsupportedCapability("protected allocation"));
+	}
+	validate_policy(options.policy)?;
+	let route = allocator.requirements_route(true)?;
+	let fp = allocator.device.fp();
+	require(fp.create_image.is_some(), "vkCreateImage")?;
+	require(fp.destroy_image.is_some(), "vkDestroyImage")?;
+	require(fp.bind_image_memory.is_some(), "vkBindImageMemory")?;
+	if options.persistent_map {
+		require(fp.map_memory.is_some(), "vkMapMemory")?;
+		require(fp.unmap_memory.is_some(), "vkUnmapMemory")?;
+	}
+	allocator.reserve()?;
+	// SAFETY: native info valid by caller contract; inverse PFNs and metadata preflighted.
+	let image = unsafe { allocator.device.create_image(info, None) }?;
+	if image.is_null() {
+		return Err(CallError::InvalidOutput("vkCreateImage returned a null handle").into());
+	}
+	let mut dedication = vk::MemoryDedicatedRequirements::default();
+	let mut requirements = vk::MemoryRequirements2 {
+		p_next: std::ptr::from_mut(&mut dedication).cast(),
+		..Default::default()
+	};
+	let query = vk::ImageMemoryRequirementsInfo2 {
+		image,
+		..Default::default()
+	};
+	// SAFETY: live non-disjoint image, initialized output chain and admitted exact query.
+	let result = unsafe {
+		match route {
+			RequirementsRoute::Legacy => allocator
+				.device
+				.get_image_memory_requirements(image, &mut requirements.memory_requirements),
+			RequirementsRoute::Core => allocator
+				.device
+				.get_image_memory_requirements2(&query, &mut requirements),
+			RequirementsRoute::Khr => allocator
+				.device
+				.get_image_memory_requirements2_khr(&query, &mut requirements),
+		}
+	};
+	let request = AllocRequest {
+		size: requirements.memory_requirements.size,
+		alignment: requirements.memory_requirements.alignment,
+		memory_type_bits: requirements.memory_requirements.memory_type_bits & options.memory_type_bits,
+		required_flags: required,
+		preferred_flags: preferred,
+	};
+	let dedicated = vk::MemoryDedicatedAllocateInfo {
+		image,
+		..Default::default()
+	};
+	let dedicated = if matches!(route, RequirementsRoute::Legacy) {
+		None
+	} else {
+		Some(&dedicated)
+	};
+	let result = result.map_err(AllocError::from).and_then(|()| {
+		// SAFETY: matching requirements, admitted dedication and partitioned native blocks.
+		unsafe {
+			allocate_managed(
+				allocator,
+				&request,
+				dedicated,
+				dedication.requires_dedicated_allocation != 0
+					|| dedication.prefers_dedicated_allocation != 0,
+				options,
+				class,
+				avoided,
+			)
+		}
+	});
+	let mut allocation = match result {
+		Ok(allocation) => allocation,
+		Err(error) => {
+			// SAFETY: only the unpublished unbound image exists; inverse PFN preflighted.
+			unsafe { allocator.device.destroy_image(image, None) }.expect("preflighted cleanup");
+			return Err(error);
+		}
+	};
+	// SAFETY: exact compatible requirements and live unbound image. Mapping is unpublished.
+	let result = unsafe {
+		if options.persistent_map {
+			map(allocator, &allocation).map(|_| {
+				let live = allocator
+					.live
+					.get_mut(&allocation.serial)
+					.expect("new allocation");
+				live.mapped = false;
+				live.persistent = true;
+			})
+		} else {
+			Ok(())
+		}
+	}
+	.and_then(|()| {
+		// SAFETY: exact matching memory and binding offset; caller supplies native valid usage.
+		unsafe {
+			allocator
+				.device
+				.bind_image_memory(image, allocation.handle, allocation.offset)
+		}
+		.map_err(AllocError::from)
+	});
+	if let Err(error) = result {
+		// SAFETY: unpublished objects only; inverse transitions preflighted.
+		unsafe {
+			allocator
+				.device
+				.destroy_image(image, None)
+				.expect("preflighted cleanup");
+			free(allocator, &mut allocation).expect("preflighted allocation rollback");
+		}
+		return Err(error);
+	}
+	allocator
+		.live
+		.get_mut(&allocation.serial)
+		.expect("new allocation")
+		.resource = Some(Resource::Image(image));
+	Ok((image, allocation))
+}
+
+/// Destroy the exact managed image/token pair before freeing its memory.
+/// # Safety
+/// Destroy views and complete all native uses first; do not externally destroy this image.
+pub unsafe fn destroy_image(
+	allocator: &mut Allocator<'_>,
+	image: vk::Image,
+	allocation: &mut Allocation,
+) -> Result<(), AllocError> {
+	let live = allocator.validate(allocation)?;
+	if live.resource != Some(Resource::Image(image)) {
+		return Err(AllocError::WrongResource);
+	}
+	if live.mapped {
+		return Err(AllocError::AlreadyMapped);
+	}
+	require(
+		allocator.device.fp().destroy_image.is_some(),
+		"vkDestroyImage",
+	)?;
+	require(allocator.device.fp().free_memory.is_some(), "vkFreeMemory")?;
+	// SAFETY: checked association/state; caller supplies exact completion.
+	unsafe {
+		allocator.device.destroy_image(image, None)?;
+		free(allocator, allocation)
+	}
+}

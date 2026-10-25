@@ -29,6 +29,14 @@ pub fn emit_constants(reg: &Registry) -> Result<String> {
 		}
 		let (ty, value) = constant_value(&target.value, target.ty.as_deref())?;
 		out.push_str(&crate::protect::cfg(&c.guards));
+		let name = names::const_name(&c.name);
+		crate::doc::item(
+			&mut out,
+			&c.name,
+			name,
+			"Registry constant",
+			c.name.starts_with("STD_VIDEO_") || c.name.starts_with("VK_STD_"),
+		);
 		writeln!(
 			out,
 			"pub const {}: {ty} = {value};",
@@ -84,7 +92,7 @@ fn constant_value(value: &str, declared: Option<&str>) -> Result<(&'static str, 
 		}
 		return Ok((
 			"u32",
-			format!("crate::core::make_api_version({})", values.join(", ")),
+			format!("crate::make_api_version({})", values.join(", ")),
 		));
 	}
 	if declared == Some("float") || v.ends_with(['f', 'F']) && !v.starts_with("0x") {

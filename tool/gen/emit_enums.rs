@@ -23,6 +23,13 @@ pub(crate) fn emit_enum(out: &mut String, decl: &EnumDecl) -> Result<()> {
 	let backing = &decl.backing;
 	let guard = crate::protect::cfg(&decl.guards);
 	out.push_str(&guard);
+	crate::doc::item(
+		out,
+		&decl.c_name,
+		&name,
+		"Open integer representation of",
+		decl.c_name.starts_with("StdVideo"),
+	);
 	writeln!(out,"#[repr(transparent)]\n#[derive(Copy, Clone, Debug, Default, PartialEq, Eq, Hash)]\npub struct {name}(pub {backing});\n{guard}impl {name} {{\npub const fn from_raw(value: {backing}) -> Self {{ Self(value) }}\npub const fn as_raw(self) -> {backing} {{ self.0 }}
 
 pub const fn empty() -> Self {{ Self(0) }}")?;
@@ -54,6 +61,18 @@ pub const fn empty() -> Self {{ Self(0) }}")?;
 		);
 		let constant = names::enum_variant(&value.name, &decl.c_name);
 		out.push_str(&crate::protect::cfg(&value.guards));
+		writeln!(
+			out,
+			"#[doc = {:?}]",
+			format!("Native value `{}`.", value.name)
+		)?;
+		crate::doc::alias(out, &value.name, &constant);
+		crate::doc::reference(
+			out,
+			&value.name,
+			&decl.c_name,
+			decl.c_name.starts_with("StdVideo"),
+		);
 		writeln!(out, "pub const {constant}: Self = Self({number});")?;
 	}
 	writeln!(out, "}}")?;

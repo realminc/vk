@@ -1,6 +1,6 @@
 //! Dynamic library ownership and checked Vulkan global dispatch.
-use crate::core::Instance;
-use crate::{core as vk, core::make_api_version};
+use crate::Instance;
+use crate::{self as vk, make_api_version};
 use libloading::Library;
 use std::{
 	ffi::{CStr, OsStr},
@@ -214,6 +214,8 @@ impl Entry {
 	/// # Safety
 	/// `instance` must be NULL or a live instance from this implementation.
 	/// The caller must retain the library while using the returned function.
+	#[doc(alias = "vkGetInstanceProcAddr")]
+	#[doc = "\n\n[Khronos reference: `vkGetInstanceProcAddr`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetInstanceProcAddr.html)"]
 	pub unsafe fn get_instance_proc_addr(
 		&self,
 		instance: vk::InstanceHandle,
@@ -228,17 +230,19 @@ impl Entry {
 	/// # Safety
 	/// The create info, its reachable pointers and allocator callbacks must meet
 	/// Vulkan valid usage. Allocator state must remain alive until destruction.
+	#[doc(alias = "vkCreateInstance")]
+	#[doc = "\n\n[Khronos reference: `vkCreateInstance`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateInstance.html)"]
 	pub unsafe fn create_instance(
 		&self,
 		create_info: &vk::InstanceCreateInfo,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<Instance, CallError> {
 		// SAFETY: the caller guarantees the canonical creation contract.
-		unsafe { crate::core::create_instance(self, create_info, allocator) }
+		unsafe { crate::create_instance(self, create_info, allocator) }
 	}
 }
 
-use crate::core::command::commands;
+use crate::command::commands;
 commands! { Entry, entry;
 	/// Enumerate instance extensions available without any layer.
 	///
@@ -248,6 +252,8 @@ commands! { Entry, entry;
 	/// # Errors
 	/// Returns `CallError::MissingCommand` if the driver predates Vulkan 1.0
 	/// (practically impossible) or `CallError::Vulkan` on a driver failure.
+	#[doc(alias = "vkEnumerateInstanceExtensionProperties")]
+	#[doc = "\n\n[Khronos reference: `vkEnumerateInstanceExtensionProperties`](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumerateInstanceExtensionProperties.html)"]
 	pub fn enumerate_instance_extension_properties(
 		layer_name: Option<&std::ffi::CStr>,
 	) -> Result<Vec<vk::ExtensionProperties>, CallError> {
@@ -267,6 +273,8 @@ commands! { Entry, entry;
 	/// # Errors
 	/// Returns `CallError::MissingCommand` if the command is absent or
 	/// `CallError::Vulkan` on a driver failure.
+	#[doc(alias = "vkEnumerateInstanceLayerProperties")]
+	#[doc = "\n\n[Khronos reference: `vkEnumerateInstanceLayerProperties`](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumerateInstanceLayerProperties.html)"]
 	pub fn enumerate_instance_layer_properties() -> Result<Vec<vk::LayerProperties>, CallError> {
 		let f = entry
 			.fp
@@ -279,6 +287,8 @@ commands! { Entry, entry;
 	}
 
 	/// Query the loader API version. A Vulkan 1.0 loader has no version command.
+	#[doc(alias = "vkEnumerateInstanceVersion")]
+	#[doc = "\n\n[Khronos reference: `vkEnumerateInstanceVersion`](https://docs.vulkan.org/refpages/latest/refpages/source/vkEnumerateInstanceVersion.html)"]
 	pub fn enumerate_instance_version() -> Result<u32, vk::Result> {
 		let Some(f) = entry.fp.enumerate_instance_version else {
 			return Ok(make_api_version(0, 1, 0, 0));

@@ -118,7 +118,7 @@ def main():
     registry = ET.parse(ROOT / "registry/vk.xml").getroot()
     commands = admitted_commands(registry)
     callbacks = {node.findtext("proto/name").removeprefix("PFN_") for node in registry.findall("types/type[@category='funcpointer']")}
-    actual = set(re.findall(r"pub type PFN_(vk\w+)\s*=", (package / "src/rs/core/pfn.gen.rs").read_text()))
+    actual = set(re.findall(r"pub type PFN_(vk\w+)\s*=", (package / "src/rs/pfn.gen.rs").read_text()))
     actual -= callbacks
     assert actual == commands.keys(), f"PFN inventory mismatch: {actual ^ commands.keys()}"
     cc = os.environ.get("CC", "cc")

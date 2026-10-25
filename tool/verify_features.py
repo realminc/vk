@@ -25,7 +25,7 @@ def main():
     args = parser.parse_args()
     package = args.package.resolve()
     output = args.output.resolve()
-    source = (package / "src/rs/core/type.gen.rs").read_text()
+    source = (package / "src/rs/type.gen.rs").read_text()
     declarations = dict(re.findall(r"pub struct (\w+) \{\n(.*?)\n\}", source, re.S))
     registry = ET.parse(repo / "registry/vk.xml").getroot()
     base = registry.find("types/type[@name='VkPhysicalDeviceFeatures']")

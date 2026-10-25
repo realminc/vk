@@ -1,7 +1,7 @@
 //! Checked, driver-independent memory-type selection.
 
 use super::{AllocError, AllocRequest};
-use crate::core as vk;
+use crate as vk;
 
 /// Validated device memory properties and non-coherent atom size.
 pub struct MemoryTypeSelector {
@@ -43,6 +43,15 @@ impl MemoryTypeSelector {
 	/// Donor: VMA `VmaAllocator_T::FindMemoryTypeIndex`, required-bit test and
 	/// missing-preferred-bit cost. Adaptation: checked metadata, no hidden usage policy.
 	pub fn find_memory_type(&self, request: &AllocRequest) -> Result<u32, AllocError> {
+		self.find_memory_type_with_preferences(request, vk::MemoryPropertyFlags::empty())
+	}
+
+	/// Required flags are mandatory; cost counts missing preferred and present avoided bits.
+	pub fn find_memory_type_with_preferences(
+		&self,
+		request: &AllocRequest,
+		avoided: vk::MemoryPropertyFlags,
+	) -> Result<u32, AllocError> {
 		if request.size == 0 || !request.alignment.is_power_of_two() {
 			return Err(AllocError::InvalidRequest(
 				"size must be nonzero and alignment a power of two",
@@ -83,7 +92,8 @@ impl MemoryTypeSelector {
 			if request.size > self.properties.memory_heaps[memory.heap_index as usize].size {
 				continue;
 			}
-			let candidate = (request.preferred_flags.as_raw() & !flags).count_ones();
+			let candidate = (request.preferred_flags.as_raw() & !flags).count_ones()
+				+ (avoided.as_raw() & flags).count_ones();
 			if candidate < cost {
 				best = Some(i);
 				cost = candidate;

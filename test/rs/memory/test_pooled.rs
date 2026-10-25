@@ -1,5 +1,84 @@
 //! Native policy proofs use exact cached mock PFNs; independent byte/range checks.
 use super::*;
+
+#[test]
+fn adaptive_blocks_shrink_on_oom_and_reuse_smaller_blocks_before_growing() {
+	let fixture = Fixture::new(vk::API_VERSION_1_1, &[], true, None);
+	configure();
+	STATE.with_borrow_mut(|s| s.fail_above = Some(1024));
+	let mut allocator = fixture.allocator();
+	let opts = AllocationCreateInfo {
+		policy: AllocationPolicy::Adaptive {
+			block_size: 4096,
+			min_block_size: 512,
+		},
+		..Default::default()
+	};
+	// SAFETY: exact mock resource pairs, no host/GPU use and explicit destruction.
+	unsafe {
+		let (x, mut a) = allocator
+			.create_buffer_with_options(&buffer_info(), &opts)
+			.unwrap();
+		assert_eq!(
+			STATE.with_borrow(|s| s.allocated.clone()),
+			[(0, 4096), (0, 2048), (0, 1024)]
+		);
+		let (y, mut b) = allocator
+			.create_buffer_with_options(&buffer_info(), &opts)
+			.unwrap();
+		assert_eq!(a.handle(), b.handle());
+		assert_eq!(STATE.with_borrow(|s| s.allocated.len()), 3);
+		allocator.destroy_buffer(x, &mut a).unwrap();
+		allocator.destroy_buffer(y, &mut b).unwrap();
+	}
+}
+
+#[test]
+fn adaptive_fallback_keeps_exact_dedication_and_does_not_retry_device_loss() {
+	let fixture = Fixture::new(vk::API_VERSION_1_1, &[], true, None);
+	configure();
+	STATE.with_borrow_mut(|s| s.fail_above = Some(300));
+	let mut allocator = fixture.allocator();
+	let opts = AllocationCreateInfo {
+		policy: AllocationPolicy::Adaptive {
+			block_size: 1024,
+			min_block_size: 512,
+		},
+		..Default::default()
+	};
+	// SAFETY: only synthetic unpublished native resources and matching cleanup.
+	unsafe {
+		let (buffer, mut a) = allocator
+			.create_buffer_with_options(&buffer_info(), &opts)
+			.unwrap();
+		assert_eq!(
+			STATE.with_borrow(|s| s.allocated.clone()),
+			[(0, 1024), (0, 512), (0, 257)]
+		);
+		assert_eq!(STATE.with_borrow(|s| s.dedicated), buffer);
+		assert_eq!(allocator.statistics().pooled_block_count, 0);
+		allocator.destroy_buffer(buffer, &mut a).unwrap();
+		clear();
+		STATE.with_borrow_mut(|s| {
+			s.fail = Some("allocate");
+			s.fail_above = None;
+		});
+		assert!(matches!(
+			allocator.create_buffer_with_options(&buffer_info(), &opts),
+			Err(AllocError::Call(CallError::Vulkan(
+				vk::Result::ERROR_DEVICE_LOST
+			)))
+		));
+		assert_eq!(
+			events()
+				.iter()
+				.filter(|&&event| event == "allocate")
+				.count(),
+			1
+		);
+		assert_eq!(allocator.live_count(), 0);
+	}
+}
 use crate::memory::{AllocationCreateInfo, AllocationPolicy, AllocatorStats, PlacementStrategy};
 
 fn options(persistent_map: bool) -> AllocationCreateInfo {

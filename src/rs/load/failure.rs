@@ -1,5 +1,5 @@
 //! Recovery when a driver creates an object but does not expose its destruction command.
-use crate::core as vk;
+use crate as vk;
 use libloading::Library;
 use std::{ffi::CStr, sync::Arc};
 

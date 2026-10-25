@@ -2,7 +2,7 @@
 #![cfg(feature = "allocator")]
 
 use ::vk::{
-	core as vk,
+	self,
 	memory::{AllocError, AllocRequest, MemoryTypeSelector},
 };
 
@@ -26,6 +26,26 @@ fn request() -> AllocRequest {
 		required_flags: vk::MemoryPropertyFlagBits::HOST_VISIBLE_BIT,
 		preferred_flags: vk::MemoryPropertyFlags::empty(),
 	}
+}
+
+#[test]
+fn avoided_properties_are_penalties_and_never_relax_required_properties() {
+	let mut properties = properties();
+	properties.memory_types[1].property_flags =
+		vk::MemoryPropertyFlagBits::HOST_VISIBLE_BIT | vk::MemoryPropertyFlagBits::HOST_CACHED_BIT;
+	let selector = MemoryTypeSelector::new(properties, 64).unwrap();
+	let mut request = request();
+	assert_eq!(
+		selector
+			.find_memory_type_with_preferences(&request, vk::MemoryPropertyFlagBits::HOST_CACHED_BIT),
+		Ok(2)
+	);
+	request.required_flags = request.required_flags | vk::MemoryPropertyFlagBits::HOST_CACHED_BIT;
+	assert_eq!(
+		selector
+			.find_memory_type_with_preferences(&request, vk::MemoryPropertyFlagBits::HOST_CACHED_BIT),
+		Ok(1)
+	);
 }
 
 #[test]

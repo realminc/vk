@@ -1,6 +1,6 @@
 //! Real storage-buffer allocation, compute dispatch and readback.
 #![cfg(feature = "allocator")]
-use ::vk::{core as vk, memory::AllocError};
+use ::vk::{self as vk, memory::AllocError};
 
 #[test]
 fn compute_shader_storage_buffer_round_trip() {

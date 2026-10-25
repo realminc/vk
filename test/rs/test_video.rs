@@ -6,20 +6,8 @@
 //!
 //! The `VULKAN_AVAILABLE=1`-gated tests at the bottom probe a real driver for
 //! VP9 capability; they skip cleanly when no driver is present.
-use ::vk::core as vk;
-use ::vk::core::*;
+use ::vk::*;
 use std::mem::{align_of, offset_of, size_of};
-
-#[test]
-fn codec_abi_has_one_owner_at_core_and_root() {
-	let _: Option<&::vk::core::StdVideoDecodeVP9PictureInfo> =
-		None::<&::vk::StdVideoDecodeVP9PictureInfo>;
-	let _: ::vk::core::StdVideoVP9Profile = ::vk::StdVideoVP9Profile::_0;
-	assert_eq!(
-		::vk::core::STD_VIDEO_VP9_MAX_REF_FRAMES,
-		::vk::STD_VIDEO_VP9_MAX_REF_FRAMES
-	);
-}
 
 // ---------------------------------------------------------------------------
 // StdVideo* struct layout (video.xml / vulkan_video_codec_vp9std*.h)
