@@ -36,5 +36,18 @@ fn main() -> Result<(), ConstructionError> {
 		..Default::default()
 	};
 	assert_eq!(raw.size, 7);
+	let words = [0_u32; 5];
+	let shader = vk::ShaderModuleCreateInfo::default().code(&words);
+	std::hint::black_box(&shader);
+	let swaps = [vk::SwapchainKHR::NULL];
+	let indices = [0_u32];
+	let mut results = [vk::Result::NOT_READY];
+	let present = vk::PresentInfoKHR::default().swapchains(&swaps, &indices, Some(&mut results))?;
+	std::hint::black_box(&present);
+	results[0] = vk::Result::SUCCESS;
+	let mut bytes = [0_u8; 8];
+	let output = vk::PipelineBinaryDataKHR::default().data(&mut bytes)?;
+	std::hint::black_box(&output);
+	bytes[0] = 1;
 	Ok(())
 }

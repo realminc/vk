@@ -43,7 +43,14 @@ impl std::fmt::Display for ConstructionError {
 impl std::error::Error for ConstructionError {}
 
 pub(crate) fn count(field: &'static str, count: usize) -> Result<u32, ConstructionError> {
-	u32::try_from(count).map_err(|_| ConstructionError::CountOverflow { field, count })
+	count_as(field, count)
+}
+
+pub(crate) fn count_as<T: TryFrom<usize>>(
+	field: &'static str,
+	count: usize,
+) -> Result<T, ConstructionError> {
+	T::try_from(count).map_err(|_| ConstructionError::CountOverflow { field, count })
 }
 
 /// A registry-declared extension relationship. Implementations are sealed.

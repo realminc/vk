@@ -190,6 +190,7 @@ fn enumeration_recipes_reject_unknown_counts_statuses_and_chained_outputs() {
 		values: None,
 		len: None,
 		optional: false,
+		alt_len: None,
 		selector: None,
 		selection: None,
 		no_auto_validity: false,

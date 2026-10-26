@@ -29341,7 +29341,7 @@ impl Device {
 pub unsafe fn get_performance_parameter_intel(
 	device: &Device,
 	parameter: vk::PerformanceParameterTypeINTEL,
-	p_value: *mut vk::PerformanceValueINTEL,
+	p_value: *mut vk::PerformanceValueINTEL<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -29379,7 +29379,7 @@ impl Device {
 	pub unsafe fn get_performance_parameter_intel(
 		&self,
 		parameter: vk::PerformanceParameterTypeINTEL,
-		p_value: *mut vk::PerformanceValueINTEL,
+		p_value: *mut vk::PerformanceValueINTEL<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_performance_parameter_intel(self, parameter, p_value) }
@@ -44247,7 +44247,7 @@ impl Device {
 pub unsafe fn get_pipeline_properties_ext(
 	device: &Device,
 	p_pipeline_info: *const vk::PipelineInfoKHR<'_>,
-	p_pipeline_properties: *mut vk::BaseOutStructure,
+	p_pipeline_properties: *mut vk::BaseOutStructure<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -44285,7 +44285,7 @@ impl Device {
 	pub unsafe fn get_pipeline_properties_ext(
 		&self,
 		p_pipeline_info: *const vk::PipelineInfoKHR<'_>,
-		p_pipeline_properties: *mut vk::BaseOutStructure,
+		p_pipeline_properties: *mut vk::BaseOutStructure<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_pipeline_properties_ext(self, p_pipeline_info, p_pipeline_properties) }
@@ -53089,7 +53089,7 @@ pub unsafe fn write_sampler_descriptors_ext(
 	device: &Device,
 	sampler_count: u32,
 	p_samplers: *const vk::SamplerCreateInfo<'_>,
-	p_descriptors: *const vk::HostAddressRangeEXT,
+	p_descriptors: *const vk::HostAddressRangeEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -53128,7 +53128,7 @@ impl Device {
 		&self,
 		sampler_count: u32,
 		p_samplers: *const vk::SamplerCreateInfo<'_>,
-		p_descriptors: *const vk::HostAddressRangeEXT,
+		p_descriptors: *const vk::HostAddressRangeEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { write_sampler_descriptors_ext(self, sampler_count, p_samplers, p_descriptors) }
@@ -53158,7 +53158,7 @@ pub unsafe fn write_resource_descriptors_ext(
 	device: &Device,
 	resource_count: u32,
 	p_resources: *const vk::ResourceDescriptorInfoEXT<'_>,
-	p_descriptors: *const vk::HostAddressRangeEXT,
+	p_descriptors: *const vk::HostAddressRangeEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -53198,7 +53198,7 @@ impl Device {
 		&self,
 		resource_count: u32,
 		p_resources: *const vk::ResourceDescriptorInfoEXT<'_>,
-		p_descriptors: *const vk::HostAddressRangeEXT,
+		p_descriptors: *const vk::HostAddressRangeEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { write_resource_descriptors_ext(self, resource_count, p_resources, p_descriptors) }
@@ -53551,7 +53551,7 @@ pub unsafe fn get_image_opaque_capture_data_ext(
 	device: &Device,
 	image_count: u32,
 	p_images: *const vk::Image,
-	p_datas: *mut vk::HostAddressRangeEXT,
+	p_datas: *mut vk::HostAddressRangeEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -53590,7 +53590,7 @@ impl Device {
 		&self,
 		image_count: u32,
 		p_images: *const vk::Image,
-		p_datas: *mut vk::HostAddressRangeEXT,
+		p_datas: *mut vk::HostAddressRangeEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_image_opaque_capture_data_ext(self, image_count, p_images, p_datas) }
@@ -53686,7 +53686,7 @@ pub unsafe fn get_tensor_opaque_capture_data_arm(
 	device: &Device,
 	tensor_count: u32,
 	p_tensors: *const vk::TensorARM,
-	p_datas: *mut vk::HostAddressRangeEXT,
+	p_datas: *mut vk::HostAddressRangeEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -53725,7 +53725,7 @@ impl Device {
 		&self,
 		tensor_count: u32,
 		p_tensors: *const vk::TensorARM,
-		p_datas: *mut vk::HostAddressRangeEXT,
+		p_datas: *mut vk::HostAddressRangeEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_tensor_opaque_capture_data_arm(self, tensor_count, p_tensors, p_datas) }
@@ -55352,7 +55352,7 @@ pub unsafe fn get_physical_device_queue_family_data_graph_engine_operation_prope
 	physical_device: vk::PhysicalDevice,
 	queue_family_index: u32,
 	p_queue_family_data_graph_properties: *const vk::QueueFamilyDataGraphPropertiesARM<'_>,
-	p_properties: *mut vk::BaseOutStructure,
+	p_properties: *mut vk::BaseOutStructure<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -55401,7 +55401,7 @@ impl Instance {
 		physical_device: vk::PhysicalDevice,
 		queue_family_index: u32,
 		p_queue_family_data_graph_properties: *const vk::QueueFamilyDataGraphPropertiesARM<'_>,
-		p_properties: *mut vk::BaseOutStructure,
+		p_properties: *mut vk::BaseOutStructure<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {

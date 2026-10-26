@@ -15,3 +15,15 @@ fn native_counts_accept_the_full_width_and_reject_overflow() {
 		);
 	}
 }
+
+#[test]
+fn video_and_wide_counts_use_their_actual_native_widths() {
+	assert_eq!(count_as::<u8>("video", 255), Ok(255));
+	assert!(matches!(
+		count_as::<u8>("video", 256),
+		Err(ConstructionError::CountOverflow { count: 256, .. })
+	));
+	assert_eq!(count_as::<u16>("short", 65535), Ok(65535));
+	assert!(count_as::<u16>("short", 65536).is_err());
+	assert_eq!(count_as::<u64>("wide", usize::MAX), Ok(usize::MAX as u64));
+}

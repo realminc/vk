@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.0+1.4.365 — 2026-10-26
+
+- Complete the pinned record-construction inventory, including unions, checked
+  byte payloads, SPIR-V words, optional parallel arrays, initialized writable
+  storage, direct/pointer-table alternatives, native-width video counts and
+  reviewed parent/cross-record extents. Generate typed layer-setting values and
+  explicit unsafe setters for opaque addresses and foreign objects.
+- Add an exhaustive generated field audit, independent paired-XML coverage and
+  ordering checks, more borrow-checker fixtures and extracted-crate consumers.
+  All 1,552 concrete records/unions and 8,333 fields are covered, with 5,450
+  construction methods. Newly borrowed/exclusive records change Rust source
+  compatibility; native ABI stays fixed.
+
 ## 0.5.0+1.4.365 — 2026-10-26
 
 - Generate borrowed record setters, checked native counts and typed extension

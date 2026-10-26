@@ -29353,7 +29353,7 @@ fn get_performance_parameter_intel_signature_and_missing_command() {
 	type Signature = unsafe fn(
 		&vk::Device,
 		vk::PerformanceParameterTypeINTEL,
-		*mut vk::PerformanceValueINTEL,
+		*mut vk::PerformanceValueINTEL<'_>,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_performance_parameter_intel;
 	let _: Signature = vk::Device::get_performance_parameter_intel;
@@ -29364,14 +29364,14 @@ fn get_performance_parameter_intel_signature_and_missing_command() {
 			vk::get_performance_parameter_intel(
 				&fixture.device,
 				std::mem::zeroed::<vk::PerformanceParameterTypeINTEL>(),
-				std::mem::zeroed::<*mut vk::PerformanceValueINTEL>()
+				std::mem::zeroed::<*mut vk::PerformanceValueINTEL<'_>>()
 			),
 			Err(CallError::MissingCommand("vkGetPerformanceParameterINTEL"))
 		));
 		assert!(matches!(
 			fixture.device.get_performance_parameter_intel(
 				std::mem::zeroed::<vk::PerformanceParameterTypeINTEL>(),
-				std::mem::zeroed::<*mut vk::PerformanceValueINTEL>()
+				std::mem::zeroed::<*mut vk::PerformanceValueINTEL<'_>>()
 			),
 			Err(CallError::MissingCommand("vkGetPerformanceParameterINTEL"))
 		));
@@ -29384,7 +29384,7 @@ fn get_performance_parameter_intel_native_forwarding() {
 	unsafe extern "system" fn mock(
 		arg_0: vk::DeviceHandle,
 		arg_1: vk::PerformanceParameterTypeINTEL,
-		arg_2: *mut vk::PerformanceValueINTEL,
+		arg_2: *mut vk::PerformanceValueINTEL<'_>,
 	) -> vk::Result {
 		CALLS.set(CALLS.get() + 1);
 		MATCHED.set(
@@ -29394,7 +29394,7 @@ fn get_performance_parameter_intel_native_forwarding() {
 					&& std::ptr::eq(
 						arg_2,
 						std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272)
-							as *mut vk::PerformanceValueINTEL,
+							as *mut vk::PerformanceValueINTEL<'_>,
 					)),
 		);
 		STATUS.get()
@@ -29425,7 +29425,7 @@ fn get_performance_parameter_intel_native_forwarding() {
 					&fixture.device,
 					vk::PerformanceParameterTypeINTEL::from_raw(305398016_u64 as _),
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272)
-						as *mut vk::PerformanceValueINTEL
+						as *mut vk::PerformanceValueINTEL<'_>
 				),
 				expected
 			);
@@ -29434,7 +29434,7 @@ fn get_performance_parameter_intel_native_forwarding() {
 					&fixture.device,
 					vk::PerformanceParameterTypeINTEL::from_raw(305398016_u64 as _),
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272)
-						as *mut vk::PerformanceValueINTEL
+						as *mut vk::PerformanceValueINTEL<'_>
 				),
 				expected
 			);
@@ -46398,7 +46398,7 @@ fn get_pipeline_properties_ext_signature_and_missing_command() {
 	type Signature = unsafe fn(
 		&vk::Device,
 		*const vk::PipelineInfoKHR<'_>,
-		*mut vk::BaseOutStructure,
+		*mut vk::BaseOutStructure<'_>,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_pipeline_properties_ext;
 	let _: Signature = vk::Device::get_pipeline_properties_ext;
@@ -46409,14 +46409,14 @@ fn get_pipeline_properties_ext_signature_and_missing_command() {
 			vk::get_pipeline_properties_ext(
 				&fixture.device,
 				std::mem::zeroed::<*const vk::PipelineInfoKHR<'_>>(),
-				std::mem::zeroed::<*mut vk::BaseOutStructure>()
+				std::mem::zeroed::<*mut vk::BaseOutStructure<'_>>()
 			),
 			Err(CallError::MissingCommand("vkGetPipelinePropertiesEXT"))
 		));
 		assert!(matches!(
 			fixture.device.get_pipeline_properties_ext(
 				std::mem::zeroed::<*const vk::PipelineInfoKHR<'_>>(),
-				std::mem::zeroed::<*mut vk::BaseOutStructure>()
+				std::mem::zeroed::<*mut vk::BaseOutStructure<'_>>()
 			),
 			Err(CallError::MissingCommand("vkGetPipelinePropertiesEXT"))
 		));
@@ -46429,7 +46429,7 @@ fn get_pipeline_properties_ext_native_forwarding() {
 	unsafe extern "system" fn mock(
 		arg_0: vk::DeviceHandle,
 		arg_1: *const vk::PipelineInfoKHR<'_>,
-		arg_2: *mut vk::BaseOutStructure,
+		arg_2: *mut vk::BaseOutStructure<'_>,
 	) -> vk::Result {
 		CALLS.set(CALLS.get() + 1);
 		MATCHED.set(
@@ -46442,7 +46442,7 @@ fn get_pipeline_properties_ext_native_forwarding() {
 					) && std::ptr::eq(
 					arg_2,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272)
-						as *mut vk::BaseOutStructure,
+						as *mut vk::BaseOutStructure<'_>,
 				)),
 		);
 		STATUS.get()
@@ -46474,7 +46474,7 @@ fn get_pipeline_properties_ext_native_forwarding() {
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398016)
 						as *const vk::PipelineInfoKHR<'_>,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272)
-						as *mut vk::BaseOutStructure
+						as *mut vk::BaseOutStructure<'_>
 				),
 				expected
 			);
@@ -46484,7 +46484,7 @@ fn get_pipeline_properties_ext_native_forwarding() {
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398016)
 						as *const vk::PipelineInfoKHR<'_>,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272)
-						as *mut vk::BaseOutStructure
+						as *mut vk::BaseOutStructure<'_>
 				),
 				expected
 			);
@@ -57901,7 +57901,7 @@ fn write_sampler_descriptors_ext_signature_and_missing_command() {
 		&vk::Device,
 		u32,
 		*const vk::SamplerCreateInfo<'_>,
-		*const vk::HostAddressRangeEXT,
+		*const vk::HostAddressRangeEXT<'_>,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::write_sampler_descriptors_ext;
 	let _: Signature = vk::Device::write_sampler_descriptors_ext;
@@ -57913,7 +57913,7 @@ fn write_sampler_descriptors_ext_signature_and_missing_command() {
 				&fixture.device,
 				std::mem::zeroed::<u32>(),
 				std::mem::zeroed::<*const vk::SamplerCreateInfo<'_>>(),
-				std::mem::zeroed::<*const vk::HostAddressRangeEXT>()
+				std::mem::zeroed::<*const vk::HostAddressRangeEXT<'_>>()
 			),
 			Err(CallError::MissingCommand("vkWriteSamplerDescriptorsEXT"))
 		));
@@ -57921,7 +57921,7 @@ fn write_sampler_descriptors_ext_signature_and_missing_command() {
 			fixture.device.write_sampler_descriptors_ext(
 				std::mem::zeroed::<u32>(),
 				std::mem::zeroed::<*const vk::SamplerCreateInfo<'_>>(),
-				std::mem::zeroed::<*const vk::HostAddressRangeEXT>()
+				std::mem::zeroed::<*const vk::HostAddressRangeEXT<'_>>()
 			),
 			Err(CallError::MissingCommand("vkWriteSamplerDescriptorsEXT"))
 		));
@@ -57935,7 +57935,7 @@ fn write_sampler_descriptors_ext_native_forwarding() {
 		arg_0: vk::DeviceHandle,
 		arg_1: u32,
 		arg_2: *const vk::SamplerCreateInfo<'_>,
-		arg_3: *const vk::HostAddressRangeEXT,
+		arg_3: *const vk::HostAddressRangeEXT<'_>,
 	) -> vk::Result {
 		CALLS.set(CALLS.get() + 1);
 		MATCHED.set(
@@ -57949,7 +57949,7 @@ fn write_sampler_descriptors_ext_native_forwarding() {
 					) && std::ptr::eq(
 					arg_3,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398528)
-						as *const vk::HostAddressRangeEXT,
+						as *const vk::HostAddressRangeEXT<'_>,
 				)),
 		);
 		STATUS.get()
@@ -57982,7 +57982,7 @@ fn write_sampler_descriptors_ext_native_forwarding() {
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272)
 						as *const vk::SamplerCreateInfo<'_>,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398528)
-						as *const vk::HostAddressRangeEXT
+						as *const vk::HostAddressRangeEXT<'_>
 				),
 				expected
 			);
@@ -57993,7 +57993,7 @@ fn write_sampler_descriptors_ext_native_forwarding() {
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272)
 						as *const vk::SamplerCreateInfo<'_>,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398528)
-						as *const vk::HostAddressRangeEXT
+						as *const vk::HostAddressRangeEXT<'_>
 				),
 				expected
 			);
@@ -58010,7 +58010,7 @@ fn write_resource_descriptors_ext_signature_and_missing_command() {
 		&vk::Device,
 		u32,
 		*const vk::ResourceDescriptorInfoEXT<'_>,
-		*const vk::HostAddressRangeEXT,
+		*const vk::HostAddressRangeEXT<'_>,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::write_resource_descriptors_ext;
 	let _: Signature = vk::Device::write_resource_descriptors_ext;
@@ -58022,7 +58022,7 @@ fn write_resource_descriptors_ext_signature_and_missing_command() {
 				&fixture.device,
 				std::mem::zeroed::<u32>(),
 				std::mem::zeroed::<*const vk::ResourceDescriptorInfoEXT<'_>>(),
-				std::mem::zeroed::<*const vk::HostAddressRangeEXT>()
+				std::mem::zeroed::<*const vk::HostAddressRangeEXT<'_>>()
 			),
 			Err(CallError::MissingCommand("vkWriteResourceDescriptorsEXT"))
 		));
@@ -58030,7 +58030,7 @@ fn write_resource_descriptors_ext_signature_and_missing_command() {
 			fixture.device.write_resource_descriptors_ext(
 				std::mem::zeroed::<u32>(),
 				std::mem::zeroed::<*const vk::ResourceDescriptorInfoEXT<'_>>(),
-				std::mem::zeroed::<*const vk::HostAddressRangeEXT>()
+				std::mem::zeroed::<*const vk::HostAddressRangeEXT<'_>>()
 			),
 			Err(CallError::MissingCommand("vkWriteResourceDescriptorsEXT"))
 		));
@@ -58044,7 +58044,7 @@ fn write_resource_descriptors_ext_native_forwarding() {
 		arg_0: vk::DeviceHandle,
 		arg_1: u32,
 		arg_2: *const vk::ResourceDescriptorInfoEXT<'_>,
-		arg_3: *const vk::HostAddressRangeEXT,
+		arg_3: *const vk::HostAddressRangeEXT<'_>,
 	) -> vk::Result {
 		CALLS.set(CALLS.get() + 1);
 		MATCHED.set(
@@ -58058,7 +58058,7 @@ fn write_resource_descriptors_ext_native_forwarding() {
 					) && std::ptr::eq(
 					arg_3,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398528)
-						as *const vk::HostAddressRangeEXT,
+						as *const vk::HostAddressRangeEXT<'_>,
 				)),
 		);
 		STATUS.get()
@@ -58091,7 +58091,7 @@ fn write_resource_descriptors_ext_native_forwarding() {
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272)
 						as *const vk::ResourceDescriptorInfoEXT<'_>,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398528)
-						as *const vk::HostAddressRangeEXT
+						as *const vk::HostAddressRangeEXT<'_>
 				),
 				expected
 			);
@@ -58102,7 +58102,7 @@ fn write_resource_descriptors_ext_native_forwarding() {
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272)
 						as *const vk::ResourceDescriptorInfoEXT<'_>,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398528)
-						as *const vk::HostAddressRangeEXT
+						as *const vk::HostAddressRangeEXT<'_>
 				),
 				expected
 			);
@@ -58491,7 +58491,7 @@ fn get_image_opaque_capture_data_ext_signature_and_missing_command() {
 		&vk::Device,
 		u32,
 		*const vk::Image,
-		*mut vk::HostAddressRangeEXT,
+		*mut vk::HostAddressRangeEXT<'_>,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_image_opaque_capture_data_ext;
 	let _: Signature = vk::Device::get_image_opaque_capture_data_ext;
@@ -58503,7 +58503,7 @@ fn get_image_opaque_capture_data_ext_signature_and_missing_command() {
 				&fixture.device,
 				std::mem::zeroed::<u32>(),
 				std::mem::zeroed::<*const vk::Image>(),
-				std::mem::zeroed::<*mut vk::HostAddressRangeEXT>()
+				std::mem::zeroed::<*mut vk::HostAddressRangeEXT<'_>>()
 			),
 			Err(CallError::MissingCommand("vkGetImageOpaqueCaptureDataEXT"))
 		));
@@ -58511,7 +58511,7 @@ fn get_image_opaque_capture_data_ext_signature_and_missing_command() {
 			fixture.device.get_image_opaque_capture_data_ext(
 				std::mem::zeroed::<u32>(),
 				std::mem::zeroed::<*const vk::Image>(),
-				std::mem::zeroed::<*mut vk::HostAddressRangeEXT>()
+				std::mem::zeroed::<*mut vk::HostAddressRangeEXT<'_>>()
 			),
 			Err(CallError::MissingCommand("vkGetImageOpaqueCaptureDataEXT"))
 		));
@@ -58525,7 +58525,7 @@ fn get_image_opaque_capture_data_ext_native_forwarding() {
 		arg_0: vk::DeviceHandle,
 		arg_1: u32,
 		arg_2: *const vk::Image,
-		arg_3: *mut vk::HostAddressRangeEXT,
+		arg_3: *mut vk::HostAddressRangeEXT<'_>,
 	) -> vk::Result {
 		CALLS.set(CALLS.get() + 1);
 		MATCHED.set(
@@ -58538,7 +58538,7 @@ fn get_image_opaque_capture_data_ext_native_forwarding() {
 					) && std::ptr::eq(
 					arg_3,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398528)
-						as *mut vk::HostAddressRangeEXT,
+						as *mut vk::HostAddressRangeEXT<'_>,
 				)),
 		);
 		STATUS.get()
@@ -58570,7 +58570,7 @@ fn get_image_opaque_capture_data_ext_native_forwarding() {
 					Default::default(),
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272) as *const vk::Image,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398528)
-						as *mut vk::HostAddressRangeEXT
+						as *mut vk::HostAddressRangeEXT<'_>
 				),
 				expected
 			);
@@ -58580,7 +58580,7 @@ fn get_image_opaque_capture_data_ext_native_forwarding() {
 					Default::default(),
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272) as *const vk::Image,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398528)
-						as *mut vk::HostAddressRangeEXT
+						as *mut vk::HostAddressRangeEXT<'_>
 				),
 				expected
 			);
@@ -58679,7 +58679,7 @@ fn get_tensor_opaque_capture_data_arm_signature_and_missing_command() {
 		&vk::Device,
 		u32,
 		*const vk::TensorARM,
-		*mut vk::HostAddressRangeEXT,
+		*mut vk::HostAddressRangeEXT<'_>,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature = vk::get_tensor_opaque_capture_data_arm;
 	let _: Signature = vk::Device::get_tensor_opaque_capture_data_arm;
@@ -58691,7 +58691,7 @@ fn get_tensor_opaque_capture_data_arm_signature_and_missing_command() {
 				&fixture.device,
 				std::mem::zeroed::<u32>(),
 				std::mem::zeroed::<*const vk::TensorARM>(),
-				std::mem::zeroed::<*mut vk::HostAddressRangeEXT>()
+				std::mem::zeroed::<*mut vk::HostAddressRangeEXT<'_>>()
 			),
 			Err(CallError::MissingCommand("vkGetTensorOpaqueCaptureDataARM"))
 		));
@@ -58699,7 +58699,7 @@ fn get_tensor_opaque_capture_data_arm_signature_and_missing_command() {
 			fixture.device.get_tensor_opaque_capture_data_arm(
 				std::mem::zeroed::<u32>(),
 				std::mem::zeroed::<*const vk::TensorARM>(),
-				std::mem::zeroed::<*mut vk::HostAddressRangeEXT>()
+				std::mem::zeroed::<*mut vk::HostAddressRangeEXT<'_>>()
 			),
 			Err(CallError::MissingCommand("vkGetTensorOpaqueCaptureDataARM"))
 		));
@@ -58713,7 +58713,7 @@ fn get_tensor_opaque_capture_data_arm_native_forwarding() {
 		arg_0: vk::DeviceHandle,
 		arg_1: u32,
 		arg_2: *const vk::TensorARM,
-		arg_3: *mut vk::HostAddressRangeEXT,
+		arg_3: *mut vk::HostAddressRangeEXT<'_>,
 	) -> vk::Result {
 		CALLS.set(CALLS.get() + 1);
 		MATCHED.set(
@@ -58726,7 +58726,7 @@ fn get_tensor_opaque_capture_data_arm_native_forwarding() {
 					) && std::ptr::eq(
 					arg_3,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398528)
-						as *mut vk::HostAddressRangeEXT,
+						as *mut vk::HostAddressRangeEXT<'_>,
 				)),
 		);
 		STATUS.get()
@@ -58758,7 +58758,7 @@ fn get_tensor_opaque_capture_data_arm_native_forwarding() {
 					Default::default(),
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272) as *const vk::TensorARM,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398528)
-						as *mut vk::HostAddressRangeEXT
+						as *mut vk::HostAddressRangeEXT<'_>
 				),
 				expected
 			);
@@ -58768,7 +58768,7 @@ fn get_tensor_opaque_capture_data_arm_native_forwarding() {
 					Default::default(),
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272) as *const vk::TensorARM,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398528)
-						as *mut vk::HostAddressRangeEXT
+						as *mut vk::HostAddressRangeEXT<'_>
 				),
 				expected
 			);
@@ -60663,7 +60663,7 @@ fn get_physical_device_queue_family_data_graph_engine_operation_properties_arm_s
 		vk::PhysicalDevice,
 		u32,
 		*const vk::QueueFamilyDataGraphPropertiesARM<'_>,
-		*mut vk::BaseOutStructure,
+		*mut vk::BaseOutStructure<'_>,
 	) -> Result<vk::Result, CallError>;
 	let _: Signature =
 		vk::get_physical_device_queue_family_data_graph_engine_operation_properties_arm;
@@ -60678,7 +60678,7 @@ fn get_physical_device_queue_family_data_graph_engine_operation_properties_arm_s
 				std::mem::zeroed::<vk::PhysicalDevice>(),
 				std::mem::zeroed::<u32>(),
 				std::mem::zeroed::<*const vk::QueueFamilyDataGraphPropertiesARM<'_>>(),
-				std::mem::zeroed::<*mut vk::BaseOutStructure>()
+				std::mem::zeroed::<*mut vk::BaseOutStructure<'_>>()
 			),
 			Err(CallError::MissingCommand(
 				"vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM"
@@ -60691,7 +60691,7 @@ fn get_physical_device_queue_family_data_graph_engine_operation_properties_arm_s
 					std::mem::zeroed::<vk::PhysicalDevice>(),
 					std::mem::zeroed::<u32>(),
 					std::mem::zeroed::<*const vk::QueueFamilyDataGraphPropertiesARM<'_>>(),
-					std::mem::zeroed::<*mut vk::BaseOutStructure>()
+					std::mem::zeroed::<*mut vk::BaseOutStructure<'_>>()
 				),
 			Err(CallError::MissingCommand(
 				"vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM"
@@ -60707,7 +60707,7 @@ fn get_physical_device_queue_family_data_graph_engine_operation_properties_arm_n
 		arg_0: vk::PhysicalDevice,
 		arg_1: u32,
 		arg_2: *const vk::QueueFamilyDataGraphPropertiesARM<'_>,
-		arg_3: *mut vk::BaseOutStructure,
+		arg_3: *mut vk::BaseOutStructure<'_>,
 	) -> vk::Result {
 		CALLS.set(CALLS.get() + 1);
 		MATCHED.set(
@@ -60721,7 +60721,7 @@ fn get_physical_device_queue_family_data_graph_engine_operation_properties_arm_n
 					) && std::ptr::eq(
 					arg_3,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398528)
-						as *mut vk::BaseOutStructure,
+						as *mut vk::BaseOutStructure<'_>,
 				)),
 		);
 		STATUS.get()
@@ -60761,7 +60761,7 @@ fn get_physical_device_queue_family_data_graph_engine_operation_properties_arm_n
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272)
 						as *const vk::QueueFamilyDataGraphPropertiesARM<'_>,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398528)
-						as *mut vk::BaseOutStructure
+						as *mut vk::BaseOutStructure<'_>
 				),
 				expected
 			);
@@ -60773,7 +60773,7 @@ fn get_physical_device_queue_family_data_graph_engine_operation_properties_arm_n
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398272)
 						as *const vk::QueueFamilyDataGraphPropertiesARM<'_>,
 					std::ptr::without_provenance_mut::<std::ffi::c_void>(305398528)
-						as *mut vk::BaseOutStructure
+						as *mut vk::BaseOutStructure<'_>
 				),
 				expected
 			);

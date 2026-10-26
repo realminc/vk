@@ -181,6 +181,26 @@ fn external_consumers_enforce_borrowing_contracts() {
 		});
 	for (name, source, diagnostic) in [
 		(
+			"dangling_shader_words",
+			include_str!("construction/test_fail_words.rs"),
+			"E0597",
+		),
+		(
+			"access_borrowed_output_array",
+			include_str!("construction/test_fail_output_array.rs"),
+			"E0502",
+		),
+		(
+			"duplicate_writable_record",
+			include_str!("construction/test_fail_output_copy.rs"),
+			"E0382",
+		),
+		(
+			"implicit_opaque_pointer",
+			include_str!("construction/test_fail_raw.rs"),
+			"E0133",
+		),
+		(
 			"dangling_string",
 			include_str!("construction/test_fail_string.rs"),
 			"E0597",
@@ -275,5 +295,269 @@ fn descriptor_payload_selection_clears_conflicting_native_arrays() -> Result<(),
 	assert!(write.p_image_info.is_null());
 	assert!(write.p_buffer_info.is_null());
 	assert_eq!(write.p_texel_buffer_view, views.as_ptr());
+	Ok(())
+}
+
+#[test]
+fn word_and_byte_payloads_use_native_byte_extents() -> Result<(), ConstructionError> {
+	let words = [0x0723_0203_u32, 0, 1, 2];
+	let shader = vk::ShaderModuleCreateInfo::default().code(&words);
+	assert_eq!(shader.code_size, 16);
+	assert_eq!(shader.p_code, words.as_ptr());
+	let bytes = [0_u8, 5, 255, 7, 9];
+	let specialization = vk::SpecializationInfo::default().data(&bytes)?;
+	assert_eq!(specialization.data_size, 5);
+	assert_eq!(specialization.p_data, bytes.as_ptr().cast());
+	let cache = vk::PipelineCacheCreateInfo::default().initial_data(&bytes)?;
+	assert_eq!(cache.initial_data_size, 5);
+	assert_eq!(cache.p_initial_data, bytes.as_ptr().cast());
+	let inline = vk::WriteDescriptorSetInlineUniformBlock::default().data(&bytes)?;
+	assert_eq!(inline.data_size, 5);
+	let empty = vk::ShaderModuleCreateInfo::default().code(&[]);
+	assert_eq!(empty.code_size, 0);
+	let empty = vk::PipelineCacheCreateInfo::default().initial_data(&[])?;
+	assert_eq!(empty.initial_data_size, 0);
+	Ok(())
+}
+
+#[test]
+fn optional_parallel_arrays_and_writable_results_share_one_count() -> Result<(), ConstructionError>
+{
+	let swaps = [vk::SwapchainKHR::NULL; 2];
+	let indices = [3, 7];
+	let mut results = [vk::Result::NOT_READY; 2];
+	let results_address = results.as_mut_ptr();
+	{
+		let present = vk::PresentInfoKHR::default().swapchains(&swaps, &indices, Some(&mut results))?;
+		assert_eq!(present.swapchain_count, 2);
+		assert_eq!(present.p_swapchains, swaps.as_ptr());
+		assert_eq!(present.p_image_indices, indices.as_ptr());
+		assert_eq!(present.p_results, results_address);
+		// SAFETY: the helper borrows two initialized output slots exclusively.
+		unsafe { present.p_results.add(1).write(vk::Result::SUCCESS) };
+	}
+	assert_eq!(results, [vk::Result::NOT_READY, vk::Result::SUCCESS]);
+	let no_results = vk::PresentInfoKHR::default().swapchains(&swaps, &indices, None)?;
+	assert!(no_results.p_results.is_null());
+	assert!(matches!(
+		vk::PresentInfoKHR::default().swapchains(&swaps, &indices[..1], None),
+		Err(ConstructionError::LengthMismatch {
+			field: "pImageIndices",
+			..
+		})
+	));
+	let mut too_short = [vk::Result::NOT_READY];
+	assert!(matches!(
+		vk::PresentInfoKHR::default().swapchains(&swaps, &indices, Some(&mut too_short)),
+		Err(ConstructionError::LengthMismatch {
+			field: "pResults",
+			..
+		})
+	));
+	assert_eq!(too_short[0], vk::Result::NOT_READY);
+	let attachments = [vk::AttachmentReference::default(); 2];
+	let subpass = vk::SubpassDescription::default().color_attachments(&attachments, None)?;
+	assert_eq!(subpass.color_attachment_count, 2);
+	assert!(subpass.p_resolve_attachments.is_null());
+	assert!(
+		vk::SubpassDescription::default()
+			.color_attachments(&attachments, Some(&attachments[..1]))
+			.is_err()
+	);
+	Ok(())
+}
+
+#[test]
+fn fully_optional_groups_preserve_explicit_query_counts() -> Result<(), ConstructionError> {
+	let query = vk::SwapchainTimeDomainPropertiesEXT::default().time_domains(0, None, None)?;
+	assert_eq!(query.time_domain_count, 0);
+	assert!(query.p_time_domains.is_null());
+	assert!(query.p_time_domain_ids.is_null());
+	let mut domains = [vk::TimeDomainKHR::default(); 2];
+	let mut ids = [0_u64; 2];
+	let info = vk::SwapchainTimeDomainPropertiesEXT::default().time_domains(
+		2,
+		Some(&mut domains),
+		Some(&mut ids),
+	)?;
+	assert_eq!(info.time_domain_count, 2);
+	assert!(
+		vk::SwapchainTimeDomainPropertiesEXT::default()
+			.time_domains(3, None, Some(&mut ids))
+			.is_err()
+	);
+	let extent = [5_u64, 9];
+	let tensor = vk::TensorCopyARM::default().src_offset(2, None, None, Some(&extent))?;
+	assert_eq!(tensor.dimension_count, 2);
+	assert_eq!(tensor.p_extent, extent.as_ptr());
+	assert!(tensor.p_src_offset.is_null());
+	Ok(())
+}
+
+#[test]
+fn indirect_alternatives_clear_other_representations() -> Result<(), ConstructionError> {
+	let geometries: [_; 2] = std::array::from_fn(|_| vk::AccelerationStructureGeometryKHR::default());
+	let addresses = geometries.each_ref().map(std::ptr::from_ref);
+	let direct = vk::AccelerationStructureBuildGeometryInfoKHR::default().geometries(&geometries)?;
+	assert_eq!(direct.geometry_count, 2);
+	assert_eq!(direct.p_geometries, geometries.as_ptr());
+	assert!(direct.pp_geometries.is_null());
+	let indirect = direct.pp_geometries(&addresses[..1])?;
+	assert_eq!(indirect.geometry_count, 1);
+	assert!(indirect.p_geometries.is_null());
+	assert_eq!(indirect.pp_geometries, addresses.as_ptr());
+	let direct = indirect.geometries(&geometries)?;
+	assert!(direct.pp_geometries.is_null());
+	let usages = [vk::MicromapUsageEXT::default(); 2];
+	let pointers = usages.each_ref().map(std::ptr::from_ref);
+	let info = vk::MicromapBuildInfoEXT::default()
+		.usage_counts(&usages)?
+		.pp_usage_counts(&pointers)?;
+	assert_eq!(info.usage_counts_count, 2);
+	assert!(info.p_usage_counts.is_null());
+	assert_eq!(info.pp_usage_counts, pointers.as_ptr());
+	Ok(())
+}
+
+#[test]
+fn writable_byte_and_scalar_storage_remains_initialized_and_borrowed()
+-> Result<(), ConstructionError> {
+	let mut bytes = [0_u8; 5];
+	let address = bytes.as_mut_ptr();
+	{
+		let mut output = vk::PipelineExecutableInternalRepresentationKHR::default().data(&mut bytes)?;
+		assert_eq!(output.data_size, 5);
+		assert_eq!(output.p_data, address.cast());
+		// SAFETY: exactly five initialized bytes are exclusively borrowed.
+		unsafe { output.p_data.cast::<u8>().add(4).write(255) };
+		// A native query may report a larger required size. No safe accessor may
+		// manufacture a slice from this public, driver-controlled field.
+		output.data_size = usize::MAX;
+		std::hint::black_box(&output);
+	}
+	assert_eq!(bytes, [0, 0, 0, 0, 255]);
+	let mut result = vk::Result::NOT_READY;
+	{
+		let status = vk::BindMemoryStatus::default().result(&mut result);
+		// SAFETY: the constructor borrows one initialized result exclusively.
+		unsafe { status.p_result.write(vk::Result::SUCCESS) };
+	}
+	assert_eq!(result, vk::Result::SUCCESS);
+	Ok(())
+}
+
+#[test]
+fn fixed_formula_and_parent_sized_video_storage_have_exact_extents() -> Result<(), ConstructionError>
+{
+	let mask = [u32::MAX; 2];
+	let info = vk::PipelineMultisampleStateCreateInfo::default()
+		.rasterization_samples(vk::SampleCountFlagBits::_64_BIT)
+		.sample_mask(&mask)?;
+	assert_eq!(info.p_sample_mask, mask.as_ptr());
+	assert!(
+		vk::PipelineMultisampleStateCreateInfo::default()
+			.rasterization_samples(vk::SampleCountFlagBits::_64_BIT)
+			.sample_mask(&mask[..1])
+			.is_err()
+	);
+	let version = [0_u8; 2 * vk::UUID_SIZE as usize];
+	let info = vk::AccelerationStructureVersionInfoKHR::default().version_data(&version);
+	assert_eq!(info.p_version_data, version.as_ptr());
+	let offsets = [1_i32; 255];
+	let sps = vk::StdVideoH264SequenceParameterSet::default().offset_for_ref_frame(&offsets)?;
+	assert_eq!(sps.num_ref_frames_in_pic_order_cnt_cycle, 255);
+	let too_many = [1_i32; 256];
+	assert!(matches!(
+		vk::StdVideoH264SequenceParameterSet::default().offset_for_ref_frame(&too_many),
+		Err(ConstructionError::CountOverflow { count: 256, .. })
+	));
+	let layers = [vk::StdVideoH265SubLayerHrdParameters::default(); 3];
+	let hrd = vk::StdVideoH265HrdParameters::default().sub_layer_hrd_parameters_nal(2, &layers)?;
+	assert_eq!(hrd.p_sub_layer_hrd_parameters_nal, layers.as_ptr());
+	assert!(
+		vk::StdVideoH265HrdParameters::default()
+			.sub_layer_hrd_parameters_nal(1, &layers)
+			.is_err()
+	);
+	Ok(())
+}
+
+#[test]
+fn layer_values_count_elements_and_select_native_storage_type() -> Result<(), ConstructionError> {
+	let values = [2_i64, 9];
+	let setting = vk::LayerSettingEXT::default().values_int64(&values)?;
+	assert_eq!(setting.r#type, vk::LayerSettingTypeEXT::INT64_EXT);
+	assert_eq!(setting.value_count, 2);
+	assert_eq!(setting.p_values, values.as_ptr().cast());
+	let names = [c"one".as_ptr(), c"two".as_ptr()];
+	let setting = setting.values_strings(&names)?;
+	assert_eq!(setting.r#type, vk::LayerSettingTypeEXT::STRING_EXT);
+	assert_eq!(setting.value_count, 2);
+	assert_eq!(setting.p_values, names.as_ptr().cast());
+	Ok(())
+}
+
+#[test]
+fn fault_buffers_populate_the_separate_native_capacity_record() -> Result<(), ConstructionError> {
+	let mut counts = vk::DeviceFaultCountsEXT::default();
+	let mut addresses = [vk::DeviceFaultAddressInfoKHR::default(); 2];
+	let mut vendors = [vk::DeviceFaultVendorInfoKHR::default()];
+	let mut binary = [0_u8; 13];
+	let pointers = (
+		addresses.as_mut_ptr(),
+		vendors.as_mut_ptr(),
+		binary.as_mut_ptr(),
+	);
+	let info = vk::DeviceFaultInfoEXT::default().buffers(
+		&mut counts,
+		&mut addresses,
+		&mut vendors,
+		&mut binary,
+	)?;
+	assert_eq!(counts.address_info_count, 2);
+	assert_eq!(counts.vendor_info_count, 1);
+	assert_eq!(counts.vendor_binary_size, 13);
+	assert_eq!(info.p_address_infos, pointers.0);
+	assert_eq!(info.p_vendor_infos, pointers.1);
+	assert_eq!(info.p_vendor_binary_data, pointers.2.cast());
+	Ok(())
+}
+
+#[test]
+fn union_construction_and_opaque_native_setters_preserve_exact_values() {
+	let sampler = vk::Sampler::NULL;
+	let data = vk::DescriptorDataEXT::default().sampler(&sampler);
+	// SAFETY: this is the exact union member most recently initialized.
+	assert_eq!(unsafe { data.p_sampler }, std::ptr::from_ref(&sampler));
+	let clear = vk::ClearColorValue::default().uint32([1, 2, 3, 4]);
+	// SAFETY: this is the exact union member most recently initialized.
+	assert_eq!(unsafe { clear.uint32 }, [1, 2, 3, 4]);
+	let mut user = 7_u32;
+	let address = std::ptr::from_mut(&mut user).cast();
+	// SAFETY: the test only compares the pointer, with no callbacks or native use.
+	let callbacks = unsafe { vk::AllocationCallbacks::default().user_data(address) };
+	assert_eq!(callbacks.p_user_data, address);
+}
+
+#[test]
+fn direct_native_counts_preserve_null_pointer_and_extension_payload_paths()
+-> Result<(), ConstructionError> {
+	let dynamic = vk::PipelineViewportStateCreateInfo::default()
+		.viewport_count(2)
+		.scissor_count(2);
+	assert_eq!(dynamic.viewport_count, 2);
+	assert_eq!(dynamic.scissor_count, 2);
+	assert!(dynamic.p_viewports.is_null());
+	assert!(dynamic.p_scissors.is_null());
+	let bytes = [0_u8; 4];
+	let mut inline = vk::WriteDescriptorSetInlineUniformBlock::default().data(&bytes)?;
+	let write = vk::WriteDescriptorSet::default()
+		.descriptor_type(vk::DescriptorType::INLINE_UNIFORM_BLOCK)
+		.descriptor_count(4)
+		.push_next(&mut inline)?;
+	assert_eq!(write.descriptor_count, 4);
+	assert!(write.p_image_info.is_null());
+	assert!(write.p_buffer_info.is_null());
+	assert!(write.p_texel_buffer_view.is_null());
 	Ok(())
 }

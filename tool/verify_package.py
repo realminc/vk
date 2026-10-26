@@ -68,6 +68,27 @@ def main():
     assert_eq!(std::mem::size_of::<vk::PFN_vkCreateInstance>(), std::mem::size_of::<usize>());
     let _: vk::DeviceHandle = vk::DeviceHandle::NULL;
     let _: Option<vk::StdVideoVP9ColorConfig> = None;
+    let words = [0_u32; 5];
+    let shader = vk::ShaderModuleCreateInfo::default().code(&words);
+    assert_eq!(shader.code_size, 20);
+    let swaps = [vk::SwapchainKHR::NULL];
+    let indices = [0_u32];
+    let mut results = [vk::Result::NOT_READY];
+    let present = vk::PresentInfoKHR::default()
+        .swapchains(&swaps, &indices, Some(&mut results)).unwrap();
+    assert_eq!(present.swapchain_count, 1);
+    std::hint::black_box(&present);
+    assert_eq!(results[0], vk::Result::NOT_READY);
+    let mut bytes = [0_u8; 13];
+    let binary = vk::PipelineBinaryDataKHR::default().data(&mut bytes).unwrap();
+    assert_eq!(binary.data_size, 13);
+    std::hint::black_box(&binary);
+    bytes[0] = 1;
+    assert_eq!(bytes[0], 1);
+    let layer_values = [3_i64, 9];
+    let setting = vk::LayerSettingEXT::default().values_int64(&layer_values).unwrap();
+    assert_eq!(setting.value_count, 2);
+    assert_eq!(setting.r#type, vk::LayerSettingTypeEXT::INT64_EXT);
     #[cfg(feature = "loader")]
     {
         let _: Option<vk::Entry> = None;

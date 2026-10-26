@@ -5948,47 +5948,86 @@ pub type DriverIdKHR = DriverId;
 #[doc(alias = "VkBaseOutStructure")]
 #[doc = "\n\n[Khronos reference: `VkBaseOutStructure`](https://docs.vulkan.org/refpages/latest/refpages/source/VkBaseOutStructure.html)"]
 #[repr(C)]
-#[derive(Copy, Clone)]
-pub struct BaseOutStructure {
+pub struct BaseOutStructure<'a> {
 	/// Native field `sType`.
 	#[doc(alias = "sType")]
 	pub s_type: StructureType,
 	/// Native field `pNext`.
 	#[doc(alias = "pNext")]
-	pub p_next: *mut BaseOutStructure,
+	pub p_next: *mut BaseOutStructure<'a>,
+	#[doc(hidden)]
+	pub _marker: std::marker::PhantomData<&'a mut ()>,
 }
 
-impl Default for BaseOutStructure {
+impl<'a> Default for BaseOutStructure<'a> {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
 	}
 }
 
-impl BaseOutStructure {}
+impl<'a> BaseOutStructure<'a> {
+	/// Set native field `sType` without native effects.
+	#[doc(alias = "sType")]
+	#[inline]
+	#[must_use]
+	pub fn s_type(mut self, value: StructureType) -> Self {
+		self.s_type = value;
+		self
+	}
+
+	/// Set native field `pNext` without native effects.
+	#[doc(alias = "pNext")]
+	#[inline]
+	#[must_use]
+	pub fn p_next(mut self, value: &'a mut BaseOutStructure<'a>) -> Self {
+		self.p_next = value;
+		self
+	}
+}
 
 #[doc = "Native structure `VkBaseInStructure`."]
 #[doc(alias = "VkBaseInStructure")]
 #[doc = "\n\n[Khronos reference: `VkBaseInStructure`](https://docs.vulkan.org/refpages/latest/refpages/source/VkBaseInStructure.html)"]
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct BaseInStructure {
+pub struct BaseInStructure<'a> {
 	/// Native field `sType`.
 	#[doc(alias = "sType")]
 	pub s_type: StructureType,
 	/// Native field `pNext`.
 	#[doc(alias = "pNext")]
-	pub p_next: *const BaseInStructure,
+	pub p_next: *const BaseInStructure<'a>,
+	#[doc(hidden)]
+	pub _marker: std::marker::PhantomData<&'a ()>,
 }
 
-impl Default for BaseInStructure {
+impl<'a> Default for BaseInStructure<'a> {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
 	}
 }
 
-impl BaseInStructure {}
+impl<'a> BaseInStructure<'a> {
+	/// Set native field `sType` without native effects.
+	#[doc(alias = "sType")]
+	#[inline]
+	#[must_use]
+	pub fn s_type(mut self, value: StructureType) -> Self {
+		self.s_type = value;
+		self
+	}
+
+	/// Set native field `pNext` without native effects.
+	#[doc(alias = "pNext")]
+	#[inline]
+	#[must_use]
+	pub fn p_next(mut self, value: &'a BaseInStructure<'a>) -> Self {
+		self.p_next = value;
+		self
+	}
+}
 
 #[doc = "Native structure `VkOffset2D`."]
 #[doc(alias = "VkOffset2D")]
@@ -6755,6 +6794,20 @@ impl Default for AllocationCallbacks {
 }
 
 impl AllocationCallbacks {
+	/// Set native pointer `pUserData` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pUserData")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn user_data(mut self, value: *mut std::ffi::c_void) -> Self {
+		self.p_user_data = value;
+		self
+	}
+
 	/// Set native field `pfnAllocation` without native effects.
 	#[doc(alias = "pfnAllocation")]
 	#[inline]
@@ -6855,11 +6908,25 @@ impl<'a> DeviceQueueCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pQueuePriorities` and its checked native count `queueCount`.
+	/// Set native count `queueCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "queueCount")]
+	#[inline]
+	#[must_use]
+	pub fn queue_count(mut self, value: u32) -> Self {
+		self.queue_count = value;
+		self
+	}
+
+	/// Borrow `pQueuePriorities` and set checked native count `queueCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pQueuePriorities")]
 	#[inline]
 	pub fn queue_priorities(
@@ -6947,11 +7014,25 @@ impl<'a> DeviceCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pQueueCreateInfos` and its checked native count `queueCreateInfoCount`.
+	/// Set native count `queueCreateInfoCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "queueCreateInfoCount")]
+	#[inline]
+	#[must_use]
+	pub fn queue_create_info_count(mut self, value: u32) -> Self {
+		self.queue_create_info_count = value;
+		self
+	}
+
+	/// Borrow `pQueueCreateInfos` and set checked native count `queueCreateInfoCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pQueueCreateInfos")]
 	#[inline]
 	pub fn queue_create_infos(
@@ -6964,11 +7045,25 @@ impl<'a> DeviceCreateInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `ppEnabledLayerNames` and its checked native count `enabledLayerCount`.
+	/// Set native count `enabledLayerCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "enabledLayerCount")]
+	#[inline]
+	#[must_use]
+	pub fn enabled_layer_count(mut self, value: u32) -> Self {
+		self.enabled_layer_count = value;
+		self
+	}
+
+	/// Borrow `ppEnabledLayerNames` and set checked native count `enabledLayerCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "ppEnabledLayerNames")]
 	#[inline]
 	pub fn enabled_layer_names(
@@ -6981,11 +7076,25 @@ impl<'a> DeviceCreateInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `ppEnabledExtensionNames` and its checked native count `enabledExtensionCount`.
+	/// Set native count `enabledExtensionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "enabledExtensionCount")]
+	#[inline]
+	#[must_use]
+	pub fn enabled_extension_count(mut self, value: u32) -> Self {
+		self.enabled_extension_count = value;
+		self
+	}
+
+	/// Borrow `ppEnabledExtensionNames` and set checked native count `enabledExtensionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "ppEnabledExtensionNames")]
 	#[inline]
 	pub fn enabled_extension_names(
@@ -7085,11 +7194,25 @@ impl<'a> InstanceCreateInfo<'a> {
 		self
 	}
 
-	/// Set `ppEnabledLayerNames` and its checked native count `enabledLayerCount`.
+	/// Set native count `enabledLayerCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "enabledLayerCount")]
+	#[inline]
+	#[must_use]
+	pub fn enabled_layer_count(mut self, value: u32) -> Self {
+		self.enabled_layer_count = value;
+		self
+	}
+
+	/// Borrow `ppEnabledLayerNames` and set checked native count `enabledLayerCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "ppEnabledLayerNames")]
 	#[inline]
 	pub fn enabled_layer_names(
@@ -7102,11 +7225,25 @@ impl<'a> InstanceCreateInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `ppEnabledExtensionNames` and its checked native count `enabledExtensionCount`.
+	/// Set native count `enabledExtensionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "enabledExtensionCount")]
+	#[inline]
+	#[must_use]
+	pub fn enabled_extension_count(mut self, value: u32) -> Self {
+		self.enabled_extension_count = value;
+		self
+	}
+
+	/// Borrow `ppEnabledExtensionNames` and set checked native count `enabledExtensionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "ppEnabledExtensionNames")]
 	#[inline]
 	pub fn enabled_extension_names(
@@ -7230,12 +7367,36 @@ impl Default for PhysicalDeviceMemoryProperties {
 }
 
 impl PhysicalDeviceMemoryProperties {
+	/// Set native count `memoryTypeCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "memoryTypeCount")]
+	#[inline]
+	#[must_use]
+	pub fn memory_type_count(mut self, value: u32) -> Self {
+		self.memory_type_count = value;
+		self
+	}
+
 	/// Set native field `memoryTypes` without native effects.
 	#[doc(alias = "memoryTypes")]
 	#[inline]
 	#[must_use]
 	pub fn memory_types(mut self, value: [MemoryType; MAX_MEMORY_TYPES as usize]) -> Self {
 		self.memory_types = value;
+		self
+	}
+
+	/// Set native count `memoryHeapCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "memoryHeapCount")]
+	#[inline]
+	#[must_use]
+	pub fn memory_heap_count(mut self, value: u32) -> Self {
+		self.memory_heap_count = value;
 		self
 	}
 
@@ -7951,6 +8112,18 @@ impl<'a> WriteDescriptorSet<'a> {
 		self
 	}
 
+	/// Set native count `descriptorCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "descriptorCount")]
+	#[inline]
+	#[must_use]
+	pub fn descriptor_count(mut self, value: u32) -> Self {
+		self.descriptor_count = value;
+		self
+	}
+
 	/// Set native field `descriptorType` without native effects.
 	#[doc(alias = "descriptorType")]
 	#[inline]
@@ -7960,11 +8133,13 @@ impl<'a> WriteDescriptorSet<'a> {
 		self
 	}
 
-	/// Set `pImageInfo` and its checked native count `descriptorCount`.
+	/// Borrow `pImageInfo` and set checked native count `descriptorCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pImageInfo")]
 	#[inline]
 	pub fn image_info(
@@ -7980,11 +8155,13 @@ impl<'a> WriteDescriptorSet<'a> {
 		Ok(self)
 	}
 
-	/// Set `pBufferInfo` and its checked native count `descriptorCount`.
+	/// Borrow `pBufferInfo` and set checked native count `descriptorCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pBufferInfo")]
 	#[inline]
 	pub fn buffer_info(
@@ -8000,11 +8177,13 @@ impl<'a> WriteDescriptorSet<'a> {
 		Ok(self)
 	}
 
-	/// Set `pTexelBufferView` and its checked native count `descriptorCount`.
+	/// Borrow `pTexelBufferView` and set checked native count `descriptorCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pTexelBufferView")]
 	#[inline]
 	pub fn texel_buffer_view(
@@ -8298,11 +8477,25 @@ impl<'a> BufferCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pQueueFamilyIndices` and its checked native count `queueFamilyIndexCount`.
+	/// Set native count `queueFamilyIndexCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "queueFamilyIndexCount")]
+	#[inline]
+	#[must_use]
+	pub fn queue_family_index_count(mut self, value: u32) -> Self {
+		self.queue_family_index_count = value;
+		self
+	}
+
+	/// Borrow `pQueueFamilyIndices` and set checked native count `queueFamilyIndexCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pQueueFamilyIndices")]
 	#[inline]
 	pub fn queue_family_indices(
@@ -9093,11 +9286,25 @@ impl<'a> ImageCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pQueueFamilyIndices` and its checked native count `queueFamilyIndexCount`.
+	/// Set native count `queueFamilyIndexCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "queueFamilyIndexCount")]
+	#[inline]
+	#[must_use]
+	pub fn queue_family_index_count(mut self, value: u32) -> Self {
+		self.queue_family_index_count = value;
+		self
+	}
+
+	/// Borrow `pQueueFamilyIndices` and set checked native count `queueFamilyIndexCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pQueueFamilyIndices")]
 	#[inline]
 	pub fn queue_family_indices(
@@ -9661,11 +9868,25 @@ impl<'a> SparseBufferMemoryBindInfo<'a> {
 		self
 	}
 
-	/// Set `pBinds` and its checked native count `bindCount`.
+	/// Set native count `bindCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "bindCount")]
+	#[inline]
+	#[must_use]
+	pub fn bind_count(mut self, value: u32) -> Self {
+		self.bind_count = value;
+		self
+	}
+
+	/// Borrow `pBinds` and set checked native count `bindCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pBinds")]
 	#[inline]
 	pub fn binds(
@@ -9713,11 +9934,25 @@ impl<'a> SparseImageOpaqueMemoryBindInfo<'a> {
 		self
 	}
 
-	/// Set `pBinds` and its checked native count `bindCount`.
+	/// Set native count `bindCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "bindCount")]
+	#[inline]
+	#[must_use]
+	pub fn bind_count(mut self, value: u32) -> Self {
+		self.bind_count = value;
+		self
+	}
+
+	/// Borrow `pBinds` and set checked native count `bindCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pBinds")]
 	#[inline]
 	pub fn binds(
@@ -9765,11 +10000,25 @@ impl<'a> SparseImageMemoryBindInfo<'a> {
 		self
 	}
 
-	/// Set `pBinds` and its checked native count `bindCount`.
+	/// Set native count `bindCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "bindCount")]
+	#[inline]
+	#[must_use]
+	pub fn bind_count(mut self, value: u32) -> Self {
+		self.bind_count = value;
+		self
+	}
+
+	/// Borrow `pBinds` and set checked native count `bindCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pBinds")]
 	#[inline]
 	pub fn binds(
@@ -9839,11 +10088,25 @@ impl<'a> Default for BindSparseInfo<'a> {
 }
 
 impl<'a> BindSparseInfo<'a> {
-	/// Set `pWaitSemaphores` and its checked native count `waitSemaphoreCount`.
+	/// Set native count `waitSemaphoreCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "waitSemaphoreCount")]
+	#[inline]
+	#[must_use]
+	pub fn wait_semaphore_count(mut self, value: u32) -> Self {
+		self.wait_semaphore_count = value;
+		self
+	}
+
+	/// Borrow `pWaitSemaphores` and set checked native count `waitSemaphoreCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pWaitSemaphores")]
 	#[inline]
 	pub fn wait_semaphores(
@@ -9856,11 +10119,25 @@ impl<'a> BindSparseInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pBufferBinds` and its checked native count `bufferBindCount`.
+	/// Set native count `bufferBindCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "bufferBindCount")]
+	#[inline]
+	#[must_use]
+	pub fn buffer_bind_count(mut self, value: u32) -> Self {
+		self.buffer_bind_count = value;
+		self
+	}
+
+	/// Borrow `pBufferBinds` and set checked native count `bufferBindCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pBufferBinds")]
 	#[inline]
 	pub fn buffer_binds(
@@ -9873,11 +10150,25 @@ impl<'a> BindSparseInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pImageOpaqueBinds` and its checked native count `imageOpaqueBindCount`.
+	/// Set native count `imageOpaqueBindCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "imageOpaqueBindCount")]
+	#[inline]
+	#[must_use]
+	pub fn image_opaque_bind_count(mut self, value: u32) -> Self {
+		self.image_opaque_bind_count = value;
+		self
+	}
+
+	/// Borrow `pImageOpaqueBinds` and set checked native count `imageOpaqueBindCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pImageOpaqueBinds")]
 	#[inline]
 	pub fn image_opaque_binds(
@@ -9890,11 +10181,25 @@ impl<'a> BindSparseInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pImageBinds` and its checked native count `imageBindCount`.
+	/// Set native count `imageBindCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "imageBindCount")]
+	#[inline]
+	#[must_use]
+	pub fn image_bind_count(mut self, value: u32) -> Self {
+		self.image_bind_count = value;
+		self
+	}
+
+	/// Borrow `pImageBinds` and set checked native count `imageBindCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pImageBinds")]
 	#[inline]
 	pub fn image_binds(
@@ -9907,11 +10212,25 @@ impl<'a> BindSparseInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pSignalSemaphores` and its checked native count `signalSemaphoreCount`.
+	/// Set native count `signalSemaphoreCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "signalSemaphoreCount")]
+	#[inline]
+	#[must_use]
+	pub fn signal_semaphore_count(mut self, value: u32) -> Self {
+		self.signal_semaphore_count = value;
+		self
+	}
+
+	/// Borrow `pSignalSemaphores` and set checked native count `signalSemaphoreCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSignalSemaphores")]
 	#[inline]
 	pub fn signal_semaphores(
@@ -10511,6 +10830,18 @@ impl<'a> CopyMemoryToImageIndirectInfoKHR<'a> {
 		self
 	}
 
+	/// Set native count `copyCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "copyCount")]
+	#[inline]
+	#[must_use]
+	pub fn copy_count(mut self, value: u32) -> Self {
+		self.copy_count = value;
+		self
+	}
+
 	/// Set native field `copyAddressRange` without native effects.
 	#[doc(alias = "copyAddressRange")]
 	#[inline]
@@ -10538,11 +10869,13 @@ impl<'a> CopyMemoryToImageIndirectInfoKHR<'a> {
 		self
 	}
 
-	/// Set `pImageSubresources` and its checked native count `copyCount`.
+	/// Borrow `pImageSubresources` and set checked native count `copyCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pImageSubresources")]
 	#[inline]
 	pub fn image_subresources(
@@ -10699,6 +11032,17 @@ impl<'a> ShaderModuleCreateInfo<'a> {
 		self
 	}
 
+	/// Borrow SPIR-V words and set native `codeSize` in bytes.
+	/// Shader validity and required capabilities remain native-call obligations.
+	#[doc(alias = "pCode")]
+	#[inline]
+	#[must_use]
+	pub fn code(mut self, value: &'a [u32]) -> Self {
+		self.code_size = std::mem::size_of_val(value);
+		self.p_code = value.as_ptr();
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -10766,6 +11110,18 @@ impl<'a> DescriptorSetLayoutBinding<'a> {
 		self
 	}
 
+	/// Set native count `descriptorCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "descriptorCount")]
+	#[inline]
+	#[must_use]
+	pub fn descriptor_count(mut self, value: u32) -> Self {
+		self.descriptor_count = value;
+		self
+	}
+
 	/// Set native field `stageFlags` without native effects.
 	#[doc(alias = "stageFlags")]
 	#[inline]
@@ -10775,11 +11131,13 @@ impl<'a> DescriptorSetLayoutBinding<'a> {
 		self
 	}
 
-	/// Set `pImmutableSamplers` and its checked native count `descriptorCount`.
+	/// Borrow `pImmutableSamplers` and set checked native count `descriptorCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pImmutableSamplers")]
 	#[inline]
 	pub fn immutable_samplers(
@@ -10835,11 +11193,25 @@ impl<'a> DescriptorSetLayoutCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pBindings` and its checked native count `bindingCount`.
+	/// Set native count `bindingCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "bindingCount")]
+	#[inline]
+	#[must_use]
+	pub fn binding_count(mut self, value: u32) -> Self {
+		self.binding_count = value;
+		self
+	}
+
+	/// Borrow `pBindings` and set checked native count `bindingCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pBindings")]
 	#[inline]
 	pub fn bindings(
@@ -10963,11 +11335,25 @@ impl<'a> DescriptorPoolCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pPoolSizes` and its checked native count `poolSizeCount`.
+	/// Set native count `poolSizeCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "poolSizeCount")]
+	#[inline]
+	#[must_use]
+	pub fn pool_size_count(mut self, value: u32) -> Self {
+		self.pool_size_count = value;
+		self
+	}
+
+	/// Borrow `pPoolSizes` and set checked native count `poolSizeCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPoolSizes")]
 	#[inline]
 	pub fn pool_sizes(
@@ -11042,11 +11428,25 @@ impl<'a> DescriptorSetAllocateInfo<'a> {
 		self
 	}
 
-	/// Set `pSetLayouts` and its checked native count `descriptorSetCount`.
+	/// Set native count `descriptorSetCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "descriptorSetCount")]
+	#[inline]
+	#[must_use]
+	pub fn descriptor_set_count(mut self, value: u32) -> Self {
+		self.descriptor_set_count = value;
+		self
+	}
+
+	/// Borrow `pSetLayouts` and set checked native count `descriptorSetCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSetLayouts")]
 	#[inline]
 	pub fn set_layouts(
@@ -11156,11 +11556,25 @@ impl<'a> Default for SpecializationInfo<'a> {
 }
 
 impl<'a> SpecializationInfo<'a> {
-	/// Set `pMapEntries` and its checked native count `mapEntryCount`.
+	/// Set native count `mapEntryCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "mapEntryCount")]
+	#[inline]
+	#[must_use]
+	pub fn map_entry_count(mut self, value: u32) -> Self {
+		self.map_entry_count = value;
+		self
+	}
+
+	/// Borrow `pMapEntries` and set checked native count `mapEntryCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pMapEntries")]
 	#[inline]
 	pub fn map_entries(
@@ -11170,6 +11584,34 @@ impl<'a> SpecializationInfo<'a> {
 		let count = crate::construction::count("pMapEntries", value.len())?;
 		self.map_entry_count = count;
 		self.p_map_entries = value.as_ptr();
+		Ok(self)
+	}
+
+	/// Set native count `dataSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "dataSize")]
+	#[inline]
+	#[must_use]
+	pub fn data_size(mut self, value: usize) -> Self {
+		self.data_size = value;
+		self
+	}
+
+	/// Borrow `pData` and set checked native byte size `dataSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pData")]
+	#[inline]
+	pub fn data(mut self, value: &'a [u8]) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.data_size = count;
+		self.p_data = value.as_ptr().cast();
 		Ok(self)
 	}
 }
@@ -11660,11 +12102,25 @@ impl<'a> PipelineVertexInputStateCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pVertexBindingDescriptions` and its checked native count `vertexBindingDescriptionCount`.
+	/// Set native count `vertexBindingDescriptionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "vertexBindingDescriptionCount")]
+	#[inline]
+	#[must_use]
+	pub fn vertex_binding_description_count(mut self, value: u32) -> Self {
+		self.vertex_binding_description_count = value;
+		self
+	}
+
+	/// Borrow `pVertexBindingDescriptions` and set checked native count `vertexBindingDescriptionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pVertexBindingDescriptions")]
 	#[inline]
 	pub fn vertex_binding_descriptions(
@@ -11677,11 +12133,25 @@ impl<'a> PipelineVertexInputStateCreateInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pVertexAttributeDescriptions` and its checked native count `vertexAttributeDescriptionCount`.
+	/// Set native count `vertexAttributeDescriptionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "vertexAttributeDescriptionCount")]
+	#[inline]
+	#[must_use]
+	pub fn vertex_attribute_description_count(mut self, value: u32) -> Self {
+		self.vertex_attribute_description_count = value;
+		self
+	}
+
+	/// Borrow `pVertexAttributeDescriptions` and set checked native count `vertexAttributeDescriptionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pVertexAttributeDescriptions")]
 	#[inline]
 	pub fn vertex_attribute_descriptions(
@@ -11902,11 +12372,25 @@ impl<'a> PipelineViewportStateCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pViewports` and its checked native count `viewportCount`.
+	/// Set native count `viewportCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "viewportCount")]
+	#[inline]
+	#[must_use]
+	pub fn viewport_count(mut self, value: u32) -> Self {
+		self.viewport_count = value;
+		self
+	}
+
+	/// Borrow `pViewports` and set checked native count `viewportCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pViewports")]
 	#[inline]
 	pub fn viewports(
@@ -11919,11 +12403,25 @@ impl<'a> PipelineViewportStateCreateInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pScissors` and its checked native count `scissorCount`.
+	/// Set native count `scissorCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "scissorCount")]
+	#[inline]
+	#[must_use]
+	pub fn scissor_count(mut self, value: u32) -> Self {
+		self.scissor_count = value;
+		self
+	}
+
+	/// Borrow `pScissors` and set checked native count `scissorCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pScissors")]
 	#[inline]
 	pub fn scissors(
@@ -12209,6 +12707,29 @@ impl<'a> PipelineMultisampleStateCreateInfo<'a> {
 		self
 	}
 
+	/// Borrow sample-mask words, checking the current `rasterizationSamples`.
+	/// Later raw/scalar edits and Vulkan valid usage remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a length mismatch unless there are ceil(samples / 32) words.
+	#[doc(alias = "pSampleMask")]
+	#[inline]
+	pub fn sample_mask(
+		mut self,
+		value: &'a [SampleMask],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = (self.rasterization_samples.as_raw() as usize).div_ceil(32);
+		if value.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pSampleMask",
+				expected,
+				actual: value.len(),
+			});
+		}
+		self.p_sample_mask = value.as_ptr();
+		Ok(self)
+	}
+
 	/// Set native field `alphaToCoverageEnable` without native effects.
 	#[doc(alias = "alphaToCoverageEnable")]
 	#[inline]
@@ -12427,11 +12948,25 @@ impl<'a> PipelineColorBlendStateCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pAttachments` and its checked native count `attachmentCount`.
+	/// Set native count `attachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "attachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn attachment_count(mut self, value: u32) -> Self {
+		self.attachment_count = value;
+		self
+	}
+
+	/// Borrow `pAttachments` and set checked native count `attachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pAttachments")]
 	#[inline]
 	pub fn attachments(
@@ -12513,11 +13048,25 @@ impl<'a> PipelineDynamicStateCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pDynamicStates` and its checked native count `dynamicStateCount`.
+	/// Set native count `dynamicStateCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "dynamicStateCount")]
+	#[inline]
+	#[must_use]
+	pub fn dynamic_state_count(mut self, value: u32) -> Self {
+		self.dynamic_state_count = value;
+		self
+	}
+
+	/// Borrow `pDynamicStates` and set checked native count `dynamicStateCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDynamicStates")]
 	#[inline]
 	pub fn dynamic_states(
@@ -12887,11 +13436,25 @@ impl<'a> GraphicsPipelineCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pStages` and its checked native count `stageCount`.
+	/// Set native count `stageCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stageCount")]
+	#[inline]
+	#[must_use]
+	pub fn stage_count(mut self, value: u32) -> Self {
+		self.stage_count = value;
+		self
+	}
+
+	/// Borrow `pStages` and set checked native count `stageCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStages")]
 	#[inline]
 	pub fn stages(
@@ -13092,6 +13655,37 @@ impl<'a> PipelineCacheCreateInfo<'a> {
 	pub fn flags(mut self, value: PipelineCacheCreateFlags) -> Self {
 		self.flags = value;
 		self
+	}
+
+	/// Set native count `initialDataSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "initialDataSize")]
+	#[inline]
+	#[must_use]
+	pub fn initial_data_size(mut self, value: usize) -> Self {
+		self.initial_data_size = value;
+		self
+	}
+
+	/// Borrow `pInitialData` and set checked native byte size `initialDataSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pInitialData")]
+	#[inline]
+	pub fn initial_data(
+		mut self,
+		value: &'a [u8],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.initial_data_size = count;
+		self.p_initial_data = value.as_ptr().cast();
+		Ok(self)
 	}
 
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
@@ -13428,6 +14022,37 @@ impl<'a> Default for PipelineBinaryHandlesInfoKHR<'a> {
 }
 
 impl<'a> PipelineBinaryHandlesInfoKHR<'a> {
+	/// Set native count `pipelineBinaryCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "pipelineBinaryCount")]
+	#[inline]
+	#[must_use]
+	pub fn pipeline_binary_count(mut self, value: u32) -> Self {
+		self.pipeline_binary_count = value;
+		self
+	}
+
+	/// Borrow `pPipelineBinaries` and set checked native count `pipelineBinaryCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pPipelineBinaries")]
+	#[inline]
+	pub fn pipeline_binaries(
+		mut self,
+		value: &'a mut [PipelineBinaryKHR],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pPipelineBinaries", value.len())?;
+		self.pipeline_binary_count = count;
+		self.p_pipeline_binaries = value.as_mut_ptr();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -13450,24 +14075,56 @@ impl<'a> PipelineBinaryHandlesInfoKHR<'a> {
 #[doc(alias = "VkPipelineBinaryDataKHR")]
 #[doc = "\n\n[Khronos reference: `VkPipelineBinaryDataKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/VkPipelineBinaryDataKHR.html)"]
 #[repr(C)]
-#[derive(Copy, Clone)]
-pub struct PipelineBinaryDataKHR {
+pub struct PipelineBinaryDataKHR<'a> {
 	/// Native field `dataSize`.
 	#[doc(alias = "dataSize")]
 	pub data_size: usize,
 	/// Native field `pData`.
 	#[doc(alias = "pData")]
 	pub p_data: *mut std::ffi::c_void,
+	#[doc(hidden)]
+	pub _marker: std::marker::PhantomData<&'a mut ()>,
 }
 
-impl Default for PipelineBinaryDataKHR {
+impl<'a> Default for PipelineBinaryDataKHR<'a> {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
 	}
 }
 
-impl PipelineBinaryDataKHR {}
+impl<'a> PipelineBinaryDataKHR<'a> {
+	/// Set native count `dataSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "dataSize")]
+	#[inline]
+	#[must_use]
+	pub fn data_size(mut self, value: usize) -> Self {
+		self.data_size = value;
+		self
+	}
+
+	/// Borrow `pData` and set checked native byte size `dataSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pData")]
+	#[inline]
+	pub fn data(
+		mut self,
+		value: &'a mut [u8],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.data_size = count;
+		self.p_data = value.as_mut_ptr().cast();
+		Ok(self)
+	}
+}
 
 #[doc = "Native structure `VkPipelineBinaryKeysAndDataKHR`."]
 #[doc(alias = "VkPipelineBinaryKeysAndDataKHR")]
@@ -13483,7 +14140,7 @@ pub struct PipelineBinaryKeysAndDataKHR<'a> {
 	pub p_pipeline_binary_keys: *const PipelineBinaryKeyKHR<'a>,
 	/// Native field `pPipelineBinaryData`.
 	#[doc(alias = "pPipelineBinaryData")]
-	pub p_pipeline_binary_data: *const PipelineBinaryDataKHR,
+	pub p_pipeline_binary_data: *const PipelineBinaryDataKHR<'a>,
 	#[doc(hidden)]
 	pub _marker: std::marker::PhantomData<&'a ()>,
 }
@@ -13495,7 +14152,54 @@ impl<'a> Default for PipelineBinaryKeysAndDataKHR<'a> {
 	}
 }
 
-impl<'a> PipelineBinaryKeysAndDataKHR<'a> {}
+impl<'a> PipelineBinaryKeysAndDataKHR<'a> {
+	/// Set native count `binaryCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "binaryCount")]
+	#[inline]
+	#[must_use]
+	pub fn binary_count(mut self, value: u32) -> Self {
+		self.binary_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `binaryCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pPipelineBinaryKeys")]
+	#[inline]
+	pub fn pipeline_binary_keys(
+		mut self,
+		pipeline_binary_keys: &'a [PipelineBinaryKeyKHR<'a>],
+		pipeline_binary_data: &'a [PipelineBinaryDataKHR<'a>],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = pipeline_binary_keys.len();
+		if pipeline_binary_keys.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pPipelineBinaryKeys",
+				expected,
+				actual: pipeline_binary_keys.len(),
+			});
+		}
+		if pipeline_binary_data.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pPipelineBinaryData",
+				expected,
+				actual: pipeline_binary_data.len(),
+			});
+		}
+		let count = crate::construction::count("pPipelineBinaryKeys", expected)?;
+		self.p_pipeline_binary_keys = pipeline_binary_keys.as_ptr();
+		self.p_pipeline_binary_data = pipeline_binary_data.as_ptr();
+		self.binary_count = count;
+		Ok(self)
+	}
+}
 
 #[doc = "Native structure `VkPipelineBinaryKeyKHR`."]
 #[doc(alias = "VkPipelineBinaryKeyKHR")]
@@ -13528,6 +14232,18 @@ impl<'a> Default for PipelineBinaryKeyKHR<'a> {
 }
 
 impl<'a> PipelineBinaryKeyKHR<'a> {
+	/// Set native count `keySize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "keySize")]
+	#[inline]
+	#[must_use]
+	pub fn key_size(mut self, value: u32) -> Self {
+		self.key_size = value;
+		self
+	}
+
 	/// Set native field `key` without native effects.
 	#[inline]
 	#[must_use]
@@ -13586,11 +14302,25 @@ impl<'a> Default for PipelineBinaryInfoKHR<'a> {
 }
 
 impl<'a> PipelineBinaryInfoKHR<'a> {
-	/// Set `pPipelineBinaries` and its checked native count `binaryCount`.
+	/// Set native count `binaryCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "binaryCount")]
+	#[inline]
+	#[must_use]
+	pub fn binary_count(mut self, value: u32) -> Self {
+		self.binary_count = value;
+		self
+	}
+
+	/// Borrow `pPipelineBinaries` and set checked native count `binaryCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPipelineBinaries")]
 	#[inline]
 	pub fn pipeline_binaries(
@@ -13823,11 +14553,25 @@ impl<'a> PipelineLayoutCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pSetLayouts` and its checked native count `setLayoutCount`.
+	/// Set native count `setLayoutCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "setLayoutCount")]
+	#[inline]
+	#[must_use]
+	pub fn set_layout_count(mut self, value: u32) -> Self {
+		self.set_layout_count = value;
+		self
+	}
+
+	/// Borrow `pSetLayouts` and set checked native count `setLayoutCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSetLayouts")]
 	#[inline]
 	pub fn set_layouts(
@@ -13840,11 +14584,25 @@ impl<'a> PipelineLayoutCreateInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pPushConstantRanges` and its checked native count `pushConstantRangeCount`.
+	/// Set native count `pushConstantRangeCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "pushConstantRangeCount")]
+	#[inline]
+	#[must_use]
+	pub fn push_constant_range_count(mut self, value: u32) -> Self {
+		self.push_constant_range_count = value;
+		self
+	}
+
+	/// Borrow `pPushConstantRanges` and set checked native count `pushConstantRangeCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPushConstantRanges")]
 	#[inline]
 	pub fn push_constant_ranges(
@@ -14497,11 +15255,25 @@ impl<'a> RenderPassBeginInfo<'a> {
 		self
 	}
 
-	/// Set `pClearValues` and its checked native count `clearValueCount`.
+	/// Set native count `clearValueCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "clearValueCount")]
+	#[inline]
+	#[must_use]
+	pub fn clear_value_count(mut self, value: u32) -> Self {
+		self.clear_value_count = value;
+		self
+	}
+
+	/// Borrow `pClearValues` and set checked native count `clearValueCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pClearValues")]
 	#[inline]
 	pub fn clear_values(
@@ -14550,6 +15322,32 @@ impl Default for ClearColorValue {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
+	}
+}
+
+impl ClearColorValue {
+	/// Set native field `float32` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn float32(mut self, value: [f32; 4]) -> Self {
+		self.float32 = value;
+		self
+	}
+
+	/// Set native field `int32` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn int32(mut self, value: [i32; 4]) -> Self {
+		self.int32 = value;
+		self
+	}
+
+	/// Set native field `uint32` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn uint32(mut self, value: [u32; 4]) -> Self {
+		self.uint32 = value;
+		self
 	}
 }
 
@@ -14607,6 +15405,25 @@ impl Default for ClearValue {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
+	}
+}
+
+impl ClearValue {
+	/// Set native field `color` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn color(mut self, value: ClearColorValue) -> Self {
+		self.color = value;
+		self
+	}
+
+	/// Set native field `depthStencil` without native effects.
+	#[doc(alias = "depthStencil")]
+	#[inline]
+	#[must_use]
+	pub fn depth_stencil(mut self, value: ClearDepthStencilValue) -> Self {
+		self.depth_stencil = value;
+		self
 	}
 }
 
@@ -14883,11 +15700,25 @@ impl<'a> SubpassDescription<'a> {
 		self
 	}
 
-	/// Set `pInputAttachments` and its checked native count `inputAttachmentCount`.
+	/// Set native count `inputAttachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "inputAttachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn input_attachment_count(mut self, value: u32) -> Self {
+		self.input_attachment_count = value;
+		self
+	}
+
+	/// Borrow `pInputAttachments` and set checked native count `inputAttachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pInputAttachments")]
 	#[inline]
 	pub fn input_attachments(
@@ -14900,6 +15731,56 @@ impl<'a> SubpassDescription<'a> {
 		Ok(self)
 	}
 
+	/// Set native count `colorAttachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "colorAttachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn color_attachment_count(mut self, value: u32) -> Self {
+		self.color_attachment_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `colorAttachmentCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pColorAttachments")]
+	#[inline]
+	pub fn color_attachments(
+		mut self,
+		color_attachments: &'a [AttachmentReference],
+		resolve_attachments: Option<&'a [AttachmentReference]>,
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = color_attachments.len();
+		if color_attachments.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pColorAttachments",
+				expected,
+				actual: color_attachments.len(),
+			});
+		}
+		if let Some(value) = &resolve_attachments
+			&& value.len() != expected
+		{
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pResolveAttachments",
+				expected,
+				actual: value.len(),
+			});
+		}
+		let count = crate::construction::count("pColorAttachments", expected)?;
+		self.p_color_attachments = color_attachments.as_ptr();
+		self.p_resolve_attachments =
+			resolve_attachments.map_or(std::ptr::null(), |value| value.as_ptr());
+		self.color_attachment_count = count;
+		Ok(self)
+	}
+
 	/// Set native field `pDepthStencilAttachment` without native effects.
 	#[doc(alias = "pDepthStencilAttachment")]
 	#[inline]
@@ -14909,11 +15790,25 @@ impl<'a> SubpassDescription<'a> {
 		self
 	}
 
-	/// Set `pPreserveAttachments` and its checked native count `preserveAttachmentCount`.
+	/// Set native count `preserveAttachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "preserveAttachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn preserve_attachment_count(mut self, value: u32) -> Self {
+		self.preserve_attachment_count = value;
+		self
+	}
+
+	/// Borrow `pPreserveAttachments` and set checked native count `preserveAttachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPreserveAttachments")]
 	#[inline]
 	pub fn preserve_attachments(
@@ -15082,11 +15977,25 @@ impl<'a> RenderPassCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pAttachments` and its checked native count `attachmentCount`.
+	/// Set native count `attachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "attachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn attachment_count(mut self, value: u32) -> Self {
+		self.attachment_count = value;
+		self
+	}
+
+	/// Borrow `pAttachments` and set checked native count `attachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pAttachments")]
 	#[inline]
 	pub fn attachments(
@@ -15099,11 +16008,25 @@ impl<'a> RenderPassCreateInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pSubpasses` and its checked native count `subpassCount`.
+	/// Set native count `subpassCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "subpassCount")]
+	#[inline]
+	#[must_use]
+	pub fn subpass_count(mut self, value: u32) -> Self {
+		self.subpass_count = value;
+		self
+	}
+
+	/// Borrow `pSubpasses` and set checked native count `subpassCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSubpasses")]
 	#[inline]
 	pub fn subpasses(
@@ -15116,11 +16039,25 @@ impl<'a> RenderPassCreateInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pDependencies` and its checked native count `dependencyCount`.
+	/// Set native count `dependencyCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "dependencyCount")]
+	#[inline]
+	#[must_use]
+	pub fn dependency_count(mut self, value: u32) -> Self {
+		self.dependency_count = value;
+		self
+	}
+
+	/// Borrow `pDependencies` and set checked native count `dependencyCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDependencies")]
 	#[inline]
 	pub fn dependencies(
@@ -17506,11 +18443,25 @@ impl<'a> FramebufferCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pAttachments` and its checked native count `attachmentCount`.
+	/// Set native count `attachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "attachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn attachment_count(mut self, value: u32) -> Self {
+		self.attachment_count = value;
+		self
+	}
+
+	/// Borrow `pAttachments` and set checked native count `attachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pAttachments")]
 	#[inline]
 	pub fn attachments(
@@ -17895,35 +18846,72 @@ impl<'a> Default for SubmitInfo<'a> {
 }
 
 impl<'a> SubmitInfo<'a> {
-	/// Borrow parallel native arrays and set their shared checked count.
+	/// Set native count `waitSemaphoreCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "waitSemaphoreCount")]
+	#[inline]
+	#[must_use]
+	pub fn wait_semaphore_count(mut self, value: u32) -> Self {
+		self.wait_semaphore_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `waitSemaphoreCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
 	///
 	/// # Errors
 	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pWaitSemaphores")]
 	#[inline]
 	pub fn wait_semaphores(
 		mut self,
 		wait_semaphores: &'a [Semaphore],
 		wait_dst_stage_mask: &'a [PipelineStageFlags],
 	) -> std::result::Result<Self, crate::ConstructionError> {
-		if wait_semaphores.len() != wait_dst_stage_mask.len() {
+		let expected = wait_semaphores.len();
+		if wait_semaphores.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pWaitSemaphores",
+				expected,
+				actual: wait_semaphores.len(),
+			});
+		}
+		if wait_dst_stage_mask.len() != expected {
 			return Err(crate::ConstructionError::LengthMismatch {
 				field: "pWaitDstStageMask",
-				expected: wait_semaphores.len(),
+				expected,
 				actual: wait_dst_stage_mask.len(),
 			});
 		}
-		let count = crate::construction::count("pWaitSemaphores", wait_semaphores.len())?;
+		let count = crate::construction::count("pWaitSemaphores", expected)?;
 		self.p_wait_semaphores = wait_semaphores.as_ptr();
 		self.p_wait_dst_stage_mask = wait_dst_stage_mask.as_ptr();
 		self.wait_semaphore_count = count;
 		Ok(self)
 	}
 
-	/// Set `pCommandBuffers` and its checked native count `commandBufferCount`.
+	/// Set native count `commandBufferCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "commandBufferCount")]
+	#[inline]
+	#[must_use]
+	pub fn command_buffer_count(mut self, value: u32) -> Self {
+		self.command_buffer_count = value;
+		self
+	}
+
+	/// Borrow `pCommandBuffers` and set checked native count `commandBufferCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pCommandBuffers")]
 	#[inline]
 	pub fn command_buffers(
@@ -17936,11 +18924,25 @@ impl<'a> SubmitInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pSignalSemaphores` and its checked native count `signalSemaphoreCount`.
+	/// Set native count `signalSemaphoreCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "signalSemaphoreCount")]
+	#[inline]
+	#[must_use]
+	pub fn signal_semaphore_count(mut self, value: u32) -> Self {
+		self.signal_semaphore_count = value;
+		self
+	}
+
+	/// Borrow `pSignalSemaphores` and set checked native count `signalSemaphoreCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSignalSemaphores")]
 	#[inline]
 	pub fn signal_semaphores(
@@ -18830,6 +19832,19 @@ impl<'a> AndroidSurfaceCreateInfoKHR<'a> {
 		self
 	}
 
+	/// Set native pointer `window` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn window(mut self, value: *mut ANativeWindow) -> Self {
+		self.window = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -18886,6 +19901,19 @@ impl<'a> ViSurfaceCreateInfoNN<'a> {
 	#[must_use]
 	pub fn flags(mut self, value: ViSurfaceCreateFlagsNN) -> Self {
 		self.flags = value;
+		self
+	}
+
+	/// Set native pointer `window` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn window(mut self, value: *mut std::ffi::c_void) -> Self {
+		self.window = value;
 		self
 	}
 
@@ -18950,6 +19978,32 @@ impl<'a> WaylandSurfaceCreateInfoKHR<'a> {
 		self
 	}
 
+	/// Set native pointer `display` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn display(mut self, value: *mut wl_display) -> Self {
+		self.display = value;
+		self
+	}
+
+	/// Set native pointer `surface` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn surface(mut self, value: *mut wl_surface) -> Self {
+		self.surface = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -19008,6 +20062,32 @@ impl<'a> UbmSurfaceCreateInfoSEC<'a> {
 	#[must_use]
 	pub fn flags(mut self, value: UbmSurfaceCreateFlagsSEC) -> Self {
 		self.flags = value;
+		self
+	}
+
+	/// Set native pointer `device` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn device(mut self, value: *mut ubm_device) -> Self {
+		self.device = value;
+		self
+	}
+
+	/// Set native pointer `surface` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn surface(mut self, value: *mut ubm_surface) -> Self {
+		self.surface = value;
 		self
 	}
 
@@ -19149,6 +20229,19 @@ impl<'a> XlibSurfaceCreateInfoKHR<'a> {
 		self
 	}
 
+	/// Set native pointer `dpy` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn dpy(mut self, value: *mut Display) -> Self {
+		self.dpy = value;
+		self
+	}
+
 	/// Set native field `window` without native effects.
 	#[inline]
 	#[must_use]
@@ -19218,6 +20311,19 @@ impl<'a> XcbSurfaceCreateInfoKHR<'a> {
 		self
 	}
 
+	/// Set native pointer `connection` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn connection(mut self, value: *mut xcb_connection_t) -> Self {
+		self.connection = value;
+		self
+	}
+
 	/// Set native field `window` without native effects.
 	#[inline]
 	#[must_use]
@@ -19284,6 +20390,32 @@ impl<'a> DirectFBSurfaceCreateInfoEXT<'a> {
 	#[must_use]
 	pub fn flags(mut self, value: DirectFBSurfaceCreateFlagsEXT) -> Self {
 		self.flags = value;
+		self
+	}
+
+	/// Set native pointer `dfb` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn dfb(mut self, value: *mut IDirectFB) -> Self {
+		self.dfb = value;
+		self
+	}
+
+	/// Set native pointer `surface` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn surface(mut self, value: *mut IDirectFBSurface) -> Self {
+		self.surface = value;
 		self
 	}
 
@@ -19483,6 +20615,32 @@ impl<'a> ScreenSurfaceCreateInfoQNX<'a> {
 	#[must_use]
 	pub fn flags(mut self, value: ScreenSurfaceCreateFlagsQNX) -> Self {
 		self.flags = value;
+		self
+	}
+
+	/// Set native pointer `context` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn context(mut self, value: *mut _screen_context) -> Self {
+		self.context = value;
+		self
+	}
+
+	/// Set native pointer `window` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn window(mut self, value: *mut _screen_window) -> Self {
+		self.window = value;
 		self
 	}
 
@@ -19693,11 +20851,25 @@ impl<'a> SwapchainCreateInfoKHR<'a> {
 		self
 	}
 
-	/// Set `pQueueFamilyIndices` and its checked native count `queueFamilyIndexCount`.
+	/// Set native count `queueFamilyIndexCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "queueFamilyIndexCount")]
+	#[inline]
+	#[must_use]
+	pub fn queue_family_index_count(mut self, value: u32) -> Self {
+		self.queue_family_index_count = value;
+		self
+	}
+
+	/// Borrow `pQueueFamilyIndices` and set checked native count `queueFamilyIndexCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pQueueFamilyIndices")]
 	#[inline]
 	pub fn queue_family_indices(
@@ -19816,11 +20988,25 @@ impl<'a> Default for PresentInfoKHR<'a> {
 }
 
 impl<'a> PresentInfoKHR<'a> {
-	/// Set `pWaitSemaphores` and its checked native count `waitSemaphoreCount`.
+	/// Set native count `waitSemaphoreCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "waitSemaphoreCount")]
+	#[inline]
+	#[must_use]
+	pub fn wait_semaphore_count(mut self, value: u32) -> Self {
+		self.wait_semaphore_count = value;
+		self
+	}
+
+	/// Borrow `pWaitSemaphores` and set checked native count `waitSemaphoreCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pWaitSemaphores")]
 	#[inline]
 	pub fn wait_semaphores(
@@ -19830,6 +21016,64 @@ impl<'a> PresentInfoKHR<'a> {
 		let count = crate::construction::count("pWaitSemaphores", value.len())?;
 		self.wait_semaphore_count = count;
 		self.p_wait_semaphores = value.as_ptr();
+		Ok(self)
+	}
+
+	/// Set native count `swapchainCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "swapchainCount")]
+	#[inline]
+	#[must_use]
+	pub fn swapchain_count(mut self, value: u32) -> Self {
+		self.swapchain_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `swapchainCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pSwapchains")]
+	#[inline]
+	pub fn swapchains(
+		mut self,
+		swapchains: &'a [SwapchainKHR],
+		image_indices: &'a [u32],
+		results: Option<&'a mut [Result]>,
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = swapchains.len();
+		if swapchains.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pSwapchains",
+				expected,
+				actual: swapchains.len(),
+			});
+		}
+		if image_indices.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pImageIndices",
+				expected,
+				actual: image_indices.len(),
+			});
+		}
+		if let Some(value) = &results
+			&& value.len() != expected
+		{
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pResults",
+				expected,
+				actual: value.len(),
+			});
+		}
+		let count = crate::construction::count("pSwapchains", expected)?;
+		self.p_swapchains = swapchains.as_ptr();
+		self.p_image_indices = image_indices.as_ptr();
+		self.p_results = results.map_or(std::ptr::null_mut(), |value| value.as_mut_ptr());
+		self.swapchain_count = count;
 		Ok(self)
 	}
 
@@ -19902,6 +21146,20 @@ impl<'a> DebugReportCallbackCreateInfoEXT<'a> {
 		self
 	}
 
+	/// Set native pointer `pUserData` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pUserData")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn user_data(mut self, value: *mut std::ffi::c_void) -> Self {
+		self.p_user_data = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -19952,11 +21210,25 @@ impl<'a> Default for ValidationFlagsEXT<'a> {
 }
 
 impl<'a> ValidationFlagsEXT<'a> {
-	/// Set `pDisabledValidationChecks` and its checked native count `disabledValidationCheckCount`.
+	/// Set native count `disabledValidationCheckCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "disabledValidationCheckCount")]
+	#[inline]
+	#[must_use]
+	pub fn disabled_validation_check_count(mut self, value: u32) -> Self {
+		self.disabled_validation_check_count = value;
+		self
+	}
+
+	/// Borrow `pDisabledValidationChecks` and set checked native count `disabledValidationCheckCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDisabledValidationChecks")]
 	#[inline]
 	pub fn disabled_validation_checks(
@@ -20025,11 +21297,25 @@ impl<'a> Default for ValidationFeaturesEXT<'a> {
 }
 
 impl<'a> ValidationFeaturesEXT<'a> {
-	/// Set `pEnabledValidationFeatures` and its checked native count `enabledValidationFeatureCount`.
+	/// Set native count `enabledValidationFeatureCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "enabledValidationFeatureCount")]
+	#[inline]
+	#[must_use]
+	pub fn enabled_validation_feature_count(mut self, value: u32) -> Self {
+		self.enabled_validation_feature_count = value;
+		self
+	}
+
+	/// Borrow `pEnabledValidationFeatures` and set checked native count `enabledValidationFeatureCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pEnabledValidationFeatures")]
 	#[inline]
 	pub fn enabled_validation_features(
@@ -20042,11 +21328,25 @@ impl<'a> ValidationFeaturesEXT<'a> {
 		Ok(self)
 	}
 
-	/// Set `pDisabledValidationFeatures` and its checked native count `disabledValidationFeatureCount`.
+	/// Set native count `disabledValidationFeatureCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "disabledValidationFeatureCount")]
+	#[inline]
+	#[must_use]
+	pub fn disabled_validation_feature_count(mut self, value: u32) -> Self {
+		self.disabled_validation_feature_count = value;
+		self
+	}
+
+	/// Borrow `pDisabledValidationFeatures` and set checked native count `disabledValidationFeatureCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDisabledValidationFeatures")]
 	#[inline]
 	pub fn disabled_validation_features(
@@ -20109,11 +21409,25 @@ impl<'a> Default for LayerSettingsCreateInfoEXT<'a> {
 }
 
 impl<'a> LayerSettingsCreateInfoEXT<'a> {
-	/// Set `pSettings` and its checked native count `settingCount`.
+	/// Set native count `settingCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "settingCount")]
+	#[inline]
+	#[must_use]
+	pub fn setting_count(mut self, value: u32) -> Self {
+		self.setting_count = value;
+		self
+	}
+
+	/// Borrow `pSettings` and set checked native count `settingCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSettings")]
 	#[inline]
 	pub fn settings(
@@ -20200,6 +21514,168 @@ impl<'a> LayerSettingEXT<'a> {
 	pub fn r#type(mut self, value: LayerSettingTypeEXT) -> Self {
 		self.r#type = value;
 		self
+	}
+
+	/// Set native count `valueCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "valueCount")]
+	#[inline]
+	#[must_use]
+	pub fn value_count(mut self, value: u32) -> Self {
+		self.value_count = value;
+		self
+	}
+
+	/// Set native pointer `pValues` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pValues")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn values(mut self, value: *const std::ffi::c_void) -> Self {
+		self.p_values = value;
+		self
+	}
+
+	/// Borrow typed layer values and set their native type and element count.
+	/// For strings the borrow covers the pointer table, not the strings it names.
+	///
+	/// # Errors
+	/// Returns a construction error if the element count exceeds u32.
+	#[inline]
+	pub fn values_bool32(
+		mut self,
+		value: &'a [u32],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pValues", value.len())?;
+		self.r#type = LayerSettingTypeEXT::BOOL32_EXT;
+		self.value_count = count;
+		self.p_values = value.as_ptr().cast();
+		Ok(self)
+	}
+
+	/// Borrow typed layer values and set their native type and element count.
+	/// For strings the borrow covers the pointer table, not the strings it names.
+	///
+	/// # Errors
+	/// Returns a construction error if the element count exceeds u32.
+	#[inline]
+	pub fn values_int32(
+		mut self,
+		value: &'a [i32],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pValues", value.len())?;
+		self.r#type = LayerSettingTypeEXT::INT32_EXT;
+		self.value_count = count;
+		self.p_values = value.as_ptr().cast();
+		Ok(self)
+	}
+
+	/// Borrow typed layer values and set their native type and element count.
+	/// For strings the borrow covers the pointer table, not the strings it names.
+	///
+	/// # Errors
+	/// Returns a construction error if the element count exceeds u32.
+	#[inline]
+	pub fn values_int64(
+		mut self,
+		value: &'a [i64],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pValues", value.len())?;
+		self.r#type = LayerSettingTypeEXT::INT64_EXT;
+		self.value_count = count;
+		self.p_values = value.as_ptr().cast();
+		Ok(self)
+	}
+
+	/// Borrow typed layer values and set their native type and element count.
+	/// For strings the borrow covers the pointer table, not the strings it names.
+	///
+	/// # Errors
+	/// Returns a construction error if the element count exceeds u32.
+	#[inline]
+	pub fn values_uint32(
+		mut self,
+		value: &'a [u32],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pValues", value.len())?;
+		self.r#type = LayerSettingTypeEXT::UINT32_EXT;
+		self.value_count = count;
+		self.p_values = value.as_ptr().cast();
+		Ok(self)
+	}
+
+	/// Borrow typed layer values and set their native type and element count.
+	/// For strings the borrow covers the pointer table, not the strings it names.
+	///
+	/// # Errors
+	/// Returns a construction error if the element count exceeds u32.
+	#[inline]
+	pub fn values_uint64(
+		mut self,
+		value: &'a [u64],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pValues", value.len())?;
+		self.r#type = LayerSettingTypeEXT::UINT64_EXT;
+		self.value_count = count;
+		self.p_values = value.as_ptr().cast();
+		Ok(self)
+	}
+
+	/// Borrow typed layer values and set their native type and element count.
+	/// For strings the borrow covers the pointer table, not the strings it names.
+	///
+	/// # Errors
+	/// Returns a construction error if the element count exceeds u32.
+	#[inline]
+	pub fn values_float32(
+		mut self,
+		value: &'a [f32],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pValues", value.len())?;
+		self.r#type = LayerSettingTypeEXT::FLOAT32_EXT;
+		self.value_count = count;
+		self.p_values = value.as_ptr().cast();
+		Ok(self)
+	}
+
+	/// Borrow typed layer values and set their native type and element count.
+	/// For strings the borrow covers the pointer table, not the strings it names.
+	///
+	/// # Errors
+	/// Returns a construction error if the element count exceeds u32.
+	#[inline]
+	pub fn values_float64(
+		mut self,
+		value: &'a [f64],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pValues", value.len())?;
+		self.r#type = LayerSettingTypeEXT::FLOAT64_EXT;
+		self.value_count = count;
+		self.p_values = value.as_ptr().cast();
+		Ok(self)
+	}
+
+	/// Borrow typed layer values and set their native type and element count.
+	/// For strings the borrow covers the pointer table, not the strings it names.
+	///
+	/// # Errors
+	/// Returns a construction error if the element count exceeds u32.
+	#[inline]
+	pub fn values_strings(
+		mut self,
+		value: &'a [*const std::ffi::c_char],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pValues", value.len())?;
+		self.r#type = LayerSettingTypeEXT::STRING_EXT;
+		self.value_count = count;
+		self.p_values = value.as_ptr().cast();
+		Ok(self)
 	}
 }
 
@@ -20401,6 +21877,34 @@ impl<'a> DebugMarkerObjectTagInfoEXT<'a> {
 	pub fn tag_name(mut self, value: u64) -> Self {
 		self.tag_name = value;
 		self
+	}
+
+	/// Set native count `tagSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "tagSize")]
+	#[inline]
+	#[must_use]
+	pub fn tag_size(mut self, value: usize) -> Self {
+		self.tag_size = value;
+		self
+	}
+
+	/// Borrow `pTag` and set checked native byte size `tagSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pTag")]
+	#[inline]
+	pub fn tag(mut self, value: &'a [u8]) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.tag_size = count;
+		self.p_tag = value.as_ptr().cast();
+		Ok(self)
 	}
 
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
@@ -20947,6 +22451,20 @@ impl<'a> Default for ExportMemoryWin32HandleInfoNV<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> ExportMemoryWin32HandleInfoNV<'a> {
+	/// Set native pointer `pAttributes` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pAttributes")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn attributes(mut self, value: *const SECURITY_ATTRIBUTES) -> Self {
+		self.p_attributes = value;
+		self
+	}
+
 	/// Set native field `dwAccess` without native effects.
 	#[doc(alias = "dwAccess")]
 	#[inline]
@@ -21024,6 +22542,109 @@ impl<'a> Default for Win32KeyedMutexAcquireReleaseInfoNV<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> Win32KeyedMutexAcquireReleaseInfoNV<'a> {
+	/// Set native count `acquireCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "acquireCount")]
+	#[inline]
+	#[must_use]
+	pub fn acquire_count(mut self, value: u32) -> Self {
+		self.acquire_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `acquireCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pAcquireSyncs")]
+	#[inline]
+	pub fn acquire_syncs(
+		mut self,
+		acquire_syncs: &'a [DeviceMemory],
+		acquire_keys: &'a [u64],
+		acquire_timeout_milliseconds: &'a [u32],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = acquire_syncs.len();
+		if acquire_syncs.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pAcquireSyncs",
+				expected,
+				actual: acquire_syncs.len(),
+			});
+		}
+		if acquire_keys.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pAcquireKeys",
+				expected,
+				actual: acquire_keys.len(),
+			});
+		}
+		if acquire_timeout_milliseconds.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pAcquireTimeoutMilliseconds",
+				expected,
+				actual: acquire_timeout_milliseconds.len(),
+			});
+		}
+		let count = crate::construction::count("pAcquireSyncs", expected)?;
+		self.p_acquire_syncs = acquire_syncs.as_ptr();
+		self.p_acquire_keys = acquire_keys.as_ptr();
+		self.p_acquire_timeout_milliseconds = acquire_timeout_milliseconds.as_ptr();
+		self.acquire_count = count;
+		Ok(self)
+	}
+
+	/// Set native count `releaseCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "releaseCount")]
+	#[inline]
+	#[must_use]
+	pub fn release_count(mut self, value: u32) -> Self {
+		self.release_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `releaseCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pReleaseSyncs")]
+	#[inline]
+	pub fn release_syncs(
+		mut self,
+		release_syncs: &'a [DeviceMemory],
+		release_keys: &'a [u64],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = release_syncs.len();
+		if release_syncs.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pReleaseSyncs",
+				expected,
+				actual: release_syncs.len(),
+			});
+		}
+		if release_keys.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pReleaseKeys",
+				expected,
+				actual: release_keys.len(),
+			});
+		}
+		let count = crate::construction::count("pReleaseSyncs", expected)?;
+		self.p_release_syncs = release_syncs.as_ptr();
+		self.p_release_keys = release_keys.as_ptr();
+		self.release_count = count;
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -23048,7 +24669,6 @@ impl<'a> ClusterAccelerationStructureMoveObjectsInputNV<'a> {
 #[doc(alias = "VkClusterAccelerationStructureOpInputNV")]
 #[doc = "\n\n[Khronos reference: `VkClusterAccelerationStructureOpInputNV`](https://docs.vulkan.org/refpages/latest/refpages/source/VkClusterAccelerationStructureOpInputNV.html)"]
 #[repr(C)]
-#[derive(Copy, Clone)]
 pub union ClusterAccelerationStructureOpInputNV<'a> {
 	/// Native field `pClustersBottomLevel`.
 	#[doc(alias = "pClustersBottomLevel")]
@@ -23060,13 +24680,51 @@ pub union ClusterAccelerationStructureOpInputNV<'a> {
 	#[doc(alias = "pMoveObjects")]
 	pub p_move_objects: *mut ClusterAccelerationStructureMoveObjectsInputNV<'a>,
 	#[doc(hidden)]
-	pub _marker: std::marker::PhantomData<&'a ()>,
+	pub _marker: std::marker::PhantomData<&'a mut ()>,
 }
 
 impl<'a> Default for ClusterAccelerationStructureOpInputNV<'a> {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
+	}
+}
+
+impl<'a> ClusterAccelerationStructureOpInputNV<'a> {
+	/// Set native field `pClustersBottomLevel` without native effects.
+	#[doc(alias = "pClustersBottomLevel")]
+	#[inline]
+	#[must_use]
+	pub fn clusters_bottom_level(
+		mut self,
+		value: &'a mut ClusterAccelerationStructureClustersBottomLevelInputNV<'a>,
+	) -> Self {
+		self.p_clusters_bottom_level = value;
+		self
+	}
+
+	/// Set native field `pTriangleClusters` without native effects.
+	#[doc(alias = "pTriangleClusters")]
+	#[inline]
+	#[must_use]
+	pub fn triangle_clusters(
+		mut self,
+		value: &'a mut ClusterAccelerationStructureTriangleClusterInputNV<'a>,
+	) -> Self {
+		self.p_triangle_clusters = value;
+		self
+	}
+
+	/// Set native field `pMoveObjects` without native effects.
+	#[doc(alias = "pMoveObjects")]
+	#[inline]
+	#[must_use]
+	pub fn move_objects(
+		mut self,
+		value: &'a mut ClusterAccelerationStructureMoveObjectsInputNV<'a>,
+	) -> Self {
+		self.p_move_objects = value;
+		self
 	}
 }
 
@@ -23407,11 +25065,25 @@ impl<'a> Default for GraphicsShaderGroupCreateInfoNV<'a> {
 }
 
 impl<'a> GraphicsShaderGroupCreateInfoNV<'a> {
-	/// Set `pStages` and its checked native count `stageCount`.
+	/// Set native count `stageCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stageCount")]
+	#[inline]
+	#[must_use]
+	pub fn stage_count(mut self, value: u32) -> Self {
+		self.stage_count = value;
+		self
+	}
+
+	/// Borrow `pStages` and set checked native count `stageCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStages")]
 	#[inline]
 	pub fn stages(
@@ -23498,11 +25170,25 @@ impl<'a> Default for GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
 }
 
 impl<'a> GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
-	/// Set `pGroups` and its checked native count `groupCount`.
+	/// Set native count `groupCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "groupCount")]
+	#[inline]
+	#[must_use]
+	pub fn group_count(mut self, value: u32) -> Self {
+		self.group_count = value;
+		self
+	}
+
+	/// Borrow `pGroups` and set checked native count `groupCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pGroups")]
 	#[inline]
 	pub fn groups(
@@ -23515,11 +25201,25 @@ impl<'a> GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
 		Ok(self)
 	}
 
-	/// Set `pPipelines` and its checked native count `pipelineCount`.
+	/// Set native count `pipelineCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "pipelineCount")]
+	#[inline]
+	#[must_use]
+	pub fn pipeline_count(mut self, value: u32) -> Self {
+		self.pipeline_count = value;
+		self
+	}
+
+	/// Borrow `pPipelines` and set checked native count `pipelineCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPipelines")]
 	#[inline]
 	pub fn pipelines(
@@ -23894,6 +25594,53 @@ impl<'a> IndirectCommandsLayoutTokenNV<'a> {
 		self
 	}
 
+	/// Set native count `indexTypeCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "indexTypeCount")]
+	#[inline]
+	#[must_use]
+	pub fn index_type_count(mut self, value: u32) -> Self {
+		self.index_type_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `indexTypeCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pIndexTypes")]
+	#[inline]
+	pub fn index_types(
+		mut self,
+		index_types: &'a [IndexType],
+		index_type_values: &'a [u32],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = index_types.len();
+		if index_types.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pIndexTypes",
+				expected,
+				actual: index_types.len(),
+			});
+		}
+		if index_type_values.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pIndexTypeValues",
+				expected,
+				actual: index_type_values.len(),
+			});
+		}
+		let count = crate::construction::count("pIndexTypes", expected)?;
+		self.p_index_types = index_types.as_ptr();
+		self.p_index_type_values = index_type_values.as_ptr();
+		self.index_type_count = count;
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -23972,11 +25719,25 @@ impl<'a> IndirectCommandsLayoutCreateInfoNV<'a> {
 		self
 	}
 
-	/// Set `pTokens` and its checked native count `tokenCount`.
+	/// Set native count `tokenCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "tokenCount")]
+	#[inline]
+	#[must_use]
+	pub fn token_count(mut self, value: u32) -> Self {
+		self.token_count = value;
+		self
+	}
+
+	/// Borrow `pTokens` and set checked native count `tokenCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pTokens")]
 	#[inline]
 	pub fn tokens(
@@ -23989,11 +25750,25 @@ impl<'a> IndirectCommandsLayoutCreateInfoNV<'a> {
 		Ok(self)
 	}
 
-	/// Set `pStreamStrides` and its checked native count `streamCount`.
+	/// Set native count `streamCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "streamCount")]
+	#[inline]
+	#[must_use]
+	pub fn stream_count(mut self, value: u32) -> Self {
+		self.stream_count = value;
+		self
+	}
+
+	/// Borrow `pStreamStrides` and set checked native count `streamCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStreamStrides")]
 	#[inline]
 	pub fn stream_strides(
@@ -24114,11 +25889,25 @@ impl<'a> GeneratedCommandsInfoNV<'a> {
 		self
 	}
 
-	/// Set `pStreams` and its checked native count `streamCount`.
+	/// Set native count `streamCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "streamCount")]
+	#[inline]
+	#[must_use]
+	pub fn stream_count(mut self, value: u32) -> Self {
+		self.stream_count = value;
+		self
+	}
+
+	/// Borrow `pStreams` and set checked native count `streamCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStreams")]
 	#[inline]
 	pub fn streams(
@@ -25265,11 +27054,25 @@ impl<'a> Default for PresentRegionsKHR<'a> {
 }
 
 impl<'a> PresentRegionsKHR<'a> {
-	/// Set `pRegions` and its checked native count `swapchainCount`.
+	/// Set native count `swapchainCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "swapchainCount")]
+	#[inline]
+	#[must_use]
+	pub fn swapchain_count(mut self, value: u32) -> Self {
+		self.swapchain_count = value;
+		self
+	}
+
+	/// Borrow `pRegions` and set checked native count `swapchainCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRegions")]
 	#[inline]
 	pub fn regions(
@@ -25324,11 +27127,25 @@ impl<'a> Default for PresentRegionKHR<'a> {
 }
 
 impl<'a> PresentRegionKHR<'a> {
-	/// Set `pRectangles` and its checked native count `rectangleCount`.
+	/// Set native count `rectangleCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "rectangleCount")]
+	#[inline]
+	#[must_use]
+	pub fn rectangle_count(mut self, value: u32) -> Self {
+		self.rectangle_count = value;
+		self
+	}
+
+	/// Borrow `pRectangles` and set checked native count `rectangleCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRectangles")]
 	#[inline]
 	pub fn rectangles(
@@ -26190,6 +28007,20 @@ impl<'a> Default for ExportMemoryWin32HandleInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> ExportMemoryWin32HandleInfoKHR<'a> {
+	/// Set native pointer `pAttributes` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pAttributes")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn attributes(mut self, value: *const SECURITY_ATTRIBUTES) -> Self {
+		self.p_attributes = value;
+		self
+	}
+
 	/// Set native field `dwAccess` without native effects.
 	#[doc(alias = "dwAccess")]
 	#[inline]
@@ -26788,6 +28619,109 @@ impl<'a> Default for Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
+	/// Set native count `acquireCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "acquireCount")]
+	#[inline]
+	#[must_use]
+	pub fn acquire_count(mut self, value: u32) -> Self {
+		self.acquire_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `acquireCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pAcquireSyncs")]
+	#[inline]
+	pub fn acquire_syncs(
+		mut self,
+		acquire_syncs: &'a [DeviceMemory],
+		acquire_keys: &'a [u64],
+		acquire_timeouts: &'a [u32],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = acquire_syncs.len();
+		if acquire_syncs.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pAcquireSyncs",
+				expected,
+				actual: acquire_syncs.len(),
+			});
+		}
+		if acquire_keys.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pAcquireKeys",
+				expected,
+				actual: acquire_keys.len(),
+			});
+		}
+		if acquire_timeouts.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pAcquireTimeouts",
+				expected,
+				actual: acquire_timeouts.len(),
+			});
+		}
+		let count = crate::construction::count("pAcquireSyncs", expected)?;
+		self.p_acquire_syncs = acquire_syncs.as_ptr();
+		self.p_acquire_keys = acquire_keys.as_ptr();
+		self.p_acquire_timeouts = acquire_timeouts.as_ptr();
+		self.acquire_count = count;
+		Ok(self)
+	}
+
+	/// Set native count `releaseCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "releaseCount")]
+	#[inline]
+	#[must_use]
+	pub fn release_count(mut self, value: u32) -> Self {
+		self.release_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `releaseCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pReleaseSyncs")]
+	#[inline]
+	pub fn release_syncs(
+		mut self,
+		release_syncs: &'a [DeviceMemory],
+		release_keys: &'a [u64],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = release_syncs.len();
+		if release_syncs.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pReleaseSyncs",
+				expected,
+				actual: release_syncs.len(),
+			});
+		}
+		if release_keys.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pReleaseKeys",
+				expected,
+				actual: release_keys.len(),
+			});
+		}
+		let count = crate::construction::count("pReleaseSyncs", expected)?;
+		self.p_release_syncs = release_syncs.as_ptr();
+		self.p_release_keys = release_keys.as_ptr();
+		self.release_count = count;
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -26846,6 +28780,19 @@ impl<'a> ImportMemoryMetalHandleInfoEXT<'a> {
 	#[must_use]
 	pub fn handle_type(mut self, value: ExternalMemoryHandleTypeFlagBits) -> Self {
 		self.handle_type = value;
+		self
+	}
+
+	/// Set native pointer `handle` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn handle(mut self, value: *mut std::ffi::c_void) -> Self {
+		self.handle = value;
 		self
 	}
 
@@ -27338,6 +29285,20 @@ impl<'a> Default for ExportSemaphoreWin32HandleInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> ExportSemaphoreWin32HandleInfoKHR<'a> {
+	/// Set native pointer `pAttributes` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pAttributes")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn attributes(mut self, value: *const SECURITY_ATTRIBUTES) -> Self {
+		self.p_attributes = value;
+		self
+	}
+
 	/// Set native field `dwAccess` without native effects.
 	#[doc(alias = "dwAccess")]
 	#[inline]
@@ -27414,11 +29375,25 @@ impl<'a> Default for D3D12FenceSubmitInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> D3D12FenceSubmitInfoKHR<'a> {
-	/// Set `pWaitSemaphoreValues` and its checked native count `waitSemaphoreValuesCount`.
+	/// Set native count `waitSemaphoreValuesCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "waitSemaphoreValuesCount")]
+	#[inline]
+	#[must_use]
+	pub fn wait_semaphore_values_count(mut self, value: u32) -> Self {
+		self.wait_semaphore_values_count = value;
+		self
+	}
+
+	/// Borrow `pWaitSemaphoreValues` and set checked native count `waitSemaphoreValuesCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pWaitSemaphoreValues")]
 	#[inline]
 	pub fn wait_semaphore_values(
@@ -27431,11 +29406,25 @@ impl<'a> D3D12FenceSubmitInfoKHR<'a> {
 		Ok(self)
 	}
 
-	/// Set `pSignalSemaphoreValues` and its checked native count `signalSemaphoreValuesCount`.
+	/// Set native count `signalSemaphoreValuesCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "signalSemaphoreValuesCount")]
+	#[inline]
+	#[must_use]
+	pub fn signal_semaphore_values_count(mut self, value: u32) -> Self {
+		self.signal_semaphore_values_count = value;
+		self
+	}
+
+	/// Borrow `pSignalSemaphoreValues` and set checked native count `signalSemaphoreValuesCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSignalSemaphoreValues")]
 	#[inline]
 	pub fn signal_semaphore_values(
@@ -28187,6 +30176,20 @@ impl<'a> Default for ExportFenceWin32HandleInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> ExportFenceWin32HandleInfoKHR<'a> {
+	/// Set native pointer `pAttributes` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pAttributes")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn attributes(mut self, value: *const SECURITY_ATTRIBUTES) -> Self {
+		self.p_attributes = value;
+		self
+	}
+
 	/// Set native field `dwAccess` without native effects.
 	#[doc(alias = "dwAccess")]
 	#[inline]
@@ -28641,11 +30644,25 @@ impl<'a> Default for RenderPassMultiviewCreateInfo<'a> {
 }
 
 impl<'a> RenderPassMultiviewCreateInfo<'a> {
-	/// Set `pViewMasks` and its checked native count `subpassCount`.
+	/// Set native count `subpassCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "subpassCount")]
+	#[inline]
+	#[must_use]
+	pub fn subpass_count(mut self, value: u32) -> Self {
+		self.subpass_count = value;
+		self
+	}
+
+	/// Borrow `pViewMasks` and set checked native count `subpassCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pViewMasks")]
 	#[inline]
 	pub fn view_masks(
@@ -28658,11 +30675,25 @@ impl<'a> RenderPassMultiviewCreateInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pViewOffsets` and its checked native count `dependencyCount`.
+	/// Set native count `dependencyCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "dependencyCount")]
+	#[inline]
+	#[must_use]
+	pub fn dependency_count(mut self, value: u32) -> Self {
+		self.dependency_count = value;
+		self
+	}
+
+	/// Borrow `pViewOffsets` and set checked native count `dependencyCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pViewOffsets")]
 	#[inline]
 	pub fn view_offsets(
@@ -28675,11 +30706,25 @@ impl<'a> RenderPassMultiviewCreateInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pCorrelationMasks` and its checked native count `correlationMaskCount`.
+	/// Set native count `correlationMaskCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "correlationMaskCount")]
+	#[inline]
+	#[must_use]
+	pub fn correlation_mask_count(mut self, value: u32) -> Self {
+		self.correlation_mask_count = value;
+		self
+	}
+
+	/// Borrow `pCorrelationMasks` and set checked native count `correlationMaskCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pCorrelationMasks")]
 	#[inline]
 	pub fn correlation_masks(
@@ -29149,6 +31194,18 @@ impl<'a> Default for PhysicalDeviceGroupProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceGroupProperties<'a> {
+	/// Set native count `physicalDeviceCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "physicalDeviceCount")]
+	#[inline]
+	#[must_use]
+	pub fn physical_device_count(mut self, value: u32) -> Self {
+		self.physical_device_count = value;
+		self
+	}
+
 	/// Set native field `physicalDevices` without native effects.
 	#[doc(alias = "physicalDevices")]
 	#[inline]
@@ -29374,11 +31431,25 @@ impl<'a> Default for BindBufferMemoryDeviceGroupInfo<'a> {
 }
 
 impl<'a> BindBufferMemoryDeviceGroupInfo<'a> {
-	/// Set `pDeviceIndices` and its checked native count `deviceIndexCount`.
+	/// Set native count `deviceIndexCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "deviceIndexCount")]
+	#[inline]
+	#[must_use]
+	pub fn device_index_count(mut self, value: u32) -> Self {
+		self.device_index_count = value;
+		self
+	}
+
+	/// Borrow `pDeviceIndices` and set checked native count `deviceIndexCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDeviceIndices")]
 	#[inline]
 	pub fn device_indices(
@@ -29531,11 +31602,25 @@ impl<'a> Default for BindImageMemoryDeviceGroupInfo<'a> {
 }
 
 impl<'a> BindImageMemoryDeviceGroupInfo<'a> {
-	/// Set `pDeviceIndices` and its checked native count `deviceIndexCount`.
+	/// Set native count `deviceIndexCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "deviceIndexCount")]
+	#[inline]
+	#[must_use]
+	pub fn device_index_count(mut self, value: u32) -> Self {
+		self.device_index_count = value;
+		self
+	}
+
+	/// Borrow `pDeviceIndices` and set checked native count `deviceIndexCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDeviceIndices")]
 	#[inline]
 	pub fn device_indices(
@@ -29548,11 +31633,25 @@ impl<'a> BindImageMemoryDeviceGroupInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pSplitInstanceBindRegions` and its checked native count `splitInstanceBindRegionCount`.
+	/// Set native count `splitInstanceBindRegionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "splitInstanceBindRegionCount")]
+	#[inline]
+	#[must_use]
+	pub fn split_instance_bind_region_count(mut self, value: u32) -> Self {
+		self.split_instance_bind_region_count = value;
+		self
+	}
+
+	/// Borrow `pSplitInstanceBindRegions` and set checked native count `splitInstanceBindRegionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSplitInstanceBindRegions")]
 	#[inline]
 	pub fn split_instance_bind_regions(
@@ -29631,11 +31730,25 @@ impl<'a> DeviceGroupRenderPassBeginInfo<'a> {
 		self
 	}
 
-	/// Set `pDeviceRenderAreas` and its checked native count `deviceRenderAreaCount`.
+	/// Set native count `deviceRenderAreaCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "deviceRenderAreaCount")]
+	#[inline]
+	#[must_use]
+	pub fn device_render_area_count(mut self, value: u32) -> Self {
+		self.device_render_area_count = value;
+		self
+	}
+
+	/// Borrow `pDeviceRenderAreas` and set checked native count `deviceRenderAreaCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDeviceRenderAreas")]
 	#[inline]
 	pub fn device_render_areas(
@@ -29774,11 +31887,25 @@ impl<'a> Default for DeviceGroupSubmitInfo<'a> {
 }
 
 impl<'a> DeviceGroupSubmitInfo<'a> {
-	/// Set `pWaitSemaphoreDeviceIndices` and its checked native count `waitSemaphoreCount`.
+	/// Set native count `waitSemaphoreCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "waitSemaphoreCount")]
+	#[inline]
+	#[must_use]
+	pub fn wait_semaphore_count(mut self, value: u32) -> Self {
+		self.wait_semaphore_count = value;
+		self
+	}
+
+	/// Borrow `pWaitSemaphoreDeviceIndices` and set checked native count `waitSemaphoreCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pWaitSemaphoreDeviceIndices")]
 	#[inline]
 	pub fn wait_semaphore_device_indices(
@@ -29791,11 +31918,25 @@ impl<'a> DeviceGroupSubmitInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pCommandBufferDeviceMasks` and its checked native count `commandBufferCount`.
+	/// Set native count `commandBufferCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "commandBufferCount")]
+	#[inline]
+	#[must_use]
+	pub fn command_buffer_count(mut self, value: u32) -> Self {
+		self.command_buffer_count = value;
+		self
+	}
+
+	/// Borrow `pCommandBufferDeviceMasks` and set checked native count `commandBufferCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pCommandBufferDeviceMasks")]
 	#[inline]
 	pub fn command_buffer_device_masks(
@@ -29808,11 +31949,25 @@ impl<'a> DeviceGroupSubmitInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pSignalSemaphoreDeviceIndices` and its checked native count `signalSemaphoreCount`.
+	/// Set native count `signalSemaphoreCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "signalSemaphoreCount")]
+	#[inline]
+	#[must_use]
+	pub fn signal_semaphore_count(mut self, value: u32) -> Self {
+		self.signal_semaphore_count = value;
+		self
+	}
+
+	/// Borrow `pSignalSemaphoreDeviceIndices` and set checked native count `signalSemaphoreCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSignalSemaphoreDeviceIndices")]
 	#[inline]
 	pub fn signal_semaphore_device_indices(
@@ -30235,11 +32390,25 @@ impl<'a> Default for DeviceGroupPresentInfoKHR<'a> {
 }
 
 impl<'a> DeviceGroupPresentInfoKHR<'a> {
-	/// Set `pDeviceMasks` and its checked native count `swapchainCount`.
+	/// Set native count `swapchainCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "swapchainCount")]
+	#[inline]
+	#[must_use]
+	pub fn swapchain_count(mut self, value: u32) -> Self {
+		self.swapchain_count = value;
+		self
+	}
+
+	/// Borrow `pDeviceMasks` and set checked native count `swapchainCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDeviceMasks")]
 	#[inline]
 	pub fn device_masks(
@@ -30310,11 +32479,25 @@ impl<'a> Default for DeviceGroupDeviceCreateInfo<'a> {
 }
 
 impl<'a> DeviceGroupDeviceCreateInfo<'a> {
-	/// Set `pPhysicalDevices` and its checked native count `physicalDeviceCount`.
+	/// Set native count `physicalDeviceCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "physicalDeviceCount")]
+	#[inline]
+	#[must_use]
+	pub fn physical_device_count(mut self, value: u32) -> Self {
+		self.physical_device_count = value;
+		self
+	}
+
+	/// Borrow `pPhysicalDevices` and set checked native count `physicalDeviceCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPhysicalDevices")]
 	#[inline]
 	pub fn physical_devices(
@@ -30548,11 +32731,25 @@ impl<'a> DescriptorUpdateTemplateCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pDescriptorUpdateEntries` and its checked native count `descriptorUpdateEntryCount`.
+	/// Set native count `descriptorUpdateEntryCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "descriptorUpdateEntryCount")]
+	#[inline]
+	#[must_use]
+	pub fn descriptor_update_entry_count(mut self, value: u32) -> Self {
+		self.descriptor_update_entry_count = value;
+		self
+	}
+
+	/// Borrow `pDescriptorUpdateEntries` and set checked native count `descriptorUpdateEntryCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDescriptorUpdateEntries")]
 	#[inline]
 	pub fn descriptor_update_entries(
@@ -30756,11 +32953,25 @@ impl<'a> Default for PresentIdKHR<'a> {
 }
 
 impl<'a> PresentIdKHR<'a> {
-	/// Set `pPresentIds` and its checked native count `swapchainCount`.
+	/// Set native count `swapchainCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "swapchainCount")]
+	#[inline]
+	#[must_use]
+	pub fn swapchain_count(mut self, value: u32) -> Self {
+		self.swapchain_count = value;
+		self
+	}
+
+	/// Borrow `pPresentIds` and set checked native count `swapchainCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPresentIds")]
 	#[inline]
 	pub fn present_ids(
@@ -30879,11 +33090,25 @@ impl<'a> Default for PresentId2KHR<'a> {
 }
 
 impl<'a> PresentId2KHR<'a> {
-	/// Set `pPresentIds` and its checked native count `swapchainCount`.
+	/// Set native count `swapchainCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "swapchainCount")]
+	#[inline]
+	#[must_use]
+	pub fn swapchain_count(mut self, value: u32) -> Self {
+		self.swapchain_count = value;
+		self
+	}
+
+	/// Borrow `pPresentIds` and set checked native count `swapchainCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPresentIds")]
 	#[inline]
 	pub fn present_ids(
@@ -31367,6 +33592,59 @@ impl<'a> Default for SwapchainTimeDomainPropertiesEXT<'a> {
 }
 
 impl<'a> SwapchainTimeDomainPropertiesEXT<'a> {
+	/// Set native count `timeDomainCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "timeDomainCount")]
+	#[inline]
+	#[must_use]
+	pub fn time_domain_count(mut self, value: u32) -> Self {
+		self.time_domain_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `timeDomainCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pTimeDomains")]
+	#[inline]
+	pub fn time_domains(
+		mut self,
+		time_domain_count: u32,
+		time_domains: Option<&'a mut [TimeDomainKHR]>,
+		time_domain_ids: Option<&'a mut [u64]>,
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = time_domain_count as usize;
+		if let Some(value) = &time_domains
+			&& value.len() != expected
+		{
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pTimeDomains",
+				expected,
+				actual: value.len(),
+			});
+		}
+		if let Some(value) = &time_domain_ids
+			&& value.len() != expected
+		{
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pTimeDomainIds",
+				expected,
+				actual: value.len(),
+			});
+		}
+		let count = crate::construction::count("pTimeDomains", expected)?;
+		self.p_time_domains = time_domains.map_or(std::ptr::null_mut(), |value| value.as_mut_ptr());
+		self.p_time_domain_ids =
+			time_domain_ids.map_or(std::ptr::null_mut(), |value| value.as_mut_ptr());
+		self.time_domain_count = count;
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -31542,6 +33820,37 @@ impl<'a> PastPresentationTimingPropertiesEXT<'a> {
 		self
 	}
 
+	/// Set native count `presentationTimingCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "presentationTimingCount")]
+	#[inline]
+	#[must_use]
+	pub fn presentation_timing_count(mut self, value: u32) -> Self {
+		self.presentation_timing_count = value;
+		self
+	}
+
+	/// Borrow `pPresentationTimings` and set checked native count `presentationTimingCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pPresentationTimings")]
+	#[inline]
+	pub fn presentation_timings(
+		mut self,
+		value: &'a mut [PastPresentationTimingEXT<'a>],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pPresentationTimings", value.len())?;
+		self.presentation_timing_count = count;
+		self.p_presentation_timings = value.as_mut_ptr();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -31625,6 +33934,37 @@ impl<'a> PastPresentationTimingEXT<'a> {
 		self
 	}
 
+	/// Set native count `presentStageCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "presentStageCount")]
+	#[inline]
+	#[must_use]
+	pub fn present_stage_count(mut self, value: u32) -> Self {
+		self.present_stage_count = value;
+		self
+	}
+
+	/// Borrow `pPresentStages` and set checked native count `presentStageCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pPresentStages")]
+	#[inline]
+	pub fn present_stages(
+		mut self,
+		value: &'a mut [PresentStageTimeEXT],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pPresentStages", value.len())?;
+		self.present_stage_count = count;
+		self.p_present_stages = value.as_mut_ptr();
+		Ok(self)
+	}
+
 	/// Set native field `timeDomain` without native effects.
 	#[doc(alias = "timeDomain")]
 	#[inline]
@@ -31702,11 +34042,25 @@ impl<'a> Default for PresentTimingsInfoEXT<'a> {
 }
 
 impl<'a> PresentTimingsInfoEXT<'a> {
-	/// Set `pTimingInfos` and its checked native count `swapchainCount`.
+	/// Set native count `swapchainCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "swapchainCount")]
+	#[inline]
+	#[must_use]
+	pub fn swapchain_count(mut self, value: u32) -> Self {
+		self.swapchain_count = value;
+		self
+	}
+
+	/// Borrow `pTimingInfos` and set checked native count `swapchainCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pTimingInfos")]
 	#[inline]
 	pub fn timing_infos(
@@ -32089,6 +34443,37 @@ impl<'a> Default for HdrVividDynamicMetadataHUAWEI<'a> {
 }
 
 impl<'a> HdrVividDynamicMetadataHUAWEI<'a> {
+	/// Set native count `dynamicMetadataSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "dynamicMetadataSize")]
+	#[inline]
+	#[must_use]
+	pub fn dynamic_metadata_size(mut self, value: usize) -> Self {
+		self.dynamic_metadata_size = value;
+		self
+	}
+
+	/// Borrow `pDynamicMetadata` and set checked native byte size `dynamicMetadataSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pDynamicMetadata")]
+	#[inline]
+	pub fn dynamic_metadata(
+		mut self,
+		value: &'a [u8],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.dynamic_metadata_size = count;
+		self.p_dynamic_metadata = value.as_ptr().cast();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -32357,11 +34742,25 @@ impl<'a> Default for PresentTimesInfoGOOGLE<'a> {
 }
 
 impl<'a> PresentTimesInfoGOOGLE<'a> {
-	/// Set `pTimes` and its checked native count `swapchainCount`.
+	/// Set native count `swapchainCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "swapchainCount")]
+	#[inline]
+	#[must_use]
+	pub fn swapchain_count(mut self, value: u32) -> Self {
+		self.swapchain_count = value;
+		self
+	}
+
+	/// Borrow `pTimes` and set checked native count `swapchainCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pTimes")]
 	#[inline]
 	pub fn times(
@@ -32475,6 +34874,20 @@ impl<'a> IOSSurfaceCreateInfoMVK<'a> {
 		self
 	}
 
+	/// Set native pointer `pView` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pView")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn view(mut self, value: *const std::ffi::c_void) -> Self {
+		self.p_view = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -32535,6 +34948,20 @@ impl<'a> MacOSSurfaceCreateInfoMVK<'a> {
 		self
 	}
 
+	/// Set native pointer `pView` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pView")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn view(mut self, value: *const std::ffi::c_void) -> Self {
+		self.p_view = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -32592,6 +35019,20 @@ impl<'a> MetalSurfaceCreateInfoEXT<'a> {
 	#[must_use]
 	pub fn flags(mut self, value: MetalSurfaceCreateFlagsEXT) -> Self {
 		self.flags = value;
+		self
+	}
+
+	/// Set native pointer `pLayer` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pLayer")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn layer(mut self, value: *const CAMetalLayer) -> Self {
+		self.p_layer = value;
 		self
 	}
 
@@ -32694,11 +35135,25 @@ impl<'a> PipelineViewportWScalingStateCreateInfoNV<'a> {
 		self
 	}
 
-	/// Set `pViewportWScalings` and its checked native count `viewportCount`.
+	/// Set native count `viewportCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "viewportCount")]
+	#[inline]
+	#[must_use]
+	pub fn viewport_count(mut self, value: u32) -> Self {
+		self.viewport_count = value;
+		self
+	}
+
+	/// Borrow `pViewportWScalings` and set checked native count `viewportCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pViewportWScalings")]
 	#[inline]
 	pub fn viewport_w_scalings(
@@ -32828,11 +35283,25 @@ impl<'a> PipelineViewportSwizzleStateCreateInfoNV<'a> {
 		self
 	}
 
-	/// Set `pViewportSwizzles` and its checked native count `viewportCount`.
+	/// Set native count `viewportCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "viewportCount")]
+	#[inline]
+	#[must_use]
+	pub fn viewport_count(mut self, value: u32) -> Self {
+		self.viewport_count = value;
+		self
+	}
+
+	/// Borrow `pViewportSwizzles` and set checked native count `viewportCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pViewportSwizzles")]
 	#[inline]
 	pub fn viewport_swizzles(
@@ -32973,11 +35442,25 @@ impl<'a> PipelineDiscardRectangleStateCreateInfoEXT<'a> {
 		self
 	}
 
-	/// Set `pDiscardRectangles` and its checked native count `discardRectangleCount`.
+	/// Set native count `discardRectangleCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "discardRectangleCount")]
+	#[inline]
+	#[must_use]
+	pub fn discard_rectangle_count(mut self, value: u32) -> Self {
+		self.discard_rectangle_count = value;
+		self
+	}
+
+	/// Borrow `pDiscardRectangles` and set checked native count `discardRectangleCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDiscardRectangles")]
 	#[inline]
 	pub fn discard_rectangles(
@@ -33151,11 +35634,25 @@ impl<'a> Default for RenderPassInputAttachmentAspectCreateInfo<'a> {
 }
 
 impl<'a> RenderPassInputAttachmentAspectCreateInfo<'a> {
-	/// Set `pAspectReferences` and its checked native count `aspectReferenceCount`.
+	/// Set native count `aspectReferenceCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "aspectReferenceCount")]
+	#[inline]
+	#[must_use]
+	pub fn aspect_reference_count(mut self, value: u32) -> Self {
+		self.aspect_reference_count = value;
+		self
+	}
+
+	/// Borrow `pAspectReferences` and set checked native count `aspectReferenceCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pAspectReferences")]
 	#[inline]
 	pub fn aspect_references(
@@ -36045,11 +38542,25 @@ impl<'a> SampleLocationsInfoEXT<'a> {
 		self
 	}
 
-	/// Set `pSampleLocations` and its checked native count `sampleLocationsCount`.
+	/// Set native count `sampleLocationsCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "sampleLocationsCount")]
+	#[inline]
+	#[must_use]
+	pub fn sample_locations_count(mut self, value: u32) -> Self {
+		self.sample_locations_count = value;
+		self
+	}
+
+	/// Borrow `pSampleLocations` and set checked native count `sampleLocationsCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSampleLocations")]
 	#[inline]
 	pub fn sample_locations(
@@ -36202,11 +38713,25 @@ impl<'a> Default for RenderPassSampleLocationsBeginInfoEXT<'a> {
 }
 
 impl<'a> RenderPassSampleLocationsBeginInfoEXT<'a> {
-	/// Set `pAttachmentInitialSampleLocations` and its checked native count `attachmentInitialSampleLocationsCount`.
+	/// Set native count `attachmentInitialSampleLocationsCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "attachmentInitialSampleLocationsCount")]
+	#[inline]
+	#[must_use]
+	pub fn attachment_initial_sample_locations_count(mut self, value: u32) -> Self {
+		self.attachment_initial_sample_locations_count = value;
+		self
+	}
+
+	/// Borrow `pAttachmentInitialSampleLocations` and set checked native count `attachmentInitialSampleLocationsCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pAttachmentInitialSampleLocations")]
 	#[inline]
 	pub fn attachment_initial_sample_locations(
@@ -36219,11 +38744,25 @@ impl<'a> RenderPassSampleLocationsBeginInfoEXT<'a> {
 		Ok(self)
 	}
 
-	/// Set `pPostSubpassSampleLocations` and its checked native count `postSubpassSampleLocationsCount`.
+	/// Set native count `postSubpassSampleLocationsCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "postSubpassSampleLocationsCount")]
+	#[inline]
+	#[must_use]
+	pub fn post_subpass_sample_locations_count(mut self, value: u32) -> Self {
+		self.post_subpass_sample_locations_count = value;
+		self
+	}
+
+	/// Borrow `pPostSubpassSampleLocations` and set checked native count `postSubpassSampleLocationsCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPostSubpassSampleLocations")]
 	#[inline]
 	pub fn post_subpass_sample_locations(
@@ -37070,6 +39609,34 @@ impl<'a> Default for WriteDescriptorSetInlineUniformBlock<'a> {
 }
 
 impl<'a> WriteDescriptorSetInlineUniformBlock<'a> {
+	/// Set native count `dataSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "dataSize")]
+	#[inline]
+	#[must_use]
+	pub fn data_size(mut self, value: u32) -> Self {
+		self.data_size = value;
+		self
+	}
+
+	/// Borrow `pData` and set checked native byte size `dataSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pData")]
+	#[inline]
+	pub fn data(mut self, value: &'a [u8]) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pData", value.len())?;
+		self.data_size = count;
+		self.p_data = value.as_ptr().cast();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -37219,11 +39786,25 @@ impl<'a> PipelineCoverageModulationStateCreateInfoNV<'a> {
 		self
 	}
 
-	/// Set `pCoverageModulationTable` and its checked native count `coverageModulationTableCount`.
+	/// Set native count `coverageModulationTableCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "coverageModulationTableCount")]
+	#[inline]
+	#[must_use]
+	pub fn coverage_modulation_table_count(mut self, value: u32) -> Self {
+		self.coverage_modulation_table_count = value;
+		self
+	}
+
+	/// Borrow `pCoverageModulationTable` and set checked native count `coverageModulationTableCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pCoverageModulationTable")]
 	#[inline]
 	pub fn coverage_modulation_table(
@@ -37286,11 +39867,25 @@ impl<'a> Default for ImageFormatListCreateInfo<'a> {
 }
 
 impl<'a> ImageFormatListCreateInfo<'a> {
-	/// Set `pViewFormats` and its checked native count `viewFormatCount`.
+	/// Set native count `viewFormatCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "viewFormatCount")]
+	#[inline]
+	#[must_use]
+	pub fn view_format_count(mut self, value: u32) -> Self {
+		self.view_format_count = value;
+		self
+	}
+
+	/// Borrow `pViewFormats` and set checked native count `viewFormatCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pViewFormats")]
 	#[inline]
 	pub fn view_formats(
@@ -37365,6 +39960,37 @@ impl<'a> ValidationCacheCreateInfoEXT<'a> {
 	pub fn flags(mut self, value: ValidationCacheCreateFlagsEXT) -> Self {
 		self.flags = value;
 		self
+	}
+
+	/// Set native count `initialDataSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "initialDataSize")]
+	#[inline]
+	#[must_use]
+	pub fn initial_data_size(mut self, value: usize) -> Self {
+		self.initial_data_size = value;
+		self
+	}
+
+	/// Borrow `pInitialData` and set checked native byte size `initialDataSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pInitialData")]
+	#[inline]
+	pub fn initial_data(
+		mut self,
+		value: &'a [u8],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.initial_data_size = count;
+		self.p_initial_data = value.as_ptr().cast();
+		Ok(self)
 	}
 
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
@@ -38186,6 +40812,37 @@ impl<'a> Default for PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
+	/// Set native count `layeredApiCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "layeredApiCount")]
+	#[inline]
+	#[must_use]
+	pub fn layered_api_count(mut self, value: u32) -> Self {
+		self.layered_api_count = value;
+		self
+	}
+
+	/// Borrow `pLayeredApis` and set checked native count `layeredApiCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pLayeredApis")]
+	#[inline]
+	pub fn layered_apis(
+		mut self,
+		value: &'a mut [PhysicalDeviceLayeredApiPropertiesKHR<'a>],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pLayeredApis", value.len())?;
+		self.layered_api_count = count;
+		self.p_layered_apis = value.as_mut_ptr();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -38879,11 +41536,25 @@ impl<'a> RenderingAreaInfo<'a> {
 		self
 	}
 
-	/// Set `pColorAttachmentFormats` and its checked native count `colorAttachmentCount`.
+	/// Set native count `colorAttachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "colorAttachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn color_attachment_count(mut self, value: u32) -> Self {
+		self.color_attachment_count = value;
+		self
+	}
+
+	/// Borrow `pColorAttachmentFormats` and set checked native count `colorAttachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pColorAttachmentFormats")]
 	#[inline]
 	pub fn color_attachment_formats(
@@ -39839,6 +42510,18 @@ impl<'a> Default for QueueFamilyGlobalPriorityProperties<'a> {
 }
 
 impl<'a> QueueFamilyGlobalPriorityProperties<'a> {
+	/// Set native count `priorityCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "priorityCount")]
+	#[inline]
+	#[must_use]
+	pub fn priority_count(mut self, value: u32) -> Self {
+		self.priority_count = value;
+		self
+	}
+
 	/// Set native field `priorities` without native effects.
 	#[inline]
 	#[must_use]
@@ -40024,6 +42707,34 @@ impl<'a> DebugUtilsObjectTagInfoEXT<'a> {
 		self
 	}
 
+	/// Set native count `tagSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "tagSize")]
+	#[inline]
+	#[must_use]
+	pub fn tag_size(mut self, value: usize) -> Self {
+		self.tag_size = value;
+		self
+	}
+
+	/// Borrow `pTag` and set checked native byte size `tagSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pTag")]
+	#[inline]
+	pub fn tag(mut self, value: &'a [u8]) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.tag_size = count;
+		self.p_tag = value.as_ptr().cast();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -40183,6 +42894,20 @@ impl<'a> DebugUtilsMessengerCreateInfoEXT<'a> {
 		self
 	}
 
+	/// Set native pointer `pUserData` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pUserData")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn user_data(mut self, value: *mut std::ffi::c_void) -> Self {
+		self.p_user_data = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -40291,11 +43016,25 @@ impl<'a> DebugUtilsMessengerCallbackDataEXT<'a> {
 		self
 	}
 
-	/// Set `pQueueLabels` and its checked native count `queueLabelCount`.
+	/// Set native count `queueLabelCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "queueLabelCount")]
+	#[inline]
+	#[must_use]
+	pub fn queue_label_count(mut self, value: u32) -> Self {
+		self.queue_label_count = value;
+		self
+	}
+
+	/// Borrow `pQueueLabels` and set checked native count `queueLabelCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pQueueLabels")]
 	#[inline]
 	pub fn queue_labels(
@@ -40308,11 +43047,25 @@ impl<'a> DebugUtilsMessengerCallbackDataEXT<'a> {
 		Ok(self)
 	}
 
-	/// Set `pCmdBufLabels` and its checked native count `cmdBufLabelCount`.
+	/// Set native count `cmdBufLabelCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "cmdBufLabelCount")]
+	#[inline]
+	#[must_use]
+	pub fn cmd_buf_label_count(mut self, value: u32) -> Self {
+		self.cmd_buf_label_count = value;
+		self
+	}
+
+	/// Borrow `pCmdBufLabels` and set checked native count `cmdBufLabelCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pCmdBufLabels")]
 	#[inline]
 	pub fn cmd_buf_labels(
@@ -40325,11 +43078,25 @@ impl<'a> DebugUtilsMessengerCallbackDataEXT<'a> {
 		Ok(self)
 	}
 
-	/// Set `pObjects` and its checked native count `objectCount`.
+	/// Set native count `objectCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "objectCount")]
+	#[inline]
+	#[must_use]
+	pub fn object_count(mut self, value: u32) -> Self {
+		self.object_count = value;
+		self
+	}
+
+	/// Borrow `pObjects` and set checked native count `objectCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pObjects")]
 	#[inline]
 	pub fn objects(
@@ -40464,6 +43231,20 @@ impl<'a> DeviceDeviceMemoryReportCreateInfoEXT<'a> {
 	#[must_use]
 	pub fn pfn_user_callback(mut self, value: PFN_vkDeviceMemoryReportCallbackEXT) -> Self {
 		self.pfn_user_callback = value;
+		self
+	}
+
+	/// Set native pointer `pUserData` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pUserData")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn user_data(mut self, value: *mut std::ffi::c_void) -> Self {
+		self.p_user_data = value;
 		self
 	}
 
@@ -40645,6 +43426,20 @@ impl<'a> ImportMemoryHostPointerInfoEXT<'a> {
 	#[must_use]
 	pub fn handle_type(mut self, value: ExternalMemoryHandleTypeFlagBits) -> Self {
 		self.handle_type = value;
+		self
+	}
+
+	/// Set native pointer `pHostPointer` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pHostPointer")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn host_pointer(mut self, value: *mut std::ffi::c_void) -> Self {
+		self.p_host_pointer = value;
 		self
 	}
 
@@ -42015,11 +44810,25 @@ impl<'a> Default for DescriptorSetLayoutBindingFlagsCreateInfo<'a> {
 }
 
 impl<'a> DescriptorSetLayoutBindingFlagsCreateInfo<'a> {
-	/// Set `pBindingFlags` and its checked native count `bindingCount`.
+	/// Set native count `bindingCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "bindingCount")]
+	#[inline]
+	#[must_use]
+	pub fn binding_count(mut self, value: u32) -> Self {
+		self.binding_count = value;
+		self
+	}
+
+	/// Borrow `pBindingFlags` and set checked native count `bindingCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pBindingFlags")]
 	#[inline]
 	pub fn binding_flags(
@@ -42087,11 +44896,25 @@ impl<'a> Default for DescriptorSetVariableDescriptorCountAllocateInfo<'a> {
 }
 
 impl<'a> DescriptorSetVariableDescriptorCountAllocateInfo<'a> {
-	/// Set `pDescriptorCounts` and its checked native count `descriptorSetCount`.
+	/// Set native count `descriptorSetCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "descriptorSetCount")]
+	#[inline]
+	#[must_use]
+	pub fn descriptor_set_count(mut self, value: u32) -> Self {
+		self.descriptor_set_count = value;
+		self
+	}
+
+	/// Borrow `pDescriptorCounts` and set checked native count `descriptorSetCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDescriptorCounts")]
 	#[inline]
 	pub fn descriptor_counts(
@@ -42502,11 +45325,25 @@ impl<'a> SubpassDescription2<'a> {
 		self
 	}
 
-	/// Set `pInputAttachments` and its checked native count `inputAttachmentCount`.
+	/// Set native count `inputAttachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "inputAttachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn input_attachment_count(mut self, value: u32) -> Self {
+		self.input_attachment_count = value;
+		self
+	}
+
+	/// Borrow `pInputAttachments` and set checked native count `inputAttachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pInputAttachments")]
 	#[inline]
 	pub fn input_attachments(
@@ -42519,6 +45356,56 @@ impl<'a> SubpassDescription2<'a> {
 		Ok(self)
 	}
 
+	/// Set native count `colorAttachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "colorAttachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn color_attachment_count(mut self, value: u32) -> Self {
+		self.color_attachment_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `colorAttachmentCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pColorAttachments")]
+	#[inline]
+	pub fn color_attachments(
+		mut self,
+		color_attachments: &'a [AttachmentReference2<'a>],
+		resolve_attachments: Option<&'a [AttachmentReference2<'a>]>,
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = color_attachments.len();
+		if color_attachments.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pColorAttachments",
+				expected,
+				actual: color_attachments.len(),
+			});
+		}
+		if let Some(value) = &resolve_attachments
+			&& value.len() != expected
+		{
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pResolveAttachments",
+				expected,
+				actual: value.len(),
+			});
+		}
+		let count = crate::construction::count("pColorAttachments", expected)?;
+		self.p_color_attachments = color_attachments.as_ptr();
+		self.p_resolve_attachments =
+			resolve_attachments.map_or(std::ptr::null(), |value| value.as_ptr());
+		self.color_attachment_count = count;
+		Ok(self)
+	}
+
 	/// Set native field `pDepthStencilAttachment` without native effects.
 	#[doc(alias = "pDepthStencilAttachment")]
 	#[inline]
@@ -42528,11 +45415,25 @@ impl<'a> SubpassDescription2<'a> {
 		self
 	}
 
-	/// Set `pPreserveAttachments` and its checked native count `preserveAttachmentCount`.
+	/// Set native count `preserveAttachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "preserveAttachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn preserve_attachment_count(mut self, value: u32) -> Self {
+		self.preserve_attachment_count = value;
+		self
+	}
+
+	/// Borrow `pPreserveAttachments` and set checked native count `preserveAttachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPreserveAttachments")]
 	#[inline]
 	pub fn preserve_attachments(
@@ -42771,11 +45672,25 @@ impl<'a> RenderPassCreateInfo2<'a> {
 		self
 	}
 
-	/// Set `pAttachments` and its checked native count `attachmentCount`.
+	/// Set native count `attachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "attachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn attachment_count(mut self, value: u32) -> Self {
+		self.attachment_count = value;
+		self
+	}
+
+	/// Borrow `pAttachments` and set checked native count `attachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pAttachments")]
 	#[inline]
 	pub fn attachments(
@@ -42788,11 +45703,25 @@ impl<'a> RenderPassCreateInfo2<'a> {
 		Ok(self)
 	}
 
-	/// Set `pSubpasses` and its checked native count `subpassCount`.
+	/// Set native count `subpassCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "subpassCount")]
+	#[inline]
+	#[must_use]
+	pub fn subpass_count(mut self, value: u32) -> Self {
+		self.subpass_count = value;
+		self
+	}
+
+	/// Borrow `pSubpasses` and set checked native count `subpassCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSubpasses")]
 	#[inline]
 	pub fn subpasses(
@@ -42805,11 +45734,25 @@ impl<'a> RenderPassCreateInfo2<'a> {
 		Ok(self)
 	}
 
-	/// Set `pDependencies` and its checked native count `dependencyCount`.
+	/// Set native count `dependencyCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "dependencyCount")]
+	#[inline]
+	#[must_use]
+	pub fn dependency_count(mut self, value: u32) -> Self {
+		self.dependency_count = value;
+		self
+	}
+
+	/// Borrow `pDependencies` and set checked native count `dependencyCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDependencies")]
 	#[inline]
 	pub fn dependencies(
@@ -42822,11 +45765,25 @@ impl<'a> RenderPassCreateInfo2<'a> {
 		Ok(self)
 	}
 
-	/// Set `pCorrelatedViewMasks` and its checked native count `correlatedViewMaskCount`.
+	/// Set native count `correlatedViewMaskCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "correlatedViewMaskCount")]
+	#[inline]
+	#[must_use]
+	pub fn correlated_view_mask_count(mut self, value: u32) -> Self {
+		self.correlated_view_mask_count = value;
+		self
+	}
+
+	/// Borrow `pCorrelatedViewMasks` and set checked native count `correlatedViewMaskCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pCorrelatedViewMasks")]
 	#[inline]
 	pub fn correlated_view_masks(
@@ -43199,11 +46156,25 @@ impl<'a> Default for TimelineSemaphoreSubmitInfo<'a> {
 }
 
 impl<'a> TimelineSemaphoreSubmitInfo<'a> {
-	/// Set `pWaitSemaphoreValues` and its checked native count `waitSemaphoreValueCount`.
+	/// Set native count `waitSemaphoreValueCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "waitSemaphoreValueCount")]
+	#[inline]
+	#[must_use]
+	pub fn wait_semaphore_value_count(mut self, value: u32) -> Self {
+		self.wait_semaphore_value_count = value;
+		self
+	}
+
+	/// Borrow `pWaitSemaphoreValues` and set checked native count `waitSemaphoreValueCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pWaitSemaphoreValues")]
 	#[inline]
 	pub fn wait_semaphore_values(
@@ -43216,11 +46187,25 @@ impl<'a> TimelineSemaphoreSubmitInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pSignalSemaphoreValues` and its checked native count `signalSemaphoreValueCount`.
+	/// Set native count `signalSemaphoreValueCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "signalSemaphoreValueCount")]
+	#[inline]
+	#[must_use]
+	pub fn signal_semaphore_value_count(mut self, value: u32) -> Self {
+		self.signal_semaphore_value_count = value;
+		self
+	}
+
+	/// Borrow `pSignalSemaphoreValues` and set checked native count `signalSemaphoreValueCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSignalSemaphoreValues")]
 	#[inline]
 	pub fn signal_semaphore_values(
@@ -43300,24 +46285,47 @@ impl<'a> SemaphoreWaitInfo<'a> {
 		self
 	}
 
-	/// Borrow parallel native arrays and set their shared checked count.
+	/// Set native count `semaphoreCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "semaphoreCount")]
+	#[inline]
+	#[must_use]
+	pub fn semaphore_count(mut self, value: u32) -> Self {
+		self.semaphore_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `semaphoreCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
 	///
 	/// # Errors
 	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pSemaphores")]
 	#[inline]
 	pub fn semaphores(
 		mut self,
 		semaphores: &'a [Semaphore],
 		values: &'a [u64],
 	) -> std::result::Result<Self, crate::ConstructionError> {
-		if semaphores.len() != values.len() {
+		let expected = semaphores.len();
+		if semaphores.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pSemaphores",
+				expected,
+				actual: semaphores.len(),
+			});
+		}
+		if values.len() != expected {
 			return Err(crate::ConstructionError::LengthMismatch {
 				field: "pValues",
-				expected: semaphores.len(),
+				expected,
 				actual: values.len(),
 			});
 		}
-		let count = crate::construction::count("pSemaphores", semaphores.len())?;
+		let count = crate::construction::count("pSemaphores", expected)?;
 		self.p_semaphores = semaphores.as_ptr();
 		self.p_values = values.as_ptr();
 		self.semaphore_count = count;
@@ -43491,11 +46499,25 @@ impl<'a> Default for PipelineVertexInputDivisorStateCreateInfo<'a> {
 }
 
 impl<'a> PipelineVertexInputDivisorStateCreateInfo<'a> {
-	/// Set `pVertexBindingDivisors` and its checked native count `vertexBindingDivisorCount`.
+	/// Set native count `vertexBindingDivisorCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "vertexBindingDivisorCount")]
+	#[inline]
+	#[must_use]
+	pub fn vertex_binding_divisor_count(mut self, value: u32) -> Self {
+		self.vertex_binding_divisor_count = value;
+		self
+	}
+
+	/// Borrow `pVertexBindingDivisors` and set checked native count `vertexBindingDivisorCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pVertexBindingDivisors")]
 	#[inline]
 	pub fn vertex_binding_divisors(
@@ -43788,6 +46810,19 @@ impl<'a> Default for ImportAndroidHardwareBufferInfoANDROID<'a> {
 
 #[cfg(feature = "platform-android")]
 impl<'a> ImportAndroidHardwareBufferInfoANDROID<'a> {
+	/// Set native pointer `buffer` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn buffer(mut self, value: *mut AHardwareBuffer) -> Self {
+		self.buffer = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -45108,6 +48143,20 @@ impl<'a> CheckpointDataNV<'a> {
 		self
 	}
 
+	/// Set native pointer `pCheckpointMarker` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pCheckpointMarker")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn checkpoint_marker(mut self, value: *mut std::ffi::c_void) -> Self {
+		self.p_checkpoint_marker = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -45917,11 +48966,25 @@ impl<'a> Default for PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
 }
 
 impl<'a> PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
-	/// Set `pExclusiveScissors` and its checked native count `exclusiveScissorCount`.
+	/// Set native count `exclusiveScissorCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "exclusiveScissorCount")]
+	#[inline]
+	#[must_use]
+	pub fn exclusive_scissor_count(mut self, value: u32) -> Self {
+		self.exclusive_scissor_count = value;
+		self
+	}
+
+	/// Borrow `pExclusiveScissors` and set checked native count `exclusiveScissorCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pExclusiveScissors")]
 	#[inline]
 	pub fn exclusive_scissors(
@@ -46597,11 +49660,25 @@ impl<'a> Default for ShadingRatePaletteNV<'a> {
 }
 
 impl<'a> ShadingRatePaletteNV<'a> {
-	/// Set `pShadingRatePaletteEntries` and its checked native count `shadingRatePaletteEntryCount`.
+	/// Set native count `shadingRatePaletteEntryCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "shadingRatePaletteEntryCount")]
+	#[inline]
+	#[must_use]
+	pub fn shading_rate_palette_entry_count(mut self, value: u32) -> Self {
+		self.shading_rate_palette_entry_count = value;
+		self
+	}
+
+	/// Borrow `pShadingRatePaletteEntries` and set checked native count `shadingRatePaletteEntryCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pShadingRatePaletteEntries")]
 	#[inline]
 	pub fn shading_rate_palette_entries(
@@ -46659,11 +49736,25 @@ impl<'a> PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
 		self
 	}
 
-	/// Set `pShadingRatePalettes` and its checked native count `viewportCount`.
+	/// Set native count `viewportCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "viewportCount")]
+	#[inline]
+	#[must_use]
+	pub fn viewport_count(mut self, value: u32) -> Self {
+		self.viewport_count = value;
+		self
+	}
+
+	/// Borrow `pShadingRatePalettes` and set checked native count `viewportCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pShadingRatePalettes")]
 	#[inline]
 	pub fn shading_rate_palettes(
@@ -46997,11 +50088,25 @@ impl<'a> CoarseSampleOrderCustomNV<'a> {
 		self
 	}
 
-	/// Set `pSampleLocations` and its checked native count `sampleLocationCount`.
+	/// Set native count `sampleLocationCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "sampleLocationCount")]
+	#[inline]
+	#[must_use]
+	pub fn sample_location_count(mut self, value: u32) -> Self {
+		self.sample_location_count = value;
+		self
+	}
+
+	/// Borrow `pSampleLocations` and set checked native count `sampleLocationCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSampleLocations")]
 	#[inline]
 	pub fn sample_locations(
@@ -47059,11 +50164,25 @@ impl<'a> PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
 		self
 	}
 
-	/// Set `pCustomSampleOrders` and its checked native count `customSampleOrderCount`.
+	/// Set native count `customSampleOrderCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "customSampleOrderCount")]
+	#[inline]
+	#[must_use]
+	pub fn custom_sample_order_count(mut self, value: u32) -> Self {
+		self.custom_sample_order_count = value;
+		self
+	}
+
+	/// Borrow `pCustomSampleOrders` and set checked native count `customSampleOrderCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pCustomSampleOrders")]
 	#[inline]
 	pub fn custom_sample_orders(
@@ -48129,6 +51248,23 @@ impl<'a> RayTracingShaderGroupCreateInfoKHR<'a> {
 		self
 	}
 
+	/// Set native pointer `pShaderGroupCaptureReplayHandle` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pShaderGroupCaptureReplayHandle")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn shader_group_capture_replay_handle(
+		mut self,
+		value: *const std::ffi::c_void,
+	) -> Self {
+		self.p_shader_group_capture_replay_handle = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -48206,11 +51342,25 @@ impl<'a> RayTracingPipelineCreateInfoNV<'a> {
 		self
 	}
 
-	/// Set `pStages` and its checked native count `stageCount`.
+	/// Set native count `stageCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stageCount")]
+	#[inline]
+	#[must_use]
+	pub fn stage_count(mut self, value: u32) -> Self {
+		self.stage_count = value;
+		self
+	}
+
+	/// Borrow `pStages` and set checked native count `stageCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStages")]
 	#[inline]
 	pub fn stages(
@@ -48223,11 +51373,25 @@ impl<'a> RayTracingPipelineCreateInfoNV<'a> {
 		Ok(self)
 	}
 
-	/// Set `pGroups` and its checked native count `groupCount`.
+	/// Set native count `groupCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "groupCount")]
+	#[inline]
+	#[must_use]
+	pub fn group_count(mut self, value: u32) -> Self {
+		self.group_count = value;
+		self
+	}
+
+	/// Borrow `pGroups` and set checked native count `groupCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pGroups")]
 	#[inline]
 	pub fn groups(
@@ -48361,11 +51525,25 @@ impl<'a> RayTracingPipelineCreateInfoKHR<'a> {
 		self
 	}
 
-	/// Set `pStages` and its checked native count `stageCount`.
+	/// Set native count `stageCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stageCount")]
+	#[inline]
+	#[must_use]
+	pub fn stage_count(mut self, value: u32) -> Self {
+		self.stage_count = value;
+		self
+	}
+
+	/// Borrow `pStages` and set checked native count `stageCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStages")]
 	#[inline]
 	pub fn stages(
@@ -48378,11 +51556,25 @@ impl<'a> RayTracingPipelineCreateInfoKHR<'a> {
 		Ok(self)
 	}
 
-	/// Set `pGroups` and its checked native count `groupCount`.
+	/// Set native count `groupCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "groupCount")]
+	#[inline]
+	#[must_use]
+	pub fn group_count(mut self, value: u32) -> Self {
+		self.group_count = value;
+		self
+	}
+
+	/// Borrow `pGroups` and set checked native count `groupCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pGroups")]
 	#[inline]
 	pub fn groups(
@@ -48920,11 +52112,25 @@ impl<'a> AccelerationStructureInfoNV<'a> {
 		self
 	}
 
-	/// Set `pGeometries` and its checked native count `geometryCount`.
+	/// Set native count `geometryCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "geometryCount")]
+	#[inline]
+	#[must_use]
+	pub fn geometry_count(mut self, value: u32) -> Self {
+		self.geometry_count = value;
+		self
+	}
+
+	/// Borrow `pGeometries` and set checked native count `geometryCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pGeometries")]
 	#[inline]
 	pub fn geometries(
@@ -49087,11 +52293,25 @@ impl<'a> BindAccelerationStructureMemoryInfoNV<'a> {
 		self
 	}
 
-	/// Set `pDeviceIndices` and its checked native count `deviceIndexCount`.
+	/// Set native count `deviceIndexCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "deviceIndexCount")]
+	#[inline]
+	#[must_use]
+	pub fn device_index_count(mut self, value: u32) -> Self {
+		self.device_index_count = value;
+		self
+	}
+
+	/// Borrow `pDeviceIndices` and set checked native count `deviceIndexCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDeviceIndices")]
 	#[inline]
 	pub fn device_indices(
@@ -49154,11 +52374,25 @@ impl<'a> Default for WriteDescriptorSetAccelerationStructureKHR<'a> {
 }
 
 impl<'a> WriteDescriptorSetAccelerationStructureKHR<'a> {
-	/// Set `pAccelerationStructures` and its checked native count `accelerationStructureCount`.
+	/// Set native count `accelerationStructureCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "accelerationStructureCount")]
+	#[inline]
+	#[must_use]
+	pub fn acceleration_structure_count(mut self, value: u32) -> Self {
+		self.acceleration_structure_count = value;
+		self
+	}
+
+	/// Borrow `pAccelerationStructures` and set checked native count `accelerationStructureCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pAccelerationStructures")]
 	#[inline]
 	pub fn acceleration_structures(
@@ -49221,11 +52455,25 @@ impl<'a> Default for WriteDescriptorSetAccelerationStructureNV<'a> {
 }
 
 impl<'a> WriteDescriptorSetAccelerationStructureNV<'a> {
-	/// Set `pAccelerationStructures` and its checked native count `accelerationStructureCount`.
+	/// Set native count `accelerationStructureCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "accelerationStructureCount")]
+	#[inline]
+	#[must_use]
+	pub fn acceleration_structure_count(mut self, value: u32) -> Self {
+		self.acceleration_structure_count = value;
+		self
+	}
+
+	/// Borrow `pAccelerationStructures` and set checked native count `accelerationStructureCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pAccelerationStructures")]
 	#[inline]
 	pub fn acceleration_structures(
@@ -50393,6 +53641,37 @@ impl<'a> Default for DrmFormatModifierPropertiesListEXT<'a> {
 }
 
 impl<'a> DrmFormatModifierPropertiesListEXT<'a> {
+	/// Set native count `drmFormatModifierCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "drmFormatModifierCount")]
+	#[inline]
+	#[must_use]
+	pub fn drm_format_modifier_count(mut self, value: u32) -> Self {
+		self.drm_format_modifier_count = value;
+		self
+	}
+
+	/// Borrow `pDrmFormatModifierProperties` and set checked native count `drmFormatModifierCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pDrmFormatModifierProperties")]
+	#[inline]
+	pub fn drm_format_modifier_properties(
+		mut self,
+		value: &'a mut [DrmFormatModifierPropertiesEXT],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pDrmFormatModifierProperties", value.len())?;
+		self.drm_format_modifier_count = count;
+		self.p_drm_format_modifier_properties = value.as_mut_ptr();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -50520,11 +53799,25 @@ impl<'a> PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {
 		self
 	}
 
-	/// Set `pQueueFamilyIndices` and its checked native count `queueFamilyIndexCount`.
+	/// Set native count `queueFamilyIndexCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "queueFamilyIndexCount")]
+	#[inline]
+	#[must_use]
+	pub fn queue_family_index_count(mut self, value: u32) -> Self {
+		self.queue_family_index_count = value;
+		self
+	}
+
+	/// Borrow `pQueueFamilyIndices` and set checked native count `queueFamilyIndexCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pQueueFamilyIndices")]
 	#[inline]
 	pub fn queue_family_indices(
@@ -50587,11 +53880,25 @@ impl<'a> Default for ImageDrmFormatModifierListCreateInfoEXT<'a> {
 }
 
 impl<'a> ImageDrmFormatModifierListCreateInfoEXT<'a> {
-	/// Set `pDrmFormatModifiers` and its checked native count `drmFormatModifierCount`.
+	/// Set native count `drmFormatModifierCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "drmFormatModifierCount")]
+	#[inline]
+	#[must_use]
+	pub fn drm_format_modifier_count(mut self, value: u32) -> Self {
+		self.drm_format_modifier_count = value;
+		self
+	}
+
+	/// Borrow `pDrmFormatModifiers` and set checked native count `drmFormatModifierCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDrmFormatModifiers")]
 	#[inline]
 	pub fn drm_format_modifiers(
@@ -50666,11 +53973,25 @@ impl<'a> ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
 		self
 	}
 
-	/// Set `pPlaneLayouts` and its checked native count `drmFormatModifierPlaneCount`.
+	/// Set native count `drmFormatModifierPlaneCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "drmFormatModifierPlaneCount")]
+	#[inline]
+	#[must_use]
+	pub fn drm_format_modifier_plane_count(mut self, value: u32) -> Self {
+		self.drm_format_modifier_plane_count = value;
+		self
+	}
+
+	/// Borrow `pPlaneLayouts` and set checked native count `drmFormatModifierPlaneCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPlaneLayouts")]
 	#[inline]
 	pub fn plane_layouts(
@@ -51447,11 +54768,25 @@ impl<'a> Default for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
 }
 
 impl<'a> RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
-	/// Set `pFragmentDensityOffsets` and its checked native count `fragmentDensityOffsetCount`.
+	/// Set native count `fragmentDensityOffsetCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "fragmentDensityOffsetCount")]
+	#[inline]
+	#[must_use]
+	pub fn fragment_density_offset_count(mut self, value: u32) -> Self {
+		self.fragment_density_offset_count = value;
+		self
+	}
+
+	/// Borrow `pFragmentDensityOffsets` and set checked native count `fragmentDensityOffsetCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pFragmentDensityOffsets")]
 	#[inline]
 	pub fn fragment_density_offsets(
@@ -52586,11 +55921,25 @@ impl<'a> Default for FramebufferAttachmentsCreateInfo<'a> {
 }
 
 impl<'a> FramebufferAttachmentsCreateInfo<'a> {
-	/// Set `pAttachmentImageInfos` and its checked native count `attachmentImageInfoCount`.
+	/// Set native count `attachmentImageInfoCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "attachmentImageInfoCount")]
+	#[inline]
+	#[must_use]
+	pub fn attachment_image_info_count(mut self, value: u32) -> Self {
+		self.attachment_image_info_count = value;
+		self
+	}
+
+	/// Borrow `pAttachmentImageInfos` and set checked native count `attachmentImageInfoCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pAttachmentImageInfos")]
 	#[inline]
 	pub fn attachment_image_infos(
@@ -52709,11 +56058,25 @@ impl<'a> FramebufferAttachmentImageInfo<'a> {
 		self
 	}
 
-	/// Set `pViewFormats` and its checked native count `viewFormatCount`.
+	/// Set native count `viewFormatCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "viewFormatCount")]
+	#[inline]
+	#[must_use]
+	pub fn view_format_count(mut self, value: u32) -> Self {
+		self.view_format_count = value;
+		self
+	}
+
+	/// Borrow `pViewFormats` and set checked native count `viewFormatCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pViewFormats")]
 	#[inline]
 	pub fn view_formats(
@@ -52780,11 +56143,25 @@ impl<'a> Default for RenderPassAttachmentBeginInfo<'a> {
 }
 
 impl<'a> RenderPassAttachmentBeginInfo<'a> {
-	/// Set `pAttachments` and its checked native count `attachmentCount`.
+	/// Set native count `attachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "attachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn attachment_count(mut self, value: u32) -> Self {
+		self.attachment_count = value;
+		self
+	}
+
+	/// Borrow `pAttachments` and set checked native count `attachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pAttachments")]
 	#[inline]
 	pub fn attachments(
@@ -53477,6 +56854,46 @@ impl<'a> Default for PipelineCreationFeedbackCreateInfo<'a> {
 }
 
 impl<'a> PipelineCreationFeedbackCreateInfo<'a> {
+	/// Set native field `pPipelineCreationFeedback` without native effects.
+	#[doc(alias = "pPipelineCreationFeedback")]
+	#[inline]
+	#[must_use]
+	pub fn pipeline_creation_feedback(mut self, value: &'a mut PipelineCreationFeedback) -> Self {
+		self.p_pipeline_creation_feedback = value;
+		self
+	}
+
+	/// Set native count `pipelineStageCreationFeedbackCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "pipelineStageCreationFeedbackCount")]
+	#[inline]
+	#[must_use]
+	pub fn pipeline_stage_creation_feedback_count(mut self, value: u32) -> Self {
+		self.pipeline_stage_creation_feedback_count = value;
+		self
+	}
+
+	/// Borrow `pPipelineStageCreationFeedbacks` and set checked native count `pipelineStageCreationFeedbackCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pPipelineStageCreationFeedbacks")]
+	#[inline]
+	pub fn pipeline_stage_creation_feedbacks(
+		mut self,
+		value: &'a mut [PipelineCreationFeedback],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pPipelineStageCreationFeedbacks", value.len())?;
+		self.pipeline_stage_creation_feedback_count = count;
+		self.p_pipeline_stage_creation_feedbacks = value.as_mut_ptr();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -54178,11 +57595,25 @@ impl<'a> QueryPoolPerformanceCreateInfoKHR<'a> {
 		self
 	}
 
-	/// Set `pCounterIndices` and its checked native count `counterIndexCount`.
+	/// Set native count `counterIndexCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "counterIndexCount")]
+	#[inline]
+	#[must_use]
+	pub fn counter_index_count(mut self, value: u32) -> Self {
+		self.counter_index_count = value;
+		self
+	}
+
+	/// Borrow `pCounterIndices` and set checked native count `counterIndexCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pCounterIndices")]
 	#[inline]
 	pub fn counter_indices(
@@ -54237,6 +57668,56 @@ impl Default for PerformanceCounterResultKHR {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
+	}
+}
+
+impl PerformanceCounterResultKHR {
+	/// Set native field `int32` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn int32(mut self, value: i32) -> Self {
+		self.int32 = value;
+		self
+	}
+
+	/// Set native field `int64` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn int64(mut self, value: i64) -> Self {
+		self.int64 = value;
+		self
+	}
+
+	/// Set native field `uint32` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn uint32(mut self, value: u32) -> Self {
+		self.uint32 = value;
+		self
+	}
+
+	/// Set native field `uint64` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn uint64(mut self, value: u64) -> Self {
+		self.uint64 = value;
+		self
+	}
+
+	/// Set native field `float32` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn float32(mut self, value: f32) -> Self {
+		self.float32 = value;
+		self
+	}
+
+	/// Set native field `float64` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn float64(mut self, value: f64) -> Self {
+		self.float64 = value;
+		self
 	}
 }
 
@@ -54689,7 +58170,7 @@ impl<'a> PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
 #[doc = "\n\n[Khronos reference: `VkPerformanceValueDataINTEL`](https://docs.vulkan.org/refpages/latest/refpages/source/VkPerformanceValueDataINTEL.html)"]
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub union PerformanceValueDataINTEL {
+pub union PerformanceValueDataINTEL<'a> {
 	/// Native field `value32`.
 	pub value32: u32,
 	/// Native field `value64`.
@@ -54703,12 +58184,59 @@ pub union PerformanceValueDataINTEL {
 	/// Native field `valueString`.
 	#[doc(alias = "valueString")]
 	pub value_string: *const std::ffi::c_char,
+	#[doc(hidden)]
+	pub _marker: std::marker::PhantomData<&'a ()>,
 }
 
-impl Default for PerformanceValueDataINTEL {
+impl<'a> Default for PerformanceValueDataINTEL<'a> {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
+	}
+}
+
+impl<'a> PerformanceValueDataINTEL<'a> {
+	/// Set native field `value32` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn value32(mut self, value: u32) -> Self {
+		self.value32 = value;
+		self
+	}
+
+	/// Set native field `value64` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn value64(mut self, value: u64) -> Self {
+		self.value64 = value;
+		self
+	}
+
+	/// Set native field `valueFloat` without native effects.
+	#[doc(alias = "valueFloat")]
+	#[inline]
+	#[must_use]
+	pub fn value_float(mut self, value: f32) -> Self {
+		self.value_float = value;
+		self
+	}
+
+	/// Set native field `valueBool` without native effects.
+	#[doc(alias = "valueBool")]
+	#[inline]
+	#[must_use]
+	pub fn value_bool(mut self, value: Bool32) -> Self {
+		self.value_bool = value;
+		self
+	}
+
+	/// Set native field `valueString` without native effects.
+	#[doc(alias = "valueString")]
+	#[inline]
+	#[must_use]
+	pub fn value_string(mut self, value: &'a std::ffi::CStr) -> Self {
+		self.value_string = value.as_ptr();
+		self
 	}
 }
 
@@ -54717,21 +58245,23 @@ impl Default for PerformanceValueDataINTEL {
 #[doc = "\n\n[Khronos reference: `VkPerformanceValueINTEL`](https://docs.vulkan.org/refpages/latest/refpages/source/VkPerformanceValueINTEL.html)"]
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct PerformanceValueINTEL {
+pub struct PerformanceValueINTEL<'a> {
 	/// Native field `type`.
 	pub r#type: PerformanceValueTypeINTEL,
 	/// Native field `data`.
-	pub data: PerformanceValueDataINTEL,
+	pub data: PerformanceValueDataINTEL<'a>,
+	#[doc(hidden)]
+	pub _marker: std::marker::PhantomData<&'a ()>,
 }
 
-impl Default for PerformanceValueINTEL {
+impl<'a> Default for PerformanceValueINTEL<'a> {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
 	}
 }
 
-impl PerformanceValueINTEL {
+impl<'a> PerformanceValueINTEL<'a> {
 	/// Set native field `type` without native effects.
 	#[inline]
 	#[must_use]
@@ -54743,7 +58273,7 @@ impl PerformanceValueINTEL {
 	/// Set native field `data` without native effects.
 	#[inline]
 	#[must_use]
-	pub fn data(mut self, value: PerformanceValueDataINTEL) -> Self {
+	pub fn data(mut self, value: PerformanceValueDataINTEL<'a>) -> Self {
 		self.data = value;
 		self
 	}
@@ -54778,6 +58308,20 @@ impl<'a> Default for InitializePerformanceApiInfoINTEL<'a> {
 }
 
 impl<'a> InitializePerformanceApiInfoINTEL<'a> {
+	/// Set native pointer `pUserData` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pUserData")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn user_data(mut self, value: *mut std::ffi::c_void) -> Self {
+		self.p_user_data = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -55978,6 +59522,40 @@ impl Default for PipelineExecutableStatisticValueKHR {
 	}
 }
 
+impl PipelineExecutableStatisticValueKHR {
+	/// Set native field `b32` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn b32(mut self, value: Bool32) -> Self {
+		self.b32 = value;
+		self
+	}
+
+	/// Set native field `i64` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn i64(mut self, value: i64) -> Self {
+		self.i64 = value;
+		self
+	}
+
+	/// Set native field `u64` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn u64(mut self, value: u64) -> Self {
+		self.u64 = value;
+		self
+	}
+
+	/// Set native field `f64` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn f64(mut self, value: f64) -> Self {
+		self.f64 = value;
+		self
+	}
+}
+
 #[doc = "Native structure `VkPipelineExecutableStatisticKHR`."]
 #[doc(alias = "VkPipelineExecutableStatisticKHR")]
 #[doc = "\n\n[Khronos reference: `VkPipelineExecutableStatisticKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/VkPipelineExecutableStatisticKHR.html)"]
@@ -56124,6 +59702,37 @@ impl<'a> PipelineExecutableInternalRepresentationKHR<'a> {
 	pub fn is_text(mut self, value: Bool32) -> Self {
 		self.is_text = value;
 		self
+	}
+
+	/// Set native count `dataSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "dataSize")]
+	#[inline]
+	#[must_use]
+	pub fn data_size(mut self, value: usize) -> Self {
+		self.data_size = value;
+		self
+	}
+
+	/// Borrow `pData` and set checked native byte size `dataSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pData")]
+	#[inline]
+	pub fn data(
+		mut self,
+		value: &'a mut [u8],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.data_size = count;
+		self.p_data = value.as_mut_ptr().cast();
+		Ok(self)
 	}
 
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
@@ -60421,6 +64030,68 @@ impl<'a> PhysicalDeviceVulkan14Properties<'a> {
 		self
 	}
 
+	/// Set native count `copySrcLayoutCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "copySrcLayoutCount")]
+	#[inline]
+	#[must_use]
+	pub fn copy_src_layout_count(mut self, value: u32) -> Self {
+		self.copy_src_layout_count = value;
+		self
+	}
+
+	/// Borrow `pCopySrcLayouts` and set checked native count `copySrcLayoutCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pCopySrcLayouts")]
+	#[inline]
+	pub fn copy_src_layouts(
+		mut self,
+		value: &'a mut [ImageLayout],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pCopySrcLayouts", value.len())?;
+		self.copy_src_layout_count = count;
+		self.p_copy_src_layouts = value.as_mut_ptr();
+		Ok(self)
+	}
+
+	/// Set native count `copyDstLayoutCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "copyDstLayoutCount")]
+	#[inline]
+	#[must_use]
+	pub fn copy_dst_layout_count(mut self, value: u32) -> Self {
+		self.copy_dst_layout_count = value;
+		self
+	}
+
+	/// Borrow `pCopyDstLayouts` and set checked native count `copyDstLayoutCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pCopyDstLayouts")]
+	#[inline]
+	pub fn copy_dst_layouts(
+		mut self,
+		value: &'a mut [ImageLayout],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pCopyDstLayouts", value.len())?;
+		self.copy_dst_layout_count = count;
+		self.p_copy_dst_layouts = value.as_mut_ptr();
+		Ok(self)
+	}
+
 	/// Set native field `optimalTilingLayoutUUID` without native effects.
 	#[doc(alias = "optimalTilingLayoutUUID")]
 	#[inline]
@@ -60826,6 +64497,37 @@ impl<'a> PhysicalDeviceGpaPropertiesAMD<'a> {
 		self
 	}
 
+	/// Set native count `perfBlockCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "perfBlockCount")]
+	#[inline]
+	#[must_use]
+	pub fn perf_block_count(mut self, value: u32) -> Self {
+		self.perf_block_count = value;
+		self
+	}
+
+	/// Borrow `pPerfBlocks` and set checked native count `perfBlockCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pPerfBlocks")]
+	#[inline]
+	pub fn perf_blocks(
+		mut self,
+		value: &'a mut [GpaPerfBlockPropertiesAMD],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pPerfBlocks", value.len())?;
+		self.perf_block_count = count;
+		self.p_perf_blocks = value.as_mut_ptr();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -61066,11 +64768,25 @@ impl<'a> GpaSampleBeginInfoAMD<'a> {
 		self
 	}
 
-	/// Set `pPerfCounters` and its checked native count `perfCounterCount`.
+	/// Set native count `perfCounterCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "perfCounterCount")]
+	#[inline]
+	#[must_use]
+	pub fn perf_counter_count(mut self, value: u32) -> Self {
+		self.perf_counter_count = value;
+		self
+	}
+
+	/// Borrow `pPerfCounters` and set checked native count `perfCounterCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPerfCounters")]
 	#[inline]
 	pub fn perf_counters(
@@ -61833,6 +65549,31 @@ impl Default for DeviceOrHostAddressKHR {
 	}
 }
 
+impl DeviceOrHostAddressKHR {
+	/// Set native field `deviceAddress` without native effects.
+	#[doc(alias = "deviceAddress")]
+	#[inline]
+	#[must_use]
+	pub fn device_address(mut self, value: DeviceAddress) -> Self {
+		self.device_address = value;
+		self
+	}
+
+	/// Set native pointer `hostAddress` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "hostAddress")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn host_address(mut self, value: *mut std::ffi::c_void) -> Self {
+		self.host_address = value;
+		self
+	}
+}
+
 #[doc = "Native union `VkDeviceOrHostAddressConstKHR`."]
 #[doc(alias = "VkDeviceOrHostAddressConstKHR")]
 #[doc = "\n\n[Khronos reference: `VkDeviceOrHostAddressConstKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/VkDeviceOrHostAddressConstKHR.html)"]
@@ -61851,6 +65592,31 @@ impl Default for DeviceOrHostAddressConstKHR {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
+	}
+}
+
+impl DeviceOrHostAddressConstKHR {
+	/// Set native field `deviceAddress` without native effects.
+	#[doc(alias = "deviceAddress")]
+	#[inline]
+	#[must_use]
+	pub fn device_address(mut self, value: DeviceAddress) -> Self {
+		self.device_address = value;
+		self
+	}
+
+	/// Set native pointer `hostAddress` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "hostAddress")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn host_address(mut self, value: *const std::ffi::c_void) -> Self {
+		self.host_address = value;
+		self
 	}
 }
 
@@ -61874,6 +65640,32 @@ impl Default for DeviceOrHostAddressConstAMDX {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
+	}
+}
+
+#[cfg(feature = "provisional")]
+impl DeviceOrHostAddressConstAMDX {
+	/// Set native field `deviceAddress` without native effects.
+	#[doc(alias = "deviceAddress")]
+	#[inline]
+	#[must_use]
+	pub fn device_address(mut self, value: DeviceAddress) -> Self {
+		self.device_address = value;
+		self
+	}
+
+	/// Set native pointer `hostAddress` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "hostAddress")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn host_address(mut self, value: *const std::ffi::c_void) -> Self {
+		self.host_address = value;
+		self
 	}
 }
 
@@ -62485,6 +66277,32 @@ impl<'a> Default for AccelerationStructureGeometryDataKHR<'a> {
 	}
 }
 
+impl<'a> AccelerationStructureGeometryDataKHR<'a> {
+	/// Set native field `triangles` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn triangles(mut self, value: AccelerationStructureGeometryTrianglesDataKHR<'a>) -> Self {
+		self.triangles = std::mem::ManuallyDrop::new(value);
+		self
+	}
+
+	/// Set native field `aabbs` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn aabbs(mut self, value: AccelerationStructureGeometryAabbsDataKHR<'a>) -> Self {
+		self.aabbs = std::mem::ManuallyDrop::new(value);
+		self
+	}
+
+	/// Set native field `instances` without native effects.
+	#[inline]
+	#[must_use]
+	pub fn instances(mut self, value: AccelerationStructureGeometryInstancesDataKHR<'a>) -> Self {
+		self.instances = std::mem::ManuallyDrop::new(value);
+		self
+	}
+}
+
 #[doc = "Native structure `VkAccelerationStructureGeometryKHR`."]
 #[doc(alias = "VkAccelerationStructureGeometryKHR")]
 #[doc = "\n\n[Khronos reference: `VkAccelerationStructureGeometryKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/VkAccelerationStructureGeometryKHR.html)"]
@@ -62653,11 +66471,25 @@ impl<'a> AccelerationStructureBuildGeometryInfoKHR<'a> {
 		self
 	}
 
-	/// Set `pGeometries` and its checked native count `geometryCount`.
+	/// Set native count `geometryCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "geometryCount")]
+	#[inline]
+	#[must_use]
+	pub fn geometry_count(mut self, value: u32) -> Self {
+		self.geometry_count = value;
+		self
+	}
+
+	/// Borrow `pGeometries` and set checked native count `geometryCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pGeometries")]
 	#[inline]
 	pub fn geometries(
@@ -62665,8 +66497,31 @@ impl<'a> AccelerationStructureBuildGeometryInfoKHR<'a> {
 		value: &'a [AccelerationStructureGeometryKHR<'a>],
 	) -> std::result::Result<Self, crate::ConstructionError> {
 		let count = crate::construction::count("pGeometries", value.len())?;
+		self.p_geometries = std::ptr::null();
+		self.pp_geometries = std::ptr::null();
 		self.geometry_count = count;
 		self.p_geometries = value.as_ptr();
+		Ok(self)
+	}
+
+	/// Borrow `ppGeometries` and set checked native count `geometryCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "ppGeometries")]
+	#[inline]
+	pub fn pp_geometries(
+		mut self,
+		value: &'a [*const AccelerationStructureGeometryKHR<'a>],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("ppGeometries", value.len())?;
+		self.p_geometries = std::ptr::null();
+		self.pp_geometries = std::ptr::null();
+		self.geometry_count = count;
+		self.pp_geometries = value.as_ptr();
 		Ok(self)
 	}
 
@@ -63168,6 +67023,15 @@ impl<'a> Default for AccelerationStructureVersionInfoKHR<'a> {
 }
 
 impl<'a> AccelerationStructureVersionInfoKHR<'a> {
+	/// Borrow the two UUIDs required by the native version-data extent.
+	#[doc(alias = "pVersionData")]
+	#[inline]
+	#[must_use]
+	pub fn version_data(mut self, value: &'a [u8; 2 * UUID_SIZE as usize]) -> Self {
+		self.p_version_data = value.as_ptr();
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -63508,11 +67372,25 @@ impl<'a> Default for PipelineLibraryCreateInfoKHR<'a> {
 }
 
 impl<'a> PipelineLibraryCreateInfoKHR<'a> {
-	/// Set `pLibraries` and its checked native count `libraryCount`.
+	/// Set native count `libraryCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "libraryCount")]
+	#[inline]
+	#[must_use]
+	pub fn library_count(mut self, value: u32) -> Self {
+		self.library_count = value;
+		self
+	}
+
+	/// Borrow `pLibraries` and set checked native count `libraryCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pLibraries")]
 	#[inline]
 	pub fn libraries(
@@ -65023,11 +68901,25 @@ impl<'a> Default for WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
 }
 
 impl<'a> WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
-	/// Set `pAccelerationStructures` and its checked native count `accelerationStructureCount`.
+	/// Set native count `accelerationStructureCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "accelerationStructureCount")]
+	#[inline]
+	#[must_use]
+	pub fn acceleration_structure_count(mut self, value: u32) -> Self {
+		self.acceleration_structure_count = value;
+		self
+	}
+
+	/// Borrow `pAccelerationStructures` and set checked native count `accelerationStructureCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pAccelerationStructures")]
 	#[inline]
 	pub fn acceleration_structures(
@@ -66907,11 +70799,25 @@ impl<'a> CopyBufferInfo2<'a> {
 		self
 	}
 
-	/// Set `pRegions` and its checked native count `regionCount`.
+	/// Set native count `regionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "regionCount")]
+	#[inline]
+	#[must_use]
+	pub fn region_count(mut self, value: u32) -> Self {
+		self.region_count = value;
+		self
+	}
+
+	/// Borrow `pRegions` and set checked native count `regionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRegions")]
 	#[inline]
 	pub fn regions(
@@ -67026,11 +70932,25 @@ impl<'a> CopyImageInfo2<'a> {
 		self
 	}
 
-	/// Set `pRegions` and its checked native count `regionCount`.
+	/// Set native count `regionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "regionCount")]
+	#[inline]
+	#[must_use]
+	pub fn region_count(mut self, value: u32) -> Self {
+		self.region_count = value;
+		self
+	}
+
+	/// Borrow `pRegions` and set checked native count `regionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRegions")]
 	#[inline]
 	pub fn regions(
@@ -67147,11 +71067,25 @@ impl<'a> BlitImageInfo2<'a> {
 		self
 	}
 
-	/// Set `pRegions` and its checked native count `regionCount`.
+	/// Set native count `regionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "regionCount")]
+	#[inline]
+	#[must_use]
+	pub fn region_count(mut self, value: u32) -> Self {
+		self.region_count = value;
+		self
+	}
+
+	/// Borrow `pRegions` and set checked native count `regionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRegions")]
 	#[inline]
 	pub fn regions(
@@ -67262,11 +71196,25 @@ impl<'a> CopyBufferToImageInfo2<'a> {
 		self
 	}
 
-	/// Set `pRegions` and its checked native count `regionCount`.
+	/// Set native count `regionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "regionCount")]
+	#[inline]
+	#[must_use]
+	pub fn region_count(mut self, value: u32) -> Self {
+		self.region_count = value;
+		self
+	}
+
+	/// Borrow `pRegions` and set checked native count `regionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRegions")]
 	#[inline]
 	pub fn regions(
@@ -67369,11 +71317,25 @@ impl<'a> CopyImageToBufferInfo2<'a> {
 		self
 	}
 
-	/// Set `pRegions` and its checked native count `regionCount`.
+	/// Set native count `regionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "regionCount")]
+	#[inline]
+	#[must_use]
+	pub fn region_count(mut self, value: u32) -> Self {
+		self.region_count = value;
+		self
+	}
+
+	/// Borrow `pRegions` and set checked native count `regionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRegions")]
 	#[inline]
 	pub fn regions(
@@ -67488,11 +71450,25 @@ impl<'a> ResolveImageInfo2<'a> {
 		self
 	}
 
-	/// Set `pRegions` and its checked native count `regionCount`.
+	/// Set native count `regionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "regionCount")]
+	#[inline]
+	#[must_use]
+	pub fn region_count(mut self, value: u32) -> Self {
+		self.region_count = value;
+		self
+	}
+
+	/// Borrow `pRegions` and set checked native count `regionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRegions")]
 	#[inline]
 	pub fn regions(
@@ -68868,11 +72844,25 @@ impl<'a> Default for MutableDescriptorTypeListEXT<'a> {
 }
 
 impl<'a> MutableDescriptorTypeListEXT<'a> {
-	/// Set `pDescriptorTypes` and its checked native count `descriptorTypeCount`.
+	/// Set native count `descriptorTypeCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "descriptorTypeCount")]
+	#[inline]
+	#[must_use]
+	pub fn descriptor_type_count(mut self, value: u32) -> Self {
+		self.descriptor_type_count = value;
+		self
+	}
+
+	/// Borrow `pDescriptorTypes` and set checked native count `descriptorTypeCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDescriptorTypes")]
 	#[inline]
 	pub fn descriptor_types(
@@ -68922,11 +72912,25 @@ impl<'a> Default for MutableDescriptorTypeCreateInfoEXT<'a> {
 }
 
 impl<'a> MutableDescriptorTypeCreateInfoEXT<'a> {
-	/// Set `pMutableDescriptorTypeLists` and its checked native count `mutableDescriptorTypeListCount`.
+	/// Set native count `mutableDescriptorTypeListCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "mutableDescriptorTypeListCount")]
+	#[inline]
+	#[must_use]
+	pub fn mutable_descriptor_type_list_count(mut self, value: u32) -> Self {
+		self.mutable_descriptor_type_list_count = value;
+		self
+	}
+
+	/// Borrow `pMutableDescriptorTypeLists` and set checked native count `mutableDescriptorTypeListCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pMutableDescriptorTypeLists")]
 	#[inline]
 	pub fn mutable_descriptor_type_lists(
@@ -69223,11 +73227,25 @@ impl<'a> CustomResolveCreateInfoEXT<'a> {
 		self
 	}
 
-	/// Set `pColorAttachmentFormats` and its checked native count `colorAttachmentCount`.
+	/// Set native count `colorAttachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "colorAttachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn color_attachment_count(mut self, value: u32) -> Self {
+		self.color_attachment_count = value;
+		self
+	}
+
+	/// Borrow `pColorAttachmentFormats` and set checked native count `colorAttachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pColorAttachmentFormats")]
 	#[inline]
 	pub fn color_attachment_formats(
@@ -69627,11 +73645,25 @@ impl<'a> Default for GeneratedCommandsShaderInfoEXT<'a> {
 }
 
 impl<'a> GeneratedCommandsShaderInfoEXT<'a> {
-	/// Set `pShaders` and its checked native count `shaderCount`.
+	/// Set native count `shaderCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "shaderCount")]
+	#[inline]
+	#[must_use]
+	pub fn shader_count(mut self, value: u32) -> Self {
+		self.shader_count = value;
+		self
+	}
+
+	/// Borrow `pShaders` and set checked native count `shaderCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pShaders")]
 	#[inline]
 	pub fn shaders(
@@ -69854,11 +73886,25 @@ impl<'a> Default for IndirectExecutionSetShaderLayoutInfoEXT<'a> {
 }
 
 impl<'a> IndirectExecutionSetShaderLayoutInfoEXT<'a> {
-	/// Set `pSetLayouts` and its checked native count `setLayoutCount`.
+	/// Set native count `setLayoutCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "setLayoutCount")]
+	#[inline]
+	#[must_use]
+	pub fn set_layout_count(mut self, value: u32) -> Self {
+		self.set_layout_count = value;
+		self
+	}
+
+	/// Borrow `pSetLayouts` and set checked native count `setLayoutCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSetLayouts")]
 	#[inline]
 	pub fn set_layouts(
@@ -69933,6 +73979,55 @@ impl<'a> Default for IndirectExecutionSetShaderInfoEXT<'a> {
 }
 
 impl<'a> IndirectExecutionSetShaderInfoEXT<'a> {
+	/// Set native count `shaderCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "shaderCount")]
+	#[inline]
+	#[must_use]
+	pub fn shader_count(mut self, value: u32) -> Self {
+		self.shader_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `shaderCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pInitialShaders")]
+	#[inline]
+	pub fn initial_shaders(
+		mut self,
+		initial_shaders: &'a [ShaderEXT],
+		set_layout_infos: Option<&'a [IndirectExecutionSetShaderLayoutInfoEXT<'a>]>,
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = initial_shaders.len();
+		if initial_shaders.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pInitialShaders",
+				expected,
+				actual: initial_shaders.len(),
+			});
+		}
+		if let Some(value) = &set_layout_infos
+			&& value.len() != expected
+		{
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pSetLayoutInfos",
+				expected,
+				actual: value.len(),
+			});
+		}
+		let count = crate::construction::count("pInitialShaders", expected)?;
+		self.p_initial_shaders = initial_shaders.as_ptr();
+		self.p_set_layout_infos = set_layout_infos.map_or(std::ptr::null(), |value| value.as_ptr());
+		self.shader_count = count;
+		Ok(self)
+	}
+
 	/// Set native field `maxShaderCount` without native effects.
 	#[doc(alias = "maxShaderCount")]
 	#[inline]
@@ -69942,11 +74037,25 @@ impl<'a> IndirectExecutionSetShaderInfoEXT<'a> {
 		self
 	}
 
-	/// Set `pPushConstantRanges` and its checked native count `pushConstantRangeCount`.
+	/// Set native count `pushConstantRangeCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "pushConstantRangeCount")]
+	#[inline]
+	#[must_use]
+	pub fn push_constant_range_count(mut self, value: u32) -> Self {
+		self.push_constant_range_count = value;
+		self
+	}
+
+	/// Borrow `pPushConstantRanges` and set checked native count `pushConstantRangeCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPushConstantRanges")]
 	#[inline]
 	pub fn push_constant_ranges(
@@ -69997,6 +74106,26 @@ impl<'a> Default for IndirectExecutionSetInfoEXT<'a> {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
+	}
+}
+
+impl<'a> IndirectExecutionSetInfoEXT<'a> {
+	/// Set native field `pPipelineInfo` without native effects.
+	#[doc(alias = "pPipelineInfo")]
+	#[inline]
+	#[must_use]
+	pub fn pipeline_info(mut self, value: &'a IndirectExecutionSetPipelineInfoEXT<'a>) -> Self {
+		self.p_pipeline_info = value;
+		self
+	}
+
+	/// Set native field `pShaderInfo` without native effects.
+	#[doc(alias = "pShaderInfo")]
+	#[inline]
+	#[must_use]
+	pub fn shader_info(mut self, value: &'a IndirectExecutionSetShaderInfoEXT<'a>) -> Self {
+		self.p_shader_info = value;
+		self
 	}
 }
 
@@ -70434,11 +74563,25 @@ impl<'a> IndirectCommandsLayoutCreateInfoEXT<'a> {
 		self
 	}
 
-	/// Set `pTokens` and its checked native count `tokenCount`.
+	/// Set native count `tokenCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "tokenCount")]
+	#[inline]
+	#[must_use]
+	pub fn token_count(mut self, value: u32) -> Self {
+		self.token_count = value;
+		self
+	}
+
+	/// Borrow `pTokens` and set checked native count `tokenCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pTokens")]
 	#[inline]
 	pub fn tokens(
@@ -70483,7 +74626,7 @@ pub struct IndirectCommandsLayoutTokenEXT<'a> {
 	/// Native field `type`.
 	pub r#type: IndirectCommandsTokenTypeEXT,
 	/// Native field `data`.
-	pub data: IndirectCommandsTokenDataEXT,
+	pub data: IndirectCommandsTokenDataEXT<'a>,
 	/// Native field `offset`.
 	pub offset: u32,
 	#[doc(hidden)]
@@ -70512,7 +74655,7 @@ impl<'a> IndirectCommandsLayoutTokenEXT<'a> {
 	/// Set native field `data` without native effects.
 	#[inline]
 	#[must_use]
-	pub fn data(mut self, value: IndirectCommandsTokenDataEXT) -> Self {
+	pub fn data(mut self, value: IndirectCommandsTokenDataEXT<'a>) -> Self {
 		self.data = value;
 		self
 	}
@@ -70823,7 +74966,7 @@ impl IndirectCommandsExecutionSetTokenEXT {
 #[doc = "\n\n[Khronos reference: `VkIndirectCommandsTokenDataEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/VkIndirectCommandsTokenDataEXT.html)"]
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub union IndirectCommandsTokenDataEXT {
+pub union IndirectCommandsTokenDataEXT<'a> {
 	/// Native field `pPushConstant`.
 	#[doc(alias = "pPushConstant")]
 	pub p_push_constant: *const IndirectCommandsPushConstantTokenEXT,
@@ -70836,12 +74979,52 @@ pub union IndirectCommandsTokenDataEXT {
 	/// Native field `pExecutionSet`.
 	#[doc(alias = "pExecutionSet")]
 	pub p_execution_set: *const IndirectCommandsExecutionSetTokenEXT,
+	#[doc(hidden)]
+	pub _marker: std::marker::PhantomData<&'a ()>,
 }
 
-impl Default for IndirectCommandsTokenDataEXT {
+impl<'a> Default for IndirectCommandsTokenDataEXT<'a> {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
+	}
+}
+
+impl<'a> IndirectCommandsTokenDataEXT<'a> {
+	/// Set native field `pPushConstant` without native effects.
+	#[doc(alias = "pPushConstant")]
+	#[inline]
+	#[must_use]
+	pub fn push_constant(mut self, value: &'a IndirectCommandsPushConstantTokenEXT) -> Self {
+		self.p_push_constant = value;
+		self
+	}
+
+	/// Set native field `pVertexBuffer` without native effects.
+	#[doc(alias = "pVertexBuffer")]
+	#[inline]
+	#[must_use]
+	pub fn vertex_buffer(mut self, value: &'a IndirectCommandsVertexBufferTokenEXT) -> Self {
+		self.p_vertex_buffer = value;
+		self
+	}
+
+	/// Set native field `pIndexBuffer` without native effects.
+	#[doc(alias = "pIndexBuffer")]
+	#[inline]
+	#[must_use]
+	pub fn index_buffer(mut self, value: &'a IndirectCommandsIndexBufferTokenEXT) -> Self {
+		self.p_index_buffer = value;
+		self
+	}
+
+	/// Set native field `pExecutionSet` without native effects.
+	#[doc(alias = "pExecutionSet")]
+	#[inline]
+	#[must_use]
+	pub fn execution_set(mut self, value: &'a IndirectCommandsExecutionSetTokenEXT) -> Self {
+		self.p_execution_set = value;
+		self
 	}
 }
 
@@ -71451,11 +75634,25 @@ impl<'a> Default for PipelineColorWriteCreateInfoEXT<'a> {
 }
 
 impl<'a> PipelineColorWriteCreateInfoEXT<'a> {
-	/// Set `pColorWriteEnables` and its checked native count `attachmentCount`.
+	/// Set native count `attachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "attachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn attachment_count(mut self, value: u32) -> Self {
+		self.attachment_count = value;
+		self
+	}
+
+	/// Borrow `pColorWriteEnables` and set checked native count `attachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pColorWriteEnables")]
 	#[inline]
 	pub fn color_write_enables(
@@ -72022,11 +76219,25 @@ impl<'a> DependencyInfo<'a> {
 		self
 	}
 
-	/// Set `pMemoryBarriers` and its checked native count `memoryBarrierCount`.
+	/// Set native count `memoryBarrierCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "memoryBarrierCount")]
+	#[inline]
+	#[must_use]
+	pub fn memory_barrier_count(mut self, value: u32) -> Self {
+		self.memory_barrier_count = value;
+		self
+	}
+
+	/// Borrow `pMemoryBarriers` and set checked native count `memoryBarrierCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pMemoryBarriers")]
 	#[inline]
 	pub fn memory_barriers(
@@ -72039,11 +76250,25 @@ impl<'a> DependencyInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pBufferMemoryBarriers` and its checked native count `bufferMemoryBarrierCount`.
+	/// Set native count `bufferMemoryBarrierCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "bufferMemoryBarrierCount")]
+	#[inline]
+	#[must_use]
+	pub fn buffer_memory_barrier_count(mut self, value: u32) -> Self {
+		self.buffer_memory_barrier_count = value;
+		self
+	}
+
+	/// Borrow `pBufferMemoryBarriers` and set checked native count `bufferMemoryBarrierCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pBufferMemoryBarriers")]
 	#[inline]
 	pub fn buffer_memory_barriers(
@@ -72056,11 +76281,25 @@ impl<'a> DependencyInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pImageMemoryBarriers` and its checked native count `imageMemoryBarrierCount`.
+	/// Set native count `imageMemoryBarrierCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "imageMemoryBarrierCount")]
+	#[inline]
+	#[must_use]
+	pub fn image_memory_barrier_count(mut self, value: u32) -> Self {
+		self.image_memory_barrier_count = value;
+		self
+	}
+
+	/// Borrow `pImageMemoryBarriers` and set checked native count `imageMemoryBarrierCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pImageMemoryBarriers")]
 	#[inline]
 	pub fn image_memory_barriers(
@@ -72313,11 +76552,25 @@ impl<'a> SubmitInfo2<'a> {
 		self
 	}
 
-	/// Set `pWaitSemaphoreInfos` and its checked native count `waitSemaphoreInfoCount`.
+	/// Set native count `waitSemaphoreInfoCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "waitSemaphoreInfoCount")]
+	#[inline]
+	#[must_use]
+	pub fn wait_semaphore_info_count(mut self, value: u32) -> Self {
+		self.wait_semaphore_info_count = value;
+		self
+	}
+
+	/// Borrow `pWaitSemaphoreInfos` and set checked native count `waitSemaphoreInfoCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pWaitSemaphoreInfos")]
 	#[inline]
 	pub fn wait_semaphore_infos(
@@ -72330,11 +76583,25 @@ impl<'a> SubmitInfo2<'a> {
 		Ok(self)
 	}
 
-	/// Set `pCommandBufferInfos` and its checked native count `commandBufferInfoCount`.
+	/// Set native count `commandBufferInfoCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "commandBufferInfoCount")]
+	#[inline]
+	#[must_use]
+	pub fn command_buffer_info_count(mut self, value: u32) -> Self {
+		self.command_buffer_info_count = value;
+		self
+	}
+
+	/// Borrow `pCommandBufferInfos` and set checked native count `commandBufferInfoCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pCommandBufferInfos")]
 	#[inline]
 	pub fn command_buffer_infos(
@@ -72347,11 +76614,25 @@ impl<'a> SubmitInfo2<'a> {
 		Ok(self)
 	}
 
-	/// Set `pSignalSemaphoreInfos` and its checked native count `signalSemaphoreInfoCount`.
+	/// Set native count `signalSemaphoreInfoCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "signalSemaphoreInfoCount")]
+	#[inline]
+	#[must_use]
+	pub fn signal_semaphore_info_count(mut self, value: u32) -> Self {
+		self.signal_semaphore_info_count = value;
+		self
+	}
+
+	/// Borrow `pSignalSemaphoreInfos` and set checked native count `signalSemaphoreInfoCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSignalSemaphoreInfos")]
 	#[inline]
 	pub fn signal_semaphore_infos(
@@ -72478,6 +76759,20 @@ impl<'a> CheckpointData2NV<'a> {
 	#[must_use]
 	pub fn stage(mut self, value: PipelineStageFlags2) -> Self {
 		self.stage = value;
+		self
+	}
+
+	/// Set native pointer `pCheckpointMarker` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pCheckpointMarker")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn checkpoint_marker(mut self, value: *mut std::ffi::c_void) -> Self {
+		self.p_checkpoint_marker = value;
 		self
 	}
 
@@ -72729,6 +77024,68 @@ impl<'a> Default for PhysicalDeviceHostImageCopyProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceHostImageCopyProperties<'a> {
+	/// Set native count `copySrcLayoutCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "copySrcLayoutCount")]
+	#[inline]
+	#[must_use]
+	pub fn copy_src_layout_count(mut self, value: u32) -> Self {
+		self.copy_src_layout_count = value;
+		self
+	}
+
+	/// Borrow `pCopySrcLayouts` and set checked native count `copySrcLayoutCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pCopySrcLayouts")]
+	#[inline]
+	pub fn copy_src_layouts(
+		mut self,
+		value: &'a mut [ImageLayout],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pCopySrcLayouts", value.len())?;
+		self.copy_src_layout_count = count;
+		self.p_copy_src_layouts = value.as_mut_ptr();
+		Ok(self)
+	}
+
+	/// Set native count `copyDstLayoutCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "copyDstLayoutCount")]
+	#[inline]
+	#[must_use]
+	pub fn copy_dst_layout_count(mut self, value: u32) -> Self {
+		self.copy_dst_layout_count = value;
+		self
+	}
+
+	/// Borrow `pCopyDstLayouts` and set checked native count `copyDstLayoutCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pCopyDstLayouts")]
+	#[inline]
+	pub fn copy_dst_layouts(
+		mut self,
+		value: &'a mut [ImageLayout],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pCopyDstLayouts", value.len())?;
+		self.copy_dst_layout_count = count;
+		self.p_copy_dst_layouts = value.as_mut_ptr();
+		Ok(self)
+	}
+
 	/// Set native field `optimalTilingLayoutUUID` without native effects.
 	#[doc(alias = "optimalTilingLayoutUUID")]
 	#[inline]
@@ -72813,6 +77170,20 @@ impl<'a> Default for MemoryToImageCopy<'a> {
 }
 
 impl<'a> MemoryToImageCopy<'a> {
+	/// Set native pointer `pHostPointer` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pHostPointer")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn host_pointer(mut self, value: *const std::ffi::c_void) -> Self {
+		self.p_host_pointer = value;
+		self
+	}
+
 	/// Set native field `memoryRowLength` without native effects.
 	#[doc(alias = "memoryRowLength")]
 	#[inline]
@@ -72924,6 +77295,20 @@ impl<'a> Default for ImageToMemoryCopy<'a> {
 }
 
 impl<'a> ImageToMemoryCopy<'a> {
+	/// Set native pointer `pHostPointer` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pHostPointer")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn host_pointer(mut self, value: *mut std::ffi::c_void) -> Self {
+		self.p_host_pointer = value;
+		self
+	}
+
 	/// Set native field `memoryRowLength` without native effects.
 	#[doc(alias = "memoryRowLength")]
 	#[inline]
@@ -73057,11 +77442,25 @@ impl<'a> CopyMemoryToImageInfo<'a> {
 		self
 	}
 
-	/// Set `pRegions` and its checked native count `regionCount`.
+	/// Set native count `regionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "regionCount")]
+	#[inline]
+	#[must_use]
+	pub fn region_count(mut self, value: u32) -> Self {
+		self.region_count = value;
+		self
+	}
+
+	/// Borrow `pRegions` and set checked native count `regionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRegions")]
 	#[inline]
 	pub fn regions(
@@ -73162,11 +77561,25 @@ impl<'a> CopyImageToMemoryInfo<'a> {
 		self
 	}
 
-	/// Set `pRegions` and its checked native count `regionCount`.
+	/// Set native count `regionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "regionCount")]
+	#[inline]
+	#[must_use]
+	pub fn region_count(mut self, value: u32) -> Self {
+		self.region_count = value;
+		self
+	}
+
+	/// Borrow `pRegions` and set checked native count `regionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRegions")]
 	#[inline]
 	pub fn regions(
@@ -73291,11 +77704,25 @@ impl<'a> CopyImageToImageInfo<'a> {
 		self
 	}
 
-	/// Set `pRegions` and its checked native count `regionCount`.
+	/// Set native count `regionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "regionCount")]
+	#[inline]
+	#[must_use]
+	pub fn region_count(mut self, value: u32) -> Self {
+		self.region_count = value;
+		self
+	}
+
+	/// Borrow `pRegions` and set checked native count `regionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRegions")]
 	#[inline]
 	pub fn regions(
@@ -74242,11 +78669,25 @@ impl<'a> Default for VideoProfileListInfoKHR<'a> {
 }
 
 impl<'a> VideoProfileListInfoKHR<'a> {
-	/// Set `pProfiles` and its checked native count `profileCount`.
+	/// Set native count `profileCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "profileCount")]
+	#[inline]
+	#[must_use]
+	pub fn profile_count(mut self, value: u32) -> Self {
+		self.profile_count = value;
+		self
+	}
+
+	/// Borrow `pProfiles` and set checked native count `profileCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pProfiles")]
 	#[inline]
 	pub fn profiles(
@@ -75650,11 +80091,25 @@ impl<'a> VideoDecodeInfoKHR<'a> {
 		self
 	}
 
-	/// Set `pReferenceSlots` and its checked native count `referenceSlotCount`.
+	/// Set native count `referenceSlotCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "referenceSlotCount")]
+	#[inline]
+	#[must_use]
+	pub fn reference_slot_count(mut self, value: u32) -> Self {
+		self.reference_slot_count = value;
+		self
+	}
+
+	/// Borrow `pReferenceSlots` and set checked native count `referenceSlotCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pReferenceSlots")]
 	#[inline]
 	pub fn reference_slots(
@@ -76343,6 +80798,17 @@ impl<'a> StdVideoH264SequenceParameterSet<'a> {
 		self
 	}
 
+	/// Set native count `num_ref_frames_in_pic_order_cnt_cycle` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[inline]
+	#[must_use]
+	pub fn num_ref_frames_in_pic_order_cnt_cycle(mut self, value: u8) -> Self {
+		self.num_ref_frames_in_pic_order_cnt_cycle = value;
+		self
+	}
+
 	/// Set native field `max_num_ref_frames` without native effects.
 	#[inline]
 	#[must_use]
@@ -76413,6 +80879,25 @@ impl<'a> StdVideoH264SequenceParameterSet<'a> {
 	pub fn reserved2(mut self, value: u32) -> Self {
 		self.reserved2 = value;
 		self
+	}
+
+	/// Borrow `pOffsetForRefFrame` and set checked native count `num_ref_frames_in_pic_order_cnt_cycle`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pOffsetForRefFrame")]
+	#[inline]
+	pub fn offset_for_ref_frame(
+		mut self,
+		value: &'a [i32],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count_as::<u8>("pOffsetForRefFrame", value.len())?;
+		self.num_ref_frames_in_pic_order_cnt_cycle = count;
+		self.p_offset_for_ref_frame = value.as_ptr();
+		Ok(self)
 	}
 
 	/// Set native field `pScalingLists` without native effects.
@@ -76605,11 +81090,25 @@ impl<'a> Default for VideoDecodeH264SessionParametersAddInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeH264SessionParametersAddInfoKHR<'a> {
-	/// Set `pStdSPSs` and its checked native count `stdSPSCount`.
+	/// Set native count `stdSPSCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stdSPSCount")]
+	#[inline]
+	#[must_use]
+	pub fn std_sps_count(mut self, value: u32) -> Self {
+		self.std_sps_count = value;
+		self
+	}
+
+	/// Borrow `pStdSPSs` and set checked native count `stdSPSCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStdSPSs")]
 	#[inline]
 	pub fn std_sp_ss(
@@ -76622,11 +81121,25 @@ impl<'a> VideoDecodeH264SessionParametersAddInfoKHR<'a> {
 		Ok(self)
 	}
 
-	/// Set `pStdPPSs` and its checked native count `stdPPSCount`.
+	/// Set native count `stdPPSCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stdPPSCount")]
+	#[inline]
+	#[must_use]
+	pub fn std_pps_count(mut self, value: u32) -> Self {
+		self.std_pps_count = value;
+		self
+	}
+
+	/// Borrow `pStdPPSs` and set checked native count `stdPPSCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStdPPSs")]
 	#[inline]
 	pub fn std_pp_ss(
@@ -76852,11 +81365,25 @@ impl<'a> VideoDecodeH264PictureInfoKHR<'a> {
 		self
 	}
 
-	/// Set `pSliceOffsets` and its checked native count `sliceCount`.
+	/// Set native count `sliceCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "sliceCount")]
+	#[inline]
+	#[must_use]
+	pub fn slice_count(mut self, value: u32) -> Self {
+		self.slice_count = value;
+		self
+	}
+
+	/// Borrow `pSliceOffsets` and set checked native count `sliceCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSliceOffsets")]
 	#[inline]
 	pub fn slice_offsets(
@@ -76971,7 +81498,7 @@ pub struct StdVideoH265VideoParameterSet<'a> {
 	pub p_dec_pic_buf_mgr: *const StdVideoH265DecPicBufMgr,
 	/// Native field `pHrdParameters`.
 	#[doc(alias = "pHrdParameters")]
-	pub p_hrd_parameters: *const StdVideoH265HrdParameters,
+	pub p_hrd_parameters: *const StdVideoH265HrdParameters<'a>,
 	/// Native field `pProfileTierLevel`.
 	#[doc(alias = "pProfileTierLevel")]
 	pub p_profile_tier_level: *const StdVideoH265ProfileTierLevel,
@@ -77072,7 +81599,7 @@ impl<'a> StdVideoH265VideoParameterSet<'a> {
 	#[doc(alias = "pHrdParameters")]
 	#[inline]
 	#[must_use]
-	pub fn hrd_parameters(mut self, value: &'a StdVideoH265HrdParameters) -> Self {
+	pub fn hrd_parameters(mut self, value: &'a StdVideoH265HrdParameters<'a>) -> Self {
 		self.p_hrd_parameters = value;
 		self
 	}
@@ -77317,6 +81844,17 @@ impl<'a> StdVideoH265SequenceParameterSet<'a> {
 		self
 	}
 
+	/// Set native count `num_short_term_ref_pic_sets` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[inline]
+	#[must_use]
+	pub fn num_short_term_ref_pic_sets(mut self, value: u8) -> Self {
+		self.num_short_term_ref_pic_sets = value;
+		self
+	}
+
 	/// Set native field `num_long_term_ref_pics_sps` without native effects.
 	#[inline]
 	#[must_use]
@@ -77462,6 +82000,25 @@ impl<'a> StdVideoH265SequenceParameterSet<'a> {
 	pub fn scaling_lists(mut self, value: &'a StdVideoH265ScalingLists) -> Self {
 		self.p_scaling_lists = value;
 		self
+	}
+
+	/// Borrow `pShortTermRefPicSet` and set checked native count `num_short_term_ref_pic_sets`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pShortTermRefPicSet")]
+	#[inline]
+	pub fn short_term_ref_pic_set(
+		mut self,
+		value: &'a [StdVideoH265ShortTermRefPicSet],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count_as::<u8>("pShortTermRefPicSet", value.len())?;
+		self.num_short_term_ref_pic_sets = count;
+		self.p_short_term_ref_pic_set = value.as_ptr();
+		Ok(self)
 	}
 
 	/// Set native field `pLongTermRefPicsSps` without native effects.
@@ -78236,11 +82793,25 @@ impl<'a> Default for VideoDecodeH265SessionParametersAddInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeH265SessionParametersAddInfoKHR<'a> {
-	/// Set `pStdVPSs` and its checked native count `stdVPSCount`.
+	/// Set native count `stdVPSCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stdVPSCount")]
+	#[inline]
+	#[must_use]
+	pub fn std_vps_count(mut self, value: u32) -> Self {
+		self.std_vps_count = value;
+		self
+	}
+
+	/// Borrow `pStdVPSs` and set checked native count `stdVPSCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStdVPSs")]
 	#[inline]
 	pub fn std_vp_ss(
@@ -78253,11 +82824,25 @@ impl<'a> VideoDecodeH265SessionParametersAddInfoKHR<'a> {
 		Ok(self)
 	}
 
-	/// Set `pStdSPSs` and its checked native count `stdSPSCount`.
+	/// Set native count `stdSPSCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stdSPSCount")]
+	#[inline]
+	#[must_use]
+	pub fn std_sps_count(mut self, value: u32) -> Self {
+		self.std_sps_count = value;
+		self
+	}
+
+	/// Borrow `pStdSPSs` and set checked native count `stdSPSCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStdSPSs")]
 	#[inline]
 	pub fn std_sp_ss(
@@ -78270,11 +82855,25 @@ impl<'a> VideoDecodeH265SessionParametersAddInfoKHR<'a> {
 		Ok(self)
 	}
 
-	/// Set `pStdPPSs` and its checked native count `stdPPSCount`.
+	/// Set native count `stdPPSCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stdPPSCount")]
+	#[inline]
+	#[must_use]
+	pub fn std_pps_count(mut self, value: u32) -> Self {
+		self.std_pps_count = value;
+		self
+	}
+
+	/// Borrow `pStdPPSs` and set checked native count `stdPPSCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStdPPSs")]
 	#[inline]
 	pub fn std_pp_ss(
@@ -78524,11 +83123,25 @@ impl<'a> VideoDecodeH265PictureInfoKHR<'a> {
 		self
 	}
 
-	/// Set `pSliceSegmentOffsets` and its checked native count `sliceSegmentCount`.
+	/// Set native count `sliceSegmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "sliceSegmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn slice_segment_count(mut self, value: u32) -> Self {
+		self.slice_segment_count = value;
+		self
+	}
+
+	/// Borrow `pSliceSegmentOffsets` and set checked native count `sliceSegmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSliceSegmentOffsets")]
 	#[inline]
 	pub fn slice_segment_offsets(
@@ -79300,7 +83913,7 @@ pub struct StdVideoDecodeAV1PictureInfo<'a> {
 	pub expected_frame_id: [u32; STD_VIDEO_AV1_NUM_REF_FRAMES as usize],
 	/// Native field `pTileInfo`.
 	#[doc(alias = "pTileInfo")]
-	pub p_tile_info: *const StdVideoAV1TileInfo,
+	pub p_tile_info: *const StdVideoAV1TileInfo<'a>,
 	/// Native field `pQuantization`.
 	#[doc(alias = "pQuantization")]
 	pub p_quantization: *const StdVideoAV1Quantization,
@@ -79471,7 +84084,7 @@ impl<'a> StdVideoDecodeAV1PictureInfo<'a> {
 	#[doc(alias = "pTileInfo")]
 	#[inline]
 	#[must_use]
-	pub fn tile_info(mut self, value: &'a StdVideoAV1TileInfo) -> Self {
+	pub fn tile_info(mut self, value: &'a StdVideoAV1TileInfo<'a>) -> Self {
 		self.p_tile_info = value;
 		self
 	}
@@ -79920,6 +84533,53 @@ impl<'a> VideoDecodeAV1PictureInfoKHR<'a> {
 	pub fn frame_header_offset(mut self, value: u32) -> Self {
 		self.frame_header_offset = value;
 		self
+	}
+
+	/// Set native count `tileCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "tileCount")]
+	#[inline]
+	#[must_use]
+	pub fn tile_count(mut self, value: u32) -> Self {
+		self.tile_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `tileCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pTileOffsets")]
+	#[inline]
+	pub fn tile_offsets(
+		mut self,
+		tile_offsets: &'a [u32],
+		tile_sizes: &'a [u32],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = tile_offsets.len();
+		if tile_offsets.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pTileOffsets",
+				expected,
+				actual: tile_offsets.len(),
+			});
+		}
+		if tile_sizes.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pTileSizes",
+				expected,
+				actual: tile_sizes.len(),
+			});
+		}
+		let count = crate::construction::count("pTileOffsets", expected)?;
+		self.p_tile_offsets = tile_offsets.as_ptr();
+		self.p_tile_sizes = tile_sizes.as_ptr();
+		self.tile_count = count;
+		Ok(self)
 	}
 
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
@@ -80458,11 +85118,25 @@ impl<'a> VideoBeginCodingInfoKHR<'a> {
 		self
 	}
 
-	/// Set `pReferenceSlots` and its checked native count `referenceSlotCount`.
+	/// Set native count `referenceSlotCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "referenceSlotCount")]
+	#[inline]
+	#[must_use]
+	pub fn reference_slot_count(mut self, value: u32) -> Self {
+		self.reference_slot_count = value;
+		self
+	}
+
+	/// Borrow `pReferenceSlots` and set checked native count `referenceSlotCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pReferenceSlots")]
 	#[inline]
 	pub fn reference_slots(
@@ -80786,11 +85460,25 @@ impl<'a> VideoEncodeInfoKHR<'a> {
 		self
 	}
 
-	/// Set `pReferenceSlots` and its checked native count `referenceSlotCount`.
+	/// Set native count `referenceSlotCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "referenceSlotCount")]
+	#[inline]
+	#[must_use]
+	pub fn reference_slot_count(mut self, value: u32) -> Self {
+		self.reference_slot_count = value;
+		self
+	}
+
+	/// Borrow `pReferenceSlots` and set checked native count `referenceSlotCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pReferenceSlots")]
 	#[inline]
 	pub fn reference_slots(
@@ -81321,11 +86009,25 @@ impl<'a> VideoEncodeRateControlInfoKHR<'a> {
 		self
 	}
 
-	/// Set `pLayers` and its checked native count `layerCount`.
+	/// Set native count `layerCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "layerCount")]
+	#[inline]
+	#[must_use]
+	pub fn layer_count(mut self, value: u32) -> Self {
+		self.layer_count = value;
+		self
+	}
+
+	/// Borrow `pLayers` and set checked native count `layerCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pLayers")]
 	#[inline]
 	pub fn layers(
@@ -82289,7 +86991,7 @@ pub struct StdVideoEncodeH264PictureInfo<'a> {
 	pub reserved1: [u8; 3],
 	/// Native field `pRefLists`.
 	#[doc(alias = "pRefLists")]
-	pub p_ref_lists: *const StdVideoEncodeH264ReferenceListsInfo,
+	pub p_ref_lists: *const StdVideoEncodeH264ReferenceListsInfo<'a>,
 	#[doc(hidden)]
 	pub _marker: std::marker::PhantomData<&'a ()>,
 }
@@ -82379,7 +87081,7 @@ impl<'a> StdVideoEncodeH264PictureInfo<'a> {
 	#[doc(alias = "pRefLists")]
 	#[inline]
 	#[must_use]
-	pub fn ref_lists(mut self, value: &'a StdVideoEncodeH264ReferenceListsInfo) -> Self {
+	pub fn ref_lists(mut self, value: &'a StdVideoEncodeH264ReferenceListsInfo<'a>) -> Self {
 		self.p_ref_lists = value;
 		self
 	}
@@ -82581,11 +87283,25 @@ impl<'a> Default for VideoEncodeH264SessionParametersAddInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264SessionParametersAddInfoKHR<'a> {
-	/// Set `pStdSPSs` and its checked native count `stdSPSCount`.
+	/// Set native count `stdSPSCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stdSPSCount")]
+	#[inline]
+	#[must_use]
+	pub fn std_sps_count(mut self, value: u32) -> Self {
+		self.std_sps_count = value;
+		self
+	}
+
+	/// Borrow `pStdSPSs` and set checked native count `stdSPSCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStdSPSs")]
 	#[inline]
 	pub fn std_sp_ss(
@@ -82598,11 +87314,25 @@ impl<'a> VideoEncodeH264SessionParametersAddInfoKHR<'a> {
 		Ok(self)
 	}
 
-	/// Set `pStdPPSs` and its checked native count `stdPPSCount`.
+	/// Set native count `stdPPSCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stdPPSCount")]
+	#[inline]
+	#[must_use]
+	pub fn std_pps_count(mut self, value: u32) -> Self {
+		self.std_pps_count = value;
+		self
+	}
+
+	/// Borrow `pStdPPSs` and set checked native count `stdPPSCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStdPPSs")]
 	#[inline]
 	pub fn std_pp_ss(
@@ -82970,11 +87700,25 @@ impl<'a> Default for VideoEncodeH264PictureInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264PictureInfoKHR<'a> {
-	/// Set `pNaluSliceEntries` and its checked native count `naluSliceEntryCount`.
+	/// Set native count `naluSliceEntryCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "naluSliceEntryCount")]
+	#[inline]
+	#[must_use]
+	pub fn nalu_slice_entry_count(mut self, value: u32) -> Self {
+		self.nalu_slice_entry_count = value;
+		self
+	}
+
+	/// Borrow `pNaluSliceEntries` and set checked native count `naluSliceEntryCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pNaluSliceEntries")]
 	#[inline]
 	pub fn nalu_slice_entries(
@@ -84429,11 +89173,25 @@ impl<'a> Default for VideoEncodeH265SessionParametersAddInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265SessionParametersAddInfoKHR<'a> {
-	/// Set `pStdVPSs` and its checked native count `stdVPSCount`.
+	/// Set native count `stdVPSCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stdVPSCount")]
+	#[inline]
+	#[must_use]
+	pub fn std_vps_count(mut self, value: u32) -> Self {
+		self.std_vps_count = value;
+		self
+	}
+
+	/// Borrow `pStdVPSs` and set checked native count `stdVPSCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStdVPSs")]
 	#[inline]
 	pub fn std_vp_ss(
@@ -84446,11 +89204,25 @@ impl<'a> VideoEncodeH265SessionParametersAddInfoKHR<'a> {
 		Ok(self)
 	}
 
-	/// Set `pStdSPSs` and its checked native count `stdSPSCount`.
+	/// Set native count `stdSPSCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stdSPSCount")]
+	#[inline]
+	#[must_use]
+	pub fn std_sps_count(mut self, value: u32) -> Self {
+		self.std_sps_count = value;
+		self
+	}
+
+	/// Borrow `pStdSPSs` and set checked native count `stdSPSCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStdSPSs")]
 	#[inline]
 	pub fn std_sp_ss(
@@ -84463,11 +89235,25 @@ impl<'a> VideoEncodeH265SessionParametersAddInfoKHR<'a> {
 		Ok(self)
 	}
 
-	/// Set `pStdPPSs` and its checked native count `stdPPSCount`.
+	/// Set native count `stdPPSCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stdPPSCount")]
+	#[inline]
+	#[must_use]
+	pub fn std_pps_count(mut self, value: u32) -> Self {
+		self.std_pps_count = value;
+		self
+	}
+
+	/// Borrow `pStdPPSs` and set checked native count `stdPPSCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStdPPSs")]
 	#[inline]
 	pub fn std_pp_ss(
@@ -84824,11 +89610,25 @@ impl<'a> Default for VideoEncodeH265PictureInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265PictureInfoKHR<'a> {
-	/// Set `pNaluSliceSegmentEntries` and its checked native count `naluSliceSegmentEntryCount`.
+	/// Set native count `naluSliceSegmentEntryCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "naluSliceSegmentEntryCount")]
+	#[inline]
+	#[must_use]
+	pub fn nalu_slice_segment_entry_count(mut self, value: u32) -> Self {
+		self.nalu_slice_segment_entry_count = value;
+		self
+	}
+
+	/// Borrow `pNaluSliceSegmentEntries` and set checked native count `naluSliceSegmentEntryCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pNaluSliceSegmentEntries")]
 	#[inline]
 	pub fn nalu_slice_segment_entries(
@@ -86256,7 +91056,7 @@ pub struct StdVideoEncodeAV1PictureInfo<'a> {
 	pub delta_frame_id_minus_1: [u32; STD_VIDEO_AV1_REFS_PER_FRAME as usize],
 	/// Native field `pTileInfo`.
 	#[doc(alias = "pTileInfo")]
-	pub p_tile_info: *const StdVideoAV1TileInfo,
+	pub p_tile_info: *const StdVideoAV1TileInfo<'a>,
 	/// Native field `pQuantization`.
 	#[doc(alias = "pQuantization")]
 	pub p_quantization: *const StdVideoAV1Quantization,
@@ -86445,7 +91245,7 @@ impl<'a> StdVideoEncodeAV1PictureInfo<'a> {
 	#[doc(alias = "pTileInfo")]
 	#[inline]
 	#[must_use]
-	pub fn tile_info(mut self, value: &'a StdVideoAV1TileInfo) -> Self {
+	pub fn tile_info(mut self, value: &'a StdVideoAV1TileInfo<'a>) -> Self {
 		self.p_tile_info = value;
 		self
 	}
@@ -86510,6 +91310,15 @@ impl<'a> StdVideoEncodeAV1PictureInfo<'a> {
 	#[must_use]
 	pub fn extension_header(mut self, value: &'a StdVideoEncodeAV1ExtensionHeader) -> Self {
 		self.p_extension_header = value;
+		self
+	}
+
+	/// Set native field `pBufferRemovalTimes` without native effects.
+	#[doc(alias = "pBufferRemovalTimes")]
+	#[inline]
+	#[must_use]
+	pub fn buffer_removal_times(mut self, value: &'a u32) -> Self {
+		self.p_buffer_removal_times = value;
 		self
 	}
 }
@@ -86778,11 +91587,25 @@ impl<'a> VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {
 		self
 	}
 
-	/// Set `pStdOperatingPoints` and its checked native count `stdOperatingPointCount`.
+	/// Set native count `stdOperatingPointCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stdOperatingPointCount")]
+	#[inline]
+	#[must_use]
+	pub fn std_operating_point_count(mut self, value: u32) -> Self {
+		self.std_operating_point_count = value;
+		self
+	}
+
+	/// Borrow `pStdOperatingPoints` and set checked native count `stdOperatingPointCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStdOperatingPoints")]
 	#[inline]
 	pub fn std_operating_points(
@@ -87581,13 +92404,23 @@ impl<'a> CommandBufferInheritanceViewportScissorInfoNV<'a> {
 		self
 	}
 
-	/// Set native field `pViewportDepths` without native effects.
+	/// Borrow `pViewportDepths` and set checked native count `viewportDepthCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pViewportDepths")]
 	#[inline]
-	#[must_use]
-	pub fn viewport_depths(mut self, value: &'a Viewport) -> Self {
-		self.p_viewport_depths = value;
-		self
+	pub fn viewport_depths(
+		mut self,
+		value: &'a [Viewport],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pViewportDepths", value.len())?;
+		self.viewport_depth_count = count;
+		self.p_viewport_depths = value.as_ptr();
+		Ok(self)
 	}
 
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
@@ -88231,6 +93064,34 @@ impl<'a> Default for CuModuleCreateInfoNVX<'a> {
 }
 
 impl<'a> CuModuleCreateInfoNVX<'a> {
+	/// Set native count `dataSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "dataSize")]
+	#[inline]
+	#[must_use]
+	pub fn data_size(mut self, value: usize) -> Self {
+		self.data_size = value;
+		self
+	}
+
+	/// Borrow `pData` and set checked native byte size `dataSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pData")]
+	#[inline]
+	pub fn data(mut self, value: &'a [u8]) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.data_size = count;
+		self.p_data = value.as_ptr().cast();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -88501,6 +93362,68 @@ impl<'a> CuLaunchInfoNVX<'a> {
 	pub fn shared_mem_bytes(mut self, value: u32) -> Self {
 		self.shared_mem_bytes = value;
 		self
+	}
+
+	/// Set native count `paramCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "paramCount")]
+	#[inline]
+	#[must_use]
+	pub fn param_count(mut self, value: usize) -> Self {
+		self.param_count = value;
+		self
+	}
+
+	/// Borrow `pParams` and set checked native count `paramCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pParams")]
+	#[inline]
+	pub fn params(
+		mut self,
+		value: &'a [*const std::ffi::c_void],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.param_count = count;
+		self.p_params = value.as_ptr();
+		Ok(self)
+	}
+
+	/// Set native count `extraCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "extraCount")]
+	#[inline]
+	#[must_use]
+	pub fn extra_count(mut self, value: usize) -> Self {
+		self.extra_count = value;
+		self
+	}
+
+	/// Borrow `pExtras` and set checked native count `extraCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pExtras")]
+	#[inline]
+	pub fn extras(
+		mut self,
+		value: &'a [*const std::ffi::c_void],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.extra_count = count;
+		self.p_extras = value.as_ptr();
+		Ok(self)
 	}
 
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
@@ -89351,6 +94274,98 @@ impl<'a> Default for DescriptorDataEXT<'a> {
 	}
 }
 
+impl<'a> DescriptorDataEXT<'a> {
+	/// Set native field `pSampler` without native effects.
+	#[doc(alias = "pSampler")]
+	#[inline]
+	#[must_use]
+	pub fn sampler(mut self, value: &'a Sampler) -> Self {
+		self.p_sampler = value;
+		self
+	}
+
+	/// Set native field `pCombinedImageSampler` without native effects.
+	#[doc(alias = "pCombinedImageSampler")]
+	#[inline]
+	#[must_use]
+	pub fn combined_image_sampler(mut self, value: &'a DescriptorImageInfo) -> Self {
+		self.p_combined_image_sampler = value;
+		self
+	}
+
+	/// Set native field `pInputAttachmentImage` without native effects.
+	#[doc(alias = "pInputAttachmentImage")]
+	#[inline]
+	#[must_use]
+	pub fn input_attachment_image(mut self, value: &'a DescriptorImageInfo) -> Self {
+		self.p_input_attachment_image = value;
+		self
+	}
+
+	/// Set native field `pSampledImage` without native effects.
+	#[doc(alias = "pSampledImage")]
+	#[inline]
+	#[must_use]
+	pub fn sampled_image(mut self, value: &'a DescriptorImageInfo) -> Self {
+		self.p_sampled_image = value;
+		self
+	}
+
+	/// Set native field `pStorageImage` without native effects.
+	#[doc(alias = "pStorageImage")]
+	#[inline]
+	#[must_use]
+	pub fn storage_image(mut self, value: &'a DescriptorImageInfo) -> Self {
+		self.p_storage_image = value;
+		self
+	}
+
+	/// Set native field `pUniformTexelBuffer` without native effects.
+	#[doc(alias = "pUniformTexelBuffer")]
+	#[inline]
+	#[must_use]
+	pub fn uniform_texel_buffer(mut self, value: &'a DescriptorAddressInfoEXT<'a>) -> Self {
+		self.p_uniform_texel_buffer = value;
+		self
+	}
+
+	/// Set native field `pStorageTexelBuffer` without native effects.
+	#[doc(alias = "pStorageTexelBuffer")]
+	#[inline]
+	#[must_use]
+	pub fn storage_texel_buffer(mut self, value: &'a DescriptorAddressInfoEXT<'a>) -> Self {
+		self.p_storage_texel_buffer = value;
+		self
+	}
+
+	/// Set native field `pUniformBuffer` without native effects.
+	#[doc(alias = "pUniformBuffer")]
+	#[inline]
+	#[must_use]
+	pub fn uniform_buffer(mut self, value: &'a DescriptorAddressInfoEXT<'a>) -> Self {
+		self.p_uniform_buffer = value;
+		self
+	}
+
+	/// Set native field `pStorageBuffer` without native effects.
+	#[doc(alias = "pStorageBuffer")]
+	#[inline]
+	#[must_use]
+	pub fn storage_buffer(mut self, value: &'a DescriptorAddressInfoEXT<'a>) -> Self {
+		self.p_storage_buffer = value;
+		self
+	}
+
+	/// Set native field `accelerationStructure` without native effects.
+	#[doc(alias = "accelerationStructure")]
+	#[inline]
+	#[must_use]
+	pub fn acceleration_structure(mut self, value: DeviceAddress) -> Self {
+		self.acceleration_structure = value;
+		self
+	}
+}
+
 #[doc = "Native structure `VkDescriptorGetInfoEXT`."]
 #[doc(alias = "VkDescriptorGetInfoEXT")]
 #[doc = "\n\n[Khronos reference: `VkDescriptorGetInfoEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/VkDescriptorGetInfoEXT.html)"]
@@ -89730,6 +94745,20 @@ impl<'a> Default for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {
 }
 
 impl<'a> OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {
+	/// Set native pointer `opaqueCaptureDescriptorData` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "opaqueCaptureDescriptorData")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn opaque_capture_descriptor_data(mut self, value: *const std::ffi::c_void) -> Self {
+		self.opaque_capture_descriptor_data = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -91287,6 +96316,38 @@ impl Default for AccelerationStructureMotionInstanceDataNV {
 	}
 }
 
+impl AccelerationStructureMotionInstanceDataNV {
+	/// Set native field `staticInstance` without native effects.
+	#[doc(alias = "staticInstance")]
+	#[inline]
+	#[must_use]
+	pub fn static_instance(mut self, value: AccelerationStructureInstanceKHR) -> Self {
+		self.static_instance = value;
+		self
+	}
+
+	/// Set native field `matrixMotionInstance` without native effects.
+	#[doc(alias = "matrixMotionInstance")]
+	#[inline]
+	#[must_use]
+	pub fn matrix_motion_instance(
+		mut self,
+		value: AccelerationStructureMatrixMotionInstanceNV,
+	) -> Self {
+		self.matrix_motion_instance = value;
+		self
+	}
+
+	/// Set native field `srtMotionInstance` without native effects.
+	#[doc(alias = "srtMotionInstance")]
+	#[inline]
+	#[must_use]
+	pub fn srt_motion_instance(mut self, value: AccelerationStructureSRTMotionInstanceNV) -> Self {
+		self.srt_motion_instance = value;
+		self
+	}
+}
+
 #[doc = "Native structure `VkAccelerationStructureMotionInstanceNV`."]
 #[doc(alias = "VkAccelerationStructureMotionInstanceNV")]
 #[doc = "\n\n[Khronos reference: `VkAccelerationStructureMotionInstanceNV`](https://docs.vulkan.org/refpages/latest/refpages/source/VkAccelerationStructureMotionInstanceNV.html)"]
@@ -92069,11 +97130,25 @@ impl<'a> ImageFormatConstraintsInfoFUCHSIA<'a> {
 		self
 	}
 
-	/// Set `pColorSpaces` and its checked native count `colorSpaceCount`.
+	/// Set native count `colorSpaceCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "colorSpaceCount")]
+	#[inline]
+	#[must_use]
+	pub fn color_space_count(mut self, value: u32) -> Self {
+		self.color_space_count = value;
+		self
+	}
+
+	/// Borrow `pColorSpaces` and set checked native count `colorSpaceCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pColorSpaces")]
 	#[inline]
 	pub fn color_spaces(
@@ -92144,11 +97219,25 @@ impl<'a> Default for ImageConstraintsInfoFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> ImageConstraintsInfoFUCHSIA<'a> {
-	/// Set `pFormatConstraints` and its checked native count `formatConstraintsCount`.
+	/// Set native count `formatConstraintsCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "formatConstraintsCount")]
+	#[inline]
+	#[must_use]
+	pub fn format_constraints_count(mut self, value: u32) -> Self {
+		self.format_constraints_count = value;
+		self
+	}
+
+	/// Borrow `pFormatConstraints` and set checked native count `formatConstraintsCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pFormatConstraints")]
 	#[inline]
 	pub fn format_constraints(
@@ -92419,6 +97508,34 @@ impl<'a> Default for CudaModuleCreateInfoNV<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> CudaModuleCreateInfoNV<'a> {
+	/// Set native count `dataSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "dataSize")]
+	#[inline]
+	#[must_use]
+	pub fn data_size(mut self, value: usize) -> Self {
+		self.data_size = value;
+		self
+	}
+
+	/// Borrow `pData` and set checked native byte size `dataSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pData")]
+	#[inline]
+	pub fn data(mut self, value: &'a [u8]) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.data_size = count;
+		self.p_data = value.as_ptr().cast();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -92639,6 +97756,68 @@ impl<'a> CudaLaunchInfoNV<'a> {
 	pub fn shared_mem_bytes(mut self, value: u32) -> Self {
 		self.shared_mem_bytes = value;
 		self
+	}
+
+	/// Set native count `paramCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "paramCount")]
+	#[inline]
+	#[must_use]
+	pub fn param_count(mut self, value: usize) -> Self {
+		self.param_count = value;
+		self
+	}
+
+	/// Borrow `pParams` and set checked native count `paramCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pParams")]
+	#[inline]
+	pub fn params(
+		mut self,
+		value: &'a [*const std::ffi::c_void],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.param_count = count;
+		self.p_params = value.as_ptr();
+		Ok(self)
+	}
+
+	/// Set native count `extraCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "extraCount")]
+	#[inline]
+	#[must_use]
+	pub fn extra_count(mut self, value: usize) -> Self {
+		self.extra_count = value;
+		self
+	}
+
+	/// Borrow `pExtras` and set checked native count `extraCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pExtras")]
+	#[inline]
+	pub fn extras(
+		mut self,
+		value: &'a [*const std::ffi::c_void],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.extra_count = count;
+		self.p_extras = value.as_ptr();
+		Ok(self)
 	}
 
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
@@ -92911,6 +98090,37 @@ impl<'a> Default for DrmFormatModifierPropertiesList2EXT<'a> {
 }
 
 impl<'a> DrmFormatModifierPropertiesList2EXT<'a> {
+	/// Set native count `drmFormatModifierCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "drmFormatModifierCount")]
+	#[inline]
+	#[must_use]
+	pub fn drm_format_modifier_count(mut self, value: u32) -> Self {
+		self.drm_format_modifier_count = value;
+		self
+	}
+
+	/// Borrow `pDrmFormatModifierProperties` and set checked native count `drmFormatModifierCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pDrmFormatModifierProperties")]
+	#[inline]
+	pub fn drm_format_modifier_properties(
+		mut self,
+		value: &'a mut [DrmFormatModifierProperties2EXT],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pDrmFormatModifierProperties", value.len())?;
+		self.drm_format_modifier_count = count;
+		self.p_drm_format_modifier_properties = value.as_mut_ptr();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -93173,11 +98383,25 @@ impl<'a> PipelineRenderingCreateInfo<'a> {
 		self
 	}
 
-	/// Set `pColorAttachmentFormats` and its checked native count `colorAttachmentCount`.
+	/// Set native count `colorAttachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "colorAttachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn color_attachment_count(mut self, value: u32) -> Self {
+		self.color_attachment_count = value;
+		self
+	}
+
+	/// Borrow `pColorAttachmentFormats` and set checked native count `colorAttachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pColorAttachmentFormats")]
 	#[inline]
 	pub fn color_attachment_formats(
@@ -93314,11 +98538,25 @@ impl<'a> RenderingInfo<'a> {
 		self
 	}
 
-	/// Set `pColorAttachments` and its checked native count `colorAttachmentCount`.
+	/// Set native count `colorAttachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "colorAttachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn color_attachment_count(mut self, value: u32) -> Self {
+		self.color_attachment_count = value;
+		self
+	}
+
+	/// Borrow `pColorAttachments` and set checked native count `colorAttachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pColorAttachments")]
 	#[inline]
 	pub fn color_attachments(
@@ -93834,11 +99072,25 @@ impl<'a> CommandBufferInheritanceRenderingInfo<'a> {
 		self
 	}
 
-	/// Set `pColorAttachmentFormats` and its checked native count `colorAttachmentCount`.
+	/// Set native count `colorAttachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "colorAttachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn color_attachment_count(mut self, value: u32) -> Self {
+		self.color_attachment_count = value;
+		self
+	}
+
+	/// Borrow `pColorAttachmentFormats` and set checked native count `colorAttachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pColorAttachmentFormats")]
 	#[inline]
 	pub fn color_attachment_formats(
@@ -93935,11 +99187,25 @@ impl<'a> Default for AttachmentSampleCountInfoAMD<'a> {
 }
 
 impl<'a> AttachmentSampleCountInfoAMD<'a> {
-	/// Set `pColorAttachmentSamples` and its checked native count `colorAttachmentCount`.
+	/// Set native count `colorAttachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "colorAttachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn color_attachment_count(mut self, value: u32) -> Self {
+		self.color_attachment_count = value;
+		self
+	}
+
+	/// Borrow `pColorAttachmentSamples` and set checked native count `colorAttachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pColorAttachmentSamples")]
 	#[inline]
 	pub fn color_attachment_samples(
@@ -95503,11 +100769,25 @@ impl<'a> Default for PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
 }
 
 impl<'a> PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
-	/// Set `pIdentifier` and its checked native count `identifierSize`.
+	/// Set native count `identifierSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "identifierSize")]
+	#[inline]
+	#[must_use]
+	pub fn identifier_size(mut self, value: u32) -> Self {
+		self.identifier_size = value;
+		self
+	}
+
+	/// Borrow `pIdentifier` and set checked native count `identifierSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pIdentifier")]
 	#[inline]
 	pub fn identifier(
@@ -95569,6 +100849,18 @@ impl<'a> Default for ShaderModuleIdentifierEXT<'a> {
 }
 
 impl<'a> ShaderModuleIdentifierEXT<'a> {
+	/// Set native count `identifierSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "identifierSize")]
+	#[inline]
+	#[must_use]
+	pub fn identifier_size(mut self, value: u32) -> Self {
+		self.identifier_size = value;
+		self
+	}
+
 	/// Set native field `identifier` without native effects.
 	#[inline]
 	#[must_use]
@@ -95635,6 +100927,37 @@ impl<'a> ImageCompressionControlEXT<'a> {
 	pub fn flags(mut self, value: ImageCompressionFlagsEXT) -> Self {
 		self.flags = value;
 		self
+	}
+
+	/// Set native count `compressionControlPlaneCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "compressionControlPlaneCount")]
+	#[inline]
+	#[must_use]
+	pub fn compression_control_plane_count(mut self, value: u32) -> Self {
+		self.compression_control_plane_count = value;
+		self
+	}
+
+	/// Borrow `pFixedRateFlags` and set checked native count `compressionControlPlaneCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pFixedRateFlags")]
+	#[inline]
+	pub fn fixed_rate_flags(
+		mut self,
+		value: &'a mut [ImageCompressionFixedRateFlagsEXT],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pFixedRateFlags", value.len())?;
+		self.compression_control_plane_count = count;
+		self.p_fixed_rate_flags = value.as_mut_ptr();
+		Ok(self)
 	}
 
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
@@ -96080,6 +101403,15 @@ impl<'a> Default for RenderPassCreationFeedbackCreateInfoEXT<'a> {
 }
 
 impl<'a> RenderPassCreationFeedbackCreateInfoEXT<'a> {
+	/// Set native field `pRenderPassFeedback` without native effects.
+	#[doc(alias = "pRenderPassFeedback")]
+	#[inline]
+	#[must_use]
+	pub fn render_pass_feedback(mut self, value: &'a mut RenderPassCreationFeedbackInfoEXT) -> Self {
+		self.p_render_pass_feedback = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -96178,6 +101510,15 @@ impl<'a> Default for RenderPassSubpassFeedbackCreateInfoEXT<'a> {
 }
 
 impl<'a> RenderPassSubpassFeedbackCreateInfoEXT<'a> {
+	/// Set native field `pSubpassFeedback` without native effects.
+	#[doc(alias = "pSubpassFeedback")]
+	#[inline]
+	#[must_use]
+	pub fn subpass_feedback(mut self, value: &'a mut RenderPassSubpassFeedbackInfoEXT) -> Self {
+		self.p_subpass_feedback = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -96340,11 +101681,25 @@ impl<'a> MicromapBuildInfoEXT<'a> {
 		self
 	}
 
-	/// Set `pUsageCounts` and its checked native count `usageCountsCount`.
+	/// Set native count `usageCountsCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "usageCountsCount")]
+	#[inline]
+	#[must_use]
+	pub fn usage_counts_count(mut self, value: u32) -> Self {
+		self.usage_counts_count = value;
+		self
+	}
+
+	/// Borrow `pUsageCounts` and set checked native count `usageCountsCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pUsageCounts")]
 	#[inline]
 	pub fn usage_counts(
@@ -96352,8 +101707,31 @@ impl<'a> MicromapBuildInfoEXT<'a> {
 		value: &'a [MicromapUsageEXT],
 	) -> std::result::Result<Self, crate::ConstructionError> {
 		let count = crate::construction::count("pUsageCounts", value.len())?;
+		self.p_usage_counts = std::ptr::null();
+		self.pp_usage_counts = std::ptr::null();
 		self.usage_counts_count = count;
 		self.p_usage_counts = value.as_ptr();
+		Ok(self)
+	}
+
+	/// Borrow `ppUsageCounts` and set checked native count `usageCountsCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "ppUsageCounts")]
+	#[inline]
+	pub fn pp_usage_counts(
+		mut self,
+		value: &'a [*const MicromapUsageEXT],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("ppUsageCounts", value.len())?;
+		self.p_usage_counts = std::ptr::null();
+		self.pp_usage_counts = std::ptr::null();
+		self.usage_counts_count = count;
+		self.pp_usage_counts = value.as_ptr();
 		Ok(self)
 	}
 
@@ -96453,11 +101831,25 @@ impl<'a> Default for AccelerationStructureGeometryMicromapDataKHR<'a> {
 }
 
 impl<'a> AccelerationStructureGeometryMicromapDataKHR<'a> {
-	/// Set `pUsageCounts` and its checked native count `usageCountsCount`.
+	/// Set native count `usageCountsCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "usageCountsCount")]
+	#[inline]
+	#[must_use]
+	pub fn usage_counts_count(mut self, value: u32) -> Self {
+		self.usage_counts_count = value;
+		self
+	}
+
+	/// Borrow `pUsageCounts` and set checked native count `usageCountsCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pUsageCounts")]
 	#[inline]
 	pub fn usage_counts(
@@ -96465,8 +101857,31 @@ impl<'a> AccelerationStructureGeometryMicromapDataKHR<'a> {
 		value: &'a [MicromapUsageKHR],
 	) -> std::result::Result<Self, crate::ConstructionError> {
 		let count = crate::construction::count("pUsageCounts", value.len())?;
+		self.p_usage_counts = std::ptr::null();
+		self.pp_usage_counts = std::ptr::null();
 		self.usage_counts_count = count;
 		self.p_usage_counts = value.as_ptr();
+		Ok(self)
+	}
+
+	/// Borrow `ppUsageCounts` and set checked native count `usageCountsCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "ppUsageCounts")]
+	#[inline]
+	pub fn pp_usage_counts(
+		mut self,
+		value: &'a [*const MicromapUsageKHR],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("ppUsageCounts", value.len())?;
+		self.p_usage_counts = std::ptr::null();
+		self.pp_usage_counts = std::ptr::null();
+		self.usage_counts_count = count;
+		self.pp_usage_counts = value.as_ptr();
 		Ok(self)
 	}
 
@@ -96651,6 +102066,15 @@ impl<'a> Default for MicromapVersionInfoEXT<'a> {
 }
 
 impl<'a> MicromapVersionInfoEXT<'a> {
+	/// Borrow the two UUIDs required by the native version-data extent.
+	#[doc(alias = "pVersionData")]
+	#[inline]
+	#[must_use]
+	pub fn version_data(mut self, value: &'a [u8; 2 * UUID_SIZE as usize]) -> Self {
+		self.p_version_data = value.as_ptr();
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -97601,11 +103025,25 @@ impl<'a> AccelerationStructureTrianglesOpacityMicromapEXT<'a> {
 		self
 	}
 
-	/// Set `pUsageCounts` and its checked native count `usageCountsCount`.
+	/// Set native count `usageCountsCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "usageCountsCount")]
+	#[inline]
+	#[must_use]
+	pub fn usage_counts_count(mut self, value: u32) -> Self {
+		self.usage_counts_count = value;
+		self
+	}
+
+	/// Borrow `pUsageCounts` and set checked native count `usageCountsCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pUsageCounts")]
 	#[inline]
 	pub fn usage_counts(
@@ -97613,8 +103051,31 @@ impl<'a> AccelerationStructureTrianglesOpacityMicromapEXT<'a> {
 		value: &'a [MicromapUsageEXT],
 	) -> std::result::Result<Self, crate::ConstructionError> {
 		let count = crate::construction::count("pUsageCounts", value.len())?;
+		self.p_usage_counts = std::ptr::null();
+		self.pp_usage_counts = std::ptr::null();
 		self.usage_counts_count = count;
 		self.p_usage_counts = value.as_ptr();
+		Ok(self)
+	}
+
+	/// Borrow `ppUsageCounts` and set checked native count `usageCountsCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "ppUsageCounts")]
+	#[inline]
+	pub fn pp_usage_counts(
+		mut self,
+		value: &'a [*const MicromapUsageEXT],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("ppUsageCounts", value.len())?;
+		self.p_usage_counts = std::ptr::null();
+		self.pp_usage_counts = std::ptr::null();
+		self.usage_counts_count = count;
+		self.pp_usage_counts = value.as_ptr();
 		Ok(self)
 	}
 
@@ -97946,11 +103407,25 @@ impl<'a> AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
 		self
 	}
 
-	/// Set `pUsageCounts` and its checked native count `usageCountsCount`.
+	/// Set native count `usageCountsCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "usageCountsCount")]
+	#[inline]
+	#[must_use]
+	pub fn usage_counts_count(mut self, value: u32) -> Self {
+		self.usage_counts_count = value;
+		self
+	}
+
+	/// Borrow `pUsageCounts` and set checked native count `usageCountsCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pUsageCounts")]
 	#[inline]
 	pub fn usage_counts(
@@ -97958,8 +103433,31 @@ impl<'a> AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
 		value: &'a [MicromapUsageEXT],
 	) -> std::result::Result<Self, crate::ConstructionError> {
 		let count = crate::construction::count("pUsageCounts", value.len())?;
+		self.p_usage_counts = std::ptr::null();
+		self.pp_usage_counts = std::ptr::null();
 		self.usage_counts_count = count;
 		self.p_usage_counts = value.as_ptr();
+		Ok(self)
+	}
+
+	/// Borrow `ppUsageCounts` and set checked native count `usageCountsCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "ppUsageCounts")]
+	#[inline]
+	pub fn pp_usage_counts(
+		mut self,
+		value: &'a [*const MicromapUsageEXT],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("ppUsageCounts", value.len())?;
+		self.p_usage_counts = std::ptr::null();
+		self.pp_usage_counts = std::ptr::null();
+		self.usage_counts_count = count;
+		self.pp_usage_counts = value.as_ptr();
 		Ok(self)
 	}
 
@@ -100934,6 +106432,20 @@ impl<'a> OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
 		self
 	}
 
+	/// Set native pointer `pPrivateData` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pPrivateData")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn private_data(mut self, value: *const std::ffi::c_void) -> Self {
+		self.p_private_data = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -100994,11 +106506,25 @@ impl<'a> OpticalFlowExecuteInfoNV<'a> {
 		self
 	}
 
-	/// Set `pRegions` and its checked native count `regionCount`.
+	/// Set native count `regionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "regionCount")]
+	#[inline]
+	#[must_use]
+	pub fn region_count(mut self, value: u32) -> Self {
+		self.region_count = value;
+		self
+	}
+
+	/// Borrow `pRegions` and set checked native count `regionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRegions")]
 	#[inline]
 	pub fn regions(
@@ -101353,6 +106879,37 @@ impl<'a> Default for DeviceFaultDebugInfoKHR<'a> {
 }
 
 impl<'a> DeviceFaultDebugInfoKHR<'a> {
+	/// Set native count `vendorBinarySize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "vendorBinarySize")]
+	#[inline]
+	#[must_use]
+	pub fn vendor_binary_size(mut self, value: u32) -> Self {
+		self.vendor_binary_size = value;
+		self
+	}
+
+	/// Borrow `pVendorBinaryData` and set checked native byte size `vendorBinarySize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pVendorBinaryData")]
+	#[inline]
+	pub fn vendor_binary_data(
+		mut self,
+		value: &'a mut [u8],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pVendorBinaryData", value.len())?;
+		self.vendor_binary_size = count;
+		self.p_vendor_binary_data = value.as_mut_ptr().cast();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -101494,6 +107051,34 @@ impl<'a> DeviceFaultInfoEXT<'a> {
 	pub fn description(mut self, value: [std::ffi::c_char; MAX_DESCRIPTION_SIZE as usize]) -> Self {
 		self.description = value;
 		self
+	}
+
+	/// Borrow initialized fault buffers and set capacities in the accompanying counts record.
+	/// Pass that same counts record to the native query, without increasing capacities.
+	/// Only the buffers are retained by this record's lifetime; the native query may
+	/// change reported counts, which must be bounded before reading returned data.
+	///
+	/// # Errors
+	/// Returns count overflow before changing the counts record or borrowed storage.
+	#[inline]
+	pub fn buffers(
+		mut self,
+		counts: &mut DeviceFaultCountsEXT<'_>,
+		address_infos: &'a mut [DeviceFaultAddressInfoKHR],
+		vendor_infos: &'a mut [DeviceFaultVendorInfoKHR],
+		vendor_binary_data: &'a mut [u8],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let address_count = crate::construction::count("pAddressInfos", address_infos.len())?;
+		let vendor_count = crate::construction::count("pVendorInfos", vendor_infos.len())?;
+		let binary_size =
+			crate::construction::count_as::<u64>("pVendorBinaryData", vendor_binary_data.len())?;
+		counts.address_info_count = address_count;
+		counts.vendor_info_count = vendor_count;
+		counts.vendor_binary_size = binary_size;
+		self.p_address_infos = address_infos.as_mut_ptr();
+		self.p_vendor_infos = vendor_infos.as_mut_ptr();
+		self.p_vendor_binary_data = vendor_binary_data.as_mut_ptr().cast();
+		Ok(self)
 	}
 
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
@@ -102210,11 +107795,25 @@ impl<'a> DecompressMemoryInfoEXT<'a> {
 		self
 	}
 
-	/// Set `pRegions` and its checked native count `regionCount`.
+	/// Set native count `regionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "regionCount")]
+	#[inline]
+	#[must_use]
+	pub fn region_count(mut self, value: u32) -> Self {
+		self.region_count = value;
+		self
+	}
+
+	/// Borrow `pRegions` and set checked native count `regionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRegions")]
 	#[inline]
 	pub fn regions(
@@ -102450,11 +108049,25 @@ impl<'a> FrameBoundaryEXT<'a> {
 		self
 	}
 
-	/// Set `pImages` and its checked native count `imageCount`.
+	/// Set native count `imageCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "imageCount")]
+	#[inline]
+	#[must_use]
+	pub fn image_count(mut self, value: u32) -> Self {
+		self.image_count = value;
+		self
+	}
+
+	/// Borrow `pImages` and set checked native count `imageCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pImages")]
 	#[inline]
 	pub fn images(
@@ -102467,11 +108080,25 @@ impl<'a> FrameBoundaryEXT<'a> {
 		Ok(self)
 	}
 
-	/// Set `pBuffers` and its checked native count `bufferCount`.
+	/// Set native count `bufferCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "bufferCount")]
+	#[inline]
+	#[must_use]
+	pub fn buffer_count(mut self, value: u32) -> Self {
+		self.buffer_count = value;
+		self
+	}
+
+	/// Borrow `pBuffers` and set checked native count `bufferCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pBuffers")]
 	#[inline]
 	pub fn buffers(
@@ -102491,6 +108118,34 @@ impl<'a> FrameBoundaryEXT<'a> {
 	pub fn tag_name(mut self, value: u64) -> Self {
 		self.tag_name = value;
 		self
+	}
+
+	/// Set native count `tagSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "tagSize")]
+	#[inline]
+	#[must_use]
+	pub fn tag_size(mut self, value: usize) -> Self {
+		self.tag_size = value;
+		self
+	}
+
+	/// Borrow `pTag` and set checked native byte size `tagSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pTag")]
+	#[inline]
+	pub fn tag(mut self, value: &'a [u8]) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.tag_size = count;
+		self.p_tag = value.as_ptr().cast();
+		Ok(self)
 	}
 
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
@@ -102879,6 +108534,37 @@ impl<'a> Default for SurfacePresentModeCompatibilityKHR<'a> {
 }
 
 impl<'a> SurfacePresentModeCompatibilityKHR<'a> {
+	/// Set native count `presentModeCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "presentModeCount")]
+	#[inline]
+	#[must_use]
+	pub fn present_mode_count(mut self, value: u32) -> Self {
+		self.present_mode_count = value;
+		self
+	}
+
+	/// Borrow `pPresentModes` and set checked native count `presentModeCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pPresentModes")]
+	#[inline]
+	pub fn present_modes(
+		mut self,
+		value: &'a mut [PresentModeKHR],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pPresentModes", value.len())?;
+		self.present_mode_count = count;
+		self.p_present_modes = value.as_mut_ptr();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -102994,11 +108680,25 @@ impl<'a> Default for SwapchainPresentFenceInfoKHR<'a> {
 }
 
 impl<'a> SwapchainPresentFenceInfoKHR<'a> {
-	/// Set `pFences` and its checked native count `swapchainCount`.
+	/// Set native count `swapchainCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "swapchainCount")]
+	#[inline]
+	#[must_use]
+	pub fn swapchain_count(mut self, value: u32) -> Self {
+		self.swapchain_count = value;
+		self
+	}
+
+	/// Borrow `pFences` and set checked native count `swapchainCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pFences")]
 	#[inline]
 	pub fn fences(
@@ -103065,11 +108765,25 @@ impl<'a> Default for SwapchainPresentModesCreateInfoKHR<'a> {
 }
 
 impl<'a> SwapchainPresentModesCreateInfoKHR<'a> {
-	/// Set `pPresentModes` and its checked native count `presentModeCount`.
+	/// Set native count `presentModeCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "presentModeCount")]
+	#[inline]
+	#[must_use]
+	pub fn present_mode_count(mut self, value: u32) -> Self {
+		self.present_mode_count = value;
+		self
+	}
+
+	/// Borrow `pPresentModes` and set checked native count `presentModeCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPresentModes")]
 	#[inline]
 	pub fn present_modes(
@@ -103136,11 +108850,25 @@ impl<'a> Default for SwapchainPresentModeInfoKHR<'a> {
 }
 
 impl<'a> SwapchainPresentModeInfoKHR<'a> {
-	/// Set `pPresentModes` and its checked native count `swapchainCount`.
+	/// Set native count `swapchainCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "swapchainCount")]
+	#[inline]
+	#[must_use]
+	pub fn swapchain_count(mut self, value: u32) -> Self {
+		self.swapchain_count = value;
+		self
+	}
+
+	/// Borrow `pPresentModes` and set checked native count `swapchainCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPresentModes")]
 	#[inline]
 	pub fn present_modes(
@@ -103301,11 +109029,25 @@ impl<'a> ReleaseSwapchainImagesInfoKHR<'a> {
 		self
 	}
 
-	/// Set `pImageIndices` and its checked native count `imageIndexCount`.
+	/// Set native count `imageIndexCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "imageIndexCount")]
+	#[inline]
+	#[must_use]
+	pub fn image_index_count(mut self, value: u32) -> Self {
+		self.image_index_count = value;
+		self
+	}
+
+	/// Borrow `pImageIndices` and set checked native count `imageIndexCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pImageIndices")]
 	#[inline]
 	pub fn image_indices(
@@ -103918,11 +109660,25 @@ impl<'a> DirectDriverLoadingListLUNARG<'a> {
 		self
 	}
 
-	/// Set `pDrivers` and its checked native count `driverCount`.
+	/// Set native count `driverCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "driverCount")]
+	#[inline]
+	#[must_use]
+	pub fn driver_count(mut self, value: u32) -> Self {
+		self.driver_count = value;
+		self
+	}
+
+	/// Borrow `pDrivers` and set checked native count `driverCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDrivers")]
 	#[inline]
 	pub fn drivers(
@@ -104305,11 +110061,25 @@ impl<'a> Default for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
 }
 
 impl<'a> MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
-	/// Set `pPerViewRenderAreas` and its checked native count `perViewRenderAreaCount`.
+	/// Set native count `perViewRenderAreaCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "perViewRenderAreaCount")]
+	#[inline]
+	#[must_use]
+	pub fn per_view_render_area_count(mut self, value: u32) -> Self {
+		self.per_view_render_area_count = value;
+		self
+	}
+
+	/// Borrow `pPerViewRenderAreas` and set checked native count `perViewRenderAreaCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPerViewRenderAreas")]
 	#[inline]
 	pub fn per_view_render_areas(
@@ -104369,6 +110139,20 @@ impl<'a> Default for QueryLowLatencySupportNV<'a> {
 }
 
 impl<'a> QueryLowLatencySupportNV<'a> {
+	/// Set native pointer `pQueriedLowLatencyData` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pQueriedLowLatencyData")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn queried_low_latency_data(mut self, value: *mut std::ffi::c_void) -> Self {
+		self.p_queried_low_latency_data = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -104761,6 +110545,34 @@ impl<'a> ShaderCreateInfoEXT<'a> {
 		self
 	}
 
+	/// Set native count `codeSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "codeSize")]
+	#[inline]
+	#[must_use]
+	pub fn code_size(mut self, value: usize) -> Self {
+		self.code_size = value;
+		self
+	}
+
+	/// Borrow `pCode` and set checked native byte size `codeSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pCode")]
+	#[inline]
+	pub fn code(mut self, value: &'a [u8]) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.code_size = count;
+		self.p_code = value.as_ptr().cast();
+		Ok(self)
+	}
+
 	/// Set native field `pName` without native effects.
 	#[doc(alias = "pName")]
 	#[inline]
@@ -104770,11 +110582,25 @@ impl<'a> ShaderCreateInfoEXT<'a> {
 		self
 	}
 
-	/// Set `pSetLayouts` and its checked native count `setLayoutCount`.
+	/// Set native count `setLayoutCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "setLayoutCount")]
+	#[inline]
+	#[must_use]
+	pub fn set_layout_count(mut self, value: u32) -> Self {
+		self.set_layout_count = value;
+		self
+	}
+
+	/// Borrow `pSetLayouts` and set checked native count `setLayoutCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pSetLayouts")]
 	#[inline]
 	pub fn set_layouts(
@@ -104787,11 +110613,25 @@ impl<'a> ShaderCreateInfoEXT<'a> {
 		Ok(self)
 	}
 
-	/// Set `pPushConstantRanges` and its checked native count `pushConstantRangeCount`.
+	/// Set native count `pushConstantRangeCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "pushConstantRangeCount")]
+	#[inline]
+	#[must_use]
+	pub fn push_constant_range_count(mut self, value: u32) -> Self {
+		self.push_constant_range_count = value;
+		self
+	}
+
+	/// Borrow `pPushConstantRanges` and set checked native count `pushConstantRangeCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pPushConstantRanges")]
 	#[inline]
 	pub fn push_constant_ranges(
@@ -105022,6 +110862,19 @@ impl<'a> Default for ImportScreenBufferInfoQNX<'a> {
 
 #[cfg(feature = "platform-screen")]
 impl<'a> ImportScreenBufferInfoQNX<'a> {
+	/// Set native pointer `buffer` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn buffer(mut self, value: *mut _screen_buffer) -> Self {
+		self.buffer = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -106184,11 +112037,25 @@ impl<'a> ExecutionGraphPipelineCreateInfoAMDX<'a> {
 		self
 	}
 
-	/// Set `pStages` and its checked native count `stageCount`.
+	/// Set native count `stageCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stageCount")]
+	#[inline]
+	#[must_use]
+	pub fn stage_count(mut self, value: u32) -> Self {
+		self.stage_count = value;
+		self
+	}
+
+	/// Borrow `pStages` and set checked native count `stageCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStages")]
 	#[inline]
 	pub fn stages(
@@ -106751,6 +112618,15 @@ impl<'a> Default for BindMemoryStatus<'a> {
 }
 
 impl<'a> BindMemoryStatus<'a> {
+	/// Set native field `pResult` without native effects.
+	#[doc(alias = "pResult")]
+	#[inline]
+	#[must_use]
+	pub fn result(mut self, value: &'a mut Result) -> Self {
+		self.p_result = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -107087,11 +112963,25 @@ impl<'a> BindDescriptorSetsInfo<'a> {
 		self
 	}
 
-	/// Set `pDescriptorSets` and its checked native count `descriptorSetCount`.
+	/// Set native count `descriptorSetCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "descriptorSetCount")]
+	#[inline]
+	#[must_use]
+	pub fn descriptor_set_count(mut self, value: u32) -> Self {
+		self.descriptor_set_count = value;
+		self
+	}
+
+	/// Borrow `pDescriptorSets` and set checked native count `descriptorSetCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDescriptorSets")]
 	#[inline]
 	pub fn descriptor_sets(
@@ -107104,11 +112994,25 @@ impl<'a> BindDescriptorSetsInfo<'a> {
 		Ok(self)
 	}
 
-	/// Set `pDynamicOffsets` and its checked native count `dynamicOffsetCount`.
+	/// Set native count `dynamicOffsetCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "dynamicOffsetCount")]
+	#[inline]
+	#[must_use]
+	pub fn dynamic_offset_count(mut self, value: u32) -> Self {
+		self.dynamic_offset_count = value;
+		self
+	}
+
+	/// Borrow `pDynamicOffsets` and set checked native count `dynamicOffsetCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDynamicOffsets")]
 	#[inline]
 	pub fn dynamic_offsets(
@@ -107206,6 +113110,33 @@ impl<'a> PushConstantsInfo<'a> {
 		self
 	}
 
+	/// Set native count `size` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[inline]
+	#[must_use]
+	pub fn size(mut self, value: u32) -> Self {
+		self.size = value;
+		self
+	}
+
+	/// Borrow `pValues` and set checked native byte size `size`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pValues")]
+	#[inline]
+	pub fn values(mut self, value: &'a [u8]) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pValues", value.len())?;
+		self.size = count;
+		self.p_values = value.as_ptr().cast();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -107292,11 +113223,25 @@ impl<'a> PushDescriptorSetInfo<'a> {
 		self
 	}
 
-	/// Set `pDescriptorWrites` and its checked native count `descriptorWriteCount`.
+	/// Set native count `descriptorWriteCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "descriptorWriteCount")]
+	#[inline]
+	#[must_use]
+	pub fn descriptor_write_count(mut self, value: u32) -> Self {
+		self.descriptor_write_count = value;
+		self
+	}
+
+	/// Borrow `pDescriptorWrites` and set checked native count `descriptorWriteCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pDescriptorWrites")]
 	#[inline]
 	pub fn descriptor_writes(
@@ -107392,6 +113337,20 @@ impl<'a> PushDescriptorSetWithTemplateInfo<'a> {
 		self
 	}
 
+	/// Set native pointer `pData` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pData")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn data(mut self, value: *const std::ffi::c_void) -> Self {
+		self.p_data = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -107481,6 +113440,53 @@ impl<'a> SetDescriptorBufferOffsetsInfoEXT<'a> {
 	pub fn first_set(mut self, value: u32) -> Self {
 		self.first_set = value;
 		self
+	}
+
+	/// Set native count `setCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "setCount")]
+	#[inline]
+	#[must_use]
+	pub fn set_count(mut self, value: u32) -> Self {
+		self.set_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `setCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pBufferIndices")]
+	#[inline]
+	pub fn buffer_indices(
+		mut self,
+		buffer_indices: &'a [u32],
+		offsets: &'a [DeviceSize],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = buffer_indices.len();
+		if buffer_indices.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pBufferIndices",
+				expected,
+				actual: buffer_indices.len(),
+			});
+		}
+		if offsets.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pOffsets",
+				expected,
+				actual: offsets.len(),
+			});
+		}
+		let count = crate::construction::count("pBufferIndices", expected)?;
+		self.p_buffer_indices = buffer_indices.as_ptr();
+		self.p_offsets = offsets.as_ptr();
+		self.set_count = count;
+		Ok(self)
 	}
 
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
@@ -108810,6 +114816,37 @@ impl<'a> Default for GetLatencyMarkerInfoNV<'a> {
 }
 
 impl<'a> GetLatencyMarkerInfoNV<'a> {
+	/// Set native count `timingCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "timingCount")]
+	#[inline]
+	#[must_use]
+	pub fn timing_count(mut self, value: u32) -> Self {
+		self.timing_count = value;
+		self
+	}
+
+	/// Borrow `pTimings` and set checked native count `timingCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pTimings")]
+	#[inline]
+	pub fn timings(
+		mut self,
+		value: &'a mut [LatencyTimingsFrameReportNV<'a>],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pTimings", value.len())?;
+		self.timing_count = count;
+		self.p_timings = value.as_mut_ptr();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -109240,6 +115277,37 @@ impl<'a> Default for LatencySurfaceCapabilitiesNV<'a> {
 }
 
 impl<'a> LatencySurfaceCapabilitiesNV<'a> {
+	/// Set native count `presentModeCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "presentModeCount")]
+	#[inline]
+	#[must_use]
+	pub fn present_mode_count(mut self, value: u32) -> Self {
+		self.present_mode_count = value;
+		self
+	}
+
+	/// Borrow `pPresentModes` and set checked native count `presentModeCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pPresentModes")]
+	#[inline]
+	pub fn present_modes(
+		mut self,
+		value: &'a mut [PresentModeKHR],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pPresentModes", value.len())?;
+		self.present_mode_count = count;
+		self.p_present_modes = value.as_mut_ptr();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -109988,11 +116056,25 @@ impl<'a> Default for RenderPassStripeBeginInfoARM<'a> {
 }
 
 impl<'a> RenderPassStripeBeginInfoARM<'a> {
-	/// Set `pStripeInfos` and its checked native count `stripeInfoCount`.
+	/// Set native count `stripeInfoCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stripeInfoCount")]
+	#[inline]
+	#[must_use]
+	pub fn stripe_info_count(mut self, value: u32) -> Self {
+		self.stripe_info_count = value;
+		self
+	}
+
+	/// Borrow `pStripeInfos` and set checked native count `stripeInfoCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStripeInfos")]
 	#[inline]
 	pub fn stripe_infos(
@@ -110055,11 +116137,25 @@ impl<'a> Default for RenderPassStripeSubmitInfoARM<'a> {
 }
 
 impl<'a> RenderPassStripeSubmitInfoARM<'a> {
-	/// Set `pStripeSemaphoreInfos` and its checked native count `stripeSemaphoreInfoCount`.
+	/// Set native count `stripeSemaphoreInfoCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "stripeSemaphoreInfoCount")]
+	#[inline]
+	#[must_use]
+	pub fn stripe_semaphore_info_count(mut self, value: u32) -> Self {
+		self.stripe_semaphore_info_count = value;
+		self
+	}
+
+	/// Borrow `pStripeSemaphoreInfos` and set checked native count `stripeSemaphoreInfoCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pStripeSemaphoreInfos")]
 	#[inline]
 	pub fn stripe_semaphore_infos(
@@ -110490,11 +116586,25 @@ impl<'a> Default for RenderingAttachmentLocationInfo<'a> {
 }
 
 impl<'a> RenderingAttachmentLocationInfo<'a> {
-	/// Set `pColorAttachmentLocations` and its checked native count `colorAttachmentCount`.
+	/// Set native count `colorAttachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "colorAttachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn color_attachment_count(mut self, value: u32) -> Self {
+		self.color_attachment_count = value;
+		self
+	}
+
+	/// Borrow `pColorAttachmentLocations` and set checked native count `colorAttachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pColorAttachmentLocations")]
 	#[inline]
 	pub fn color_attachment_locations(
@@ -110567,11 +116677,25 @@ impl<'a> Default for RenderingInputAttachmentIndexInfo<'a> {
 }
 
 impl<'a> RenderingInputAttachmentIndexInfo<'a> {
-	/// Set `pColorAttachmentInputIndices` and its checked native count `colorAttachmentCount`.
+	/// Set native count `colorAttachmentCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "colorAttachmentCount")]
+	#[inline]
+	#[must_use]
+	pub fn color_attachment_count(mut self, value: u32) -> Self {
+		self.color_attachment_count = value;
+		self
+	}
+
+	/// Borrow `pColorAttachmentInputIndices` and set checked native count `colorAttachmentCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pColorAttachmentInputIndices")]
 	#[inline]
 	pub fn color_attachment_input_indices(
@@ -110582,6 +116706,24 @@ impl<'a> RenderingInputAttachmentIndexInfo<'a> {
 		self.color_attachment_count = count;
 		self.p_color_attachment_input_indices = value.as_ptr();
 		Ok(self)
+	}
+
+	/// Set native field `pDepthInputAttachmentIndex` without native effects.
+	#[doc(alias = "pDepthInputAttachmentIndex")]
+	#[inline]
+	#[must_use]
+	pub fn depth_input_attachment_index(mut self, value: &'a u32) -> Self {
+		self.p_depth_input_attachment_index = value;
+		self
+	}
+
+	/// Set native field `pStencilInputAttachmentIndex` without native effects.
+	#[doc(alias = "pStencilInputAttachmentIndex")]
+	#[inline]
+	#[must_use]
+	pub fn stencil_input_attachment_index(mut self, value: &'a u32) -> Self {
+		self.p_stencil_input_attachment_index = value;
+		self
 	}
 
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
@@ -110883,6 +117025,20 @@ impl<'a> Default for MemoryMapPlacedInfoEXT<'a> {
 }
 
 impl<'a> MemoryMapPlacedInfoEXT<'a> {
+	/// Set native pointer `pPlacedAddress` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pPlacedAddress")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn placed_address(mut self, value: *mut std::ffi::c_void) -> Self {
+		self.p_placed_address = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -112555,6 +118711,15 @@ impl<'a> ConvertCooperativeVectorMatrixInfoNV<'a> {
 		self
 	}
 
+	/// Set native field `pDstSize` without native effects.
+	#[doc(alias = "pDstSize")]
+	#[inline]
+	#[must_use]
+	pub fn dst_size(mut self, value: &'a mut usize) -> Self {
+		self.p_dst_size = value;
+		self
+	}
+
 	/// Set native field `dstData` without native effects.
 	#[doc(alias = "dstData")]
 	#[inline]
@@ -114145,6 +120310,55 @@ impl<'a> TensorDescriptionARM<'a> {
 		self
 	}
 
+	/// Set native count `dimensionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "dimensionCount")]
+	#[inline]
+	#[must_use]
+	pub fn dimension_count(mut self, value: u32) -> Self {
+		self.dimension_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `dimensionCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pDimensions")]
+	#[inline]
+	pub fn dimensions(
+		mut self,
+		dimensions: &'a [i64],
+		strides: Option<&'a [i64]>,
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = dimensions.len();
+		if dimensions.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pDimensions",
+				expected,
+				actual: dimensions.len(),
+			});
+		}
+		if let Some(value) = &strides
+			&& value.len() != expected
+		{
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pStrides",
+				expected,
+				actual: value.len(),
+			});
+		}
+		let count = crate::construction::count("pDimensions", expected)?;
+		self.p_dimensions = dimensions.as_ptr();
+		self.p_strides = strides.map_or(std::ptr::null(), |value| value.as_ptr());
+		self.dimension_count = count;
+		Ok(self)
+	}
+
 	/// Set native field `usage` without native effects.
 	#[inline]
 	#[must_use]
@@ -114237,11 +120451,25 @@ impl<'a> TensorCreateInfoARM<'a> {
 		self
 	}
 
-	/// Set `pQueueFamilyIndices` and its checked native count `queueFamilyIndexCount`.
+	/// Set native count `queueFamilyIndexCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "queueFamilyIndexCount")]
+	#[inline]
+	#[must_use]
+	pub fn queue_family_index_count(mut self, value: u32) -> Self {
+		self.queue_family_index_count = value;
+		self
+	}
+
+	/// Borrow `pQueueFamilyIndices` and set checked native count `queueFamilyIndexCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pQueueFamilyIndices")]
 	#[inline]
 	pub fn queue_family_indices(
@@ -114508,11 +120736,25 @@ impl<'a> Default for WriteDescriptorSetTensorARM<'a> {
 }
 
 impl<'a> WriteDescriptorSetTensorARM<'a> {
-	/// Set `pTensorViews` and its checked native count `tensorViewCount`.
+	/// Set native count `tensorViewCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "tensorViewCount")]
+	#[inline]
+	#[must_use]
+	pub fn tensor_view_count(mut self, value: u32) -> Self {
+		self.tensor_view_count = value;
+		self
+	}
+
+	/// Borrow `pTensorViews` and set checked native count `tensorViewCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pTensorViews")]
 	#[inline]
 	pub fn tensor_views(
@@ -114969,11 +121211,25 @@ impl<'a> Default for TensorDependencyInfoARM<'a> {
 }
 
 impl<'a> TensorDependencyInfoARM<'a> {
-	/// Set `pTensorMemoryBarriers` and its checked native count `tensorMemoryBarrierCount`.
+	/// Set native count `tensorMemoryBarrierCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "tensorMemoryBarrierCount")]
+	#[inline]
+	#[must_use]
+	pub fn tensor_memory_barrier_count(mut self, value: u32) -> Self {
+		self.tensor_memory_barrier_count = value;
+		self
+	}
+
+	/// Borrow `pTensorMemoryBarriers` and set checked native count `tensorMemoryBarrierCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pTensorMemoryBarriers")]
 	#[inline]
 	pub fn tensor_memory_barriers(
@@ -115230,11 +121486,25 @@ impl<'a> CopyTensorInfoARM<'a> {
 		self
 	}
 
-	/// Set `pRegions` and its checked native count `regionCount`.
+	/// Set native count `regionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "regionCount")]
+	#[inline]
+	#[must_use]
+	pub fn region_count(mut self, value: u32) -> Self {
+		self.region_count = value;
+		self
+	}
+
+	/// Borrow `pRegions` and set checked native count `regionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRegions")]
 	#[inline]
 	pub fn regions(
@@ -115303,6 +121573,69 @@ impl<'a> Default for TensorCopyARM<'a> {
 }
 
 impl<'a> TensorCopyARM<'a> {
+	/// Set native count `dimensionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "dimensionCount")]
+	#[inline]
+	#[must_use]
+	pub fn dimension_count(mut self, value: u32) -> Self {
+		self.dimension_count = value;
+		self
+	}
+
+	/// Borrow parallel arrays sharing native `dimensionCount`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pSrcOffset")]
+	#[inline]
+	pub fn src_offset(
+		mut self,
+		dimension_count: u32,
+		src_offset: Option<&'a [u64]>,
+		dst_offset: Option<&'a [u64]>,
+		extent: Option<&'a [u64]>,
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = dimension_count as usize;
+		if let Some(value) = &src_offset
+			&& value.len() != expected
+		{
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pSrcOffset",
+				expected,
+				actual: value.len(),
+			});
+		}
+		if let Some(value) = &dst_offset
+			&& value.len() != expected
+		{
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pDstOffset",
+				expected,
+				actual: value.len(),
+			});
+		}
+		if let Some(value) = &extent
+			&& value.len() != expected
+		{
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pExtent",
+				expected,
+				actual: value.len(),
+			});
+		}
+		let count = crate::construction::count("pSrcOffset", expected)?;
+		self.p_src_offset = src_offset.map_or(std::ptr::null(), |value| value.as_ptr());
+		self.p_dst_offset = dst_offset.map_or(std::ptr::null(), |value| value.as_ptr());
+		self.p_extent = extent.map_or(std::ptr::null(), |value| value.as_ptr());
+		self.dimension_count = count;
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -115709,11 +122042,25 @@ impl<'a> Default for FrameBoundaryTensorsARM<'a> {
 }
 
 impl<'a> FrameBoundaryTensorsARM<'a> {
-	/// Set `pTensors` and its checked native count `tensorCount`.
+	/// Set native count `tensorCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "tensorCount")]
+	#[inline]
+	#[must_use]
+	pub fn tensor_count(mut self, value: u32) -> Self {
+		self.tensor_count = value;
+		self
+	}
+
+	/// Borrow `pTensors` and set checked native count `tensorCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pTensors")]
 	#[inline]
 	pub fn tensors(
@@ -116043,6 +122390,19 @@ impl<'a> SurfaceCreateInfoOHOS<'a> {
 		self
 	}
 
+	/// Set native pointer `window` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn window(mut self, value: *mut OHNativeWindow) -> Self {
+		self.window = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -116280,6 +122640,20 @@ impl<'a> DataGraphPipelineConstantARM<'a> {
 	#[must_use]
 	pub fn id(mut self, value: u32) -> Self {
 		self.id = value;
+		self
+	}
+
+	/// Set native pointer `pConstantData` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[doc(alias = "pConstantData")]
+	#[inline]
+	#[must_use]
+	pub unsafe fn constant_data(mut self, value: *const std::ffi::c_void) -> Self {
+		self.p_constant_data = value;
 		self
 	}
 
@@ -116541,11 +122915,25 @@ impl<'a> DataGraphPipelineCreateInfoARM<'a> {
 		self
 	}
 
-	/// Set `pResourceInfos` and its checked native count `resourceInfoCount`.
+	/// Set native count `resourceInfoCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "resourceInfoCount")]
+	#[inline]
+	#[must_use]
+	pub fn resource_info_count(mut self, value: u32) -> Self {
+		self.resource_info_count = value;
+		self
+	}
+
+	/// Borrow `pResourceInfos` and set checked native count `resourceInfoCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pResourceInfos")]
 	#[inline]
 	pub fn resource_infos(
@@ -116642,11 +123030,25 @@ impl<'a> DataGraphPipelineShaderModuleCreateInfoARM<'a> {
 		self
 	}
 
-	/// Set `pConstants` and its checked native count `constantCount`.
+	/// Set native count `constantCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "constantCount")]
+	#[inline]
+	#[must_use]
+	pub fn constant_count(mut self, value: u32) -> Self {
+		self.constant_count = value;
+		self
+	}
+
+	/// Borrow `pConstants` and set checked native count `constantCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pConstants")]
 	#[inline]
 	pub fn constants(
@@ -117165,6 +123567,37 @@ impl<'a> DataGraphPipelinePropertyQueryResultARM<'a> {
 		self
 	}
 
+	/// Set native count `dataSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "dataSize")]
+	#[inline]
+	#[must_use]
+	pub fn data_size(mut self, value: usize) -> Self {
+		self.data_size = value;
+		self
+	}
+
+	/// Borrow `pData` and set checked native byte size `dataSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pData")]
+	#[inline]
+	pub fn data(
+		mut self,
+		value: &'a mut [u8],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.data_size = count;
+		self.p_data = value.as_mut_ptr().cast();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -117215,11 +123648,25 @@ impl<'a> Default for DataGraphPipelineIdentifierCreateInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineIdentifierCreateInfoARM<'a> {
-	/// Set `pIdentifier` and its checked native count `identifierSize`.
+	/// Set native count `identifierSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "identifierSize")]
+	#[inline]
+	#[must_use]
+	pub fn identifier_size(mut self, value: u32) -> Self {
+		self.identifier_size = value;
+		self
+	}
+
+	/// Borrow `pIdentifier` and set checked native count `identifierSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pIdentifier")]
 	#[inline]
 	pub fn identifier(
@@ -117628,6 +124075,37 @@ impl<'a> Default for DataGraphProcessingEngineCreateInfoARM<'a> {
 }
 
 impl<'a> DataGraphProcessingEngineCreateInfoARM<'a> {
+	/// Set native count `processingEngineCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "processingEngineCount")]
+	#[inline]
+	#[must_use]
+	pub fn processing_engine_count(mut self, value: u32) -> Self {
+		self.processing_engine_count = value;
+		self
+	}
+
+	/// Borrow `pProcessingEngines` and set checked native count `processingEngineCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pProcessingEngines")]
+	#[inline]
+	pub fn processing_engines(
+		mut self,
+		value: &'a mut [PhysicalDeviceDataGraphProcessingEngineARM],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pProcessingEngines", value.len())?;
+		self.processing_engine_count = count;
+		self.p_processing_engines = value.as_mut_ptr();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -118524,6 +125002,19 @@ impl<'a> Default for ImportNativeBufferInfoOHOS<'a> {
 
 #[cfg(feature = "platform-ohos")]
 impl<'a> ImportNativeBufferInfoOHOS<'a> {
+	/// Set native pointer `buffer` explicitly. No borrow or extent is inferred.
+	///
+	/// # Safety
+	/// The caller must establish pointee validity, extent, alignment, aliasing and
+	/// the full native retention lifetime before using this record in a native call.
+	/// Callback, external-object and nested-pointer contracts remain caller obligations.
+	#[inline]
+	#[must_use]
+	pub unsafe fn buffer(mut self, value: *mut OH_NativeBuffer) -> Self {
+		self.buffer = value;
+		self
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -119155,11 +125646,25 @@ impl<'a> Default for RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
 }
 
 impl<'a> RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
-	/// Set `pCounterAddresses` and its checked native count `counterAddressCount`.
+	/// Set native count `counterAddressCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "counterAddressCount")]
+	#[inline]
+	#[must_use]
+	pub fn counter_address_count(mut self, value: u32) -> Self {
+		self.counter_address_count = value;
+		self
+	}
+
+	/// Borrow `pCounterAddresses` and set checked native count `counterAddressCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pCounterAddresses")]
 	#[inline]
 	pub fn counter_addresses(
@@ -119179,6 +125684,37 @@ impl<'a> RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
 	pub fn serialize_regions(mut self, value: Bool32) -> Self {
 		self.serialize_regions = value;
 		self
+	}
+
+	/// Set native count `counterIndexCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "counterIndexCount")]
+	#[inline]
+	#[must_use]
+	pub fn counter_index_count(mut self, value: u32) -> Self {
+		self.counter_index_count = value;
+		self
+	}
+
+	/// Borrow `pCounterIndices` and set checked native count `counterIndexCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pCounterIndices")]
+	#[inline]
+	pub fn counter_indices(
+		mut self,
+		value: &'a mut [u32],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count("pCounterIndices", value.len())?;
+		self.counter_index_count = count;
+		self.p_counter_indices = value.as_mut_ptr();
+		Ok(self)
 	}
 
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
@@ -119551,43 +126087,101 @@ impl<'a> PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
 #[doc(alias = "VkHostAddressRangeEXT")]
 #[doc = "\n\n[Khronos reference: `VkHostAddressRangeEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/VkHostAddressRangeEXT.html)"]
 #[repr(C)]
-#[derive(Copy, Clone)]
-pub struct HostAddressRangeEXT {
+pub struct HostAddressRangeEXT<'a> {
 	/// Native field `address`.
 	pub address: *mut std::ffi::c_void,
 	/// Native field `size`.
 	pub size: usize,
+	#[doc(hidden)]
+	pub _marker: std::marker::PhantomData<&'a mut ()>,
 }
 
-impl Default for HostAddressRangeEXT {
+impl<'a> Default for HostAddressRangeEXT<'a> {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
 	}
 }
 
-impl HostAddressRangeEXT {}
+impl<'a> HostAddressRangeEXT<'a> {
+	/// Borrow `address` and set checked native byte size `size`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[inline]
+	pub fn address(
+		mut self,
+		value: &'a mut [u8],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.size = count;
+		self.address = value.as_mut_ptr().cast();
+		Ok(self)
+	}
+
+	/// Set native count `size` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[inline]
+	#[must_use]
+	pub fn size(mut self, value: usize) -> Self {
+		self.size = value;
+		self
+	}
+}
 
 #[doc = "Native structure `VkHostAddressRangeConstEXT`."]
 #[doc(alias = "VkHostAddressRangeConstEXT")]
 #[doc = "\n\n[Khronos reference: `VkHostAddressRangeConstEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/VkHostAddressRangeConstEXT.html)"]
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct HostAddressRangeConstEXT {
+pub struct HostAddressRangeConstEXT<'a> {
 	/// Native field `address`.
 	pub address: *const std::ffi::c_void,
 	/// Native field `size`.
 	pub size: usize,
+	#[doc(hidden)]
+	pub _marker: std::marker::PhantomData<&'a ()>,
 }
 
-impl Default for HostAddressRangeConstEXT {
+impl<'a> Default for HostAddressRangeConstEXT<'a> {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
 	}
 }
 
-impl HostAddressRangeConstEXT {}
+impl<'a> HostAddressRangeConstEXT<'a> {
+	/// Borrow `address` and set checked native byte size `size`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[inline]
+	pub fn address(mut self, value: &'a [u8]) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = value.len();
+		self.size = count;
+		self.address = value.as_ptr().cast();
+		Ok(self)
+	}
+
+	/// Set native count `size` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[inline]
+	#[must_use]
+	pub fn size(mut self, value: usize) -> Self {
+		self.size = value;
+		self
+	}
+}
 
 #[doc = "Native structure `VkTexelBufferDescriptorInfoEXT`."]
 #[doc(alias = "VkTexelBufferDescriptorInfoEXT")]
@@ -119750,6 +126344,44 @@ impl<'a> Default for ResourceDescriptorDataEXT<'a> {
 	}
 }
 
+impl<'a> ResourceDescriptorDataEXT<'a> {
+	/// Set native field `pImage` without native effects.
+	#[doc(alias = "pImage")]
+	#[inline]
+	#[must_use]
+	pub fn image(mut self, value: &'a ImageDescriptorInfoEXT<'a>) -> Self {
+		self.p_image = value;
+		self
+	}
+
+	/// Set native field `pTexelBuffer` without native effects.
+	#[doc(alias = "pTexelBuffer")]
+	#[inline]
+	#[must_use]
+	pub fn texel_buffer(mut self, value: &'a TexelBufferDescriptorInfoEXT<'a>) -> Self {
+		self.p_texel_buffer = value;
+		self
+	}
+
+	/// Set native field `pAddressRange` without native effects.
+	#[doc(alias = "pAddressRange")]
+	#[inline]
+	#[must_use]
+	pub fn address_range(mut self, value: &'a DeviceAddressRangeEXT) -> Self {
+		self.p_address_range = value;
+		self
+	}
+
+	/// Set native field `pTensorARM` without native effects.
+	#[doc(alias = "pTensorARM")]
+	#[inline]
+	#[must_use]
+	pub fn tensor_arm(mut self, value: &'a TensorViewCreateInfoARM<'a>) -> Self {
+		self.p_tensor_arm = value;
+		self
+	}
+}
+
 #[doc = "Native structure `VkResourceDescriptorInfoEXT`."]
 #[doc(alias = "VkResourceDescriptorInfoEXT")]
 #[doc = "\n\n[Khronos reference: `VkResourceDescriptorInfoEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/VkResourceDescriptorInfoEXT.html)"]
@@ -119908,7 +126540,7 @@ pub struct PushDataInfoEXT<'a> {
 	/// Native field `offset`.
 	pub offset: u32,
 	/// Native field `data`.
-	pub data: HostAddressRangeConstEXT,
+	pub data: HostAddressRangeConstEXT<'a>,
 	#[doc(hidden)]
 	pub _marker: std::marker::PhantomData<&'a mut ()>,
 }
@@ -119935,7 +126567,7 @@ impl<'a> PushDataInfoEXT<'a> {
 	/// Set native field `data` without native effects.
 	#[inline]
 	#[must_use]
-	pub fn data(mut self, value: HostAddressRangeConstEXT) -> Self {
+	pub fn data(mut self, value: HostAddressRangeConstEXT<'a>) -> Self {
 		self.data = value;
 		self
 	}
@@ -120749,6 +127381,113 @@ impl<'a> Default for DescriptorMappingSourceDataEXT<'a> {
 	}
 }
 
+impl<'a> DescriptorMappingSourceDataEXT<'a> {
+	/// Set native field `constantOffset` without native effects.
+	#[doc(alias = "constantOffset")]
+	#[inline]
+	#[must_use]
+	pub fn constant_offset(mut self, value: DescriptorMappingSourceConstantOffsetEXT<'a>) -> Self {
+		self.constant_offset = value;
+		self
+	}
+
+	/// Set native field `pushIndex` without native effects.
+	#[doc(alias = "pushIndex")]
+	#[inline]
+	#[must_use]
+	pub fn push_index(mut self, value: DescriptorMappingSourcePushIndexEXT<'a>) -> Self {
+		self.push_index = value;
+		self
+	}
+
+	/// Set native field `indirectIndex` without native effects.
+	#[doc(alias = "indirectIndex")]
+	#[inline]
+	#[must_use]
+	pub fn indirect_index(mut self, value: DescriptorMappingSourceIndirectIndexEXT<'a>) -> Self {
+		self.indirect_index = value;
+		self
+	}
+
+	/// Set native field `indirectIndexArray` without native effects.
+	#[doc(alias = "indirectIndexArray")]
+	#[inline]
+	#[must_use]
+	pub fn indirect_index_array(
+		mut self,
+		value: DescriptorMappingSourceIndirectIndexArrayEXT<'a>,
+	) -> Self {
+		self.indirect_index_array = value;
+		self
+	}
+
+	/// Set native field `heapData` without native effects.
+	#[doc(alias = "heapData")]
+	#[inline]
+	#[must_use]
+	pub fn heap_data(mut self, value: DescriptorMappingSourceHeapDataEXT) -> Self {
+		self.heap_data = value;
+		self
+	}
+
+	/// Set native field `pushDataOffset` without native effects.
+	#[doc(alias = "pushDataOffset")]
+	#[inline]
+	#[must_use]
+	pub fn push_data_offset(mut self, value: u32) -> Self {
+		self.push_data_offset = value;
+		self
+	}
+
+	/// Set native field `pushAddressOffset` without native effects.
+	#[doc(alias = "pushAddressOffset")]
+	#[inline]
+	#[must_use]
+	pub fn push_address_offset(mut self, value: u32) -> Self {
+		self.push_address_offset = value;
+		self
+	}
+
+	/// Set native field `indirectAddress` without native effects.
+	#[doc(alias = "indirectAddress")]
+	#[inline]
+	#[must_use]
+	pub fn indirect_address(mut self, value: DescriptorMappingSourceIndirectAddressEXT) -> Self {
+		self.indirect_address = value;
+		self
+	}
+
+	/// Set native field `shaderRecordIndex` without native effects.
+	#[doc(alias = "shaderRecordIndex")]
+	#[inline]
+	#[must_use]
+	pub fn shader_record_index(
+		mut self,
+		value: DescriptorMappingSourceShaderRecordIndexEXT<'a>,
+	) -> Self {
+		self.shader_record_index = value;
+		self
+	}
+
+	/// Set native field `shaderRecordDataOffset` without native effects.
+	#[doc(alias = "shaderRecordDataOffset")]
+	#[inline]
+	#[must_use]
+	pub fn shader_record_data_offset(mut self, value: u32) -> Self {
+		self.shader_record_data_offset = value;
+		self
+	}
+
+	/// Set native field `shaderRecordAddressOffset` without native effects.
+	#[doc(alias = "shaderRecordAddressOffset")]
+	#[inline]
+	#[must_use]
+	pub fn shader_record_address_offset(mut self, value: u32) -> Self {
+		self.shader_record_address_offset = value;
+		self
+	}
+}
+
 #[doc = "Native structure `VkDescriptorSetAndBindingMappingEXT`."]
 #[doc(alias = "VkDescriptorSetAndBindingMappingEXT")]
 #[doc = "\n\n[Khronos reference: `VkDescriptorSetAndBindingMappingEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/VkDescriptorSetAndBindingMappingEXT.html)"]
@@ -120895,11 +127634,25 @@ impl<'a> Default for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
 }
 
 impl<'a> ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
-	/// Set `pMappings` and its checked native count `mappingCount`.
+	/// Set native count `mappingCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "mappingCount")]
+	#[inline]
+	#[must_use]
+	pub fn mapping_count(mut self, value: u32) -> Self {
+		self.mapping_count = value;
+		self
+	}
+
+	/// Borrow `pMappings` and set checked native count `mappingCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pMappings")]
 	#[inline]
 	pub fn mappings(
@@ -120997,7 +127750,7 @@ pub struct OpaqueCaptureDataCreateInfoEXT<'a> {
 	pub p_next: *const std::ffi::c_void,
 	/// Native field `pData`.
 	#[doc(alias = "pData")]
-	pub p_data: *const HostAddressRangeConstEXT,
+	pub p_data: *const HostAddressRangeConstEXT<'a>,
 	#[doc(hidden)]
 	pub _marker: std::marker::PhantomData<&'a mut ()>,
 }
@@ -121017,7 +127770,7 @@ impl<'a> OpaqueCaptureDataCreateInfoEXT<'a> {
 	#[doc(alias = "pData")]
 	#[inline]
 	#[must_use]
-	pub fn data(mut self, value: &'a HostAddressRangeConstEXT) -> Self {
+	pub fn data(mut self, value: &'a HostAddressRangeConstEXT<'a>) -> Self {
 		self.p_data = value;
 		self
 	}
@@ -122224,11 +128977,25 @@ impl<'a> Default for CopyDeviceMemoryInfoKHR<'a> {
 }
 
 impl<'a> CopyDeviceMemoryInfoKHR<'a> {
-	/// Set `pRegions` and its checked native count `regionCount`.
+	/// Set native count `regionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "regionCount")]
+	#[inline]
+	#[must_use]
+	pub fn region_count(mut self, value: u32) -> Self {
+		self.region_count = value;
+		self
+	}
+
+	/// Borrow `pRegions` and set checked native count `regionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRegions")]
 	#[inline]
 	pub fn regions(
@@ -122441,11 +129208,25 @@ impl<'a> CopyDeviceMemoryImageInfoKHR<'a> {
 		self
 	}
 
-	/// Set `pRegions` and its checked native count `regionCount`.
+	/// Set native count `regionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "regionCount")]
+	#[inline]
+	#[must_use]
+	pub fn region_count(mut self, value: u32) -> Self {
+		self.region_count = value;
+		self
+	}
+
+	/// Borrow `pRegions` and set checked native count `regionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pRegions")]
 	#[inline]
 	pub fn regions(
@@ -122508,11 +129289,25 @@ impl<'a> Default for MemoryRangeBarriersInfoKHR<'a> {
 }
 
 impl<'a> MemoryRangeBarriersInfoKHR<'a> {
-	/// Set `pMemoryRangeBarriers` and its checked native count `memoryRangeBarrierCount`.
+	/// Set native count `memoryRangeBarrierCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "memoryRangeBarrierCount")]
+	#[inline]
+	#[must_use]
+	pub fn memory_range_barrier_count(mut self, value: u32) -> Self {
+		self.memory_range_barrier_count = value;
+		self
+	}
+
+	/// Borrow `pMemoryRangeBarriers` and set checked native count `memoryRangeBarrierCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pMemoryRangeBarriers")]
 	#[inline]
 	pub fn memory_range_barriers(
@@ -123675,6 +130470,37 @@ impl<'a> Default for DeviceFaultShaderAbortMessageInfoKHR<'a> {
 }
 
 impl<'a> DeviceFaultShaderAbortMessageInfoKHR<'a> {
+	/// Set native count `messageDataSize` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "messageDataSize")]
+	#[inline]
+	#[must_use]
+	pub fn message_data_size(mut self, value: u64) -> Self {
+		self.message_data_size = value;
+		self
+	}
+
+	/// Borrow `pMessageData` and set checked native byte size `messageDataSize`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pMessageData")]
+	#[inline]
+	pub fn message_data(
+		mut self,
+		value: &'a mut [u8],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count_as::<u64>("pMessageData", value.len())?;
+		self.message_data_size = count;
+		self.p_message_data = value.as_mut_ptr().cast();
+		Ok(self)
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -123775,11 +130601,25 @@ impl<'a> Default for QueueFamilyDataGraphTOSAPropertiesARM<'a> {
 }
 
 impl<'a> QueueFamilyDataGraphTOSAPropertiesARM<'a> {
-	/// Set `pProfiles` and its checked native count `profileCount`.
+	/// Set native count `profileCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "profileCount")]
+	#[inline]
+	#[must_use]
+	pub fn profile_count(mut self, value: u32) -> Self {
+		self.profile_count = value;
+		self
+	}
+
+	/// Borrow `pProfiles` and set checked native count `profileCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pProfiles")]
 	#[inline]
 	pub fn profiles(
@@ -123792,11 +130632,25 @@ impl<'a> QueueFamilyDataGraphTOSAPropertiesARM<'a> {
 		Ok(self)
 	}
 
-	/// Set `pExtensions` and its checked native count `extensionCount`.
+	/// Set native count `extensionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "extensionCount")]
+	#[inline]
+	#[must_use]
+	pub fn extension_count(mut self, value: u32) -> Self {
+		self.extension_count = value;
+		self
+	}
+
+	/// Borrow `pExtensions` and set checked native count `extensionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pExtensions")]
 	#[inline]
 	pub fn extensions(
@@ -124260,11 +131114,25 @@ impl<'a> DataGraphPipelineSingleNodeCreateInfoARM<'a> {
 		self
 	}
 
-	/// Set `pConnections` and its checked native count `connectionCount`.
+	/// Set native count `connectionCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "connectionCount")]
+	#[inline]
+	#[must_use]
+	pub fn connection_count(mut self, value: u32) -> Self {
+		self.connection_count = value;
+		self
+	}
+
+	/// Borrow `pConnections` and set checked native count `connectionCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
 	///
 	/// # Errors
-	/// Returns [`crate::ConstructionError::CountOverflow`] if the length cannot fit.
-	/// The borrow covers the array; any nested raw pointers remain caller obligations.
+	/// Returns a construction error if the length exceeds the native count width.
 	#[doc(alias = "pConnections")]
 	#[inline]
 	pub fn connections(
@@ -126598,7 +133466,7 @@ impl StdVideoEncodeH264RefPicMarkingEntry {
 #[doc = "\n\n[Khronos registry source: `StdVideoEncodeH264ReferenceListsInfo`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct StdVideoEncodeH264ReferenceListsInfo {
+pub struct StdVideoEncodeH264ReferenceListsInfo<'a> {
 	/// Native field `flags`.
 	pub flags: StdVideoEncodeH264ReferenceListsInfoFlags,
 	/// Native field `num_ref_idx_l0_active_minus1`.
@@ -126631,16 +133499,18 @@ pub struct StdVideoEncodeH264ReferenceListsInfo {
 	/// Native field `pRefPicMarkingOperations`.
 	#[doc(alias = "pRefPicMarkingOperations")]
 	pub p_ref_pic_marking_operations: *const StdVideoEncodeH264RefPicMarkingEntry,
+	#[doc(hidden)]
+	pub _marker: std::marker::PhantomData<&'a ()>,
 }
 
-impl Default for StdVideoEncodeH264ReferenceListsInfo {
+impl<'a> Default for StdVideoEncodeH264ReferenceListsInfo<'a> {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
 	}
 }
 
-impl StdVideoEncodeH264ReferenceListsInfo {
+impl<'a> StdVideoEncodeH264ReferenceListsInfo<'a> {
 	/// Set native field `flags` without native effects.
 	#[inline]
 	#[must_use]
@@ -126683,12 +133553,105 @@ impl StdVideoEncodeH264ReferenceListsInfo {
 		self
 	}
 
+	/// Set native count `refList0ModOpCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "refList0ModOpCount")]
+	#[inline]
+	#[must_use]
+	pub fn ref_list0_mod_op_count(mut self, value: u8) -> Self {
+		self.ref_list0_mod_op_count = value;
+		self
+	}
+
+	/// Set native count `refList1ModOpCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "refList1ModOpCount")]
+	#[inline]
+	#[must_use]
+	pub fn ref_list1_mod_op_count(mut self, value: u8) -> Self {
+		self.ref_list1_mod_op_count = value;
+		self
+	}
+
+	/// Set native count `refPicMarkingOpCount` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "refPicMarkingOpCount")]
+	#[inline]
+	#[must_use]
+	pub fn ref_pic_marking_op_count(mut self, value: u8) -> Self {
+		self.ref_pic_marking_op_count = value;
+		self
+	}
+
 	/// Set native field `reserved1` without native effects.
 	#[inline]
 	#[must_use]
 	pub fn reserved1(mut self, value: [u8; 7]) -> Self {
 		self.reserved1 = value;
 		self
+	}
+
+	/// Borrow `pRefList0ModOperations` and set checked native count `refList0ModOpCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pRefList0ModOperations")]
+	#[inline]
+	pub fn ref_list0_mod_operations(
+		mut self,
+		value: &'a [StdVideoEncodeH264RefListModEntry],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count_as::<u8>("pRefList0ModOperations", value.len())?;
+		self.ref_list0_mod_op_count = count;
+		self.p_ref_list0_mod_operations = value.as_ptr();
+		Ok(self)
+	}
+
+	/// Borrow `pRefList1ModOperations` and set checked native count `refList1ModOpCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pRefList1ModOperations")]
+	#[inline]
+	pub fn ref_list1_mod_operations(
+		mut self,
+		value: &'a [StdVideoEncodeH264RefListModEntry],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count_as::<u8>("pRefList1ModOperations", value.len())?;
+		self.ref_list1_mod_op_count = count;
+		self.p_ref_list1_mod_operations = value.as_ptr();
+		Ok(self)
+	}
+
+	/// Borrow `pRefPicMarkingOperations` and set checked native count `refPicMarkingOpCount`.
+	/// The borrow covers this storage only; nested raw pointers, format, alignment
+	/// and asynchronous retention remain native-call obligations.
+	/// Output storage must be initialized; returned sizes do not enlarge its capacity.
+	///
+	/// # Errors
+	/// Returns a construction error if the length exceeds the native count width.
+	#[doc(alias = "pRefPicMarkingOperations")]
+	#[inline]
+	pub fn ref_pic_marking_operations(
+		mut self,
+		value: &'a [StdVideoEncodeH264RefPicMarkingEntry],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let count = crate::construction::count_as::<u8>("pRefPicMarkingOperations", value.len())?;
+		self.ref_pic_marking_op_count = count;
+		self.p_ref_pic_marking_operations = value.as_ptr();
+		Ok(self)
 	}
 }
 
@@ -127033,7 +133996,7 @@ impl StdVideoH265HrdFlags {}
 #[doc = "\n\n[Khronos registry source: `StdVideoH265HrdParameters`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct StdVideoH265HrdParameters {
+pub struct StdVideoH265HrdParameters<'a> {
 	/// Native field `flags`.
 	pub flags: StdVideoH265HrdFlags,
 	/// Native field `tick_divisor_minus2`.
@@ -127066,16 +134029,18 @@ pub struct StdVideoH265HrdParameters {
 	/// Native field `pSubLayerHrdParametersVcl`.
 	#[doc(alias = "pSubLayerHrdParametersVcl")]
 	pub p_sub_layer_hrd_parameters_vcl: *const StdVideoH265SubLayerHrdParameters,
+	#[doc(hidden)]
+	pub _marker: std::marker::PhantomData<&'a ()>,
 }
 
-impl Default for StdVideoH265HrdParameters {
+impl<'a> Default for StdVideoH265HrdParameters<'a> {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
 	}
 }
 
-impl StdVideoH265HrdParameters {
+impl<'a> StdVideoH265HrdParameters<'a> {
 	/// Set native field `flags` without native effects.
 	#[inline]
 	#[must_use]
@@ -127184,6 +134149,56 @@ impl StdVideoH265HrdParameters {
 	pub fn reserved(mut self, value: [u16; 3]) -> Self {
 		self.reserved = value;
 		self
+	}
+
+	/// Borrow H.265 HRD storage using its enclosing SPS/VPS sub-layer extent.
+	/// The caller supplies the matching enclosing `*_max_sub_layers_minus1`;
+	/// presence flags and the enclosing record remain native-call obligations.
+	///
+	/// # Errors
+	/// Returns a length mismatch unless the slice has max_sub_layers_minus1 + 1 entries.
+	#[doc(alias = "pSubLayerHrdParametersNal")]
+	#[inline]
+	pub fn sub_layer_hrd_parameters_nal(
+		mut self,
+		max_sub_layers_minus1: u8,
+		value: &'a [StdVideoH265SubLayerHrdParameters],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = usize::from(max_sub_layers_minus1) + 1;
+		if value.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pSubLayerHrdParametersNal",
+				expected,
+				actual: value.len(),
+			});
+		}
+		self.p_sub_layer_hrd_parameters_nal = value.as_ptr();
+		Ok(self)
+	}
+
+	/// Borrow H.265 HRD storage using its enclosing SPS/VPS sub-layer extent.
+	/// The caller supplies the matching enclosing `*_max_sub_layers_minus1`;
+	/// presence flags and the enclosing record remain native-call obligations.
+	///
+	/// # Errors
+	/// Returns a length mismatch unless the slice has max_sub_layers_minus1 + 1 entries.
+	#[doc(alias = "pSubLayerHrdParametersVcl")]
+	#[inline]
+	pub fn sub_layer_hrd_parameters_vcl(
+		mut self,
+		max_sub_layers_minus1: u8,
+		value: &'a [StdVideoH265SubLayerHrdParameters],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = usize::from(max_sub_layers_minus1) + 1;
+		if value.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pSubLayerHrdParametersVcl",
+				expected,
+				actual: value.len(),
+			});
+		}
+		self.p_sub_layer_hrd_parameters_vcl = value.as_ptr();
+		Ok(self)
 	}
 }
 
@@ -127850,7 +134865,7 @@ pub struct StdVideoH265SequenceParameterSetVui<'a> {
 	pub log2_max_mv_length_vertical: u8,
 	/// Native field `pHrdParameters`.
 	#[doc(alias = "pHrdParameters")]
-	pub p_hrd_parameters: *const StdVideoH265HrdParameters,
+	pub p_hrd_parameters: *const StdVideoH265HrdParameters<'a>,
 	#[doc(hidden)]
 	pub _marker: std::marker::PhantomData<&'a ()>,
 }
@@ -128067,7 +135082,7 @@ impl<'a> StdVideoH265SequenceParameterSetVui<'a> {
 	#[doc(alias = "pHrdParameters")]
 	#[inline]
 	#[must_use]
-	pub fn hrd_parameters(mut self, value: &'a StdVideoH265HrdParameters) -> Self {
+	pub fn hrd_parameters(mut self, value: &'a StdVideoH265HrdParameters<'a>) -> Self {
 		self.p_hrd_parameters = value;
 		self
 	}
@@ -131030,7 +138045,7 @@ impl StdVideoAV1TileInfoFlags {}
 #[doc = "\n\n[Khronos registry source: `StdVideoAV1TileInfo`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct StdVideoAV1TileInfo {
+pub struct StdVideoAV1TileInfo<'a> {
 	/// Native field `flags`.
 	pub flags: StdVideoAV1TileInfoFlags,
 	/// Native field `TileCols`.
@@ -131057,21 +138072,47 @@ pub struct StdVideoAV1TileInfo {
 	/// Native field `pHeightInSbsMinus1`.
 	#[doc(alias = "pHeightInSbsMinus1")]
 	pub p_height_in_sbs_minus1: *const u16,
+	#[doc(hidden)]
+	pub _marker: std::marker::PhantomData<&'a ()>,
 }
 
-impl Default for StdVideoAV1TileInfo {
+impl<'a> Default for StdVideoAV1TileInfo<'a> {
 	fn default() -> Self {
 		// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.
 		unsafe { std::mem::zeroed() }
 	}
 }
 
-impl StdVideoAV1TileInfo {
+impl<'a> StdVideoAV1TileInfo<'a> {
 	/// Set native field `flags` without native effects.
 	#[inline]
 	#[must_use]
 	pub fn flags(mut self, value: StdVideoAV1TileInfoFlags) -> Self {
 		self.flags = value;
+		self
+	}
+
+	/// Set native count `TileCols` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "TileCols")]
+	#[inline]
+	#[must_use]
+	pub fn tile_cols(mut self, value: u8) -> Self {
+		self.tile_cols = value;
+		self
+	}
+
+	/// Set native count `TileRows` directly without checking associated pointer extents.
+	/// Use the borrowed array helpers to derive matching storage and counts together.
+	/// Direct count edits support null-query/dynamic-state paths and remain a
+	/// native-call validity obligation, including after earlier borrowed setters.
+	#[doc(alias = "TileRows")]
+	#[inline]
+	#[must_use]
+	pub fn tile_rows(mut self, value: u8) -> Self {
+		self.tile_rows = value;
 		self
 	}
 
@@ -131097,6 +138138,76 @@ impl StdVideoAV1TileInfo {
 	pub fn reserved1(mut self, value: [u8; 7]) -> Self {
 		self.reserved1 = value;
 		self
+	}
+
+	/// Borrow parallel arrays sharing native `TileCols`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pMiColStarts")]
+	#[inline]
+	pub fn mi_col_starts(
+		mut self,
+		mi_col_starts: &'a [u16],
+		width_in_sbs_minus1: &'a [u16],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = mi_col_starts.len();
+		if mi_col_starts.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pMiColStarts",
+				expected,
+				actual: mi_col_starts.len(),
+			});
+		}
+		if width_in_sbs_minus1.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pWidthInSbsMinus1",
+				expected,
+				actual: width_in_sbs_minus1.len(),
+			});
+		}
+		let count = crate::construction::count_as::<u8>("pMiColStarts", expected)?;
+		self.p_mi_col_starts = mi_col_starts.as_ptr();
+		self.p_width_in_sbs_minus1 = width_in_sbs_minus1.as_ptr();
+		self.tile_cols = count;
+		Ok(self)
+	}
+
+	/// Borrow parallel arrays sharing native `TileRows`. Optional arrays may be null.
+	/// Mutable arrays retain exclusive borrows of initialized output storage.
+	/// This checks lengths only; native valid usage and later raw edits remain caller obligations.
+	///
+	/// # Errors
+	/// Returns a construction error for unequal lengths or native count overflow.
+	#[doc(alias = "pMiRowStarts")]
+	#[inline]
+	pub fn mi_row_starts(
+		mut self,
+		mi_row_starts: &'a [u16],
+		height_in_sbs_minus1: &'a [u16],
+	) -> std::result::Result<Self, crate::ConstructionError> {
+		let expected = mi_row_starts.len();
+		if mi_row_starts.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pMiRowStarts",
+				expected,
+				actual: mi_row_starts.len(),
+			});
+		}
+		if height_in_sbs_minus1.len() != expected {
+			return Err(crate::ConstructionError::LengthMismatch {
+				field: "pHeightInSbsMinus1",
+				expected,
+				actual: height_in_sbs_minus1.len(),
+			});
+		}
+		let count = crate::construction::count_as::<u8>("pMiRowStarts", expected)?;
+		self.p_mi_row_starts = mi_row_starts.as_ptr();
+		self.p_height_in_sbs_minus1 = height_in_sbs_minus1.as_ptr();
+		self.tile_rows = count;
+		Ok(self)
 	}
 }
 

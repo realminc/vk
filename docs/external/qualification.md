@@ -25,8 +25,16 @@ snake_case while ABI layout and calling conventions retain the native contract.
 Version 0.5.0 adds generated borrowed setters and typed
 `push_next` construction on the same records. Their lifetimes cover backing host
 storage, not native resource ownership or GPU completion. Public pointer fields,
-opaque payloads and unreviewed pointer/length relationships retain unsafe caller
-obligations. Resource ownership and GPU-completion lifetimes remain separate work.
+opaque payloads and manually edited pointer/length relationships retain unsafe
+caller obligations. Resource ownership and GPU-completion lifetimes remain separate work.
+
+Version 0.6.0 extends construction across every pinned record/union
+field: checked byte and element extents, optional parallel arrays, initialized
+writable outputs, reviewed parent/cross-record capacities, typed layer settings
+and explicit unsafe opaque/external pointer setters. All 1,552 concrete records/
+unions and 8,333 fields have construction coverage, with 5,450 methods. New
+lifetime parameters and exclusive records change Rust source compatibility.
+Output capacities and returned sizes remain distinct, and native calls stay unsafe.
 
 ## Evidence and continuous checks
 
@@ -69,7 +77,7 @@ The crates.io package is `vkrust`; its library/import name is `vk`:
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.5" }
+vk = { package = "vkrust", version = "0.6" }
 ```
 
 The public source target is `realminc/vk`. Private engineering history and

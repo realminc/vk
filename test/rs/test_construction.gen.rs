@@ -3,10 +3,24 @@
 use ::vk;
 
 #[test]
-fn vk_base_out_structure_construction_contract() {}
+fn vk_base_out_structure_construction_contract() {
+	let _: fn(vk::BaseOutStructure<'static>, vk::StructureType) -> vk::BaseOutStructure<'static> =
+		vk::BaseOutStructure::s_type;
+	let _: fn(
+		vk::BaseOutStructure<'static>,
+		&'static mut vk::BaseOutStructure<'static>,
+	) -> vk::BaseOutStructure<'static> = vk::BaseOutStructure::p_next;
+}
 
 #[test]
-fn vk_base_in_structure_construction_contract() {}
+fn vk_base_in_structure_construction_contract() {
+	let _: fn(vk::BaseInStructure<'static>, vk::StructureType) -> vk::BaseInStructure<'static> =
+		vk::BaseInStructure::s_type;
+	let _: fn(
+		vk::BaseInStructure<'static>,
+		&'static vk::BaseInStructure<'static>,
+	) -> vk::BaseInStructure<'static> = vk::BaseInStructure::p_next;
+}
 
 #[test]
 fn vk_offset2_d_construction_contract() {
@@ -143,6 +157,8 @@ fn vk_application_info_construction_contract() {
 
 #[test]
 fn vk_allocation_callbacks_construction_contract() {
+	let _: unsafe fn(vk::AllocationCallbacks, *mut std::ffi::c_void) -> vk::AllocationCallbacks =
+		vk::AllocationCallbacks::user_data;
 	let _: fn(vk::AllocationCallbacks, vk::PFN_vkAllocationFunction) -> vk::AllocationCallbacks =
 		vk::AllocationCallbacks::pfn_allocation;
 	let _: fn(vk::AllocationCallbacks, vk::PFN_vkReallocationFunction) -> vk::AllocationCallbacks =
@@ -170,6 +186,8 @@ fn vk_device_queue_create_info_construction_contract() {
 	) -> vk::DeviceQueueCreateInfo<'static> = vk::DeviceQueueCreateInfo::flags;
 	let _: fn(vk::DeviceQueueCreateInfo<'static>, u32) -> vk::DeviceQueueCreateInfo<'static> =
 		vk::DeviceQueueCreateInfo::queue_family_index;
+	let _: fn(vk::DeviceQueueCreateInfo<'static>, u32) -> vk::DeviceQueueCreateInfo<'static> =
+		vk::DeviceQueueCreateInfo::queue_count;
 	let _: fn(
 		vk::DeviceQueueCreateInfo<'static>,
 		&'static [f32],
@@ -184,16 +202,22 @@ fn vk_device_create_info_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(vk::DeviceCreateInfo<'static>, vk::DeviceCreateFlags) -> vk::DeviceCreateInfo<'static> =
 		vk::DeviceCreateInfo::flags;
+	let _: fn(vk::DeviceCreateInfo<'static>, u32) -> vk::DeviceCreateInfo<'static> =
+		vk::DeviceCreateInfo::queue_create_info_count;
 	let _: fn(
 		vk::DeviceCreateInfo<'static>,
 		&'static [vk::DeviceQueueCreateInfo<'static>],
 	) -> std::result::Result<vk::DeviceCreateInfo<'static>, vk::ConstructionError> =
 		vk::DeviceCreateInfo::queue_create_infos;
+	let _: fn(vk::DeviceCreateInfo<'static>, u32) -> vk::DeviceCreateInfo<'static> =
+		vk::DeviceCreateInfo::enabled_layer_count;
 	let _: fn(
 		vk::DeviceCreateInfo<'static>,
 		&'static [*const std::ffi::c_char],
 	) -> std::result::Result<vk::DeviceCreateInfo<'static>, vk::ConstructionError> =
 		vk::DeviceCreateInfo::enabled_layer_names;
+	let _: fn(vk::DeviceCreateInfo<'static>, u32) -> vk::DeviceCreateInfo<'static> =
+		vk::DeviceCreateInfo::enabled_extension_count;
 	let _: fn(
 		vk::DeviceCreateInfo<'static>,
 		&'static [*const std::ffi::c_char],
@@ -218,11 +242,15 @@ fn vk_instance_create_info_construction_contract() {
 		vk::InstanceCreateInfo<'static>,
 		&'static vk::ApplicationInfo<'static>,
 	) -> vk::InstanceCreateInfo<'static> = vk::InstanceCreateInfo::application_info;
+	let _: fn(vk::InstanceCreateInfo<'static>, u32) -> vk::InstanceCreateInfo<'static> =
+		vk::InstanceCreateInfo::enabled_layer_count;
 	let _: fn(
 		vk::InstanceCreateInfo<'static>,
 		&'static [*const std::ffi::c_char],
 	) -> std::result::Result<vk::InstanceCreateInfo<'static>, vk::ConstructionError> =
 		vk::InstanceCreateInfo::enabled_layer_names;
+	let _: fn(vk::InstanceCreateInfo<'static>, u32) -> vk::InstanceCreateInfo<'static> =
+		vk::InstanceCreateInfo::enabled_extension_count;
 	let _: fn(
 		vk::InstanceCreateInfo<'static>,
 		&'static [*const std::ffi::c_char],
@@ -244,10 +272,14 @@ fn vk_queue_family_properties_construction_contract() {
 
 #[test]
 fn vk_physical_device_memory_properties_construction_contract() {
+	let _: fn(vk::PhysicalDeviceMemoryProperties, u32) -> vk::PhysicalDeviceMemoryProperties =
+		vk::PhysicalDeviceMemoryProperties::memory_type_count;
 	let _: fn(
 		vk::PhysicalDeviceMemoryProperties,
 		[vk::MemoryType; vk::MAX_MEMORY_TYPES as usize],
 	) -> vk::PhysicalDeviceMemoryProperties = vk::PhysicalDeviceMemoryProperties::memory_types;
+	let _: fn(vk::PhysicalDeviceMemoryProperties, u32) -> vk::PhysicalDeviceMemoryProperties =
+		vk::PhysicalDeviceMemoryProperties::memory_heap_count;
 	let _: fn(
 		vk::PhysicalDeviceMemoryProperties,
 		[vk::MemoryHeap; vk::MAX_MEMORY_HEAPS as usize],
@@ -392,6 +424,8 @@ fn vk_write_descriptor_set_construction_contract() {
 		vk::WriteDescriptorSet::dst_binding;
 	let _: fn(vk::WriteDescriptorSet<'static>, u32) -> vk::WriteDescriptorSet<'static> =
 		vk::WriteDescriptorSet::dst_array_element;
+	let _: fn(vk::WriteDescriptorSet<'static>, u32) -> vk::WriteDescriptorSet<'static> =
+		vk::WriteDescriptorSet::descriptor_count;
 	let _: fn(
 		vk::WriteDescriptorSet<'static>,
 		vk::DescriptorType,
@@ -461,6 +495,8 @@ fn vk_buffer_create_info_construction_contract() {
 		vk::BufferCreateInfo::usage;
 	let _: fn(vk::BufferCreateInfo<'static>, vk::SharingMode) -> vk::BufferCreateInfo<'static> =
 		vk::BufferCreateInfo::sharing_mode;
+	let _: fn(vk::BufferCreateInfo<'static>, u32) -> vk::BufferCreateInfo<'static> =
+		vk::BufferCreateInfo::queue_family_index_count;
 	let _: fn(
 		vk::BufferCreateInfo<'static>,
 		&'static [u32],
@@ -607,6 +643,8 @@ fn vk_image_create_info_construction_contract() {
 		vk::ImageCreateInfo::usage;
 	let _: fn(vk::ImageCreateInfo<'static>, vk::SharingMode) -> vk::ImageCreateInfo<'static> =
 		vk::ImageCreateInfo::sharing_mode;
+	let _: fn(vk::ImageCreateInfo<'static>, u32) -> vk::ImageCreateInfo<'static> =
+		vk::ImageCreateInfo::queue_family_index_count;
 	let _: fn(
 		vk::ImageCreateInfo<'static>,
 		&'static [u32],
@@ -730,6 +768,10 @@ fn vk_sparse_buffer_memory_bind_info_construction_contract() {
 	) -> vk::SparseBufferMemoryBindInfo<'static> = vk::SparseBufferMemoryBindInfo::buffer;
 	let _: fn(
 		vk::SparseBufferMemoryBindInfo<'static>,
+		u32,
+	) -> vk::SparseBufferMemoryBindInfo<'static> = vk::SparseBufferMemoryBindInfo::bind_count;
+	let _: fn(
+		vk::SparseBufferMemoryBindInfo<'static>,
 		&'static [vk::SparseMemoryBind],
 	)
 		-> std::result::Result<vk::SparseBufferMemoryBindInfo<'static>, vk::ConstructionError> =
@@ -742,6 +784,11 @@ fn vk_sparse_image_opaque_memory_bind_info_construction_contract() {
 		vk::SparseImageOpaqueMemoryBindInfo<'static>,
 		vk::Image,
 	) -> vk::SparseImageOpaqueMemoryBindInfo<'static> = vk::SparseImageOpaqueMemoryBindInfo::image;
+	let _: fn(
+		vk::SparseImageOpaqueMemoryBindInfo<'static>,
+		u32,
+	) -> vk::SparseImageOpaqueMemoryBindInfo<'static> =
+		vk::SparseImageOpaqueMemoryBindInfo::bind_count;
 	let _: fn(
 		vk::SparseImageOpaqueMemoryBindInfo<'static>,
 		&'static [vk::SparseMemoryBind],
@@ -757,6 +804,8 @@ fn vk_sparse_image_memory_bind_info_construction_contract() {
 		vk::SparseImageMemoryBindInfo<'static>,
 		vk::Image,
 	) -> vk::SparseImageMemoryBindInfo<'static> = vk::SparseImageMemoryBindInfo::image;
+	let _: fn(vk::SparseImageMemoryBindInfo<'static>, u32) -> vk::SparseImageMemoryBindInfo<'static> =
+		vk::SparseImageMemoryBindInfo::bind_count;
 	let _: fn(
 		vk::SparseImageMemoryBindInfo<'static>,
 		&'static [vk::SparseImageMemoryBind],
@@ -770,26 +819,36 @@ fn vk_bind_sparse_info_construction_contract() {
 	let value = vk::BindSparseInfo::default();
 	assert_eq!(value.s_type, vk::StructureType::BIND_SPARSE_INFO);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::BindSparseInfo<'static>, u32) -> vk::BindSparseInfo<'static> =
+		vk::BindSparseInfo::wait_semaphore_count;
 	let _: fn(
 		vk::BindSparseInfo<'static>,
 		&'static [vk::Semaphore],
 	) -> std::result::Result<vk::BindSparseInfo<'static>, vk::ConstructionError> =
 		vk::BindSparseInfo::wait_semaphores;
+	let _: fn(vk::BindSparseInfo<'static>, u32) -> vk::BindSparseInfo<'static> =
+		vk::BindSparseInfo::buffer_bind_count;
 	let _: fn(
 		vk::BindSparseInfo<'static>,
 		&'static [vk::SparseBufferMemoryBindInfo<'static>],
 	) -> std::result::Result<vk::BindSparseInfo<'static>, vk::ConstructionError> =
 		vk::BindSparseInfo::buffer_binds;
+	let _: fn(vk::BindSparseInfo<'static>, u32) -> vk::BindSparseInfo<'static> =
+		vk::BindSparseInfo::image_opaque_bind_count;
 	let _: fn(
 		vk::BindSparseInfo<'static>,
 		&'static [vk::SparseImageOpaqueMemoryBindInfo<'static>],
 	) -> std::result::Result<vk::BindSparseInfo<'static>, vk::ConstructionError> =
 		vk::BindSparseInfo::image_opaque_binds;
+	let _: fn(vk::BindSparseInfo<'static>, u32) -> vk::BindSparseInfo<'static> =
+		vk::BindSparseInfo::image_bind_count;
 	let _: fn(
 		vk::BindSparseInfo<'static>,
 		&'static [vk::SparseImageMemoryBindInfo<'static>],
 	) -> std::result::Result<vk::BindSparseInfo<'static>, vk::ConstructionError> =
 		vk::BindSparseInfo::image_binds;
+	let _: fn(vk::BindSparseInfo<'static>, u32) -> vk::BindSparseInfo<'static> =
+		vk::BindSparseInfo::signal_semaphore_count;
 	let _: fn(
 		vk::BindSparseInfo<'static>,
 		&'static [vk::Semaphore],
@@ -933,6 +992,11 @@ fn vk_copy_memory_to_image_indirect_info_khr_construction_contract() {
 		vk::CopyMemoryToImageIndirectInfoKHR::src_copy_flags;
 	let _: fn(
 		vk::CopyMemoryToImageIndirectInfoKHR<'static>,
+		u32,
+	) -> vk::CopyMemoryToImageIndirectInfoKHR<'static> =
+		vk::CopyMemoryToImageIndirectInfoKHR::copy_count;
+	let _: fn(
+		vk::CopyMemoryToImageIndirectInfoKHR<'static>,
 		vk::StridedDeviceAddressRangeKHR,
 	) -> vk::CopyMemoryToImageIndirectInfoKHR<'static> =
 		vk::CopyMemoryToImageIndirectInfoKHR::copy_address_range;
@@ -977,6 +1041,10 @@ fn vk_shader_module_create_info_construction_contract() {
 	) -> vk::ShaderModuleCreateInfo<'static> = vk::ShaderModuleCreateInfo::flags;
 	let _: fn(vk::ShaderModuleCreateInfo<'static>, usize) -> vk::ShaderModuleCreateInfo<'static> =
 		vk::ShaderModuleCreateInfo::code_size;
+	let _: fn(
+		vk::ShaderModuleCreateInfo<'static>,
+		&'static [u32],
+	) -> vk::ShaderModuleCreateInfo<'static> = vk::ShaderModuleCreateInfo::code;
 }
 
 #[test]
@@ -989,6 +1057,10 @@ fn vk_descriptor_set_layout_binding_construction_contract() {
 		vk::DescriptorSetLayoutBinding<'static>,
 		vk::DescriptorType,
 	) -> vk::DescriptorSetLayoutBinding<'static> = vk::DescriptorSetLayoutBinding::descriptor_type;
+	let _: fn(
+		vk::DescriptorSetLayoutBinding<'static>,
+		u32,
+	) -> vk::DescriptorSetLayoutBinding<'static> = vk::DescriptorSetLayoutBinding::descriptor_count;
 	let _: fn(
 		vk::DescriptorSetLayoutBinding<'static>,
 		vk::ShaderStageFlags,
@@ -1013,6 +1085,10 @@ fn vk_descriptor_set_layout_create_info_construction_contract() {
 		vk::DescriptorSetLayoutCreateInfo<'static>,
 		vk::DescriptorSetLayoutCreateFlags,
 	) -> vk::DescriptorSetLayoutCreateInfo<'static> = vk::DescriptorSetLayoutCreateInfo::flags;
+	let _: fn(
+		vk::DescriptorSetLayoutCreateInfo<'static>,
+		u32,
+	) -> vk::DescriptorSetLayoutCreateInfo<'static> = vk::DescriptorSetLayoutCreateInfo::binding_count;
 	let _: fn(
 		vk::DescriptorSetLayoutCreateInfo<'static>,
 		&'static [vk::DescriptorSetLayoutBinding<'static>],
@@ -1041,6 +1117,8 @@ fn vk_descriptor_pool_create_info_construction_contract() {
 	) -> vk::DescriptorPoolCreateInfo<'static> = vk::DescriptorPoolCreateInfo::flags;
 	let _: fn(vk::DescriptorPoolCreateInfo<'static>, u32) -> vk::DescriptorPoolCreateInfo<'static> =
 		vk::DescriptorPoolCreateInfo::max_sets;
+	let _: fn(vk::DescriptorPoolCreateInfo<'static>, u32) -> vk::DescriptorPoolCreateInfo<'static> =
+		vk::DescriptorPoolCreateInfo::pool_size_count;
 	let _: fn(
 		vk::DescriptorPoolCreateInfo<'static>,
 		&'static [vk::DescriptorPoolSize],
@@ -1060,6 +1138,8 @@ fn vk_descriptor_set_allocate_info_construction_contract() {
 		vk::DescriptorSetAllocateInfo<'static>,
 		vk::DescriptorPool,
 	) -> vk::DescriptorSetAllocateInfo<'static> = vk::DescriptorSetAllocateInfo::descriptor_pool;
+	let _: fn(vk::DescriptorSetAllocateInfo<'static>, u32) -> vk::DescriptorSetAllocateInfo<'static> =
+		vk::DescriptorSetAllocateInfo::descriptor_set_count;
 	let _: fn(
 		vk::DescriptorSetAllocateInfo<'static>,
 		&'static [vk::DescriptorSetLayout],
@@ -1080,11 +1160,20 @@ fn vk_specialization_map_entry_construction_contract() {
 
 #[test]
 fn vk_specialization_info_construction_contract() {
+	let _: fn(vk::SpecializationInfo<'static>, u32) -> vk::SpecializationInfo<'static> =
+		vk::SpecializationInfo::map_entry_count;
 	let _: fn(
 		vk::SpecializationInfo<'static>,
 		&'static [vk::SpecializationMapEntry],
 	) -> std::result::Result<vk::SpecializationInfo<'static>, vk::ConstructionError> =
 		vk::SpecializationInfo::map_entries;
+	let _: fn(vk::SpecializationInfo<'static>, usize) -> vk::SpecializationInfo<'static> =
+		vk::SpecializationInfo::data_size;
+	let _: fn(
+		vk::SpecializationInfo<'static>,
+		&'static [u8],
+	) -> std::result::Result<vk::SpecializationInfo<'static>, vk::ConstructionError> =
+		vk::SpecializationInfo::data;
 }
 
 #[test]
@@ -1226,11 +1315,21 @@ fn vk_pipeline_vertex_input_state_create_info_construction_contract() {
 		vk::PipelineVertexInputStateCreateInfo::flags;
 	let _: fn(
 		vk::PipelineVertexInputStateCreateInfo<'static>,
+		u32,
+	) -> vk::PipelineVertexInputStateCreateInfo<'static> =
+		vk::PipelineVertexInputStateCreateInfo::vertex_binding_description_count;
+	let _: fn(
+		vk::PipelineVertexInputStateCreateInfo<'static>,
 		&'static [vk::VertexInputBindingDescription],
 	) -> std::result::Result<
 		vk::PipelineVertexInputStateCreateInfo<'static>,
 		vk::ConstructionError,
 	> = vk::PipelineVertexInputStateCreateInfo::vertex_binding_descriptions;
+	let _: fn(
+		vk::PipelineVertexInputStateCreateInfo<'static>,
+		u32,
+	) -> vk::PipelineVertexInputStateCreateInfo<'static> =
+		vk::PipelineVertexInputStateCreateInfo::vertex_attribute_description_count;
 	let _: fn(
 		vk::PipelineVertexInputStateCreateInfo<'static>,
 		&'static [vk::VertexInputAttributeDescription],
@@ -1299,11 +1398,21 @@ fn vk_pipeline_viewport_state_create_info_construction_contract() {
 	) -> vk::PipelineViewportStateCreateInfo<'static> = vk::PipelineViewportStateCreateInfo::flags;
 	let _: fn(
 		vk::PipelineViewportStateCreateInfo<'static>,
+		u32,
+	) -> vk::PipelineViewportStateCreateInfo<'static> =
+		vk::PipelineViewportStateCreateInfo::viewport_count;
+	let _: fn(
+		vk::PipelineViewportStateCreateInfo<'static>,
 		&'static [vk::Viewport],
 	) -> std::result::Result<
 		vk::PipelineViewportStateCreateInfo<'static>,
 		vk::ConstructionError,
 	> = vk::PipelineViewportStateCreateInfo::viewports;
+	let _: fn(
+		vk::PipelineViewportStateCreateInfo<'static>,
+		u32,
+	) -> vk::PipelineViewportStateCreateInfo<'static> =
+		vk::PipelineViewportStateCreateInfo::scissor_count;
 	let _: fn(
 		vk::PipelineViewportStateCreateInfo<'static>,
 		&'static [vk::Rect2D],
@@ -1408,6 +1517,13 @@ fn vk_pipeline_multisample_state_create_info_construction_contract() {
 		vk::PipelineMultisampleStateCreateInfo::min_sample_shading;
 	let _: fn(
 		vk::PipelineMultisampleStateCreateInfo<'static>,
+		&'static [vk::SampleMask],
+	) -> std::result::Result<
+		vk::PipelineMultisampleStateCreateInfo<'static>,
+		vk::ConstructionError,
+	> = vk::PipelineMultisampleStateCreateInfo::sample_mask;
+	let _: fn(
+		vk::PipelineMultisampleStateCreateInfo<'static>,
 		vk::Bool32,
 	) -> vk::PipelineMultisampleStateCreateInfo<'static> =
 		vk::PipelineMultisampleStateCreateInfo::alpha_to_coverage_enable;
@@ -1483,6 +1599,11 @@ fn vk_pipeline_color_blend_state_create_info_construction_contract() {
 		vk::PipelineColorBlendStateCreateInfo::logic_op;
 	let _: fn(
 		vk::PipelineColorBlendStateCreateInfo<'static>,
+		u32,
+	) -> vk::PipelineColorBlendStateCreateInfo<'static> =
+		vk::PipelineColorBlendStateCreateInfo::attachment_count;
+	let _: fn(
+		vk::PipelineColorBlendStateCreateInfo<'static>,
 		&'static [vk::PipelineColorBlendAttachmentState],
 	) -> std::result::Result<
 		vk::PipelineColorBlendStateCreateInfo<'static>,
@@ -1507,6 +1628,11 @@ fn vk_pipeline_dynamic_state_create_info_construction_contract() {
 		vk::PipelineDynamicStateCreateInfo<'static>,
 		vk::PipelineDynamicStateCreateFlags,
 	) -> vk::PipelineDynamicStateCreateInfo<'static> = vk::PipelineDynamicStateCreateInfo::flags;
+	let _: fn(
+		vk::PipelineDynamicStateCreateInfo<'static>,
+		u32,
+	) -> vk::PipelineDynamicStateCreateInfo<'static> =
+		vk::PipelineDynamicStateCreateInfo::dynamic_state_count;
 	let _: fn(
 		vk::PipelineDynamicStateCreateInfo<'static>,
 		&'static [vk::DynamicState],
@@ -1603,6 +1729,10 @@ fn vk_graphics_pipeline_create_info_construction_contract() {
 	) -> vk::GraphicsPipelineCreateInfo<'static> = vk::GraphicsPipelineCreateInfo::flags;
 	let _: fn(
 		vk::GraphicsPipelineCreateInfo<'static>,
+		u32,
+	) -> vk::GraphicsPipelineCreateInfo<'static> = vk::GraphicsPipelineCreateInfo::stage_count;
+	let _: fn(
+		vk::GraphicsPipelineCreateInfo<'static>,
 		&'static [vk::PipelineShaderStageCreateInfo<'static>],
 	)
 		-> std::result::Result<vk::GraphicsPipelineCreateInfo<'static>, vk::ConstructionError> =
@@ -1676,6 +1806,13 @@ fn vk_pipeline_cache_create_info_construction_contract() {
 		vk::PipelineCacheCreateInfo<'static>,
 		vk::PipelineCacheCreateFlags,
 	) -> vk::PipelineCacheCreateInfo<'static> = vk::PipelineCacheCreateInfo::flags;
+	let _: fn(vk::PipelineCacheCreateInfo<'static>, usize) -> vk::PipelineCacheCreateInfo<'static> =
+		vk::PipelineCacheCreateInfo::initial_data_size;
+	let _: fn(
+		vk::PipelineCacheCreateInfo<'static>,
+		&'static [u8],
+	) -> std::result::Result<vk::PipelineCacheCreateInfo<'static>, vk::ConstructionError> =
+		vk::PipelineCacheCreateInfo::initial_data;
 }
 
 #[test]
@@ -1765,19 +1902,53 @@ fn vk_pipeline_binary_handles_info_khr_construction_contract() {
 		vk::StructureType::PIPELINE_BINARY_HANDLES_INFO_KHR
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::PipelineBinaryHandlesInfoKHR<'static>,
+		u32,
+	) -> vk::PipelineBinaryHandlesInfoKHR<'static> =
+		vk::PipelineBinaryHandlesInfoKHR::pipeline_binary_count;
+	let _: fn(
+		vk::PipelineBinaryHandlesInfoKHR<'static>,
+		&'static mut [vk::PipelineBinaryKHR],
+	) -> std::result::Result<
+		vk::PipelineBinaryHandlesInfoKHR<'static>,
+		vk::ConstructionError,
+	> = vk::PipelineBinaryHandlesInfoKHR::pipeline_binaries;
 }
 
 #[test]
-fn vk_pipeline_binary_data_khr_construction_contract() {}
+fn vk_pipeline_binary_data_khr_construction_contract() {
+	let _: fn(vk::PipelineBinaryDataKHR<'static>, usize) -> vk::PipelineBinaryDataKHR<'static> =
+		vk::PipelineBinaryDataKHR::data_size;
+	let _: fn(
+		vk::PipelineBinaryDataKHR<'static>,
+		&'static mut [u8],
+	) -> std::result::Result<vk::PipelineBinaryDataKHR<'static>, vk::ConstructionError> =
+		vk::PipelineBinaryDataKHR::data;
+}
 
 #[test]
-fn vk_pipeline_binary_keys_and_data_khr_construction_contract() {}
+fn vk_pipeline_binary_keys_and_data_khr_construction_contract() {
+	let _: fn(
+		vk::PipelineBinaryKeysAndDataKHR<'static>,
+		u32,
+	) -> vk::PipelineBinaryKeysAndDataKHR<'static> = vk::PipelineBinaryKeysAndDataKHR::binary_count;
+	type Signature1 =
+		fn(
+			vk::PipelineBinaryKeysAndDataKHR<'static>,
+			&'static [vk::PipelineBinaryKeyKHR<'static>],
+			&'static [vk::PipelineBinaryDataKHR<'static>],
+		) -> std::result::Result<vk::PipelineBinaryKeysAndDataKHR<'static>, vk::ConstructionError>;
+	let _: Signature1 = vk::PipelineBinaryKeysAndDataKHR::pipeline_binary_keys;
+}
 
 #[test]
 fn vk_pipeline_binary_key_khr_construction_contract() {
 	let value = vk::PipelineBinaryKeyKHR::default();
 	assert_eq!(value.s_type, vk::StructureType::PIPELINE_BINARY_KEY_KHR);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::PipelineBinaryKeyKHR<'static>, u32) -> vk::PipelineBinaryKeyKHR<'static> =
+		vk::PipelineBinaryKeyKHR::key_size;
 	let _: fn(
 		vk::PipelineBinaryKeyKHR<'static>,
 		[u8; vk::MAX_PIPELINE_BINARY_KEY_SIZE_KHR as usize],
@@ -1789,6 +1960,8 @@ fn vk_pipeline_binary_info_khr_construction_contract() {
 	let value = vk::PipelineBinaryInfoKHR::default();
 	assert_eq!(value.s_type, vk::StructureType::PIPELINE_BINARY_INFO_KHR);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::PipelineBinaryInfoKHR<'static>, u32) -> vk::PipelineBinaryInfoKHR<'static> =
+		vk::PipelineBinaryInfoKHR::binary_count;
 	let _: fn(
 		vk::PipelineBinaryInfoKHR<'static>,
 		&'static [vk::PipelineBinaryKHR],
@@ -1841,11 +2014,15 @@ fn vk_pipeline_layout_create_info_construction_contract() {
 		vk::PipelineLayoutCreateInfo<'static>,
 		vk::PipelineLayoutCreateFlags,
 	) -> vk::PipelineLayoutCreateInfo<'static> = vk::PipelineLayoutCreateInfo::flags;
+	let _: fn(vk::PipelineLayoutCreateInfo<'static>, u32) -> vk::PipelineLayoutCreateInfo<'static> =
+		vk::PipelineLayoutCreateInfo::set_layout_count;
 	let _: fn(
 		vk::PipelineLayoutCreateInfo<'static>,
 		&'static [vk::DescriptorSetLayout],
 	) -> std::result::Result<vk::PipelineLayoutCreateInfo<'static>, vk::ConstructionError> =
 		vk::PipelineLayoutCreateInfo::set_layouts;
+	let _: fn(vk::PipelineLayoutCreateInfo<'static>, u32) -> vk::PipelineLayoutCreateInfo<'static> =
+		vk::PipelineLayoutCreateInfo::push_constant_range_count;
 	let _: fn(
 		vk::PipelineLayoutCreateInfo<'static>,
 		&'static [vk::PushConstantRange],
@@ -1997,6 +2174,8 @@ fn vk_render_pass_begin_info_construction_contract() {
 		vk::RenderPassBeginInfo::framebuffer;
 	let _: fn(vk::RenderPassBeginInfo<'static>, vk::Rect2D) -> vk::RenderPassBeginInfo<'static> =
 		vk::RenderPassBeginInfo::render_area;
+	let _: fn(vk::RenderPassBeginInfo<'static>, u32) -> vk::RenderPassBeginInfo<'static> =
+		vk::RenderPassBeginInfo::clear_value_count;
 	let _: fn(
 		vk::RenderPassBeginInfo<'static>,
 		&'static [vk::ClearValue],
@@ -2005,11 +2184,25 @@ fn vk_render_pass_begin_info_construction_contract() {
 }
 
 #[test]
+fn vk_clear_color_value_construction_contract() {
+	let _: fn(vk::ClearColorValue, [f32; 4]) -> vk::ClearColorValue = vk::ClearColorValue::float32;
+	let _: fn(vk::ClearColorValue, [i32; 4]) -> vk::ClearColorValue = vk::ClearColorValue::int32;
+	let _: fn(vk::ClearColorValue, [u32; 4]) -> vk::ClearColorValue = vk::ClearColorValue::uint32;
+}
+
+#[test]
 fn vk_clear_depth_stencil_value_construction_contract() {
 	let _: fn(vk::ClearDepthStencilValue, f32) -> vk::ClearDepthStencilValue =
 		vk::ClearDepthStencilValue::depth;
 	let _: fn(vk::ClearDepthStencilValue, u32) -> vk::ClearDepthStencilValue =
 		vk::ClearDepthStencilValue::stencil;
+}
+
+#[test]
+fn vk_clear_value_construction_contract() {
+	let _: fn(vk::ClearValue, vk::ClearColorValue) -> vk::ClearValue = vk::ClearValue::color;
+	let _: fn(vk::ClearValue, vk::ClearDepthStencilValue) -> vk::ClearValue =
+		vk::ClearValue::depth_stencil;
 }
 
 #[test]
@@ -2064,15 +2257,28 @@ fn vk_subpass_description_construction_contract() {
 		vk::SubpassDescription<'static>,
 		vk::PipelineBindPoint,
 	) -> vk::SubpassDescription<'static> = vk::SubpassDescription::pipeline_bind_point;
+	let _: fn(vk::SubpassDescription<'static>, u32) -> vk::SubpassDescription<'static> =
+		vk::SubpassDescription::input_attachment_count;
 	let _: fn(
 		vk::SubpassDescription<'static>,
 		&'static [vk::AttachmentReference],
 	) -> std::result::Result<vk::SubpassDescription<'static>, vk::ConstructionError> =
 		vk::SubpassDescription::input_attachments;
+	let _: fn(vk::SubpassDescription<'static>, u32) -> vk::SubpassDescription<'static> =
+		vk::SubpassDescription::color_attachment_count;
+	type Signature5 =
+		fn(
+			vk::SubpassDescription<'static>,
+			&'static [vk::AttachmentReference],
+			Option<&'static [vk::AttachmentReference]>,
+		) -> std::result::Result<vk::SubpassDescription<'static>, vk::ConstructionError>;
+	let _: Signature5 = vk::SubpassDescription::color_attachments;
 	let _: fn(
 		vk::SubpassDescription<'static>,
 		&'static vk::AttachmentReference,
 	) -> vk::SubpassDescription<'static> = vk::SubpassDescription::depth_stencil_attachment;
+	let _: fn(vk::SubpassDescription<'static>, u32) -> vk::SubpassDescription<'static> =
+		vk::SubpassDescription::preserve_attachment_count;
 	let _: fn(
 		vk::SubpassDescription<'static>,
 		&'static [u32],
@@ -2107,16 +2313,22 @@ fn vk_render_pass_create_info_construction_contract() {
 		vk::RenderPassCreateInfo<'static>,
 		vk::RenderPassCreateFlags,
 	) -> vk::RenderPassCreateInfo<'static> = vk::RenderPassCreateInfo::flags;
+	let _: fn(vk::RenderPassCreateInfo<'static>, u32) -> vk::RenderPassCreateInfo<'static> =
+		vk::RenderPassCreateInfo::attachment_count;
 	let _: fn(
 		vk::RenderPassCreateInfo<'static>,
 		&'static [vk::AttachmentDescription],
 	) -> std::result::Result<vk::RenderPassCreateInfo<'static>, vk::ConstructionError> =
 		vk::RenderPassCreateInfo::attachments;
+	let _: fn(vk::RenderPassCreateInfo<'static>, u32) -> vk::RenderPassCreateInfo<'static> =
+		vk::RenderPassCreateInfo::subpass_count;
 	let _: fn(
 		vk::RenderPassCreateInfo<'static>,
 		&'static [vk::SubpassDescription<'static>],
 	) -> std::result::Result<vk::RenderPassCreateInfo<'static>, vk::ConstructionError> =
 		vk::RenderPassCreateInfo::subpasses;
+	let _: fn(vk::RenderPassCreateInfo<'static>, u32) -> vk::RenderPassCreateInfo<'static> =
+		vk::RenderPassCreateInfo::dependency_count;
 	let _: fn(
 		vk::RenderPassCreateInfo<'static>,
 		&'static [vk::SubpassDependency],
@@ -2529,6 +2741,8 @@ fn vk_framebuffer_create_info_construction_contract() {
 		vk::FramebufferCreateInfo<'static>,
 		vk::RenderPass,
 	) -> vk::FramebufferCreateInfo<'static> = vk::FramebufferCreateInfo::render_pass;
+	let _: fn(vk::FramebufferCreateInfo<'static>, u32) -> vk::FramebufferCreateInfo<'static> =
+		vk::FramebufferCreateInfo::attachment_count;
 	let _: fn(
 		vk::FramebufferCreateInfo<'static>,
 		&'static [vk::ImageView],
@@ -2599,11 +2813,23 @@ fn vk_submit_info_construction_contract() {
 	let value = vk::SubmitInfo::default();
 	assert_eq!(value.s_type, vk::StructureType::SUBMIT_INFO);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::SubmitInfo<'static>, u32) -> vk::SubmitInfo<'static> =
+		vk::SubmitInfo::wait_semaphore_count;
+	type Signature1 = fn(
+		vk::SubmitInfo<'static>,
+		&'static [vk::Semaphore],
+		&'static [vk::PipelineStageFlags],
+	) -> std::result::Result<vk::SubmitInfo<'static>, vk::ConstructionError>;
+	let _: Signature1 = vk::SubmitInfo::wait_semaphores;
+	let _: fn(vk::SubmitInfo<'static>, u32) -> vk::SubmitInfo<'static> =
+		vk::SubmitInfo::command_buffer_count;
 	let _: fn(
 		vk::SubmitInfo<'static>,
 		&'static [vk::CommandBuffer],
 	) -> std::result::Result<vk::SubmitInfo<'static>, vk::ConstructionError> =
 		vk::SubmitInfo::command_buffers;
+	let _: fn(vk::SubmitInfo<'static>, u32) -> vk::SubmitInfo<'static> =
+		vk::SubmitInfo::signal_semaphore_count;
 	let _: fn(
 		vk::SubmitInfo<'static>,
 		&'static [vk::Semaphore],
@@ -2814,6 +3040,10 @@ fn vk_android_surface_create_info_khr_construction_contract() {
 		vk::AndroidSurfaceCreateInfoKHR<'static>,
 		vk::AndroidSurfaceCreateFlagsKHR,
 	) -> vk::AndroidSurfaceCreateInfoKHR<'static> = vk::AndroidSurfaceCreateInfoKHR::flags;
+	let _: unsafe fn(
+		vk::AndroidSurfaceCreateInfoKHR<'static>,
+		*mut vk::ANativeWindow,
+	) -> vk::AndroidSurfaceCreateInfoKHR<'static> = vk::AndroidSurfaceCreateInfoKHR::window;
 }
 
 #[cfg(feature = "platform-vi")]
@@ -2826,6 +3056,10 @@ fn vk_vi_surface_create_info_nn_construction_contract() {
 		vk::ViSurfaceCreateInfoNN<'static>,
 		vk::ViSurfaceCreateFlagsNN,
 	) -> vk::ViSurfaceCreateInfoNN<'static> = vk::ViSurfaceCreateInfoNN::flags;
+	let _: unsafe fn(
+		vk::ViSurfaceCreateInfoNN<'static>,
+		*mut std::ffi::c_void,
+	) -> vk::ViSurfaceCreateInfoNN<'static> = vk::ViSurfaceCreateInfoNN::window;
 }
 
 #[cfg(feature = "platform-wayland")]
@@ -2841,6 +3075,14 @@ fn vk_wayland_surface_create_info_khr_construction_contract() {
 		vk::WaylandSurfaceCreateInfoKHR<'static>,
 		vk::WaylandSurfaceCreateFlagsKHR,
 	) -> vk::WaylandSurfaceCreateInfoKHR<'static> = vk::WaylandSurfaceCreateInfoKHR::flags;
+	let _: unsafe fn(
+		vk::WaylandSurfaceCreateInfoKHR<'static>,
+		*mut vk::wl_display,
+	) -> vk::WaylandSurfaceCreateInfoKHR<'static> = vk::WaylandSurfaceCreateInfoKHR::display;
+	let _: unsafe fn(
+		vk::WaylandSurfaceCreateInfoKHR<'static>,
+		*mut vk::wl_surface,
+	) -> vk::WaylandSurfaceCreateInfoKHR<'static> = vk::WaylandSurfaceCreateInfoKHR::surface;
 }
 
 #[cfg(feature = "platform-ubm")]
@@ -2853,6 +3095,14 @@ fn vk_ubm_surface_create_info_sec_construction_contract() {
 		vk::UbmSurfaceCreateInfoSEC<'static>,
 		vk::UbmSurfaceCreateFlagsSEC,
 	) -> vk::UbmSurfaceCreateInfoSEC<'static> = vk::UbmSurfaceCreateInfoSEC::flags;
+	let _: unsafe fn(
+		vk::UbmSurfaceCreateInfoSEC<'static>,
+		*mut vk::ubm_device,
+	) -> vk::UbmSurfaceCreateInfoSEC<'static> = vk::UbmSurfaceCreateInfoSEC::device;
+	let _: unsafe fn(
+		vk::UbmSurfaceCreateInfoSEC<'static>,
+		*mut vk::ubm_surface,
+	) -> vk::UbmSurfaceCreateInfoSEC<'static> = vk::UbmSurfaceCreateInfoSEC::surface;
 }
 
 #[cfg(feature = "platform-win32")]
@@ -2891,6 +3141,10 @@ fn vk_xlib_surface_create_info_khr_construction_contract() {
 		vk::XlibSurfaceCreateInfoKHR<'static>,
 		vk::XlibSurfaceCreateFlagsKHR,
 	) -> vk::XlibSurfaceCreateInfoKHR<'static> = vk::XlibSurfaceCreateInfoKHR::flags;
+	let _: unsafe fn(
+		vk::XlibSurfaceCreateInfoKHR<'static>,
+		*mut vk::Display,
+	) -> vk::XlibSurfaceCreateInfoKHR<'static> = vk::XlibSurfaceCreateInfoKHR::dpy;
 	let _: fn(
 		vk::XlibSurfaceCreateInfoKHR<'static>,
 		vk::Window,
@@ -2907,6 +3161,10 @@ fn vk_xcb_surface_create_info_khr_construction_contract() {
 		vk::XcbSurfaceCreateInfoKHR<'static>,
 		vk::XcbSurfaceCreateFlagsKHR,
 	) -> vk::XcbSurfaceCreateInfoKHR<'static> = vk::XcbSurfaceCreateInfoKHR::flags;
+	let _: unsafe fn(
+		vk::XcbSurfaceCreateInfoKHR<'static>,
+		*mut vk::xcb_connection_t,
+	) -> vk::XcbSurfaceCreateInfoKHR<'static> = vk::XcbSurfaceCreateInfoKHR::connection;
 	let _: fn(
 		vk::XcbSurfaceCreateInfoKHR<'static>,
 		vk::xcb_window_t,
@@ -2926,6 +3184,14 @@ fn vk_direct_fb_surface_create_info_ext_construction_contract() {
 		vk::DirectFBSurfaceCreateInfoEXT<'static>,
 		vk::DirectFBSurfaceCreateFlagsEXT,
 	) -> vk::DirectFBSurfaceCreateInfoEXT<'static> = vk::DirectFBSurfaceCreateInfoEXT::flags;
+	let _: unsafe fn(
+		vk::DirectFBSurfaceCreateInfoEXT<'static>,
+		*mut vk::IDirectFB,
+	) -> vk::DirectFBSurfaceCreateInfoEXT<'static> = vk::DirectFBSurfaceCreateInfoEXT::dfb;
+	let _: unsafe fn(
+		vk::DirectFBSurfaceCreateInfoEXT<'static>,
+		*mut vk::IDirectFBSurface,
+	) -> vk::DirectFBSurfaceCreateInfoEXT<'static> = vk::DirectFBSurfaceCreateInfoEXT::surface;
 }
 
 #[cfg(feature = "platform-fuchsia")]
@@ -2982,6 +3248,14 @@ fn vk_screen_surface_create_info_qnx_construction_contract() {
 		vk::ScreenSurfaceCreateInfoQNX<'static>,
 		vk::ScreenSurfaceCreateFlagsQNX,
 	) -> vk::ScreenSurfaceCreateInfoQNX<'static> = vk::ScreenSurfaceCreateInfoQNX::flags;
+	let _: unsafe fn(
+		vk::ScreenSurfaceCreateInfoQNX<'static>,
+		*mut vk::_screen_context,
+	) -> vk::ScreenSurfaceCreateInfoQNX<'static> = vk::ScreenSurfaceCreateInfoQNX::context;
+	let _: unsafe fn(
+		vk::ScreenSurfaceCreateInfoQNX<'static>,
+		*mut vk::_screen_window,
+	) -> vk::ScreenSurfaceCreateInfoQNX<'static> = vk::ScreenSurfaceCreateInfoQNX::window;
 }
 
 #[test]
@@ -3029,6 +3303,8 @@ fn vk_swapchain_create_info_khr_construction_contract() {
 		vk::SwapchainCreateInfoKHR<'static>,
 		vk::SharingMode,
 	) -> vk::SwapchainCreateInfoKHR<'static> = vk::SwapchainCreateInfoKHR::image_sharing_mode;
+	let _: fn(vk::SwapchainCreateInfoKHR<'static>, u32) -> vk::SwapchainCreateInfoKHR<'static> =
+		vk::SwapchainCreateInfoKHR::queue_family_index_count;
 	let _: fn(
 		vk::SwapchainCreateInfoKHR<'static>,
 		&'static [u32],
@@ -3061,11 +3337,22 @@ fn vk_present_info_khr_construction_contract() {
 	let value = vk::PresentInfoKHR::default();
 	assert_eq!(value.s_type, vk::StructureType::PRESENT_INFO_KHR);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::PresentInfoKHR<'static>, u32) -> vk::PresentInfoKHR<'static> =
+		vk::PresentInfoKHR::wait_semaphore_count;
 	let _: fn(
 		vk::PresentInfoKHR<'static>,
 		&'static [vk::Semaphore],
 	) -> std::result::Result<vk::PresentInfoKHR<'static>, vk::ConstructionError> =
 		vk::PresentInfoKHR::wait_semaphores;
+	let _: fn(vk::PresentInfoKHR<'static>, u32) -> vk::PresentInfoKHR<'static> =
+		vk::PresentInfoKHR::swapchain_count;
+	type Signature3 = fn(
+		vk::PresentInfoKHR<'static>,
+		&'static [vk::SwapchainKHR],
+		&'static [u32],
+		Option<&'static mut [vk::Result]>,
+	) -> std::result::Result<vk::PresentInfoKHR<'static>, vk::ConstructionError>;
+	let _: Signature3 = vk::PresentInfoKHR::swapchains;
 }
 
 #[test]
@@ -3085,6 +3372,11 @@ fn vk_debug_report_callback_create_info_ext_construction_contract() {
 		vk::PFN_vkDebugReportCallbackEXT,
 	) -> vk::DebugReportCallbackCreateInfoEXT<'static> =
 		vk::DebugReportCallbackCreateInfoEXT::pfn_callback;
+	let _: unsafe fn(
+		vk::DebugReportCallbackCreateInfoEXT<'static>,
+		*mut std::ffi::c_void,
+	) -> vk::DebugReportCallbackCreateInfoEXT<'static> =
+		vk::DebugReportCallbackCreateInfoEXT::user_data;
 }
 
 #[test]
@@ -3092,6 +3384,8 @@ fn vk_validation_flags_ext_construction_contract() {
 	let value = vk::ValidationFlagsEXT::default();
 	assert_eq!(value.s_type, vk::StructureType::VALIDATION_FLAGS_EXT);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::ValidationFlagsEXT<'static>, u32) -> vk::ValidationFlagsEXT<'static> =
+		vk::ValidationFlagsEXT::disabled_validation_check_count;
 	let _: fn(
 		vk::ValidationFlagsEXT<'static>,
 		&'static [vk::ValidationCheckEXT],
@@ -3104,11 +3398,15 @@ fn vk_validation_features_ext_construction_contract() {
 	let value = vk::ValidationFeaturesEXT::default();
 	assert_eq!(value.s_type, vk::StructureType::VALIDATION_FEATURES_EXT);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::ValidationFeaturesEXT<'static>, u32) -> vk::ValidationFeaturesEXT<'static> =
+		vk::ValidationFeaturesEXT::enabled_validation_feature_count;
 	let _: fn(
 		vk::ValidationFeaturesEXT<'static>,
 		&'static [vk::ValidationFeatureEnableEXT],
 	) -> std::result::Result<vk::ValidationFeaturesEXT<'static>, vk::ConstructionError> =
 		vk::ValidationFeaturesEXT::enabled_validation_features;
+	let _: fn(vk::ValidationFeaturesEXT<'static>, u32) -> vk::ValidationFeaturesEXT<'static> =
+		vk::ValidationFeaturesEXT::disabled_validation_feature_count;
 	let _: fn(
 		vk::ValidationFeaturesEXT<'static>,
 		&'static [vk::ValidationFeatureDisableEXT],
@@ -3126,6 +3424,10 @@ fn vk_layer_settings_create_info_ext_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::LayerSettingsCreateInfoEXT<'static>,
+		u32,
+	) -> vk::LayerSettingsCreateInfoEXT<'static> = vk::LayerSettingsCreateInfoEXT::setting_count;
+	let _: fn(
+		vk::LayerSettingsCreateInfoEXT<'static>,
 		&'static [vk::LayerSettingEXT<'static>],
 	)
 		-> std::result::Result<vk::LayerSettingsCreateInfoEXT<'static>, vk::ConstructionError> =
@@ -3140,6 +3442,52 @@ fn vk_layer_setting_ext_construction_contract() {
 		vk::LayerSettingEXT::setting_name;
 	let _: fn(vk::LayerSettingEXT<'static>, vk::LayerSettingTypeEXT) -> vk::LayerSettingEXT<'static> =
 		vk::LayerSettingEXT::r#type;
+	let _: fn(vk::LayerSettingEXT<'static>, u32) -> vk::LayerSettingEXT<'static> =
+		vk::LayerSettingEXT::value_count;
+	let _: unsafe fn(
+		vk::LayerSettingEXT<'static>,
+		*const std::ffi::c_void,
+	) -> vk::LayerSettingEXT<'static> = vk::LayerSettingEXT::values;
+	let _: fn(
+		vk::LayerSettingEXT<'static>,
+		&'static [u32],
+	) -> std::result::Result<vk::LayerSettingEXT<'static>, vk::ConstructionError> =
+		vk::LayerSettingEXT::values_bool32;
+	let _: fn(
+		vk::LayerSettingEXT<'static>,
+		&'static [i32],
+	) -> std::result::Result<vk::LayerSettingEXT<'static>, vk::ConstructionError> =
+		vk::LayerSettingEXT::values_int32;
+	let _: fn(
+		vk::LayerSettingEXT<'static>,
+		&'static [i64],
+	) -> std::result::Result<vk::LayerSettingEXT<'static>, vk::ConstructionError> =
+		vk::LayerSettingEXT::values_int64;
+	let _: fn(
+		vk::LayerSettingEXT<'static>,
+		&'static [u32],
+	) -> std::result::Result<vk::LayerSettingEXT<'static>, vk::ConstructionError> =
+		vk::LayerSettingEXT::values_uint32;
+	let _: fn(
+		vk::LayerSettingEXT<'static>,
+		&'static [u64],
+	) -> std::result::Result<vk::LayerSettingEXT<'static>, vk::ConstructionError> =
+		vk::LayerSettingEXT::values_uint64;
+	let _: fn(
+		vk::LayerSettingEXT<'static>,
+		&'static [f32],
+	) -> std::result::Result<vk::LayerSettingEXT<'static>, vk::ConstructionError> =
+		vk::LayerSettingEXT::values_float32;
+	let _: fn(
+		vk::LayerSettingEXT<'static>,
+		&'static [f64],
+	) -> std::result::Result<vk::LayerSettingEXT<'static>, vk::ConstructionError> =
+		vk::LayerSettingEXT::values_float64;
+	let _: fn(
+		vk::LayerSettingEXT<'static>,
+		&'static [*const std::ffi::c_char],
+	) -> std::result::Result<vk::LayerSettingEXT<'static>, vk::ConstructionError> =
+		vk::LayerSettingEXT::values_strings;
 }
 
 #[test]
@@ -3199,6 +3547,17 @@ fn vk_debug_marker_object_tag_info_ext_construction_contract() {
 		vk::DebugMarkerObjectTagInfoEXT<'static>,
 		u64,
 	) -> vk::DebugMarkerObjectTagInfoEXT<'static> = vk::DebugMarkerObjectTagInfoEXT::tag_name;
+	let _: fn(
+		vk::DebugMarkerObjectTagInfoEXT<'static>,
+		usize,
+	) -> vk::DebugMarkerObjectTagInfoEXT<'static> = vk::DebugMarkerObjectTagInfoEXT::tag_size;
+	let _: fn(
+		vk::DebugMarkerObjectTagInfoEXT<'static>,
+		&'static [u8],
+	) -> std::result::Result<
+		vk::DebugMarkerObjectTagInfoEXT<'static>,
+		vk::ConstructionError,
+	> = vk::DebugMarkerObjectTagInfoEXT::tag;
 }
 
 #[test]
@@ -3350,6 +3709,10 @@ fn vk_export_memory_win32_handle_info_nv_construction_contract() {
 		vk::StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_NV
 	);
 	assert!(value.p_next.is_null());
+	let _: unsafe fn(
+		vk::ExportMemoryWin32HandleInfoNV<'static>,
+		*const vk::SECURITY_ATTRIBUTES,
+	) -> vk::ExportMemoryWin32HandleInfoNV<'static> = vk::ExportMemoryWin32HandleInfoNV::attributes;
 	let _: fn(
 		vk::ExportMemoryWin32HandleInfoNV<'static>,
 		vk::DWORD,
@@ -3365,6 +3728,35 @@ fn vk_win32_keyed_mutex_acquire_release_info_nv_construction_contract() {
 		vk::StructureType::WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::Win32KeyedMutexAcquireReleaseInfoNV<'static>,
+		u32,
+	) -> vk::Win32KeyedMutexAcquireReleaseInfoNV<'static> =
+		vk::Win32KeyedMutexAcquireReleaseInfoNV::acquire_count;
+	type Signature1 = fn(
+		vk::Win32KeyedMutexAcquireReleaseInfoNV<'static>,
+		&'static [vk::DeviceMemory],
+		&'static [u64],
+		&'static [u32],
+	) -> std::result::Result<
+		vk::Win32KeyedMutexAcquireReleaseInfoNV<'static>,
+		vk::ConstructionError,
+	>;
+	let _: Signature1 = vk::Win32KeyedMutexAcquireReleaseInfoNV::acquire_syncs;
+	let _: fn(
+		vk::Win32KeyedMutexAcquireReleaseInfoNV<'static>,
+		u32,
+	) -> vk::Win32KeyedMutexAcquireReleaseInfoNV<'static> =
+		vk::Win32KeyedMutexAcquireReleaseInfoNV::release_count;
+	type Signature3 = fn(
+		vk::Win32KeyedMutexAcquireReleaseInfoNV<'static>,
+		&'static [vk::DeviceMemory],
+		&'static [u64],
+	) -> std::result::Result<
+		vk::Win32KeyedMutexAcquireReleaseInfoNV<'static>,
+		vk::ConstructionError,
+	>;
+	let _: Signature3 = vk::Win32KeyedMutexAcquireReleaseInfoNV::release_syncs;
 }
 
 #[test]
@@ -3888,6 +4280,25 @@ fn vk_cluster_acceleration_structure_move_objects_input_nv_construction_contract
 }
 
 #[test]
+fn vk_cluster_acceleration_structure_op_input_nv_construction_contract() {
+	let _: fn(
+		vk::ClusterAccelerationStructureOpInputNV<'static>,
+		&'static mut vk::ClusterAccelerationStructureClustersBottomLevelInputNV<'static>,
+	) -> vk::ClusterAccelerationStructureOpInputNV<'static> =
+		vk::ClusterAccelerationStructureOpInputNV::clusters_bottom_level;
+	let _: fn(
+		vk::ClusterAccelerationStructureOpInputNV<'static>,
+		&'static mut vk::ClusterAccelerationStructureTriangleClusterInputNV<'static>,
+	) -> vk::ClusterAccelerationStructureOpInputNV<'static> =
+		vk::ClusterAccelerationStructureOpInputNV::triangle_clusters;
+	let _: fn(
+		vk::ClusterAccelerationStructureOpInputNV<'static>,
+		&'static mut vk::ClusterAccelerationStructureMoveObjectsInputNV<'static>,
+	) -> vk::ClusterAccelerationStructureOpInputNV<'static> =
+		vk::ClusterAccelerationStructureOpInputNV::move_objects;
+}
+
+#[test]
 fn vk_cluster_acceleration_structure_input_info_nv_construction_contract() {
 	let value = vk::ClusterAccelerationStructureInputInfoNV::default();
 	assert_eq!(
@@ -3997,6 +4408,11 @@ fn vk_graphics_shader_group_create_info_nv_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::GraphicsShaderGroupCreateInfoNV<'static>,
+		u32,
+	) -> vk::GraphicsShaderGroupCreateInfoNV<'static> =
+		vk::GraphicsShaderGroupCreateInfoNV::stage_count;
+	let _: fn(
+		vk::GraphicsShaderGroupCreateInfoNV<'static>,
 		&'static [vk::PipelineShaderStageCreateInfo<'static>],
 	) -> std::result::Result<
 		vk::GraphicsShaderGroupCreateInfoNV<'static>,
@@ -4024,11 +4440,21 @@ fn vk_graphics_pipeline_shader_groups_create_info_nv_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::GraphicsPipelineShaderGroupsCreateInfoNV<'static>,
+		u32,
+	) -> vk::GraphicsPipelineShaderGroupsCreateInfoNV<'static> =
+		vk::GraphicsPipelineShaderGroupsCreateInfoNV::group_count;
+	let _: fn(
+		vk::GraphicsPipelineShaderGroupsCreateInfoNV<'static>,
 		&'static [vk::GraphicsShaderGroupCreateInfoNV<'static>],
 	) -> std::result::Result<
 		vk::GraphicsPipelineShaderGroupsCreateInfoNV<'static>,
 		vk::ConstructionError,
 	> = vk::GraphicsPipelineShaderGroupsCreateInfoNV::groups;
+	let _: fn(
+		vk::GraphicsPipelineShaderGroupsCreateInfoNV<'static>,
+		u32,
+	) -> vk::GraphicsPipelineShaderGroupsCreateInfoNV<'static> =
+		vk::GraphicsPipelineShaderGroupsCreateInfoNV::pipeline_count;
 	let _: fn(
 		vk::GraphicsPipelineShaderGroupsCreateInfoNV<'static>,
 		&'static [vk::Pipeline],
@@ -4139,6 +4565,18 @@ fn vk_indirect_commands_layout_token_nv_construction_contract() {
 		vk::IndirectStateFlagsNV,
 	) -> vk::IndirectCommandsLayoutTokenNV<'static> =
 		vk::IndirectCommandsLayoutTokenNV::indirect_state_flags;
+	let _: fn(
+		vk::IndirectCommandsLayoutTokenNV<'static>,
+		u32,
+	) -> vk::IndirectCommandsLayoutTokenNV<'static> =
+		vk::IndirectCommandsLayoutTokenNV::index_type_count;
+	type Signature11 =
+		fn(
+			vk::IndirectCommandsLayoutTokenNV<'static>,
+			&'static [vk::IndexType],
+			&'static [u32],
+		) -> std::result::Result<vk::IndirectCommandsLayoutTokenNV<'static>, vk::ConstructionError>;
+	let _: Signature11 = vk::IndirectCommandsLayoutTokenNV::index_types;
 }
 
 #[test]
@@ -4161,11 +4599,21 @@ fn vk_indirect_commands_layout_create_info_nv_construction_contract() {
 		vk::IndirectCommandsLayoutCreateInfoNV::pipeline_bind_point;
 	let _: fn(
 		vk::IndirectCommandsLayoutCreateInfoNV<'static>,
+		u32,
+	) -> vk::IndirectCommandsLayoutCreateInfoNV<'static> =
+		vk::IndirectCommandsLayoutCreateInfoNV::token_count;
+	let _: fn(
+		vk::IndirectCommandsLayoutCreateInfoNV<'static>,
 		&'static [vk::IndirectCommandsLayoutTokenNV<'static>],
 	) -> std::result::Result<
 		vk::IndirectCommandsLayoutCreateInfoNV<'static>,
 		vk::ConstructionError,
 	> = vk::IndirectCommandsLayoutCreateInfoNV::tokens;
+	let _: fn(
+		vk::IndirectCommandsLayoutCreateInfoNV<'static>,
+		u32,
+	) -> vk::IndirectCommandsLayoutCreateInfoNV<'static> =
+		vk::IndirectCommandsLayoutCreateInfoNV::stream_count;
 	let _: fn(
 		vk::IndirectCommandsLayoutCreateInfoNV<'static>,
 		&'static [u32],
@@ -4192,6 +4640,8 @@ fn vk_generated_commands_info_nv_construction_contract() {
 		vk::GeneratedCommandsInfoNV<'static>,
 		vk::IndirectCommandsLayoutNV,
 	) -> vk::GeneratedCommandsInfoNV<'static> = vk::GeneratedCommandsInfoNV::indirect_commands_layout;
+	let _: fn(vk::GeneratedCommandsInfoNV<'static>, u32) -> vk::GeneratedCommandsInfoNV<'static> =
+		vk::GeneratedCommandsInfoNV::stream_count;
 	let _: fn(
 		vk::GeneratedCommandsInfoNV<'static>,
 		&'static [vk::IndirectCommandsStreamNV],
@@ -4495,6 +4945,8 @@ fn vk_present_regions_khr_construction_contract() {
 	let value = vk::PresentRegionsKHR::default();
 	assert_eq!(value.s_type, vk::StructureType::PRESENT_REGIONS_KHR);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::PresentRegionsKHR<'static>, u32) -> vk::PresentRegionsKHR<'static> =
+		vk::PresentRegionsKHR::swapchain_count;
 	let _: fn(
 		vk::PresentRegionsKHR<'static>,
 		&'static [vk::PresentRegionKHR<'static>],
@@ -4504,6 +4956,8 @@ fn vk_present_regions_khr_construction_contract() {
 
 #[test]
 fn vk_present_region_khr_construction_contract() {
+	let _: fn(vk::PresentRegionKHR<'static>, u32) -> vk::PresentRegionKHR<'static> =
+		vk::PresentRegionKHR::rectangle_count;
 	let _: fn(
 		vk::PresentRegionKHR<'static>,
 		&'static [vk::RectLayerKHR],
@@ -4722,6 +5176,10 @@ fn vk_export_memory_win32_handle_info_khr_construction_contract() {
 		vk::StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR
 	);
 	assert!(value.p_next.is_null());
+	let _: unsafe fn(
+		vk::ExportMemoryWin32HandleInfoKHR<'static>,
+		*const vk::SECURITY_ATTRIBUTES,
+	) -> vk::ExportMemoryWin32HandleInfoKHR<'static> = vk::ExportMemoryWin32HandleInfoKHR::attributes;
 	let _: fn(
 		vk::ExportMemoryWin32HandleInfoKHR<'static>,
 		vk::DWORD,
@@ -4868,6 +5326,35 @@ fn vk_win32_keyed_mutex_acquire_release_info_khr_construction_contract() {
 		vk::StructureType::WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::Win32KeyedMutexAcquireReleaseInfoKHR<'static>,
+		u32,
+	) -> vk::Win32KeyedMutexAcquireReleaseInfoKHR<'static> =
+		vk::Win32KeyedMutexAcquireReleaseInfoKHR::acquire_count;
+	type Signature1 = fn(
+		vk::Win32KeyedMutexAcquireReleaseInfoKHR<'static>,
+		&'static [vk::DeviceMemory],
+		&'static [u64],
+		&'static [u32],
+	) -> std::result::Result<
+		vk::Win32KeyedMutexAcquireReleaseInfoKHR<'static>,
+		vk::ConstructionError,
+	>;
+	let _: Signature1 = vk::Win32KeyedMutexAcquireReleaseInfoKHR::acquire_syncs;
+	let _: fn(
+		vk::Win32KeyedMutexAcquireReleaseInfoKHR<'static>,
+		u32,
+	) -> vk::Win32KeyedMutexAcquireReleaseInfoKHR<'static> =
+		vk::Win32KeyedMutexAcquireReleaseInfoKHR::release_count;
+	type Signature3 = fn(
+		vk::Win32KeyedMutexAcquireReleaseInfoKHR<'static>,
+		&'static [vk::DeviceMemory],
+		&'static [u64],
+	) -> std::result::Result<
+		vk::Win32KeyedMutexAcquireReleaseInfoKHR<'static>,
+		vk::ConstructionError,
+	>;
+	let _: Signature3 = vk::Win32KeyedMutexAcquireReleaseInfoKHR::release_syncs;
 }
 
 #[cfg(feature = "platform-metal")]
@@ -4883,6 +5370,10 @@ fn vk_import_memory_metal_handle_info_ext_construction_contract() {
 		vk::ImportMemoryMetalHandleInfoEXT<'static>,
 		vk::ExternalMemoryHandleTypeFlagBits,
 	) -> vk::ImportMemoryMetalHandleInfoEXT<'static> = vk::ImportMemoryMetalHandleInfoEXT::handle_type;
+	let _: unsafe fn(
+		vk::ImportMemoryMetalHandleInfoEXT<'static>,
+		*mut std::ffi::c_void,
+	) -> vk::ImportMemoryMetalHandleInfoEXT<'static> = vk::ImportMemoryMetalHandleInfoEXT::handle;
 }
 
 #[cfg(feature = "platform-metal")]
@@ -5017,6 +5508,11 @@ fn vk_export_semaphore_win32_handle_info_khr_construction_contract() {
 		vk::StructureType::EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR
 	);
 	assert!(value.p_next.is_null());
+	let _: unsafe fn(
+		vk::ExportSemaphoreWin32HandleInfoKHR<'static>,
+		*const vk::SECURITY_ATTRIBUTES,
+	) -> vk::ExportSemaphoreWin32HandleInfoKHR<'static> =
+		vk::ExportSemaphoreWin32HandleInfoKHR::attributes;
 	let _: fn(
 		vk::ExportSemaphoreWin32HandleInfoKHR<'static>,
 		vk::DWORD,
@@ -5034,11 +5530,15 @@ fn vk_d3_d12_fence_submit_info_khr_construction_contract() {
 	let value = vk::D3D12FenceSubmitInfoKHR::default();
 	assert_eq!(value.s_type, vk::StructureType::D3D12_FENCE_SUBMIT_INFO_KHR);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::D3D12FenceSubmitInfoKHR<'static>, u32) -> vk::D3D12FenceSubmitInfoKHR<'static> =
+		vk::D3D12FenceSubmitInfoKHR::wait_semaphore_values_count;
 	let _: fn(
 		vk::D3D12FenceSubmitInfoKHR<'static>,
 		&'static [u64],
 	) -> std::result::Result<vk::D3D12FenceSubmitInfoKHR<'static>, vk::ConstructionError> =
 		vk::D3D12FenceSubmitInfoKHR::wait_semaphore_values;
+	let _: fn(vk::D3D12FenceSubmitInfoKHR<'static>, u32) -> vk::D3D12FenceSubmitInfoKHR<'static> =
+		vk::D3D12FenceSubmitInfoKHR::signal_semaphore_values_count;
 	let _: fn(
 		vk::D3D12FenceSubmitInfoKHR<'static>,
 		&'static [u64],
@@ -5242,6 +5742,10 @@ fn vk_export_fence_win32_handle_info_khr_construction_contract() {
 		vk::StructureType::EXPORT_FENCE_WIN32_HANDLE_INFO_KHR
 	);
 	assert!(value.p_next.is_null());
+	let _: unsafe fn(
+		vk::ExportFenceWin32HandleInfoKHR<'static>,
+		*const vk::SECURITY_ATTRIBUTES,
+	) -> vk::ExportFenceWin32HandleInfoKHR<'static> = vk::ExportFenceWin32HandleInfoKHR::attributes;
 	let _: fn(
 		vk::ExportFenceWin32HandleInfoKHR<'static>,
 		vk::DWORD,
@@ -5357,6 +5861,10 @@ fn vk_render_pass_multiview_create_info_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::RenderPassMultiviewCreateInfo<'static>,
+		u32,
+	) -> vk::RenderPassMultiviewCreateInfo<'static> = vk::RenderPassMultiviewCreateInfo::subpass_count;
+	let _: fn(
+		vk::RenderPassMultiviewCreateInfo<'static>,
 		&'static [u32],
 	) -> std::result::Result<
 		vk::RenderPassMultiviewCreateInfo<'static>,
@@ -5364,11 +5872,21 @@ fn vk_render_pass_multiview_create_info_construction_contract() {
 	> = vk::RenderPassMultiviewCreateInfo::view_masks;
 	let _: fn(
 		vk::RenderPassMultiviewCreateInfo<'static>,
+		u32,
+	) -> vk::RenderPassMultiviewCreateInfo<'static> =
+		vk::RenderPassMultiviewCreateInfo::dependency_count;
+	let _: fn(
+		vk::RenderPassMultiviewCreateInfo<'static>,
 		&'static [i32],
 	) -> std::result::Result<
 		vk::RenderPassMultiviewCreateInfo<'static>,
 		vk::ConstructionError,
 	> = vk::RenderPassMultiviewCreateInfo::view_offsets;
+	let _: fn(
+		vk::RenderPassMultiviewCreateInfo<'static>,
+		u32,
+	) -> vk::RenderPassMultiviewCreateInfo<'static> =
+		vk::RenderPassMultiviewCreateInfo::correlation_mask_count;
 	let _: fn(
 		vk::RenderPassMultiviewCreateInfo<'static>,
 		&'static [u32],
@@ -5482,6 +6000,11 @@ fn vk_physical_device_group_properties_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::PhysicalDeviceGroupProperties<'static>,
+		u32,
+	) -> vk::PhysicalDeviceGroupProperties<'static> =
+		vk::PhysicalDeviceGroupProperties::physical_device_count;
+	let _: fn(
+		vk::PhysicalDeviceGroupProperties<'static>,
 		[vk::PhysicalDevice; vk::MAX_DEVICE_GROUP_SIZE as usize],
 	) -> vk::PhysicalDeviceGroupProperties<'static> =
 		vk::PhysicalDeviceGroupProperties::physical_devices;
@@ -5532,6 +6055,11 @@ fn vk_bind_buffer_memory_device_group_info_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::BindBufferMemoryDeviceGroupInfo<'static>,
+		u32,
+	) -> vk::BindBufferMemoryDeviceGroupInfo<'static> =
+		vk::BindBufferMemoryDeviceGroupInfo::device_index_count;
+	let _: fn(
+		vk::BindBufferMemoryDeviceGroupInfo<'static>,
 		&'static [u32],
 	) -> std::result::Result<
 		vk::BindBufferMemoryDeviceGroupInfo<'static>,
@@ -5564,11 +6092,21 @@ fn vk_bind_image_memory_device_group_info_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::BindImageMemoryDeviceGroupInfo<'static>,
+		u32,
+	) -> vk::BindImageMemoryDeviceGroupInfo<'static> =
+		vk::BindImageMemoryDeviceGroupInfo::device_index_count;
+	let _: fn(
+		vk::BindImageMemoryDeviceGroupInfo<'static>,
 		&'static [u32],
 	) -> std::result::Result<
 		vk::BindImageMemoryDeviceGroupInfo<'static>,
 		vk::ConstructionError,
 	> = vk::BindImageMemoryDeviceGroupInfo::device_indices;
+	let _: fn(
+		vk::BindImageMemoryDeviceGroupInfo<'static>,
+		u32,
+	) -> vk::BindImageMemoryDeviceGroupInfo<'static> =
+		vk::BindImageMemoryDeviceGroupInfo::split_instance_bind_region_count;
 	let _: fn(
 		vk::BindImageMemoryDeviceGroupInfo<'static>,
 		&'static [vk::Rect2D],
@@ -5590,6 +6128,11 @@ fn vk_device_group_render_pass_begin_info_construction_contract() {
 		vk::DeviceGroupRenderPassBeginInfo<'static>,
 		u32,
 	) -> vk::DeviceGroupRenderPassBeginInfo<'static> = vk::DeviceGroupRenderPassBeginInfo::device_mask;
+	let _: fn(
+		vk::DeviceGroupRenderPassBeginInfo<'static>,
+		u32,
+	) -> vk::DeviceGroupRenderPassBeginInfo<'static> =
+		vk::DeviceGroupRenderPassBeginInfo::device_render_area_count;
 	let _: fn(
 		vk::DeviceGroupRenderPassBeginInfo<'static>,
 		&'static [vk::Rect2D],
@@ -5619,16 +6162,22 @@ fn vk_device_group_submit_info_construction_contract() {
 	let value = vk::DeviceGroupSubmitInfo::default();
 	assert_eq!(value.s_type, vk::StructureType::DEVICE_GROUP_SUBMIT_INFO);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::DeviceGroupSubmitInfo<'static>, u32) -> vk::DeviceGroupSubmitInfo<'static> =
+		vk::DeviceGroupSubmitInfo::wait_semaphore_count;
 	let _: fn(
 		vk::DeviceGroupSubmitInfo<'static>,
 		&'static [u32],
 	) -> std::result::Result<vk::DeviceGroupSubmitInfo<'static>, vk::ConstructionError> =
 		vk::DeviceGroupSubmitInfo::wait_semaphore_device_indices;
+	let _: fn(vk::DeviceGroupSubmitInfo<'static>, u32) -> vk::DeviceGroupSubmitInfo<'static> =
+		vk::DeviceGroupSubmitInfo::command_buffer_count;
 	let _: fn(
 		vk::DeviceGroupSubmitInfo<'static>,
 		&'static [u32],
 	) -> std::result::Result<vk::DeviceGroupSubmitInfo<'static>, vk::ConstructionError> =
 		vk::DeviceGroupSubmitInfo::command_buffer_device_masks;
+	let _: fn(vk::DeviceGroupSubmitInfo<'static>, u32) -> vk::DeviceGroupSubmitInfo<'static> =
+		vk::DeviceGroupSubmitInfo::signal_semaphore_count;
 	let _: fn(
 		vk::DeviceGroupSubmitInfo<'static>,
 		&'static [u32],
@@ -5733,6 +6282,8 @@ fn vk_device_group_present_info_khr_construction_contract() {
 		vk::StructureType::DEVICE_GROUP_PRESENT_INFO_KHR
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::DeviceGroupPresentInfoKHR<'static>, u32) -> vk::DeviceGroupPresentInfoKHR<'static> =
+		vk::DeviceGroupPresentInfoKHR::swapchain_count;
 	let _: fn(
 		vk::DeviceGroupPresentInfoKHR<'static>,
 		&'static [u32],
@@ -5753,6 +6304,11 @@ fn vk_device_group_device_create_info_construction_contract() {
 		vk::StructureType::DEVICE_GROUP_DEVICE_CREATE_INFO
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::DeviceGroupDeviceCreateInfo<'static>,
+		u32,
+	) -> vk::DeviceGroupDeviceCreateInfo<'static> =
+		vk::DeviceGroupDeviceCreateInfo::physical_device_count;
 	let _: fn(
 		vk::DeviceGroupDeviceCreateInfo<'static>,
 		&'static [vk::PhysicalDevice],
@@ -5807,6 +6363,11 @@ fn vk_descriptor_update_template_create_info_construction_contract() {
 		vk::DescriptorUpdateTemplateCreateFlags,
 	) -> vk::DescriptorUpdateTemplateCreateInfo<'static> =
 		vk::DescriptorUpdateTemplateCreateInfo::flags;
+	let _: fn(
+		vk::DescriptorUpdateTemplateCreateInfo<'static>,
+		u32,
+	) -> vk::DescriptorUpdateTemplateCreateInfo<'static> =
+		vk::DescriptorUpdateTemplateCreateInfo::descriptor_update_entry_count;
 	let _: fn(
 		vk::DescriptorUpdateTemplateCreateInfo<'static>,
 		&'static [vk::DescriptorUpdateTemplateEntry],
@@ -5866,6 +6427,8 @@ fn vk_present_id_khr_construction_contract() {
 	let value = vk::PresentIdKHR::default();
 	assert_eq!(value.s_type, vk::StructureType::PRESENT_ID_KHR);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::PresentIdKHR<'static>, u32) -> vk::PresentIdKHR<'static> =
+		vk::PresentIdKHR::swapchain_count;
 	let _: fn(
 		vk::PresentIdKHR<'static>,
 		&'static [u64],
@@ -5893,6 +6456,8 @@ fn vk_present_id2_khr_construction_contract() {
 	let value = vk::PresentId2KHR::default();
 	assert_eq!(value.s_type, vk::StructureType::PRESENT_ID_2_KHR);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::PresentId2KHR<'static>, u32) -> vk::PresentId2KHR<'static> =
+		vk::PresentId2KHR::swapchain_count;
 	let _: fn(
 		vk::PresentId2KHR<'static>,
 		&'static [u64],
@@ -6024,6 +6589,20 @@ fn vk_swapchain_time_domain_properties_ext_construction_contract() {
 		vk::StructureType::SWAPCHAIN_TIME_DOMAIN_PROPERTIES_EXT
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::SwapchainTimeDomainPropertiesEXT<'static>,
+		u32,
+	) -> vk::SwapchainTimeDomainPropertiesEXT<'static> =
+		vk::SwapchainTimeDomainPropertiesEXT::time_domain_count;
+	type Signature1 =
+		fn(
+			vk::SwapchainTimeDomainPropertiesEXT<'static>,
+			u32,
+			Option<&'static mut [vk::TimeDomainKHR]>,
+			Option<&'static mut [u64]>,
+		)
+			-> std::result::Result<vk::SwapchainTimeDomainPropertiesEXT<'static>, vk::ConstructionError>;
+	let _: Signature1 = vk::SwapchainTimeDomainPropertiesEXT::time_domains;
 }
 
 #[test]
@@ -6070,6 +6649,18 @@ fn vk_past_presentation_timing_properties_ext_construction_contract() {
 		u64,
 	) -> vk::PastPresentationTimingPropertiesEXT<'static> =
 		vk::PastPresentationTimingPropertiesEXT::time_domains_counter;
+	let _: fn(
+		vk::PastPresentationTimingPropertiesEXT<'static>,
+		u32,
+	) -> vk::PastPresentationTimingPropertiesEXT<'static> =
+		vk::PastPresentationTimingPropertiesEXT::presentation_timing_count;
+	let _: fn(
+		vk::PastPresentationTimingPropertiesEXT<'static>,
+		&'static mut [vk::PastPresentationTimingEXT<'static>],
+	) -> std::result::Result<
+		vk::PastPresentationTimingPropertiesEXT<'static>,
+		vk::ConstructionError,
+	> = vk::PastPresentationTimingPropertiesEXT::presentation_timings;
 }
 
 #[test]
@@ -6084,6 +6675,14 @@ fn vk_past_presentation_timing_ext_construction_contract() {
 		vk::PastPresentationTimingEXT::present_id;
 	let _: fn(vk::PastPresentationTimingEXT<'static>, u64) -> vk::PastPresentationTimingEXT<'static> =
 		vk::PastPresentationTimingEXT::target_time;
+	let _: fn(vk::PastPresentationTimingEXT<'static>, u32) -> vk::PastPresentationTimingEXT<'static> =
+		vk::PastPresentationTimingEXT::present_stage_count;
+	let _: fn(
+		vk::PastPresentationTimingEXT<'static>,
+		&'static mut [vk::PresentStageTimeEXT],
+	)
+		-> std::result::Result<vk::PastPresentationTimingEXT<'static>, vk::ConstructionError> =
+		vk::PastPresentationTimingEXT::present_stages;
 	let _: fn(
 		vk::PastPresentationTimingEXT<'static>,
 		vk::TimeDomainKHR,
@@ -6101,6 +6700,8 @@ fn vk_present_timings_info_ext_construction_contract() {
 	let value = vk::PresentTimingsInfoEXT::default();
 	assert_eq!(value.s_type, vk::StructureType::PRESENT_TIMINGS_INFO_EXT);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::PresentTimingsInfoEXT<'static>, u32) -> vk::PresentTimingsInfoEXT<'static> =
+		vk::PresentTimingsInfoEXT::swapchain_count;
 	let _: fn(
 		vk::PresentTimingsInfoEXT<'static>,
 		&'static [vk::PresentTimingInfoEXT<'static>],
@@ -6188,6 +6789,18 @@ fn vk_hdr_vivid_dynamic_metadata_huawei_construction_contract() {
 		vk::StructureType::HDR_VIVID_DYNAMIC_METADATA_HUAWEI
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::HdrVividDynamicMetadataHUAWEI<'static>,
+		usize,
+	) -> vk::HdrVividDynamicMetadataHUAWEI<'static> =
+		vk::HdrVividDynamicMetadataHUAWEI::dynamic_metadata_size;
+	let _: fn(
+		vk::HdrVividDynamicMetadataHUAWEI<'static>,
+		&'static [u8],
+	) -> std::result::Result<
+		vk::HdrVividDynamicMetadataHUAWEI<'static>,
+		vk::ConstructionError,
+	> = vk::HdrVividDynamicMetadataHUAWEI::dynamic_metadata;
 }
 
 #[test]
@@ -6245,6 +6858,8 @@ fn vk_present_times_info_google_construction_contract() {
 	let value = vk::PresentTimesInfoGOOGLE::default();
 	assert_eq!(value.s_type, vk::StructureType::PRESENT_TIMES_INFO_GOOGLE);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::PresentTimesInfoGOOGLE<'static>, u32) -> vk::PresentTimesInfoGOOGLE<'static> =
+		vk::PresentTimesInfoGOOGLE::swapchain_count;
 	let _: fn(
 		vk::PresentTimesInfoGOOGLE<'static>,
 		&'static [vk::PresentTimeGOOGLE],
@@ -6270,6 +6885,10 @@ fn vk_ios_surface_create_info_mvk_construction_contract() {
 		vk::IOSSurfaceCreateInfoMVK<'static>,
 		vk::IOSSurfaceCreateFlagsMVK,
 	) -> vk::IOSSurfaceCreateInfoMVK<'static> = vk::IOSSurfaceCreateInfoMVK::flags;
+	let _: unsafe fn(
+		vk::IOSSurfaceCreateInfoMVK<'static>,
+		*const std::ffi::c_void,
+	) -> vk::IOSSurfaceCreateInfoMVK<'static> = vk::IOSSurfaceCreateInfoMVK::view;
 }
 
 #[cfg(feature = "platform-macos")]
@@ -6285,6 +6904,10 @@ fn vk_mac_os_surface_create_info_mvk_construction_contract() {
 		vk::MacOSSurfaceCreateInfoMVK<'static>,
 		vk::MacOSSurfaceCreateFlagsMVK,
 	) -> vk::MacOSSurfaceCreateInfoMVK<'static> = vk::MacOSSurfaceCreateInfoMVK::flags;
+	let _: unsafe fn(
+		vk::MacOSSurfaceCreateInfoMVK<'static>,
+		*const std::ffi::c_void,
+	) -> vk::MacOSSurfaceCreateInfoMVK<'static> = vk::MacOSSurfaceCreateInfoMVK::view;
 }
 
 #[cfg(feature = "platform-metal")]
@@ -6300,6 +6923,10 @@ fn vk_metal_surface_create_info_ext_construction_contract() {
 		vk::MetalSurfaceCreateInfoEXT<'static>,
 		vk::MetalSurfaceCreateFlagsEXT,
 	) -> vk::MetalSurfaceCreateInfoEXT<'static> = vk::MetalSurfaceCreateInfoEXT::flags;
+	let _: unsafe fn(
+		vk::MetalSurfaceCreateInfoEXT<'static>,
+		*const vk::CAMetalLayer,
+	) -> vk::MetalSurfaceCreateInfoEXT<'static> = vk::MetalSurfaceCreateInfoEXT::layer;
 }
 
 #[test]
@@ -6321,6 +6948,11 @@ fn vk_pipeline_viewport_w_scaling_state_create_info_nv_construction_contract() {
 		vk::Bool32,
 	) -> vk::PipelineViewportWScalingStateCreateInfoNV<'static> =
 		vk::PipelineViewportWScalingStateCreateInfoNV::viewport_w_scaling_enable;
+	let _: fn(
+		vk::PipelineViewportWScalingStateCreateInfoNV<'static>,
+		u32,
+	) -> vk::PipelineViewportWScalingStateCreateInfoNV<'static> =
+		vk::PipelineViewportWScalingStateCreateInfoNV::viewport_count;
 	let _: fn(
 		vk::PipelineViewportWScalingStateCreateInfoNV<'static>,
 		&'static [vk::ViewportWScalingNV],
@@ -6355,6 +6987,11 @@ fn vk_pipeline_viewport_swizzle_state_create_info_nv_construction_contract() {
 		vk::PipelineViewportSwizzleStateCreateFlagsNV,
 	) -> vk::PipelineViewportSwizzleStateCreateInfoNV<'static> =
 		vk::PipelineViewportSwizzleStateCreateInfoNV::flags;
+	let _: fn(
+		vk::PipelineViewportSwizzleStateCreateInfoNV<'static>,
+		u32,
+	) -> vk::PipelineViewportSwizzleStateCreateInfoNV<'static> =
+		vk::PipelineViewportSwizzleStateCreateInfoNV::viewport_count;
 	let _: fn(
 		vk::PipelineViewportSwizzleStateCreateInfoNV<'static>,
 		&'static [vk::ViewportSwizzleNV],
@@ -6399,6 +7036,11 @@ fn vk_pipeline_discard_rectangle_state_create_info_ext_construction_contract() {
 		vk::PipelineDiscardRectangleStateCreateInfoEXT::discard_rectangle_mode;
 	let _: fn(
 		vk::PipelineDiscardRectangleStateCreateInfoEXT<'static>,
+		u32,
+	) -> vk::PipelineDiscardRectangleStateCreateInfoEXT<'static> =
+		vk::PipelineDiscardRectangleStateCreateInfoEXT::discard_rectangle_count;
+	let _: fn(
+		vk::PipelineDiscardRectangleStateCreateInfoEXT<'static>,
 		&'static [vk::Rect2D],
 	) -> std::result::Result<
 		vk::PipelineDiscardRectangleStateCreateInfoEXT<'static>,
@@ -6441,6 +7083,11 @@ fn vk_render_pass_input_attachment_aspect_create_info_construction_contract() {
 		vk::StructureType::RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::RenderPassInputAttachmentAspectCreateInfo<'static>,
+		u32,
+	) -> vk::RenderPassInputAttachmentAspectCreateInfo<'static> =
+		vk::RenderPassInputAttachmentAspectCreateInfo::aspect_reference_count;
 	let _: fn(
 		vk::RenderPassInputAttachmentAspectCreateInfo<'static>,
 		&'static [vk::InputAttachmentAspectReference],
@@ -7181,6 +7828,8 @@ fn vk_sample_locations_info_ext_construction_contract() {
 		vk::SampleLocationsInfoEXT<'static>,
 		vk::Extent2D,
 	) -> vk::SampleLocationsInfoEXT<'static> = vk::SampleLocationsInfoEXT::sample_location_grid_size;
+	let _: fn(vk::SampleLocationsInfoEXT<'static>, u32) -> vk::SampleLocationsInfoEXT<'static> =
+		vk::SampleLocationsInfoEXT::sample_locations_count;
 	let _: fn(
 		vk::SampleLocationsInfoEXT<'static>,
 		&'static [vk::SampleLocationEXT],
@@ -7222,11 +7871,21 @@ fn vk_render_pass_sample_locations_begin_info_ext_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::RenderPassSampleLocationsBeginInfoEXT<'static>,
+		u32,
+	) -> vk::RenderPassSampleLocationsBeginInfoEXT<'static> =
+		vk::RenderPassSampleLocationsBeginInfoEXT::attachment_initial_sample_locations_count;
+	let _: fn(
+		vk::RenderPassSampleLocationsBeginInfoEXT<'static>,
 		&'static [vk::AttachmentSampleLocationsEXT<'static>],
 	) -> std::result::Result<
 		vk::RenderPassSampleLocationsBeginInfoEXT<'static>,
 		vk::ConstructionError,
 	> = vk::RenderPassSampleLocationsBeginInfoEXT::attachment_initial_sample_locations;
+	let _: fn(
+		vk::RenderPassSampleLocationsBeginInfoEXT<'static>,
+		u32,
+	) -> vk::RenderPassSampleLocationsBeginInfoEXT<'static> =
+		vk::RenderPassSampleLocationsBeginInfoEXT::post_subpass_sample_locations_count;
 	let _: fn(
 		vk::RenderPassSampleLocationsBeginInfoEXT<'static>,
 		&'static [vk::SubpassSampleLocationsEXT<'static>],
@@ -7456,6 +8115,18 @@ fn vk_write_descriptor_set_inline_uniform_block_construction_contract() {
 		vk::StructureType::WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::WriteDescriptorSetInlineUniformBlock<'static>,
+		u32,
+	) -> vk::WriteDescriptorSetInlineUniformBlock<'static> =
+		vk::WriteDescriptorSetInlineUniformBlock::data_size;
+	let _: fn(
+		vk::WriteDescriptorSetInlineUniformBlock<'static>,
+		&'static [u8],
+	) -> std::result::Result<
+		vk::WriteDescriptorSetInlineUniformBlock<'static>,
+		vk::ConstructionError,
+	> = vk::WriteDescriptorSetInlineUniformBlock::data;
 }
 
 #[test]
@@ -7498,6 +8169,11 @@ fn vk_pipeline_coverage_modulation_state_create_info_nv_construction_contract() 
 		vk::PipelineCoverageModulationStateCreateInfoNV::coverage_modulation_table_enable;
 	let _: fn(
 		vk::PipelineCoverageModulationStateCreateInfoNV<'static>,
+		u32,
+	) -> vk::PipelineCoverageModulationStateCreateInfoNV<'static> =
+		vk::PipelineCoverageModulationStateCreateInfoNV::coverage_modulation_table_count;
+	let _: fn(
+		vk::PipelineCoverageModulationStateCreateInfoNV<'static>,
 		&'static [f32],
 	) -> std::result::Result<
 		vk::PipelineCoverageModulationStateCreateInfoNV<'static>,
@@ -7513,6 +8189,8 @@ fn vk_image_format_list_create_info_construction_contract() {
 		vk::StructureType::IMAGE_FORMAT_LIST_CREATE_INFO
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::ImageFormatListCreateInfo<'static>, u32) -> vk::ImageFormatListCreateInfo<'static> =
+		vk::ImageFormatListCreateInfo::view_format_count;
 	let _: fn(
 		vk::ImageFormatListCreateInfo<'static>,
 		&'static [vk::Format],
@@ -7533,6 +8211,18 @@ fn vk_validation_cache_create_info_ext_construction_contract() {
 		vk::ValidationCacheCreateInfoEXT<'static>,
 		vk::ValidationCacheCreateFlagsEXT,
 	) -> vk::ValidationCacheCreateInfoEXT<'static> = vk::ValidationCacheCreateInfoEXT::flags;
+	let _: fn(
+		vk::ValidationCacheCreateInfoEXT<'static>,
+		usize,
+	) -> vk::ValidationCacheCreateInfoEXT<'static> =
+		vk::ValidationCacheCreateInfoEXT::initial_data_size;
+	let _: fn(
+		vk::ValidationCacheCreateInfoEXT<'static>,
+		&'static [u8],
+	) -> std::result::Result<
+		vk::ValidationCacheCreateInfoEXT<'static>,
+		vk::ConstructionError,
+	> = vk::ValidationCacheCreateInfoEXT::initial_data;
 }
 
 #[test]
@@ -7748,6 +8438,18 @@ fn vk_physical_device_layered_api_properties_list_khr_construction_contract() {
 		vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_LIST_KHR
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::PhysicalDeviceLayeredApiPropertiesListKHR<'static>,
+		u32,
+	) -> vk::PhysicalDeviceLayeredApiPropertiesListKHR<'static> =
+		vk::PhysicalDeviceLayeredApiPropertiesListKHR::layered_api_count;
+	let _: fn(
+		vk::PhysicalDeviceLayeredApiPropertiesListKHR<'static>,
+		&'static mut [vk::PhysicalDeviceLayeredApiPropertiesKHR<'static>],
+	) -> std::result::Result<
+		vk::PhysicalDeviceLayeredApiPropertiesListKHR<'static>,
+		vk::ConstructionError,
+	> = vk::PhysicalDeviceLayeredApiPropertiesListKHR::layered_apis;
 }
 
 #[test]
@@ -7933,6 +8635,8 @@ fn vk_rendering_area_info_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(vk::RenderingAreaInfo<'static>, u32) -> vk::RenderingAreaInfo<'static> =
 		vk::RenderingAreaInfo::view_mask;
+	let _: fn(vk::RenderingAreaInfo<'static>, u32) -> vk::RenderingAreaInfo<'static> =
+		vk::RenderingAreaInfo::color_attachment_count;
 	let _: fn(
 		vk::RenderingAreaInfo<'static>,
 		&'static [vk::Format],
@@ -8192,6 +8896,11 @@ fn vk_queue_family_global_priority_properties_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::QueueFamilyGlobalPriorityProperties<'static>,
+		u32,
+	) -> vk::QueueFamilyGlobalPriorityProperties<'static> =
+		vk::QueueFamilyGlobalPriorityProperties::priority_count;
+	let _: fn(
+		vk::QueueFamilyGlobalPriorityProperties<'static>,
 		[vk::QueueGlobalPriority; vk::MAX_GLOBAL_PRIORITY_SIZE as usize],
 	) -> vk::QueueFamilyGlobalPriorityProperties<'static> =
 		vk::QueueFamilyGlobalPriorityProperties::priorities;
@@ -8239,6 +8948,16 @@ fn vk_debug_utils_object_tag_info_ext_construction_contract() {
 		vk::DebugUtilsObjectTagInfoEXT<'static>,
 		u64,
 	) -> vk::DebugUtilsObjectTagInfoEXT<'static> = vk::DebugUtilsObjectTagInfoEXT::tag_name;
+	let _: fn(
+		vk::DebugUtilsObjectTagInfoEXT<'static>,
+		usize,
+	) -> vk::DebugUtilsObjectTagInfoEXT<'static> = vk::DebugUtilsObjectTagInfoEXT::tag_size;
+	let _: fn(
+		vk::DebugUtilsObjectTagInfoEXT<'static>,
+		&'static [u8],
+	)
+		-> std::result::Result<vk::DebugUtilsObjectTagInfoEXT<'static>, vk::ConstructionError> =
+		vk::DebugUtilsObjectTagInfoEXT::tag;
 }
 
 #[test]
@@ -8281,6 +9000,11 @@ fn vk_debug_utils_messenger_create_info_ext_construction_contract() {
 		vk::PFN_vkDebugUtilsMessengerCallbackEXT,
 	) -> vk::DebugUtilsMessengerCreateInfoEXT<'static> =
 		vk::DebugUtilsMessengerCreateInfoEXT::pfn_user_callback;
+	let _: unsafe fn(
+		vk::DebugUtilsMessengerCreateInfoEXT<'static>,
+		*mut std::ffi::c_void,
+	) -> vk::DebugUtilsMessengerCreateInfoEXT<'static> =
+		vk::DebugUtilsMessengerCreateInfoEXT::user_data;
 }
 
 #[test]
@@ -8313,6 +9037,11 @@ fn vk_debug_utils_messenger_callback_data_ext_construction_contract() {
 		vk::DebugUtilsMessengerCallbackDataEXT::message;
 	let _: fn(
 		vk::DebugUtilsMessengerCallbackDataEXT<'static>,
+		u32,
+	) -> vk::DebugUtilsMessengerCallbackDataEXT<'static> =
+		vk::DebugUtilsMessengerCallbackDataEXT::queue_label_count;
+	let _: fn(
+		vk::DebugUtilsMessengerCallbackDataEXT<'static>,
 		&'static [vk::DebugUtilsLabelEXT<'static>],
 	) -> std::result::Result<
 		vk::DebugUtilsMessengerCallbackDataEXT<'static>,
@@ -8320,11 +9049,21 @@ fn vk_debug_utils_messenger_callback_data_ext_construction_contract() {
 	> = vk::DebugUtilsMessengerCallbackDataEXT::queue_labels;
 	let _: fn(
 		vk::DebugUtilsMessengerCallbackDataEXT<'static>,
+		u32,
+	) -> vk::DebugUtilsMessengerCallbackDataEXT<'static> =
+		vk::DebugUtilsMessengerCallbackDataEXT::cmd_buf_label_count;
+	let _: fn(
+		vk::DebugUtilsMessengerCallbackDataEXT<'static>,
 		&'static [vk::DebugUtilsLabelEXT<'static>],
 	) -> std::result::Result<
 		vk::DebugUtilsMessengerCallbackDataEXT<'static>,
 		vk::ConstructionError,
 	> = vk::DebugUtilsMessengerCallbackDataEXT::cmd_buf_labels;
+	let _: fn(
+		vk::DebugUtilsMessengerCallbackDataEXT<'static>,
+		u32,
+	) -> vk::DebugUtilsMessengerCallbackDataEXT<'static> =
+		vk::DebugUtilsMessengerCallbackDataEXT::object_count;
 	let _: fn(
 		vk::DebugUtilsMessengerCallbackDataEXT<'static>,
 		&'static [vk::DebugUtilsObjectNameInfoEXT<'static>],
@@ -8367,6 +9106,11 @@ fn vk_device_device_memory_report_create_info_ext_construction_contract() {
 		vk::PFN_vkDeviceMemoryReportCallbackEXT,
 	) -> vk::DeviceDeviceMemoryReportCreateInfoEXT<'static> =
 		vk::DeviceDeviceMemoryReportCreateInfoEXT::pfn_user_callback;
+	let _: unsafe fn(
+		vk::DeviceDeviceMemoryReportCreateInfoEXT<'static>,
+		*mut std::ffi::c_void,
+	) -> vk::DeviceDeviceMemoryReportCreateInfoEXT<'static> =
+		vk::DeviceDeviceMemoryReportCreateInfoEXT::user_data;
 }
 
 #[test]
@@ -8424,6 +9168,11 @@ fn vk_import_memory_host_pointer_info_ext_construction_contract() {
 		vk::ImportMemoryHostPointerInfoEXT<'static>,
 		vk::ExternalMemoryHandleTypeFlagBits,
 	) -> vk::ImportMemoryHostPointerInfoEXT<'static> = vk::ImportMemoryHostPointerInfoEXT::handle_type;
+	let _: unsafe fn(
+		vk::ImportMemoryHostPointerInfoEXT<'static>,
+		*mut std::ffi::c_void,
+	) -> vk::ImportMemoryHostPointerInfoEXT<'static> =
+		vk::ImportMemoryHostPointerInfoEXT::host_pointer;
 }
 
 #[test]
@@ -8759,6 +9508,11 @@ fn vk_descriptor_set_layout_binding_flags_create_info_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::DescriptorSetLayoutBindingFlagsCreateInfo<'static>,
+		u32,
+	) -> vk::DescriptorSetLayoutBindingFlagsCreateInfo<'static> =
+		vk::DescriptorSetLayoutBindingFlagsCreateInfo::binding_count;
+	let _: fn(
+		vk::DescriptorSetLayoutBindingFlagsCreateInfo<'static>,
 		&'static [vk::DescriptorBindingFlags],
 	) -> std::result::Result<
 		vk::DescriptorSetLayoutBindingFlagsCreateInfo<'static>,
@@ -8774,6 +9528,11 @@ fn vk_descriptor_set_variable_descriptor_count_allocate_info_construction_contra
 		vk::StructureType::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::DescriptorSetVariableDescriptorCountAllocateInfo<'static>,
+		u32,
+	) -> vk::DescriptorSetVariableDescriptorCountAllocateInfo<'static> =
+		vk::DescriptorSetVariableDescriptorCountAllocateInfo::descriptor_set_count;
 	let _: fn(
 		vk::DescriptorSetVariableDescriptorCountAllocateInfo<'static>,
 		&'static [u32],
@@ -8873,15 +9632,28 @@ fn vk_subpass_description2_construction_contract() {
 	) -> vk::SubpassDescription2<'static> = vk::SubpassDescription2::pipeline_bind_point;
 	let _: fn(vk::SubpassDescription2<'static>, u32) -> vk::SubpassDescription2<'static> =
 		vk::SubpassDescription2::view_mask;
+	let _: fn(vk::SubpassDescription2<'static>, u32) -> vk::SubpassDescription2<'static> =
+		vk::SubpassDescription2::input_attachment_count;
 	let _: fn(
 		vk::SubpassDescription2<'static>,
 		&'static [vk::AttachmentReference2<'static>],
 	) -> std::result::Result<vk::SubpassDescription2<'static>, vk::ConstructionError> =
 		vk::SubpassDescription2::input_attachments;
+	let _: fn(vk::SubpassDescription2<'static>, u32) -> vk::SubpassDescription2<'static> =
+		vk::SubpassDescription2::color_attachment_count;
+	type Signature6 =
+		fn(
+			vk::SubpassDescription2<'static>,
+			&'static [vk::AttachmentReference2<'static>],
+			Option<&'static [vk::AttachmentReference2<'static>]>,
+		) -> std::result::Result<vk::SubpassDescription2<'static>, vk::ConstructionError>;
+	let _: Signature6 = vk::SubpassDescription2::color_attachments;
 	let _: fn(
 		vk::SubpassDescription2<'static>,
 		&'static vk::AttachmentReference2<'static>,
 	) -> vk::SubpassDescription2<'static> = vk::SubpassDescription2::depth_stencil_attachment;
+	let _: fn(vk::SubpassDescription2<'static>, u32) -> vk::SubpassDescription2<'static> =
+		vk::SubpassDescription2::preserve_attachment_count;
 	let _: fn(
 		vk::SubpassDescription2<'static>,
 		&'static [u32],
@@ -8927,21 +9699,29 @@ fn vk_render_pass_create_info2_construction_contract() {
 		vk::RenderPassCreateInfo2<'static>,
 		vk::RenderPassCreateFlags,
 	) -> vk::RenderPassCreateInfo2<'static> = vk::RenderPassCreateInfo2::flags;
+	let _: fn(vk::RenderPassCreateInfo2<'static>, u32) -> vk::RenderPassCreateInfo2<'static> =
+		vk::RenderPassCreateInfo2::attachment_count;
 	let _: fn(
 		vk::RenderPassCreateInfo2<'static>,
 		&'static [vk::AttachmentDescription2<'static>],
 	) -> std::result::Result<vk::RenderPassCreateInfo2<'static>, vk::ConstructionError> =
 		vk::RenderPassCreateInfo2::attachments;
+	let _: fn(vk::RenderPassCreateInfo2<'static>, u32) -> vk::RenderPassCreateInfo2<'static> =
+		vk::RenderPassCreateInfo2::subpass_count;
 	let _: fn(
 		vk::RenderPassCreateInfo2<'static>,
 		&'static [vk::SubpassDescription2<'static>],
 	) -> std::result::Result<vk::RenderPassCreateInfo2<'static>, vk::ConstructionError> =
 		vk::RenderPassCreateInfo2::subpasses;
+	let _: fn(vk::RenderPassCreateInfo2<'static>, u32) -> vk::RenderPassCreateInfo2<'static> =
+		vk::RenderPassCreateInfo2::dependency_count;
 	let _: fn(
 		vk::RenderPassCreateInfo2<'static>,
 		&'static [vk::SubpassDependency2<'static>],
 	) -> std::result::Result<vk::RenderPassCreateInfo2<'static>, vk::ConstructionError> =
 		vk::RenderPassCreateInfo2::dependencies;
+	let _: fn(vk::RenderPassCreateInfo2<'static>, u32) -> vk::RenderPassCreateInfo2<'static> =
+		vk::RenderPassCreateInfo2::correlated_view_mask_count;
 	let _: fn(
 		vk::RenderPassCreateInfo2<'static>,
 		&'static [u32],
@@ -9018,11 +9798,21 @@ fn vk_timeline_semaphore_submit_info_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::TimelineSemaphoreSubmitInfo<'static>,
+		u32,
+	) -> vk::TimelineSemaphoreSubmitInfo<'static> =
+		vk::TimelineSemaphoreSubmitInfo::wait_semaphore_value_count;
+	let _: fn(
+		vk::TimelineSemaphoreSubmitInfo<'static>,
 		&'static [u64],
 	) -> std::result::Result<
 		vk::TimelineSemaphoreSubmitInfo<'static>,
 		vk::ConstructionError,
 	> = vk::TimelineSemaphoreSubmitInfo::wait_semaphore_values;
+	let _: fn(
+		vk::TimelineSemaphoreSubmitInfo<'static>,
+		u32,
+	) -> vk::TimelineSemaphoreSubmitInfo<'static> =
+		vk::TimelineSemaphoreSubmitInfo::signal_semaphore_value_count;
 	let _: fn(
 		vk::TimelineSemaphoreSubmitInfo<'static>,
 		&'static [u64],
@@ -9041,6 +9831,15 @@ fn vk_semaphore_wait_info_construction_contract() {
 		vk::SemaphoreWaitInfo<'static>,
 		vk::SemaphoreWaitFlags,
 	) -> vk::SemaphoreWaitInfo<'static> = vk::SemaphoreWaitInfo::flags;
+	let _: fn(vk::SemaphoreWaitInfo<'static>, u32) -> vk::SemaphoreWaitInfo<'static> =
+		vk::SemaphoreWaitInfo::semaphore_count;
+	type Signature2 =
+		fn(
+			vk::SemaphoreWaitInfo<'static>,
+			&'static [vk::Semaphore],
+			&'static [u64],
+		) -> std::result::Result<vk::SemaphoreWaitInfo<'static>, vk::ConstructionError>;
+	let _: Signature2 = vk::SemaphoreWaitInfo::semaphores;
 }
 
 #[test]
@@ -9074,6 +9873,11 @@ fn vk_pipeline_vertex_input_divisor_state_create_info_construction_contract() {
 		vk::StructureType::PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::PipelineVertexInputDivisorStateCreateInfo<'static>,
+		u32,
+	) -> vk::PipelineVertexInputDivisorStateCreateInfo<'static> =
+		vk::PipelineVertexInputDivisorStateCreateInfo::vertex_binding_divisor_count;
 	let _: fn(
 		vk::PipelineVertexInputDivisorStateCreateInfo<'static>,
 		&'static [vk::VertexInputBindingDivisorDescription],
@@ -9157,6 +9961,11 @@ fn vk_import_android_hardware_buffer_info_android_construction_contract() {
 		vk::StructureType::IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID
 	);
 	assert!(value.p_next.is_null());
+	let _: unsafe fn(
+		vk::ImportAndroidHardwareBufferInfoANDROID<'static>,
+		*mut vk::AHardwareBuffer,
+	) -> vk::ImportAndroidHardwareBufferInfoANDROID<'static> =
+		vk::ImportAndroidHardwareBufferInfoANDROID::buffer;
 }
 
 #[cfg(feature = "platform-android")]
@@ -9562,6 +10371,10 @@ fn vk_checkpoint_data_nv_construction_contract() {
 		vk::CheckpointDataNV<'static>,
 		vk::PipelineStageFlagBits,
 	) -> vk::CheckpointDataNV<'static> = vk::CheckpointDataNV::stage;
+	let _: unsafe fn(
+		vk::CheckpointDataNV<'static>,
+		*mut std::ffi::c_void,
+	) -> vk::CheckpointDataNV<'static> = vk::CheckpointDataNV::checkpoint_marker;
 }
 
 #[test]
@@ -9799,6 +10612,11 @@ fn vk_pipeline_viewport_exclusive_scissor_state_create_info_nv_construction_cont
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::PipelineViewportExclusiveScissorStateCreateInfoNV<'static>,
+		u32,
+	) -> vk::PipelineViewportExclusiveScissorStateCreateInfoNV<'static> =
+		vk::PipelineViewportExclusiveScissorStateCreateInfoNV::exclusive_scissor_count;
+	let _: fn(
+		vk::PipelineViewportExclusiveScissorStateCreateInfoNV<'static>,
 		&'static [vk::Rect2D],
 	) -> std::result::Result<
 		vk::PipelineViewportExclusiveScissorStateCreateInfoNV<'static>,
@@ -9969,6 +10787,8 @@ fn vk_physical_device_memory_decompression_properties_ext_construction_contract(
 
 #[test]
 fn vk_shading_rate_palette_nv_construction_contract() {
+	let _: fn(vk::ShadingRatePaletteNV<'static>, u32) -> vk::ShadingRatePaletteNV<'static> =
+		vk::ShadingRatePaletteNV::shading_rate_palette_entry_count;
 	let _: fn(
 		vk::ShadingRatePaletteNV<'static>,
 		&'static [vk::ShadingRatePaletteEntryNV],
@@ -9989,6 +10809,11 @@ fn vk_pipeline_viewport_shading_rate_image_state_create_info_nv_construction_con
 		vk::Bool32,
 	) -> vk::PipelineViewportShadingRateImageStateCreateInfoNV<'static> =
 		vk::PipelineViewportShadingRateImageStateCreateInfoNV::shading_rate_image_enable;
+	let _: fn(
+		vk::PipelineViewportShadingRateImageStateCreateInfoNV<'static>,
+		u32,
+	) -> vk::PipelineViewportShadingRateImageStateCreateInfoNV<'static> =
+		vk::PipelineViewportShadingRateImageStateCreateInfoNV::viewport_count;
 	let _: fn(
 		vk::PipelineViewportShadingRateImageStateCreateInfoNV<'static>,
 		&'static [vk::ShadingRatePaletteNV<'static>],
@@ -10076,6 +10901,8 @@ fn vk_coarse_sample_order_custom_nv_construction_contract() {
 	) -> vk::CoarseSampleOrderCustomNV<'static> = vk::CoarseSampleOrderCustomNV::shading_rate;
 	let _: fn(vk::CoarseSampleOrderCustomNV<'static>, u32) -> vk::CoarseSampleOrderCustomNV<'static> =
 		vk::CoarseSampleOrderCustomNV::sample_count;
+	let _: fn(vk::CoarseSampleOrderCustomNV<'static>, u32) -> vk::CoarseSampleOrderCustomNV<'static> =
+		vk::CoarseSampleOrderCustomNV::sample_location_count;
 	let _: fn(
 		vk::CoarseSampleOrderCustomNV<'static>,
 		&'static [vk::CoarseSampleLocationNV],
@@ -10097,6 +10924,11 @@ fn vk_pipeline_viewport_coarse_sample_order_state_create_info_nv_construction_co
 		vk::CoarseSampleOrderTypeNV,
 	) -> vk::PipelineViewportCoarseSampleOrderStateCreateInfoNV<'static> =
 		vk::PipelineViewportCoarseSampleOrderStateCreateInfoNV::sample_order_type;
+	let _: fn(
+		vk::PipelineViewportCoarseSampleOrderStateCreateInfoNV<'static>,
+		u32,
+	) -> vk::PipelineViewportCoarseSampleOrderStateCreateInfoNV<'static> =
+		vk::PipelineViewportCoarseSampleOrderStateCreateInfoNV::custom_sample_order_count;
 	let _: fn(
 		vk::PipelineViewportCoarseSampleOrderStateCreateInfoNV<'static>,
 		&'static [vk::CoarseSampleOrderCustomNV<'static>],
@@ -10472,6 +11304,11 @@ fn vk_ray_tracing_shader_group_create_info_khr_construction_contract() {
 		u32,
 	) -> vk::RayTracingShaderGroupCreateInfoKHR<'static> =
 		vk::RayTracingShaderGroupCreateInfoKHR::intersection_shader;
+	let _: unsafe fn(
+		vk::RayTracingShaderGroupCreateInfoKHR<'static>,
+		*const std::ffi::c_void,
+	) -> vk::RayTracingShaderGroupCreateInfoKHR<'static> =
+		vk::RayTracingShaderGroupCreateInfoKHR::shader_group_capture_replay_handle;
 }
 
 #[test]
@@ -10488,11 +11325,19 @@ fn vk_ray_tracing_pipeline_create_info_nv_construction_contract() {
 	) -> vk::RayTracingPipelineCreateInfoNV<'static> = vk::RayTracingPipelineCreateInfoNV::flags;
 	let _: fn(
 		vk::RayTracingPipelineCreateInfoNV<'static>,
+		u32,
+	) -> vk::RayTracingPipelineCreateInfoNV<'static> = vk::RayTracingPipelineCreateInfoNV::stage_count;
+	let _: fn(
+		vk::RayTracingPipelineCreateInfoNV<'static>,
 		&'static [vk::PipelineShaderStageCreateInfo<'static>],
 	) -> std::result::Result<
 		vk::RayTracingPipelineCreateInfoNV<'static>,
 		vk::ConstructionError,
 	> = vk::RayTracingPipelineCreateInfoNV::stages;
+	let _: fn(
+		vk::RayTracingPipelineCreateInfoNV<'static>,
+		u32,
+	) -> vk::RayTracingPipelineCreateInfoNV<'static> = vk::RayTracingPipelineCreateInfoNV::group_count;
 	let _: fn(
 		vk::RayTracingPipelineCreateInfoNV<'static>,
 		&'static [vk::RayTracingShaderGroupCreateInfoNV<'static>],
@@ -10535,11 +11380,21 @@ fn vk_ray_tracing_pipeline_create_info_khr_construction_contract() {
 	) -> vk::RayTracingPipelineCreateInfoKHR<'static> = vk::RayTracingPipelineCreateInfoKHR::flags;
 	let _: fn(
 		vk::RayTracingPipelineCreateInfoKHR<'static>,
+		u32,
+	) -> vk::RayTracingPipelineCreateInfoKHR<'static> =
+		vk::RayTracingPipelineCreateInfoKHR::stage_count;
+	let _: fn(
+		vk::RayTracingPipelineCreateInfoKHR<'static>,
 		&'static [vk::PipelineShaderStageCreateInfo<'static>],
 	) -> std::result::Result<
 		vk::RayTracingPipelineCreateInfoKHR<'static>,
 		vk::ConstructionError,
 	> = vk::RayTracingPipelineCreateInfoKHR::stages;
+	let _: fn(
+		vk::RayTracingPipelineCreateInfoKHR<'static>,
+		u32,
+	) -> vk::RayTracingPipelineCreateInfoKHR<'static> =
+		vk::RayTracingPipelineCreateInfoKHR::group_count;
 	let _: fn(
 		vk::RayTracingPipelineCreateInfoKHR<'static>,
 		&'static [vk::RayTracingShaderGroupCreateInfoKHR<'static>],
@@ -10674,6 +11529,10 @@ fn vk_acceleration_structure_info_nv_construction_contract() {
 	) -> vk::AccelerationStructureInfoNV<'static> = vk::AccelerationStructureInfoNV::instance_count;
 	let _: fn(
 		vk::AccelerationStructureInfoNV<'static>,
+		u32,
+	) -> vk::AccelerationStructureInfoNV<'static> = vk::AccelerationStructureInfoNV::geometry_count;
+	let _: fn(
+		vk::AccelerationStructureInfoNV<'static>,
 		&'static [vk::GeometryNV<'static>],
 	) -> std::result::Result<
 		vk::AccelerationStructureInfoNV<'static>,
@@ -10725,6 +11584,11 @@ fn vk_bind_acceleration_structure_memory_info_nv_construction_contract() {
 		vk::BindAccelerationStructureMemoryInfoNV::memory_offset;
 	let _: fn(
 		vk::BindAccelerationStructureMemoryInfoNV<'static>,
+		u32,
+	) -> vk::BindAccelerationStructureMemoryInfoNV<'static> =
+		vk::BindAccelerationStructureMemoryInfoNV::device_index_count;
+	let _: fn(
+		vk::BindAccelerationStructureMemoryInfoNV<'static>,
 		&'static [u32],
 	) -> std::result::Result<
 		vk::BindAccelerationStructureMemoryInfoNV<'static>,
@@ -10742,6 +11606,11 @@ fn vk_write_descriptor_set_acceleration_structure_khr_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::WriteDescriptorSetAccelerationStructureKHR<'static>,
+		u32,
+	) -> vk::WriteDescriptorSetAccelerationStructureKHR<'static> =
+		vk::WriteDescriptorSetAccelerationStructureKHR::acceleration_structure_count;
+	let _: fn(
+		vk::WriteDescriptorSetAccelerationStructureKHR<'static>,
 		&'static [vk::AccelerationStructureKHR],
 	) -> std::result::Result<
 		vk::WriteDescriptorSetAccelerationStructureKHR<'static>,
@@ -10757,6 +11626,11 @@ fn vk_write_descriptor_set_acceleration_structure_nv_construction_contract() {
 		vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::WriteDescriptorSetAccelerationStructureNV<'static>,
+		u32,
+	) -> vk::WriteDescriptorSetAccelerationStructureNV<'static> =
+		vk::WriteDescriptorSetAccelerationStructureNV::acceleration_structure_count;
 	let _: fn(
 		vk::WriteDescriptorSetAccelerationStructureNV<'static>,
 		&'static [vk::AccelerationStructureNV],
@@ -11087,6 +11961,18 @@ fn vk_drm_format_modifier_properties_list_ext_construction_contract() {
 		vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::DrmFormatModifierPropertiesListEXT<'static>,
+		u32,
+	) -> vk::DrmFormatModifierPropertiesListEXT<'static> =
+		vk::DrmFormatModifierPropertiesListEXT::drm_format_modifier_count;
+	let _: fn(
+		vk::DrmFormatModifierPropertiesListEXT<'static>,
+		&'static mut [vk::DrmFormatModifierPropertiesEXT],
+	) -> std::result::Result<
+		vk::DrmFormatModifierPropertiesListEXT<'static>,
+		vk::ConstructionError,
+	> = vk::DrmFormatModifierPropertiesListEXT::drm_format_modifier_properties;
 }
 
 #[test]
@@ -11122,6 +12008,11 @@ fn vk_physical_device_image_drm_format_modifier_info_ext_construction_contract()
 		vk::PhysicalDeviceImageDrmFormatModifierInfoEXT::sharing_mode;
 	let _: fn(
 		vk::PhysicalDeviceImageDrmFormatModifierInfoEXT<'static>,
+		u32,
+	) -> vk::PhysicalDeviceImageDrmFormatModifierInfoEXT<'static> =
+		vk::PhysicalDeviceImageDrmFormatModifierInfoEXT::queue_family_index_count;
+	let _: fn(
+		vk::PhysicalDeviceImageDrmFormatModifierInfoEXT<'static>,
 		&'static [u32],
 	) -> std::result::Result<
 		vk::PhysicalDeviceImageDrmFormatModifierInfoEXT<'static>,
@@ -11137,6 +12028,11 @@ fn vk_image_drm_format_modifier_list_create_info_ext_construction_contract() {
 		vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::ImageDrmFormatModifierListCreateInfoEXT<'static>,
+		u32,
+	) -> vk::ImageDrmFormatModifierListCreateInfoEXT<'static> =
+		vk::ImageDrmFormatModifierListCreateInfoEXT::drm_format_modifier_count;
 	let _: fn(
 		vk::ImageDrmFormatModifierListCreateInfoEXT<'static>,
 		&'static [u64],
@@ -11159,6 +12055,11 @@ fn vk_image_drm_format_modifier_explicit_create_info_ext_construction_contract()
 		u64,
 	) -> vk::ImageDrmFormatModifierExplicitCreateInfoEXT<'static> =
 		vk::ImageDrmFormatModifierExplicitCreateInfoEXT::drm_format_modifier;
+	let _: fn(
+		vk::ImageDrmFormatModifierExplicitCreateInfoEXT<'static>,
+		u32,
+	) -> vk::ImageDrmFormatModifierExplicitCreateInfoEXT<'static> =
+		vk::ImageDrmFormatModifierExplicitCreateInfoEXT::drm_format_modifier_plane_count;
 	let _: fn(
 		vk::ImageDrmFormatModifierExplicitCreateInfoEXT<'static>,
 		&'static [vk::SubresourceLayout],
@@ -11371,6 +12272,11 @@ fn vk_render_pass_fragment_density_map_offset_end_info_ext_construction_contract
 		vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_EXT
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::RenderPassFragmentDensityMapOffsetEndInfoEXT<'static>,
+		u32,
+	) -> vk::RenderPassFragmentDensityMapOffsetEndInfoEXT<'static> =
+		vk::RenderPassFragmentDensityMapOffsetEndInfoEXT::fragment_density_offset_count;
 	let _: fn(
 		vk::RenderPassFragmentDensityMapOffsetEndInfoEXT<'static>,
 		&'static [vk::Offset2D],
@@ -11675,6 +12581,11 @@ fn vk_framebuffer_attachments_create_info_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::FramebufferAttachmentsCreateInfo<'static>,
+		u32,
+	) -> vk::FramebufferAttachmentsCreateInfo<'static> =
+		vk::FramebufferAttachmentsCreateInfo::attachment_image_info_count;
+	let _: fn(
+		vk::FramebufferAttachmentsCreateInfo<'static>,
 		&'static [vk::FramebufferAttachmentImageInfo<'static>],
 	) -> std::result::Result<
 		vk::FramebufferAttachmentsCreateInfo<'static>,
@@ -11712,6 +12623,11 @@ fn vk_framebuffer_attachment_image_info_construction_contract() {
 	) -> vk::FramebufferAttachmentImageInfo<'static> = vk::FramebufferAttachmentImageInfo::layer_count;
 	let _: fn(
 		vk::FramebufferAttachmentImageInfo<'static>,
+		u32,
+	) -> vk::FramebufferAttachmentImageInfo<'static> =
+		vk::FramebufferAttachmentImageInfo::view_format_count;
+	let _: fn(
+		vk::FramebufferAttachmentImageInfo<'static>,
 		&'static [vk::Format],
 	) -> std::result::Result<
 		vk::FramebufferAttachmentImageInfo<'static>,
@@ -11727,6 +12643,11 @@ fn vk_render_pass_attachment_begin_info_construction_contract() {
 		vk::StructureType::RENDER_PASS_ATTACHMENT_BEGIN_INFO
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::RenderPassAttachmentBeginInfo<'static>,
+		u32,
+	) -> vk::RenderPassAttachmentBeginInfo<'static> =
+		vk::RenderPassAttachmentBeginInfo::attachment_count;
 	let _: fn(
 		vk::RenderPassAttachmentBeginInfo<'static>,
 		&'static [vk::ImageView],
@@ -11911,6 +12832,23 @@ fn vk_pipeline_creation_feedback_create_info_construction_contract() {
 		vk::StructureType::PIPELINE_CREATION_FEEDBACK_CREATE_INFO
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::PipelineCreationFeedbackCreateInfo<'static>,
+		&'static mut vk::PipelineCreationFeedback,
+	) -> vk::PipelineCreationFeedbackCreateInfo<'static> =
+		vk::PipelineCreationFeedbackCreateInfo::pipeline_creation_feedback;
+	let _: fn(
+		vk::PipelineCreationFeedbackCreateInfo<'static>,
+		u32,
+	) -> vk::PipelineCreationFeedbackCreateInfo<'static> =
+		vk::PipelineCreationFeedbackCreateInfo::pipeline_stage_creation_feedback_count;
+	let _: fn(
+		vk::PipelineCreationFeedbackCreateInfo<'static>,
+		&'static mut [vk::PipelineCreationFeedback],
+	) -> std::result::Result<
+		vk::PipelineCreationFeedbackCreateInfo<'static>,
+		vk::ConstructionError,
+	> = vk::PipelineCreationFeedbackCreateInfo::pipeline_stage_creation_feedbacks;
 }
 
 #[cfg(feature = "platform-win32")]
@@ -12107,11 +13045,32 @@ fn vk_query_pool_performance_create_info_khr_construction_contract() {
 		vk::QueryPoolPerformanceCreateInfoKHR::queue_family_index;
 	let _: fn(
 		vk::QueryPoolPerformanceCreateInfoKHR<'static>,
+		u32,
+	) -> vk::QueryPoolPerformanceCreateInfoKHR<'static> =
+		vk::QueryPoolPerformanceCreateInfoKHR::counter_index_count;
+	let _: fn(
+		vk::QueryPoolPerformanceCreateInfoKHR<'static>,
 		&'static [u32],
 	) -> std::result::Result<
 		vk::QueryPoolPerformanceCreateInfoKHR<'static>,
 		vk::ConstructionError,
 	> = vk::QueryPoolPerformanceCreateInfoKHR::counter_indices;
+}
+
+#[test]
+fn vk_performance_counter_result_khr_construction_contract() {
+	let _: fn(vk::PerformanceCounterResultKHR, i32) -> vk::PerformanceCounterResultKHR =
+		vk::PerformanceCounterResultKHR::int32;
+	let _: fn(vk::PerformanceCounterResultKHR, i64) -> vk::PerformanceCounterResultKHR =
+		vk::PerformanceCounterResultKHR::int64;
+	let _: fn(vk::PerformanceCounterResultKHR, u32) -> vk::PerformanceCounterResultKHR =
+		vk::PerformanceCounterResultKHR::uint32;
+	let _: fn(vk::PerformanceCounterResultKHR, u64) -> vk::PerformanceCounterResultKHR =
+		vk::PerformanceCounterResultKHR::uint64;
+	let _: fn(vk::PerformanceCounterResultKHR, f32) -> vk::PerformanceCounterResultKHR =
+		vk::PerformanceCounterResultKHR::float32;
+	let _: fn(vk::PerformanceCounterResultKHR, f64) -> vk::PerformanceCounterResultKHR =
+		vk::PerformanceCounterResultKHR::float64;
 }
 
 #[test]
@@ -12242,11 +13201,33 @@ fn vk_physical_device_shader_integer_functions2_features_intel_construction_cont
 }
 
 #[test]
+fn vk_performance_value_data_intel_construction_contract() {
+	let _: fn(vk::PerformanceValueDataINTEL<'static>, u32) -> vk::PerformanceValueDataINTEL<'static> =
+		vk::PerformanceValueDataINTEL::value32;
+	let _: fn(vk::PerformanceValueDataINTEL<'static>, u64) -> vk::PerformanceValueDataINTEL<'static> =
+		vk::PerformanceValueDataINTEL::value64;
+	let _: fn(vk::PerformanceValueDataINTEL<'static>, f32) -> vk::PerformanceValueDataINTEL<'static> =
+		vk::PerformanceValueDataINTEL::value_float;
+	let _: fn(
+		vk::PerformanceValueDataINTEL<'static>,
+		vk::Bool32,
+	) -> vk::PerformanceValueDataINTEL<'static> = vk::PerformanceValueDataINTEL::value_bool;
+	let _: fn(
+		vk::PerformanceValueDataINTEL<'static>,
+		&'static std::ffi::CStr,
+	) -> vk::PerformanceValueDataINTEL<'static> = vk::PerformanceValueDataINTEL::value_string;
+}
+
+#[test]
 fn vk_performance_value_intel_construction_contract() {
-	let _: fn(vk::PerformanceValueINTEL, vk::PerformanceValueTypeINTEL) -> vk::PerformanceValueINTEL =
-		vk::PerformanceValueINTEL::r#type;
-	let _: fn(vk::PerformanceValueINTEL, vk::PerformanceValueDataINTEL) -> vk::PerformanceValueINTEL =
-		vk::PerformanceValueINTEL::data;
+	let _: fn(
+		vk::PerformanceValueINTEL<'static>,
+		vk::PerformanceValueTypeINTEL,
+	) -> vk::PerformanceValueINTEL<'static> = vk::PerformanceValueINTEL::r#type;
+	let _: fn(
+		vk::PerformanceValueINTEL<'static>,
+		vk::PerformanceValueDataINTEL<'static>,
+	) -> vk::PerformanceValueINTEL<'static> = vk::PerformanceValueINTEL::data;
 }
 
 #[test]
@@ -12257,6 +13238,11 @@ fn vk_initialize_performance_api_info_intel_construction_contract() {
 		vk::StructureType::INITIALIZE_PERFORMANCE_API_INFO_INTEL
 	);
 	assert!(value.p_next.is_null());
+	let _: unsafe fn(
+		vk::InitializePerformanceApiInfoINTEL<'static>,
+		*mut std::ffi::c_void,
+	) -> vk::InitializePerformanceApiInfoINTEL<'static> =
+		vk::InitializePerformanceApiInfoINTEL::user_data;
 }
 
 #[test]
@@ -12569,6 +13555,26 @@ fn vk_pipeline_executable_info_khr_construction_contract() {
 }
 
 #[test]
+fn vk_pipeline_executable_statistic_value_khr_construction_contract() {
+	let _: fn(
+		vk::PipelineExecutableStatisticValueKHR,
+		vk::Bool32,
+	) -> vk::PipelineExecutableStatisticValueKHR = vk::PipelineExecutableStatisticValueKHR::b32;
+	let _: fn(
+		vk::PipelineExecutableStatisticValueKHR,
+		i64,
+	) -> vk::PipelineExecutableStatisticValueKHR = vk::PipelineExecutableStatisticValueKHR::i64;
+	let _: fn(
+		vk::PipelineExecutableStatisticValueKHR,
+		u64,
+	) -> vk::PipelineExecutableStatisticValueKHR = vk::PipelineExecutableStatisticValueKHR::u64;
+	let _: fn(
+		vk::PipelineExecutableStatisticValueKHR,
+		f64,
+	) -> vk::PipelineExecutableStatisticValueKHR = vk::PipelineExecutableStatisticValueKHR::f64;
+}
+
+#[test]
 fn vk_pipeline_executable_statistic_khr_construction_contract() {
 	let value = vk::PipelineExecutableStatisticKHR::default();
 	assert_eq!(
@@ -12617,6 +13623,18 @@ fn vk_pipeline_executable_internal_representation_khr_construction_contract() {
 		vk::Bool32,
 	) -> vk::PipelineExecutableInternalRepresentationKHR<'static> =
 		vk::PipelineExecutableInternalRepresentationKHR::is_text;
+	let _: fn(
+		vk::PipelineExecutableInternalRepresentationKHR<'static>,
+		usize,
+	) -> vk::PipelineExecutableInternalRepresentationKHR<'static> =
+		vk::PipelineExecutableInternalRepresentationKHR::data_size;
+	let _: fn(
+		vk::PipelineExecutableInternalRepresentationKHR<'static>,
+		&'static mut [u8],
+	) -> std::result::Result<
+		vk::PipelineExecutableInternalRepresentationKHR<'static>,
+		vk::ConstructionError,
+	> = vk::PipelineExecutableInternalRepresentationKHR::data;
 }
 
 #[test]
@@ -14043,6 +15061,30 @@ fn vk_physical_device_vulkan14_properties_construction_contract() {
 		vk::PhysicalDeviceVulkan14Properties::default_robustness_images;
 	let _: fn(
 		vk::PhysicalDeviceVulkan14Properties<'static>,
+		u32,
+	) -> vk::PhysicalDeviceVulkan14Properties<'static> =
+		vk::PhysicalDeviceVulkan14Properties::copy_src_layout_count;
+	let _: fn(
+		vk::PhysicalDeviceVulkan14Properties<'static>,
+		&'static mut [vk::ImageLayout],
+	) -> std::result::Result<
+		vk::PhysicalDeviceVulkan14Properties<'static>,
+		vk::ConstructionError,
+	> = vk::PhysicalDeviceVulkan14Properties::copy_src_layouts;
+	let _: fn(
+		vk::PhysicalDeviceVulkan14Properties<'static>,
+		u32,
+	) -> vk::PhysicalDeviceVulkan14Properties<'static> =
+		vk::PhysicalDeviceVulkan14Properties::copy_dst_layout_count;
+	let _: fn(
+		vk::PhysicalDeviceVulkan14Properties<'static>,
+		&'static mut [vk::ImageLayout],
+	) -> std::result::Result<
+		vk::PhysicalDeviceVulkan14Properties<'static>,
+		vk::ConstructionError,
+	> = vk::PhysicalDeviceVulkan14Properties::copy_dst_layouts;
+	let _: fn(
+		vk::PhysicalDeviceVulkan14Properties<'static>,
 		[u8; vk::UUID_SIZE as usize],
 	) -> vk::PhysicalDeviceVulkan14Properties<'static> =
 		vk::PhysicalDeviceVulkan14Properties::optimal_tiling_layout_uuid;
@@ -14153,6 +15195,18 @@ fn vk_physical_device_gpa_properties_amd_construction_contract() {
 		u32,
 	) -> vk::PhysicalDeviceGpaPropertiesAMD<'static> =
 		vk::PhysicalDeviceGpaPropertiesAMD::shader_engine_count;
+	let _: fn(
+		vk::PhysicalDeviceGpaPropertiesAMD<'static>,
+		u32,
+	) -> vk::PhysicalDeviceGpaPropertiesAMD<'static> =
+		vk::PhysicalDeviceGpaPropertiesAMD::perf_block_count;
+	let _: fn(
+		vk::PhysicalDeviceGpaPropertiesAMD<'static>,
+		&'static mut [vk::GpaPerfBlockPropertiesAMD],
+	) -> std::result::Result<
+		vk::PhysicalDeviceGpaPropertiesAMD<'static>,
+		vk::ConstructionError,
+	> = vk::PhysicalDeviceGpaPropertiesAMD::perf_blocks;
 }
 
 #[test]
@@ -14198,6 +15252,8 @@ fn vk_gpa_sample_begin_info_amd_construction_contract() {
 		vk::GpaSampleBeginInfoAMD<'static>,
 		vk::GpaSqShaderStageFlagsAMD,
 	) -> vk::GpaSampleBeginInfoAMD<'static> = vk::GpaSampleBeginInfoAMD::sq_shader_mask;
+	let _: fn(vk::GpaSampleBeginInfoAMD<'static>, u32) -> vk::GpaSampleBeginInfoAMD<'static> =
+		vk::GpaSampleBeginInfoAMD::perf_counter_count;
 	let _: fn(
 		vk::GpaSampleBeginInfoAMD<'static>,
 		&'static [vk::GpaPerfCounterAMD],
@@ -14399,6 +15455,39 @@ fn vk_physical_device_border_color_swizzle_features_ext_construction_contract() 
 		vk::Bool32,
 	) -> vk::PhysicalDeviceBorderColorSwizzleFeaturesEXT<'static> =
 		vk::PhysicalDeviceBorderColorSwizzleFeaturesEXT::border_color_swizzle_from_image;
+}
+
+#[test]
+fn vk_device_or_host_address_khr_construction_contract() {
+	let _: fn(vk::DeviceOrHostAddressKHR, vk::DeviceAddress) -> vk::DeviceOrHostAddressKHR =
+		vk::DeviceOrHostAddressKHR::device_address;
+	let _: unsafe fn(
+		vk::DeviceOrHostAddressKHR,
+		*mut std::ffi::c_void,
+	) -> vk::DeviceOrHostAddressKHR = vk::DeviceOrHostAddressKHR::host_address;
+}
+
+#[test]
+fn vk_device_or_host_address_const_khr_construction_contract() {
+	let _: fn(vk::DeviceOrHostAddressConstKHR, vk::DeviceAddress) -> vk::DeviceOrHostAddressConstKHR =
+		vk::DeviceOrHostAddressConstKHR::device_address;
+	let _: unsafe fn(
+		vk::DeviceOrHostAddressConstKHR,
+		*const std::ffi::c_void,
+	) -> vk::DeviceOrHostAddressConstKHR = vk::DeviceOrHostAddressConstKHR::host_address;
+}
+
+#[cfg(feature = "provisional")]
+#[test]
+fn vk_device_or_host_address_const_amdx_construction_contract() {
+	let _: fn(
+		vk::DeviceOrHostAddressConstAMDX,
+		vk::DeviceAddress,
+	) -> vk::DeviceOrHostAddressConstAMDX = vk::DeviceOrHostAddressConstAMDX::device_address;
+	let _: unsafe fn(
+		vk::DeviceOrHostAddressConstAMDX,
+		*const std::ffi::c_void,
+	) -> vk::DeviceOrHostAddressConstAMDX = vk::DeviceOrHostAddressConstAMDX::host_address;
 }
 
 #[test]
@@ -14607,6 +15696,25 @@ fn vk_acceleration_structure_geometry_spheres_data_nv_construction_contract() {
 }
 
 #[test]
+fn vk_acceleration_structure_geometry_data_khr_construction_contract() {
+	let _: fn(
+		vk::AccelerationStructureGeometryDataKHR<'static>,
+		vk::AccelerationStructureGeometryTrianglesDataKHR<'static>,
+	) -> vk::AccelerationStructureGeometryDataKHR<'static> =
+		vk::AccelerationStructureGeometryDataKHR::triangles;
+	let _: fn(
+		vk::AccelerationStructureGeometryDataKHR<'static>,
+		vk::AccelerationStructureGeometryAabbsDataKHR<'static>,
+	) -> vk::AccelerationStructureGeometryDataKHR<'static> =
+		vk::AccelerationStructureGeometryDataKHR::aabbs;
+	let _: fn(
+		vk::AccelerationStructureGeometryDataKHR<'static>,
+		vk::AccelerationStructureGeometryInstancesDataKHR<'static>,
+	) -> vk::AccelerationStructureGeometryDataKHR<'static> =
+		vk::AccelerationStructureGeometryDataKHR::instances;
+}
+
+#[test]
 fn vk_acceleration_structure_geometry_khr_construction_contract() {
 	let value = vk::AccelerationStructureGeometryKHR::default();
 	assert_eq!(
@@ -14665,11 +15773,23 @@ fn vk_acceleration_structure_build_geometry_info_khr_construction_contract() {
 		vk::AccelerationStructureBuildGeometryInfoKHR::dst_acceleration_structure;
 	let _: fn(
 		vk::AccelerationStructureBuildGeometryInfoKHR<'static>,
+		u32,
+	) -> vk::AccelerationStructureBuildGeometryInfoKHR<'static> =
+		vk::AccelerationStructureBuildGeometryInfoKHR::geometry_count;
+	let _: fn(
+		vk::AccelerationStructureBuildGeometryInfoKHR<'static>,
 		&'static [vk::AccelerationStructureGeometryKHR<'static>],
 	) -> std::result::Result<
 		vk::AccelerationStructureBuildGeometryInfoKHR<'static>,
 		vk::ConstructionError,
 	> = vk::AccelerationStructureBuildGeometryInfoKHR::geometries;
+	let _: fn(
+		vk::AccelerationStructureBuildGeometryInfoKHR<'static>,
+		&'static [*const vk::AccelerationStructureGeometryKHR<'static>],
+	) -> std::result::Result<
+		vk::AccelerationStructureBuildGeometryInfoKHR<'static>,
+		vk::ConstructionError,
+	> = vk::AccelerationStructureBuildGeometryInfoKHR::pp_geometries;
 	let _: fn(
 		vk::AccelerationStructureBuildGeometryInfoKHR<'static>,
 		vk::DeviceOrHostAddressKHR,
@@ -14790,6 +15910,11 @@ fn vk_acceleration_structure_version_info_khr_construction_contract() {
 		vk::StructureType::ACCELERATION_STRUCTURE_VERSION_INFO_KHR
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::AccelerationStructureVersionInfoKHR<'static>,
+		&'static [u8; 2 * vk::UUID_SIZE as usize],
+	) -> vk::AccelerationStructureVersionInfoKHR<'static> =
+		vk::AccelerationStructureVersionInfoKHR::version_data;
 }
 
 #[test]
@@ -14892,6 +16017,10 @@ fn vk_pipeline_library_create_info_khr_construction_contract() {
 		vk::StructureType::PIPELINE_LIBRARY_CREATE_INFO_KHR
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::PipelineLibraryCreateInfoKHR<'static>,
+		u32,
+	) -> vk::PipelineLibraryCreateInfoKHR<'static> = vk::PipelineLibraryCreateInfoKHR::library_count;
 	let _: fn(
 		vk::PipelineLibraryCreateInfoKHR<'static>,
 		&'static [vk::Pipeline],
@@ -15270,6 +16399,11 @@ fn vk_write_descriptor_set_partitioned_acceleration_structure_nv_construction_co
 		vk::StructureType::WRITE_DESCRIPTOR_SET_PARTITIONED_ACCELERATION_STRUCTURE_NV
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::WriteDescriptorSetPartitionedAccelerationStructureNV<'static>,
+		u32,
+	) -> vk::WriteDescriptorSetPartitionedAccelerationStructureNV<'static> =
+		vk::WriteDescriptorSetPartitionedAccelerationStructureNV::acceleration_structure_count;
 	let _: fn(
 		vk::WriteDescriptorSetPartitionedAccelerationStructureNV<'static>,
 		&'static [vk::DeviceAddress],
@@ -15748,6 +16882,8 @@ fn vk_copy_buffer_info2_construction_contract() {
 		vk::CopyBufferInfo2::src_buffer;
 	let _: fn(vk::CopyBufferInfo2<'static>, vk::Buffer) -> vk::CopyBufferInfo2<'static> =
 		vk::CopyBufferInfo2::dst_buffer;
+	let _: fn(vk::CopyBufferInfo2<'static>, u32) -> vk::CopyBufferInfo2<'static> =
+		vk::CopyBufferInfo2::region_count;
 	let _: fn(
 		vk::CopyBufferInfo2<'static>,
 		&'static [vk::BufferCopy2<'static>],
@@ -15768,6 +16904,8 @@ fn vk_copy_image_info2_construction_contract() {
 		vk::CopyImageInfo2::dst_image;
 	let _: fn(vk::CopyImageInfo2<'static>, vk::ImageLayout) -> vk::CopyImageInfo2<'static> =
 		vk::CopyImageInfo2::dst_image_layout;
+	let _: fn(vk::CopyImageInfo2<'static>, u32) -> vk::CopyImageInfo2<'static> =
+		vk::CopyImageInfo2::region_count;
 	let _: fn(
 		vk::CopyImageInfo2<'static>,
 		&'static [vk::ImageCopy2<'static>],
@@ -15788,6 +16926,8 @@ fn vk_blit_image_info2_construction_contract() {
 		vk::BlitImageInfo2::dst_image;
 	let _: fn(vk::BlitImageInfo2<'static>, vk::ImageLayout) -> vk::BlitImageInfo2<'static> =
 		vk::BlitImageInfo2::dst_image_layout;
+	let _: fn(vk::BlitImageInfo2<'static>, u32) -> vk::BlitImageInfo2<'static> =
+		vk::BlitImageInfo2::region_count;
 	let _: fn(
 		vk::BlitImageInfo2<'static>,
 		&'static [vk::ImageBlit2<'static>],
@@ -15812,6 +16952,8 @@ fn vk_copy_buffer_to_image_info2_construction_contract() {
 		vk::CopyBufferToImageInfo2<'static>,
 		vk::ImageLayout,
 	) -> vk::CopyBufferToImageInfo2<'static> = vk::CopyBufferToImageInfo2::dst_image_layout;
+	let _: fn(vk::CopyBufferToImageInfo2<'static>, u32) -> vk::CopyBufferToImageInfo2<'static> =
+		vk::CopyBufferToImageInfo2::region_count;
 	let _: fn(
 		vk::CopyBufferToImageInfo2<'static>,
 		&'static [vk::BufferImageCopy2<'static>],
@@ -15834,6 +16976,8 @@ fn vk_copy_image_to_buffer_info2_construction_contract() {
 		vk::CopyImageToBufferInfo2<'static>,
 		vk::Buffer,
 	) -> vk::CopyImageToBufferInfo2<'static> = vk::CopyImageToBufferInfo2::dst_buffer;
+	let _: fn(vk::CopyImageToBufferInfo2<'static>, u32) -> vk::CopyImageToBufferInfo2<'static> =
+		vk::CopyImageToBufferInfo2::region_count;
 	let _: fn(
 		vk::CopyImageToBufferInfo2<'static>,
 		&'static [vk::BufferImageCopy2<'static>],
@@ -15854,6 +16998,8 @@ fn vk_resolve_image_info2_construction_contract() {
 		vk::ResolveImageInfo2::dst_image;
 	let _: fn(vk::ResolveImageInfo2<'static>, vk::ImageLayout) -> vk::ResolveImageInfo2<'static> =
 		vk::ResolveImageInfo2::dst_image_layout;
+	let _: fn(vk::ResolveImageInfo2<'static>, u32) -> vk::ResolveImageInfo2<'static> =
+		vk::ResolveImageInfo2::region_count;
 	let _: fn(
 		vk::ResolveImageInfo2<'static>,
 		&'static [vk::ImageResolve2<'static>],
@@ -16209,6 +17355,11 @@ fn vk_physical_device_mutable_descriptor_type_features_ext_construction_contract
 fn vk_mutable_descriptor_type_list_ext_construction_contract() {
 	let _: fn(
 		vk::MutableDescriptorTypeListEXT<'static>,
+		u32,
+	) -> vk::MutableDescriptorTypeListEXT<'static> =
+		vk::MutableDescriptorTypeListEXT::descriptor_type_count;
+	let _: fn(
+		vk::MutableDescriptorTypeListEXT<'static>,
 		&'static [vk::DescriptorType],
 	) -> std::result::Result<
 		vk::MutableDescriptorTypeListEXT<'static>,
@@ -16224,6 +17375,11 @@ fn vk_mutable_descriptor_type_create_info_ext_construction_contract() {
 		vk::StructureType::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::MutableDescriptorTypeCreateInfoEXT<'static>,
+		u32,
+	) -> vk::MutableDescriptorTypeCreateInfoEXT<'static> =
+		vk::MutableDescriptorTypeCreateInfoEXT::mutable_descriptor_type_list_count;
 	let _: fn(
 		vk::MutableDescriptorTypeCreateInfoEXT<'static>,
 		&'static [vk::MutableDescriptorTypeListEXT<'static>],
@@ -16300,6 +17456,11 @@ fn vk_custom_resolve_create_info_ext_construction_contract() {
 		vk::CustomResolveCreateInfoEXT<'static>,
 		vk::Bool32,
 	) -> vk::CustomResolveCreateInfoEXT<'static> = vk::CustomResolveCreateInfoEXT::custom_resolve;
+	let _: fn(
+		vk::CustomResolveCreateInfoEXT<'static>,
+		u32,
+	) -> vk::CustomResolveCreateInfoEXT<'static> =
+		vk::CustomResolveCreateInfoEXT::color_attachment_count;
 	let _: fn(
 		vk::CustomResolveCreateInfoEXT<'static>,
 		&'static [vk::Format],
@@ -16413,6 +17574,11 @@ fn vk_generated_commands_shader_info_ext_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::GeneratedCommandsShaderInfoEXT<'static>,
+		u32,
+	) -> vk::GeneratedCommandsShaderInfoEXT<'static> =
+		vk::GeneratedCommandsShaderInfoEXT::shader_count;
+	let _: fn(
+		vk::GeneratedCommandsShaderInfoEXT<'static>,
 		&'static [vk::ShaderEXT],
 	) -> std::result::Result<
 		vk::GeneratedCommandsShaderInfoEXT<'static>,
@@ -16480,6 +17646,11 @@ fn vk_indirect_execution_set_shader_layout_info_ext_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::IndirectExecutionSetShaderLayoutInfoEXT<'static>,
+		u32,
+	) -> vk::IndirectExecutionSetShaderLayoutInfoEXT<'static> =
+		vk::IndirectExecutionSetShaderLayoutInfoEXT::set_layout_count;
+	let _: fn(
+		vk::IndirectExecutionSetShaderLayoutInfoEXT<'static>,
 		&'static [vk::DescriptorSetLayout],
 	) -> std::result::Result<
 		vk::IndirectExecutionSetShaderLayoutInfoEXT<'static>,
@@ -16499,7 +17670,26 @@ fn vk_indirect_execution_set_shader_info_ext_construction_contract() {
 		vk::IndirectExecutionSetShaderInfoEXT<'static>,
 		u32,
 	) -> vk::IndirectExecutionSetShaderInfoEXT<'static> =
+		vk::IndirectExecutionSetShaderInfoEXT::shader_count;
+	type Signature1 = fn(
+		vk::IndirectExecutionSetShaderInfoEXT<'static>,
+		&'static [vk::ShaderEXT],
+		Option<&'static [vk::IndirectExecutionSetShaderLayoutInfoEXT<'static>]>,
+	) -> std::result::Result<
+		vk::IndirectExecutionSetShaderInfoEXT<'static>,
+		vk::ConstructionError,
+	>;
+	let _: Signature1 = vk::IndirectExecutionSetShaderInfoEXT::initial_shaders;
+	let _: fn(
+		vk::IndirectExecutionSetShaderInfoEXT<'static>,
+		u32,
+	) -> vk::IndirectExecutionSetShaderInfoEXT<'static> =
 		vk::IndirectExecutionSetShaderInfoEXT::max_shader_count;
+	let _: fn(
+		vk::IndirectExecutionSetShaderInfoEXT<'static>,
+		u32,
+	) -> vk::IndirectExecutionSetShaderInfoEXT<'static> =
+		vk::IndirectExecutionSetShaderInfoEXT::push_constant_range_count;
 	let _: fn(
 		vk::IndirectExecutionSetShaderInfoEXT<'static>,
 		&'static [vk::PushConstantRange],
@@ -16507,6 +17697,18 @@ fn vk_indirect_execution_set_shader_info_ext_construction_contract() {
 		vk::IndirectExecutionSetShaderInfoEXT<'static>,
 		vk::ConstructionError,
 	> = vk::IndirectExecutionSetShaderInfoEXT::push_constant_ranges;
+}
+
+#[test]
+fn vk_indirect_execution_set_info_ext_construction_contract() {
+	let _: fn(
+		vk::IndirectExecutionSetInfoEXT<'static>,
+		&'static vk::IndirectExecutionSetPipelineInfoEXT<'static>,
+	) -> vk::IndirectExecutionSetInfoEXT<'static> = vk::IndirectExecutionSetInfoEXT::pipeline_info;
+	let _: fn(
+		vk::IndirectExecutionSetInfoEXT<'static>,
+		&'static vk::IndirectExecutionSetShaderInfoEXT<'static>,
+	) -> vk::IndirectExecutionSetInfoEXT<'static> = vk::IndirectExecutionSetInfoEXT::shader_info;
 }
 
 #[test]
@@ -16642,6 +17844,11 @@ fn vk_indirect_commands_layout_create_info_ext_construction_contract() {
 		vk::IndirectCommandsLayoutCreateInfoEXT::pipeline_layout;
 	let _: fn(
 		vk::IndirectCommandsLayoutCreateInfoEXT<'static>,
+		u32,
+	) -> vk::IndirectCommandsLayoutCreateInfoEXT<'static> =
+		vk::IndirectCommandsLayoutCreateInfoEXT::token_count;
+	let _: fn(
+		vk::IndirectCommandsLayoutCreateInfoEXT<'static>,
 		&'static [vk::IndirectCommandsLayoutTokenEXT<'static>],
 	) -> std::result::Result<
 		vk::IndirectCommandsLayoutCreateInfoEXT<'static>,
@@ -16663,7 +17870,7 @@ fn vk_indirect_commands_layout_token_ext_construction_contract() {
 	) -> vk::IndirectCommandsLayoutTokenEXT<'static> = vk::IndirectCommandsLayoutTokenEXT::r#type;
 	let _: fn(
 		vk::IndirectCommandsLayoutTokenEXT<'static>,
-		vk::IndirectCommandsTokenDataEXT,
+		vk::IndirectCommandsTokenDataEXT<'static>,
 	) -> vk::IndirectCommandsLayoutTokenEXT<'static> = vk::IndirectCommandsLayoutTokenEXT::data;
 	let _: fn(
 		vk::IndirectCommandsLayoutTokenEXT<'static>,
@@ -16753,6 +17960,26 @@ fn vk_indirect_commands_execution_set_token_ext_construction_contract() {
 		vk::ShaderStageFlags,
 	) -> vk::IndirectCommandsExecutionSetTokenEXT =
 		vk::IndirectCommandsExecutionSetTokenEXT::shader_stages;
+}
+
+#[test]
+fn vk_indirect_commands_token_data_ext_construction_contract() {
+	let _: fn(
+		vk::IndirectCommandsTokenDataEXT<'static>,
+		&'static vk::IndirectCommandsPushConstantTokenEXT,
+	) -> vk::IndirectCommandsTokenDataEXT<'static> = vk::IndirectCommandsTokenDataEXT::push_constant;
+	let _: fn(
+		vk::IndirectCommandsTokenDataEXT<'static>,
+		&'static vk::IndirectCommandsVertexBufferTokenEXT,
+	) -> vk::IndirectCommandsTokenDataEXT<'static> = vk::IndirectCommandsTokenDataEXT::vertex_buffer;
+	let _: fn(
+		vk::IndirectCommandsTokenDataEXT<'static>,
+		&'static vk::IndirectCommandsIndexBufferTokenEXT,
+	) -> vk::IndirectCommandsTokenDataEXT<'static> = vk::IndirectCommandsTokenDataEXT::index_buffer;
+	let _: fn(
+		vk::IndirectCommandsTokenDataEXT<'static>,
+		&'static vk::IndirectCommandsExecutionSetTokenEXT,
+	) -> vk::IndirectCommandsTokenDataEXT<'static> = vk::IndirectCommandsTokenDataEXT::execution_set;
 }
 
 #[test]
@@ -16931,6 +18158,11 @@ fn vk_pipeline_color_write_create_info_ext_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::PipelineColorWriteCreateInfoEXT<'static>,
+		u32,
+	) -> vk::PipelineColorWriteCreateInfoEXT<'static> =
+		vk::PipelineColorWriteCreateInfoEXT::attachment_count;
+	let _: fn(
+		vk::PipelineColorWriteCreateInfoEXT<'static>,
 		&'static [vk::Bool32],
 	) -> std::result::Result<
 		vk::PipelineColorWriteCreateInfoEXT<'static>,
@@ -17054,16 +18286,22 @@ fn vk_dependency_info_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(vk::DependencyInfo<'static>, vk::DependencyFlags) -> vk::DependencyInfo<'static> =
 		vk::DependencyInfo::dependency_flags;
+	let _: fn(vk::DependencyInfo<'static>, u32) -> vk::DependencyInfo<'static> =
+		vk::DependencyInfo::memory_barrier_count;
 	let _: fn(
 		vk::DependencyInfo<'static>,
 		&'static [vk::MemoryBarrier2<'static>],
 	) -> std::result::Result<vk::DependencyInfo<'static>, vk::ConstructionError> =
 		vk::DependencyInfo::memory_barriers;
+	let _: fn(vk::DependencyInfo<'static>, u32) -> vk::DependencyInfo<'static> =
+		vk::DependencyInfo::buffer_memory_barrier_count;
 	let _: fn(
 		vk::DependencyInfo<'static>,
 		&'static [vk::BufferMemoryBarrier2<'static>],
 	) -> std::result::Result<vk::DependencyInfo<'static>, vk::ConstructionError> =
 		vk::DependencyInfo::buffer_memory_barriers;
+	let _: fn(vk::DependencyInfo<'static>, u32) -> vk::DependencyInfo<'static> =
+		vk::DependencyInfo::image_memory_barrier_count;
 	let _: fn(
 		vk::DependencyInfo<'static>,
 		&'static [vk::ImageMemoryBarrier2<'static>],
@@ -17108,16 +18346,22 @@ fn vk_submit_info2_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(vk::SubmitInfo2<'static>, vk::SubmitFlags) -> vk::SubmitInfo2<'static> =
 		vk::SubmitInfo2::flags;
+	let _: fn(vk::SubmitInfo2<'static>, u32) -> vk::SubmitInfo2<'static> =
+		vk::SubmitInfo2::wait_semaphore_info_count;
 	let _: fn(
 		vk::SubmitInfo2<'static>,
 		&'static [vk::SemaphoreSubmitInfo<'static>],
 	) -> std::result::Result<vk::SubmitInfo2<'static>, vk::ConstructionError> =
 		vk::SubmitInfo2::wait_semaphore_infos;
+	let _: fn(vk::SubmitInfo2<'static>, u32) -> vk::SubmitInfo2<'static> =
+		vk::SubmitInfo2::command_buffer_info_count;
 	let _: fn(
 		vk::SubmitInfo2<'static>,
 		&'static [vk::CommandBufferSubmitInfo<'static>],
 	) -> std::result::Result<vk::SubmitInfo2<'static>, vk::ConstructionError> =
 		vk::SubmitInfo2::command_buffer_infos;
+	let _: fn(vk::SubmitInfo2<'static>, u32) -> vk::SubmitInfo2<'static> =
+		vk::SubmitInfo2::signal_semaphore_info_count;
 	let _: fn(
 		vk::SubmitInfo2<'static>,
 		&'static [vk::SemaphoreSubmitInfo<'static>],
@@ -17149,6 +18393,10 @@ fn vk_checkpoint_data2_nv_construction_contract() {
 		vk::CheckpointData2NV<'static>,
 		vk::PipelineStageFlags2,
 	) -> vk::CheckpointData2NV<'static> = vk::CheckpointData2NV::stage;
+	let _: unsafe fn(
+		vk::CheckpointData2NV<'static>,
+		*mut std::ffi::c_void,
+	) -> vk::CheckpointData2NV<'static> = vk::CheckpointData2NV::checkpoint_marker;
 }
 
 #[test]
@@ -17211,6 +18459,30 @@ fn vk_physical_device_host_image_copy_properties_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::PhysicalDeviceHostImageCopyProperties<'static>,
+		u32,
+	) -> vk::PhysicalDeviceHostImageCopyProperties<'static> =
+		vk::PhysicalDeviceHostImageCopyProperties::copy_src_layout_count;
+	let _: fn(
+		vk::PhysicalDeviceHostImageCopyProperties<'static>,
+		&'static mut [vk::ImageLayout],
+	) -> std::result::Result<
+		vk::PhysicalDeviceHostImageCopyProperties<'static>,
+		vk::ConstructionError,
+	> = vk::PhysicalDeviceHostImageCopyProperties::copy_src_layouts;
+	let _: fn(
+		vk::PhysicalDeviceHostImageCopyProperties<'static>,
+		u32,
+	) -> vk::PhysicalDeviceHostImageCopyProperties<'static> =
+		vk::PhysicalDeviceHostImageCopyProperties::copy_dst_layout_count;
+	let _: fn(
+		vk::PhysicalDeviceHostImageCopyProperties<'static>,
+		&'static mut [vk::ImageLayout],
+	) -> std::result::Result<
+		vk::PhysicalDeviceHostImageCopyProperties<'static>,
+		vk::ConstructionError,
+	> = vk::PhysicalDeviceHostImageCopyProperties::copy_dst_layouts;
+	let _: fn(
+		vk::PhysicalDeviceHostImageCopyProperties<'static>,
 		[u8; vk::UUID_SIZE as usize],
 	) -> vk::PhysicalDeviceHostImageCopyProperties<'static> =
 		vk::PhysicalDeviceHostImageCopyProperties::optimal_tiling_layout_uuid;
@@ -17226,6 +18498,10 @@ fn vk_memory_to_image_copy_construction_contract() {
 	let value = vk::MemoryToImageCopy::default();
 	assert_eq!(value.s_type, vk::StructureType::MEMORY_TO_IMAGE_COPY);
 	assert!(value.p_next.is_null());
+	let _: unsafe fn(
+		vk::MemoryToImageCopy<'static>,
+		*const std::ffi::c_void,
+	) -> vk::MemoryToImageCopy<'static> = vk::MemoryToImageCopy::host_pointer;
 	let _: fn(vk::MemoryToImageCopy<'static>, u32) -> vk::MemoryToImageCopy<'static> =
 		vk::MemoryToImageCopy::memory_row_length;
 	let _: fn(vk::MemoryToImageCopy<'static>, u32) -> vk::MemoryToImageCopy<'static> =
@@ -17245,6 +18521,10 @@ fn vk_image_to_memory_copy_construction_contract() {
 	let value = vk::ImageToMemoryCopy::default();
 	assert_eq!(value.s_type, vk::StructureType::IMAGE_TO_MEMORY_COPY);
 	assert!(value.p_next.is_null());
+	let _: unsafe fn(
+		vk::ImageToMemoryCopy<'static>,
+		*mut std::ffi::c_void,
+	) -> vk::ImageToMemoryCopy<'static> = vk::ImageToMemoryCopy::host_pointer;
 	let _: fn(vk::ImageToMemoryCopy<'static>, u32) -> vk::ImageToMemoryCopy<'static> =
 		vk::ImageToMemoryCopy::memory_row_length;
 	let _: fn(vk::ImageToMemoryCopy<'static>, u32) -> vk::ImageToMemoryCopy<'static> =
@@ -17274,6 +18554,8 @@ fn vk_copy_memory_to_image_info_construction_contract() {
 		vk::CopyMemoryToImageInfo<'static>,
 		vk::ImageLayout,
 	) -> vk::CopyMemoryToImageInfo<'static> = vk::CopyMemoryToImageInfo::dst_image_layout;
+	let _: fn(vk::CopyMemoryToImageInfo<'static>, u32) -> vk::CopyMemoryToImageInfo<'static> =
+		vk::CopyMemoryToImageInfo::region_count;
 	let _: fn(
 		vk::CopyMemoryToImageInfo<'static>,
 		&'static [vk::MemoryToImageCopy<'static>],
@@ -17296,6 +18578,8 @@ fn vk_copy_image_to_memory_info_construction_contract() {
 		vk::CopyImageToMemoryInfo<'static>,
 		vk::ImageLayout,
 	) -> vk::CopyImageToMemoryInfo<'static> = vk::CopyImageToMemoryInfo::src_image_layout;
+	let _: fn(vk::CopyImageToMemoryInfo<'static>, u32) -> vk::CopyImageToMemoryInfo<'static> =
+		vk::CopyImageToMemoryInfo::region_count;
 	let _: fn(
 		vk::CopyImageToMemoryInfo<'static>,
 		&'static [vk::ImageToMemoryCopy<'static>],
@@ -17324,6 +18608,8 @@ fn vk_copy_image_to_image_info_construction_contract() {
 		vk::CopyImageToImageInfo<'static>,
 		vk::ImageLayout,
 	) -> vk::CopyImageToImageInfo<'static> = vk::CopyImageToImageInfo::dst_image_layout;
+	let _: fn(vk::CopyImageToImageInfo<'static>, u32) -> vk::CopyImageToImageInfo<'static> =
+		vk::CopyImageToImageInfo::region_count;
 	let _: fn(
 		vk::CopyImageToImageInfo<'static>,
 		&'static [vk::ImageCopy2<'static>],
@@ -17565,6 +18851,8 @@ fn vk_video_profile_list_info_khr_construction_contract() {
 	let value = vk::VideoProfileListInfoKHR::default();
 	assert_eq!(value.s_type, vk::StructureType::VIDEO_PROFILE_LIST_INFO_KHR);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::VideoProfileListInfoKHR<'static>, u32) -> vk::VideoProfileListInfoKHR<'static> =
+		vk::VideoProfileListInfoKHR::profile_count;
 	let _: fn(
 		vk::VideoProfileListInfoKHR<'static>,
 		&'static [vk::VideoProfileInfoKHR<'static>],
@@ -17934,6 +19222,8 @@ fn vk_video_decode_info_khr_construction_contract() {
 		vk::VideoDecodeInfoKHR<'static>,
 		&'static vk::VideoReferenceSlotInfoKHR<'static>,
 	) -> vk::VideoDecodeInfoKHR<'static> = vk::VideoDecodeInfoKHR::setup_reference_slot;
+	let _: fn(vk::VideoDecodeInfoKHR<'static>, u32) -> vk::VideoDecodeInfoKHR<'static> =
+		vk::VideoDecodeInfoKHR::reference_slot_count;
 	let _: fn(
 		vk::VideoDecodeInfoKHR<'static>,
 		&'static [vk::VideoReferenceSlotInfoKHR<'static>],
@@ -18131,6 +19421,11 @@ fn std_video_h264_sequence_parameter_set_construction_contract() {
 		vk::StdVideoH264SequenceParameterSet<'static>,
 		u8,
 	) -> vk::StdVideoH264SequenceParameterSet<'static> =
+		vk::StdVideoH264SequenceParameterSet::num_ref_frames_in_pic_order_cnt_cycle;
+	let _: fn(
+		vk::StdVideoH264SequenceParameterSet<'static>,
+		u8,
+	) -> vk::StdVideoH264SequenceParameterSet<'static> =
 		vk::StdVideoH264SequenceParameterSet::max_num_ref_frames;
 	let _: fn(
 		vk::StdVideoH264SequenceParameterSet<'static>,
@@ -18172,6 +19467,13 @@ fn std_video_h264_sequence_parameter_set_construction_contract() {
 		u32,
 	) -> vk::StdVideoH264SequenceParameterSet<'static> =
 		vk::StdVideoH264SequenceParameterSet::reserved2;
+	let _: fn(
+		vk::StdVideoH264SequenceParameterSet<'static>,
+		&'static [i32],
+	) -> std::result::Result<
+		vk::StdVideoH264SequenceParameterSet<'static>,
+		vk::ConstructionError,
+	> = vk::StdVideoH264SequenceParameterSet::offset_for_ref_frame;
 	let _: fn(
 		vk::StdVideoH264SequenceParameterSet<'static>,
 		&'static vk::StdVideoH264ScalingLists,
@@ -18252,11 +19554,21 @@ fn vk_video_decode_h264_session_parameters_add_info_khr_construction_contract() 
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::VideoDecodeH264SessionParametersAddInfoKHR<'static>,
+		u32,
+	) -> vk::VideoDecodeH264SessionParametersAddInfoKHR<'static> =
+		vk::VideoDecodeH264SessionParametersAddInfoKHR::std_sps_count;
+	let _: fn(
+		vk::VideoDecodeH264SessionParametersAddInfoKHR<'static>,
 		&'static [vk::StdVideoH264SequenceParameterSet<'static>],
 	) -> std::result::Result<
 		vk::VideoDecodeH264SessionParametersAddInfoKHR<'static>,
 		vk::ConstructionError,
 	> = vk::VideoDecodeH264SessionParametersAddInfoKHR::std_sp_ss;
+	let _: fn(
+		vk::VideoDecodeH264SessionParametersAddInfoKHR<'static>,
+		u32,
+	) -> vk::VideoDecodeH264SessionParametersAddInfoKHR<'static> =
+		vk::VideoDecodeH264SessionParametersAddInfoKHR::std_pps_count;
 	let _: fn(
 		vk::VideoDecodeH264SessionParametersAddInfoKHR<'static>,
 		&'static [vk::StdVideoH264PictureParameterSet<'static>],
@@ -18324,6 +19636,10 @@ fn vk_video_decode_h264_picture_info_khr_construction_contract() {
 		&'static vk::StdVideoDecodeH264PictureInfo,
 	) -> vk::VideoDecodeH264PictureInfoKHR<'static> =
 		vk::VideoDecodeH264PictureInfoKHR::std_picture_info;
+	let _: fn(
+		vk::VideoDecodeH264PictureInfoKHR<'static>,
+		u32,
+	) -> vk::VideoDecodeH264PictureInfoKHR<'static> = vk::VideoDecodeH264PictureInfoKHR::slice_count;
 	let _: fn(
 		vk::VideoDecodeH264PictureInfoKHR<'static>,
 		&'static [u32],
@@ -18398,7 +19714,7 @@ fn std_video_h265_video_parameter_set_construction_contract() {
 		vk::StdVideoH265VideoParameterSet::dec_pic_buf_mgr;
 	let _: fn(
 		vk::StdVideoH265VideoParameterSet<'static>,
-		&'static vk::StdVideoH265HrdParameters,
+		&'static vk::StdVideoH265HrdParameters<'static>,
 	) -> vk::StdVideoH265VideoParameterSet<'static> =
 		vk::StdVideoH265VideoParameterSet::hrd_parameters;
 	let _: fn(
@@ -18493,6 +19809,11 @@ fn std_video_h265_sequence_parameter_set_construction_contract() {
 		vk::StdVideoH265SequenceParameterSet<'static>,
 		u8,
 	) -> vk::StdVideoH265SequenceParameterSet<'static> =
+		vk::StdVideoH265SequenceParameterSet::num_short_term_ref_pic_sets;
+	let _: fn(
+		vk::StdVideoH265SequenceParameterSet<'static>,
+		u8,
+	) -> vk::StdVideoH265SequenceParameterSet<'static> =
 		vk::StdVideoH265SequenceParameterSet::num_long_term_ref_pics_sps;
 	let _: fn(
 		vk::StdVideoH265SequenceParameterSet<'static>,
@@ -18579,6 +19900,13 @@ fn std_video_h265_sequence_parameter_set_construction_contract() {
 		&'static vk::StdVideoH265ScalingLists,
 	) -> vk::StdVideoH265SequenceParameterSet<'static> =
 		vk::StdVideoH265SequenceParameterSet::scaling_lists;
+	let _: fn(
+		vk::StdVideoH265SequenceParameterSet<'static>,
+		&'static [vk::StdVideoH265ShortTermRefPicSet],
+	) -> std::result::Result<
+		vk::StdVideoH265SequenceParameterSet<'static>,
+		vk::ConstructionError,
+	> = vk::StdVideoH265SequenceParameterSet::short_term_ref_pic_set;
 	let _: fn(
 		vk::StdVideoH265SequenceParameterSet<'static>,
 		&'static vk::StdVideoH265LongTermRefPicsSps,
@@ -18862,6 +20190,11 @@ fn vk_video_decode_h265_session_parameters_add_info_khr_construction_contract() 
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::VideoDecodeH265SessionParametersAddInfoKHR<'static>,
+		u32,
+	) -> vk::VideoDecodeH265SessionParametersAddInfoKHR<'static> =
+		vk::VideoDecodeH265SessionParametersAddInfoKHR::std_vps_count;
+	let _: fn(
+		vk::VideoDecodeH265SessionParametersAddInfoKHR<'static>,
 		&'static [vk::StdVideoH265VideoParameterSet<'static>],
 	) -> std::result::Result<
 		vk::VideoDecodeH265SessionParametersAddInfoKHR<'static>,
@@ -18869,11 +20202,21 @@ fn vk_video_decode_h265_session_parameters_add_info_khr_construction_contract() 
 	> = vk::VideoDecodeH265SessionParametersAddInfoKHR::std_vp_ss;
 	let _: fn(
 		vk::VideoDecodeH265SessionParametersAddInfoKHR<'static>,
+		u32,
+	) -> vk::VideoDecodeH265SessionParametersAddInfoKHR<'static> =
+		vk::VideoDecodeH265SessionParametersAddInfoKHR::std_sps_count;
+	let _: fn(
+		vk::VideoDecodeH265SessionParametersAddInfoKHR<'static>,
 		&'static [vk::StdVideoH265SequenceParameterSet<'static>],
 	) -> std::result::Result<
 		vk::VideoDecodeH265SessionParametersAddInfoKHR<'static>,
 		vk::ConstructionError,
 	> = vk::VideoDecodeH265SessionParametersAddInfoKHR::std_sp_ss;
+	let _: fn(
+		vk::VideoDecodeH265SessionParametersAddInfoKHR<'static>,
+		u32,
+	) -> vk::VideoDecodeH265SessionParametersAddInfoKHR<'static> =
+		vk::VideoDecodeH265SessionParametersAddInfoKHR::std_pps_count;
 	let _: fn(
 		vk::VideoDecodeH265SessionParametersAddInfoKHR<'static>,
 		&'static [vk::StdVideoH265PictureParameterSet<'static>],
@@ -18951,6 +20294,11 @@ fn vk_video_decode_h265_picture_info_khr_construction_contract() {
 		&'static vk::StdVideoDecodeH265PictureInfo,
 	) -> vk::VideoDecodeH265PictureInfoKHR<'static> =
 		vk::VideoDecodeH265PictureInfoKHR::std_picture_info;
+	let _: fn(
+		vk::VideoDecodeH265PictureInfoKHR<'static>,
+		u32,
+	) -> vk::VideoDecodeH265PictureInfoKHR<'static> =
+		vk::VideoDecodeH265PictureInfoKHR::slice_segment_count;
 	let _: fn(
 		vk::VideoDecodeH265PictureInfoKHR<'static>,
 		&'static [u32],
@@ -19248,7 +20596,7 @@ fn std_video_decode_av1_picture_info_construction_contract() {
 		vk::StdVideoDecodeAV1PictureInfo::expected_frame_id;
 	let _: fn(
 		vk::StdVideoDecodeAV1PictureInfo<'static>,
-		&'static vk::StdVideoAV1TileInfo,
+		&'static vk::StdVideoAV1TileInfo<'static>,
 	) -> vk::StdVideoDecodeAV1PictureInfo<'static> = vk::StdVideoDecodeAV1PictureInfo::tile_info;
 	let _: fn(
 		vk::StdVideoDecodeAV1PictureInfo<'static>,
@@ -19385,6 +20733,17 @@ fn vk_video_decode_av1_picture_info_khr_construction_contract() {
 		u32,
 	) -> vk::VideoDecodeAV1PictureInfoKHR<'static> =
 		vk::VideoDecodeAV1PictureInfoKHR::frame_header_offset;
+	let _: fn(
+		vk::VideoDecodeAV1PictureInfoKHR<'static>,
+		u32,
+	) -> vk::VideoDecodeAV1PictureInfoKHR<'static> = vk::VideoDecodeAV1PictureInfoKHR::tile_count;
+	type Signature4 =
+		fn(
+			vk::VideoDecodeAV1PictureInfoKHR<'static>,
+			&'static [u32],
+			&'static [u32],
+		) -> std::result::Result<vk::VideoDecodeAV1PictureInfoKHR<'static>, vk::ConstructionError>;
+	let _: Signature4 = vk::VideoDecodeAV1PictureInfoKHR::tile_offsets;
 }
 
 #[test]
@@ -19530,6 +20889,8 @@ fn vk_video_begin_coding_info_khr_construction_contract() {
 		vk::VideoBeginCodingInfoKHR<'static>,
 		vk::VideoSessionParametersKHR,
 	) -> vk::VideoBeginCodingInfoKHR<'static> = vk::VideoBeginCodingInfoKHR::video_session_parameters;
+	let _: fn(vk::VideoBeginCodingInfoKHR<'static>, u32) -> vk::VideoBeginCodingInfoKHR<'static> =
+		vk::VideoBeginCodingInfoKHR::reference_slot_count;
 	let _: fn(
 		vk::VideoBeginCodingInfoKHR<'static>,
 		&'static [vk::VideoReferenceSlotInfoKHR<'static>],
@@ -19604,6 +20965,8 @@ fn vk_video_encode_info_khr_construction_contract() {
 		vk::VideoEncodeInfoKHR<'static>,
 		&'static vk::VideoReferenceSlotInfoKHR<'static>,
 	) -> vk::VideoEncodeInfoKHR<'static> = vk::VideoEncodeInfoKHR::setup_reference_slot;
+	let _: fn(vk::VideoEncodeInfoKHR<'static>, u32) -> vk::VideoEncodeInfoKHR<'static> =
+		vk::VideoEncodeInfoKHR::reference_slot_count;
 	let _: fn(
 		vk::VideoEncodeInfoKHR<'static>,
 		&'static [vk::VideoReferenceSlotInfoKHR<'static>],
@@ -19750,6 +21113,10 @@ fn vk_video_encode_rate_control_info_khr_construction_contract() {
 		vk::VideoEncodeRateControlModeFlagBitsKHR,
 	) -> vk::VideoEncodeRateControlInfoKHR<'static> =
 		vk::VideoEncodeRateControlInfoKHR::rate_control_mode;
+	let _: fn(
+		vk::VideoEncodeRateControlInfoKHR<'static>,
+		u32,
+	) -> vk::VideoEncodeRateControlInfoKHR<'static> = vk::VideoEncodeRateControlInfoKHR::layer_count;
 	let _: fn(
 		vk::VideoEncodeRateControlInfoKHR<'static>,
 		&'static [vk::VideoEncodeRateControlLayerInfoKHR<'static>],
@@ -20115,7 +21482,7 @@ fn std_video_encode_h264_picture_info_construction_contract() {
 	) -> vk::StdVideoEncodeH264PictureInfo<'static> = vk::StdVideoEncodeH264PictureInfo::reserved1;
 	let _: fn(
 		vk::StdVideoEncodeH264PictureInfo<'static>,
-		&'static vk::StdVideoEncodeH264ReferenceListsInfo,
+		&'static vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
 	) -> vk::StdVideoEncodeH264PictureInfo<'static> = vk::StdVideoEncodeH264PictureInfo::ref_lists;
 }
 
@@ -20171,11 +21538,21 @@ fn vk_video_encode_h264_session_parameters_add_info_khr_construction_contract() 
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::VideoEncodeH264SessionParametersAddInfoKHR<'static>,
+		u32,
+	) -> vk::VideoEncodeH264SessionParametersAddInfoKHR<'static> =
+		vk::VideoEncodeH264SessionParametersAddInfoKHR::std_sps_count;
+	let _: fn(
+		vk::VideoEncodeH264SessionParametersAddInfoKHR<'static>,
 		&'static [vk::StdVideoH264SequenceParameterSet<'static>],
 	) -> std::result::Result<
 		vk::VideoEncodeH264SessionParametersAddInfoKHR<'static>,
 		vk::ConstructionError,
 	> = vk::VideoEncodeH264SessionParametersAddInfoKHR::std_sp_ss;
+	let _: fn(
+		vk::VideoEncodeH264SessionParametersAddInfoKHR<'static>,
+		u32,
+	) -> vk::VideoEncodeH264SessionParametersAddInfoKHR<'static> =
+		vk::VideoEncodeH264SessionParametersAddInfoKHR::std_pps_count;
 	let _: fn(
 		vk::VideoEncodeH264SessionParametersAddInfoKHR<'static>,
 		&'static [vk::StdVideoH264PictureParameterSet<'static>],
@@ -20283,6 +21660,11 @@ fn vk_video_encode_h264_picture_info_khr_construction_contract() {
 		vk::StructureType::VIDEO_ENCODE_H264_PICTURE_INFO_KHR
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::VideoEncodeH264PictureInfoKHR<'static>,
+		u32,
+	) -> vk::VideoEncodeH264PictureInfoKHR<'static> =
+		vk::VideoEncodeH264PictureInfoKHR::nalu_slice_entry_count;
 	let _: fn(
 		vk::VideoEncodeH264PictureInfoKHR<'static>,
 		&'static [vk::VideoEncodeH264NaluSliceInfoKHR<'static>],
@@ -20780,6 +22162,11 @@ fn vk_video_encode_h265_session_parameters_add_info_khr_construction_contract() 
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::VideoEncodeH265SessionParametersAddInfoKHR<'static>,
+		u32,
+	) -> vk::VideoEncodeH265SessionParametersAddInfoKHR<'static> =
+		vk::VideoEncodeH265SessionParametersAddInfoKHR::std_vps_count;
+	let _: fn(
+		vk::VideoEncodeH265SessionParametersAddInfoKHR<'static>,
 		&'static [vk::StdVideoH265VideoParameterSet<'static>],
 	) -> std::result::Result<
 		vk::VideoEncodeH265SessionParametersAddInfoKHR<'static>,
@@ -20787,11 +22174,21 @@ fn vk_video_encode_h265_session_parameters_add_info_khr_construction_contract() 
 	> = vk::VideoEncodeH265SessionParametersAddInfoKHR::std_vp_ss;
 	let _: fn(
 		vk::VideoEncodeH265SessionParametersAddInfoKHR<'static>,
+		u32,
+	) -> vk::VideoEncodeH265SessionParametersAddInfoKHR<'static> =
+		vk::VideoEncodeH265SessionParametersAddInfoKHR::std_sps_count;
+	let _: fn(
+		vk::VideoEncodeH265SessionParametersAddInfoKHR<'static>,
 		&'static [vk::StdVideoH265SequenceParameterSet<'static>],
 	) -> std::result::Result<
 		vk::VideoEncodeH265SessionParametersAddInfoKHR<'static>,
 		vk::ConstructionError,
 	> = vk::VideoEncodeH265SessionParametersAddInfoKHR::std_sp_ss;
+	let _: fn(
+		vk::VideoEncodeH265SessionParametersAddInfoKHR<'static>,
+		u32,
+	) -> vk::VideoEncodeH265SessionParametersAddInfoKHR<'static> =
+		vk::VideoEncodeH265SessionParametersAddInfoKHR::std_pps_count;
 	let _: fn(
 		vk::VideoEncodeH265SessionParametersAddInfoKHR<'static>,
 		&'static [vk::StdVideoH265PictureParameterSet<'static>],
@@ -20904,6 +22301,11 @@ fn vk_video_encode_h265_picture_info_khr_construction_contract() {
 		vk::StructureType::VIDEO_ENCODE_H265_PICTURE_INFO_KHR
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::VideoEncodeH265PictureInfoKHR<'static>,
+		u32,
+	) -> vk::VideoEncodeH265PictureInfoKHR<'static> =
+		vk::VideoEncodeH265PictureInfoKHR::nalu_slice_segment_entry_count;
 	let _: fn(
 		vk::VideoEncodeH265PictureInfoKHR<'static>,
 		&'static [vk::VideoEncodeH265NaluSliceSegmentInfoKHR<'static>],
@@ -21415,7 +22817,7 @@ fn std_video_encode_av1_picture_info_construction_contract() {
 		vk::StdVideoEncodeAV1PictureInfo::delta_frame_id_minus_1;
 	let _: fn(
 		vk::StdVideoEncodeAV1PictureInfo<'static>,
-		&'static vk::StdVideoAV1TileInfo,
+		&'static vk::StdVideoAV1TileInfo<'static>,
 	) -> vk::StdVideoEncodeAV1PictureInfo<'static> = vk::StdVideoEncodeAV1PictureInfo::tile_info;
 	let _: fn(
 		vk::StdVideoEncodeAV1PictureInfo<'static>,
@@ -21447,6 +22849,11 @@ fn std_video_encode_av1_picture_info_construction_contract() {
 		&'static vk::StdVideoEncodeAV1ExtensionHeader,
 	) -> vk::StdVideoEncodeAV1PictureInfo<'static> =
 		vk::StdVideoEncodeAV1PictureInfo::extension_header;
+	let _: fn(
+		vk::StdVideoEncodeAV1PictureInfo<'static>,
+		&'static u32,
+	) -> vk::StdVideoEncodeAV1PictureInfo<'static> =
+		vk::StdVideoEncodeAV1PictureInfo::buffer_removal_times;
 }
 
 #[test]
@@ -21532,6 +22939,11 @@ fn vk_video_encode_av1_session_parameters_create_info_khr_construction_contract(
 		&'static vk::StdVideoEncodeAV1DecoderModelInfo,
 	) -> vk::VideoEncodeAV1SessionParametersCreateInfoKHR<'static> =
 		vk::VideoEncodeAV1SessionParametersCreateInfoKHR::std_decoder_model_info;
+	let _: fn(
+		vk::VideoEncodeAV1SessionParametersCreateInfoKHR<'static>,
+		u32,
+	) -> vk::VideoEncodeAV1SessionParametersCreateInfoKHR<'static> =
+		vk::VideoEncodeAV1SessionParametersCreateInfoKHR::std_operating_point_count;
 	let _: fn(
 		vk::VideoEncodeAV1SessionParametersCreateInfoKHR<'static>,
 		&'static [vk::StdVideoEncodeAV1OperatingPointInfo],
@@ -21773,9 +23185,11 @@ fn vk_command_buffer_inheritance_viewport_scissor_info_nv_construction_contract(
 		vk::CommandBufferInheritanceViewportScissorInfoNV::viewport_depth_count;
 	let _: fn(
 		vk::CommandBufferInheritanceViewportScissorInfoNV<'static>,
-		&'static vk::Viewport,
-	) -> vk::CommandBufferInheritanceViewportScissorInfoNV<'static> =
-		vk::CommandBufferInheritanceViewportScissorInfoNV::viewport_depths;
+		&'static [vk::Viewport],
+	) -> std::result::Result<
+		vk::CommandBufferInheritanceViewportScissorInfoNV<'static>,
+		vk::ConstructionError,
+	> = vk::CommandBufferInheritanceViewportScissorInfoNV::viewport_depths;
 }
 
 #[test]
@@ -21949,6 +23363,13 @@ fn vk_cu_module_create_info_nvx_construction_contract() {
 	let value = vk::CuModuleCreateInfoNVX::default();
 	assert_eq!(value.s_type, vk::StructureType::CU_MODULE_CREATE_INFO_NVX);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::CuModuleCreateInfoNVX<'static>, usize) -> vk::CuModuleCreateInfoNVX<'static> =
+		vk::CuModuleCreateInfoNVX::data_size;
+	let _: fn(
+		vk::CuModuleCreateInfoNVX<'static>,
+		&'static [u8],
+	) -> std::result::Result<vk::CuModuleCreateInfoNVX<'static>, vk::ConstructionError> =
+		vk::CuModuleCreateInfoNVX::data;
 }
 
 #[test]
@@ -22002,6 +23423,20 @@ fn vk_cu_launch_info_nvx_construction_contract() {
 		vk::CuLaunchInfoNVX::block_dim_z;
 	let _: fn(vk::CuLaunchInfoNVX<'static>, u32) -> vk::CuLaunchInfoNVX<'static> =
 		vk::CuLaunchInfoNVX::shared_mem_bytes;
+	let _: fn(vk::CuLaunchInfoNVX<'static>, usize) -> vk::CuLaunchInfoNVX<'static> =
+		vk::CuLaunchInfoNVX::param_count;
+	let _: fn(
+		vk::CuLaunchInfoNVX<'static>,
+		&'static [*const std::ffi::c_void],
+	) -> std::result::Result<vk::CuLaunchInfoNVX<'static>, vk::ConstructionError> =
+		vk::CuLaunchInfoNVX::params;
+	let _: fn(vk::CuLaunchInfoNVX<'static>, usize) -> vk::CuLaunchInfoNVX<'static> =
+		vk::CuLaunchInfoNVX::extra_count;
+	let _: fn(
+		vk::CuLaunchInfoNVX<'static>,
+		&'static [*const std::ffi::c_void],
+	) -> std::result::Result<vk::CuLaunchInfoNVX<'static>, vk::ConstructionError> =
+		vk::CuLaunchInfoNVX::extras;
 }
 
 #[test]
@@ -22269,6 +23704,48 @@ fn vk_descriptor_buffer_binding_push_descriptor_buffer_handle_ext_construction_c
 }
 
 #[test]
+fn vk_descriptor_data_ext_construction_contract() {
+	let _: fn(
+		vk::DescriptorDataEXT<'static>,
+		&'static vk::Sampler,
+	) -> vk::DescriptorDataEXT<'static> = vk::DescriptorDataEXT::sampler;
+	let _: fn(
+		vk::DescriptorDataEXT<'static>,
+		&'static vk::DescriptorImageInfo,
+	) -> vk::DescriptorDataEXT<'static> = vk::DescriptorDataEXT::combined_image_sampler;
+	let _: fn(
+		vk::DescriptorDataEXT<'static>,
+		&'static vk::DescriptorImageInfo,
+	) -> vk::DescriptorDataEXT<'static> = vk::DescriptorDataEXT::input_attachment_image;
+	let _: fn(
+		vk::DescriptorDataEXT<'static>,
+		&'static vk::DescriptorImageInfo,
+	) -> vk::DescriptorDataEXT<'static> = vk::DescriptorDataEXT::sampled_image;
+	let _: fn(
+		vk::DescriptorDataEXT<'static>,
+		&'static vk::DescriptorImageInfo,
+	) -> vk::DescriptorDataEXT<'static> = vk::DescriptorDataEXT::storage_image;
+	let _: fn(
+		vk::DescriptorDataEXT<'static>,
+		&'static vk::DescriptorAddressInfoEXT<'static>,
+	) -> vk::DescriptorDataEXT<'static> = vk::DescriptorDataEXT::uniform_texel_buffer;
+	let _: fn(
+		vk::DescriptorDataEXT<'static>,
+		&'static vk::DescriptorAddressInfoEXT<'static>,
+	) -> vk::DescriptorDataEXT<'static> = vk::DescriptorDataEXT::storage_texel_buffer;
+	let _: fn(
+		vk::DescriptorDataEXT<'static>,
+		&'static vk::DescriptorAddressInfoEXT<'static>,
+	) -> vk::DescriptorDataEXT<'static> = vk::DescriptorDataEXT::uniform_buffer;
+	let _: fn(
+		vk::DescriptorDataEXT<'static>,
+		&'static vk::DescriptorAddressInfoEXT<'static>,
+	) -> vk::DescriptorDataEXT<'static> = vk::DescriptorDataEXT::storage_buffer;
+	let _: fn(vk::DescriptorDataEXT<'static>, vk::DeviceAddress) -> vk::DescriptorDataEXT<'static> =
+		vk::DescriptorDataEXT::acceleration_structure;
+}
+
+#[test]
 fn vk_descriptor_get_info_ext_construction_contract() {
 	let value = vk::DescriptorGetInfoEXT::default();
 	assert_eq!(value.s_type, vk::StructureType::DESCRIPTOR_GET_INFO_EXT);
@@ -22370,6 +23847,11 @@ fn vk_opaque_capture_descriptor_data_create_info_ext_construction_contract() {
 		vk::StructureType::OPAQUE_CAPTURE_DESCRIPTOR_DATA_CREATE_INFO_EXT
 	);
 	assert!(value.p_next.is_null());
+	let _: unsafe fn(
+		vk::OpaqueCaptureDescriptorDataCreateInfoEXT<'static>,
+		*const std::ffi::c_void,
+	) -> vk::OpaqueCaptureDescriptorDataCreateInfoEXT<'static> =
+		vk::OpaqueCaptureDescriptorDataCreateInfoEXT::opaque_capture_descriptor_data;
 }
 
 #[test]
@@ -22660,6 +24142,25 @@ fn vk_acceleration_structure_matrix_motion_instance_nv_construction_contract() {
 }
 
 #[test]
+fn vk_acceleration_structure_motion_instance_data_nv_construction_contract() {
+	let _: fn(
+		vk::AccelerationStructureMotionInstanceDataNV,
+		vk::AccelerationStructureInstanceKHR,
+	) -> vk::AccelerationStructureMotionInstanceDataNV =
+		vk::AccelerationStructureMotionInstanceDataNV::static_instance;
+	let _: fn(
+		vk::AccelerationStructureMotionInstanceDataNV,
+		vk::AccelerationStructureMatrixMotionInstanceNV,
+	) -> vk::AccelerationStructureMotionInstanceDataNV =
+		vk::AccelerationStructureMotionInstanceDataNV::matrix_motion_instance;
+	let _: fn(
+		vk::AccelerationStructureMotionInstanceDataNV,
+		vk::AccelerationStructureSRTMotionInstanceNV,
+	) -> vk::AccelerationStructureMotionInstanceDataNV =
+		vk::AccelerationStructureMotionInstanceDataNV::srt_motion_instance;
+}
+
+#[test]
 fn vk_acceleration_structure_motion_instance_nv_construction_contract() {
 	let _: fn(
 		vk::AccelerationStructureMotionInstanceNV,
@@ -22903,6 +24404,11 @@ fn vk_image_format_constraints_info_fuchsia_construction_contract() {
 		vk::ImageFormatConstraintsInfoFUCHSIA::sysmem_pixel_format;
 	let _: fn(
 		vk::ImageFormatConstraintsInfoFUCHSIA<'static>,
+		u32,
+	) -> vk::ImageFormatConstraintsInfoFUCHSIA<'static> =
+		vk::ImageFormatConstraintsInfoFUCHSIA::color_space_count;
+	let _: fn(
+		vk::ImageFormatConstraintsInfoFUCHSIA<'static>,
 		&'static [vk::SysmemColorSpaceFUCHSIA<'static>],
 	) -> std::result::Result<
 		vk::ImageFormatConstraintsInfoFUCHSIA<'static>,
@@ -22919,6 +24425,11 @@ fn vk_image_constraints_info_fuchsia_construction_contract() {
 		vk::StructureType::IMAGE_CONSTRAINTS_INFO_FUCHSIA
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::ImageConstraintsInfoFUCHSIA<'static>,
+		u32,
+	) -> vk::ImageConstraintsInfoFUCHSIA<'static> =
+		vk::ImageConstraintsInfoFUCHSIA::format_constraints_count;
 	let _: fn(
 		vk::ImageConstraintsInfoFUCHSIA<'static>,
 		&'static [vk::ImageFormatConstraintsInfoFUCHSIA<'static>],
@@ -22979,6 +24490,13 @@ fn vk_cuda_module_create_info_nv_construction_contract() {
 	let value = vk::CudaModuleCreateInfoNV::default();
 	assert_eq!(value.s_type, vk::StructureType::CUDA_MODULE_CREATE_INFO_NV);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::CudaModuleCreateInfoNV<'static>, usize) -> vk::CudaModuleCreateInfoNV<'static> =
+		vk::CudaModuleCreateInfoNV::data_size;
+	let _: fn(
+		vk::CudaModuleCreateInfoNV<'static>,
+		&'static [u8],
+	) -> std::result::Result<vk::CudaModuleCreateInfoNV<'static>, vk::ConstructionError> =
+		vk::CudaModuleCreateInfoNV::data;
 }
 
 #[cfg(feature = "provisional")]
@@ -23022,6 +24540,20 @@ fn vk_cuda_launch_info_nv_construction_contract() {
 		vk::CudaLaunchInfoNV::block_dim_z;
 	let _: fn(vk::CudaLaunchInfoNV<'static>, u32) -> vk::CudaLaunchInfoNV<'static> =
 		vk::CudaLaunchInfoNV::shared_mem_bytes;
+	let _: fn(vk::CudaLaunchInfoNV<'static>, usize) -> vk::CudaLaunchInfoNV<'static> =
+		vk::CudaLaunchInfoNV::param_count;
+	let _: fn(
+		vk::CudaLaunchInfoNV<'static>,
+		&'static [*const std::ffi::c_void],
+	) -> std::result::Result<vk::CudaLaunchInfoNV<'static>, vk::ConstructionError> =
+		vk::CudaLaunchInfoNV::params;
+	let _: fn(vk::CudaLaunchInfoNV<'static>, usize) -> vk::CudaLaunchInfoNV<'static> =
+		vk::CudaLaunchInfoNV::extra_count;
+	let _: fn(
+		vk::CudaLaunchInfoNV<'static>,
+		&'static [*const std::ffi::c_void],
+	) -> std::result::Result<vk::CudaLaunchInfoNV<'static>, vk::ConstructionError> =
+		vk::CudaLaunchInfoNV::extras;
 }
 
 #[test]
@@ -23085,6 +24617,18 @@ fn vk_drm_format_modifier_properties_list2_ext_construction_contract() {
 		vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::DrmFormatModifierPropertiesList2EXT<'static>,
+		u32,
+	) -> vk::DrmFormatModifierPropertiesList2EXT<'static> =
+		vk::DrmFormatModifierPropertiesList2EXT::drm_format_modifier_count;
+	let _: fn(
+		vk::DrmFormatModifierPropertiesList2EXT<'static>,
+		&'static mut [vk::DrmFormatModifierProperties2EXT],
+	) -> std::result::Result<
+		vk::DrmFormatModifierPropertiesList2EXT<'static>,
+		vk::ConstructionError,
+	> = vk::DrmFormatModifierPropertiesList2EXT::drm_format_modifier_properties;
 }
 
 #[test]
@@ -23165,6 +24709,11 @@ fn vk_pipeline_rendering_create_info_construction_contract() {
 	) -> vk::PipelineRenderingCreateInfo<'static> = vk::PipelineRenderingCreateInfo::view_mask;
 	let _: fn(
 		vk::PipelineRenderingCreateInfo<'static>,
+		u32,
+	) -> vk::PipelineRenderingCreateInfo<'static> =
+		vk::PipelineRenderingCreateInfo::color_attachment_count;
+	let _: fn(
+		vk::PipelineRenderingCreateInfo<'static>,
 		&'static [vk::Format],
 	) -> std::result::Result<
 		vk::PipelineRenderingCreateInfo<'static>,
@@ -23195,6 +24744,8 @@ fn vk_rendering_info_construction_contract() {
 		vk::RenderingInfo::layer_count;
 	let _: fn(vk::RenderingInfo<'static>, u32) -> vk::RenderingInfo<'static> =
 		vk::RenderingInfo::view_mask;
+	let _: fn(vk::RenderingInfo<'static>, u32) -> vk::RenderingInfo<'static> =
+		vk::RenderingInfo::color_attachment_count;
 	let _: fn(
 		vk::RenderingInfo<'static>,
 		&'static [vk::RenderingAttachmentInfo<'static>],
@@ -23336,6 +24887,11 @@ fn vk_command_buffer_inheritance_rendering_info_construction_contract() {
 		vk::CommandBufferInheritanceRenderingInfo::view_mask;
 	let _: fn(
 		vk::CommandBufferInheritanceRenderingInfo<'static>,
+		u32,
+	) -> vk::CommandBufferInheritanceRenderingInfo<'static> =
+		vk::CommandBufferInheritanceRenderingInfo::color_attachment_count;
+	let _: fn(
+		vk::CommandBufferInheritanceRenderingInfo<'static>,
 		&'static [vk::Format],
 	) -> std::result::Result<
 		vk::CommandBufferInheritanceRenderingInfo<'static>,
@@ -23366,6 +24922,11 @@ fn vk_attachment_sample_count_info_amd_construction_contract() {
 		vk::StructureType::ATTACHMENT_SAMPLE_COUNT_INFO_AMD
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::AttachmentSampleCountInfoAMD<'static>,
+		u32,
+	) -> vk::AttachmentSampleCountInfoAMD<'static> =
+		vk::AttachmentSampleCountInfoAMD::color_attachment_count;
 	let _: fn(
 		vk::AttachmentSampleCountInfoAMD<'static>,
 		&'static [vk::SampleCountFlagBits],
@@ -23794,6 +25355,11 @@ fn vk_pipeline_shader_stage_module_identifier_create_info_ext_construction_contr
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::PipelineShaderStageModuleIdentifierCreateInfoEXT<'static>,
+		u32,
+	) -> vk::PipelineShaderStageModuleIdentifierCreateInfoEXT<'static> =
+		vk::PipelineShaderStageModuleIdentifierCreateInfoEXT::identifier_size;
+	let _: fn(
+		vk::PipelineShaderStageModuleIdentifierCreateInfoEXT<'static>,
 		&'static [u8],
 	) -> std::result::Result<
 		vk::PipelineShaderStageModuleIdentifierCreateInfoEXT<'static>,
@@ -23809,6 +25375,8 @@ fn vk_shader_module_identifier_ext_construction_contract() {
 		vk::StructureType::SHADER_MODULE_IDENTIFIER_EXT
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::ShaderModuleIdentifierEXT<'static>, u32) -> vk::ShaderModuleIdentifierEXT<'static> =
+		vk::ShaderModuleIdentifierEXT::identifier_size;
 	let _: fn(
 		vk::ShaderModuleIdentifierEXT<'static>,
 		[u8; vk::MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT as usize],
@@ -23827,6 +25395,17 @@ fn vk_image_compression_control_ext_construction_contract() {
 		vk::ImageCompressionControlEXT<'static>,
 		vk::ImageCompressionFlagsEXT,
 	) -> vk::ImageCompressionControlEXT<'static> = vk::ImageCompressionControlEXT::flags;
+	let _: fn(
+		vk::ImageCompressionControlEXT<'static>,
+		u32,
+	) -> vk::ImageCompressionControlEXT<'static> =
+		vk::ImageCompressionControlEXT::compression_control_plane_count;
+	let _: fn(
+		vk::ImageCompressionControlEXT<'static>,
+		&'static mut [vk::ImageCompressionFixedRateFlagsEXT],
+	)
+		-> std::result::Result<vk::ImageCompressionControlEXT<'static>, vk::ConstructionError> =
+		vk::ImageCompressionControlEXT::fixed_rate_flags;
 }
 
 #[test]
@@ -23926,6 +25505,11 @@ fn vk_render_pass_creation_feedback_create_info_ext_construction_contract() {
 		vk::StructureType::RENDER_PASS_CREATION_FEEDBACK_CREATE_INFO_EXT
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::RenderPassCreationFeedbackCreateInfoEXT<'static>,
+		&'static mut vk::RenderPassCreationFeedbackInfoEXT,
+	) -> vk::RenderPassCreationFeedbackCreateInfoEXT<'static> =
+		vk::RenderPassCreationFeedbackCreateInfoEXT::render_pass_feedback;
 }
 
 #[test]
@@ -23951,6 +25535,11 @@ fn vk_render_pass_subpass_feedback_create_info_ext_construction_contract() {
 		vk::StructureType::RENDER_PASS_SUBPASS_FEEDBACK_CREATE_INFO_EXT
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::RenderPassSubpassFeedbackCreateInfoEXT<'static>,
+		&'static mut vk::RenderPassSubpassFeedbackInfoEXT,
+	) -> vk::RenderPassSubpassFeedbackCreateInfoEXT<'static> =
+		vk::RenderPassSubpassFeedbackCreateInfoEXT::subpass_feedback;
 }
 
 #[test]
@@ -23989,11 +25578,18 @@ fn vk_micromap_build_info_ext_construction_contract() {
 		vk::MicromapBuildInfoEXT<'static>,
 		vk::MicromapEXT,
 	) -> vk::MicromapBuildInfoEXT<'static> = vk::MicromapBuildInfoEXT::dst_micromap;
+	let _: fn(vk::MicromapBuildInfoEXT<'static>, u32) -> vk::MicromapBuildInfoEXT<'static> =
+		vk::MicromapBuildInfoEXT::usage_counts_count;
 	let _: fn(
 		vk::MicromapBuildInfoEXT<'static>,
 		&'static [vk::MicromapUsageEXT],
 	) -> std::result::Result<vk::MicromapBuildInfoEXT<'static>, vk::ConstructionError> =
 		vk::MicromapBuildInfoEXT::usage_counts;
+	let _: fn(
+		vk::MicromapBuildInfoEXT<'static>,
+		&'static [*const vk::MicromapUsageEXT],
+	) -> std::result::Result<vk::MicromapBuildInfoEXT<'static>, vk::ConstructionError> =
+		vk::MicromapBuildInfoEXT::pp_usage_counts;
 	let _: fn(
 		vk::MicromapBuildInfoEXT<'static>,
 		vk::DeviceOrHostAddressConstKHR,
@@ -24022,11 +25618,23 @@ fn vk_acceleration_structure_geometry_micromap_data_khr_construction_contract() 
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::AccelerationStructureGeometryMicromapDataKHR<'static>,
+		u32,
+	) -> vk::AccelerationStructureGeometryMicromapDataKHR<'static> =
+		vk::AccelerationStructureGeometryMicromapDataKHR::usage_counts_count;
+	let _: fn(
+		vk::AccelerationStructureGeometryMicromapDataKHR<'static>,
 		&'static [vk::MicromapUsageKHR],
 	) -> std::result::Result<
 		vk::AccelerationStructureGeometryMicromapDataKHR<'static>,
 		vk::ConstructionError,
 	> = vk::AccelerationStructureGeometryMicromapDataKHR::usage_counts;
+	let _: fn(
+		vk::AccelerationStructureGeometryMicromapDataKHR<'static>,
+		&'static [*const vk::MicromapUsageKHR],
+	) -> std::result::Result<
+		vk::AccelerationStructureGeometryMicromapDataKHR<'static>,
+		vk::ConstructionError,
+	> = vk::AccelerationStructureGeometryMicromapDataKHR::pp_usage_counts;
 	let _: fn(
 		vk::AccelerationStructureGeometryMicromapDataKHR<'static>,
 		vk::DeviceAddress,
@@ -24078,6 +25686,10 @@ fn vk_micromap_version_info_ext_construction_contract() {
 	let value = vk::MicromapVersionInfoEXT::default();
 	assert_eq!(value.s_type, vk::StructureType::MICROMAP_VERSION_INFO_EXT);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::MicromapVersionInfoEXT<'static>,
+		&'static [u8; 2 * vk::UUID_SIZE as usize],
+	) -> vk::MicromapVersionInfoEXT<'static> = vk::MicromapVersionInfoEXT::version_data;
 }
 
 #[test]
@@ -24343,11 +25955,23 @@ fn vk_acceleration_structure_triangles_opacity_micromap_ext_construction_contrac
 		vk::AccelerationStructureTrianglesOpacityMicromapEXT::base_triangle;
 	let _: fn(
 		vk::AccelerationStructureTrianglesOpacityMicromapEXT<'static>,
+		u32,
+	) -> vk::AccelerationStructureTrianglesOpacityMicromapEXT<'static> =
+		vk::AccelerationStructureTrianglesOpacityMicromapEXT::usage_counts_count;
+	let _: fn(
+		vk::AccelerationStructureTrianglesOpacityMicromapEXT<'static>,
 		&'static [vk::MicromapUsageEXT],
 	) -> std::result::Result<
 		vk::AccelerationStructureTrianglesOpacityMicromapEXT<'static>,
 		vk::ConstructionError,
 	> = vk::AccelerationStructureTrianglesOpacityMicromapEXT::usage_counts;
+	let _: fn(
+		vk::AccelerationStructureTrianglesOpacityMicromapEXT<'static>,
+		&'static [*const vk::MicromapUsageEXT],
+	) -> std::result::Result<
+		vk::AccelerationStructureTrianglesOpacityMicromapEXT<'static>,
+		vk::ConstructionError,
+	> = vk::AccelerationStructureTrianglesOpacityMicromapEXT::pp_usage_counts;
 	let _: fn(
 		vk::AccelerationStructureTrianglesOpacityMicromapEXT<'static>,
 		vk::MicromapEXT,
@@ -24454,11 +26078,23 @@ fn vk_acceleration_structure_triangles_displacement_micromap_nv_construction_con
 		vk::AccelerationStructureTrianglesDisplacementMicromapNV::base_triangle;
 	let _: fn(
 		vk::AccelerationStructureTrianglesDisplacementMicromapNV<'static>,
+		u32,
+	) -> vk::AccelerationStructureTrianglesDisplacementMicromapNV<'static> =
+		vk::AccelerationStructureTrianglesDisplacementMicromapNV::usage_counts_count;
+	let _: fn(
+		vk::AccelerationStructureTrianglesDisplacementMicromapNV<'static>,
 		&'static [vk::MicromapUsageEXT],
 	) -> std::result::Result<
 		vk::AccelerationStructureTrianglesDisplacementMicromapNV<'static>,
 		vk::ConstructionError,
 	> = vk::AccelerationStructureTrianglesDisplacementMicromapNV::usage_counts;
+	let _: fn(
+		vk::AccelerationStructureTrianglesDisplacementMicromapNV<'static>,
+		&'static [*const vk::MicromapUsageEXT],
+	) -> std::result::Result<
+		vk::AccelerationStructureTrianglesDisplacementMicromapNV<'static>,
+		vk::ConstructionError,
+	> = vk::AccelerationStructureTrianglesDisplacementMicromapNV::pp_usage_counts;
 	let _: fn(
 		vk::AccelerationStructureTrianglesDisplacementMicromapNV<'static>,
 		vk::MicromapEXT,
@@ -25298,6 +26934,11 @@ fn vk_optical_flow_session_create_private_data_info_nv_construction_contract() {
 		u32,
 	) -> vk::OpticalFlowSessionCreatePrivateDataInfoNV<'static> =
 		vk::OpticalFlowSessionCreatePrivateDataInfoNV::size;
+	let _: unsafe fn(
+		vk::OpticalFlowSessionCreatePrivateDataInfoNV<'static>,
+		*const std::ffi::c_void,
+	) -> vk::OpticalFlowSessionCreatePrivateDataInfoNV<'static> =
+		vk::OpticalFlowSessionCreatePrivateDataInfoNV::private_data;
 }
 
 #[test]
@@ -25312,6 +26953,8 @@ fn vk_optical_flow_execute_info_nv_construction_contract() {
 		vk::OpticalFlowExecuteInfoNV<'static>,
 		vk::OpticalFlowExecuteFlagsNV,
 	) -> vk::OpticalFlowExecuteInfoNV<'static> = vk::OpticalFlowExecuteInfoNV::flags;
+	let _: fn(vk::OpticalFlowExecuteInfoNV<'static>, u32) -> vk::OpticalFlowExecuteInfoNV<'static> =
+		vk::OpticalFlowExecuteInfoNV::region_count;
 	let _: fn(
 		vk::OpticalFlowExecuteInfoNV<'static>,
 		&'static [vk::Rect2D],
@@ -25397,6 +27040,13 @@ fn vk_device_fault_debug_info_khr_construction_contract() {
 	let value = vk::DeviceFaultDebugInfoKHR::default();
 	assert_eq!(value.s_type, vk::StructureType::DEVICE_FAULT_DEBUG_INFO_KHR);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::DeviceFaultDebugInfoKHR<'static>, u32) -> vk::DeviceFaultDebugInfoKHR<'static> =
+		vk::DeviceFaultDebugInfoKHR::vendor_binary_size;
+	let _: fn(
+		vk::DeviceFaultDebugInfoKHR<'static>,
+		&'static mut [u8],
+	) -> std::result::Result<vk::DeviceFaultDebugInfoKHR<'static>, vk::ConstructionError> =
+		vk::DeviceFaultDebugInfoKHR::vendor_binary_data;
 }
 
 #[test]
@@ -25423,6 +27073,15 @@ fn vk_device_fault_info_ext_construction_contract() {
 		vk::DeviceFaultInfoEXT<'static>,
 		[std::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as usize],
 	) -> vk::DeviceFaultInfoEXT<'static> = vk::DeviceFaultInfoEXT::description;
+	type Signature1 =
+		fn(
+			vk::DeviceFaultInfoEXT<'static>,
+			&mut vk::DeviceFaultCountsEXT<'_>,
+			&'static mut [vk::DeviceFaultAddressInfoKHR],
+			&'static mut [vk::DeviceFaultVendorInfoKHR],
+			&'static mut [u8],
+		) -> std::result::Result<vk::DeviceFaultInfoEXT<'static>, vk::ConstructionError>;
+	let _: Signature1 = vk::DeviceFaultInfoEXT::buffers;
 }
 
 #[test]
@@ -25614,6 +27273,8 @@ fn vk_decompress_memory_info_ext_construction_contract() {
 		vk::DecompressMemoryInfoEXT<'static>,
 		vk::MemoryDecompressionMethodFlagsEXT,
 	) -> vk::DecompressMemoryInfoEXT<'static> = vk::DecompressMemoryInfoEXT::decompression_method;
+	let _: fn(vk::DecompressMemoryInfoEXT<'static>, u32) -> vk::DecompressMemoryInfoEXT<'static> =
+		vk::DecompressMemoryInfoEXT::region_count;
 	let _: fn(
 		vk::DecompressMemoryInfoEXT<'static>,
 		&'static [vk::DecompressMemoryRegionEXT],
@@ -25672,11 +27333,15 @@ fn vk_frame_boundary_ext_construction_contract() {
 	) -> vk::FrameBoundaryEXT<'static> = vk::FrameBoundaryEXT::flags;
 	let _: fn(vk::FrameBoundaryEXT<'static>, u64) -> vk::FrameBoundaryEXT<'static> =
 		vk::FrameBoundaryEXT::frame_id;
+	let _: fn(vk::FrameBoundaryEXT<'static>, u32) -> vk::FrameBoundaryEXT<'static> =
+		vk::FrameBoundaryEXT::image_count;
 	let _: fn(
 		vk::FrameBoundaryEXT<'static>,
 		&'static [vk::Image],
 	) -> std::result::Result<vk::FrameBoundaryEXT<'static>, vk::ConstructionError> =
 		vk::FrameBoundaryEXT::images;
+	let _: fn(vk::FrameBoundaryEXT<'static>, u32) -> vk::FrameBoundaryEXT<'static> =
+		vk::FrameBoundaryEXT::buffer_count;
 	let _: fn(
 		vk::FrameBoundaryEXT<'static>,
 		&'static [vk::Buffer],
@@ -25684,6 +27349,13 @@ fn vk_frame_boundary_ext_construction_contract() {
 		vk::FrameBoundaryEXT::buffers;
 	let _: fn(vk::FrameBoundaryEXT<'static>, u64) -> vk::FrameBoundaryEXT<'static> =
 		vk::FrameBoundaryEXT::tag_name;
+	let _: fn(vk::FrameBoundaryEXT<'static>, usize) -> vk::FrameBoundaryEXT<'static> =
+		vk::FrameBoundaryEXT::tag_size;
+	let _: fn(
+		vk::FrameBoundaryEXT<'static>,
+		&'static [u8],
+	) -> std::result::Result<vk::FrameBoundaryEXT<'static>, vk::ConstructionError> =
+		vk::FrameBoundaryEXT::tag;
 }
 
 #[test]
@@ -25781,6 +27453,18 @@ fn vk_surface_present_mode_compatibility_khr_construction_contract() {
 		vk::StructureType::SURFACE_PRESENT_MODE_COMPATIBILITY_KHR
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::SurfacePresentModeCompatibilityKHR<'static>,
+		u32,
+	) -> vk::SurfacePresentModeCompatibilityKHR<'static> =
+		vk::SurfacePresentModeCompatibilityKHR::present_mode_count;
+	let _: fn(
+		vk::SurfacePresentModeCompatibilityKHR<'static>,
+		&'static mut [vk::PresentModeKHR],
+	) -> std::result::Result<
+		vk::SurfacePresentModeCompatibilityKHR<'static>,
+		vk::ConstructionError,
+	> = vk::SurfacePresentModeCompatibilityKHR::present_modes;
 }
 
 #[test]
@@ -25808,6 +27492,10 @@ fn vk_swapchain_present_fence_info_khr_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::SwapchainPresentFenceInfoKHR<'static>,
+		u32,
+	) -> vk::SwapchainPresentFenceInfoKHR<'static> = vk::SwapchainPresentFenceInfoKHR::swapchain_count;
+	let _: fn(
+		vk::SwapchainPresentFenceInfoKHR<'static>,
 		&'static [vk::Fence],
 	) -> std::result::Result<
 		vk::SwapchainPresentFenceInfoKHR<'static>,
@@ -25825,6 +27513,11 @@ fn vk_swapchain_present_modes_create_info_khr_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::SwapchainPresentModesCreateInfoKHR<'static>,
+		u32,
+	) -> vk::SwapchainPresentModesCreateInfoKHR<'static> =
+		vk::SwapchainPresentModesCreateInfoKHR::present_mode_count;
+	let _: fn(
+		vk::SwapchainPresentModesCreateInfoKHR<'static>,
 		&'static [vk::PresentModeKHR],
 	) -> std::result::Result<
 		vk::SwapchainPresentModesCreateInfoKHR<'static>,
@@ -25840,6 +27533,10 @@ fn vk_swapchain_present_mode_info_khr_construction_contract() {
 		vk::StructureType::SWAPCHAIN_PRESENT_MODE_INFO_KHR
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::SwapchainPresentModeInfoKHR<'static>,
+		u32,
+	) -> vk::SwapchainPresentModeInfoKHR<'static> = vk::SwapchainPresentModeInfoKHR::swapchain_count;
 	let _: fn(
 		vk::SwapchainPresentModeInfoKHR<'static>,
 		&'static [vk::PresentModeKHR],
@@ -25886,6 +27583,11 @@ fn vk_release_swapchain_images_info_khr_construction_contract() {
 		vk::ReleaseSwapchainImagesInfoKHR<'static>,
 		vk::SwapchainKHR,
 	) -> vk::ReleaseSwapchainImagesInfoKHR<'static> = vk::ReleaseSwapchainImagesInfoKHR::swapchain;
+	let _: fn(
+		vk::ReleaseSwapchainImagesInfoKHR<'static>,
+		u32,
+	) -> vk::ReleaseSwapchainImagesInfoKHR<'static> =
+		vk::ReleaseSwapchainImagesInfoKHR::image_index_count;
 	let _: fn(
 		vk::ReleaseSwapchainImagesInfoKHR<'static>,
 		&'static [u32],
@@ -26047,6 +27749,10 @@ fn vk_direct_driver_loading_list_lunarg_construction_contract() {
 	) -> vk::DirectDriverLoadingListLUNARG<'static> = vk::DirectDriverLoadingListLUNARG::mode;
 	let _: fn(
 		vk::DirectDriverLoadingListLUNARG<'static>,
+		u32,
+	) -> vk::DirectDriverLoadingListLUNARG<'static> = vk::DirectDriverLoadingListLUNARG::driver_count;
+	let _: fn(
+		vk::DirectDriverLoadingListLUNARG<'static>,
 		&'static [vk::DirectDriverLoadingInfoLUNARG<'static>],
 	) -> std::result::Result<
 		vk::DirectDriverLoadingListLUNARG<'static>,
@@ -26152,6 +27858,11 @@ fn vk_multiview_per_view_render_areas_render_pass_begin_info_qcom_construction_c
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'static>,
+		u32,
+	) -> vk::MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'static> =
+		vk::MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM::per_view_render_area_count;
+	let _: fn(
+		vk::MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'static>,
 		&'static [vk::Rect2D],
 	) -> std::result::Result<
 		vk::MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'static>,
@@ -26167,6 +27878,11 @@ fn vk_query_low_latency_support_nv_construction_contract() {
 		vk::StructureType::QUERY_LOW_LATENCY_SUPPORT_NV
 	);
 	assert!(value.p_next.is_null());
+	let _: unsafe fn(
+		vk::QueryLowLatencySupportNV<'static>,
+		*mut std::ffi::c_void,
+	) -> vk::QueryLowLatencySupportNV<'static> =
+		vk::QueryLowLatencySupportNV::queried_low_latency_data;
 }
 
 #[test]
@@ -26251,15 +27967,26 @@ fn vk_shader_create_info_ext_construction_contract() {
 		vk::ShaderCreateInfoEXT<'static>,
 		vk::ShaderCodeTypeEXT,
 	) -> vk::ShaderCreateInfoEXT<'static> = vk::ShaderCreateInfoEXT::code_type;
+	let _: fn(vk::ShaderCreateInfoEXT<'static>, usize) -> vk::ShaderCreateInfoEXT<'static> =
+		vk::ShaderCreateInfoEXT::code_size;
+	let _: fn(
+		vk::ShaderCreateInfoEXT<'static>,
+		&'static [u8],
+	) -> std::result::Result<vk::ShaderCreateInfoEXT<'static>, vk::ConstructionError> =
+		vk::ShaderCreateInfoEXT::code;
 	let _: fn(
 		vk::ShaderCreateInfoEXT<'static>,
 		&'static std::ffi::CStr,
 	) -> vk::ShaderCreateInfoEXT<'static> = vk::ShaderCreateInfoEXT::name;
+	let _: fn(vk::ShaderCreateInfoEXT<'static>, u32) -> vk::ShaderCreateInfoEXT<'static> =
+		vk::ShaderCreateInfoEXT::set_layout_count;
 	let _: fn(
 		vk::ShaderCreateInfoEXT<'static>,
 		&'static [vk::DescriptorSetLayout],
 	) -> std::result::Result<vk::ShaderCreateInfoEXT<'static>, vk::ConstructionError> =
 		vk::ShaderCreateInfoEXT::set_layouts;
+	let _: fn(vk::ShaderCreateInfoEXT<'static>, u32) -> vk::ShaderCreateInfoEXT<'static> =
+		vk::ShaderCreateInfoEXT::push_constant_range_count;
 	let _: fn(
 		vk::ShaderCreateInfoEXT<'static>,
 		&'static [vk::PushConstantRange],
@@ -26326,6 +28053,10 @@ fn vk_import_screen_buffer_info_qnx_construction_contract() {
 		vk::StructureType::IMPORT_SCREEN_BUFFER_INFO_QNX
 	);
 	assert!(value.p_next.is_null());
+	let _: unsafe fn(
+		vk::ImportScreenBufferInfoQNX<'static>,
+		*mut vk::_screen_buffer,
+	) -> vk::ImportScreenBufferInfoQNX<'static> = vk::ImportScreenBufferInfoQNX::buffer;
 }
 
 #[cfg(feature = "platform-screen")]
@@ -26678,6 +28409,11 @@ fn vk_execution_graph_pipeline_create_info_amdx_construction_contract() {
 		vk::ExecutionGraphPipelineCreateInfoAMDX::flags;
 	let _: fn(
 		vk::ExecutionGraphPipelineCreateInfoAMDX<'static>,
+		u32,
+	) -> vk::ExecutionGraphPipelineCreateInfoAMDX<'static> =
+		vk::ExecutionGraphPipelineCreateInfoAMDX::stage_count;
+	let _: fn(
+		vk::ExecutionGraphPipelineCreateInfoAMDX<'static>,
 		&'static [vk::PipelineShaderStageCreateInfo<'static>],
 	) -> std::result::Result<
 		vk::ExecutionGraphPipelineCreateInfoAMDX<'static>,
@@ -26833,6 +28569,10 @@ fn vk_bind_memory_status_construction_contract() {
 	let value = vk::BindMemoryStatus::default();
 	assert_eq!(value.s_type, vk::StructureType::BIND_MEMORY_STATUS);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::BindMemoryStatus<'static>,
+		&'static mut vk::Result,
+	) -> vk::BindMemoryStatus<'static> = vk::BindMemoryStatus::result;
 }
 
 #[test]
@@ -26914,11 +28654,15 @@ fn vk_bind_descriptor_sets_info_construction_contract() {
 	) -> vk::BindDescriptorSetsInfo<'static> = vk::BindDescriptorSetsInfo::layout;
 	let _: fn(vk::BindDescriptorSetsInfo<'static>, u32) -> vk::BindDescriptorSetsInfo<'static> =
 		vk::BindDescriptorSetsInfo::first_set;
+	let _: fn(vk::BindDescriptorSetsInfo<'static>, u32) -> vk::BindDescriptorSetsInfo<'static> =
+		vk::BindDescriptorSetsInfo::descriptor_set_count;
 	let _: fn(
 		vk::BindDescriptorSetsInfo<'static>,
 		&'static [vk::DescriptorSet],
 	) -> std::result::Result<vk::BindDescriptorSetsInfo<'static>, vk::ConstructionError> =
 		vk::BindDescriptorSetsInfo::descriptor_sets;
+	let _: fn(vk::BindDescriptorSetsInfo<'static>, u32) -> vk::BindDescriptorSetsInfo<'static> =
+		vk::BindDescriptorSetsInfo::dynamic_offset_count;
 	let _: fn(
 		vk::BindDescriptorSetsInfo<'static>,
 		&'static [u32],
@@ -26939,6 +28683,13 @@ fn vk_push_constants_info_construction_contract() {
 	) -> vk::PushConstantsInfo<'static> = vk::PushConstantsInfo::stage_flags;
 	let _: fn(vk::PushConstantsInfo<'static>, u32) -> vk::PushConstantsInfo<'static> =
 		vk::PushConstantsInfo::offset;
+	let _: fn(vk::PushConstantsInfo<'static>, u32) -> vk::PushConstantsInfo<'static> =
+		vk::PushConstantsInfo::size;
+	let _: fn(
+		vk::PushConstantsInfo<'static>,
+		&'static [u8],
+	) -> std::result::Result<vk::PushConstantsInfo<'static>, vk::ConstructionError> =
+		vk::PushConstantsInfo::values;
 }
 
 #[test]
@@ -26956,6 +28707,8 @@ fn vk_push_descriptor_set_info_construction_contract() {
 	) -> vk::PushDescriptorSetInfo<'static> = vk::PushDescriptorSetInfo::layout;
 	let _: fn(vk::PushDescriptorSetInfo<'static>, u32) -> vk::PushDescriptorSetInfo<'static> =
 		vk::PushDescriptorSetInfo::set;
+	let _: fn(vk::PushDescriptorSetInfo<'static>, u32) -> vk::PushDescriptorSetInfo<'static> =
+		vk::PushDescriptorSetInfo::descriptor_write_count;
 	let _: fn(
 		vk::PushDescriptorSetInfo<'static>,
 		&'static [vk::WriteDescriptorSet<'static>],
@@ -26985,6 +28738,10 @@ fn vk_push_descriptor_set_with_template_info_construction_contract() {
 		vk::PushDescriptorSetWithTemplateInfo<'static>,
 		u32,
 	) -> vk::PushDescriptorSetWithTemplateInfo<'static> = vk::PushDescriptorSetWithTemplateInfo::set;
+	let _: unsafe fn(
+		vk::PushDescriptorSetWithTemplateInfo<'static>,
+		*const std::ffi::c_void,
+	) -> vk::PushDescriptorSetWithTemplateInfo<'static> = vk::PushDescriptorSetWithTemplateInfo::data;
 }
 
 #[test]
@@ -27010,6 +28767,20 @@ fn vk_set_descriptor_buffer_offsets_info_ext_construction_contract() {
 		u32,
 	) -> vk::SetDescriptorBufferOffsetsInfoEXT<'static> =
 		vk::SetDescriptorBufferOffsetsInfoEXT::first_set;
+	let _: fn(
+		vk::SetDescriptorBufferOffsetsInfoEXT<'static>,
+		u32,
+	) -> vk::SetDescriptorBufferOffsetsInfoEXT<'static> =
+		vk::SetDescriptorBufferOffsetsInfoEXT::set_count;
+	type Signature4 = fn(
+		vk::SetDescriptorBufferOffsetsInfoEXT<'static>,
+		&'static [u32],
+		&'static [vk::DeviceSize],
+	) -> std::result::Result<
+		vk::SetDescriptorBufferOffsetsInfoEXT<'static>,
+		vk::ConstructionError,
+	>;
+	let _: Signature4 = vk::SetDescriptorBufferOffsetsInfoEXT::buffer_indices;
 }
 
 #[test]
@@ -27348,6 +29119,13 @@ fn vk_get_latency_marker_info_nv_construction_contract() {
 	let value = vk::GetLatencyMarkerInfoNV::default();
 	assert_eq!(value.s_type, vk::StructureType::GET_LATENCY_MARKER_INFO_NV);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::GetLatencyMarkerInfoNV<'static>, u32) -> vk::GetLatencyMarkerInfoNV<'static> =
+		vk::GetLatencyMarkerInfoNV::timing_count;
+	let _: fn(
+		vk::GetLatencyMarkerInfoNV<'static>,
+		&'static mut [vk::LatencyTimingsFrameReportNV<'static>],
+	) -> std::result::Result<vk::GetLatencyMarkerInfoNV<'static>, vk::ConstructionError> =
+		vk::GetLatencyMarkerInfoNV::timings;
 }
 
 #[test]
@@ -27478,6 +29256,18 @@ fn vk_latency_surface_capabilities_nv_construction_contract() {
 		vk::StructureType::LATENCY_SURFACE_CAPABILITIES_NV
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::LatencySurfaceCapabilitiesNV<'static>,
+		u32,
+	) -> vk::LatencySurfaceCapabilitiesNV<'static> =
+		vk::LatencySurfaceCapabilitiesNV::present_mode_count;
+	let _: fn(
+		vk::LatencySurfaceCapabilitiesNV<'static>,
+		&'static mut [vk::PresentModeKHR],
+	) -> std::result::Result<
+		vk::LatencySurfaceCapabilitiesNV<'static>,
+		vk::ConstructionError,
+	> = vk::LatencySurfaceCapabilitiesNV::present_modes;
 }
 
 #[cfg(feature = "provisional")]
@@ -27660,6 +29450,11 @@ fn vk_render_pass_stripe_begin_info_arm_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::RenderPassStripeBeginInfoARM<'static>,
+		u32,
+	) -> vk::RenderPassStripeBeginInfoARM<'static> =
+		vk::RenderPassStripeBeginInfoARM::stripe_info_count;
+	let _: fn(
+		vk::RenderPassStripeBeginInfoARM<'static>,
 		&'static [vk::RenderPassStripeInfoARM<'static>],
 	) -> std::result::Result<
 		vk::RenderPassStripeBeginInfoARM<'static>,
@@ -27675,6 +29470,11 @@ fn vk_render_pass_stripe_submit_info_arm_construction_contract() {
 		vk::StructureType::RENDER_PASS_STRIPE_SUBMIT_INFO_ARM
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::RenderPassStripeSubmitInfoARM<'static>,
+		u32,
+	) -> vk::RenderPassStripeSubmitInfoARM<'static> =
+		vk::RenderPassStripeSubmitInfoARM::stripe_semaphore_info_count;
 	let _: fn(
 		vk::RenderPassStripeSubmitInfoARM<'static>,
 		&'static [vk::SemaphoreSubmitInfo<'static>],
@@ -27789,6 +29589,11 @@ fn vk_rendering_attachment_location_info_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::RenderingAttachmentLocationInfo<'static>,
+		u32,
+	) -> vk::RenderingAttachmentLocationInfo<'static> =
+		vk::RenderingAttachmentLocationInfo::color_attachment_count;
+	let _: fn(
+		vk::RenderingAttachmentLocationInfo<'static>,
 		&'static [u32],
 	) -> std::result::Result<
 		vk::RenderingAttachmentLocationInfo<'static>,
@@ -27806,11 +29611,26 @@ fn vk_rendering_input_attachment_index_info_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::RenderingInputAttachmentIndexInfo<'static>,
+		u32,
+	) -> vk::RenderingInputAttachmentIndexInfo<'static> =
+		vk::RenderingInputAttachmentIndexInfo::color_attachment_count;
+	let _: fn(
+		vk::RenderingInputAttachmentIndexInfo<'static>,
 		&'static [u32],
 	) -> std::result::Result<
 		vk::RenderingInputAttachmentIndexInfo<'static>,
 		vk::ConstructionError,
 	> = vk::RenderingInputAttachmentIndexInfo::color_attachment_input_indices;
+	let _: fn(
+		vk::RenderingInputAttachmentIndexInfo<'static>,
+		&'static u32,
+	) -> vk::RenderingInputAttachmentIndexInfo<'static> =
+		vk::RenderingInputAttachmentIndexInfo::depth_input_attachment_index;
+	let _: fn(
+		vk::RenderingInputAttachmentIndexInfo<'static>,
+		&'static u32,
+	) -> vk::RenderingInputAttachmentIndexInfo<'static> =
+		vk::RenderingInputAttachmentIndexInfo::stencil_input_attachment_index;
 }
 
 #[test]
@@ -27888,6 +29708,10 @@ fn vk_memory_map_placed_info_ext_construction_contract() {
 	let value = vk::MemoryMapPlacedInfoEXT::default();
 	assert_eq!(value.s_type, vk::StructureType::MEMORY_MAP_PLACED_INFO_EXT);
 	assert!(value.p_next.is_null());
+	let _: unsafe fn(
+		vk::MemoryMapPlacedInfoEXT<'static>,
+		*mut std::ffi::c_void,
+	) -> vk::MemoryMapPlacedInfoEXT<'static> = vk::MemoryMapPlacedInfoEXT::placed_address;
 }
 
 #[test]
@@ -28367,6 +30191,11 @@ fn vk_convert_cooperative_vector_matrix_info_nv_construction_contract() {
 		vk::ConvertCooperativeVectorMatrixInfoNV::src_data;
 	let _: fn(
 		vk::ConvertCooperativeVectorMatrixInfoNV<'static>,
+		&'static mut usize,
+	) -> vk::ConvertCooperativeVectorMatrixInfoNV<'static> =
+		vk::ConvertCooperativeVectorMatrixInfoNV::dst_size;
+	let _: fn(
+		vk::ConvertCooperativeVectorMatrixInfoNV<'static>,
 		vk::DeviceOrHostAddressKHR,
 	) -> vk::ConvertCooperativeVectorMatrixInfoNV<'static> =
 		vk::ConvertCooperativeVectorMatrixInfoNV::dst_data;
@@ -28794,6 +30623,15 @@ fn vk_tensor_description_arm_construction_contract() {
 	) -> vk::TensorDescriptionARM<'static> = vk::TensorDescriptionARM::tiling;
 	let _: fn(vk::TensorDescriptionARM<'static>, vk::Format) -> vk::TensorDescriptionARM<'static> =
 		vk::TensorDescriptionARM::format;
+	let _: fn(vk::TensorDescriptionARM<'static>, u32) -> vk::TensorDescriptionARM<'static> =
+		vk::TensorDescriptionARM::dimension_count;
+	type Signature3 =
+		fn(
+			vk::TensorDescriptionARM<'static>,
+			&'static [i64],
+			Option<&'static [i64]>,
+		) -> std::result::Result<vk::TensorDescriptionARM<'static>, vk::ConstructionError>;
+	let _: Signature3 = vk::TensorDescriptionARM::dimensions;
 	let _: fn(
 		vk::TensorDescriptionARM<'static>,
 		vk::TensorUsageFlagsARM,
@@ -28815,6 +30653,8 @@ fn vk_tensor_create_info_arm_construction_contract() {
 	) -> vk::TensorCreateInfoARM<'static> = vk::TensorCreateInfoARM::description;
 	let _: fn(vk::TensorCreateInfoARM<'static>, vk::SharingMode) -> vk::TensorCreateInfoARM<'static> =
 		vk::TensorCreateInfoARM::sharing_mode;
+	let _: fn(vk::TensorCreateInfoARM<'static>, u32) -> vk::TensorCreateInfoARM<'static> =
+		vk::TensorCreateInfoARM::queue_family_index_count;
 	let _: fn(
 		vk::TensorCreateInfoARM<'static>,
 		&'static [u32],
@@ -28882,6 +30722,10 @@ fn vk_write_descriptor_set_tensor_arm_construction_contract() {
 		vk::StructureType::WRITE_DESCRIPTOR_SET_TENSOR_ARM
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::WriteDescriptorSetTensorARM<'static>,
+		u32,
+	) -> vk::WriteDescriptorSetTensorARM<'static> = vk::WriteDescriptorSetTensorARM::tensor_view_count;
 	let _: fn(
 		vk::WriteDescriptorSetTensorARM<'static>,
 		&'static [vk::TensorViewARM],
@@ -29018,6 +30862,8 @@ fn vk_tensor_dependency_info_arm_construction_contract() {
 	let value = vk::TensorDependencyInfoARM::default();
 	assert_eq!(value.s_type, vk::StructureType::TENSOR_DEPENDENCY_INFO_ARM);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::TensorDependencyInfoARM<'static>, u32) -> vk::TensorDependencyInfoARM<'static> =
+		vk::TensorDependencyInfoARM::tensor_memory_barrier_count;
 	let _: fn(
 		vk::TensorDependencyInfoARM<'static>,
 		&'static [vk::TensorMemoryBarrierARM<'static>],
@@ -29088,6 +30934,8 @@ fn vk_copy_tensor_info_arm_construction_contract() {
 		vk::CopyTensorInfoARM::src_tensor;
 	let _: fn(vk::CopyTensorInfoARM<'static>, vk::TensorARM) -> vk::CopyTensorInfoARM<'static> =
 		vk::CopyTensorInfoARM::dst_tensor;
+	let _: fn(vk::CopyTensorInfoARM<'static>, u32) -> vk::CopyTensorInfoARM<'static> =
+		vk::CopyTensorInfoARM::region_count;
 	let _: fn(
 		vk::CopyTensorInfoARM<'static>,
 		&'static [vk::TensorCopyARM<'static>],
@@ -29100,6 +30948,16 @@ fn vk_tensor_copy_arm_construction_contract() {
 	let value = vk::TensorCopyARM::default();
 	assert_eq!(value.s_type, vk::StructureType::TENSOR_COPY_ARM);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::TensorCopyARM<'static>, u32) -> vk::TensorCopyARM<'static> =
+		vk::TensorCopyARM::dimension_count;
+	type Signature1 = fn(
+		vk::TensorCopyARM<'static>,
+		u32,
+		Option<&'static [u64]>,
+		Option<&'static [u64]>,
+		Option<&'static [u64]>,
+	) -> std::result::Result<vk::TensorCopyARM<'static>, vk::ConstructionError>;
+	let _: Signature1 = vk::TensorCopyARM::src_offset;
 }
 
 #[test]
@@ -29198,6 +31056,8 @@ fn vk_frame_boundary_tensors_arm_construction_contract() {
 	let value = vk::FrameBoundaryTensorsARM::default();
 	assert_eq!(value.s_type, vk::StructureType::FRAME_BOUNDARY_TENSORS_ARM);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::FrameBoundaryTensorsARM<'static>, u32) -> vk::FrameBoundaryTensorsARM<'static> =
+		vk::FrameBoundaryTensorsARM::tensor_count;
 	let _: fn(
 		vk::FrameBoundaryTensorsARM<'static>,
 		&'static [vk::TensorARM],
@@ -29290,6 +31150,10 @@ fn vk_surface_create_info_ohos_construction_contract() {
 		vk::SurfaceCreateInfoOHOS<'static>,
 		vk::SurfaceCreateFlagsOHOS,
 	) -> vk::SurfaceCreateInfoOHOS<'static> = vk::SurfaceCreateInfoOHOS::flags;
+	let _: unsafe fn(
+		vk::SurfaceCreateInfoOHOS<'static>,
+		*mut vk::OHNativeWindow,
+	) -> vk::SurfaceCreateInfoOHOS<'static> = vk::SurfaceCreateInfoOHOS::window;
 }
 
 #[test]
@@ -29365,6 +31229,10 @@ fn vk_data_graph_pipeline_constant_arm_construction_contract() {
 		vk::DataGraphPipelineConstantARM<'static>,
 		u32,
 	) -> vk::DataGraphPipelineConstantARM<'static> = vk::DataGraphPipelineConstantARM::id;
+	let _: unsafe fn(
+		vk::DataGraphPipelineConstantARM<'static>,
+		*const std::ffi::c_void,
+	) -> vk::DataGraphPipelineConstantARM<'static> = vk::DataGraphPipelineConstantARM::constant_data;
 }
 
 #[test]
@@ -29439,6 +31307,11 @@ fn vk_data_graph_pipeline_create_info_arm_construction_contract() {
 	) -> vk::DataGraphPipelineCreateInfoARM<'static> = vk::DataGraphPipelineCreateInfoARM::layout;
 	let _: fn(
 		vk::DataGraphPipelineCreateInfoARM<'static>,
+		u32,
+	) -> vk::DataGraphPipelineCreateInfoARM<'static> =
+		vk::DataGraphPipelineCreateInfoARM::resource_info_count;
+	let _: fn(
+		vk::DataGraphPipelineCreateInfoARM<'static>,
 		&'static [vk::DataGraphPipelineResourceInfoARM<'static>],
 	) -> std::result::Result<
 		vk::DataGraphPipelineCreateInfoARM<'static>,
@@ -29469,6 +31342,11 @@ fn vk_data_graph_pipeline_shader_module_create_info_arm_construction_contract() 
 		&'static vk::SpecializationInfo<'static>,
 	) -> vk::DataGraphPipelineShaderModuleCreateInfoARM<'static> =
 		vk::DataGraphPipelineShaderModuleCreateInfoARM::specialization_info;
+	let _: fn(
+		vk::DataGraphPipelineShaderModuleCreateInfoARM<'static>,
+		u32,
+	) -> vk::DataGraphPipelineShaderModuleCreateInfoARM<'static> =
+		vk::DataGraphPipelineShaderModuleCreateInfoARM::constant_count;
 	let _: fn(
 		vk::DataGraphPipelineShaderModuleCreateInfoARM<'static>,
 		&'static [vk::DataGraphPipelineConstantARM<'static>],
@@ -29630,6 +31508,18 @@ fn vk_data_graph_pipeline_property_query_result_arm_construction_contract() {
 		vk::Bool32,
 	) -> vk::DataGraphPipelinePropertyQueryResultARM<'static> =
 		vk::DataGraphPipelinePropertyQueryResultARM::is_text;
+	let _: fn(
+		vk::DataGraphPipelinePropertyQueryResultARM<'static>,
+		usize,
+	) -> vk::DataGraphPipelinePropertyQueryResultARM<'static> =
+		vk::DataGraphPipelinePropertyQueryResultARM::data_size;
+	let _: fn(
+		vk::DataGraphPipelinePropertyQueryResultARM<'static>,
+		&'static mut [u8],
+	) -> std::result::Result<
+		vk::DataGraphPipelinePropertyQueryResultARM<'static>,
+		vk::ConstructionError,
+	> = vk::DataGraphPipelinePropertyQueryResultARM::data;
 }
 
 #[test]
@@ -29640,6 +31530,11 @@ fn vk_data_graph_pipeline_identifier_create_info_arm_construction_contract() {
 		vk::StructureType::DATA_GRAPH_PIPELINE_IDENTIFIER_CREATE_INFO_ARM
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::DataGraphPipelineIdentifierCreateInfoARM<'static>,
+		u32,
+	) -> vk::DataGraphPipelineIdentifierCreateInfoARM<'static> =
+		vk::DataGraphPipelineIdentifierCreateInfoARM::identifier_size;
 	let _: fn(
 		vk::DataGraphPipelineIdentifierCreateInfoARM<'static>,
 		&'static [u8],
@@ -29764,6 +31659,18 @@ fn vk_data_graph_processing_engine_create_info_arm_construction_contract() {
 		vk::StructureType::DATA_GRAPH_PROCESSING_ENGINE_CREATE_INFO_ARM
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::DataGraphProcessingEngineCreateInfoARM<'static>,
+		u32,
+	) -> vk::DataGraphProcessingEngineCreateInfoARM<'static> =
+		vk::DataGraphProcessingEngineCreateInfoARM::processing_engine_count;
+	let _: fn(
+		vk::DataGraphProcessingEngineCreateInfoARM<'static>,
+		&'static mut [vk::PhysicalDeviceDataGraphProcessingEngineARM],
+	) -> std::result::Result<
+		vk::DataGraphProcessingEngineCreateInfoARM<'static>,
+		vk::ConstructionError,
+	> = vk::DataGraphProcessingEngineCreateInfoARM::processing_engines;
 }
 
 #[test]
@@ -30019,6 +31926,10 @@ fn vk_import_native_buffer_info_ohos_construction_contract() {
 		vk::StructureType::IMPORT_NATIVE_BUFFER_INFO_OHOS
 	);
 	assert!(value.p_next.is_null());
+	let _: unsafe fn(
+		vk::ImportNativeBufferInfoOHOS<'static>,
+		*mut vk::OH_NativeBuffer,
+	) -> vk::ImportNativeBufferInfoOHOS<'static> = vk::ImportNativeBufferInfoOHOS::buffer;
 }
 
 #[cfg(feature = "platform-ohos")]
@@ -30174,6 +32085,11 @@ fn vk_render_pass_performance_counters_by_region_begin_info_arm_construction_con
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::RenderPassPerformanceCountersByRegionBeginInfoARM<'static>,
+		u32,
+	) -> vk::RenderPassPerformanceCountersByRegionBeginInfoARM<'static> =
+		vk::RenderPassPerformanceCountersByRegionBeginInfoARM::counter_address_count;
+	let _: fn(
+		vk::RenderPassPerformanceCountersByRegionBeginInfoARM<'static>,
 		&'static [vk::DeviceAddress],
 	) -> std::result::Result<
 		vk::RenderPassPerformanceCountersByRegionBeginInfoARM<'static>,
@@ -30184,6 +32100,18 @@ fn vk_render_pass_performance_counters_by_region_begin_info_arm_construction_con
 		vk::Bool32,
 	) -> vk::RenderPassPerformanceCountersByRegionBeginInfoARM<'static> =
 		vk::RenderPassPerformanceCountersByRegionBeginInfoARM::serialize_regions;
+	let _: fn(
+		vk::RenderPassPerformanceCountersByRegionBeginInfoARM<'static>,
+		u32,
+	) -> vk::RenderPassPerformanceCountersByRegionBeginInfoARM<'static> =
+		vk::RenderPassPerformanceCountersByRegionBeginInfoARM::counter_index_count;
+	let _: fn(
+		vk::RenderPassPerformanceCountersByRegionBeginInfoARM<'static>,
+		&'static mut [u32],
+	) -> std::result::Result<
+		vk::RenderPassPerformanceCountersByRegionBeginInfoARM<'static>,
+		vk::ConstructionError,
+	> = vk::RenderPassPerformanceCountersByRegionBeginInfoARM::counter_indices;
 }
 
 #[test]
@@ -30282,10 +32210,26 @@ fn vk_physical_device_shader_subgroup_partitioned_features_ext_construction_cont
 }
 
 #[test]
-fn vk_host_address_range_ext_construction_contract() {}
+fn vk_host_address_range_ext_construction_contract() {
+	let _: fn(
+		vk::HostAddressRangeEXT<'static>,
+		&'static mut [u8],
+	) -> std::result::Result<vk::HostAddressRangeEXT<'static>, vk::ConstructionError> =
+		vk::HostAddressRangeEXT::address;
+	let _: fn(vk::HostAddressRangeEXT<'static>, usize) -> vk::HostAddressRangeEXT<'static> =
+		vk::HostAddressRangeEXT::size;
+}
 
 #[test]
-fn vk_host_address_range_const_ext_construction_contract() {}
+fn vk_host_address_range_const_ext_construction_contract() {
+	let _: fn(
+		vk::HostAddressRangeConstEXT<'static>,
+		&'static [u8],
+	) -> std::result::Result<vk::HostAddressRangeConstEXT<'static>, vk::ConstructionError> =
+		vk::HostAddressRangeConstEXT::address;
+	let _: fn(vk::HostAddressRangeConstEXT<'static>, usize) -> vk::HostAddressRangeConstEXT<'static> =
+		vk::HostAddressRangeConstEXT::size;
+}
 
 #[test]
 fn vk_texel_buffer_descriptor_info_ext_construction_contract() {
@@ -30318,6 +32262,26 @@ fn vk_image_descriptor_info_ext_construction_contract() {
 		vk::ImageDescriptorInfoEXT<'static>,
 		vk::ImageLayout,
 	) -> vk::ImageDescriptorInfoEXT<'static> = vk::ImageDescriptorInfoEXT::layout;
+}
+
+#[test]
+fn vk_resource_descriptor_data_ext_construction_contract() {
+	let _: fn(
+		vk::ResourceDescriptorDataEXT<'static>,
+		&'static vk::ImageDescriptorInfoEXT<'static>,
+	) -> vk::ResourceDescriptorDataEXT<'static> = vk::ResourceDescriptorDataEXT::image;
+	let _: fn(
+		vk::ResourceDescriptorDataEXT<'static>,
+		&'static vk::TexelBufferDescriptorInfoEXT<'static>,
+	) -> vk::ResourceDescriptorDataEXT<'static> = vk::ResourceDescriptorDataEXT::texel_buffer;
+	let _: fn(
+		vk::ResourceDescriptorDataEXT<'static>,
+		&'static vk::DeviceAddressRangeEXT,
+	) -> vk::ResourceDescriptorDataEXT<'static> = vk::ResourceDescriptorDataEXT::address_range;
+	let _: fn(
+		vk::ResourceDescriptorDataEXT<'static>,
+		&'static vk::TensorViewCreateInfoARM<'static>,
+	) -> vk::ResourceDescriptorDataEXT<'static> = vk::ResourceDescriptorDataEXT::tensor_arm;
 }
 
 #[test]
@@ -30362,7 +32326,7 @@ fn vk_push_data_info_ext_construction_contract() {
 		vk::PushDataInfoEXT::offset;
 	let _: fn(
 		vk::PushDataInfoEXT<'static>,
-		vk::HostAddressRangeConstEXT,
+		vk::HostAddressRangeConstEXT<'static>,
 	) -> vk::PushDataInfoEXT<'static> = vk::PushDataInfoEXT::data;
 }
 
@@ -30644,6 +32608,63 @@ fn vk_descriptor_mapping_source_indirect_address_ext_construction_contract() {
 }
 
 #[test]
+fn vk_descriptor_mapping_source_data_ext_construction_contract() {
+	let _: fn(
+		vk::DescriptorMappingSourceDataEXT<'static>,
+		vk::DescriptorMappingSourceConstantOffsetEXT<'static>,
+	) -> vk::DescriptorMappingSourceDataEXT<'static> =
+		vk::DescriptorMappingSourceDataEXT::constant_offset;
+	let _: fn(
+		vk::DescriptorMappingSourceDataEXT<'static>,
+		vk::DescriptorMappingSourcePushIndexEXT<'static>,
+	) -> vk::DescriptorMappingSourceDataEXT<'static> = vk::DescriptorMappingSourceDataEXT::push_index;
+	let _: fn(
+		vk::DescriptorMappingSourceDataEXT<'static>,
+		vk::DescriptorMappingSourceIndirectIndexEXT<'static>,
+	) -> vk::DescriptorMappingSourceDataEXT<'static> =
+		vk::DescriptorMappingSourceDataEXT::indirect_index;
+	let _: fn(
+		vk::DescriptorMappingSourceDataEXT<'static>,
+		vk::DescriptorMappingSourceIndirectIndexArrayEXT<'static>,
+	) -> vk::DescriptorMappingSourceDataEXT<'static> =
+		vk::DescriptorMappingSourceDataEXT::indirect_index_array;
+	let _: fn(
+		vk::DescriptorMappingSourceDataEXT<'static>,
+		vk::DescriptorMappingSourceHeapDataEXT,
+	) -> vk::DescriptorMappingSourceDataEXT<'static> = vk::DescriptorMappingSourceDataEXT::heap_data;
+	let _: fn(
+		vk::DescriptorMappingSourceDataEXT<'static>,
+		u32,
+	) -> vk::DescriptorMappingSourceDataEXT<'static> =
+		vk::DescriptorMappingSourceDataEXT::push_data_offset;
+	let _: fn(
+		vk::DescriptorMappingSourceDataEXT<'static>,
+		u32,
+	) -> vk::DescriptorMappingSourceDataEXT<'static> =
+		vk::DescriptorMappingSourceDataEXT::push_address_offset;
+	let _: fn(
+		vk::DescriptorMappingSourceDataEXT<'static>,
+		vk::DescriptorMappingSourceIndirectAddressEXT,
+	) -> vk::DescriptorMappingSourceDataEXT<'static> =
+		vk::DescriptorMappingSourceDataEXT::indirect_address;
+	let _: fn(
+		vk::DescriptorMappingSourceDataEXT<'static>,
+		vk::DescriptorMappingSourceShaderRecordIndexEXT<'static>,
+	) -> vk::DescriptorMappingSourceDataEXT<'static> =
+		vk::DescriptorMappingSourceDataEXT::shader_record_index;
+	let _: fn(
+		vk::DescriptorMappingSourceDataEXT<'static>,
+		u32,
+	) -> vk::DescriptorMappingSourceDataEXT<'static> =
+		vk::DescriptorMappingSourceDataEXT::shader_record_data_offset;
+	let _: fn(
+		vk::DescriptorMappingSourceDataEXT<'static>,
+		u32,
+	) -> vk::DescriptorMappingSourceDataEXT<'static> =
+		vk::DescriptorMappingSourceDataEXT::shader_record_address_offset;
+}
+
+#[test]
 fn vk_descriptor_set_and_binding_mapping_ext_construction_contract() {
 	let value = vk::DescriptorSetAndBindingMappingEXT::default();
 	assert_eq!(
@@ -30693,6 +32714,11 @@ fn vk_shader_descriptor_set_and_binding_mapping_info_ext_construction_contract()
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::ShaderDescriptorSetAndBindingMappingInfoEXT<'static>,
+		u32,
+	) -> vk::ShaderDescriptorSetAndBindingMappingInfoEXT<'static> =
+		vk::ShaderDescriptorSetAndBindingMappingInfoEXT::mapping_count;
+	let _: fn(
+		vk::ShaderDescriptorSetAndBindingMappingInfoEXT<'static>,
 		&'static [vk::DescriptorSetAndBindingMappingEXT<'static>],
 	) -> std::result::Result<
 		vk::ShaderDescriptorSetAndBindingMappingInfoEXT<'static>,
@@ -30725,7 +32751,7 @@ fn vk_opaque_capture_data_create_info_ext_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::OpaqueCaptureDataCreateInfoEXT<'static>,
-		&'static vk::HostAddressRangeConstEXT,
+		&'static vk::HostAddressRangeConstEXT<'static>,
 	) -> vk::OpaqueCaptureDataCreateInfoEXT<'static> = vk::OpaqueCaptureDataCreateInfoEXT::data;
 }
 
@@ -31089,6 +33115,8 @@ fn vk_copy_device_memory_info_khr_construction_contract() {
 	let value = vk::CopyDeviceMemoryInfoKHR::default();
 	assert_eq!(value.s_type, vk::StructureType::COPY_DEVICE_MEMORY_INFO_KHR);
 	assert!(value.p_next.is_null());
+	let _: fn(vk::CopyDeviceMemoryInfoKHR<'static>, u32) -> vk::CopyDeviceMemoryInfoKHR<'static> =
+		vk::CopyDeviceMemoryInfoKHR::region_count;
 	let _: fn(
 		vk::CopyDeviceMemoryInfoKHR<'static>,
 		&'static [vk::DeviceMemoryCopyKHR<'static>],
@@ -31148,6 +33176,10 @@ fn vk_copy_device_memory_image_info_khr_construction_contract() {
 	) -> vk::CopyDeviceMemoryImageInfoKHR<'static> = vk::CopyDeviceMemoryImageInfoKHR::image;
 	let _: fn(
 		vk::CopyDeviceMemoryImageInfoKHR<'static>,
+		u32,
+	) -> vk::CopyDeviceMemoryImageInfoKHR<'static> = vk::CopyDeviceMemoryImageInfoKHR::region_count;
+	let _: fn(
+		vk::CopyDeviceMemoryImageInfoKHR<'static>,
 		&'static [vk::DeviceMemoryImageCopyKHR<'static>],
 	) -> std::result::Result<
 		vk::CopyDeviceMemoryImageInfoKHR<'static>,
@@ -31163,6 +33195,11 @@ fn vk_memory_range_barriers_info_khr_construction_contract() {
 		vk::StructureType::MEMORY_RANGE_BARRIERS_INFO_KHR
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::MemoryRangeBarriersInfoKHR<'static>,
+		u32,
+	) -> vk::MemoryRangeBarriersInfoKHR<'static> =
+		vk::MemoryRangeBarriersInfoKHR::memory_range_barrier_count;
 	let _: fn(
 		vk::MemoryRangeBarriersInfoKHR<'static>,
 		&'static [vk::MemoryRangeBarrierKHR<'static>],
@@ -31476,6 +33513,18 @@ fn vk_device_fault_shader_abort_message_info_khr_construction_contract() {
 		vk::StructureType::DEVICE_FAULT_SHADER_ABORT_MESSAGE_INFO_KHR
 	);
 	assert!(value.p_next.is_null());
+	let _: fn(
+		vk::DeviceFaultShaderAbortMessageInfoKHR<'static>,
+		u64,
+	) -> vk::DeviceFaultShaderAbortMessageInfoKHR<'static> =
+		vk::DeviceFaultShaderAbortMessageInfoKHR::message_data_size;
+	let _: fn(
+		vk::DeviceFaultShaderAbortMessageInfoKHR<'static>,
+		&'static mut [u8],
+	) -> std::result::Result<
+		vk::DeviceFaultShaderAbortMessageInfoKHR<'static>,
+		vk::ConstructionError,
+	> = vk::DeviceFaultShaderAbortMessageInfoKHR::message_data;
 }
 
 #[test]
@@ -31500,11 +33549,21 @@ fn vk_queue_family_data_graph_tosa_properties_arm_construction_contract() {
 	assert!(value.p_next.is_null());
 	let _: fn(
 		vk::QueueFamilyDataGraphTOSAPropertiesARM<'static>,
+		u32,
+	) -> vk::QueueFamilyDataGraphTOSAPropertiesARM<'static> =
+		vk::QueueFamilyDataGraphTOSAPropertiesARM::profile_count;
+	let _: fn(
+		vk::QueueFamilyDataGraphTOSAPropertiesARM<'static>,
 		&'static [vk::DataGraphTOSANameQualityARM],
 	) -> std::result::Result<
 		vk::QueueFamilyDataGraphTOSAPropertiesARM<'static>,
 		vk::ConstructionError,
 	> = vk::QueueFamilyDataGraphTOSAPropertiesARM::profiles;
+	let _: fn(
+		vk::QueueFamilyDataGraphTOSAPropertiesARM<'static>,
+		u32,
+	) -> vk::QueueFamilyDataGraphTOSAPropertiesARM<'static> =
+		vk::QueueFamilyDataGraphTOSAPropertiesARM::extension_count;
 	let _: fn(
 		vk::QueueFamilyDataGraphTOSAPropertiesARM<'static>,
 		&'static [vk::DataGraphTOSANameQualityARM],
@@ -31652,6 +33711,11 @@ fn vk_data_graph_pipeline_single_node_create_info_arm_construction_contract() {
 		vk::DataGraphPipelineNodeTypeARM,
 	) -> vk::DataGraphPipelineSingleNodeCreateInfoARM<'static> =
 		vk::DataGraphPipelineSingleNodeCreateInfoARM::node_type;
+	let _: fn(
+		vk::DataGraphPipelineSingleNodeCreateInfoARM<'static>,
+		u32,
+	) -> vk::DataGraphPipelineSingleNodeCreateInfoARM<'static> =
+		vk::DataGraphPipelineSingleNodeCreateInfoARM::connection_count;
 	let _: fn(
 		vk::DataGraphPipelineSingleNodeCreateInfoARM<'static>,
 		&'static [vk::DataGraphPipelineSingleNodeConnectionARM<'static>],
@@ -32172,34 +34236,71 @@ fn std_video_encode_h264_ref_pic_marking_entry_construction_contract() {
 #[test]
 fn std_video_encode_h264_reference_lists_info_construction_contract() {
 	let _: fn(
-		vk::StdVideoEncodeH264ReferenceListsInfo,
+		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
 		vk::StdVideoEncodeH264ReferenceListsInfoFlags,
-	) -> vk::StdVideoEncodeH264ReferenceListsInfo = vk::StdVideoEncodeH264ReferenceListsInfo::flags;
+	) -> vk::StdVideoEncodeH264ReferenceListsInfo<'static> =
+		vk::StdVideoEncodeH264ReferenceListsInfo::flags;
 	let _: fn(
-		vk::StdVideoEncodeH264ReferenceListsInfo,
+		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
 		u8,
-	) -> vk::StdVideoEncodeH264ReferenceListsInfo =
+	) -> vk::StdVideoEncodeH264ReferenceListsInfo<'static> =
 		vk::StdVideoEncodeH264ReferenceListsInfo::num_ref_idx_l0_active_minus1;
 	let _: fn(
-		vk::StdVideoEncodeH264ReferenceListsInfo,
+		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
 		u8,
-	) -> vk::StdVideoEncodeH264ReferenceListsInfo =
+	) -> vk::StdVideoEncodeH264ReferenceListsInfo<'static> =
 		vk::StdVideoEncodeH264ReferenceListsInfo::num_ref_idx_l1_active_minus1;
 	let _: fn(
-		vk::StdVideoEncodeH264ReferenceListsInfo,
+		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
 		[u8; vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as usize],
-	) -> vk::StdVideoEncodeH264ReferenceListsInfo =
+	) -> vk::StdVideoEncodeH264ReferenceListsInfo<'static> =
 		vk::StdVideoEncodeH264ReferenceListsInfo::ref_pic_list0;
 	let _: fn(
-		vk::StdVideoEncodeH264ReferenceListsInfo,
+		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
 		[u8; vk::STD_VIDEO_H264_MAX_NUM_LIST_REF as usize],
-	) -> vk::StdVideoEncodeH264ReferenceListsInfo =
+	) -> vk::StdVideoEncodeH264ReferenceListsInfo<'static> =
 		vk::StdVideoEncodeH264ReferenceListsInfo::ref_pic_list1;
 	let _: fn(
-		vk::StdVideoEncodeH264ReferenceListsInfo,
+		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
+		u8,
+	) -> vk::StdVideoEncodeH264ReferenceListsInfo<'static> =
+		vk::StdVideoEncodeH264ReferenceListsInfo::ref_list0_mod_op_count;
+	let _: fn(
+		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
+		u8,
+	) -> vk::StdVideoEncodeH264ReferenceListsInfo<'static> =
+		vk::StdVideoEncodeH264ReferenceListsInfo::ref_list1_mod_op_count;
+	let _: fn(
+		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
+		u8,
+	) -> vk::StdVideoEncodeH264ReferenceListsInfo<'static> =
+		vk::StdVideoEncodeH264ReferenceListsInfo::ref_pic_marking_op_count;
+	let _: fn(
+		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
 		[u8; 7],
-	) -> vk::StdVideoEncodeH264ReferenceListsInfo =
+	) -> vk::StdVideoEncodeH264ReferenceListsInfo<'static> =
 		vk::StdVideoEncodeH264ReferenceListsInfo::reserved1;
+	let _: fn(
+		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
+		&'static [vk::StdVideoEncodeH264RefListModEntry],
+	) -> std::result::Result<
+		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
+		vk::ConstructionError,
+	> = vk::StdVideoEncodeH264ReferenceListsInfo::ref_list0_mod_operations;
+	let _: fn(
+		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
+		&'static [vk::StdVideoEncodeH264RefListModEntry],
+	) -> std::result::Result<
+		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
+		vk::ConstructionError,
+	> = vk::StdVideoEncodeH264ReferenceListsInfo::ref_list1_mod_operations;
+	let _: fn(
+		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
+		&'static [vk::StdVideoEncodeH264RefPicMarkingEntry],
+	) -> std::result::Result<
+		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
+		vk::ConstructionError,
+	> = vk::StdVideoEncodeH264ReferenceListsInfo::ref_pic_marking_operations;
 }
 
 #[test]
@@ -32269,38 +34370,54 @@ fn std_video_h265_hrd_flags_construction_contract() {}
 #[test]
 fn std_video_h265_hrd_parameters_construction_contract() {
 	let _: fn(
-		vk::StdVideoH265HrdParameters,
+		vk::StdVideoH265HrdParameters<'static>,
 		vk::StdVideoH265HrdFlags,
-	) -> vk::StdVideoH265HrdParameters = vk::StdVideoH265HrdParameters::flags;
-	let _: fn(vk::StdVideoH265HrdParameters, u8) -> vk::StdVideoH265HrdParameters =
+	) -> vk::StdVideoH265HrdParameters<'static> = vk::StdVideoH265HrdParameters::flags;
+	let _: fn(vk::StdVideoH265HrdParameters<'static>, u8) -> vk::StdVideoH265HrdParameters<'static> =
 		vk::StdVideoH265HrdParameters::tick_divisor_minus2;
-	let _: fn(vk::StdVideoH265HrdParameters, u8) -> vk::StdVideoH265HrdParameters =
+	let _: fn(vk::StdVideoH265HrdParameters<'static>, u8) -> vk::StdVideoH265HrdParameters<'static> =
 		vk::StdVideoH265HrdParameters::du_cpb_removal_delay_increment_length_minus1;
-	let _: fn(vk::StdVideoH265HrdParameters, u8) -> vk::StdVideoH265HrdParameters =
+	let _: fn(vk::StdVideoH265HrdParameters<'static>, u8) -> vk::StdVideoH265HrdParameters<'static> =
 		vk::StdVideoH265HrdParameters::dpb_output_delay_du_length_minus1;
-	let _: fn(vk::StdVideoH265HrdParameters, u8) -> vk::StdVideoH265HrdParameters =
+	let _: fn(vk::StdVideoH265HrdParameters<'static>, u8) -> vk::StdVideoH265HrdParameters<'static> =
 		vk::StdVideoH265HrdParameters::bit_rate_scale;
-	let _: fn(vk::StdVideoH265HrdParameters, u8) -> vk::StdVideoH265HrdParameters =
+	let _: fn(vk::StdVideoH265HrdParameters<'static>, u8) -> vk::StdVideoH265HrdParameters<'static> =
 		vk::StdVideoH265HrdParameters::cpb_size_scale;
-	let _: fn(vk::StdVideoH265HrdParameters, u8) -> vk::StdVideoH265HrdParameters =
+	let _: fn(vk::StdVideoH265HrdParameters<'static>, u8) -> vk::StdVideoH265HrdParameters<'static> =
 		vk::StdVideoH265HrdParameters::cpb_size_du_scale;
-	let _: fn(vk::StdVideoH265HrdParameters, u8) -> vk::StdVideoH265HrdParameters =
+	let _: fn(vk::StdVideoH265HrdParameters<'static>, u8) -> vk::StdVideoH265HrdParameters<'static> =
 		vk::StdVideoH265HrdParameters::initial_cpb_removal_delay_length_minus1;
-	let _: fn(vk::StdVideoH265HrdParameters, u8) -> vk::StdVideoH265HrdParameters =
+	let _: fn(vk::StdVideoH265HrdParameters<'static>, u8) -> vk::StdVideoH265HrdParameters<'static> =
 		vk::StdVideoH265HrdParameters::au_cpb_removal_delay_length_minus1;
-	let _: fn(vk::StdVideoH265HrdParameters, u8) -> vk::StdVideoH265HrdParameters =
+	let _: fn(vk::StdVideoH265HrdParameters<'static>, u8) -> vk::StdVideoH265HrdParameters<'static> =
 		vk::StdVideoH265HrdParameters::dpb_output_delay_length_minus1;
 	let _: fn(
-		vk::StdVideoH265HrdParameters,
+		vk::StdVideoH265HrdParameters<'static>,
 		[u8; vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE as usize],
-	) -> vk::StdVideoH265HrdParameters = vk::StdVideoH265HrdParameters::cpb_cnt_minus1;
+	) -> vk::StdVideoH265HrdParameters<'static> = vk::StdVideoH265HrdParameters::cpb_cnt_minus1;
 	let _: fn(
-		vk::StdVideoH265HrdParameters,
+		vk::StdVideoH265HrdParameters<'static>,
 		[u16; vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE as usize],
-	) -> vk::StdVideoH265HrdParameters =
+	) -> vk::StdVideoH265HrdParameters<'static> =
 		vk::StdVideoH265HrdParameters::elemental_duration_in_tc_minus1;
-	let _: fn(vk::StdVideoH265HrdParameters, [u16; 3]) -> vk::StdVideoH265HrdParameters =
-		vk::StdVideoH265HrdParameters::reserved;
+	let _: fn(
+		vk::StdVideoH265HrdParameters<'static>,
+		[u16; 3],
+	) -> vk::StdVideoH265HrdParameters<'static> = vk::StdVideoH265HrdParameters::reserved;
+	type Signature13 =
+		fn(
+			vk::StdVideoH265HrdParameters<'static>,
+			u8,
+			&'static [vk::StdVideoH265SubLayerHrdParameters],
+		) -> std::result::Result<vk::StdVideoH265HrdParameters<'static>, vk::ConstructionError>;
+	let _: Signature13 = vk::StdVideoH265HrdParameters::sub_layer_hrd_parameters_nal;
+	type Signature14 =
+		fn(
+			vk::StdVideoH265HrdParameters<'static>,
+			u8,
+			&'static [vk::StdVideoH265SubLayerHrdParameters],
+		) -> std::result::Result<vk::StdVideoH265HrdParameters<'static>, vk::ConstructionError>;
+	let _: Signature14 = vk::StdVideoH265HrdParameters::sub_layer_hrd_parameters_vcl;
 }
 
 #[test]
@@ -32522,7 +34639,7 @@ fn std_video_h265_sequence_parameter_set_vui_construction_contract() {
 		vk::StdVideoH265SequenceParameterSetVui::log2_max_mv_length_vertical;
 	let _: fn(
 		vk::StdVideoH265SequenceParameterSetVui<'static>,
-		&'static vk::StdVideoH265HrdParameters,
+		&'static vk::StdVideoH265HrdParameters<'static>,
 	) -> vk::StdVideoH265SequenceParameterSetVui<'static> =
 		vk::StdVideoH265SequenceParameterSetVui::hrd_parameters;
 }
@@ -32895,14 +35012,34 @@ fn std_video_av1_tile_info_flags_construction_contract() {}
 
 #[test]
 fn std_video_av1_tile_info_construction_contract() {
-	let _: fn(vk::StdVideoAV1TileInfo, vk::StdVideoAV1TileInfoFlags) -> vk::StdVideoAV1TileInfo =
-		vk::StdVideoAV1TileInfo::flags;
-	let _: fn(vk::StdVideoAV1TileInfo, u16) -> vk::StdVideoAV1TileInfo =
+	let _: fn(
+		vk::StdVideoAV1TileInfo<'static>,
+		vk::StdVideoAV1TileInfoFlags,
+	) -> vk::StdVideoAV1TileInfo<'static> = vk::StdVideoAV1TileInfo::flags;
+	let _: fn(vk::StdVideoAV1TileInfo<'static>, u8) -> vk::StdVideoAV1TileInfo<'static> =
+		vk::StdVideoAV1TileInfo::tile_cols;
+	let _: fn(vk::StdVideoAV1TileInfo<'static>, u8) -> vk::StdVideoAV1TileInfo<'static> =
+		vk::StdVideoAV1TileInfo::tile_rows;
+	let _: fn(vk::StdVideoAV1TileInfo<'static>, u16) -> vk::StdVideoAV1TileInfo<'static> =
 		vk::StdVideoAV1TileInfo::context_update_tile_id;
-	let _: fn(vk::StdVideoAV1TileInfo, u8) -> vk::StdVideoAV1TileInfo =
+	let _: fn(vk::StdVideoAV1TileInfo<'static>, u8) -> vk::StdVideoAV1TileInfo<'static> =
 		vk::StdVideoAV1TileInfo::tile_size_bytes_minus_1;
-	let _: fn(vk::StdVideoAV1TileInfo, [u8; 7]) -> vk::StdVideoAV1TileInfo =
+	let _: fn(vk::StdVideoAV1TileInfo<'static>, [u8; 7]) -> vk::StdVideoAV1TileInfo<'static> =
 		vk::StdVideoAV1TileInfo::reserved1;
+	type Signature6 =
+		fn(
+			vk::StdVideoAV1TileInfo<'static>,
+			&'static [u16],
+			&'static [u16],
+		) -> std::result::Result<vk::StdVideoAV1TileInfo<'static>, vk::ConstructionError>;
+	let _: Signature6 = vk::StdVideoAV1TileInfo::mi_col_starts;
+	type Signature7 =
+		fn(
+			vk::StdVideoAV1TileInfo<'static>,
+			&'static [u16],
+			&'static [u16],
+		) -> std::result::Result<vk::StdVideoAV1TileInfo<'static>, vk::ConstructionError>;
+	let _: Signature7 = vk::StdVideoAV1TileInfo::mi_row_starts;
 }
 
 #[test]

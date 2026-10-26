@@ -393,6 +393,7 @@ fn generated_output_is_checked_without_writes() {
 		"src/rs/command.gen.rs",
 		"src/rs/construction.gen.rs",
 		"test/rs/test_construction.gen.rs",
+		"tool/gen/construction.gen.tsv",
 		"src/rs/load/feature.gen.rs",
 		"test/rs/test_command.gen.rs",
 	] {
@@ -550,6 +551,11 @@ fn generated_families_follow_pinned_xml_declaration_order() {
 		&root,
 		&source_text(&out, "src/rs/type.gen.rs"),
 		&source_text(&out, "src/rs/construction.gen.rs"),
+	);
+	assert_construction_inventory(
+		&root,
+		&source_text(&out, "src/rs/type.gen.rs"),
+		&source_text(&out, "tool/gen/construction.gen.tsv"),
 	);
 	let vk = registry_order(&root.join("registry/vk.xml"));
 	let video = registry_order(&root.join("registry/video.xml"));
@@ -744,5 +750,131 @@ fn assert_chain_relationships(root: &Path, records: &str, chains: &str) {
 	assert_eq!(
 		actual, expected,
 		"chain relationships must match pinned XML and its declaration order"
+	);
+}
+
+/// Read native fields independently from the generator IR. The emitted Rust
+/// declarations select admitted records; every member and length expression of
+/// those records must occur once, in XML order, in the construction audit.
+fn assert_construction_inventory(root: &Path, types: &str, inventory: &str) {
+	assert!(inventory.lines().all(|line| line.trim_end() == line));
+	use quick_xml::{Reader, events::Event};
+	use std::collections::BTreeSet;
+	let admitted: BTreeSet<_> = types
+		.lines()
+		.filter_map(|line| {
+			line
+				.strip_prefix("pub struct ")
+				.or_else(|| line.strip_prefix("pub union "))
+		})
+		.map(|line| line.split(['<', ' ', '{']).next().unwrap().to_owned())
+		.collect();
+	let mut expected = Vec::new();
+	let mut seen = BTreeSet::new();
+	for file in ["vk.xml", "video.xml"] {
+		let xml = std::fs::read_to_string(root.join("registry").join(file)).unwrap();
+		let mut reader = Reader::from_str(&xml);
+		let mut record = None;
+		let mut member = None;
+		let mut depth = 0;
+		let mut record_depth = 0;
+		loop {
+			match reader.read_event().unwrap() {
+				Event::Start(node) => {
+					depth += 1;
+					let attributes: std::collections::BTreeMap<_, _> = node
+						.attributes()
+						.map(|a| {
+							let a = a.unwrap();
+							(
+								a.key.as_ref().to_vec(),
+								a.decode_and_unescape_value(reader.decoder())
+									.unwrap()
+									.into_owned(),
+							)
+						})
+						.collect();
+					let attr = |key: &[u8]| attributes.get(key).map(String::as_str);
+					let vulkan = attr(b"api").is_none_or(|api| api.split(',').any(|api| api == "vulkan"));
+					match node.name().as_ref() {
+						b"type" if matches!(attr(b"category"), Some("struct" | "union")) && vulkan => {
+							let name = attr(b"name").unwrap();
+							if admitted.contains(&rust_type_name(name)) && seen.insert(name.to_owned()) {
+								record = Some(name.to_owned());
+								record_depth = depth;
+							}
+						}
+						b"member" if record.is_some() && depth == record_depth + 1 && vulkan => {
+							member = Some((
+								attr(b"len").unwrap_or("-").to_owned(),
+								attr(b"altlen").unwrap_or("-").to_owned(),
+							));
+						}
+						b"name" if member.is_some() && depth == record_depth + 2 => {
+							let field = reader
+								.read_text(quick_xml::name::QName(b"name"))
+								.unwrap()
+								.into_owned();
+							let (len, altlen) = member.as_ref().unwrap();
+							expected.push((
+								record.as_ref().unwrap().clone(),
+								field,
+								len.clone(),
+								altlen.clone(),
+							));
+							depth -= 1;
+						}
+						_ => {}
+					}
+				}
+				Event::End(node) => {
+					if node.name().as_ref() == b"member" {
+						member = None;
+					}
+					if depth == record_depth {
+						record = None;
+					}
+					depth -= 1;
+				}
+				Event::Eof => break,
+				_ => {}
+			}
+		}
+	}
+	// Paired video definitions replace vk.xml header placeholders in place.
+	// Retain those positions while taking their members from video.xml.
+	let mut by_record = std::collections::BTreeMap::<String, Vec<_>>::new();
+	for row in expected {
+		by_record.entry(row.0.clone()).or_default().push(row);
+	}
+	let expected: Vec<_> = registry_order(&root.join("registry/vk.xml"))
+		.types
+		.into_iter()
+		.chain(registry_order(&root.join("registry/video.xml")).types)
+		.flat_map(|record| by_record.remove(&record).unwrap_or_default())
+		.collect();
+	assert!(by_record.is_empty());
+	let actual: Vec<_> = inventory
+		.lines()
+		.filter(|line| !line.starts_with('#'))
+		.map(|line| {
+			let fields: Vec<_> = line.split('\t').collect();
+			assert_eq!(fields.len(), 5);
+			assert!(!fields[2].is_empty(), "unclassified field: {line}");
+			assert!(
+				!fields[2].starts_with("unsafe-") || fields[3] == "-",
+				"unreviewed sized raw field: {line}"
+			);
+			(
+				fields[0].to_owned(),
+				fields[1].to_owned(),
+				fields[3].to_owned(),
+				fields[4].to_owned(),
+			)
+		})
+		.collect();
+	assert_eq!(
+		actual, expected,
+		"every admitted record field and extent must be audited in pinned XML order"
 	);
 }

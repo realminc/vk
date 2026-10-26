@@ -111,6 +111,8 @@ pub struct StructMember {
 	pub values: Option<String>, // e.g. sType default constant
 	pub len: Option<String>,
 	pub optional: bool,
+	/// Machine-readable alternative to a registry math length expression.
+	pub alt_len: Option<String>,
 	pub selector: Option<String>, // union discriminant
 	pub selection: Option<String>,
 	pub no_auto_validity: bool,

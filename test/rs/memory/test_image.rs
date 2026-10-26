@@ -315,6 +315,7 @@ fn unknown_chains_sparse_and_disjoint_images_are_rejected_before_native_effects(
 	let node = vk::BaseInStructure {
 		s_type: vk::StructureType::MEMORY_ALLOCATE_INFO,
 		p_next: std::ptr::null(),
+		..Default::default()
 	};
 	let mut info = info(vk::ImageTiling::OPTIMAL);
 	info.p_next = std::ptr::from_ref(&node).cast();

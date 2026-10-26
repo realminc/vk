@@ -25,7 +25,7 @@ and runtime qualification are separate; see the
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.5" }
+vk = { package = "vkrust", version = "0.6" }
 ```
 
 No Vulkan SDK, C compiler, C++ library or consumer-side generator is needed.
@@ -33,16 +33,16 @@ The default `loader` feature loads the system Vulkan library at runtime.
 
 ## Library and Vulkan versions
 
-The package version is **`0.5.0+1.4.365`**:
+The package version is **`0.6.0+1.4.365`**:
 
 | Version | Meaning |
 | --- | --- |
-| `0.5.0` | This Rust library's API release; Git tag `v0.5.0` |
+| `0.6.0` | This Rust library's API release; Git tag `v0.6.0` |
 | `+1.4.365` | Generated from Vulkan 1.4 headers, revision 365 |
 | `ApplicationInfo::api_version` | The Vulkan API version your application requests at runtime |
 
 Cargo treats the suffix as build metadata, so the dependency requirement stays
-`version = "0.5"`. The suffix identifies the pinned API snapshot; it is not a
+`version = "0.6"`. The suffix identifies the pinned API snapshot; it is not a
 Vulkan 1.4 driver requirement or runtime qualification claim. Applications can
 request Vulkan 1.0, 1.1 or 1.2 and use the commands/features admitted by their
 actual implementation. The examples below request Vulkan 1.0.
@@ -188,10 +188,15 @@ unsafe fn timeline_semaphore_supported(
 
 These methods prepare the same native records. They do not create GPU objects,
 validate all Vulkan usage, enable features or prove GPU completion. Public raw
-pointers remain an unsafe-call obligation; borrowing an array of string pointers
-keeps the array alive, not the pointed-to strings. Ambiguous pointer/length
-relationships, opaque data and unreviewed output arrays remain raw. Existing
-bitfield getters and `set_*` accessors retain their spelling.
+pointers remain an unsafe-call obligation; borrowing a pointer array keeps the
+array alive, not the objects behind its pointers. Existing bitfield getters and
+`set_*` accessors retain their spelling.
+
+Version 0.6.0 completes construction coverage for all 1,552 pinned records/unions,
+with 5,450 setters covering byte payloads, SPIR-V words, optional parallel arrays,
+initialized writable outputs and reviewed parent/cross-record capacities. Opaque
+addresses and foreign objects without a known host extent use explicit unsafe
+pointer setters. See the [changelog](CHANGELOG.md) for compatibility changes.
 
 For migration, use `Type { field: value, ..Default::default() }` rather than an
 exhaustive literal, and declare stored borrowed records as `Type<'a>`. Records

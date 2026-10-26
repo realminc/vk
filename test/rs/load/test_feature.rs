@@ -197,6 +197,7 @@ fn unknown_headers_are_not_cast_to_known_payloads_and_cycles_terminate() {
 	let mut unknown = vk::BaseInStructure {
 		s_type: vk::StructureType::from_raw(i32::MAX),
 		p_next: std::ptr::null(),
+		..Default::default()
 	};
 	// SAFETY: unknown node needs only its complete readable header; no payload cast occurs.
 	let captured = unsafe {
@@ -225,7 +226,8 @@ fn oversized_chain_is_bounded_without_reading_beyond_its_nodes() {
 	let mut nodes = vec![
 		vk::BaseInStructure {
 			s_type: vk::StructureType::from_raw(i32::MAX),
-			p_next: std::ptr::null()
+			p_next: std::ptr::null(),
+			..Default::default()
 		};
 		1025
 	];

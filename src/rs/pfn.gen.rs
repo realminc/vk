@@ -5068,7 +5068,7 @@ pub type PFN_vkGetPerformanceParameterINTEL = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		parameter: PerformanceParameterTypeINTEL,
-		p_value: *mut PerformanceValueINTEL,
+		p_value: *mut PerformanceValueINTEL<'_>,
 	) -> Result,
 >;
 
@@ -7103,7 +7103,7 @@ pub type PFN_vkGetPipelinePropertiesEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		p_pipeline_info: *const PipelineInfoKHR<'_>,
-		p_pipeline_properties: *mut BaseOutStructure,
+		p_pipeline_properties: *mut BaseOutStructure<'_>,
 	) -> Result,
 >;
 
@@ -8374,7 +8374,7 @@ pub type PFN_vkWriteSamplerDescriptorsEXT = Option<
 		device: DeviceHandle,
 		sampler_count: u32,
 		p_samplers: *const SamplerCreateInfo<'_>,
-		p_descriptors: *const HostAddressRangeEXT,
+		p_descriptors: *const HostAddressRangeEXT<'_>,
 	) -> Result,
 >;
 
@@ -8386,7 +8386,7 @@ pub type PFN_vkWriteResourceDescriptorsEXT = Option<
 		device: DeviceHandle,
 		resource_count: u32,
 		p_resources: *const ResourceDescriptorInfoEXT<'_>,
-		p_descriptors: *const HostAddressRangeEXT,
+		p_descriptors: *const HostAddressRangeEXT<'_>,
 	) -> Result,
 >;
 
@@ -8446,7 +8446,7 @@ pub type PFN_vkGetImageOpaqueCaptureDataEXT = Option<
 		device: DeviceHandle,
 		image_count: u32,
 		p_images: *const Image,
-		p_datas: *mut HostAddressRangeEXT,
+		p_datas: *mut HostAddressRangeEXT<'_>,
 	) -> Result,
 >;
 
@@ -8468,7 +8468,7 @@ pub type PFN_vkGetTensorOpaqueCaptureDataARM = Option<
 		device: DeviceHandle,
 		tensor_count: u32,
 		p_tensors: *const TensorARM,
-		p_datas: *mut HostAddressRangeEXT,
+		p_datas: *mut HostAddressRangeEXT<'_>,
 	) -> Result,
 >;
 
@@ -8724,7 +8724,7 @@ pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM
 		physical_device: PhysicalDevice,
 		queue_family_index: u32,
 		p_queue_family_data_graph_properties: *const QueueFamilyDataGraphPropertiesARM<'_>,
-		p_properties: *mut BaseOutStructure,
+		p_properties: *mut BaseOutStructure<'_>,
 	) -> Result,
 >;
 
