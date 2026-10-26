@@ -201,7 +201,7 @@ fn image_transfer(version: u32, policy: AllocationPolicy) {
 				vk::DependencyFlags::empty(),
 				&[],
 				&[],
-				&[barrier],
+				std::slice::from_ref(&barrier),
 			)
 			.unwrap();
 		device
@@ -227,7 +227,7 @@ fn image_transfer(version: u32, policy: AllocationPolicy) {
 				vk::DependencyFlags::empty(),
 				&[],
 				&[],
-				&[barrier],
+				std::slice::from_ref(&barrier),
 			)
 			.unwrap();
 		device

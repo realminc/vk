@@ -26,7 +26,7 @@ def main():
     package = args.package.resolve()
     output = args.output.resolve()
     source = (package / "src/rs/type.gen.rs").read_text()
-    declarations = dict(re.findall(r"pub struct (\w+) \{\n(.*?)\n\}", source, re.S))
+    declarations = dict(re.findall(r"pub struct (\w+)(?:<'[a-z_]+>)? \{\n(.*?)\n\}", source, re.S))
     registry = ET.parse(repo / "registry/vk.xml").getroot()
     base = registry.find("types/type[@name='VkPhysicalDeviceFeatures']")
     assert base is not None

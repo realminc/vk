@@ -16,12 +16,12 @@ pub fn emit_types(reg: &Registry) -> Result<String> {
 		if !seen.insert(ty.c_name.clone()) {
 			continue;
 		}
-		emit_type(&mut out, ty)?;
+		emit_type(&mut out, reg, ty)?;
 	}
 	Ok(out)
 }
 
-fn emit_type(out: &mut String, ty: &TypeDecl) -> Result<()> {
+fn emit_type(out: &mut String, reg: &Registry, ty: &TypeDecl) -> Result<()> {
 	let name = names::type_name(&ty.c_name);
 	let guard = crate::protect::cfg(&ty.guards);
 	if matches!(&ty.kind, TypeKind::ExternalType { requires: Some(requires) } if matches!(requires.as_str(), "vk_platform" | "stdint"))
@@ -42,7 +42,23 @@ fn emit_type(out: &mut String, ty: &TypeDecl) -> Result<()> {
 		crate::doc::item(out, &ty.c_name, &name, "Native type", ty.from_video);
 	}
 	match &ty.kind {
-		TypeKind::Alias { target } => writeln!(out, "pub type {name} = {};", names::type_name(target))?,
+		TypeKind::Alias { target } => {
+			let generic = if reg.borrowed.contains(&ty.c_name) {
+				"<'a>"
+			} else {
+				""
+			};
+			let target_generic = if reg.borrowed.contains(target) {
+				"<'a>"
+			} else {
+				""
+			};
+			writeln!(
+				out,
+				"pub type {name}{generic} = {}{target_generic};",
+				names::type_name(target)
+			)?;
+		}
 		TypeKind::Bitmask { base, requires } => {
 			if let Some(bits) = requires {
 				writeln!(out, "pub type {name} = {};", names::type_name(bits))?;
@@ -69,8 +85,8 @@ fn emit_type(out: &mut String, ty: &TypeDecl) -> Result<()> {
 		}
 		TypeKind::Enum | TypeKind::FuncPointer { .. } => {}
 		TypeKind::ExternalType { requires } => emit_external(out, &name, requires.as_deref())?,
-		TypeKind::Struct { members, .. } => emit_record(out, ty, members, false, &guard)?,
-		TypeKind::Union { members } => emit_record(out, ty, members, true, &guard)?,
+		TypeKind::Struct { members, .. } => emit_record(out, reg, ty, members, false, &guard)?,
+		TypeKind::Union { members } => emit_record(out, reg, ty, members, true, &guard)?,
 	}
 	Ok(())
 }
@@ -104,18 +120,29 @@ fn emit_external(out: &mut String, name: &str, requires: Option<&str>) -> Result
 
 fn emit_record(
 	out: &mut String,
+	reg: &Registry,
 	ty: &TypeDecl,
 	members: &[StructMember],
 	union: bool,
 	guard: &str,
 ) -> Result<()> {
-	let name = names::type_name(&ty.c_name);
+	let name = crate::construction::declaration(reg, ty, "'a");
+	let generic = if reg.borrowed.contains(&ty.c_name) {
+		"<'a>"
+	} else {
+		""
+	};
+	let derives = if reg.exclusive.contains(&ty.c_name) {
+		""
+	} else {
+		"#[derive(Copy, Clone)]\n"
+	};
 	ensure!(!members.is_empty(), "defined record {name} has no members");
 	out.push_str(guard);
 	crate::doc::item(
 		out,
 		&ty.c_name,
-		&name,
+		&names::type_name(&ty.c_name),
 		if union {
 			"Native union"
 		} else {
@@ -125,7 +152,7 @@ fn emit_record(
 	);
 	writeln!(
 		out,
-		"#[repr(C)]\n#[derive(Copy, Clone)]\npub {} {name} {{",
+		"#[repr(C)]\n{derives}pub {} {name} {{",
 		if union { "union" } else { "struct" }
 	)?;
 	let mut bitfield_group = 0;
@@ -190,12 +217,27 @@ fn emit_record(
 			bits = 0;
 			writeln!(out, "/// Native field `{}`.", member.name)?;
 			crate::doc::alias(out, &member.name, &field);
-			writeln!(out, "pub {field}: {},", type_str(&member.ty))?;
+			let mut field_type = crate::emit_pfn::type_str_for(&member.ty, reg, "'a", false);
+			if union && member.ty.pointers.is_empty() && reg.exclusive.contains(&member.ty.name) {
+				field_type = format!("std::mem::ManuallyDrop<{field_type}>");
+			}
+			writeln!(out, "pub {field}: {field_type},")?;
 		}
+	}
+	if !generic.is_empty() {
+		let borrow = if reg.exclusive.contains(&ty.c_name) {
+			"&'a mut ()"
+		} else {
+			"&'a ()"
+		};
+		writeln!(
+			out,
+			"#[doc(hidden)]\npub _marker: std::marker::PhantomData<{borrow}>,"
+		)?;
 	}
 	writeln!(out, "}}")?;
 	if !accessors.is_empty() {
-		writeln!(out, "{guard}impl {name} {{ {accessors} }}")?;
+		writeln!(out, "{guard}impl{generic} {name} {{ {accessors} }}")?;
 	}
 	if let Some(stype) = members
 		.iter()
@@ -205,8 +247,14 @@ fn emit_record(
 		let variant = names::enum_variant(stype, "VkStructureType");
 		writeln!(
 			out,
-			"{guard}impl Default for {name} {{ fn default()->Self {{\n// SAFETY: generated fields are integers, floats, raw pointers, nullable\n// callbacks, integer newtypes or recursively composed records of these.\nlet mut value:Self=unsafe {{ std::mem::zeroed() }};\nvalue.s_type=StructureType::{variant}; value }} }}"
+			"{guard}impl{generic} Default for {name} {{ fn default()->Self {{\n// SAFETY: generated fields are integers, floats, raw pointers, nullable\n// callbacks, integer newtypes or recursively composed records of these.\nlet mut value:Self=unsafe {{ std::mem::zeroed() }};\nvalue.s_type=StructureType::{variant}; value }} }}"
+		)?;
+	} else {
+		writeln!(
+			out,
+			"{guard}impl{generic} Default for {name} {{ fn default() -> Self {{\n// SAFETY: native scalar/newtype/pointer/record fields and markers admit zero.\nunsafe {{ std::mem::zeroed() }} }} }}"
 		)?;
 	}
+	crate::construction::emit_setters(out, reg, ty)?;
 	Ok(())
 }

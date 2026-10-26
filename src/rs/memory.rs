@@ -57,6 +57,12 @@ impl std::fmt::Display for AllocError {
 
 impl std::error::Error for AllocError {}
 
+impl From<crate::ConstructionError> for AllocError {
+	fn from(error: crate::ConstructionError) -> Self {
+		Self::from(CallError::from(error))
+	}
+}
+
 impl From<CallError> for AllocError {
 	fn from(error: CallError) -> Self {
 		Self::Call(error)

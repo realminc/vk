@@ -708,10 +708,10 @@ unsafe extern "system" fn fence_status(_: vk::DeviceHandle, _: vk::Fence) -> vk:
 #[test]
 fn graphics_partial_outputs_and_statuses_remain_caller_owned() {
 	let fixture = Fixture::new_with_commands(true);
-	let infos = [vk::GraphicsPipelineCreateInfo {
+	let infos = std::array::from_fn::<_, 2, _>(|_| vk::GraphicsPipelineCreateInfo {
 		stage_count: 3,
 		..Default::default()
-	}; 2];
+	});
 	let mut outputs = [vk::Pipeline::NULL; 2];
 	let queries = QUERIES.get();
 	let calls = CALLS.get();
@@ -1095,7 +1095,7 @@ fn shader_creation_forwards_callbacks_and_preserves_errors_without_resolving_aga
 #[test]
 fn pipeline_status_and_partial_failure_leave_handles_visible() {
 	let fixture = Fixture::new_with_commands(true);
-	let infos = [vk::ComputePipelineCreateInfo::default(); 2];
+	let infos = std::array::from_fn::<_, 2, _>(|_| vk::ComputePipelineCreateInfo::default());
 	let mut pipelines = [vk::Pipeline::NULL; 2];
 	// SAFETY: the mock only writes within the verified output slice.
 	unsafe {
@@ -1136,7 +1136,7 @@ fn invalid_output_lengths_never_call_the_driver_or_touch_outputs() {
 		assert_eq!(
 			fixture.device.create_compute_pipelines(
 				vk::PipelineCache::NULL,
-				&[vk::ComputePipelineCreateInfo::default(); 2],
+				&std::array::from_fn::<_, 2, _>(|_| vk::ComputePipelineCreateInfo::default()),
 				None,
 				&mut pipelines
 			),
@@ -1810,7 +1810,8 @@ fn counted_groups_preserve_status_capacity_headers_and_partial_outputs() {
 			[0x1000, u64::from(u32::MAX), 1]
 		);
 		TRACE.with_borrow_mut(Vec::clear);
-		let mut records = [vk::PhysicalDeviceGroupProperties::default(); 3];
+		let mut records =
+			std::array::from_fn::<_, 3, _>(|_| vk::PhysicalDeviceGroupProperties::default());
 		let untouched = vk::PhysicalDevice(std::ptr::without_provenance_mut(0xdead));
 		records[2].physical_devices[0] = untouched;
 		STATUS.set(vk::Result::INCOMPLETE);
@@ -1878,10 +1879,10 @@ fn void_counted_queries_keep_output_chains_and_exact_native_counts() {
 		assert_eq!(count, 3);
 		let mut extension = vk::QueueFamilyCheckpointPropertiesNV::default();
 		let next = (&mut extension as *mut vk::QueueFamilyCheckpointPropertiesNV).cast();
-		let mut families = [vk::QueueFamilyProperties2 {
+		let mut families = std::array::from_fn::<_, 2, _>(|_| vk::QueueFamilyProperties2 {
 			p_next: next,
 			..Default::default()
-		}; 2];
+		});
 		// Only the first record has this extension; native writes just that record.
 		families[1].p_next = std::ptr::null_mut();
 		TRACE.with_borrow_mut(Vec::clear);
@@ -2407,7 +2408,7 @@ unsafe extern "system" fn end_pass2(command: vk::CommandBuffer, end: *const vk::
 fn render_pass2_preserves_callbacks_errors_and_borrowed_record_identity() {
 	let fixture = Fixture::new_with_commands(true);
 	let queries = QUERIES.get();
-	let subpasses = [vk::SubpassDescription2::default(); 2];
+	let subpasses = std::array::from_fn::<_, 2, _>(|_| vk::SubpassDescription2::default());
 	let input = vk::RenderPassCreateInfo2 {
 		subpass_count: 2,
 		p_subpasses: subpasses.as_ptr(),

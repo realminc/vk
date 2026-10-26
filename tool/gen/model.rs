@@ -202,6 +202,10 @@ pub struct FeatureDecl {
 /// The complete parsed and resolved intermediate representation.
 #[derive(Debug, Default, Clone)]
 pub struct Registry {
+	/// Records/aliases retaining construction borrows (resolved transitively).
+	pub borrowed: std::collections::BTreeSet<String>,
+	/// Records/aliases retaining exclusive construction borrows.
+	pub exclusive: std::collections::BTreeSet<String>,
 	/// Command spelling -> alternative registry provider/dependency expressions.
 	pub command_requirements: std::collections::BTreeMap<String, Vec<String>>,
 	/// Registry requirement alternatives: each inner list is a conjunction of Cargo features.

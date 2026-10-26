@@ -25,14 +25,20 @@ pub fn emit_pfn(reg: &Registry) -> String {
 			);
 			let params: Vec<_> = parameters
 				.iter()
-				.map(|p| format!("{}: {}", escape_name(&p.name), parameter_type(&p.ty)))
+				.map(|p| {
+					format!(
+						"{}: {}",
+						escape_name(&p.name),
+						parameter_type_for(&p.ty, reg, false)
+					)
+				})
 				.collect();
 			writeln!(
 				out,
 				"pub type {} = Option<unsafe extern \"system\" fn({}) -> {}>;\n",
 				ty.c_name,
 				params.join(", "),
-				type_str(return_type)
+				type_str_for(return_type, reg, "'_", false)
 			)
 			.unwrap();
 		}
@@ -54,13 +60,19 @@ pub fn emit_pfn(reg: &Registry) -> String {
 		let params: Vec<_> = cmd
 			.parameters
 			.iter()
-			.map(|p| format!("{}: {}", escape_name(&p.name), parameter_type(&p.ty)))
+			.map(|p| {
+				format!(
+					"{}: {}",
+					escape_name(&p.name),
+					parameter_type_for(&p.ty, reg, false)
+				)
+			})
 			.collect();
 		writeln!(
 			out,
 			"pub type {pfn} = Option<unsafe extern \"system\" fn({}) -> {}>;\n",
 			params.join(", "),
-			type_str(&cmd.return_type)
+			type_str_for(&cmd.return_type, reg, "'_", false)
 		)
 		.unwrap();
 	}
@@ -95,6 +107,10 @@ pub fn type_str(tr: &TypeRef) -> String {
 }
 
 fn type_str_with(tr: &TypeRef, qualified: bool) -> String {
+	type_str_for(tr, &Registry::default(), "'_", qualified)
+}
+
+pub fn type_str_for(tr: &TypeRef, reg: &Registry, lifetime: &str, qualified: bool) -> String {
 	if tr.name == "void" && tr.pointers.is_empty() && tr.arrays.is_empty() {
 		return "()".into();
 	}
@@ -106,6 +122,9 @@ fn type_str_with(tr: &TypeRef, qualified: bool) -> String {
 			"u8" | "i8" | "u16" | "i16" | "u32" | "i32" | "u64" | "i64" | "usize" | "f32" | "f64"
 		) {
 		s = format!("vk::{s}");
+	}
+	if reg.borrowed.contains(&tr.name) {
+		s.push_str(&format!("<{lifetime}>"));
 	}
 	for constant in &tr.pointers {
 		s = format!("*{} {s}", if *constant { "const" } else { "mut" });
@@ -122,21 +141,29 @@ fn type_str_with(tr: &TypeRef, qualified: bool) -> String {
 	s
 }
 
+#[cfg(test)]
 pub fn qualified_type(tr: &TypeRef) -> String {
 	type_str_with(tr, true)
 }
 
+#[cfg(test)]
 pub fn qualified_parameter_type(tr: &TypeRef) -> String {
 	parameter_type_with(tr, true)
 }
 
+#[cfg(test)]
 pub fn parameter_type(tr: &TypeRef) -> String {
 	parameter_type_with(tr, false)
 }
 
+#[cfg(test)]
 fn parameter_type_with(tr: &TypeRef, qualified: bool) -> String {
+	parameter_type_for(tr, &Registry::default(), qualified)
+}
+
+pub fn parameter_type_for(tr: &TypeRef, reg: &Registry, qualified: bool) -> String {
 	if tr.arrays.is_empty() {
-		return type_str_with(tr, qualified);
+		return type_str_for(tr, reg, "'_", qualified);
 	}
 	let mut inner = tr.clone();
 	inner.arrays.remove(0);
@@ -148,7 +175,7 @@ fn parameter_type_with(tr: &TypeRef, qualified: bool) -> String {
 		} else {
 			"mut"
 		},
-		type_str_with(&inner, qualified)
+		type_str_for(&inner, reg, "'_", qualified)
 	)
 }
 

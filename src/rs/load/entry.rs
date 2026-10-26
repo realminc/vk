@@ -35,6 +35,8 @@ impl std::error::Error for LoadError {}
 /// A Vulkan driver failure or a missing command (entry, instance or device level).
 #[derive(Debug, PartialEq)]
 pub enum CallError {
+	/// Checked host-side record construction failed before any native effects.
+	Construction(vk::ConstructionError),
 	/// The native enumeration did not stabilize within the bounded retry budget.
 	EnumerationUnstable {
 		attempts: u32,
@@ -65,6 +67,7 @@ pub enum CallError {
 impl std::fmt::Display for CallError {
 	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
 		match self {
+			Self::Construction(error) => error.fmt(f),
 			Self::EnumerationUnstable { attempts } => write!(
 				f,
 				"Vulkan enumeration did not stabilize after {attempts} attempts"
@@ -94,9 +97,16 @@ impl std::fmt::Display for CallError {
 impl std::error::Error for CallError {
 	fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
 		match self {
+			Self::Construction(error) => Some(error),
 			Self::InitializationFailed(failure) => Some(failure),
 			_ => None,
 		}
+	}
+}
+
+impl From<vk::ConstructionError> for CallError {
+	fn from(error: vk::ConstructionError) -> Self {
+		Self::Construction(error)
 	}
 }
 

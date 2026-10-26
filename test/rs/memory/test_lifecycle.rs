@@ -78,7 +78,7 @@ fn request() -> AllocRequest {
 	}
 }
 
-fn buffer_info() -> vk::BufferCreateInfo {
+fn buffer_info() -> vk::BufferCreateInfo<'static> {
 	vk::BufferCreateInfo {
 		size: 257,
 		usage: vk::BufferUsageFlagBits::STORAGE_BUFFER_BIT,

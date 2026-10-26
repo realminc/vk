@@ -66,7 +66,7 @@ impl Allocation {
 		&self,
 		offset: u64,
 		size: u64,
-	) -> Result<Option<vk::MappedMemoryRange>, AllocError> {
+	) -> Result<Option<vk::MappedMemoryRange<'static>>, AllocError> {
 		if self.is_freed() {
 			return Err(AllocError::UnknownAllocation);
 		}

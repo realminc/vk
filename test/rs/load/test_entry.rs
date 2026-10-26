@@ -13,14 +13,10 @@ fn headless_instance_create_destroy() {
 		.enumerate_instance_version()
 		.expect("query Vulkan version");
 	assert!(vk::api_version_major(version) >= 1);
-	let app = vk::ApplicationInfo {
-		api_version: vk::API_VERSION_1_0,
-		..Default::default()
-	};
-	let info = vk::InstanceCreateInfo {
-		p_application_info: &app,
-		..Default::default()
-	};
+	let app = vk::ApplicationInfo::default()
+		.application_name(c"vk borrowed construction")
+		.api_version(vk::API_VERSION_1_0);
+	let info = vk::InstanceCreateInfo::default().application_info(&app);
 	// SAFETY: pointers refer to live inputs; no extensions or callbacks are used.
 	let instance = unsafe { entry.create_instance(&info, None) }.expect("create headless instance");
 	assert!(!instance.handle().is_null());
@@ -77,24 +73,15 @@ fn native_device_dispatch_caps_requested_version_by_selected_physical_device() {
 			.unwrap()
 			.api_version
 			& !0xfff;
-		let priority = 1.0;
-		let queue = vk::DeviceQueueCreateInfo {
-			queue_family_index: family,
-			queue_count: 1,
-			p_queue_priorities: &priority,
-			..Default::default()
-		};
-		let device = instance
-			.create_device(
-				physical,
-				&vk::DeviceCreateInfo {
-					queue_create_info_count: 1,
-					p_queue_create_infos: &queue,
-					..Default::default()
-				},
-				None,
-			)
+		let priorities = [1.0];
+		let queues = [vk::DeviceQueueCreateInfo::default()
+			.queue_family_index(family)
+			.queue_priorities(&priorities)
+			.unwrap()];
+		let info = vk::DeviceCreateInfo::default()
+			.queue_create_infos(&queues)
 			.unwrap();
+		let device = instance.create_device(physical, &info, None).unwrap();
 		let effective = requested.min(physical_version);
 		assert_eq!(device.capabilities().unwrap().api_version(), effective);
 		assert!(device.fp().get_buffer_memory_requirements2_khr.is_none());
@@ -397,7 +384,9 @@ fn native_vulkan_1_1_feature_chain_and_output_queries() {
 					.unwrap(),
 				vk::Result::SUCCESS
 			);
-			let mut values = vec![vk::PhysicalDeviceGroupProperties::default(); count as usize];
+			let mut values = std::iter::repeat_with(vk::PhysicalDeviceGroupProperties::default)
+				.take(count as usize)
+				.collect::<Vec<_>>();
 			let status = instance
 				.enumerate_physical_device_groups(&mut count, Some(&mut values))
 				.unwrap();
@@ -427,7 +416,9 @@ fn native_vulkan_1_1_feature_chain_and_output_queries() {
 		instance
 			.get_physical_device_queue_family_properties2(physical, &mut count, None)
 			.unwrap();
-		let mut families = vec![vk::QueueFamilyProperties2::default(); count as usize];
+		let mut families = std::iter::repeat_with(vk::QueueFamilyProperties2::default)
+			.take(count as usize)
+			.collect::<Vec<_>>();
 		instance
 			.get_physical_device_queue_family_properties2(physical, &mut count, Some(&mut families))
 			.unwrap();
@@ -651,7 +642,9 @@ fn native_vulkan_1_1_feature_chain_and_output_queries() {
 		instance
 			.get_physical_device_sparse_image_format_properties2(physical, &sparse_info, &mut count, None)
 			.unwrap();
-		let mut sparse = vec![vk::SparseImageFormatProperties2::default(); count as usize];
+		let mut sparse = std::iter::repeat_with(vk::SparseImageFormatProperties2::default)
+			.take(count as usize)
+			.collect::<Vec<_>>();
 		instance
 			.get_physical_device_sparse_image_format_properties2(
 				physical,
@@ -976,10 +969,10 @@ fn native_vulkan_1_2_host_query_reset_and_render_pass2_submission() {
 		assert_eq!(results[1], 0);
 		device.destroy_query_pool(pool, None).unwrap();
 
-		let subpasses = [vk::SubpassDescription2 {
+		let subpasses = std::array::from_fn::<_, 2, _>(|_| vk::SubpassDescription2 {
 			pipeline_bind_point: vk::PipelineBindPoint::GRAPHICS,
 			..Default::default()
-		}; 2];
+		});
 		let render = device
 			.create_render_pass2(
 				&vk::RenderPassCreateInfo2 {

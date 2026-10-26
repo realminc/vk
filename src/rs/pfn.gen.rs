@@ -81,7 +81,7 @@ pub type PFN_vkDebugUtilsMessengerCallbackEXT = Option<
 	unsafe extern "system" fn(
 		message_severity: DebugUtilsMessageSeverityFlagBitsEXT,
 		message_types: DebugUtilsMessageTypeFlagsEXT,
-		p_callback_data: *const DebugUtilsMessengerCallbackDataEXT,
+		p_callback_data: *const DebugUtilsMessengerCallbackDataEXT<'_>,
 		p_user_data: *mut std::ffi::c_void,
 	) -> Bool32,
 >;
@@ -90,7 +90,7 @@ pub type PFN_vkDebugUtilsMessengerCallbackEXT = Option<
 #[doc = "\n\n[Khronos reference: `PFN_vkDeviceMemoryReportCallbackEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/PFN_vkDeviceMemoryReportCallbackEXT.html)"]
 pub type PFN_vkDeviceMemoryReportCallbackEXT = Option<
 	unsafe extern "system" fn(
-		p_callback_data: *const DeviceMemoryReportCallbackDataEXT,
+		p_callback_data: *const DeviceMemoryReportCallbackDataEXT<'_>,
 		p_user_data: *mut std::ffi::c_void,
 	) -> (),
 >;
@@ -109,7 +109,7 @@ pub type PFN_vkGetInstanceProcAddrLUNARG = Option<
 #[doc = "\n\n[Khronos reference: `vkCreateInstance`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateInstance.html)"]
 pub type PFN_vkCreateInstance = Option<
 	unsafe extern "system" fn(
-		p_create_info: *const InstanceCreateInfo,
+		p_create_info: *const InstanceCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_instance: *mut InstanceHandle,
 	) -> Result,
@@ -229,7 +229,7 @@ pub type PFN_vkGetPhysicalDeviceImageFormatProperties = Option<
 pub type PFN_vkCreateDevice = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_create_info: *const DeviceCreateInfo,
+		p_create_info: *const DeviceCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_device: *mut DeviceHandle,
 	) -> Result,
@@ -311,7 +311,7 @@ pub type PFN_vkQueueSubmit = Option<
 	unsafe extern "system" fn(
 		queue: Queue,
 		submit_count: u32,
-		p_submits: *const SubmitInfo,
+		p_submits: *const SubmitInfo<'_>,
 		fence: Fence,
 	) -> Result,
 >;
@@ -332,7 +332,7 @@ pub type PFN_vkDeviceWaitIdle = Option<unsafe extern "system" fn(device: DeviceH
 pub type PFN_vkAllocateMemory = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_allocate_info: *const MemoryAllocateInfo,
+		p_allocate_info: *const MemoryAllocateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_memory: *mut DeviceMemory,
 	) -> Result,
@@ -376,7 +376,7 @@ pub type PFN_vkFlushMappedMemoryRanges = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		memory_range_count: u32,
-		p_memory_ranges: *const MappedMemoryRange,
+		p_memory_ranges: *const MappedMemoryRange<'_>,
 	) -> Result,
 >;
 
@@ -387,7 +387,7 @@ pub type PFN_vkInvalidateMappedMemoryRanges = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		memory_range_count: u32,
-		p_memory_ranges: *const MappedMemoryRange,
+		p_memory_ranges: *const MappedMemoryRange<'_>,
 	) -> Result,
 >;
 
@@ -483,7 +483,7 @@ pub type PFN_vkQueueBindSparse = Option<
 	unsafe extern "system" fn(
 		queue: Queue,
 		bind_info_count: u32,
-		p_bind_info: *const BindSparseInfo,
+		p_bind_info: *const BindSparseInfo<'_>,
 		fence: Fence,
 	) -> Result,
 >;
@@ -494,7 +494,7 @@ pub type PFN_vkQueueBindSparse = Option<
 pub type PFN_vkCreateFence = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const FenceCreateInfo,
+		p_create_info: *const FenceCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_fence: *mut Fence,
 	) -> Result,
@@ -547,7 +547,7 @@ pub type PFN_vkWaitForFences = Option<
 pub type PFN_vkCreateSemaphore = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const SemaphoreCreateInfo,
+		p_create_info: *const SemaphoreCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_semaphore: *mut Semaphore,
 	) -> Result,
@@ -570,7 +570,7 @@ pub type PFN_vkDestroySemaphore = Option<
 pub type PFN_vkCreateEvent = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const EventCreateInfo,
+		p_create_info: *const EventCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_event: *mut Event,
 	) -> Result,
@@ -611,7 +611,7 @@ pub type PFN_vkResetEvent =
 pub type PFN_vkCreateQueryPool = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const QueryPoolCreateInfo,
+		p_create_info: *const QueryPoolCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_query_pool: *mut QueryPool,
 	) -> Result,
@@ -667,7 +667,7 @@ pub type PFN_vkResetQueryPoolEXT = PFN_vkResetQueryPool;
 pub type PFN_vkCreateBuffer = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const BufferCreateInfo,
+		p_create_info: *const BufferCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_buffer: *mut Buffer,
 	) -> Result,
@@ -690,7 +690,7 @@ pub type PFN_vkDestroyBuffer = Option<
 pub type PFN_vkCreateBufferView = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const BufferViewCreateInfo,
+		p_create_info: *const BufferViewCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_view: *mut BufferView,
 	) -> Result,
@@ -713,7 +713,7 @@ pub type PFN_vkDestroyBufferView = Option<
 pub type PFN_vkCreateImage = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const ImageCreateInfo,
+		p_create_info: *const ImageCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_image: *mut Image,
 	) -> Result,
@@ -748,7 +748,7 @@ pub type PFN_vkGetImageSubresourceLayout = Option<
 pub type PFN_vkCreateImageView = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const ImageViewCreateInfo,
+		p_create_info: *const ImageViewCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_view: *mut ImageView,
 	) -> Result,
@@ -771,7 +771,7 @@ pub type PFN_vkDestroyImageView = Option<
 pub type PFN_vkCreateShaderModule = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const ShaderModuleCreateInfo,
+		p_create_info: *const ShaderModuleCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_shader_module: *mut ShaderModule,
 	) -> Result,
@@ -794,7 +794,7 @@ pub type PFN_vkDestroyShaderModule = Option<
 pub type PFN_vkCreatePipelineCache = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const PipelineCacheCreateInfo,
+		p_create_info: *const PipelineCacheCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_pipeline_cache: *mut PipelineCache,
 	) -> Result,
@@ -841,9 +841,9 @@ pub type PFN_vkMergePipelineCaches = Option<
 pub type PFN_vkCreatePipelineBinariesKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const PipelineBinaryCreateInfoKHR,
+		p_create_info: *const PipelineBinaryCreateInfoKHR<'_>,
 		p_allocator: *const AllocationCallbacks,
-		p_binaries: *mut PipelineBinaryHandlesInfoKHR,
+		p_binaries: *mut PipelineBinaryHandlesInfoKHR<'_>,
 	) -> Result,
 >;
 
@@ -864,8 +864,8 @@ pub type PFN_vkDestroyPipelineBinaryKHR = Option<
 pub type PFN_vkGetPipelineKeyKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_pipeline_create_info: *const PipelineCreateInfoKHR,
-		p_pipeline_key: *mut PipelineBinaryKeyKHR,
+		p_pipeline_create_info: *const PipelineCreateInfoKHR<'_>,
+		p_pipeline_key: *mut PipelineBinaryKeyKHR<'_>,
 	) -> Result,
 >;
 
@@ -875,8 +875,8 @@ pub type PFN_vkGetPipelineKeyKHR = Option<
 pub type PFN_vkGetPipelineBinaryDataKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const PipelineBinaryDataInfoKHR,
-		p_pipeline_binary_key: *mut PipelineBinaryKeyKHR,
+		p_info: *const PipelineBinaryDataInfoKHR<'_>,
+		p_pipeline_binary_key: *mut PipelineBinaryKeyKHR<'_>,
 		p_pipeline_binary_data_size: *mut usize,
 		p_pipeline_binary_data: *mut std::ffi::c_void,
 	) -> Result,
@@ -888,7 +888,7 @@ pub type PFN_vkGetPipelineBinaryDataKHR = Option<
 pub type PFN_vkReleaseCapturedPipelineDataKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const ReleaseCapturedPipelineDataInfoKHR,
+		p_info: *const ReleaseCapturedPipelineDataInfoKHR<'_>,
 		p_allocator: *const AllocationCallbacks,
 	) -> Result,
 >;
@@ -901,7 +901,7 @@ pub type PFN_vkCreateGraphicsPipelines = Option<
 		device: DeviceHandle,
 		pipeline_cache: PipelineCache,
 		create_info_count: u32,
-		p_create_infos: *const GraphicsPipelineCreateInfo,
+		p_create_infos: *const GraphicsPipelineCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_pipelines: *mut Pipeline,
 	) -> Result,
@@ -915,7 +915,7 @@ pub type PFN_vkCreateComputePipelines = Option<
 		device: DeviceHandle,
 		pipeline_cache: PipelineCache,
 		create_info_count: u32,
-		p_create_infos: *const ComputePipelineCreateInfo,
+		p_create_infos: *const ComputePipelineCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_pipelines: *mut Pipeline,
 	) -> Result,
@@ -949,7 +949,7 @@ pub type PFN_vkDestroyPipeline = Option<
 pub type PFN_vkCreatePipelineLayout = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const PipelineLayoutCreateInfo,
+		p_create_info: *const PipelineLayoutCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_pipeline_layout: *mut PipelineLayout,
 	) -> Result,
@@ -972,7 +972,7 @@ pub type PFN_vkDestroyPipelineLayout = Option<
 pub type PFN_vkCreateSampler = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const SamplerCreateInfo,
+		p_create_info: *const SamplerCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_sampler: *mut Sampler,
 	) -> Result,
@@ -995,7 +995,7 @@ pub type PFN_vkDestroySampler = Option<
 pub type PFN_vkCreateDescriptorSetLayout = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const DescriptorSetLayoutCreateInfo,
+		p_create_info: *const DescriptorSetLayoutCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_set_layout: *mut DescriptorSetLayout,
 	) -> Result,
@@ -1018,7 +1018,7 @@ pub type PFN_vkDestroyDescriptorSetLayout = Option<
 pub type PFN_vkCreateDescriptorPool = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const DescriptorPoolCreateInfo,
+		p_create_info: *const DescriptorPoolCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_descriptor_pool: *mut DescriptorPool,
 	) -> Result,
@@ -1052,7 +1052,7 @@ pub type PFN_vkResetDescriptorPool = Option<
 pub type PFN_vkAllocateDescriptorSets = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_allocate_info: *const DescriptorSetAllocateInfo,
+		p_allocate_info: *const DescriptorSetAllocateInfo<'_>,
 		p_descriptor_sets: *mut DescriptorSet,
 	) -> Result,
 >;
@@ -1076,9 +1076,9 @@ pub type PFN_vkUpdateDescriptorSets = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		descriptor_write_count: u32,
-		p_descriptor_writes: *const WriteDescriptorSet,
+		p_descriptor_writes: *const WriteDescriptorSet<'_>,
 		descriptor_copy_count: u32,
-		p_descriptor_copies: *const CopyDescriptorSet,
+		p_descriptor_copies: *const CopyDescriptorSet<'_>,
 	) -> (),
 >;
 
@@ -1088,7 +1088,7 @@ pub type PFN_vkUpdateDescriptorSets = Option<
 pub type PFN_vkCreateFramebuffer = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const FramebufferCreateInfo,
+		p_create_info: *const FramebufferCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_framebuffer: *mut Framebuffer,
 	) -> Result,
@@ -1111,7 +1111,7 @@ pub type PFN_vkDestroyFramebuffer = Option<
 pub type PFN_vkCreateRenderPass = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const RenderPassCreateInfo,
+		p_create_info: *const RenderPassCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_render_pass: *mut RenderPass,
 	) -> Result,
@@ -1145,7 +1145,7 @@ pub type PFN_vkGetRenderAreaGranularity = Option<
 pub type PFN_vkGetRenderingAreaGranularity = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_rendering_area_info: *const RenderingAreaInfo,
+		p_rendering_area_info: *const RenderingAreaInfo<'_>,
 		p_granularity: *mut Extent2D,
 	) -> (),
 >;
@@ -1161,7 +1161,7 @@ pub type PFN_vkGetRenderingAreaGranularityKHR = PFN_vkGetRenderingAreaGranularit
 pub type PFN_vkCreateCommandPool = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const CommandPoolCreateInfo,
+		p_create_info: *const CommandPoolCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_command_pool: *mut CommandPool,
 	) -> Result,
@@ -1195,7 +1195,7 @@ pub type PFN_vkResetCommandPool = Option<
 pub type PFN_vkAllocateCommandBuffers = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_allocate_info: *const CommandBufferAllocateInfo,
+		p_allocate_info: *const CommandBufferAllocateInfo<'_>,
 		p_command_buffers: *mut CommandBuffer,
 	) -> Result,
 >;
@@ -1218,7 +1218,7 @@ pub type PFN_vkFreeCommandBuffers = Option<
 pub type PFN_vkBeginCommandBuffer = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_begin_info: *const CommandBufferBeginInfo,
+		p_begin_info: *const CommandBufferBeginInfo<'_>,
 	) -> Result,
 >;
 
@@ -1632,7 +1632,7 @@ pub type PFN_vkCmdCopyMemoryIndirectNV = Option<
 pub type PFN_vkCmdCopyMemoryIndirectKHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_copy_memory_indirect_info: *const CopyMemoryIndirectInfoKHR,
+		p_copy_memory_indirect_info: *const CopyMemoryIndirectInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -1657,7 +1657,7 @@ pub type PFN_vkCmdCopyMemoryToImageIndirectNV = Option<
 pub type PFN_vkCmdCopyMemoryToImageIndirectKHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_copy_memory_to_image_indirect_info: *const CopyMemoryToImageIndirectInfoKHR,
+		p_copy_memory_to_image_indirect_info: *const CopyMemoryToImageIndirectInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -1776,11 +1776,11 @@ pub type PFN_vkCmdWaitEvents = Option<
 		src_stage_mask: PipelineStageFlags,
 		dst_stage_mask: PipelineStageFlags,
 		memory_barrier_count: u32,
-		p_memory_barriers: *const MemoryBarrier,
+		p_memory_barriers: *const MemoryBarrier<'_>,
 		buffer_memory_barrier_count: u32,
-		p_buffer_memory_barriers: *const BufferMemoryBarrier,
+		p_buffer_memory_barriers: *const BufferMemoryBarrier<'_>,
 		image_memory_barrier_count: u32,
-		p_image_memory_barriers: *const ImageMemoryBarrier,
+		p_image_memory_barriers: *const ImageMemoryBarrier<'_>,
 	) -> (),
 >;
 
@@ -1794,11 +1794,11 @@ pub type PFN_vkCmdPipelineBarrier = Option<
 		dst_stage_mask: PipelineStageFlags,
 		dependency_flags: DependencyFlags,
 		memory_barrier_count: u32,
-		p_memory_barriers: *const MemoryBarrier,
+		p_memory_barriers: *const MemoryBarrier<'_>,
 		buffer_memory_barrier_count: u32,
-		p_buffer_memory_barriers: *const BufferMemoryBarrier,
+		p_buffer_memory_barriers: *const BufferMemoryBarrier<'_>,
 		image_memory_barrier_count: u32,
-		p_image_memory_barriers: *const ImageMemoryBarrier,
+		p_image_memory_barriers: *const ImageMemoryBarrier<'_>,
 	) -> (),
 >;
 
@@ -1827,7 +1827,7 @@ pub type PFN_vkCmdEndQuery = Option<
 pub type PFN_vkCmdBeginConditionalRenderingEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_conditional_rendering_begin: *const ConditionalRenderingBeginInfoEXT,
+		p_conditional_rendering_begin: *const ConditionalRenderingBeginInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -1843,7 +1843,7 @@ pub type PFN_vkCmdEndConditionalRenderingEXT =
 pub type PFN_vkCmdBeginCustomResolveEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_begin_custom_resolve_info: *const BeginCustomResolveInfoEXT,
+		p_begin_custom_resolve_info: *const BeginCustomResolveInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -1907,7 +1907,7 @@ pub type PFN_vkCmdPushConstants = Option<
 pub type PFN_vkCmdBeginRenderPass = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_render_pass_begin: *const RenderPassBeginInfo,
+		p_render_pass_begin: *const RenderPassBeginInfo<'_>,
 		contents: SubpassContents,
 	) -> (),
 >;
@@ -1942,7 +1942,7 @@ pub type PFN_vkCmdExecuteCommands = Option<
 pub type PFN_vkCreateAndroidSurfaceKHR = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const AndroidSurfaceCreateInfoKHR,
+		p_create_info: *const AndroidSurfaceCreateInfoKHR<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -1955,7 +1955,7 @@ pub type PFN_vkCreateAndroidSurfaceKHR = Option<
 pub type PFN_vkCreateSurfaceOHOS = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const SurfaceCreateInfoOHOS,
+		p_create_info: *const SurfaceCreateInfoOHOS<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -1968,7 +1968,7 @@ pub type PFN_vkGetPhysicalDeviceDisplayPropertiesKHR = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		p_property_count: *mut u32,
-		p_properties: *mut DisplayPropertiesKHR,
+		p_properties: *mut DisplayPropertiesKHR<'_>,
 	) -> Result,
 >;
 
@@ -2014,7 +2014,7 @@ pub type PFN_vkCreateDisplayModeKHR = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		display: DisplayKHR,
-		p_create_info: *const DisplayModeCreateInfoKHR,
+		p_create_info: *const DisplayModeCreateInfoKHR<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_mode: *mut DisplayModeKHR,
 	) -> Result,
@@ -2038,7 +2038,7 @@ pub type PFN_vkGetDisplayPlaneCapabilitiesKHR = Option<
 pub type PFN_vkCreateDisplayPlaneSurfaceKHR = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const DisplaySurfaceCreateInfoKHR,
+		p_create_info: *const DisplaySurfaceCreateInfoKHR<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -2051,7 +2051,7 @@ pub type PFN_vkCreateSharedSwapchainsKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		swapchain_count: u32,
-		p_create_infos: *const SwapchainCreateInfoKHR,
+		p_create_infos: *const SwapchainCreateInfoKHR<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_swapchains: *mut SwapchainKHR,
 	) -> Result,
@@ -2121,7 +2121,7 @@ pub type PFN_vkGetPhysicalDeviceSurfacePresentModesKHR = Option<
 pub type PFN_vkCreateSwapchainKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const SwapchainCreateInfoKHR,
+		p_create_info: *const SwapchainCreateInfoKHR<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_swapchain: *mut SwapchainKHR,
 	) -> Result,
@@ -2167,8 +2167,9 @@ pub type PFN_vkAcquireNextImageKHR = Option<
 #[doc = "Nullable function pointer for `vkQueuePresentKHR`."]
 #[doc(alias = "vkQueuePresentKHR")]
 #[doc = "\n\n[Khronos reference: `vkQueuePresentKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueuePresentKHR.html)"]
-pub type PFN_vkQueuePresentKHR =
-	Option<unsafe extern "system" fn(queue: Queue, p_present_info: *const PresentInfoKHR) -> Result>;
+pub type PFN_vkQueuePresentKHR = Option<
+	unsafe extern "system" fn(queue: Queue, p_present_info: *const PresentInfoKHR<'_>) -> Result,
+>;
 
 #[cfg(feature = "platform-vi")]
 #[doc = "Nullable function pointer for `vkCreateViSurfaceNN`."]
@@ -2177,7 +2178,7 @@ pub type PFN_vkQueuePresentKHR =
 pub type PFN_vkCreateViSurfaceNN = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const ViSurfaceCreateInfoNN,
+		p_create_info: *const ViSurfaceCreateInfoNN<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -2190,7 +2191,7 @@ pub type PFN_vkCreateViSurfaceNN = Option<
 pub type PFN_vkCreateWaylandSurfaceKHR = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const WaylandSurfaceCreateInfoKHR,
+		p_create_info: *const WaylandSurfaceCreateInfoKHR<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -2215,7 +2216,7 @@ pub type PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR = Option<
 pub type PFN_vkCreateUbmSurfaceSEC = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const UbmSurfaceCreateInfoSEC,
+		p_create_info: *const UbmSurfaceCreateInfoSEC<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -2240,7 +2241,7 @@ pub type PFN_vkGetPhysicalDeviceUbmPresentationSupportSEC = Option<
 pub type PFN_vkCreateWin32SurfaceKHR = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const Win32SurfaceCreateInfoKHR,
+		p_create_info: *const Win32SurfaceCreateInfoKHR<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -2261,7 +2262,7 @@ pub type PFN_vkGetPhysicalDeviceWin32PresentationSupportKHR = Option<
 pub type PFN_vkCreateXlibSurfaceKHR = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const XlibSurfaceCreateInfoKHR,
+		p_create_info: *const XlibSurfaceCreateInfoKHR<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -2287,7 +2288,7 @@ pub type PFN_vkGetPhysicalDeviceXlibPresentationSupportKHR = Option<
 pub type PFN_vkCreateXcbSurfaceKHR = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const XcbSurfaceCreateInfoKHR,
+		p_create_info: *const XcbSurfaceCreateInfoKHR<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -2313,7 +2314,7 @@ pub type PFN_vkGetPhysicalDeviceXcbPresentationSupportKHR = Option<
 pub type PFN_vkCreateDirectFBSurfaceEXT = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const DirectFBSurfaceCreateInfoEXT,
+		p_create_info: *const DirectFBSurfaceCreateInfoEXT<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -2338,7 +2339,7 @@ pub type PFN_vkGetPhysicalDeviceDirectFBPresentationSupportEXT = Option<
 pub type PFN_vkCreateImagePipeSurfaceFUCHSIA = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const ImagePipeSurfaceCreateInfoFUCHSIA,
+		p_create_info: *const ImagePipeSurfaceCreateInfoFUCHSIA<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -2351,7 +2352,7 @@ pub type PFN_vkCreateImagePipeSurfaceFUCHSIA = Option<
 pub type PFN_vkCreateStreamDescriptorSurfaceGGP = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const StreamDescriptorSurfaceCreateInfoGGP,
+		p_create_info: *const StreamDescriptorSurfaceCreateInfoGGP<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -2364,7 +2365,7 @@ pub type PFN_vkCreateStreamDescriptorSurfaceGGP = Option<
 pub type PFN_vkCreateScreenSurfaceQNX = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const ScreenSurfaceCreateInfoQNX,
+		p_create_info: *const ScreenSurfaceCreateInfoQNX<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -2388,7 +2389,7 @@ pub type PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX = Option<
 pub type PFN_vkCreateDebugReportCallbackEXT = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const DebugReportCallbackCreateInfoEXT,
+		p_create_info: *const DebugReportCallbackCreateInfoEXT<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_callback: *mut DebugReportCallbackEXT,
 	) -> Result,
@@ -2427,7 +2428,7 @@ pub type PFN_vkDebugReportMessageEXT = Option<
 pub type PFN_vkDebugMarkerSetObjectNameEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_name_info: *const DebugMarkerObjectNameInfoEXT,
+		p_name_info: *const DebugMarkerObjectNameInfoEXT<'_>,
 	) -> Result,
 >;
 
@@ -2437,7 +2438,7 @@ pub type PFN_vkDebugMarkerSetObjectNameEXT = Option<
 pub type PFN_vkDebugMarkerSetObjectTagEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_tag_info: *const DebugMarkerObjectTagInfoEXT,
+		p_tag_info: *const DebugMarkerObjectTagInfoEXT<'_>,
 	) -> Result,
 >;
 
@@ -2447,7 +2448,7 @@ pub type PFN_vkDebugMarkerSetObjectTagEXT = Option<
 pub type PFN_vkCmdDebugMarkerBeginEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_marker_info: *const DebugMarkerMarkerInfoEXT,
+		p_marker_info: *const DebugMarkerMarkerInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -2463,7 +2464,7 @@ pub type PFN_vkCmdDebugMarkerEndEXT =
 pub type PFN_vkCmdDebugMarkerInsertEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_marker_info: *const DebugMarkerMarkerInfoEXT,
+		p_marker_info: *const DebugMarkerMarkerInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -2503,7 +2504,7 @@ pub type PFN_vkCmdExecuteGeneratedCommandsNV = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
 		is_preprocessed: Bool32,
-		p_generated_commands_info: *const GeneratedCommandsInfoNV,
+		p_generated_commands_info: *const GeneratedCommandsInfoNV<'_>,
 	) -> (),
 >;
 
@@ -2513,7 +2514,7 @@ pub type PFN_vkCmdExecuteGeneratedCommandsNV = Option<
 pub type PFN_vkCmdPreprocessGeneratedCommandsNV = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_generated_commands_info: *const GeneratedCommandsInfoNV,
+		p_generated_commands_info: *const GeneratedCommandsInfoNV<'_>,
 	) -> (),
 >;
 
@@ -2535,8 +2536,8 @@ pub type PFN_vkCmdBindPipelineShaderGroupNV = Option<
 pub type PFN_vkGetGeneratedCommandsMemoryRequirementsNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const GeneratedCommandsMemoryRequirementsInfoNV,
-		p_memory_requirements: *mut MemoryRequirements2,
+		p_info: *const GeneratedCommandsMemoryRequirementsInfoNV<'_>,
+		p_memory_requirements: *mut MemoryRequirements2<'_>,
 	) -> (),
 >;
 
@@ -2546,7 +2547,7 @@ pub type PFN_vkGetGeneratedCommandsMemoryRequirementsNV = Option<
 pub type PFN_vkCreateIndirectCommandsLayoutNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const IndirectCommandsLayoutCreateInfoNV,
+		p_create_info: *const IndirectCommandsLayoutCreateInfoNV<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_indirect_commands_layout: *mut IndirectCommandsLayoutNV,
 	) -> Result,
@@ -2570,7 +2571,7 @@ pub type PFN_vkCmdExecuteGeneratedCommandsEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
 		is_preprocessed: Bool32,
-		p_generated_commands_info: *const GeneratedCommandsInfoEXT,
+		p_generated_commands_info: *const GeneratedCommandsInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -2580,7 +2581,7 @@ pub type PFN_vkCmdExecuteGeneratedCommandsEXT = Option<
 pub type PFN_vkCmdPreprocessGeneratedCommandsEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_generated_commands_info: *const GeneratedCommandsInfoEXT,
+		p_generated_commands_info: *const GeneratedCommandsInfoEXT<'_>,
 		state_command_buffer: CommandBuffer,
 	) -> (),
 >;
@@ -2591,8 +2592,8 @@ pub type PFN_vkCmdPreprocessGeneratedCommandsEXT = Option<
 pub type PFN_vkGetGeneratedCommandsMemoryRequirementsEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const GeneratedCommandsMemoryRequirementsInfoEXT,
-		p_memory_requirements: *mut MemoryRequirements2,
+		p_info: *const GeneratedCommandsMemoryRequirementsInfoEXT<'_>,
+		p_memory_requirements: *mut MemoryRequirements2<'_>,
 	) -> (),
 >;
 
@@ -2602,7 +2603,7 @@ pub type PFN_vkGetGeneratedCommandsMemoryRequirementsEXT = Option<
 pub type PFN_vkCreateIndirectCommandsLayoutEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const IndirectCommandsLayoutCreateInfoEXT,
+		p_create_info: *const IndirectCommandsLayoutCreateInfoEXT<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_indirect_commands_layout: *mut IndirectCommandsLayoutEXT,
 	) -> Result,
@@ -2625,7 +2626,7 @@ pub type PFN_vkDestroyIndirectCommandsLayoutEXT = Option<
 pub type PFN_vkCreateIndirectExecutionSetEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const IndirectExecutionSetCreateInfoEXT,
+		p_create_info: *const IndirectExecutionSetCreateInfoEXT<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_indirect_execution_set: *mut IndirectExecutionSetEXT,
 	) -> Result,
@@ -2650,7 +2651,7 @@ pub type PFN_vkUpdateIndirectExecutionSetPipelineEXT = Option<
 		device: DeviceHandle,
 		indirect_execution_set: IndirectExecutionSetEXT,
 		execution_set_write_count: u32,
-		p_execution_set_writes: *const WriteIndirectExecutionSetPipelineEXT,
+		p_execution_set_writes: *const WriteIndirectExecutionSetPipelineEXT<'_>,
 	) -> (),
 >;
 
@@ -2662,7 +2663,7 @@ pub type PFN_vkUpdateIndirectExecutionSetShaderEXT = Option<
 		device: DeviceHandle,
 		indirect_execution_set: IndirectExecutionSetEXT,
 		execution_set_write_count: u32,
-		p_execution_set_writes: *const WriteIndirectExecutionSetShaderEXT,
+		p_execution_set_writes: *const WriteIndirectExecutionSetShaderEXT<'_>,
 	) -> (),
 >;
 
@@ -2672,7 +2673,7 @@ pub type PFN_vkUpdateIndirectExecutionSetShaderEXT = Option<
 pub type PFN_vkGetPhysicalDeviceFeatures2 = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_features: *mut PhysicalDeviceFeatures2,
+		p_features: *mut PhysicalDeviceFeatures2<'_>,
 	) -> (),
 >;
 
@@ -2687,7 +2688,7 @@ pub type PFN_vkGetPhysicalDeviceFeatures2KHR = PFN_vkGetPhysicalDeviceFeatures2;
 pub type PFN_vkGetPhysicalDeviceProperties2 = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_properties: *mut PhysicalDeviceProperties2,
+		p_properties: *mut PhysicalDeviceProperties2<'_>,
 	) -> (),
 >;
 
@@ -2703,7 +2704,7 @@ pub type PFN_vkGetPhysicalDeviceFormatProperties2 = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		format: Format,
-		p_format_properties: *mut FormatProperties2,
+		p_format_properties: *mut FormatProperties2<'_>,
 	) -> (),
 >;
 
@@ -2718,8 +2719,8 @@ pub type PFN_vkGetPhysicalDeviceFormatProperties2KHR = PFN_vkGetPhysicalDeviceFo
 pub type PFN_vkGetPhysicalDeviceImageFormatProperties2 = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_image_format_info: *const PhysicalDeviceImageFormatInfo2,
-		p_image_format_properties: *mut ImageFormatProperties2,
+		p_image_format_info: *const PhysicalDeviceImageFormatInfo2<'_>,
+		p_image_format_properties: *mut ImageFormatProperties2<'_>,
 	) -> Result,
 >;
 
@@ -2736,7 +2737,7 @@ pub type PFN_vkGetPhysicalDeviceQueueFamilyProperties2 = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		p_queue_family_property_count: *mut u32,
-		p_queue_family_properties: *mut QueueFamilyProperties2,
+		p_queue_family_properties: *mut QueueFamilyProperties2<'_>,
 	) -> (),
 >;
 
@@ -2752,7 +2753,7 @@ pub type PFN_vkGetPhysicalDeviceQueueFamilyProperties2KHR =
 pub type PFN_vkGetPhysicalDeviceMemoryProperties2 = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_memory_properties: *mut PhysicalDeviceMemoryProperties2,
+		p_memory_properties: *mut PhysicalDeviceMemoryProperties2<'_>,
 	) -> (),
 >;
 
@@ -2767,9 +2768,9 @@ pub type PFN_vkGetPhysicalDeviceMemoryProperties2KHR = PFN_vkGetPhysicalDeviceMe
 pub type PFN_vkGetPhysicalDeviceSparseImageFormatProperties2 = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_format_info: *const PhysicalDeviceSparseImageFormatInfo2,
+		p_format_info: *const PhysicalDeviceSparseImageFormatInfo2<'_>,
 		p_property_count: *mut u32,
-		p_properties: *mut SparseImageFormatProperties2,
+		p_properties: *mut SparseImageFormatProperties2<'_>,
 	) -> (),
 >;
 
@@ -2789,7 +2790,7 @@ pub type PFN_vkCmdPushDescriptorSet = Option<
 		layout: PipelineLayout,
 		set: u32,
 		descriptor_write_count: u32,
-		p_descriptor_writes: *const WriteDescriptorSet,
+		p_descriptor_writes: *const WriteDescriptorSet<'_>,
 	) -> (),
 >;
 
@@ -2820,8 +2821,8 @@ pub type PFN_vkTrimCommandPoolKHR = PFN_vkTrimCommandPool;
 pub type PFN_vkGetPhysicalDeviceExternalBufferProperties = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_external_buffer_info: *const PhysicalDeviceExternalBufferInfo,
-		p_external_buffer_properties: *mut ExternalBufferProperties,
+		p_external_buffer_info: *const PhysicalDeviceExternalBufferInfo<'_>,
+		p_external_buffer_properties: *mut ExternalBufferProperties<'_>,
 	) -> (),
 >;
 
@@ -2838,7 +2839,7 @@ pub type PFN_vkGetPhysicalDeviceExternalBufferPropertiesKHR =
 pub type PFN_vkGetMemoryWin32HandleKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_get_win32_handle_info: *const MemoryGetWin32HandleInfoKHR,
+		p_get_win32_handle_info: *const MemoryGetWin32HandleInfoKHR<'_>,
 		p_handle: *mut HANDLE,
 	) -> Result,
 >;
@@ -2852,7 +2853,7 @@ pub type PFN_vkGetMemoryWin32HandlePropertiesKHR = Option<
 		device: DeviceHandle,
 		handle_type: ExternalMemoryHandleTypeFlagBits,
 		handle: HANDLE,
-		p_memory_win32_handle_properties: *mut MemoryWin32HandlePropertiesKHR,
+		p_memory_win32_handle_properties: *mut MemoryWin32HandlePropertiesKHR<'_>,
 	) -> Result,
 >;
 
@@ -2862,7 +2863,7 @@ pub type PFN_vkGetMemoryWin32HandlePropertiesKHR = Option<
 pub type PFN_vkGetMemoryFdKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_get_fd_info: *const MemoryGetFdInfoKHR,
+		p_get_fd_info: *const MemoryGetFdInfoKHR<'_>,
 		p_fd: *mut i32,
 	) -> Result,
 >;
@@ -2875,7 +2876,7 @@ pub type PFN_vkGetMemoryFdPropertiesKHR = Option<
 		device: DeviceHandle,
 		handle_type: ExternalMemoryHandleTypeFlagBits,
 		fd: i32,
-		p_memory_fd_properties: *mut MemoryFdPropertiesKHR,
+		p_memory_fd_properties: *mut MemoryFdPropertiesKHR<'_>,
 	) -> Result,
 >;
 
@@ -2886,7 +2887,7 @@ pub type PFN_vkGetMemoryFdPropertiesKHR = Option<
 pub type PFN_vkGetMemoryZirconHandleFUCHSIA = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_get_zircon_handle_info: *const MemoryGetZirconHandleInfoFUCHSIA,
+		p_get_zircon_handle_info: *const MemoryGetZirconHandleInfoFUCHSIA<'_>,
 		p_zircon_handle: *mut zx_handle_t,
 	) -> Result,
 >;
@@ -2900,7 +2901,7 @@ pub type PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA = Option<
 		device: DeviceHandle,
 		handle_type: ExternalMemoryHandleTypeFlagBits,
 		zircon_handle: zx_handle_t,
-		p_memory_zircon_handle_properties: *mut MemoryZirconHandlePropertiesFUCHSIA,
+		p_memory_zircon_handle_properties: *mut MemoryZirconHandlePropertiesFUCHSIA<'_>,
 	) -> Result,
 >;
 
@@ -2910,7 +2911,7 @@ pub type PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA = Option<
 pub type PFN_vkGetMemoryRemoteAddressNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_memory_get_remote_address_info: *const MemoryGetRemoteAddressInfoNV,
+		p_memory_get_remote_address_info: *const MemoryGetRemoteAddressInfoNV<'_>,
 		p_address: *mut RemoteAddressNV,
 	) -> Result,
 >;
@@ -2921,8 +2922,8 @@ pub type PFN_vkGetMemoryRemoteAddressNV = Option<
 pub type PFN_vkGetPhysicalDeviceExternalSemaphoreProperties = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_external_semaphore_info: *const PhysicalDeviceExternalSemaphoreInfo,
-		p_external_semaphore_properties: *mut ExternalSemaphoreProperties,
+		p_external_semaphore_info: *const PhysicalDeviceExternalSemaphoreInfo<'_>,
+		p_external_semaphore_properties: *mut ExternalSemaphoreProperties<'_>,
 	) -> (),
 >;
 
@@ -2939,7 +2940,7 @@ pub type PFN_vkGetPhysicalDeviceExternalSemaphorePropertiesKHR =
 pub type PFN_vkGetSemaphoreWin32HandleKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_get_win32_handle_info: *const SemaphoreGetWin32HandleInfoKHR,
+		p_get_win32_handle_info: *const SemaphoreGetWin32HandleInfoKHR<'_>,
 		p_handle: *mut HANDLE,
 	) -> Result,
 >;
@@ -2951,7 +2952,7 @@ pub type PFN_vkGetSemaphoreWin32HandleKHR = Option<
 pub type PFN_vkImportSemaphoreWin32HandleKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_import_semaphore_win32_handle_info: *const ImportSemaphoreWin32HandleInfoKHR,
+		p_import_semaphore_win32_handle_info: *const ImportSemaphoreWin32HandleInfoKHR<'_>,
 	) -> Result,
 >;
 
@@ -2961,7 +2962,7 @@ pub type PFN_vkImportSemaphoreWin32HandleKHR = Option<
 pub type PFN_vkGetSemaphoreFdKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_get_fd_info: *const SemaphoreGetFdInfoKHR,
+		p_get_fd_info: *const SemaphoreGetFdInfoKHR<'_>,
 		p_fd: *mut i32,
 	) -> Result,
 >;
@@ -2972,7 +2973,7 @@ pub type PFN_vkGetSemaphoreFdKHR = Option<
 pub type PFN_vkImportSemaphoreFdKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_import_semaphore_fd_info: *const ImportSemaphoreFdInfoKHR,
+		p_import_semaphore_fd_info: *const ImportSemaphoreFdInfoKHR<'_>,
 	) -> Result,
 >;
 
@@ -2983,7 +2984,7 @@ pub type PFN_vkImportSemaphoreFdKHR = Option<
 pub type PFN_vkGetSemaphoreZirconHandleFUCHSIA = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_get_zircon_handle_info: *const SemaphoreGetZirconHandleInfoFUCHSIA,
+		p_get_zircon_handle_info: *const SemaphoreGetZirconHandleInfoFUCHSIA<'_>,
 		p_zircon_handle: *mut zx_handle_t,
 	) -> Result,
 >;
@@ -2995,7 +2996,7 @@ pub type PFN_vkGetSemaphoreZirconHandleFUCHSIA = Option<
 pub type PFN_vkImportSemaphoreZirconHandleFUCHSIA = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_import_semaphore_zircon_handle_info: *const ImportSemaphoreZirconHandleInfoFUCHSIA,
+		p_import_semaphore_zircon_handle_info: *const ImportSemaphoreZirconHandleInfoFUCHSIA<'_>,
 	) -> Result,
 >;
 
@@ -3005,8 +3006,8 @@ pub type PFN_vkImportSemaphoreZirconHandleFUCHSIA = Option<
 pub type PFN_vkGetPhysicalDeviceExternalFenceProperties = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_external_fence_info: *const PhysicalDeviceExternalFenceInfo,
-		p_external_fence_properties: *mut ExternalFenceProperties,
+		p_external_fence_info: *const PhysicalDeviceExternalFenceInfo<'_>,
+		p_external_fence_properties: *mut ExternalFenceProperties<'_>,
 	) -> (),
 >;
 
@@ -3023,7 +3024,7 @@ pub type PFN_vkGetPhysicalDeviceExternalFencePropertiesKHR =
 pub type PFN_vkGetFenceWin32HandleKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_get_win32_handle_info: *const FenceGetWin32HandleInfoKHR,
+		p_get_win32_handle_info: *const FenceGetWin32HandleInfoKHR<'_>,
 		p_handle: *mut HANDLE,
 	) -> Result,
 >;
@@ -3035,7 +3036,7 @@ pub type PFN_vkGetFenceWin32HandleKHR = Option<
 pub type PFN_vkImportFenceWin32HandleKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_import_fence_win32_handle_info: *const ImportFenceWin32HandleInfoKHR,
+		p_import_fence_win32_handle_info: *const ImportFenceWin32HandleInfoKHR<'_>,
 	) -> Result,
 >;
 
@@ -3045,7 +3046,7 @@ pub type PFN_vkImportFenceWin32HandleKHR = Option<
 pub type PFN_vkGetFenceFdKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_get_fd_info: *const FenceGetFdInfoKHR,
+		p_get_fd_info: *const FenceGetFdInfoKHR<'_>,
 		p_fd: *mut i32,
 	) -> Result,
 >;
@@ -3056,7 +3057,7 @@ pub type PFN_vkGetFenceFdKHR = Option<
 pub type PFN_vkImportFenceFdKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_import_fence_fd_info: *const ImportFenceFdInfoKHR,
+		p_import_fence_fd_info: *const ImportFenceFdInfoKHR<'_>,
 	) -> Result,
 >;
 
@@ -3117,7 +3118,7 @@ pub type PFN_vkDisplayPowerControlEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		display: DisplayKHR,
-		p_display_power_info: *const DisplayPowerInfoEXT,
+		p_display_power_info: *const DisplayPowerInfoEXT<'_>,
 	) -> Result,
 >;
 
@@ -3127,7 +3128,7 @@ pub type PFN_vkDisplayPowerControlEXT = Option<
 pub type PFN_vkRegisterDeviceEventEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_device_event_info: *const DeviceEventInfoEXT,
+		p_device_event_info: *const DeviceEventInfoEXT<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_fence: *mut Fence,
 	) -> Result,
@@ -3140,7 +3141,7 @@ pub type PFN_vkRegisterDisplayEventEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		display: DisplayKHR,
-		p_display_event_info: *const DisplayEventInfoEXT,
+		p_display_event_info: *const DisplayEventInfoEXT<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_fence: *mut Fence,
 	) -> Result,
@@ -3165,7 +3166,7 @@ pub type PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		surface: SurfaceKHR,
-		p_surface_capabilities: *mut SurfaceCapabilities2EXT,
+		p_surface_capabilities: *mut SurfaceCapabilities2EXT<'_>,
 	) -> Result,
 >;
 
@@ -3176,7 +3177,7 @@ pub type PFN_vkEnumeratePhysicalDeviceGroups = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
 		p_physical_device_group_count: *mut u32,
-		p_physical_device_group_properties: *mut PhysicalDeviceGroupProperties,
+		p_physical_device_group_properties: *mut PhysicalDeviceGroupProperties<'_>,
 	) -> Result,
 >;
 
@@ -3210,7 +3211,7 @@ pub type PFN_vkBindBufferMemory2 = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		bind_info_count: u32,
-		p_bind_infos: *const BindBufferMemoryInfo,
+		p_bind_infos: *const BindBufferMemoryInfo<'_>,
 	) -> Result,
 >;
 
@@ -3226,7 +3227,7 @@ pub type PFN_vkBindImageMemory2 = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		bind_info_count: u32,
-		p_bind_infos: *const BindImageMemoryInfo,
+		p_bind_infos: *const BindImageMemoryInfo<'_>,
 	) -> Result,
 >;
 
@@ -3252,7 +3253,7 @@ pub type PFN_vkCmdSetDeviceMaskKHR = PFN_vkCmdSetDeviceMask;
 pub type PFN_vkGetDeviceGroupPresentCapabilitiesKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_device_group_present_capabilities: *mut DeviceGroupPresentCapabilitiesKHR,
+		p_device_group_present_capabilities: *mut DeviceGroupPresentCapabilitiesKHR<'_>,
 	) -> Result,
 >;
 
@@ -3273,7 +3274,7 @@ pub type PFN_vkGetDeviceGroupSurfacePresentModesKHR = Option<
 pub type PFN_vkAcquireNextImage2KHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_acquire_info: *const AcquireNextImageInfoKHR,
+		p_acquire_info: *const AcquireNextImageInfoKHR<'_>,
 		p_image_index: *mut u32,
 	) -> Result,
 >;
@@ -3316,7 +3317,7 @@ pub type PFN_vkGetPhysicalDevicePresentRectanglesKHR = Option<
 pub type PFN_vkCreateDescriptorUpdateTemplate = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const DescriptorUpdateTemplateCreateInfo,
+		p_create_info: *const DescriptorUpdateTemplateCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_descriptor_update_template: *mut DescriptorUpdateTemplate,
 	) -> Result,
@@ -3386,7 +3387,7 @@ pub type PFN_vkSetHdrMetadataEXT = Option<
 		device: DeviceHandle,
 		swapchain_count: u32,
 		p_swapchains: *const SwapchainKHR,
-		p_metadata: *const HdrMetadataEXT,
+		p_metadata: *const HdrMetadataEXT<'_>,
 	) -> (),
 >;
 
@@ -3426,7 +3427,7 @@ pub type PFN_vkGetPastPresentationTimingGOOGLE = Option<
 pub type PFN_vkCreateIOSSurfaceMVK = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const IOSSurfaceCreateInfoMVK,
+		p_create_info: *const IOSSurfaceCreateInfoMVK<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -3439,7 +3440,7 @@ pub type PFN_vkCreateIOSSurfaceMVK = Option<
 pub type PFN_vkCreateMacOSSurfaceMVK = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const MacOSSurfaceCreateInfoMVK,
+		p_create_info: *const MacOSSurfaceCreateInfoMVK<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -3452,7 +3453,7 @@ pub type PFN_vkCreateMacOSSurfaceMVK = Option<
 pub type PFN_vkCreateMetalSurfaceEXT = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const MetalSurfaceCreateInfoEXT,
+		p_create_info: *const MetalSurfaceCreateInfoEXT<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -3505,7 +3506,7 @@ pub type PFN_vkCmdSetDiscardRectangleModeEXT = Option<
 pub type PFN_vkCmdSetSampleLocationsEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_sample_locations_info: *const SampleLocationsInfoEXT,
+		p_sample_locations_info: *const SampleLocationsInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -3516,7 +3517,7 @@ pub type PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		samples: SampleCountFlagBits,
-		p_multisample_properties: *mut MultisamplePropertiesEXT,
+		p_multisample_properties: *mut MultisamplePropertiesEXT<'_>,
 	) -> (),
 >;
 
@@ -3526,8 +3527,8 @@ pub type PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT = Option<
 pub type PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_surface_info: *const PhysicalDeviceSurfaceInfo2KHR,
-		p_surface_capabilities: *mut SurfaceCapabilities2KHR,
+		p_surface_info: *const PhysicalDeviceSurfaceInfo2KHR<'_>,
+		p_surface_capabilities: *mut SurfaceCapabilities2KHR<'_>,
 	) -> Result,
 >;
 
@@ -3537,9 +3538,9 @@ pub type PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR = Option<
 pub type PFN_vkGetPhysicalDeviceSurfaceFormats2KHR = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_surface_info: *const PhysicalDeviceSurfaceInfo2KHR,
+		p_surface_info: *const PhysicalDeviceSurfaceInfo2KHR<'_>,
 		p_surface_format_count: *mut u32,
-		p_surface_formats: *mut SurfaceFormat2KHR,
+		p_surface_formats: *mut SurfaceFormat2KHR<'_>,
 	) -> Result,
 >;
 
@@ -3550,7 +3551,7 @@ pub type PFN_vkGetPhysicalDeviceDisplayProperties2KHR = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		p_property_count: *mut u32,
-		p_properties: *mut DisplayProperties2KHR,
+		p_properties: *mut DisplayProperties2KHR<'_>,
 	) -> Result,
 >;
 
@@ -3561,7 +3562,7 @@ pub type PFN_vkGetPhysicalDeviceDisplayPlaneProperties2KHR = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		p_property_count: *mut u32,
-		p_properties: *mut DisplayPlaneProperties2KHR,
+		p_properties: *mut DisplayPlaneProperties2KHR<'_>,
 	) -> Result,
 >;
 
@@ -3573,7 +3574,7 @@ pub type PFN_vkGetDisplayModeProperties2KHR = Option<
 		physical_device: PhysicalDevice,
 		display: DisplayKHR,
 		p_property_count: *mut u32,
-		p_properties: *mut DisplayModeProperties2KHR,
+		p_properties: *mut DisplayModeProperties2KHR<'_>,
 	) -> Result,
 >;
 
@@ -3583,8 +3584,8 @@ pub type PFN_vkGetDisplayModeProperties2KHR = Option<
 pub type PFN_vkGetDisplayPlaneCapabilities2KHR = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_display_plane_info: *const DisplayPlaneInfo2KHR,
-		p_capabilities: *mut DisplayPlaneCapabilities2KHR,
+		p_display_plane_info: *const DisplayPlaneInfo2KHR<'_>,
+		p_capabilities: *mut DisplayPlaneCapabilities2KHR<'_>,
 	) -> Result,
 >;
 
@@ -3594,8 +3595,8 @@ pub type PFN_vkGetDisplayPlaneCapabilities2KHR = Option<
 pub type PFN_vkGetBufferMemoryRequirements2 = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const BufferMemoryRequirementsInfo2,
-		p_memory_requirements: *mut MemoryRequirements2,
+		p_info: *const BufferMemoryRequirementsInfo2<'_>,
+		p_memory_requirements: *mut MemoryRequirements2<'_>,
 	) -> (),
 >;
 
@@ -3610,8 +3611,8 @@ pub type PFN_vkGetBufferMemoryRequirements2KHR = PFN_vkGetBufferMemoryRequiremen
 pub type PFN_vkGetImageMemoryRequirements2 = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const ImageMemoryRequirementsInfo2,
-		p_memory_requirements: *mut MemoryRequirements2,
+		p_info: *const ImageMemoryRequirementsInfo2<'_>,
+		p_memory_requirements: *mut MemoryRequirements2<'_>,
 	) -> (),
 >;
 
@@ -3626,9 +3627,9 @@ pub type PFN_vkGetImageMemoryRequirements2KHR = PFN_vkGetImageMemoryRequirements
 pub type PFN_vkGetImageSparseMemoryRequirements2 = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const ImageSparseMemoryRequirementsInfo2,
+		p_info: *const ImageSparseMemoryRequirementsInfo2<'_>,
 		p_sparse_memory_requirement_count: *mut u32,
-		p_sparse_memory_requirements: *mut SparseImageMemoryRequirements2,
+		p_sparse_memory_requirements: *mut SparseImageMemoryRequirements2<'_>,
 	) -> (),
 >;
 
@@ -3643,8 +3644,8 @@ pub type PFN_vkGetImageSparseMemoryRequirements2KHR = PFN_vkGetImageSparseMemory
 pub type PFN_vkGetDeviceBufferMemoryRequirements = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const DeviceBufferMemoryRequirements,
-		p_memory_requirements: *mut MemoryRequirements2,
+		p_info: *const DeviceBufferMemoryRequirements<'_>,
+		p_memory_requirements: *mut MemoryRequirements2<'_>,
 	) -> (),
 >;
 
@@ -3659,8 +3660,8 @@ pub type PFN_vkGetDeviceBufferMemoryRequirementsKHR = PFN_vkGetDeviceBufferMemor
 pub type PFN_vkGetDeviceImageMemoryRequirements = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const DeviceImageMemoryRequirements,
-		p_memory_requirements: *mut MemoryRequirements2,
+		p_info: *const DeviceImageMemoryRequirements<'_>,
+		p_memory_requirements: *mut MemoryRequirements2<'_>,
 	) -> (),
 >;
 
@@ -3675,9 +3676,9 @@ pub type PFN_vkGetDeviceImageMemoryRequirementsKHR = PFN_vkGetDeviceImageMemoryR
 pub type PFN_vkGetDeviceImageSparseMemoryRequirements = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const DeviceImageMemoryRequirements,
+		p_info: *const DeviceImageMemoryRequirements<'_>,
 		p_sparse_memory_requirement_count: *mut u32,
-		p_sparse_memory_requirements: *mut SparseImageMemoryRequirements2,
+		p_sparse_memory_requirements: *mut SparseImageMemoryRequirements2<'_>,
 	) -> (),
 >;
 
@@ -3693,7 +3694,7 @@ pub type PFN_vkGetDeviceImageSparseMemoryRequirementsKHR =
 pub type PFN_vkCreateSamplerYcbcrConversion = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const SamplerYcbcrConversionCreateInfo,
+		p_create_info: *const SamplerYcbcrConversionCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_ycbcr_conversion: *mut SamplerYcbcrConversion,
 	) -> Result,
@@ -3726,7 +3727,7 @@ pub type PFN_vkDestroySamplerYcbcrConversionKHR = PFN_vkDestroySamplerYcbcrConve
 pub type PFN_vkGetDeviceQueue2 = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_queue_info: *const DeviceQueueInfo2,
+		p_queue_info: *const DeviceQueueInfo2<'_>,
 		p_queue: *mut Queue,
 	) -> (),
 >;
@@ -3737,7 +3738,7 @@ pub type PFN_vkGetDeviceQueue2 = Option<
 pub type PFN_vkCreateValidationCacheEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const ValidationCacheCreateInfoEXT,
+		p_create_info: *const ValidationCacheCreateInfoEXT<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_validation_cache: *mut ValidationCacheEXT,
 	) -> Result,
@@ -3784,8 +3785,8 @@ pub type PFN_vkMergeValidationCachesEXT = Option<
 pub type PFN_vkGetDescriptorSetLayoutSupport = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const DescriptorSetLayoutCreateInfo,
-		p_support: *mut DescriptorSetLayoutSupport,
+		p_create_info: *const DescriptorSetLayoutCreateInfo<'_>,
+		p_support: *mut DescriptorSetLayoutSupport<'_>,
 	) -> (),
 >;
 
@@ -3843,7 +3844,7 @@ pub type PFN_vkGetCalibratedTimestampsKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		timestamp_count: u32,
-		p_timestamp_infos: *const CalibratedTimestampInfoKHR,
+		p_timestamp_infos: *const CalibratedTimestampInfoKHR<'_>,
 		p_timestamps: *mut u64,
 		p_max_deviation: *mut u64,
 	) -> Result,
@@ -3860,7 +3861,7 @@ pub type PFN_vkGetCalibratedTimestampsEXT = PFN_vkGetCalibratedTimestampsKHR;
 pub type PFN_vkSetDebugUtilsObjectNameEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_name_info: *const DebugUtilsObjectNameInfoEXT,
+		p_name_info: *const DebugUtilsObjectNameInfoEXT<'_>,
 	) -> Result,
 >;
 
@@ -3870,15 +3871,16 @@ pub type PFN_vkSetDebugUtilsObjectNameEXT = Option<
 pub type PFN_vkSetDebugUtilsObjectTagEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_tag_info: *const DebugUtilsObjectTagInfoEXT,
+		p_tag_info: *const DebugUtilsObjectTagInfoEXT<'_>,
 	) -> Result,
 >;
 
 #[doc = "Nullable function pointer for `vkQueueBeginDebugUtilsLabelEXT`."]
 #[doc(alias = "vkQueueBeginDebugUtilsLabelEXT")]
 #[doc = "\n\n[Khronos reference: `vkQueueBeginDebugUtilsLabelEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueBeginDebugUtilsLabelEXT.html)"]
-pub type PFN_vkQueueBeginDebugUtilsLabelEXT =
-	Option<unsafe extern "system" fn(queue: Queue, p_label_info: *const DebugUtilsLabelEXT) -> ()>;
+pub type PFN_vkQueueBeginDebugUtilsLabelEXT = Option<
+	unsafe extern "system" fn(queue: Queue, p_label_info: *const DebugUtilsLabelEXT<'_>) -> (),
+>;
 
 #[doc = "Nullable function pointer for `vkQueueEndDebugUtilsLabelEXT`."]
 #[doc(alias = "vkQueueEndDebugUtilsLabelEXT")]
@@ -3888,8 +3890,9 @@ pub type PFN_vkQueueEndDebugUtilsLabelEXT = Option<unsafe extern "system" fn(que
 #[doc = "Nullable function pointer for `vkQueueInsertDebugUtilsLabelEXT`."]
 #[doc(alias = "vkQueueInsertDebugUtilsLabelEXT")]
 #[doc = "\n\n[Khronos reference: `vkQueueInsertDebugUtilsLabelEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueInsertDebugUtilsLabelEXT.html)"]
-pub type PFN_vkQueueInsertDebugUtilsLabelEXT =
-	Option<unsafe extern "system" fn(queue: Queue, p_label_info: *const DebugUtilsLabelEXT) -> ()>;
+pub type PFN_vkQueueInsertDebugUtilsLabelEXT = Option<
+	unsafe extern "system" fn(queue: Queue, p_label_info: *const DebugUtilsLabelEXT<'_>) -> (),
+>;
 
 #[doc = "Nullable function pointer for `vkCmdBeginDebugUtilsLabelEXT`."]
 #[doc(alias = "vkCmdBeginDebugUtilsLabelEXT")]
@@ -3897,7 +3900,7 @@ pub type PFN_vkQueueInsertDebugUtilsLabelEXT =
 pub type PFN_vkCmdBeginDebugUtilsLabelEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_label_info: *const DebugUtilsLabelEXT,
+		p_label_info: *const DebugUtilsLabelEXT<'_>,
 	) -> (),
 >;
 
@@ -3913,7 +3916,7 @@ pub type PFN_vkCmdEndDebugUtilsLabelEXT =
 pub type PFN_vkCmdInsertDebugUtilsLabelEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_label_info: *const DebugUtilsLabelEXT,
+		p_label_info: *const DebugUtilsLabelEXT<'_>,
 	) -> (),
 >;
 
@@ -3923,7 +3926,7 @@ pub type PFN_vkCmdInsertDebugUtilsLabelEXT = Option<
 pub type PFN_vkCreateDebugUtilsMessengerEXT = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const DebugUtilsMessengerCreateInfoEXT,
+		p_create_info: *const DebugUtilsMessengerCreateInfoEXT<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_messenger: *mut DebugUtilsMessengerEXT,
 	) -> Result,
@@ -3948,7 +3951,7 @@ pub type PFN_vkSubmitDebugUtilsMessageEXT = Option<
 		instance: InstanceHandle,
 		message_severity: DebugUtilsMessageSeverityFlagBitsEXT,
 		message_types: DebugUtilsMessageTypeFlagsEXT,
-		p_callback_data: *const DebugUtilsMessengerCallbackDataEXT,
+		p_callback_data: *const DebugUtilsMessengerCallbackDataEXT<'_>,
 	) -> (),
 >;
 
@@ -3960,7 +3963,7 @@ pub type PFN_vkGetMemoryHostPointerPropertiesEXT = Option<
 		device: DeviceHandle,
 		handle_type: ExternalMemoryHandleTypeFlagBits,
 		p_host_pointer: *const std::ffi::c_void,
-		p_memory_host_pointer_properties: *mut MemoryHostPointerPropertiesEXT,
+		p_memory_host_pointer_properties: *mut MemoryHostPointerPropertiesEXT<'_>,
 	) -> Result,
 >;
 
@@ -3983,7 +3986,7 @@ pub type PFN_vkCmdWriteBufferMarkerAMD = Option<
 pub type PFN_vkCreateRenderPass2 = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const RenderPassCreateInfo2,
+		p_create_info: *const RenderPassCreateInfo2<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_render_pass: *mut RenderPass,
 	) -> Result,
@@ -4000,8 +4003,8 @@ pub type PFN_vkCreateRenderPass2KHR = PFN_vkCreateRenderPass2;
 pub type PFN_vkCmdBeginRenderPass2 = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_render_pass_begin: *const RenderPassBeginInfo,
-		p_subpass_begin_info: *const SubpassBeginInfo,
+		p_render_pass_begin: *const RenderPassBeginInfo<'_>,
+		p_subpass_begin_info: *const SubpassBeginInfo<'_>,
 	) -> (),
 >;
 
@@ -4016,8 +4019,8 @@ pub type PFN_vkCmdBeginRenderPass2KHR = PFN_vkCmdBeginRenderPass2;
 pub type PFN_vkCmdNextSubpass2 = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_subpass_begin_info: *const SubpassBeginInfo,
-		p_subpass_end_info: *const SubpassEndInfo,
+		p_subpass_begin_info: *const SubpassBeginInfo<'_>,
+		p_subpass_end_info: *const SubpassEndInfo<'_>,
 	) -> (),
 >;
 
@@ -4032,7 +4035,7 @@ pub type PFN_vkCmdNextSubpass2KHR = PFN_vkCmdNextSubpass2;
 pub type PFN_vkCmdEndRenderPass2 = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_subpass_end_info: *const SubpassEndInfo,
+		p_subpass_end_info: *const SubpassEndInfo<'_>,
 	) -> (),
 >;
 
@@ -4063,7 +4066,7 @@ pub type PFN_vkGetSemaphoreCounterValueKHR = PFN_vkGetSemaphoreCounterValue;
 pub type PFN_vkWaitSemaphores = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_wait_info: *const SemaphoreWaitInfo,
+		p_wait_info: *const SemaphoreWaitInfo<'_>,
 		timeout: u64,
 	) -> Result,
 >;
@@ -4079,7 +4082,7 @@ pub type PFN_vkWaitSemaphoresKHR = PFN_vkWaitSemaphores;
 pub type PFN_vkSignalSemaphore = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_signal_info: *const SemaphoreSignalInfo,
+		p_signal_info: *const SemaphoreSignalInfo<'_>,
 	) -> Result,
 >;
 
@@ -4096,7 +4099,7 @@ pub type PFN_vkGetAndroidHardwareBufferPropertiesANDROID = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		buffer: *const AHardwareBuffer,
-		p_properties: *mut AndroidHardwareBufferPropertiesANDROID,
+		p_properties: *mut AndroidHardwareBufferPropertiesANDROID<'_>,
 	) -> Result,
 >;
 
@@ -4107,7 +4110,7 @@ pub type PFN_vkGetAndroidHardwareBufferPropertiesANDROID = Option<
 pub type PFN_vkGetMemoryAndroidHardwareBufferANDROID = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const MemoryGetAndroidHardwareBufferInfoANDROID,
+		p_info: *const MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
 		p_buffer: *mut *mut AHardwareBuffer,
 	) -> Result,
 >;
@@ -4179,7 +4182,7 @@ pub type PFN_vkGetQueueCheckpointDataNV = Option<
 	unsafe extern "system" fn(
 		queue: Queue,
 		p_checkpoint_data_count: *mut u32,
-		p_checkpoint_data: *mut CheckpointDataNV,
+		p_checkpoint_data: *mut CheckpointDataNV<'_>,
 	) -> (),
 >;
 
@@ -4306,7 +4309,7 @@ pub type PFN_vkCmdSetViewportShadingRatePaletteNV = Option<
 		command_buffer: CommandBuffer,
 		first_viewport: u32,
 		viewport_count: u32,
-		p_shading_rate_palettes: *const ShadingRatePaletteNV,
+		p_shading_rate_palettes: *const ShadingRatePaletteNV<'_>,
 	) -> (),
 >;
 
@@ -4318,7 +4321,7 @@ pub type PFN_vkCmdSetCoarseSampleOrderNV = Option<
 		command_buffer: CommandBuffer,
 		sample_order_type: CoarseSampleOrderTypeNV,
 		custom_sample_order_count: u32,
-		p_custom_sample_orders: *const CoarseSampleOrderCustomNV,
+		p_custom_sample_orders: *const CoarseSampleOrderCustomNV<'_>,
 	) -> (),
 >;
 
@@ -4410,7 +4413,7 @@ pub type PFN_vkCompileDeferredNV = Option<
 pub type PFN_vkCreateAccelerationStructureNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const AccelerationStructureCreateInfoNV,
+		p_create_info: *const AccelerationStructureCreateInfoNV<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_acceleration_structure: *mut AccelerationStructureNV,
 	) -> Result,
@@ -4455,8 +4458,8 @@ pub type PFN_vkDestroyAccelerationStructureNV = Option<
 pub type PFN_vkGetAccelerationStructureMemoryRequirementsNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const AccelerationStructureMemoryRequirementsInfoNV,
-		p_memory_requirements: *mut MemoryRequirements2,
+		p_info: *const AccelerationStructureMemoryRequirementsInfoNV<'_>,
+		p_memory_requirements: *mut MemoryRequirements2<'_>,
 	) -> (),
 >;
 
@@ -4467,7 +4470,7 @@ pub type PFN_vkBindAccelerationStructureMemoryNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		bind_info_count: u32,
-		p_bind_infos: *const BindAccelerationStructureMemoryInfoNV,
+		p_bind_infos: *const BindAccelerationStructureMemoryInfoNV<'_>,
 	) -> Result,
 >;
 
@@ -4489,7 +4492,7 @@ pub type PFN_vkCmdCopyAccelerationStructureNV = Option<
 pub type PFN_vkCmdCopyAccelerationStructureKHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const CopyAccelerationStructureInfoKHR,
+		p_info: *const CopyAccelerationStructureInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -4500,7 +4503,7 @@ pub type PFN_vkCopyAccelerationStructureKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		deferred_operation: DeferredOperationKHR,
-		p_info: *const CopyAccelerationStructureInfoKHR,
+		p_info: *const CopyAccelerationStructureInfoKHR<'_>,
 	) -> Result,
 >;
 
@@ -4510,7 +4513,7 @@ pub type PFN_vkCopyAccelerationStructureKHR = Option<
 pub type PFN_vkCmdCopyAccelerationStructureToMemoryKHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const CopyAccelerationStructureToMemoryInfoKHR,
+		p_info: *const CopyAccelerationStructureToMemoryInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -4521,7 +4524,7 @@ pub type PFN_vkCopyAccelerationStructureToMemoryKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		deferred_operation: DeferredOperationKHR,
-		p_info: *const CopyAccelerationStructureToMemoryInfoKHR,
+		p_info: *const CopyAccelerationStructureToMemoryInfoKHR<'_>,
 	) -> Result,
 >;
 
@@ -4531,7 +4534,7 @@ pub type PFN_vkCopyAccelerationStructureToMemoryKHR = Option<
 pub type PFN_vkCmdCopyMemoryToAccelerationStructureKHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const CopyMemoryToAccelerationStructureInfoKHR,
+		p_info: *const CopyMemoryToAccelerationStructureInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -4542,7 +4545,7 @@ pub type PFN_vkCopyMemoryToAccelerationStructureKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		deferred_operation: DeferredOperationKHR,
-		p_info: *const CopyMemoryToAccelerationStructureInfoKHR,
+		p_info: *const CopyMemoryToAccelerationStructureInfoKHR<'_>,
 	) -> Result,
 >;
 
@@ -4580,7 +4583,7 @@ pub type PFN_vkCmdWriteAccelerationStructuresPropertiesNV = Option<
 pub type PFN_vkCmdBuildAccelerationStructureNV = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const AccelerationStructureInfoNV,
+		p_info: *const AccelerationStructureInfoNV<'_>,
 		instance_data: Buffer,
 		instance_offset: DeviceSize,
 		update: Bool32,
@@ -4698,7 +4701,7 @@ pub type PFN_vkCreateRayTracingPipelinesNV = Option<
 		device: DeviceHandle,
 		pipeline_cache: PipelineCache,
 		create_info_count: u32,
-		p_create_infos: *const RayTracingPipelineCreateInfoNV,
+		p_create_infos: *const RayTracingPipelineCreateInfoNV<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_pipelines: *mut Pipeline,
 	) -> Result,
@@ -4713,7 +4716,7 @@ pub type PFN_vkCreateRayTracingPipelinesKHR = Option<
 		deferred_operation: DeferredOperationKHR,
 		pipeline_cache: PipelineCache,
 		create_info_count: u32,
-		p_create_infos: *const RayTracingPipelineCreateInfoKHR,
+		p_create_infos: *const RayTracingPipelineCreateInfoKHR<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_pipelines: *mut Pipeline,
 	) -> Result,
@@ -4726,7 +4729,7 @@ pub type PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesNV = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		p_property_count: *mut u32,
-		p_properties: *mut CooperativeMatrixPropertiesNV,
+		p_properties: *mut CooperativeMatrixPropertiesNV<'_>,
 	) -> Result,
 >;
 
@@ -4760,8 +4763,8 @@ pub type PFN_vkCmdTraceRaysIndirect2KHR = Option<
 pub type PFN_vkGetClusterAccelerationStructureBuildSizesNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const ClusterAccelerationStructureInputInfoNV,
-		p_size_info: *mut AccelerationStructureBuildSizesInfoKHR,
+		p_info: *const ClusterAccelerationStructureInputInfoNV<'_>,
+		p_size_info: *mut AccelerationStructureBuildSizesInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -4771,7 +4774,7 @@ pub type PFN_vkGetClusterAccelerationStructureBuildSizesNV = Option<
 pub type PFN_vkCmdBuildClusterAccelerationStructureIndirectNV = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_command_infos: *const ClusterAccelerationStructureCommandsInfoNV,
+		p_command_infos: *const ClusterAccelerationStructureCommandsInfoNV<'_>,
 	) -> (),
 >;
 
@@ -4781,7 +4784,7 @@ pub type PFN_vkCmdBuildClusterAccelerationStructureIndirectNV = Option<
 pub type PFN_vkGetDeviceAccelerationStructureCompatibilityKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_version_info: *const AccelerationStructureVersionInfoKHR,
+		p_version_info: *const AccelerationStructureVersionInfoKHR<'_>,
 		p_compatibility: *mut AccelerationStructureCompatibilityKHR,
 	) -> (),
 >;
@@ -4808,14 +4811,14 @@ pub type PFN_vkCmdSetRayTracingPipelineStackSizeKHR =
 #[doc(alias = "vkGetImageViewHandleNVX")]
 #[doc = "\n\n[Khronos reference: `vkGetImageViewHandleNVX`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageViewHandleNVX.html)"]
 pub type PFN_vkGetImageViewHandleNVX = Option<
-	unsafe extern "system" fn(device: DeviceHandle, p_info: *const ImageViewHandleInfoNVX) -> u32,
+	unsafe extern "system" fn(device: DeviceHandle, p_info: *const ImageViewHandleInfoNVX<'_>) -> u32,
 >;
 
 #[doc = "Nullable function pointer for `vkGetImageViewHandle64NVX`."]
 #[doc(alias = "vkGetImageViewHandle64NVX")]
 #[doc = "\n\n[Khronos reference: `vkGetImageViewHandle64NVX`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageViewHandle64NVX.html)"]
 pub type PFN_vkGetImageViewHandle64NVX = Option<
-	unsafe extern "system" fn(device: DeviceHandle, p_info: *const ImageViewHandleInfoNVX) -> u64,
+	unsafe extern "system" fn(device: DeviceHandle, p_info: *const ImageViewHandleInfoNVX<'_>) -> u64,
 >;
 
 #[doc = "Nullable function pointer for `vkGetImageViewAddressNVX`."]
@@ -4825,7 +4828,7 @@ pub type PFN_vkGetImageViewAddressNVX = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		image_view: ImageView,
-		p_properties: *mut ImageViewAddressPropertiesNVX,
+		p_properties: *mut ImageViewAddressPropertiesNVX<'_>,
 	) -> Result,
 >;
 
@@ -4843,7 +4846,7 @@ pub type PFN_vkGetDeviceCombinedImageSamplerIndexNVX = Option<
 pub type PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_surface_info: *const PhysicalDeviceSurfaceInfo2KHR,
+		p_surface_info: *const PhysicalDeviceSurfaceInfo2KHR<'_>,
 		p_present_mode_count: *mut u32,
 		p_present_modes: *mut PresentModeKHR,
 	) -> Result,
@@ -4856,7 +4859,7 @@ pub type PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT = Option<
 pub type PFN_vkGetDeviceGroupSurfacePresentModes2EXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_surface_info: *const PhysicalDeviceSurfaceInfo2KHR,
+		p_surface_info: *const PhysicalDeviceSurfaceInfo2KHR<'_>,
 		p_modes: *mut DeviceGroupPresentModeFlagsKHR,
 	) -> Result,
 >;
@@ -4883,8 +4886,8 @@ pub type PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR = O
 		physical_device: PhysicalDevice,
 		queue_family_index: u32,
 		p_counter_count: *mut u32,
-		p_counters: *mut PerformanceCounterKHR,
-		p_counter_descriptions: *mut PerformanceCounterDescriptionKHR,
+		p_counters: *mut PerformanceCounterKHR<'_>,
+		p_counter_descriptions: *mut PerformanceCounterDescriptionKHR<'_>,
 	) -> Result,
 >;
 
@@ -4894,7 +4897,7 @@ pub type PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR = O
 pub type PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_performance_query_create_info: *const QueryPoolPerformanceCreateInfoKHR,
+		p_performance_query_create_info: *const QueryPoolPerformanceCreateInfoKHR<'_>,
 		p_num_passes: *mut u32,
 	) -> (),
 >;
@@ -4905,7 +4908,7 @@ pub type PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR = Option<
 pub type PFN_vkAcquireProfilingLockKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const AcquireProfilingLockInfoKHR,
+		p_info: *const AcquireProfilingLockInfoKHR<'_>,
 	) -> Result,
 >;
 
@@ -4922,7 +4925,7 @@ pub type PFN_vkGetImageDrmFormatModifierPropertiesEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		image: Image,
-		p_properties: *mut ImageDrmFormatModifierPropertiesEXT,
+		p_properties: *mut ImageDrmFormatModifierPropertiesEXT<'_>,
 	) -> Result,
 >;
 
@@ -4930,7 +4933,10 @@ pub type PFN_vkGetImageDrmFormatModifierPropertiesEXT = Option<
 #[doc(alias = "vkGetBufferOpaqueCaptureAddress")]
 #[doc = "\n\n[Khronos reference: `vkGetBufferOpaqueCaptureAddress`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferOpaqueCaptureAddress.html)"]
 pub type PFN_vkGetBufferOpaqueCaptureAddress = Option<
-	unsafe extern "system" fn(device: DeviceHandle, p_info: *const BufferDeviceAddressInfo) -> u64,
+	unsafe extern "system" fn(
+		device: DeviceHandle,
+		p_info: *const BufferDeviceAddressInfo<'_>,
+	) -> u64,
 >;
 
 #[doc = "Nullable function pointer for `vkGetBufferOpaqueCaptureAddressKHR`."]
@@ -4944,7 +4950,7 @@ pub type PFN_vkGetBufferOpaqueCaptureAddressKHR = PFN_vkGetBufferOpaqueCaptureAd
 pub type PFN_vkGetBufferDeviceAddress = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const BufferDeviceAddressInfo,
+		p_info: *const BufferDeviceAddressInfo<'_>,
 	) -> DeviceAddress,
 >;
 
@@ -4964,7 +4970,7 @@ pub type PFN_vkGetBufferDeviceAddressEXT = PFN_vkGetBufferDeviceAddress;
 pub type PFN_vkCreateHeadlessSurfaceEXT = Option<
 	unsafe extern "system" fn(
 		instance: InstanceHandle,
-		p_create_info: *const HeadlessSurfaceCreateInfoEXT,
+		p_create_info: *const HeadlessSurfaceCreateInfoEXT<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_surface: *mut SurfaceKHR,
 	) -> Result,
@@ -4977,7 +4983,7 @@ pub type PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV =
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		p_combination_count: *mut u32,
-		p_combinations: *mut FramebufferMixedSamplesCombinationNV,
+		p_combinations: *mut FramebufferMixedSamplesCombinationNV<'_>,
 	) -> Result,
 >;
 
@@ -4987,7 +4993,7 @@ pub type PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV =
 pub type PFN_vkInitializePerformanceApiINTEL = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_initialize_info: *const InitializePerformanceApiInfoINTEL,
+		p_initialize_info: *const InitializePerformanceApiInfoINTEL<'_>,
 	) -> Result,
 >;
 
@@ -5003,7 +5009,7 @@ pub type PFN_vkUninitializePerformanceApiINTEL =
 pub type PFN_vkCmdSetPerformanceMarkerINTEL = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_marker_info: *const PerformanceMarkerInfoINTEL,
+		p_marker_info: *const PerformanceMarkerInfoINTEL<'_>,
 	) -> Result,
 >;
 
@@ -5013,7 +5019,7 @@ pub type PFN_vkCmdSetPerformanceMarkerINTEL = Option<
 pub type PFN_vkCmdSetPerformanceStreamMarkerINTEL = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_marker_info: *const PerformanceStreamMarkerInfoINTEL,
+		p_marker_info: *const PerformanceStreamMarkerInfoINTEL<'_>,
 	) -> Result,
 >;
 
@@ -5023,7 +5029,7 @@ pub type PFN_vkCmdSetPerformanceStreamMarkerINTEL = Option<
 pub type PFN_vkCmdSetPerformanceOverrideINTEL = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_override_info: *const PerformanceOverrideInfoINTEL,
+		p_override_info: *const PerformanceOverrideInfoINTEL<'_>,
 	) -> Result,
 >;
 
@@ -5033,7 +5039,7 @@ pub type PFN_vkCmdSetPerformanceOverrideINTEL = Option<
 pub type PFN_vkAcquirePerformanceConfigurationINTEL = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_acquire_info: *const PerformanceConfigurationAcquireInfoINTEL,
+		p_acquire_info: *const PerformanceConfigurationAcquireInfoINTEL<'_>,
 		p_configuration: *mut PerformanceConfigurationINTEL,
 	) -> Result,
 >;
@@ -5072,7 +5078,7 @@ pub type PFN_vkGetPerformanceParameterINTEL = Option<
 pub type PFN_vkGetDeviceMemoryOpaqueCaptureAddress = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const DeviceMemoryOpaqueCaptureAddressInfo,
+		p_info: *const DeviceMemoryOpaqueCaptureAddressInfo<'_>,
 	) -> u64,
 >;
 
@@ -5087,9 +5093,9 @@ pub type PFN_vkGetDeviceMemoryOpaqueCaptureAddressKHR = PFN_vkGetDeviceMemoryOpa
 pub type PFN_vkGetPipelineExecutablePropertiesKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_pipeline_info: *const PipelineInfoKHR,
+		p_pipeline_info: *const PipelineInfoKHR<'_>,
 		p_executable_count: *mut u32,
-		p_properties: *mut PipelineExecutablePropertiesKHR,
+		p_properties: *mut PipelineExecutablePropertiesKHR<'_>,
 	) -> Result,
 >;
 
@@ -5099,9 +5105,9 @@ pub type PFN_vkGetPipelineExecutablePropertiesKHR = Option<
 pub type PFN_vkGetPipelineExecutableStatisticsKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_executable_info: *const PipelineExecutableInfoKHR,
+		p_executable_info: *const PipelineExecutableInfoKHR<'_>,
 		p_statistic_count: *mut u32,
-		p_statistics: *mut PipelineExecutableStatisticKHR,
+		p_statistics: *mut PipelineExecutableStatisticKHR<'_>,
 	) -> Result,
 >;
 
@@ -5111,9 +5117,9 @@ pub type PFN_vkGetPipelineExecutableStatisticsKHR = Option<
 pub type PFN_vkGetPipelineExecutableInternalRepresentationsKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_executable_info: *const PipelineExecutableInfoKHR,
+		p_executable_info: *const PipelineExecutableInfoKHR<'_>,
 		p_internal_representation_count: *mut u32,
-		p_internal_representations: *mut PipelineExecutableInternalRepresentationKHR,
+		p_internal_representations: *mut PipelineExecutableInternalRepresentationKHR<'_>,
 	) -> Result,
 >;
 
@@ -5145,7 +5151,7 @@ pub type PFN_vkGetPhysicalDeviceToolProperties = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		p_tool_count: *mut u32,
-		p_tool_properties: *mut PhysicalDeviceToolProperties,
+		p_tool_properties: *mut PhysicalDeviceToolProperties<'_>,
 	) -> Result,
 >;
 
@@ -5160,7 +5166,7 @@ pub type PFN_vkGetPhysicalDeviceToolPropertiesEXT = PFN_vkGetPhysicalDeviceToolP
 pub type PFN_vkCreateAccelerationStructureKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const AccelerationStructureCreateInfoKHR,
+		p_create_info: *const AccelerationStructureCreateInfoKHR<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_acceleration_structure: *mut AccelerationStructureKHR,
 	) -> Result,
@@ -5173,7 +5179,7 @@ pub type PFN_vkCmdBuildAccelerationStructuresKHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
 		info_count: u32,
-		p_infos: *const AccelerationStructureBuildGeometryInfoKHR,
+		p_infos: *const AccelerationStructureBuildGeometryInfoKHR<'_>,
 		pp_build_range_infos: *const *const AccelerationStructureBuildRangeInfoKHR,
 	) -> (),
 >;
@@ -5185,7 +5191,7 @@ pub type PFN_vkCmdBuildAccelerationStructuresIndirectKHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
 		info_count: u32,
-		p_infos: *const AccelerationStructureBuildGeometryInfoKHR,
+		p_infos: *const AccelerationStructureBuildGeometryInfoKHR<'_>,
 		p_indirect_device_addresses: *const DeviceAddress,
 		p_indirect_strides: *const u32,
 		pp_max_primitive_counts: *const *const u32,
@@ -5200,7 +5206,7 @@ pub type PFN_vkBuildAccelerationStructuresKHR = Option<
 		device: DeviceHandle,
 		deferred_operation: DeferredOperationKHR,
 		info_count: u32,
-		p_infos: *const AccelerationStructureBuildGeometryInfoKHR,
+		p_infos: *const AccelerationStructureBuildGeometryInfoKHR<'_>,
 		pp_build_range_infos: *const *const AccelerationStructureBuildRangeInfoKHR,
 	) -> Result,
 >;
@@ -5211,7 +5217,7 @@ pub type PFN_vkBuildAccelerationStructuresKHR = Option<
 pub type PFN_vkGetAccelerationStructureDeviceAddressKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const AccelerationStructureDeviceAddressInfoKHR,
+		p_info: *const AccelerationStructureDeviceAddressInfoKHR<'_>,
 	) -> DeviceAddress,
 >;
 
@@ -5263,8 +5269,8 @@ pub type PFN_vkDeferredOperationJoinKHR = Option<
 pub type PFN_vkGetPipelineIndirectMemoryRequirementsNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const ComputePipelineCreateInfo,
-		p_memory_requirements: *mut MemoryRequirements2,
+		p_create_info: *const ComputePipelineCreateInfo<'_>,
+		p_memory_requirements: *mut MemoryRequirements2<'_>,
 	) -> (),
 >;
 
@@ -5274,7 +5280,7 @@ pub type PFN_vkGetPipelineIndirectMemoryRequirementsNV = Option<
 pub type PFN_vkGetPipelineIndirectDeviceAddressNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const PipelineIndirectDeviceAddressInfoNV,
+		p_info: *const PipelineIndirectDeviceAddressInfoNV<'_>,
 	) -> DeviceAddress,
 >;
 
@@ -5282,7 +5288,7 @@ pub type PFN_vkGetPipelineIndirectDeviceAddressNV = Option<
 #[doc(alias = "vkAntiLagUpdateAMD")]
 #[doc = "\n\n[Khronos reference: `vkAntiLagUpdateAMD`](https://docs.vulkan.org/refpages/latest/refpages/source/vkAntiLagUpdateAMD.html)"]
 pub type PFN_vkAntiLagUpdateAMD =
-	Option<unsafe extern "system" fn(device: DeviceHandle, p_data: *const AntiLagDataAMD) -> ()>;
+	Option<unsafe extern "system" fn(device: DeviceHandle, p_data: *const AntiLagDataAMD<'_>) -> ()>;
 
 #[doc = "Nullable function pointer for `vkCmdSetCullMode`."]
 #[doc(alias = "vkCmdSetCullMode")]
@@ -5798,7 +5804,7 @@ pub type PFN_vkCmdSetRepresentativeFragmentTestEnableNV = Option<
 pub type PFN_vkCreatePrivateDataSlot = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const PrivateDataSlotCreateInfo,
+		p_create_info: *const PrivateDataSlotCreateInfo<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_private_data_slot: *mut PrivateDataSlot,
 	) -> Result,
@@ -5867,7 +5873,7 @@ pub type PFN_vkGetPrivateDataEXT = PFN_vkGetPrivateData;
 pub type PFN_vkCmdCopyBuffer2 = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_copy_buffer_info: *const CopyBufferInfo2,
+		p_copy_buffer_info: *const CopyBufferInfo2<'_>,
 	) -> (),
 >;
 
@@ -5882,7 +5888,7 @@ pub type PFN_vkCmdCopyBuffer2KHR = PFN_vkCmdCopyBuffer2;
 pub type PFN_vkCmdCopyImage2 = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_copy_image_info: *const CopyImageInfo2,
+		p_copy_image_info: *const CopyImageInfo2<'_>,
 	) -> (),
 >;
 
@@ -5897,7 +5903,7 @@ pub type PFN_vkCmdCopyImage2KHR = PFN_vkCmdCopyImage2;
 pub type PFN_vkCmdBlitImage2 = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_blit_image_info: *const BlitImageInfo2,
+		p_blit_image_info: *const BlitImageInfo2<'_>,
 	) -> (),
 >;
 
@@ -5912,7 +5918,7 @@ pub type PFN_vkCmdBlitImage2KHR = PFN_vkCmdBlitImage2;
 pub type PFN_vkCmdCopyBufferToImage2 = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_copy_buffer_to_image_info: *const CopyBufferToImageInfo2,
+		p_copy_buffer_to_image_info: *const CopyBufferToImageInfo2<'_>,
 	) -> (),
 >;
 
@@ -5927,7 +5933,7 @@ pub type PFN_vkCmdCopyBufferToImage2KHR = PFN_vkCmdCopyBufferToImage2;
 pub type PFN_vkCmdCopyImageToBuffer2 = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_copy_image_to_buffer_info: *const CopyImageToBufferInfo2,
+		p_copy_image_to_buffer_info: *const CopyImageToBufferInfo2<'_>,
 	) -> (),
 >;
 
@@ -5942,7 +5948,7 @@ pub type PFN_vkCmdCopyImageToBuffer2KHR = PFN_vkCmdCopyImageToBuffer2;
 pub type PFN_vkCmdResolveImage2 = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_resolve_image_info: *const ResolveImageInfo2,
+		p_resolve_image_info: *const ResolveImageInfo2<'_>,
 	) -> (),
 >;
 
@@ -5969,7 +5975,7 @@ pub type PFN_vkGetPhysicalDeviceFragmentShadingRatesKHR = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		p_fragment_shading_rate_count: *mut u32,
-		p_fragment_shading_rates: *mut PhysicalDeviceFragmentShadingRateKHR,
+		p_fragment_shading_rates: *mut PhysicalDeviceFragmentShadingRateKHR<'_>,
 	) -> Result,
 >;
 
@@ -5991,9 +5997,9 @@ pub type PFN_vkGetAccelerationStructureBuildSizesKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		build_type: AccelerationStructureBuildTypeKHR,
-		p_build_info: *const AccelerationStructureBuildGeometryInfoKHR,
+		p_build_info: *const AccelerationStructureBuildGeometryInfoKHR<'_>,
 		p_max_primitive_counts: *const u32,
-		p_size_info: *mut AccelerationStructureBuildSizesInfoKHR,
+		p_size_info: *mut AccelerationStructureBuildSizesInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -6004,9 +6010,9 @@ pub type PFN_vkCmdSetVertexInputEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
 		vertex_binding_description_count: u32,
-		p_vertex_binding_descriptions: *const VertexInputBindingDescription2EXT,
+		p_vertex_binding_descriptions: *const VertexInputBindingDescription2EXT<'_>,
 		vertex_attribute_description_count: u32,
-		p_vertex_attribute_descriptions: *const VertexInputAttributeDescription2EXT,
+		p_vertex_attribute_descriptions: *const VertexInputAttributeDescription2EXT<'_>,
 	) -> (),
 >;
 
@@ -6028,7 +6034,7 @@ pub type PFN_vkCmdSetEvent2 = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
 		event: Event,
-		p_dependency_info: *const DependencyInfo,
+		p_dependency_info: *const DependencyInfo<'_>,
 	) -> (),
 >;
 
@@ -6061,7 +6067,7 @@ pub type PFN_vkCmdWaitEvents2 = Option<
 		command_buffer: CommandBuffer,
 		event_count: u32,
 		p_events: *const Event,
-		p_dependency_infos: *const DependencyInfo,
+		p_dependency_infos: *const DependencyInfo<'_>,
 	) -> (),
 >;
 
@@ -6076,7 +6082,7 @@ pub type PFN_vkCmdWaitEvents2KHR = PFN_vkCmdWaitEvents2;
 pub type PFN_vkCmdPipelineBarrier2 = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_dependency_info: *const DependencyInfo,
+		p_dependency_info: *const DependencyInfo<'_>,
 	) -> (),
 >;
 
@@ -6092,7 +6098,7 @@ pub type PFN_vkQueueSubmit2 = Option<
 	unsafe extern "system" fn(
 		queue: Queue,
 		submit_count: u32,
-		p_submits: *const SubmitInfo2,
+		p_submits: *const SubmitInfo2<'_>,
 		fence: Fence,
 	) -> Result,
 >;
@@ -6139,7 +6145,7 @@ pub type PFN_vkGetQueueCheckpointData2NV = Option<
 	unsafe extern "system" fn(
 		queue: Queue,
 		p_checkpoint_data_count: *mut u32,
-		p_checkpoint_data: *mut CheckpointData2NV,
+		p_checkpoint_data: *mut CheckpointData2NV<'_>,
 	) -> (),
 >;
 
@@ -6149,7 +6155,7 @@ pub type PFN_vkGetQueueCheckpointData2NV = Option<
 pub type PFN_vkCopyMemoryToImage = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_copy_memory_to_image_info: *const CopyMemoryToImageInfo,
+		p_copy_memory_to_image_info: *const CopyMemoryToImageInfo<'_>,
 	) -> Result,
 >;
 
@@ -6164,7 +6170,7 @@ pub type PFN_vkCopyMemoryToImageEXT = PFN_vkCopyMemoryToImage;
 pub type PFN_vkCopyImageToMemory = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_copy_image_to_memory_info: *const CopyImageToMemoryInfo,
+		p_copy_image_to_memory_info: *const CopyImageToMemoryInfo<'_>,
 	) -> Result,
 >;
 
@@ -6179,7 +6185,7 @@ pub type PFN_vkCopyImageToMemoryEXT = PFN_vkCopyImageToMemory;
 pub type PFN_vkCopyImageToImage = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_copy_image_to_image_info: *const CopyImageToImageInfo,
+		p_copy_image_to_image_info: *const CopyImageToImageInfo<'_>,
 	) -> Result,
 >;
 
@@ -6195,7 +6201,7 @@ pub type PFN_vkTransitionImageLayout = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		transition_count: u32,
-		p_transitions: *const HostImageLayoutTransitionInfo,
+		p_transitions: *const HostImageLayoutTransitionInfo<'_>,
 	) -> Result,
 >;
 
@@ -6210,8 +6216,8 @@ pub type PFN_vkTransitionImageLayoutEXT = PFN_vkTransitionImageLayout;
 pub type PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_video_profile: *const VideoProfileInfoKHR,
-		p_capabilities: *mut VideoCapabilitiesKHR,
+		p_video_profile: *const VideoProfileInfoKHR<'_>,
+		p_capabilities: *mut VideoCapabilitiesKHR<'_>,
 	) -> Result,
 >;
 
@@ -6221,9 +6227,9 @@ pub type PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR = Option<
 pub type PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_video_format_info: *const PhysicalDeviceVideoFormatInfoKHR,
+		p_video_format_info: *const PhysicalDeviceVideoFormatInfoKHR<'_>,
 		p_video_format_property_count: *mut u32,
-		p_video_format_properties: *mut VideoFormatPropertiesKHR,
+		p_video_format_properties: *mut VideoFormatPropertiesKHR<'_>,
 	) -> Result,
 >;
 
@@ -6233,8 +6239,8 @@ pub type PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR = Option<
 pub type PFN_vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_quality_level_info: *const PhysicalDeviceVideoEncodeQualityLevelInfoKHR,
-		p_quality_level_properties: *mut VideoEncodeQualityLevelPropertiesKHR,
+		p_quality_level_info: *const PhysicalDeviceVideoEncodeQualityLevelInfoKHR<'_>,
+		p_quality_level_properties: *mut VideoEncodeQualityLevelPropertiesKHR<'_>,
 	) -> Result,
 >;
 
@@ -6244,7 +6250,7 @@ pub type PFN_vkGetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR = Option<
 pub type PFN_vkCreateVideoSessionKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const VideoSessionCreateInfoKHR,
+		p_create_info: *const VideoSessionCreateInfoKHR<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_video_session: *mut VideoSessionKHR,
 	) -> Result,
@@ -6267,7 +6273,7 @@ pub type PFN_vkDestroyVideoSessionKHR = Option<
 pub type PFN_vkCreateVideoSessionParametersKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const VideoSessionParametersCreateInfoKHR,
+		p_create_info: *const VideoSessionParametersCreateInfoKHR<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_video_session_parameters: *mut VideoSessionParametersKHR,
 	) -> Result,
@@ -6280,7 +6286,7 @@ pub type PFN_vkUpdateVideoSessionParametersKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		video_session_parameters: VideoSessionParametersKHR,
-		p_update_info: *const VideoSessionParametersUpdateInfoKHR,
+		p_update_info: *const VideoSessionParametersUpdateInfoKHR<'_>,
 	) -> Result,
 >;
 
@@ -6290,8 +6296,8 @@ pub type PFN_vkUpdateVideoSessionParametersKHR = Option<
 pub type PFN_vkGetEncodedVideoSessionParametersKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_video_session_parameters_info: *const VideoEncodeSessionParametersGetInfoKHR,
-		p_feedback_info: *mut VideoEncodeSessionParametersFeedbackInfoKHR,
+		p_video_session_parameters_info: *const VideoEncodeSessionParametersGetInfoKHR<'_>,
+		p_feedback_info: *mut VideoEncodeSessionParametersFeedbackInfoKHR<'_>,
 		p_data_size: *mut usize,
 		p_data: *mut std::ffi::c_void,
 	) -> Result,
@@ -6316,7 +6322,7 @@ pub type PFN_vkGetVideoSessionMemoryRequirementsKHR = Option<
 		device: DeviceHandle,
 		video_session: VideoSessionKHR,
 		p_memory_requirements_count: *mut u32,
-		p_memory_requirements: *mut VideoSessionMemoryRequirementsKHR,
+		p_memory_requirements: *mut VideoSessionMemoryRequirementsKHR<'_>,
 	) -> Result,
 >;
 
@@ -6328,7 +6334,7 @@ pub type PFN_vkBindVideoSessionMemoryKHR = Option<
 		device: DeviceHandle,
 		video_session: VideoSessionKHR,
 		bind_session_memory_info_count: u32,
-		p_bind_session_memory_infos: *const BindVideoSessionMemoryInfoKHR,
+		p_bind_session_memory_infos: *const BindVideoSessionMemoryInfoKHR<'_>,
 	) -> Result,
 >;
 
@@ -6338,7 +6344,7 @@ pub type PFN_vkBindVideoSessionMemoryKHR = Option<
 pub type PFN_vkCmdDecodeVideoKHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_decode_info: *const VideoDecodeInfoKHR,
+		p_decode_info: *const VideoDecodeInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -6348,7 +6354,7 @@ pub type PFN_vkCmdDecodeVideoKHR = Option<
 pub type PFN_vkCmdBeginVideoCodingKHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_begin_info: *const VideoBeginCodingInfoKHR,
+		p_begin_info: *const VideoBeginCodingInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -6358,7 +6364,7 @@ pub type PFN_vkCmdBeginVideoCodingKHR = Option<
 pub type PFN_vkCmdControlVideoCodingKHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_coding_control_info: *const VideoCodingControlInfoKHR,
+		p_coding_control_info: *const VideoCodingControlInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -6368,7 +6374,7 @@ pub type PFN_vkCmdControlVideoCodingKHR = Option<
 pub type PFN_vkCmdEndVideoCodingKHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_end_coding_info: *const VideoEndCodingInfoKHR,
+		p_end_coding_info: *const VideoEndCodingInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -6378,7 +6384,7 @@ pub type PFN_vkCmdEndVideoCodingKHR = Option<
 pub type PFN_vkCmdEncodeVideoKHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_encode_info: *const VideoEncodeInfoKHR,
+		p_encode_info: *const VideoEncodeInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -6411,8 +6417,8 @@ pub type PFN_vkCmdDecompressMemoryIndirectCountNV = Option<
 pub type PFN_vkGetPartitionedAccelerationStructuresBuildSizesNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const PartitionedAccelerationStructureInstancesInputNV,
-		p_size_info: *mut AccelerationStructureBuildSizesInfoKHR,
+		p_info: *const PartitionedAccelerationStructureInstancesInputNV<'_>,
+		p_size_info: *mut AccelerationStructureBuildSizesInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -6422,7 +6428,7 @@ pub type PFN_vkGetPartitionedAccelerationStructuresBuildSizesNV = Option<
 pub type PFN_vkCmdBuildPartitionedAccelerationStructuresNV = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_build_info: *const BuildPartitionedAccelerationStructureInfoNV,
+		p_build_info: *const BuildPartitionedAccelerationStructureInfoNV<'_>,
 	) -> (),
 >;
 
@@ -6432,7 +6438,7 @@ pub type PFN_vkCmdBuildPartitionedAccelerationStructuresNV = Option<
 pub type PFN_vkCmdDecompressMemoryEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_decompress_memory_info_ext: *const DecompressMemoryInfoEXT,
+		p_decompress_memory_info_ext: *const DecompressMemoryInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -6456,7 +6462,7 @@ pub type PFN_vkCmdDecompressMemoryIndirectCountEXT = Option<
 pub type PFN_vkCreateCuModuleNVX = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const CuModuleCreateInfoNVX,
+		p_create_info: *const CuModuleCreateInfoNVX<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_module: *mut CuModuleNVX,
 	) -> Result,
@@ -6468,7 +6474,7 @@ pub type PFN_vkCreateCuModuleNVX = Option<
 pub type PFN_vkCreateCuFunctionNVX = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const CuFunctionCreateInfoNVX,
+		p_create_info: *const CuFunctionCreateInfoNVX<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_function: *mut CuFunctionNVX,
 	) -> Result,
@@ -6502,7 +6508,7 @@ pub type PFN_vkDestroyCuFunctionNVX = Option<
 pub type PFN_vkCmdCuLaunchKernelNVX = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_launch_info: *const CuLaunchInfoNVX,
+		p_launch_info: *const CuLaunchInfoNVX<'_>,
 	) -> (),
 >;
 
@@ -6535,7 +6541,7 @@ pub type PFN_vkGetDescriptorSetLayoutBindingOffsetEXT = Option<
 pub type PFN_vkGetDescriptorEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_descriptor_info: *const DescriptorGetInfoEXT,
+		p_descriptor_info: *const DescriptorGetInfoEXT<'_>,
 		data_size: usize,
 		p_descriptor: *mut std::ffi::c_void,
 	) -> (),
@@ -6548,7 +6554,7 @@ pub type PFN_vkCmdBindDescriptorBuffersEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
 		buffer_count: u32,
-		p_binding_infos: *const DescriptorBufferBindingInfoEXT,
+		p_binding_infos: *const DescriptorBufferBindingInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -6585,7 +6591,7 @@ pub type PFN_vkCmdBindDescriptorBufferEmbeddedSamplersEXT = Option<
 pub type PFN_vkGetBufferOpaqueCaptureDescriptorDataEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const BufferCaptureDescriptorDataInfoEXT,
+		p_info: *const BufferCaptureDescriptorDataInfoEXT<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> Result,
 >;
@@ -6596,7 +6602,7 @@ pub type PFN_vkGetBufferOpaqueCaptureDescriptorDataEXT = Option<
 pub type PFN_vkGetImageOpaqueCaptureDescriptorDataEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const ImageCaptureDescriptorDataInfoEXT,
+		p_info: *const ImageCaptureDescriptorDataInfoEXT<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> Result,
 >;
@@ -6607,7 +6613,7 @@ pub type PFN_vkGetImageOpaqueCaptureDescriptorDataEXT = Option<
 pub type PFN_vkGetImageViewOpaqueCaptureDescriptorDataEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const ImageViewCaptureDescriptorDataInfoEXT,
+		p_info: *const ImageViewCaptureDescriptorDataInfoEXT<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> Result,
 >;
@@ -6618,7 +6624,7 @@ pub type PFN_vkGetImageViewOpaqueCaptureDescriptorDataEXT = Option<
 pub type PFN_vkGetSamplerOpaqueCaptureDescriptorDataEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const SamplerCaptureDescriptorDataInfoEXT,
+		p_info: *const SamplerCaptureDescriptorDataInfoEXT<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> Result,
 >;
@@ -6629,7 +6635,7 @@ pub type PFN_vkGetSamplerOpaqueCaptureDescriptorDataEXT = Option<
 pub type PFN_vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const AccelerationStructureCaptureDescriptorDataInfoEXT,
+		p_info: *const AccelerationStructureCaptureDescriptorDataInfoEXT<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> Result,
 >;
@@ -6671,7 +6677,7 @@ pub type PFN_vkWaitForPresent2KHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		swapchain: SwapchainKHR,
-		p_present_wait2_info: *const PresentWait2InfoKHR,
+		p_present_wait2_info: *const PresentWait2InfoKHR<'_>,
 	) -> Result,
 >;
 
@@ -6694,7 +6700,7 @@ pub type PFN_vkWaitForPresentKHR = Option<
 pub type PFN_vkCreateBufferCollectionFUCHSIA = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const BufferCollectionCreateInfoFUCHSIA,
+		p_create_info: *const BufferCollectionCreateInfoFUCHSIA<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_collection: *mut BufferCollectionFUCHSIA,
 	) -> Result,
@@ -6708,7 +6714,7 @@ pub type PFN_vkSetBufferCollectionBufferConstraintsFUCHSIA = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		collection: BufferCollectionFUCHSIA,
-		p_buffer_constraints_info: *const BufferConstraintsInfoFUCHSIA,
+		p_buffer_constraints_info: *const BufferConstraintsInfoFUCHSIA<'_>,
 	) -> Result,
 >;
 
@@ -6720,7 +6726,7 @@ pub type PFN_vkSetBufferCollectionImageConstraintsFUCHSIA = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		collection: BufferCollectionFUCHSIA,
-		p_image_constraints_info: *const ImageConstraintsInfoFUCHSIA,
+		p_image_constraints_info: *const ImageConstraintsInfoFUCHSIA<'_>,
 	) -> Result,
 >;
 
@@ -6744,7 +6750,7 @@ pub type PFN_vkGetBufferCollectionPropertiesFUCHSIA = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		collection: BufferCollectionFUCHSIA,
-		p_properties: *mut BufferCollectionPropertiesFUCHSIA,
+		p_properties: *mut BufferCollectionPropertiesFUCHSIA<'_>,
 	) -> Result,
 >;
 
@@ -6755,7 +6761,7 @@ pub type PFN_vkGetBufferCollectionPropertiesFUCHSIA = Option<
 pub type PFN_vkCreateCudaModuleNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const CudaModuleCreateInfoNV,
+		p_create_info: *const CudaModuleCreateInfoNV<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_module: *mut CudaModuleNV,
 	) -> Result,
@@ -6781,7 +6787,7 @@ pub type PFN_vkGetCudaModuleCacheNV = Option<
 pub type PFN_vkCreateCudaFunctionNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const CudaFunctionCreateInfoNV,
+		p_create_info: *const CudaFunctionCreateInfoNV<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_function: *mut CudaFunctionNV,
 	) -> Result,
@@ -6818,7 +6824,7 @@ pub type PFN_vkDestroyCudaFunctionNV = Option<
 pub type PFN_vkCmdCudaLaunchKernelNV = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_launch_info: *const CudaLaunchInfoNV,
+		p_launch_info: *const CudaLaunchInfoNV<'_>,
 	) -> (),
 >;
 
@@ -6828,7 +6834,7 @@ pub type PFN_vkCmdCudaLaunchKernelNV = Option<
 pub type PFN_vkCmdBeginRendering = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_rendering_info: *const RenderingInfo,
+		p_rendering_info: *const RenderingInfo<'_>,
 	) -> (),
 >;
 
@@ -6849,7 +6855,7 @@ pub type PFN_vkCmdEndRendering =
 pub type PFN_vkCmdEndRendering2KHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_rendering_end_info: *const RenderingEndInfoKHR,
+		p_rendering_end_info: *const RenderingEndInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -6869,8 +6875,8 @@ pub type PFN_vkCmdEndRenderingKHR = PFN_vkCmdEndRendering;
 pub type PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_binding_reference: *const DescriptorSetBindingReferenceVALVE,
-		p_host_mapping: *mut DescriptorSetLayoutHostMappingInfoVALVE,
+		p_binding_reference: *const DescriptorSetBindingReferenceVALVE<'_>,
+		p_host_mapping: *mut DescriptorSetLayoutHostMappingInfoVALVE<'_>,
 	) -> (),
 >;
 
@@ -6891,7 +6897,7 @@ pub type PFN_vkGetDescriptorSetHostMappingVALVE = Option<
 pub type PFN_vkCreateMicromapEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const MicromapCreateInfoEXT,
+		p_create_info: *const MicromapCreateInfoEXT<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_micromap: *mut MicromapEXT,
 	) -> Result,
@@ -6904,7 +6910,7 @@ pub type PFN_vkCmdBuildMicromapsEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
 		info_count: u32,
-		p_infos: *const MicromapBuildInfoEXT,
+		p_infos: *const MicromapBuildInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -6916,7 +6922,7 @@ pub type PFN_vkBuildMicromapsEXT = Option<
 		device: DeviceHandle,
 		deferred_operation: DeferredOperationKHR,
 		info_count: u32,
-		p_infos: *const MicromapBuildInfoEXT,
+		p_infos: *const MicromapBuildInfoEXT<'_>,
 	) -> Result,
 >;
 
@@ -6937,7 +6943,7 @@ pub type PFN_vkDestroyMicromapEXT = Option<
 pub type PFN_vkCmdCopyMicromapEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const CopyMicromapInfoEXT,
+		p_info: *const CopyMicromapInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -6948,7 +6954,7 @@ pub type PFN_vkCopyMicromapEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		deferred_operation: DeferredOperationKHR,
-		p_info: *const CopyMicromapInfoEXT,
+		p_info: *const CopyMicromapInfoEXT<'_>,
 	) -> Result,
 >;
 
@@ -6958,7 +6964,7 @@ pub type PFN_vkCopyMicromapEXT = Option<
 pub type PFN_vkCmdCopyMicromapToMemoryEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const CopyMicromapToMemoryInfoEXT,
+		p_info: *const CopyMicromapToMemoryInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -6969,7 +6975,7 @@ pub type PFN_vkCopyMicromapToMemoryEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		deferred_operation: DeferredOperationKHR,
-		p_info: *const CopyMicromapToMemoryInfoEXT,
+		p_info: *const CopyMicromapToMemoryInfoEXT<'_>,
 	) -> Result,
 >;
 
@@ -6979,7 +6985,7 @@ pub type PFN_vkCopyMicromapToMemoryEXT = Option<
 pub type PFN_vkCmdCopyMemoryToMicromapEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const CopyMemoryToMicromapInfoEXT,
+		p_info: *const CopyMemoryToMicromapInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -6990,7 +6996,7 @@ pub type PFN_vkCopyMemoryToMicromapEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		deferred_operation: DeferredOperationKHR,
-		p_info: *const CopyMemoryToMicromapInfoEXT,
+		p_info: *const CopyMemoryToMicromapInfoEXT<'_>,
 	) -> Result,
 >;
 
@@ -7029,7 +7035,7 @@ pub type PFN_vkWriteMicromapsPropertiesEXT = Option<
 pub type PFN_vkGetDeviceMicromapCompatibilityEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_version_info: *const MicromapVersionInfoEXT,
+		p_version_info: *const MicromapVersionInfoEXT<'_>,
 		p_compatibility: *mut AccelerationStructureCompatibilityKHR,
 	) -> (),
 >;
@@ -7041,8 +7047,8 @@ pub type PFN_vkGetMicromapBuildSizesEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		build_type: AccelerationStructureBuildTypeKHR,
-		p_build_info: *const MicromapBuildInfoEXT,
-		p_size_info: *mut MicromapBuildSizesInfoEXT,
+		p_build_info: *const MicromapBuildInfoEXT<'_>,
+		p_size_info: *mut MicromapBuildSizesInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -7053,7 +7059,7 @@ pub type PFN_vkGetShaderModuleIdentifierEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		shader_module: ShaderModule,
-		p_identifier: *mut ShaderModuleIdentifierEXT,
+		p_identifier: *mut ShaderModuleIdentifierEXT<'_>,
 	) -> (),
 >;
 
@@ -7063,8 +7069,8 @@ pub type PFN_vkGetShaderModuleIdentifierEXT = Option<
 pub type PFN_vkGetShaderModuleCreateInfoIdentifierEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const ShaderModuleCreateInfo,
-		p_identifier: *mut ShaderModuleIdentifierEXT,
+		p_create_info: *const ShaderModuleCreateInfo<'_>,
+		p_identifier: *mut ShaderModuleIdentifierEXT<'_>,
 	) -> (),
 >;
 
@@ -7075,8 +7081,8 @@ pub type PFN_vkGetImageSubresourceLayout2 = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		image: Image,
-		p_subresource: *const ImageSubresource2,
-		p_layout: *mut SubresourceLayout2,
+		p_subresource: *const ImageSubresource2<'_>,
+		p_layout: *mut SubresourceLayout2<'_>,
 	) -> (),
 >;
 
@@ -7096,7 +7102,7 @@ pub type PFN_vkGetImageSubresourceLayout2EXT = PFN_vkGetImageSubresourceLayout2;
 pub type PFN_vkGetPipelinePropertiesEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_pipeline_info: *const PipelineInfoKHR,
+		p_pipeline_info: *const PipelineInfoKHR<'_>,
 		p_pipeline_properties: *mut BaseOutStructure,
 	) -> Result,
 >;
@@ -7108,7 +7114,7 @@ pub type PFN_vkGetPipelinePropertiesEXT = Option<
 pub type PFN_vkExportMetalObjectsEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_metal_objects_info: *mut ExportMetalObjectsInfoEXT,
+		p_metal_objects_info: *mut ExportMetalObjectsInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -7118,7 +7124,7 @@ pub type PFN_vkExportMetalObjectsEXT = Option<
 pub type PFN_vkCmdBindTileMemoryQCOM = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_tile_memory_bind_info: *const TileMemoryBindInfoQCOM,
+		p_tile_memory_bind_info: *const TileMemoryBindInfoQCOM<'_>,
 	) -> (),
 >;
 
@@ -7130,7 +7136,7 @@ pub type PFN_vkGetFramebufferTilePropertiesQCOM = Option<
 		device: DeviceHandle,
 		framebuffer: Framebuffer,
 		p_properties_count: *mut u32,
-		p_properties: *mut TilePropertiesQCOM,
+		p_properties: *mut TilePropertiesQCOM<'_>,
 	) -> Result,
 >;
 
@@ -7140,8 +7146,8 @@ pub type PFN_vkGetFramebufferTilePropertiesQCOM = Option<
 pub type PFN_vkGetDynamicRenderingTilePropertiesQCOM = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_rendering_info: *const RenderingInfo,
-		p_properties: *mut TilePropertiesQCOM,
+		p_rendering_info: *const RenderingInfo<'_>,
+		p_properties: *mut TilePropertiesQCOM<'_>,
 	) -> Result,
 >;
 
@@ -7151,9 +7157,9 @@ pub type PFN_vkGetDynamicRenderingTilePropertiesQCOM = Option<
 pub type PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_optical_flow_image_format_info: *const OpticalFlowImageFormatInfoNV,
+		p_optical_flow_image_format_info: *const OpticalFlowImageFormatInfoNV<'_>,
 		p_format_count: *mut u32,
-		p_image_format_properties: *mut OpticalFlowImageFormatPropertiesNV,
+		p_image_format_properties: *mut OpticalFlowImageFormatPropertiesNV<'_>,
 	) -> Result,
 >;
 
@@ -7163,7 +7169,7 @@ pub type PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV = Option<
 pub type PFN_vkCreateOpticalFlowSessionNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const OpticalFlowSessionCreateInfoNV,
+		p_create_info: *const OpticalFlowSessionCreateInfoNV<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_session: *mut OpticalFlowSessionNV,
 	) -> Result,
@@ -7200,7 +7206,7 @@ pub type PFN_vkCmdOpticalFlowExecuteNV = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
 		session: OpticalFlowSessionNV,
-		p_execute_info: *const OpticalFlowExecuteInfoNV,
+		p_execute_info: *const OpticalFlowExecuteInfoNV<'_>,
 	) -> (),
 >;
 
@@ -7210,8 +7216,8 @@ pub type PFN_vkCmdOpticalFlowExecuteNV = Option<
 pub type PFN_vkGetDeviceFaultInfoEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_fault_counts: *mut DeviceFaultCountsEXT,
-		p_fault_info: *mut DeviceFaultInfoEXT,
+		p_fault_counts: *mut DeviceFaultCountsEXT<'_>,
+		p_fault_info: *mut DeviceFaultInfoEXT<'_>,
 	) -> Result,
 >;
 
@@ -7223,7 +7229,7 @@ pub type PFN_vkGetDeviceFaultReportsKHR = Option<
 		device: DeviceHandle,
 		timeout: u64,
 		p_fault_counts: *mut u32,
-		p_fault_info: *mut DeviceFaultInfoKHR,
+		p_fault_info: *mut DeviceFaultInfoKHR<'_>,
 	) -> Result,
 >;
 
@@ -7233,7 +7239,7 @@ pub type PFN_vkGetDeviceFaultReportsKHR = Option<
 pub type PFN_vkGetDeviceFaultDebugInfoKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_debug_info: *mut DeviceFaultDebugInfoKHR,
+		p_debug_info: *mut DeviceFaultDebugInfoKHR<'_>,
 	) -> Result,
 >;
 
@@ -7243,7 +7249,7 @@ pub type PFN_vkGetDeviceFaultDebugInfoKHR = Option<
 pub type PFN_vkCmdSetDepthBias2EXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_depth_bias_info: *const DepthBiasInfoEXT,
+		p_depth_bias_info: *const DepthBiasInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -7253,7 +7259,7 @@ pub type PFN_vkCmdSetDepthBias2EXT = Option<
 pub type PFN_vkReleaseSwapchainImagesKHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_release_info: *const ReleaseSwapchainImagesInfoKHR,
+		p_release_info: *const ReleaseSwapchainImagesInfoKHR<'_>,
 	) -> Result,
 >;
 
@@ -7268,8 +7274,8 @@ pub type PFN_vkReleaseSwapchainImagesEXT = PFN_vkReleaseSwapchainImagesKHR;
 pub type PFN_vkGetDeviceImageSubresourceLayout = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const DeviceImageSubresourceInfo,
-		p_layout: *mut SubresourceLayout2,
+		p_info: *const DeviceImageSubresourceInfo<'_>,
+		p_layout: *mut SubresourceLayout2<'_>,
 	) -> (),
 >;
 
@@ -7284,7 +7290,7 @@ pub type PFN_vkGetDeviceImageSubresourceLayoutKHR = PFN_vkGetDeviceImageSubresou
 pub type PFN_vkMapMemory2 = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_memory_map_info: *const MemoryMapInfo,
+		p_memory_map_info: *const MemoryMapInfo<'_>,
 		pp_data: *mut *mut std::ffi::c_void,
 	) -> Result,
 >;
@@ -7300,7 +7306,7 @@ pub type PFN_vkMapMemory2KHR = PFN_vkMapMemory2;
 pub type PFN_vkUnmapMemory2 = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_memory_unmap_info: *const MemoryUnmapInfo,
+		p_memory_unmap_info: *const MemoryUnmapInfo<'_>,
 	) -> Result,
 >;
 
@@ -7316,7 +7322,7 @@ pub type PFN_vkCreateShadersEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		create_info_count: u32,
-		p_create_infos: *const ShaderCreateInfoEXT,
+		p_create_infos: *const ShaderCreateInfoEXT<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_shaders: *mut ShaderEXT,
 	) -> Result,
@@ -7371,7 +7377,7 @@ pub type PFN_vkGetSwapchainTimingPropertiesEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		swapchain: SwapchainKHR,
-		p_swapchain_timing_properties: *mut SwapchainTimingPropertiesEXT,
+		p_swapchain_timing_properties: *mut SwapchainTimingPropertiesEXT<'_>,
 		p_swapchain_timing_properties_counter: *mut u64,
 	) -> Result,
 >;
@@ -7383,7 +7389,7 @@ pub type PFN_vkGetSwapchainTimeDomainPropertiesEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		swapchain: SwapchainKHR,
-		p_swapchain_time_domain_properties: *mut SwapchainTimeDomainPropertiesEXT,
+		p_swapchain_time_domain_properties: *mut SwapchainTimeDomainPropertiesEXT<'_>,
 		p_time_domains_counter: *mut u64,
 	) -> Result,
 >;
@@ -7394,8 +7400,8 @@ pub type PFN_vkGetSwapchainTimeDomainPropertiesEXT = Option<
 pub type PFN_vkGetPastPresentationTimingEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_past_presentation_timing_info: *const PastPresentationTimingInfoEXT,
-		p_past_presentation_timing_properties: *mut PastPresentationTimingPropertiesEXT,
+		p_past_presentation_timing_info: *const PastPresentationTimingInfoEXT<'_>,
+		p_past_presentation_timing_properties: *mut PastPresentationTimingPropertiesEXT<'_>,
 	) -> Result,
 >;
 
@@ -7407,7 +7413,7 @@ pub type PFN_vkGetScreenBufferPropertiesQNX = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		buffer: *const _screen_buffer,
-		p_properties: *mut ScreenBufferPropertiesQNX,
+		p_properties: *mut ScreenBufferPropertiesQNX<'_>,
 	) -> Result,
 >;
 
@@ -7418,7 +7424,7 @@ pub type PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		p_property_count: *mut u32,
-		p_properties: *mut CooperativeMatrixPropertiesKHR,
+		p_properties: *mut CooperativeMatrixPropertiesKHR<'_>,
 	) -> Result,
 >;
 
@@ -7428,9 +7434,9 @@ pub type PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR = Option<
 pub type PFN_vkGetPhysicalDeviceCooperativeMatrixProperties2EXT = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_cooperative_matrix_info: *const PhysicalDeviceCooperativeMatrixInfo2EXT,
+		p_cooperative_matrix_info: *const PhysicalDeviceCooperativeMatrixInfo2EXT<'_>,
 		p_property_count: *mut u32,
-		p_properties: *mut CooperativeMatrixProperties2EXT,
+		p_properties: *mut CooperativeMatrixProperties2EXT<'_>,
 	) -> Result,
 >;
 
@@ -7442,7 +7448,7 @@ pub type PFN_vkGetExecutionGraphPipelineScratchSizeAMDX = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		execution_graph: Pipeline,
-		p_size_info: *mut ExecutionGraphPipelineScratchSizeAMDX,
+		p_size_info: *mut ExecutionGraphPipelineScratchSizeAMDX<'_>,
 	) -> Result,
 >;
 
@@ -7454,7 +7460,7 @@ pub type PFN_vkGetExecutionGraphPipelineNodeIndexAMDX = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		execution_graph: Pipeline,
-		p_node_info: *const PipelineShaderStageNodeCreateInfoAMDX,
+		p_node_info: *const PipelineShaderStageNodeCreateInfoAMDX<'_>,
 		p_node_index: *mut u32,
 	) -> Result,
 >;
@@ -7468,7 +7474,7 @@ pub type PFN_vkCreateExecutionGraphPipelinesAMDX = Option<
 		device: DeviceHandle,
 		pipeline_cache: PipelineCache,
 		create_info_count: u32,
-		p_create_infos: *const ExecutionGraphPipelineCreateInfoAMDX,
+		p_create_infos: *const ExecutionGraphPipelineCreateInfoAMDX<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_pipelines: *mut Pipeline,
 	) -> Result,
@@ -7532,7 +7538,7 @@ pub type PFN_vkCmdDispatchGraphIndirectCountAMDX = Option<
 pub type PFN_vkCreateGpaSessionAMD = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const GpaSessionCreateInfoAMD,
+		p_create_info: *const GpaSessionCreateInfoAMD<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_gpa_session: *mut GpaSessionAMD,
 	) -> Result,
@@ -7553,14 +7559,20 @@ pub type PFN_vkDestroyGpaSessionAMD = Option<
 #[doc(alias = "vkSetGpaDeviceClockModeAMD")]
 #[doc = "\n\n[Khronos reference: `vkSetGpaDeviceClockModeAMD`](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetGpaDeviceClockModeAMD.html)"]
 pub type PFN_vkSetGpaDeviceClockModeAMD = Option<
-	unsafe extern "system" fn(device: DeviceHandle, p_info: *mut GpaDeviceClockModeInfoAMD) -> Result,
+	unsafe extern "system" fn(
+		device: DeviceHandle,
+		p_info: *mut GpaDeviceClockModeInfoAMD<'_>,
+	) -> Result,
 >;
 
 #[doc = "Nullable function pointer for `vkGetGpaDeviceClockInfoAMD`."]
 #[doc(alias = "vkGetGpaDeviceClockInfoAMD")]
 #[doc = "\n\n[Khronos reference: `vkGetGpaDeviceClockInfoAMD`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetGpaDeviceClockInfoAMD.html)"]
 pub type PFN_vkGetGpaDeviceClockInfoAMD = Option<
-	unsafe extern "system" fn(device: DeviceHandle, p_info: *mut GpaDeviceGetClockInfoAMD) -> Result,
+	unsafe extern "system" fn(
+		device: DeviceHandle,
+		p_info: *mut GpaDeviceGetClockInfoAMD<'_>,
+	) -> Result,
 >;
 
 #[doc = "Nullable function pointer for `vkCmdBeginGpaSessionAMD`."]
@@ -7584,7 +7596,7 @@ pub type PFN_vkCmdBeginGpaSampleAMD = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
 		gpa_session: GpaSessionAMD,
-		p_gpa_sample_begin_info: *const GpaSampleBeginInfoAMD,
+		p_gpa_sample_begin_info: *const GpaSampleBeginInfoAMD<'_>,
 		p_sample_id: *mut u32,
 	) -> Result,
 >;
@@ -7638,7 +7650,7 @@ pub type PFN_vkCmdCopyGpaSessionResultsAMD = Option<
 pub type PFN_vkCmdBindDescriptorSets2 = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_bind_descriptor_sets_info: *const BindDescriptorSetsInfo,
+		p_bind_descriptor_sets_info: *const BindDescriptorSetsInfo<'_>,
 	) -> (),
 >;
 
@@ -7653,7 +7665,7 @@ pub type PFN_vkCmdBindDescriptorSets2KHR = PFN_vkCmdBindDescriptorSets2;
 pub type PFN_vkCmdPushConstants2 = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_push_constants_info: *const PushConstantsInfo,
+		p_push_constants_info: *const PushConstantsInfo<'_>,
 	) -> (),
 >;
 
@@ -7668,7 +7680,7 @@ pub type PFN_vkCmdPushConstants2KHR = PFN_vkCmdPushConstants2;
 pub type PFN_vkCmdPushDescriptorSet2 = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_push_descriptor_set_info: *const PushDescriptorSetInfo,
+		p_push_descriptor_set_info: *const PushDescriptorSetInfo<'_>,
 	) -> (),
 >;
 
@@ -7683,7 +7695,7 @@ pub type PFN_vkCmdPushDescriptorSet2KHR = PFN_vkCmdPushDescriptorSet2;
 pub type PFN_vkCmdPushDescriptorSetWithTemplate2 = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_push_descriptor_set_with_template_info: *const PushDescriptorSetWithTemplateInfo,
+		p_push_descriptor_set_with_template_info: *const PushDescriptorSetWithTemplateInfo<'_>,
 	) -> (),
 >;
 
@@ -7698,14 +7710,14 @@ pub type PFN_vkCmdPushDescriptorSetWithTemplate2KHR = PFN_vkCmdPushDescriptorSet
 pub type PFN_vkCmdSetDescriptorBufferOffsets2EXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_set_descriptor_buffer_offsets_info: *const SetDescriptorBufferOffsetsInfoEXT,
+		p_set_descriptor_buffer_offsets_info: *const SetDescriptorBufferOffsetsInfoEXT<'_>,
 	) -> (),
 >;
 
 #[doc = "Nullable function pointer for `vkCmdBindDescriptorBufferEmbeddedSamplers2EXT`."]
 #[doc(alias = "vkCmdBindDescriptorBufferEmbeddedSamplers2EXT")]
 #[doc = "\n\n[Khronos reference: `vkCmdBindDescriptorBufferEmbeddedSamplers2EXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCmdBindDescriptorBufferEmbeddedSamplers2EXT.html)"]
-pub type PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT = Option<unsafe extern "system" fn(command_buffer: CommandBuffer, p_bind_descriptor_buffer_embedded_samplers_info: *const BindDescriptorBufferEmbeddedSamplersInfoEXT) -> ()>;
+pub type PFN_vkCmdBindDescriptorBufferEmbeddedSamplers2EXT = Option<unsafe extern "system" fn(command_buffer: CommandBuffer, p_bind_descriptor_buffer_embedded_samplers_info: *const BindDescriptorBufferEmbeddedSamplersInfoEXT<'_>) -> ()>;
 
 #[doc = "Nullable function pointer for `vkSetLatencySleepModeNV`."]
 #[doc(alias = "vkSetLatencySleepModeNV")]
@@ -7714,7 +7726,7 @@ pub type PFN_vkSetLatencySleepModeNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		swapchain: SwapchainKHR,
-		p_sleep_mode_info: *const LatencySleepModeInfoNV,
+		p_sleep_mode_info: *const LatencySleepModeInfoNV<'_>,
 	) -> Result,
 >;
 
@@ -7725,7 +7737,7 @@ pub type PFN_vkLatencySleepNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		swapchain: SwapchainKHR,
-		p_sleep_info: *const LatencySleepInfoNV,
+		p_sleep_info: *const LatencySleepInfoNV<'_>,
 	) -> Result,
 >;
 
@@ -7736,7 +7748,7 @@ pub type PFN_vkSetLatencyMarkerNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		swapchain: SwapchainKHR,
-		p_latency_marker_info: *const SetLatencyMarkerInfoNV,
+		p_latency_marker_info: *const SetLatencyMarkerInfoNV<'_>,
 	) -> (),
 >;
 
@@ -7747,7 +7759,7 @@ pub type PFN_vkGetLatencyTimingsNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		swapchain: SwapchainKHR,
-		p_latency_marker_info: *mut GetLatencyMarkerInfoNV,
+		p_latency_marker_info: *mut GetLatencyMarkerInfoNV<'_>,
 	) -> (),
 >;
 
@@ -7755,7 +7767,10 @@ pub type PFN_vkGetLatencyTimingsNV = Option<
 #[doc(alias = "vkQueueNotifyOutOfBandNV")]
 #[doc = "\n\n[Khronos reference: `vkQueueNotifyOutOfBandNV`](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueNotifyOutOfBandNV.html)"]
 pub type PFN_vkQueueNotifyOutOfBandNV = Option<
-	unsafe extern "system" fn(queue: Queue, p_queue_type_info: *const OutOfBandQueueTypeInfoNV) -> (),
+	unsafe extern "system" fn(
+		queue: Queue,
+		p_queue_type_info: *const OutOfBandQueueTypeInfoNV<'_>,
+	) -> (),
 >;
 
 #[doc = "Nullable function pointer for `vkSetLatencySleepModeLegacyNV`."]
@@ -7813,7 +7828,7 @@ pub type PFN_vkShutdownLatencyDeviceLegacyNV =
 pub type PFN_vkCmdSetRenderingAttachmentLocations = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_location_info: *const RenderingAttachmentLocationInfo,
+		p_location_info: *const RenderingAttachmentLocationInfo<'_>,
 	) -> (),
 >;
 
@@ -7828,7 +7843,7 @@ pub type PFN_vkCmdSetRenderingAttachmentLocationsKHR = PFN_vkCmdSetRenderingAtta
 pub type PFN_vkCmdSetRenderingInputAttachmentIndices = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_input_attachment_index_info: *const RenderingInputAttachmentIndexInfo,
+		p_input_attachment_index_info: *const RenderingInputAttachmentIndexInfo<'_>,
 	) -> (),
 >;
 
@@ -7856,7 +7871,7 @@ pub type PFN_vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV 
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		p_property_count: *mut u32,
-		p_properties: *mut CooperativeMatrixFlexibleDimensionsPropertiesNV,
+		p_properties: *mut CooperativeMatrixFlexibleDimensionsPropertiesNV<'_>,
 	) -> Result,
 >;
 
@@ -7867,7 +7882,7 @@ pub type PFN_vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV 
 pub type PFN_vkGetMemoryMetalHandleEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_get_metal_handle_info: *const MemoryGetMetalHandleInfoEXT,
+		p_get_metal_handle_info: *const MemoryGetMetalHandleInfoEXT<'_>,
 		p_handle: *mut *mut std::ffi::c_void,
 	) -> Result,
 >;
@@ -7881,7 +7896,7 @@ pub type PFN_vkGetMemoryMetalHandlePropertiesEXT = Option<
 		device: DeviceHandle,
 		handle_type: ExternalMemoryHandleTypeFlagBits,
 		p_handle: *const std::ffi::c_void,
-		p_memory_metal_handle_properties: *mut MemoryMetalHandlePropertiesEXT,
+		p_memory_metal_handle_properties: *mut MemoryMetalHandlePropertiesEXT<'_>,
 	) -> Result,
 >;
 
@@ -7892,7 +7907,7 @@ pub type PFN_vkGetPhysicalDeviceCooperativeVectorPropertiesNV = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		p_property_count: *mut u32,
-		p_properties: *mut CooperativeVectorPropertiesNV,
+		p_properties: *mut CooperativeVectorPropertiesNV<'_>,
 	) -> Result,
 >;
 
@@ -7902,7 +7917,7 @@ pub type PFN_vkGetPhysicalDeviceCooperativeVectorPropertiesNV = Option<
 pub type PFN_vkConvertCooperativeVectorMatrixNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const ConvertCooperativeVectorMatrixInfoNV,
+		p_info: *const ConvertCooperativeVectorMatrixInfoNV<'_>,
 	) -> Result,
 >;
 
@@ -7913,7 +7928,7 @@ pub type PFN_vkCmdConvertCooperativeVectorMatrixNV = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
 		info_count: u32,
-		p_infos: *const ConvertCooperativeVectorMatrixInfoNV,
+		p_infos: *const ConvertCooperativeVectorMatrixInfoNV<'_>,
 	) -> (),
 >;
 
@@ -7923,7 +7938,7 @@ pub type PFN_vkCmdConvertCooperativeVectorMatrixNV = Option<
 pub type PFN_vkCmdDispatchTileQCOM = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_dispatch_tile_info: *const DispatchTileInfoQCOM,
+		p_dispatch_tile_info: *const DispatchTileInfoQCOM<'_>,
 	) -> (),
 >;
 
@@ -7933,7 +7948,7 @@ pub type PFN_vkCmdDispatchTileQCOM = Option<
 pub type PFN_vkCmdBeginPerTileExecutionQCOM = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_per_tile_begin_info: *const PerTileBeginInfoQCOM,
+		p_per_tile_begin_info: *const PerTileBeginInfoQCOM<'_>,
 	) -> (),
 >;
 
@@ -7943,7 +7958,7 @@ pub type PFN_vkCmdBeginPerTileExecutionQCOM = Option<
 pub type PFN_vkCmdEndPerTileExecutionQCOM = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_per_tile_end_info: *const PerTileEndInfoQCOM,
+		p_per_tile_end_info: *const PerTileEndInfoQCOM<'_>,
 	) -> (),
 >;
 
@@ -7953,7 +7968,7 @@ pub type PFN_vkCmdEndPerTileExecutionQCOM = Option<
 pub type PFN_vkCreateExternalComputeQueueNV = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const ExternalComputeQueueCreateInfoNV,
+		p_create_info: *const ExternalComputeQueueCreateInfoNV<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_external_queue: *mut ExternalComputeQueueNV,
 	) -> Result,
@@ -7976,7 +7991,7 @@ pub type PFN_vkDestroyExternalComputeQueueNV = Option<
 pub type PFN_vkGetExternalComputeQueueDataNV = Option<
 	unsafe extern "system" fn(
 		external_queue: ExternalComputeQueueNV,
-		params: *mut ExternalComputeQueueDataParamsNV,
+		params: *mut ExternalComputeQueueDataParamsNV<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> (),
 >;
@@ -7988,7 +8003,7 @@ pub type PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		p_description_count: *mut u32,
-		p_descriptions: *mut ShaderInstrumentationMetricDescriptionARM,
+		p_descriptions: *mut ShaderInstrumentationMetricDescriptionARM<'_>,
 	) -> Result,
 >;
 
@@ -7998,7 +8013,7 @@ pub type PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM = Option<
 pub type PFN_vkCreateShaderInstrumentationARM = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const ShaderInstrumentationCreateInfoARM,
+		p_create_info: *const ShaderInstrumentationCreateInfoARM<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_instrumentation: *mut ShaderInstrumentationARM,
 	) -> Result,
@@ -8057,7 +8072,7 @@ pub type PFN_vkClearShaderInstrumentationMetricsARM = Option<
 pub type PFN_vkCreateTensorARM = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const TensorCreateInfoARM,
+		p_create_info: *const TensorCreateInfoARM<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_tensor: *mut TensorARM,
 	) -> Result,
@@ -8080,7 +8095,7 @@ pub type PFN_vkDestroyTensorARM = Option<
 pub type PFN_vkCreateTensorViewARM = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const TensorViewCreateInfoARM,
+		p_create_info: *const TensorViewCreateInfoARM<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_view: *mut TensorViewARM,
 	) -> Result,
@@ -8103,8 +8118,8 @@ pub type PFN_vkDestroyTensorViewARM = Option<
 pub type PFN_vkGetTensorMemoryRequirementsARM = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const TensorMemoryRequirementsInfoARM,
-		p_memory_requirements: *mut MemoryRequirements2,
+		p_info: *const TensorMemoryRequirementsInfoARM<'_>,
+		p_memory_requirements: *mut MemoryRequirements2<'_>,
 	) -> (),
 >;
 
@@ -8115,7 +8130,7 @@ pub type PFN_vkBindTensorMemoryARM = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		bind_info_count: u32,
-		p_bind_infos: *const BindTensorMemoryInfoARM,
+		p_bind_infos: *const BindTensorMemoryInfoARM<'_>,
 	) -> Result,
 >;
 
@@ -8125,8 +8140,8 @@ pub type PFN_vkBindTensorMemoryARM = Option<
 pub type PFN_vkGetDeviceTensorMemoryRequirementsARM = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const DeviceTensorMemoryRequirementsARM,
-		p_memory_requirements: *mut MemoryRequirements2,
+		p_info: *const DeviceTensorMemoryRequirementsARM<'_>,
+		p_memory_requirements: *mut MemoryRequirements2<'_>,
 	) -> (),
 >;
 
@@ -8136,7 +8151,7 @@ pub type PFN_vkGetDeviceTensorMemoryRequirementsARM = Option<
 pub type PFN_vkCmdCopyTensorARM = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_copy_tensor_info: *const CopyTensorInfoARM,
+		p_copy_tensor_info: *const CopyTensorInfoARM<'_>,
 	) -> (),
 >;
 
@@ -8146,7 +8161,7 @@ pub type PFN_vkCmdCopyTensorARM = Option<
 pub type PFN_vkGetTensorOpaqueCaptureDescriptorDataARM = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const TensorCaptureDescriptorDataInfoARM,
+		p_info: *const TensorCaptureDescriptorDataInfoARM<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> Result,
 >;
@@ -8157,7 +8172,7 @@ pub type PFN_vkGetTensorOpaqueCaptureDescriptorDataARM = Option<
 pub type PFN_vkGetTensorViewOpaqueCaptureDescriptorDataARM = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const TensorViewCaptureDescriptorDataInfoARM,
+		p_info: *const TensorViewCaptureDescriptorDataInfoARM<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> Result,
 >;
@@ -8168,8 +8183,8 @@ pub type PFN_vkGetTensorViewOpaqueCaptureDescriptorDataARM = Option<
 pub type PFN_vkGetPhysicalDeviceExternalTensorPropertiesARM = Option<
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
-		p_external_tensor_info: *const PhysicalDeviceExternalTensorInfoARM,
-		p_external_tensor_properties: *mut ExternalTensorPropertiesARM,
+		p_external_tensor_info: *const PhysicalDeviceExternalTensorInfoARM<'_>,
+		p_external_tensor_properties: *mut ExternalTensorPropertiesARM<'_>,
 	) -> (),
 >;
 
@@ -8182,7 +8197,7 @@ pub type PFN_vkCreateDataGraphPipelinesARM = Option<
 		deferred_operation: DeferredOperationKHR,
 		pipeline_cache: PipelineCache,
 		create_info_count: u32,
-		p_create_infos: *const DataGraphPipelineCreateInfoARM,
+		p_create_infos: *const DataGraphPipelineCreateInfoARM<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_pipelines: *mut Pipeline,
 	) -> Result,
@@ -8194,7 +8209,7 @@ pub type PFN_vkCreateDataGraphPipelinesARM = Option<
 pub type PFN_vkCreateDataGraphPipelineSessionARM = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const DataGraphPipelineSessionCreateInfoARM,
+		p_create_info: *const DataGraphPipelineSessionCreateInfoARM<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_session: *mut DataGraphPipelineSessionARM,
 	) -> Result,
@@ -8206,9 +8221,9 @@ pub type PFN_vkCreateDataGraphPipelineSessionARM = Option<
 pub type PFN_vkGetDataGraphPipelineSessionBindPointRequirementsARM = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const DataGraphPipelineSessionBindPointRequirementsInfoARM,
+		p_info: *const DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
 		p_bind_point_requirement_count: *mut u32,
-		p_bind_point_requirements: *mut DataGraphPipelineSessionBindPointRequirementARM,
+		p_bind_point_requirements: *mut DataGraphPipelineSessionBindPointRequirementARM<'_>,
 	) -> Result,
 >;
 
@@ -8218,8 +8233,8 @@ pub type PFN_vkGetDataGraphPipelineSessionBindPointRequirementsARM = Option<
 pub type PFN_vkGetDataGraphPipelineSessionMemoryRequirementsARM = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const DataGraphPipelineSessionMemoryRequirementsInfoARM,
-		p_memory_requirements: *mut MemoryRequirements2,
+		p_info: *const DataGraphPipelineSessionMemoryRequirementsInfoARM<'_>,
+		p_memory_requirements: *mut MemoryRequirements2<'_>,
 	) -> (),
 >;
 
@@ -8230,7 +8245,7 @@ pub type PFN_vkBindDataGraphPipelineSessionMemoryARM = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		bind_info_count: u32,
-		p_bind_infos: *const BindDataGraphPipelineSessionMemoryInfoARM,
+		p_bind_infos: *const BindDataGraphPipelineSessionMemoryInfoARM<'_>,
 	) -> Result,
 >;
 
@@ -8252,7 +8267,7 @@ pub type PFN_vkCmdDispatchDataGraphARM = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
 		session: DataGraphPipelineSessionARM,
-		p_info: *const DataGraphPipelineDispatchInfoARM,
+		p_info: *const DataGraphPipelineDispatchInfoARM<'_>,
 	) -> (),
 >;
 
@@ -8262,7 +8277,7 @@ pub type PFN_vkCmdDispatchDataGraphARM = Option<
 pub type PFN_vkGetDataGraphPipelineAvailablePropertiesARM = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_pipeline_info: *const DataGraphPipelineInfoARM,
+		p_pipeline_info: *const DataGraphPipelineInfoARM<'_>,
 		p_properties_count: *mut u32,
 		p_properties: *mut DataGraphPipelinePropertyARM,
 	) -> Result,
@@ -8274,9 +8289,9 @@ pub type PFN_vkGetDataGraphPipelineAvailablePropertiesARM = Option<
 pub type PFN_vkGetDataGraphPipelinePropertiesARM = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_pipeline_info: *const DataGraphPipelineInfoARM,
+		p_pipeline_info: *const DataGraphPipelineInfoARM<'_>,
 		properties_count: u32,
-		p_properties: *mut DataGraphPipelinePropertyQueryResultARM,
+		p_properties: *mut DataGraphPipelinePropertyQueryResultARM<'_>,
 	) -> Result,
 >;
 
@@ -8288,14 +8303,14 @@ pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM = Option<
 		physical_device: PhysicalDevice,
 		queue_family_index: u32,
 		p_queue_family_data_graph_property_count: *mut u32,
-		p_queue_family_data_graph_properties: *mut QueueFamilyDataGraphPropertiesARM,
+		p_queue_family_data_graph_properties: *mut QueueFamilyDataGraphPropertiesARM<'_>,
 	) -> Result,
 >;
 
 #[doc = "Nullable function pointer for `vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM`."]
 #[doc(alias = "vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM")]
 #[doc = "\n\n[Khronos reference: `vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM.html)"]
-pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM = Option<unsafe extern "system" fn(physical_device: PhysicalDevice, p_queue_family_data_graph_processing_engine_info: *const PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM, p_queue_family_data_graph_processing_engine_properties: *mut QueueFamilyDataGraphProcessingEnginePropertiesARM) -> ()>;
+pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM = Option<unsafe extern "system" fn(physical_device: PhysicalDevice, p_queue_family_data_graph_processing_engine_info: *const PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'_>, p_queue_family_data_graph_processing_engine_properties: *mut QueueFamilyDataGraphProcessingEnginePropertiesARM<'_>) -> ()>;
 
 #[cfg(feature = "platform-ohos")]
 #[doc = "Nullable function pointer for `vkGetNativeBufferPropertiesOHOS`."]
@@ -8305,7 +8320,7 @@ pub type PFN_vkGetNativeBufferPropertiesOHOS = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		buffer: *const OH_NativeBuffer,
-		p_properties: *mut NativeBufferPropertiesOHOS,
+		p_properties: *mut NativeBufferPropertiesOHOS<'_>,
 	) -> Result,
 >;
 
@@ -8316,7 +8331,7 @@ pub type PFN_vkGetNativeBufferPropertiesOHOS = Option<
 pub type PFN_vkGetMemoryNativeBufferOHOS = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_info: *const MemoryGetNativeBufferInfoOHOS,
+		p_info: *const MemoryGetNativeBufferInfoOHOS<'_>,
 		p_buffer: *mut *mut OH_NativeBuffer,
 	) -> Result,
 >;
@@ -8325,7 +8340,7 @@ pub type PFN_vkGetMemoryNativeBufferOHOS = Option<
 #[doc(alias = "vkQueueSetPerfHintQCOM")]
 #[doc = "\n\n[Khronos reference: `vkQueueSetPerfHintQCOM`](https://docs.vulkan.org/refpages/latest/refpages/source/vkQueueSetPerfHintQCOM.html)"]
 pub type PFN_vkQueueSetPerfHintQCOM = Option<
-	unsafe extern "system" fn(queue: Queue, p_perf_hint_info: *const PerfHintInfoQCOM) -> Result,
+	unsafe extern "system" fn(queue: Queue, p_perf_hint_info: *const PerfHintInfoQCOM<'_>) -> Result,
 >;
 
 #[doc = "Nullable function pointer for `vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM`."]
@@ -8336,8 +8351,8 @@ pub type PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM 
 		physical_device: PhysicalDevice,
 		queue_family_index: u32,
 		p_counter_count: *mut u32,
-		p_counters: *mut PerformanceCounterARM,
-		p_counter_descriptions: *mut PerformanceCounterDescriptionARM,
+		p_counters: *mut PerformanceCounterARM<'_>,
+		p_counter_descriptions: *mut PerformanceCounterDescriptionARM<'_>,
 	) -> Result,
 >;
 
@@ -8347,7 +8362,7 @@ pub type PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM 
 pub type PFN_vkCmdSetComputeOccupancyPriorityNV = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_parameters: *const ComputeOccupancyPriorityParametersNV,
+		p_parameters: *const ComputeOccupancyPriorityParametersNV<'_>,
 	) -> (),
 >;
 
@@ -8358,7 +8373,7 @@ pub type PFN_vkWriteSamplerDescriptorsEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		sampler_count: u32,
-		p_samplers: *const SamplerCreateInfo,
+		p_samplers: *const SamplerCreateInfo<'_>,
 		p_descriptors: *const HostAddressRangeEXT,
 	) -> Result,
 >;
@@ -8370,7 +8385,7 @@ pub type PFN_vkWriteResourceDescriptorsEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
 		resource_count: u32,
-		p_resources: *const ResourceDescriptorInfoEXT,
+		p_resources: *const ResourceDescriptorInfoEXT<'_>,
 		p_descriptors: *const HostAddressRangeEXT,
 	) -> Result,
 >;
@@ -8381,7 +8396,7 @@ pub type PFN_vkWriteResourceDescriptorsEXT = Option<
 pub type PFN_vkCmdBindSamplerHeapEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_bind_info: *const BindHeapInfoEXT,
+		p_bind_info: *const BindHeapInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -8391,7 +8406,7 @@ pub type PFN_vkCmdBindSamplerHeapEXT = Option<
 pub type PFN_vkCmdBindResourceHeapEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_bind_info: *const BindHeapInfoEXT,
+		p_bind_info: *const BindHeapInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -8401,7 +8416,7 @@ pub type PFN_vkCmdBindResourceHeapEXT = Option<
 pub type PFN_vkCmdPushDataEXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_push_data_info: *const PushDataInfoEXT,
+		p_push_data_info: *const PushDataInfoEXT<'_>,
 	) -> (),
 >;
 
@@ -8411,7 +8426,7 @@ pub type PFN_vkCmdPushDataEXT = Option<
 pub type PFN_vkRegisterCustomBorderColorEXT = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_border_color: *const SamplerCustomBorderColorCreateInfoEXT,
+		p_border_color: *const SamplerCustomBorderColorCreateInfoEXT<'_>,
 		request_index: Bool32,
 		p_index: *mut u32,
 	) -> Result,
@@ -8463,7 +8478,7 @@ pub type PFN_vkGetTensorOpaqueCaptureDataARM = Option<
 pub type PFN_vkCmdCopyMemoryKHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_copy_memory_info: *const CopyDeviceMemoryInfoKHR,
+		p_copy_memory_info: *const CopyDeviceMemoryInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -8473,7 +8488,7 @@ pub type PFN_vkCmdCopyMemoryKHR = Option<
 pub type PFN_vkCmdCopyMemoryToImageKHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_copy_memory_info: *const CopyDeviceMemoryImageInfoKHR,
+		p_copy_memory_info: *const CopyDeviceMemoryImageInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -8483,7 +8498,7 @@ pub type PFN_vkCmdCopyMemoryToImageKHR = Option<
 pub type PFN_vkCmdCopyImageToMemoryKHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_copy_memory_info: *const CopyDeviceMemoryImageInfoKHR,
+		p_copy_memory_info: *const CopyDeviceMemoryImageInfoKHR<'_>,
 	) -> (),
 >;
 
@@ -8533,7 +8548,7 @@ pub type PFN_vkCmdCopyQueryPoolResultsToMemoryKHR = Option<
 pub type PFN_vkCmdBeginConditionalRendering2EXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_conditional_rendering_begin: *const ConditionalRenderingBeginInfo2EXT,
+		p_conditional_rendering_begin: *const ConditionalRenderingBeginInfo2EXT<'_>,
 	) -> (),
 >;
 
@@ -8545,7 +8560,7 @@ pub type PFN_vkCmdBindTransformFeedbackBuffers2EXT = Option<
 		command_buffer: CommandBuffer,
 		first_binding: u32,
 		binding_count: u32,
-		p_binding_infos: *const BindTransformFeedbackBuffer2InfoEXT,
+		p_binding_infos: *const BindTransformFeedbackBuffer2InfoEXT<'_>,
 	) -> (),
 >;
 
@@ -8557,7 +8572,7 @@ pub type PFN_vkCmdBeginTransformFeedback2EXT = Option<
 		command_buffer: CommandBuffer,
 		first_counter_range: u32,
 		counter_range_count: u32,
-		p_counter_infos: *const BindTransformFeedbackBuffer2InfoEXT,
+		p_counter_infos: *const BindTransformFeedbackBuffer2InfoEXT<'_>,
 	) -> (),
 >;
 
@@ -8569,7 +8584,7 @@ pub type PFN_vkCmdEndTransformFeedback2EXT = Option<
 		command_buffer: CommandBuffer,
 		first_counter_range: u32,
 		counter_range_count: u32,
-		p_counter_infos: *const BindTransformFeedbackBuffer2InfoEXT,
+		p_counter_infos: *const BindTransformFeedbackBuffer2InfoEXT<'_>,
 	) -> (),
 >;
 
@@ -8581,7 +8596,7 @@ pub type PFN_vkCmdDrawIndirectByteCount2EXT = Option<
 		command_buffer: CommandBuffer,
 		instance_count: u32,
 		first_instance: u32,
-		p_counter_info: *const BindTransformFeedbackBuffer2InfoEXT,
+		p_counter_info: *const BindTransformFeedbackBuffer2InfoEXT<'_>,
 		counter_offset: u32,
 		vertex_stride: u32,
 	) -> (),
@@ -8593,7 +8608,7 @@ pub type PFN_vkCmdDrawIndirectByteCount2EXT = Option<
 pub type PFN_vkCmdWriteMarkerToMemoryAMD = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const MemoryMarkerInfoAMD,
+		p_info: *const MemoryMarkerInfoAMD<'_>,
 	) -> (),
 >;
 
@@ -8603,7 +8618,7 @@ pub type PFN_vkCmdWriteMarkerToMemoryAMD = Option<
 pub type PFN_vkCmdBindIndexBuffer3KHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const BindIndexBuffer3InfoKHR,
+		p_info: *const BindIndexBuffer3InfoKHR<'_>,
 	) -> (),
 >;
 
@@ -8615,7 +8630,7 @@ pub type PFN_vkCmdBindVertexBuffers3KHR = Option<
 		command_buffer: CommandBuffer,
 		first_binding: u32,
 		binding_count: u32,
-		p_binding_infos: *const BindVertexBuffer3InfoKHR,
+		p_binding_infos: *const BindVertexBuffer3InfoKHR<'_>,
 	) -> (),
 >;
 
@@ -8625,7 +8640,7 @@ pub type PFN_vkCmdBindVertexBuffers3KHR = Option<
 pub type PFN_vkCmdDrawIndirect2KHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const DrawIndirect2InfoKHR,
+		p_info: *const DrawIndirect2InfoKHR<'_>,
 	) -> (),
 >;
 
@@ -8635,7 +8650,7 @@ pub type PFN_vkCmdDrawIndirect2KHR = Option<
 pub type PFN_vkCmdDrawIndexedIndirect2KHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const DrawIndirect2InfoKHR,
+		p_info: *const DrawIndirect2InfoKHR<'_>,
 	) -> (),
 >;
 
@@ -8645,7 +8660,7 @@ pub type PFN_vkCmdDrawIndexedIndirect2KHR = Option<
 pub type PFN_vkCmdDrawIndirectCount2KHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const DrawIndirectCount2InfoKHR,
+		p_info: *const DrawIndirectCount2InfoKHR<'_>,
 	) -> (),
 >;
 
@@ -8655,7 +8670,7 @@ pub type PFN_vkCmdDrawIndirectCount2KHR = Option<
 pub type PFN_vkCmdDrawIndexedIndirectCount2KHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const DrawIndirectCount2InfoKHR,
+		p_info: *const DrawIndirectCount2InfoKHR<'_>,
 	) -> (),
 >;
 
@@ -8665,7 +8680,7 @@ pub type PFN_vkCmdDrawIndexedIndirectCount2KHR = Option<
 pub type PFN_vkCmdDrawMeshTasksIndirect2EXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const DrawIndirect2InfoKHR,
+		p_info: *const DrawIndirect2InfoKHR<'_>,
 	) -> (),
 >;
 
@@ -8675,7 +8690,7 @@ pub type PFN_vkCmdDrawMeshTasksIndirect2EXT = Option<
 pub type PFN_vkCmdDrawMeshTasksIndirectCount2EXT = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const DrawIndirectCount2InfoKHR,
+		p_info: *const DrawIndirectCount2InfoKHR<'_>,
 	) -> (),
 >;
 
@@ -8685,7 +8700,7 @@ pub type PFN_vkCmdDrawMeshTasksIndirectCount2EXT = Option<
 pub type PFN_vkCmdDispatchIndirect2KHR = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_info: *const DispatchIndirect2InfoKHR,
+		p_info: *const DispatchIndirect2InfoKHR<'_>,
 	) -> (),
 >;
 
@@ -8695,7 +8710,7 @@ pub type PFN_vkCmdDispatchIndirect2KHR = Option<
 pub type PFN_vkCreateAccelerationStructure2KHR = Option<
 	unsafe extern "system" fn(
 		device: DeviceHandle,
-		p_create_info: *const AccelerationStructureCreateInfo2KHR,
+		p_create_info: *const AccelerationStructureCreateInfo2KHR<'_>,
 		p_allocator: *const AllocationCallbacks,
 		p_acceleration_structure: *mut AccelerationStructureKHR,
 	) -> Result,
@@ -8708,7 +8723,7 @@ pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		queue_family_index: u32,
-		p_queue_family_data_graph_properties: *const QueueFamilyDataGraphPropertiesARM,
+		p_queue_family_data_graph_properties: *const QueueFamilyDataGraphPropertiesARM<'_>,
 		p_properties: *mut BaseOutStructure,
 	) -> Result,
 >;
@@ -8719,7 +8734,7 @@ pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM
 pub type PFN_vkCmdSetDispatchParametersARM = Option<
 	unsafe extern "system" fn(
 		command_buffer: CommandBuffer,
-		p_dispatch_parameters: *const DispatchParametersARM,
+		p_dispatch_parameters: *const DispatchParametersARM<'_>,
 	) -> (),
 >;
 
@@ -8730,9 +8745,9 @@ pub type PFN_vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM =
 	unsafe extern "system" fn(
 		physical_device: PhysicalDevice,
 		queue_family_index: u32,
-		p_queue_family_data_graph_properties: *const QueueFamilyDataGraphPropertiesARM,
-		p_optical_flow_image_format_info: *const DataGraphOpticalFlowImageFormatInfoARM,
+		p_queue_family_data_graph_properties: *const QueueFamilyDataGraphPropertiesARM<'_>,
+		p_optical_flow_image_format_info: *const DataGraphOpticalFlowImageFormatInfoARM<'_>,
 		p_format_count: *mut u32,
-		p_image_format_properties: *mut DataGraphOpticalFlowImageFormatPropertiesARM,
+		p_image_format_properties: *mut DataGraphOpticalFlowImageFormatPropertiesARM<'_>,
 	) -> Result,
 >;

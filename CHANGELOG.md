@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.0+1.4.365 — 2026-10-26
+
+- Generate borrowed record setters, checked native counts and typed extension
+  chains without adding a separate builder or execution layer. Propagate
+  lifetimes through records, aliases and PFNs; preserve native header field
+  names and generated item spacing. Add independent borrow-checker fixtures,
+  public construction contracts and checked parallel/descriptor recipes.
+- This is a Rust source compatibility change: stored borrowed types need
+  lifetime annotations, exhaustive literals need a marker/default update, and
+  exclusive chain records are non-Copy/non-Clone. Native C ABI and command
+  coverage remain independently verified boundaries; GPU lifetimes stay unsafe.
+
 ## 0.4.1+1.4.365 — 2026-10-25
 
 - Build the VMA preference oracle from hash-verified core/video headers only,

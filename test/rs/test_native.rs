@@ -151,7 +151,8 @@ fn sparse_queries_keep_caller_initialized_headers_chains_and_explicit_count_prot
 	TRACE.with_borrow_mut(Vec::clear);
 	let info = vk::DeviceImageMemoryRequirements::default();
 	let mut chains = [7_u64, 11];
-	let mut values = [vk::SparseImageMemoryRequirements2::default(); 2];
+	let mut values =
+		std::array::from_fn::<_, 2, _>(|_| vk::SparseImageMemoryRequirements2::default());
 	for (value, chain) in values.iter_mut().zip(&mut chains) {
 		value.p_next = std::ptr::from_mut(chain).cast();
 	}
@@ -286,7 +287,7 @@ fn deferred_and_failed_pipeline_creation_leaves_partial_outputs_with_caller() {
 		)
 	};
 	TRACE.with_borrow_mut(Vec::clear);
-	let infos = [vk::RayTracingPipelineCreateInfoKHR::default(); 2];
+	let infos = std::array::from_fn::<_, 2, _>(|_| vk::RayTracingPipelineCreateInfoKHR::default());
 	let mut outputs = [vk::Pipeline::NULL; 2];
 	// SAFETY: allocation callbacks are never invoked; all nullable members may be zero.
 	let allocator: vk::AllocationCallbacks = unsafe { std::mem::zeroed() };

@@ -206,6 +206,7 @@ fn compute_buffer(api_version: u32, khr_memory: bool, pooled: bool, persistent: 
 			descriptor_count: 1,
 			stage_flags: vk::ShaderStageFlagBits::COMPUTE_BIT,
 			p_immutable_samplers: std::ptr::null(),
+			..Default::default()
 		};
 		let set_layout = device
 			.create_descriptor_set_layout(

@@ -22,7 +22,11 @@ Operations are unsafe and require Vulkan valid usage, correct lifetimes,
 synchronization and enabled features. Native cleanup is explicit. Dropping a
 wrapper does not destroy native objects or wait for work. Field names are
 snake_case while ABI layout and calling conventions retain the native contract.
-There are no lifetime-aware builders or typed pNext construction yet.
+Version 0.5.0 adds generated borrowed setters and typed
+`push_next` construction on the same records. Their lifetimes cover backing host
+storage, not native resource ownership or GPU completion. Public pointer fields,
+opaque payloads and unreviewed pointer/length relationships retain unsafe caller
+obligations. Resource ownership and GPU-completion lifetimes remain separate work.
 
 ## Evidence and continuous checks
 
@@ -65,7 +69,7 @@ The crates.io package is `vkrust`; its library/import name is `vk`:
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.4" }
+vk = { package = "vkrust", version = "0.5" }
 ```
 
 The public source target is `realminc/vk`. Private engineering history and

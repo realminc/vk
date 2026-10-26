@@ -20,6 +20,10 @@ mod pfn;
 mod types;
 #[doc(inline)]
 pub use exports::*;
+mod construction;
+pub use construction::{ConstructionError, Extends};
+#[path = "construction.gen.rs"]
+mod construction_generated;
 mod version;
 pub use version::*;
 

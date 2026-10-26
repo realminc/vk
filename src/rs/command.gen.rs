@@ -568,7 +568,7 @@ impl Instance {
 pub unsafe fn queue_bind_sparse(
 	device: &Device,
 	queue: vk::Queue,
-	bind_info: &[vk::BindSparseInfo],
+	bind_info: &[vk::BindSparseInfo<'_>],
 	fence: vk::Fence,
 ) -> Result<(), CallError> {
 	let __vk_function = device
@@ -602,7 +602,7 @@ impl Device {
 	pub unsafe fn queue_bind_sparse(
 		&self,
 		queue: vk::Queue,
-		bind_info: &[vk::BindSparseInfo],
+		bind_info: &[vk::BindSparseInfo<'_>],
 		fence: vk::Fence,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -669,7 +669,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateSemaphore`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateSemaphore.html)"]
 pub unsafe fn create_semaphore(
 	device: &Device,
-	create_info: &vk::SemaphoreCreateInfo,
+	create_info: &vk::SemaphoreCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::Semaphore, CallError> {
 	let __vk_function = device
@@ -708,7 +708,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_semaphore(
 		&self,
-		create_info: &vk::SemaphoreCreateInfo,
+		create_info: &vk::SemaphoreCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::Semaphore, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -786,7 +786,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateEvent`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateEvent.html)"]
 pub unsafe fn create_event(
 	device: &Device,
-	create_info: &vk::EventCreateInfo,
+	create_info: &vk::EventCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::Event, CallError> {
 	let __vk_function = device
@@ -825,7 +825,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_event(
 		&self,
-		create_info: &vk::EventCreateInfo,
+		create_info: &vk::EventCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::Event, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -1038,7 +1038,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateQueryPool`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateQueryPool.html)"]
 pub unsafe fn create_query_pool(
 	device: &Device,
-	create_info: &vk::QueryPoolCreateInfo,
+	create_info: &vk::QueryPoolCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::QueryPool, CallError> {
 	let __vk_function = device
@@ -1077,7 +1077,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_query_pool(
 		&self,
-		create_info: &vk::QueryPoolCreateInfo,
+		create_info: &vk::QueryPoolCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::QueryPool, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -1350,7 +1350,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateBufferView`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateBufferView.html)"]
 pub unsafe fn create_buffer_view(
 	device: &Device,
-	create_info: &vk::BufferViewCreateInfo,
+	create_info: &vk::BufferViewCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::BufferView, CallError> {
 	let __vk_function = device
@@ -1389,7 +1389,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_buffer_view(
 		&self,
-		create_info: &vk::BufferViewCreateInfo,
+		create_info: &vk::BufferViewCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::BufferView, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -1467,7 +1467,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateImage`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateImage.html)"]
 pub unsafe fn create_image(
 	device: &Device,
-	create_info: &vk::ImageCreateInfo,
+	create_info: &vk::ImageCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::Image, CallError> {
 	let __vk_function = device
@@ -1506,7 +1506,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_image(
 		&self,
-		create_info: &vk::ImageCreateInfo,
+		create_info: &vk::ImageCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::Image, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -1636,7 +1636,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateImageView`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateImageView.html)"]
 pub unsafe fn create_image_view(
 	device: &Device,
-	create_info: &vk::ImageViewCreateInfo,
+	create_info: &vk::ImageViewCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::ImageView, CallError> {
 	let __vk_function = device
@@ -1675,7 +1675,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_image_view(
 		&self,
-		create_info: &vk::ImageViewCreateInfo,
+		create_info: &vk::ImageViewCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::ImageView, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -1753,7 +1753,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateShaderModule`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateShaderModule.html)"]
 pub unsafe fn create_shader_module(
 	device: &Device,
-	create_info: &vk::ShaderModuleCreateInfo,
+	create_info: &vk::ShaderModuleCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::ShaderModule, CallError> {
 	let __vk_function = device
@@ -1792,7 +1792,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_shader_module(
 		&self,
-		create_info: &vk::ShaderModuleCreateInfo,
+		create_info: &vk::ShaderModuleCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::ShaderModule, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -1870,7 +1870,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreatePipelineCache`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreatePipelineCache.html)"]
 pub unsafe fn create_pipeline_cache(
 	device: &Device,
-	create_info: &vk::PipelineCacheCreateInfo,
+	create_info: &vk::PipelineCacheCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::PipelineCache, CallError> {
 	let __vk_function = device
@@ -1909,7 +1909,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_pipeline_cache(
 		&self,
-		create_info: &vk::PipelineCacheCreateInfo,
+		create_info: &vk::PipelineCacheCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::PipelineCache, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -2113,9 +2113,9 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreatePipelineBinariesKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreatePipelineBinariesKHR.html)"]
 pub unsafe fn create_pipeline_binaries_khr(
 	device: &Device,
-	p_create_info: *const vk::PipelineBinaryCreateInfoKHR,
+	p_create_info: *const vk::PipelineBinaryCreateInfoKHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
-	p_binaries: *mut vk::PipelineBinaryHandlesInfoKHR,
+	p_binaries: *mut vk::PipelineBinaryHandlesInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -2152,9 +2152,9 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_pipeline_binaries_khr(
 		&self,
-		p_create_info: *const vk::PipelineBinaryCreateInfoKHR,
+		p_create_info: *const vk::PipelineBinaryCreateInfoKHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
-		p_binaries: *mut vk::PipelineBinaryHandlesInfoKHR,
+		p_binaries: *mut vk::PipelineBinaryHandlesInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { create_pipeline_binaries_khr(self, p_create_info, p_allocator, p_binaries) }
@@ -2246,8 +2246,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetPipelineKeyKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineKeyKHR.html)"]
 pub unsafe fn get_pipeline_key_khr(
 	device: &Device,
-	p_pipeline_create_info: *const vk::PipelineCreateInfoKHR,
-	p_pipeline_key: *mut vk::PipelineBinaryKeyKHR,
+	p_pipeline_create_info: *const vk::PipelineCreateInfoKHR<'_>,
+	p_pipeline_key: *mut vk::PipelineBinaryKeyKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -2284,8 +2284,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_pipeline_key_khr(
 		&self,
-		p_pipeline_create_info: *const vk::PipelineCreateInfoKHR,
-		p_pipeline_key: *mut vk::PipelineBinaryKeyKHR,
+		p_pipeline_create_info: *const vk::PipelineCreateInfoKHR<'_>,
+		p_pipeline_key: *mut vk::PipelineBinaryKeyKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_pipeline_key_khr(self, p_pipeline_create_info, p_pipeline_key) }
@@ -2313,8 +2313,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetPipelineBinaryDataKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineBinaryDataKHR.html)"]
 pub unsafe fn get_pipeline_binary_data_khr(
 	device: &Device,
-	p_info: *const vk::PipelineBinaryDataInfoKHR,
-	p_pipeline_binary_key: *mut vk::PipelineBinaryKeyKHR,
+	p_info: *const vk::PipelineBinaryDataInfoKHR<'_>,
+	p_pipeline_binary_key: *mut vk::PipelineBinaryKeyKHR<'_>,
 	p_pipeline_binary_data_size: *mut usize,
 	p_pipeline_binary_data: *mut std::ffi::c_void,
 ) -> Result<vk::Result, CallError> {
@@ -2361,8 +2361,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_pipeline_binary_data_khr(
 		&self,
-		p_info: *const vk::PipelineBinaryDataInfoKHR,
-		p_pipeline_binary_key: *mut vk::PipelineBinaryKeyKHR,
+		p_info: *const vk::PipelineBinaryDataInfoKHR<'_>,
+		p_pipeline_binary_key: *mut vk::PipelineBinaryKeyKHR<'_>,
 		p_pipeline_binary_data_size: *mut usize,
 		p_pipeline_binary_data: *mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError> {
@@ -2400,7 +2400,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkReleaseCapturedPipelineDataKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkReleaseCapturedPipelineDataKHR.html)"]
 pub unsafe fn release_captured_pipeline_data_khr(
 	device: &Device,
-	p_info: *const vk::ReleaseCapturedPipelineDataInfoKHR,
+	p_info: *const vk::ReleaseCapturedPipelineDataInfoKHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
@@ -2441,7 +2441,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn release_captured_pipeline_data_khr(
 		&self,
-		p_info: *const vk::ReleaseCapturedPipelineDataInfoKHR,
+		p_info: *const vk::ReleaseCapturedPipelineDataInfoKHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -2469,7 +2469,7 @@ impl Device {
 pub unsafe fn create_graphics_pipelines(
 	device: &Device,
 	pipeline_cache: vk::PipelineCache,
-	create_infos: &[vk::GraphicsPipelineCreateInfo],
+	create_infos: &[vk::GraphicsPipelineCreateInfo<'_>],
 	allocator: Option<&vk::AllocationCallbacks>,
 	pipelines: &mut [vk::Pipeline],
 ) -> Result<vk::Result, CallError> {
@@ -2525,7 +2525,7 @@ impl Device {
 	pub unsafe fn create_graphics_pipelines(
 		&self,
 		pipeline_cache: vk::PipelineCache,
-		create_infos: &[vk::GraphicsPipelineCreateInfo],
+		create_infos: &[vk::GraphicsPipelineCreateInfo<'_>],
 		allocator: Option<&vk::AllocationCallbacks>,
 		pipelines: &mut [vk::Pipeline],
 	) -> Result<vk::Result, CallError> {
@@ -2554,7 +2554,7 @@ impl Device {
 pub unsafe fn create_compute_pipelines(
 	device: &Device,
 	pipeline_cache: vk::PipelineCache,
-	create_infos: &[vk::ComputePipelineCreateInfo],
+	create_infos: &[vk::ComputePipelineCreateInfo<'_>],
 	allocator: Option<&vk::AllocationCallbacks>,
 	pipelines: &mut [vk::Pipeline],
 ) -> Result<vk::Result, CallError> {
@@ -2610,7 +2610,7 @@ impl Device {
 	pub unsafe fn create_compute_pipelines(
 		&self,
 		pipeline_cache: vk::PipelineCache,
-		create_infos: &[vk::ComputePipelineCreateInfo],
+		create_infos: &[vk::ComputePipelineCreateInfo<'_>],
 		allocator: Option<&vk::AllocationCallbacks>,
 		pipelines: &mut [vk::Pipeline],
 	) -> Result<vk::Result, CallError> {
@@ -2760,7 +2760,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreatePipelineLayout`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreatePipelineLayout.html)"]
 pub unsafe fn create_pipeline_layout(
 	device: &Device,
-	create_info: &vk::PipelineLayoutCreateInfo,
+	create_info: &vk::PipelineLayoutCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::PipelineLayout, CallError> {
 	let __vk_function = device
@@ -2799,7 +2799,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_pipeline_layout(
 		&self,
-		create_info: &vk::PipelineLayoutCreateInfo,
+		create_info: &vk::PipelineLayoutCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::PipelineLayout, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -2877,7 +2877,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateSampler`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateSampler.html)"]
 pub unsafe fn create_sampler(
 	device: &Device,
-	create_info: &vk::SamplerCreateInfo,
+	create_info: &vk::SamplerCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::Sampler, CallError> {
 	let __vk_function = device
@@ -2916,7 +2916,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_sampler(
 		&self,
-		create_info: &vk::SamplerCreateInfo,
+		create_info: &vk::SamplerCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::Sampler, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -2994,7 +2994,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateDescriptorSetLayout`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDescriptorSetLayout.html)"]
 pub unsafe fn create_descriptor_set_layout(
 	device: &Device,
-	create_info: &vk::DescriptorSetLayoutCreateInfo,
+	create_info: &vk::DescriptorSetLayoutCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::DescriptorSetLayout, CallError> {
 	let __vk_function = device
@@ -3033,7 +3033,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_descriptor_set_layout(
 		&self,
-		create_info: &vk::DescriptorSetLayoutCreateInfo,
+		create_info: &vk::DescriptorSetLayoutCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::DescriptorSetLayout, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -3111,7 +3111,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateDescriptorPool`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDescriptorPool.html)"]
 pub unsafe fn create_descriptor_pool(
 	device: &Device,
-	create_info: &vk::DescriptorPoolCreateInfo,
+	create_info: &vk::DescriptorPoolCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::DescriptorPool, CallError> {
 	let __vk_function = device
@@ -3150,7 +3150,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_descriptor_pool(
 		&self,
-		create_info: &vk::DescriptorPoolCreateInfo,
+		create_info: &vk::DescriptorPoolCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::DescriptorPool, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -3281,7 +3281,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkAllocateDescriptorSets`](https://docs.vulkan.org/refpages/latest/refpages/source/vkAllocateDescriptorSets.html)"]
 pub unsafe fn allocate_descriptor_sets(
 	device: &Device,
-	allocate_info: &vk::DescriptorSetAllocateInfo,
+	allocate_info: &vk::DescriptorSetAllocateInfo<'_>,
 	descriptor_sets: &mut [vk::DescriptorSet],
 ) -> Result<(), CallError> {
 	let __vk_function = device
@@ -3322,7 +3322,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn allocate_descriptor_sets(
 		&self,
-		allocate_info: &vk::DescriptorSetAllocateInfo,
+		allocate_info: &vk::DescriptorSetAllocateInfo<'_>,
 		descriptor_sets: &mut [vk::DescriptorSet],
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -3406,8 +3406,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkUpdateDescriptorSets`](https://docs.vulkan.org/refpages/latest/refpages/source/vkUpdateDescriptorSets.html)"]
 pub unsafe fn update_descriptor_sets(
 	device: &Device,
-	descriptor_writes: &[vk::WriteDescriptorSet],
-	descriptor_copies: &[vk::CopyDescriptorSet],
+	descriptor_writes: &[vk::WriteDescriptorSet<'_>],
+	descriptor_copies: &[vk::CopyDescriptorSet<'_>],
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -3446,8 +3446,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn update_descriptor_sets(
 		&self,
-		descriptor_writes: &[vk::WriteDescriptorSet],
-		descriptor_copies: &[vk::CopyDescriptorSet],
+		descriptor_writes: &[vk::WriteDescriptorSet<'_>],
+		descriptor_copies: &[vk::CopyDescriptorSet<'_>],
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { update_descriptor_sets(self, descriptor_writes, descriptor_copies) }
@@ -3468,7 +3468,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateFramebuffer`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateFramebuffer.html)"]
 pub unsafe fn create_framebuffer(
 	device: &Device,
-	create_info: &vk::FramebufferCreateInfo,
+	create_info: &vk::FramebufferCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::Framebuffer, CallError> {
 	let __vk_function = device
@@ -3507,7 +3507,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_framebuffer(
 		&self,
-		create_info: &vk::FramebufferCreateInfo,
+		create_info: &vk::FramebufferCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::Framebuffer, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -3585,7 +3585,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateRenderPass`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateRenderPass.html)"]
 pub unsafe fn create_render_pass(
 	device: &Device,
-	create_info: &vk::RenderPassCreateInfo,
+	create_info: &vk::RenderPassCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::RenderPass, CallError> {
 	let __vk_function = device
@@ -3624,7 +3624,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_render_pass(
 		&self,
-		create_info: &vk::RenderPassCreateInfo,
+		create_info: &vk::RenderPassCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::RenderPass, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -3759,7 +3759,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetRenderingAreaGranularity`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetRenderingAreaGranularity.html)"]
 pub unsafe fn get_rendering_area_granularity(
 	device: &Device,
-	p_rendering_area_info: *const vk::RenderingAreaInfo,
+	p_rendering_area_info: *const vk::RenderingAreaInfo<'_>,
 	p_granularity: *mut vk::Extent2D,
 ) -> Result<(), CallError> {
 	let __vk_function = device
@@ -3794,7 +3794,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_rendering_area_granularity(
 		&self,
-		p_rendering_area_info: *const vk::RenderingAreaInfo,
+		p_rendering_area_info: *const vk::RenderingAreaInfo<'_>,
 		p_granularity: *mut vk::Extent2D,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -3823,7 +3823,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetRenderingAreaGranularityKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetRenderingAreaGranularityKHR.html)"]
 pub unsafe fn get_rendering_area_granularity_khr(
 	device: &Device,
-	p_rendering_area_info: *const vk::RenderingAreaInfo,
+	p_rendering_area_info: *const vk::RenderingAreaInfo<'_>,
 	p_granularity: *mut vk::Extent2D,
 ) -> Result<(), CallError> {
 	let __vk_function =
@@ -3861,7 +3861,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_rendering_area_granularity_khr(
 		&self,
-		p_rendering_area_info: *const vk::RenderingAreaInfo,
+		p_rendering_area_info: *const vk::RenderingAreaInfo<'_>,
 		p_granularity: *mut vk::Extent2D,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -6124,7 +6124,7 @@ impl Device {
 pub unsafe fn cmd_copy_memory_indirect_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_copy_memory_indirect_info: *const vk::CopyMemoryIndirectInfoKHR,
+	p_copy_memory_indirect_info: *const vk::CopyMemoryIndirectInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -6159,7 +6159,7 @@ impl Device {
 	pub unsafe fn cmd_copy_memory_indirect_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_copy_memory_indirect_info: *const vk::CopyMemoryIndirectInfoKHR,
+		p_copy_memory_indirect_info: *const vk::CopyMemoryIndirectInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_memory_indirect_khr(self, command_buffer, p_copy_memory_indirect_info) }
@@ -6288,7 +6288,7 @@ impl Device {
 pub unsafe fn cmd_copy_memory_to_image_indirect_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_copy_memory_to_image_indirect_info: *const vk::CopyMemoryToImageIndirectInfoKHR,
+	p_copy_memory_to_image_indirect_info: *const vk::CopyMemoryToImageIndirectInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -6326,7 +6326,7 @@ impl Device {
 	pub unsafe fn cmd_copy_memory_to_image_indirect_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_copy_memory_to_image_indirect_info: *const vk::CopyMemoryToImageIndirectInfoKHR,
+		p_copy_memory_to_image_indirect_info: *const vk::CopyMemoryToImageIndirectInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -6820,9 +6820,9 @@ pub unsafe fn cmd_wait_events(
 	events: &[vk::Event],
 	src_stage_mask: vk::PipelineStageFlags,
 	dst_stage_mask: vk::PipelineStageFlags,
-	memory_barriers: &[vk::MemoryBarrier],
-	buffer_memory_barriers: &[vk::BufferMemoryBarrier],
-	image_memory_barriers: &[vk::ImageMemoryBarrier],
+	memory_barriers: &[vk::MemoryBarrier<'_>],
+	buffer_memory_barriers: &[vk::BufferMemoryBarrier<'_>],
+	image_memory_barriers: &[vk::ImageMemoryBarrier<'_>],
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -6876,9 +6876,9 @@ impl Device {
 		events: &[vk::Event],
 		src_stage_mask: vk::PipelineStageFlags,
 		dst_stage_mask: vk::PipelineStageFlags,
-		memory_barriers: &[vk::MemoryBarrier],
-		buffer_memory_barriers: &[vk::BufferMemoryBarrier],
-		image_memory_barriers: &[vk::ImageMemoryBarrier],
+		memory_barriers: &[vk::MemoryBarrier<'_>],
+		buffer_memory_barriers: &[vk::BufferMemoryBarrier<'_>],
+		image_memory_barriers: &[vk::ImageMemoryBarrier<'_>],
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -6915,9 +6915,9 @@ pub unsafe fn cmd_pipeline_barrier(
 	src_stage_mask: vk::PipelineStageFlags,
 	dst_stage_mask: vk::PipelineStageFlags,
 	dependency_flags: vk::DependencyFlags,
-	memory_barriers: &[vk::MemoryBarrier],
-	buffer_memory_barriers: &[vk::BufferMemoryBarrier],
-	image_memory_barriers: &[vk::ImageMemoryBarrier],
+	memory_barriers: &[vk::MemoryBarrier<'_>],
+	buffer_memory_barriers: &[vk::BufferMemoryBarrier<'_>],
+	image_memory_barriers: &[vk::ImageMemoryBarrier<'_>],
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -6968,9 +6968,9 @@ impl Device {
 		src_stage_mask: vk::PipelineStageFlags,
 		dst_stage_mask: vk::PipelineStageFlags,
 		dependency_flags: vk::DependencyFlags,
-		memory_barriers: &[vk::MemoryBarrier],
-		buffer_memory_barriers: &[vk::BufferMemoryBarrier],
-		image_memory_barriers: &[vk::ImageMemoryBarrier],
+		memory_barriers: &[vk::MemoryBarrier<'_>],
+		buffer_memory_barriers: &[vk::BufferMemoryBarrier<'_>],
+		image_memory_barriers: &[vk::ImageMemoryBarrier<'_>],
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -7116,7 +7116,7 @@ impl Device {
 pub unsafe fn cmd_begin_conditional_rendering_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_conditional_rendering_begin: *const vk::ConditionalRenderingBeginInfoEXT,
+	p_conditional_rendering_begin: *const vk::ConditionalRenderingBeginInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -7154,7 +7154,7 @@ impl Device {
 	pub unsafe fn cmd_begin_conditional_rendering_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_conditional_rendering_begin: *const vk::ConditionalRenderingBeginInfoEXT,
+		p_conditional_rendering_begin: *const vk::ConditionalRenderingBeginInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -7247,7 +7247,7 @@ impl Device {
 pub unsafe fn cmd_begin_custom_resolve_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_begin_custom_resolve_info: *const vk::BeginCustomResolveInfoEXT,
+	p_begin_custom_resolve_info: *const vk::BeginCustomResolveInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -7282,7 +7282,7 @@ impl Device {
 	pub unsafe fn cmd_begin_custom_resolve_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_begin_custom_resolve_info: *const vk::BeginCustomResolveInfoEXT,
+		p_begin_custom_resolve_info: *const vk::BeginCustomResolveInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_begin_custom_resolve_ext(self, command_buffer, p_begin_custom_resolve_info) }
@@ -7573,7 +7573,7 @@ impl Device {
 pub unsafe fn cmd_begin_render_pass(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	render_pass_begin: &vk::RenderPassBeginInfo,
+	render_pass_begin: &vk::RenderPassBeginInfo<'_>,
 	contents: vk::SubpassContents,
 ) -> Result<(), CallError> {
 	let __vk_function = device
@@ -7602,7 +7602,7 @@ impl Device {
 	pub unsafe fn cmd_begin_render_pass(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		render_pass_begin: &vk::RenderPassBeginInfo,
+		render_pass_begin: &vk::RenderPassBeginInfo<'_>,
 		contents: vk::SubpassContents,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -7788,7 +7788,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateAndroidSurfaceKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateAndroidSurfaceKHR.html)"]
 pub unsafe fn create_android_surface_khr(
 	instance: &Instance,
-	p_create_info: *const vk::AndroidSurfaceCreateInfoKHR,
+	p_create_info: *const vk::AndroidSurfaceCreateInfoKHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -7828,7 +7828,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_android_surface_khr(
 		&self,
-		p_create_info: *const vk::AndroidSurfaceCreateInfoKHR,
+		p_create_info: *const vk::AndroidSurfaceCreateInfoKHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -7859,7 +7859,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateSurfaceOHOS`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateSurfaceOHOS.html)"]
 pub unsafe fn create_surface_ohos(
 	instance: &Instance,
-	p_create_info: *const vk::SurfaceCreateInfoOHOS,
+	p_create_info: *const vk::SurfaceCreateInfoOHOS<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -7899,7 +7899,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_surface_ohos(
 		&self,
-		p_create_info: *const vk::SurfaceCreateInfoOHOS,
+		p_create_info: *const vk::SurfaceCreateInfoOHOS<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -7931,7 +7931,7 @@ pub unsafe fn get_physical_device_display_properties_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	p_property_count: *mut u32,
-	p_properties: *mut vk::DisplayPropertiesKHR,
+	p_properties: *mut vk::DisplayPropertiesKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -7972,7 +7972,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		p_property_count: *mut u32,
-		p_properties: *mut vk::DisplayPropertiesKHR,
+		p_properties: *mut vk::DisplayPropertiesKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -8247,7 +8247,7 @@ pub unsafe fn create_display_mode_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	display: vk::DisplayKHR,
-	p_create_info: *const vk::DisplayModeCreateInfoKHR,
+	p_create_info: *const vk::DisplayModeCreateInfoKHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_mode: *mut vk::DisplayModeKHR,
 ) -> Result<vk::Result, CallError> {
@@ -8289,7 +8289,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		display: vk::DisplayKHR,
-		p_create_info: *const vk::DisplayModeCreateInfoKHR,
+		p_create_info: *const vk::DisplayModeCreateInfoKHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_mode: *mut vk::DisplayModeKHR,
 	) -> Result<vk::Result, CallError> {
@@ -8404,7 +8404,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateDisplayPlaneSurfaceKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDisplayPlaneSurfaceKHR.html)"]
 pub unsafe fn create_display_plane_surface_khr(
 	instance: &Instance,
-	p_create_info: *const vk::DisplaySurfaceCreateInfoKHR,
+	p_create_info: *const vk::DisplaySurfaceCreateInfoKHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -8443,7 +8443,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_display_plane_surface_khr(
 		&self,
-		p_create_info: *const vk::DisplaySurfaceCreateInfoKHR,
+		p_create_info: *const vk::DisplaySurfaceCreateInfoKHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -8474,7 +8474,7 @@ impl Instance {
 pub unsafe fn create_shared_swapchains_khr(
 	device: &Device,
 	swapchain_count: u32,
-	p_create_infos: *const vk::SwapchainCreateInfoKHR,
+	p_create_infos: *const vk::SwapchainCreateInfoKHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_swapchains: *mut vk::SwapchainKHR,
 ) -> Result<vk::Result, CallError> {
@@ -8522,7 +8522,7 @@ impl Device {
 	pub unsafe fn create_shared_swapchains_khr(
 		&self,
 		swapchain_count: u32,
-		p_create_infos: *const vk::SwapchainCreateInfoKHR,
+		p_create_infos: *const vk::SwapchainCreateInfoKHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_swapchains: *mut vk::SwapchainKHR,
 	) -> Result<vk::Result, CallError> {
@@ -8959,7 +8959,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateSwapchainKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateSwapchainKHR.html)"]
 pub unsafe fn create_swapchain_khr(
 	device: &Device,
-	p_create_info: *const vk::SwapchainCreateInfoKHR,
+	p_create_info: *const vk::SwapchainCreateInfoKHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_swapchain: *mut vk::SwapchainKHR,
 ) -> Result<vk::Result, CallError> {
@@ -8998,7 +8998,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_swapchain_khr(
 		&self,
-		p_create_info: *const vk::SwapchainCreateInfoKHR,
+		p_create_info: *const vk::SwapchainCreateInfoKHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_swapchain: *mut vk::SwapchainKHR,
 	) -> Result<vk::Result, CallError> {
@@ -9253,7 +9253,7 @@ impl Device {
 pub unsafe fn queue_present_khr(
 	device: &Device,
 	queue: vk::Queue,
-	p_present_info: *const vk::PresentInfoKHR,
+	p_present_info: *const vk::PresentInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -9291,7 +9291,7 @@ impl Device {
 	pub unsafe fn queue_present_khr(
 		&self,
 		queue: vk::Queue,
-		p_present_info: *const vk::PresentInfoKHR,
+		p_present_info: *const vk::PresentInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { queue_present_khr(self, queue, p_present_info) }
@@ -9320,7 +9320,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateViSurfaceNN`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateViSurfaceNN.html)"]
 pub unsafe fn create_vi_surface_nn(
 	instance: &Instance,
-	p_create_info: *const vk::ViSurfaceCreateInfoNN,
+	p_create_info: *const vk::ViSurfaceCreateInfoNN<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -9360,7 +9360,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_vi_surface_nn(
 		&self,
-		p_create_info: *const vk::ViSurfaceCreateInfoNN,
+		p_create_info: *const vk::ViSurfaceCreateInfoNN<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -9391,7 +9391,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateWaylandSurfaceKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateWaylandSurfaceKHR.html)"]
 pub unsafe fn create_wayland_surface_khr(
 	instance: &Instance,
-	p_create_info: *const vk::WaylandSurfaceCreateInfoKHR,
+	p_create_info: *const vk::WaylandSurfaceCreateInfoKHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -9431,7 +9431,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_wayland_surface_khr(
 		&self,
-		p_create_info: *const vk::WaylandSurfaceCreateInfoKHR,
+		p_create_info: *const vk::WaylandSurfaceCreateInfoKHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -9539,7 +9539,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateUbmSurfaceSEC`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateUbmSurfaceSEC.html)"]
 pub unsafe fn create_ubm_surface_sec(
 	instance: &Instance,
-	p_create_info: *const vk::UbmSurfaceCreateInfoSEC,
+	p_create_info: *const vk::UbmSurfaceCreateInfoSEC<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -9579,7 +9579,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_ubm_surface_sec(
 		&self,
-		p_create_info: *const vk::UbmSurfaceCreateInfoSEC,
+		p_create_info: *const vk::UbmSurfaceCreateInfoSEC<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -9687,7 +9687,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateWin32SurfaceKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateWin32SurfaceKHR.html)"]
 pub unsafe fn create_win32_surface_khr(
 	instance: &Instance,
-	p_create_info: *const vk::Win32SurfaceCreateInfoKHR,
+	p_create_info: *const vk::Win32SurfaceCreateInfoKHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -9727,7 +9727,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_win32_surface_khr(
 		&self,
-		p_create_info: *const vk::Win32SurfaceCreateInfoKHR,
+		p_create_info: *const vk::Win32SurfaceCreateInfoKHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -9828,7 +9828,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateXlibSurfaceKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateXlibSurfaceKHR.html)"]
 pub unsafe fn create_xlib_surface_khr(
 	instance: &Instance,
-	p_create_info: *const vk::XlibSurfaceCreateInfoKHR,
+	p_create_info: *const vk::XlibSurfaceCreateInfoKHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -9868,7 +9868,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_xlib_surface_khr(
 		&self,
-		p_create_info: *const vk::XlibSurfaceCreateInfoKHR,
+		p_create_info: *const vk::XlibSurfaceCreateInfoKHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -9979,7 +9979,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateXcbSurfaceKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateXcbSurfaceKHR.html)"]
 pub unsafe fn create_xcb_surface_khr(
 	instance: &Instance,
-	p_create_info: *const vk::XcbSurfaceCreateInfoKHR,
+	p_create_info: *const vk::XcbSurfaceCreateInfoKHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -10019,7 +10019,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_xcb_surface_khr(
 		&self,
-		p_create_info: *const vk::XcbSurfaceCreateInfoKHR,
+		p_create_info: *const vk::XcbSurfaceCreateInfoKHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -10130,7 +10130,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateDirectFBSurfaceEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDirectFBSurfaceEXT.html)"]
 pub unsafe fn create_direct_fb_surface_ext(
 	instance: &Instance,
-	p_create_info: *const vk::DirectFBSurfaceCreateInfoEXT,
+	p_create_info: *const vk::DirectFBSurfaceCreateInfoEXT<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -10170,7 +10170,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_direct_fb_surface_ext(
 		&self,
-		p_create_info: *const vk::DirectFBSurfaceCreateInfoEXT,
+		p_create_info: *const vk::DirectFBSurfaceCreateInfoEXT<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -10278,7 +10278,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateImagePipeSurfaceFUCHSIA`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateImagePipeSurfaceFUCHSIA.html)"]
 pub unsafe fn create_image_pipe_surface_fuchsia(
 	instance: &Instance,
-	p_create_info: *const vk::ImagePipeSurfaceCreateInfoFUCHSIA,
+	p_create_info: *const vk::ImagePipeSurfaceCreateInfoFUCHSIA<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -10318,7 +10318,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_image_pipe_surface_fuchsia(
 		&self,
-		p_create_info: *const vk::ImagePipeSurfaceCreateInfoFUCHSIA,
+		p_create_info: *const vk::ImagePipeSurfaceCreateInfoFUCHSIA<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -10349,7 +10349,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateStreamDescriptorSurfaceGGP`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateStreamDescriptorSurfaceGGP.html)"]
 pub unsafe fn create_stream_descriptor_surface_ggp(
 	instance: &Instance,
-	p_create_info: *const vk::StreamDescriptorSurfaceCreateInfoGGP,
+	p_create_info: *const vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -10392,7 +10392,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_stream_descriptor_surface_ggp(
 		&self,
-		p_create_info: *const vk::StreamDescriptorSurfaceCreateInfoGGP,
+		p_create_info: *const vk::StreamDescriptorSurfaceCreateInfoGGP<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -10423,7 +10423,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateScreenSurfaceQNX`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateScreenSurfaceQNX.html)"]
 pub unsafe fn create_screen_surface_qnx(
 	instance: &Instance,
-	p_create_info: *const vk::ScreenSurfaceCreateInfoQNX,
+	p_create_info: *const vk::ScreenSurfaceCreateInfoQNX<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -10463,7 +10463,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_screen_surface_qnx(
 		&self,
-		p_create_info: *const vk::ScreenSurfaceCreateInfoQNX,
+		p_create_info: *const vk::ScreenSurfaceCreateInfoQNX<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -10570,7 +10570,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateDebugReportCallbackEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDebugReportCallbackEXT.html)"]
 pub unsafe fn create_debug_report_callback_ext(
 	instance: &Instance,
-	p_create_info: *const vk::DebugReportCallbackCreateInfoEXT,
+	p_create_info: *const vk::DebugReportCallbackCreateInfoEXT<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_callback: *mut vk::DebugReportCallbackEXT,
 ) -> Result<vk::Result, CallError> {
@@ -10609,7 +10609,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_debug_report_callback_ext(
 		&self,
-		p_create_info: *const vk::DebugReportCallbackCreateInfoEXT,
+		p_create_info: *const vk::DebugReportCallbackCreateInfoEXT<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_callback: *mut vk::DebugReportCallbackEXT,
 	) -> Result<vk::Result, CallError> {
@@ -10801,7 +10801,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkDebugMarkerSetObjectNameEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkDebugMarkerSetObjectNameEXT.html)"]
 pub unsafe fn debug_marker_set_object_name_ext(
 	device: &Device,
-	p_name_info: *const vk::DebugMarkerObjectNameInfoEXT,
+	p_name_info: *const vk::DebugMarkerObjectNameInfoEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -10838,7 +10838,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn debug_marker_set_object_name_ext(
 		&self,
-		p_name_info: *const vk::DebugMarkerObjectNameInfoEXT,
+		p_name_info: *const vk::DebugMarkerObjectNameInfoEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { debug_marker_set_object_name_ext(self, p_name_info) }
@@ -10866,7 +10866,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkDebugMarkerSetObjectTagEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkDebugMarkerSetObjectTagEXT.html)"]
 pub unsafe fn debug_marker_set_object_tag_ext(
 	device: &Device,
-	p_tag_info: *const vk::DebugMarkerObjectTagInfoEXT,
+	p_tag_info: *const vk::DebugMarkerObjectTagInfoEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -10903,7 +10903,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn debug_marker_set_object_tag_ext(
 		&self,
-		p_tag_info: *const vk::DebugMarkerObjectTagInfoEXT,
+		p_tag_info: *const vk::DebugMarkerObjectTagInfoEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { debug_marker_set_object_tag_ext(self, p_tag_info) }
@@ -10932,7 +10932,7 @@ impl Device {
 pub unsafe fn cmd_debug_marker_begin_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_marker_info: *const vk::DebugMarkerMarkerInfoEXT,
+	p_marker_info: *const vk::DebugMarkerMarkerInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -10967,7 +10967,7 @@ impl Device {
 	pub unsafe fn cmd_debug_marker_begin_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_marker_info: *const vk::DebugMarkerMarkerInfoEXT,
+		p_marker_info: *const vk::DebugMarkerMarkerInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_debug_marker_begin_ext(self, command_buffer, p_marker_info) }
@@ -11058,7 +11058,7 @@ impl Device {
 pub unsafe fn cmd_debug_marker_insert_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_marker_info: *const vk::DebugMarkerMarkerInfoEXT,
+	p_marker_info: *const vk::DebugMarkerMarkerInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -11093,7 +11093,7 @@ impl Device {
 	pub unsafe fn cmd_debug_marker_insert_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_marker_info: *const vk::DebugMarkerMarkerInfoEXT,
+		p_marker_info: *const vk::DebugMarkerMarkerInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_debug_marker_insert_ext(self, command_buffer, p_marker_info) }
@@ -11300,7 +11300,7 @@ pub unsafe fn cmd_execute_generated_commands_nv(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
 	is_preprocessed: vk::Bool32,
-	p_generated_commands_info: *const vk::GeneratedCommandsInfoNV,
+	p_generated_commands_info: *const vk::GeneratedCommandsInfoNV<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -11336,7 +11336,7 @@ impl Device {
 		&self,
 		command_buffer: vk::CommandBuffer,
 		is_preprocessed: vk::Bool32,
-		p_generated_commands_info: *const vk::GeneratedCommandsInfoNV,
+		p_generated_commands_info: *const vk::GeneratedCommandsInfoNV<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -11372,7 +11372,7 @@ impl Device {
 pub unsafe fn cmd_preprocess_generated_commands_nv(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_generated_commands_info: *const vk::GeneratedCommandsInfoNV,
+	p_generated_commands_info: *const vk::GeneratedCommandsInfoNV<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -11410,7 +11410,7 @@ impl Device {
 	pub unsafe fn cmd_preprocess_generated_commands_nv(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_generated_commands_info: *const vk::GeneratedCommandsInfoNV,
+		p_generated_commands_info: *const vk::GeneratedCommandsInfoNV<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_preprocess_generated_commands_nv(self, command_buffer, p_generated_commands_info) }
@@ -11514,8 +11514,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetGeneratedCommandsMemoryRequirementsNV`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetGeneratedCommandsMemoryRequirementsNV.html)"]
 pub unsafe fn get_generated_commands_memory_requirements_nv(
 	device: &Device,
-	p_info: *const vk::GeneratedCommandsMemoryRequirementsInfoNV,
-	p_memory_requirements: *mut vk::MemoryRequirements2,
+	p_info: *const vk::GeneratedCommandsMemoryRequirementsInfoNV<'_>,
+	p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -11551,8 +11551,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_generated_commands_memory_requirements_nv(
 		&self,
-		p_info: *const vk::GeneratedCommandsMemoryRequirementsInfoNV,
-		p_memory_requirements: *mut vk::MemoryRequirements2,
+		p_info: *const vk::GeneratedCommandsMemoryRequirementsInfoNV<'_>,
+		p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_generated_commands_memory_requirements_nv(self, p_info, p_memory_requirements) }
@@ -11580,7 +11580,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateIndirectCommandsLayoutNV`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateIndirectCommandsLayoutNV.html)"]
 pub unsafe fn create_indirect_commands_layout_nv(
 	device: &Device,
-	p_create_info: *const vk::IndirectCommandsLayoutCreateInfoNV,
+	p_create_info: *const vk::IndirectCommandsLayoutCreateInfoNV<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_indirect_commands_layout: *mut vk::IndirectCommandsLayoutNV,
 ) -> Result<vk::Result, CallError> {
@@ -11629,7 +11629,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_indirect_commands_layout_nv(
 		&self,
-		p_create_info: *const vk::IndirectCommandsLayoutCreateInfoNV,
+		p_create_info: *const vk::IndirectCommandsLayoutCreateInfoNV<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_indirect_commands_layout: *mut vk::IndirectCommandsLayoutNV,
 	) -> Result<vk::Result, CallError> {
@@ -11735,7 +11735,7 @@ pub unsafe fn cmd_execute_generated_commands_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
 	is_preprocessed: vk::Bool32,
-	p_generated_commands_info: *const vk::GeneratedCommandsInfoEXT,
+	p_generated_commands_info: *const vk::GeneratedCommandsInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -11774,7 +11774,7 @@ impl Device {
 		&self,
 		command_buffer: vk::CommandBuffer,
 		is_preprocessed: vk::Bool32,
-		p_generated_commands_info: *const vk::GeneratedCommandsInfoEXT,
+		p_generated_commands_info: *const vk::GeneratedCommandsInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -11810,7 +11810,7 @@ impl Device {
 pub unsafe fn cmd_preprocess_generated_commands_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_generated_commands_info: *const vk::GeneratedCommandsInfoEXT,
+	p_generated_commands_info: *const vk::GeneratedCommandsInfoEXT<'_>,
 	state_command_buffer: vk::CommandBuffer,
 ) -> Result<(), CallError> {
 	let __vk_function =
@@ -11855,7 +11855,7 @@ impl Device {
 	pub unsafe fn cmd_preprocess_generated_commands_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_generated_commands_info: *const vk::GeneratedCommandsInfoEXT,
+		p_generated_commands_info: *const vk::GeneratedCommandsInfoEXT<'_>,
 		state_command_buffer: vk::CommandBuffer,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -11891,8 +11891,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetGeneratedCommandsMemoryRequirementsEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetGeneratedCommandsMemoryRequirementsEXT.html)"]
 pub unsafe fn get_generated_commands_memory_requirements_ext(
 	device: &Device,
-	p_info: *const vk::GeneratedCommandsMemoryRequirementsInfoEXT,
-	p_memory_requirements: *mut vk::MemoryRequirements2,
+	p_info: *const vk::GeneratedCommandsMemoryRequirementsInfoEXT<'_>,
+	p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -11928,8 +11928,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_generated_commands_memory_requirements_ext(
 		&self,
-		p_info: *const vk::GeneratedCommandsMemoryRequirementsInfoEXT,
-		p_memory_requirements: *mut vk::MemoryRequirements2,
+		p_info: *const vk::GeneratedCommandsMemoryRequirementsInfoEXT<'_>,
+		p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_generated_commands_memory_requirements_ext(self, p_info, p_memory_requirements) }
@@ -11957,7 +11957,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateIndirectCommandsLayoutEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateIndirectCommandsLayoutEXT.html)"]
 pub unsafe fn create_indirect_commands_layout_ext(
 	device: &Device,
-	p_create_info: *const vk::IndirectCommandsLayoutCreateInfoEXT,
+	p_create_info: *const vk::IndirectCommandsLayoutCreateInfoEXT<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_indirect_commands_layout: *mut vk::IndirectCommandsLayoutEXT,
 ) -> Result<vk::Result, CallError> {
@@ -12006,7 +12006,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_indirect_commands_layout_ext(
 		&self,
-		p_create_info: *const vk::IndirectCommandsLayoutCreateInfoEXT,
+		p_create_info: *const vk::IndirectCommandsLayoutCreateInfoEXT<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_indirect_commands_layout: *mut vk::IndirectCommandsLayoutEXT,
 	) -> Result<vk::Result, CallError> {
@@ -12110,7 +12110,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateIndirectExecutionSetEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateIndirectExecutionSetEXT.html)"]
 pub unsafe fn create_indirect_execution_set_ext(
 	device: &Device,
-	p_create_info: *const vk::IndirectExecutionSetCreateInfoEXT,
+	p_create_info: *const vk::IndirectExecutionSetCreateInfoEXT<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_indirect_execution_set: *mut vk::IndirectExecutionSetEXT,
 ) -> Result<vk::Result, CallError> {
@@ -12156,7 +12156,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_indirect_execution_set_ext(
 		&self,
-		p_create_info: *const vk::IndirectExecutionSetCreateInfoEXT,
+		p_create_info: *const vk::IndirectExecutionSetCreateInfoEXT<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_indirect_execution_set: *mut vk::IndirectExecutionSetEXT,
 	) -> Result<vk::Result, CallError> {
@@ -12257,7 +12257,7 @@ pub unsafe fn update_indirect_execution_set_pipeline_ext(
 	device: &Device,
 	indirect_execution_set: vk::IndirectExecutionSetEXT,
 	execution_set_write_count: u32,
-	p_execution_set_writes: *const vk::WriteIndirectExecutionSetPipelineEXT,
+	p_execution_set_writes: *const vk::WriteIndirectExecutionSetPipelineEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -12302,7 +12302,7 @@ impl Device {
 		&self,
 		indirect_execution_set: vk::IndirectExecutionSetEXT,
 		execution_set_write_count: u32,
-		p_execution_set_writes: *const vk::WriteIndirectExecutionSetPipelineEXT,
+		p_execution_set_writes: *const vk::WriteIndirectExecutionSetPipelineEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -12339,7 +12339,7 @@ pub unsafe fn update_indirect_execution_set_shader_ext(
 	device: &Device,
 	indirect_execution_set: vk::IndirectExecutionSetEXT,
 	execution_set_write_count: u32,
-	p_execution_set_writes: *const vk::WriteIndirectExecutionSetShaderEXT,
+	p_execution_set_writes: *const vk::WriteIndirectExecutionSetShaderEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -12385,7 +12385,7 @@ impl Device {
 		&self,
 		indirect_execution_set: vk::IndirectExecutionSetEXT,
 		execution_set_write_count: u32,
-		p_execution_set_writes: *const vk::WriteIndirectExecutionSetShaderEXT,
+		p_execution_set_writes: *const vk::WriteIndirectExecutionSetShaderEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -12414,7 +12414,7 @@ impl Device {
 pub unsafe fn get_physical_device_features2(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	features: &mut vk::PhysicalDeviceFeatures2,
+	features: &mut vk::PhysicalDeviceFeatures2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -12442,7 +12442,7 @@ impl Instance {
 	pub unsafe fn get_physical_device_features2(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		features: &mut vk::PhysicalDeviceFeatures2,
+		features: &mut vk::PhysicalDeviceFeatures2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_physical_device_features2(self, physical_device, features) }
@@ -12464,7 +12464,7 @@ impl Instance {
 pub unsafe fn get_physical_device_features2_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	features: &mut vk::PhysicalDeviceFeatures2,
+	features: &mut vk::PhysicalDeviceFeatures2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -12492,7 +12492,7 @@ impl Instance {
 	pub unsafe fn get_physical_device_features2_khr(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		features: &mut vk::PhysicalDeviceFeatures2,
+		features: &mut vk::PhysicalDeviceFeatures2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_physical_device_features2_khr(self, physical_device, features) }
@@ -12514,7 +12514,7 @@ impl Instance {
 pub unsafe fn get_physical_device_properties2(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	properties: &mut vk::PhysicalDeviceProperties2,
+	properties: &mut vk::PhysicalDeviceProperties2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -12542,7 +12542,7 @@ impl Instance {
 	pub unsafe fn get_physical_device_properties2(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		properties: &mut vk::PhysicalDeviceProperties2,
+		properties: &mut vk::PhysicalDeviceProperties2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_physical_device_properties2(self, physical_device, properties) }
@@ -12564,7 +12564,7 @@ impl Instance {
 pub unsafe fn get_physical_device_properties2_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	properties: &mut vk::PhysicalDeviceProperties2,
+	properties: &mut vk::PhysicalDeviceProperties2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		instance
@@ -12595,7 +12595,7 @@ impl Instance {
 	pub unsafe fn get_physical_device_properties2_khr(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		properties: &mut vk::PhysicalDeviceProperties2,
+		properties: &mut vk::PhysicalDeviceProperties2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_physical_device_properties2_khr(self, physical_device, properties) }
@@ -12618,7 +12618,7 @@ pub unsafe fn get_physical_device_format_properties2(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	format: vk::Format,
-	format_properties: &mut vk::FormatProperties2,
+	format_properties: &mut vk::FormatProperties2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		instance
@@ -12650,7 +12650,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		format: vk::Format,
-		format_properties: &mut vk::FormatProperties2,
+		format_properties: &mut vk::FormatProperties2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -12675,7 +12675,7 @@ pub unsafe fn get_physical_device_format_properties2_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	format: vk::Format,
-	format_properties: &mut vk::FormatProperties2,
+	format_properties: &mut vk::FormatProperties2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -12706,7 +12706,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		format: vk::Format,
-		format_properties: &mut vk::FormatProperties2,
+		format_properties: &mut vk::FormatProperties2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -12730,8 +12730,8 @@ impl Instance {
 pub unsafe fn get_physical_device_image_format_properties2(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	image_format_info: &vk::PhysicalDeviceImageFormatInfo2,
-	image_format_properties: &mut vk::ImageFormatProperties2,
+	image_format_info: &vk::PhysicalDeviceImageFormatInfo2<'_>,
+	image_format_properties: &mut vk::ImageFormatProperties2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -12765,8 +12765,8 @@ impl Instance {
 	pub unsafe fn get_physical_device_image_format_properties2(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		image_format_info: &vk::PhysicalDeviceImageFormatInfo2,
-		image_format_properties: &mut vk::ImageFormatProperties2,
+		image_format_info: &vk::PhysicalDeviceImageFormatInfo2<'_>,
+		image_format_properties: &mut vk::ImageFormatProperties2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -12795,8 +12795,8 @@ impl Instance {
 pub unsafe fn get_physical_device_image_format_properties2_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	image_format_info: &vk::PhysicalDeviceImageFormatInfo2,
-	image_format_properties: &mut vk::ImageFormatProperties2,
+	image_format_info: &vk::PhysicalDeviceImageFormatInfo2<'_>,
+	image_format_properties: &mut vk::ImageFormatProperties2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -12830,8 +12830,8 @@ impl Instance {
 	pub unsafe fn get_physical_device_image_format_properties2_khr(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		image_format_info: &vk::PhysicalDeviceImageFormatInfo2,
-		image_format_properties: &mut vk::ImageFormatProperties2,
+		image_format_info: &vk::PhysicalDeviceImageFormatInfo2<'_>,
+		image_format_properties: &mut vk::ImageFormatProperties2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -12868,7 +12868,7 @@ pub unsafe fn get_physical_device_queue_family_properties2(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	queue_family_property_count: &mut u32,
-	queue_family_properties: Option<&mut [vk::QueueFamilyProperties2]>,
+	queue_family_properties: Option<&mut [vk::QueueFamilyProperties2<'_>]>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -12917,7 +12917,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		queue_family_property_count: &mut u32,
-		queue_family_properties: Option<&mut [vk::QueueFamilyProperties2]>,
+		queue_family_properties: Option<&mut [vk::QueueFamilyProperties2<'_>]>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -12954,7 +12954,7 @@ pub unsafe fn get_physical_device_queue_family_properties2_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	queue_family_property_count: &mut u32,
-	queue_family_properties: Option<&mut [vk::QueueFamilyProperties2]>,
+	queue_family_properties: Option<&mut [vk::QueueFamilyProperties2<'_>]>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -13003,7 +13003,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		queue_family_property_count: &mut u32,
-		queue_family_properties: Option<&mut [vk::QueueFamilyProperties2]>,
+		queue_family_properties: Option<&mut [vk::QueueFamilyProperties2<'_>]>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -13032,7 +13032,7 @@ impl Instance {
 pub unsafe fn get_physical_device_memory_properties2(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	memory_properties: &mut vk::PhysicalDeviceMemoryProperties2,
+	memory_properties: &mut vk::PhysicalDeviceMemoryProperties2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		instance
@@ -13063,7 +13063,7 @@ impl Instance {
 	pub unsafe fn get_physical_device_memory_properties2(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		memory_properties: &mut vk::PhysicalDeviceMemoryProperties2,
+		memory_properties: &mut vk::PhysicalDeviceMemoryProperties2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_physical_device_memory_properties2(self, physical_device, memory_properties) }
@@ -13085,7 +13085,7 @@ impl Instance {
 pub unsafe fn get_physical_device_memory_properties2_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	memory_properties: &mut vk::PhysicalDeviceMemoryProperties2,
+	memory_properties: &mut vk::PhysicalDeviceMemoryProperties2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -13115,7 +13115,7 @@ impl Instance {
 	pub unsafe fn get_physical_device_memory_properties2_khr(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		memory_properties: &mut vk::PhysicalDeviceMemoryProperties2,
+		memory_properties: &mut vk::PhysicalDeviceMemoryProperties2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_physical_device_memory_properties2_khr(self, physical_device, memory_properties) }
@@ -13144,9 +13144,9 @@ impl Instance {
 pub unsafe fn get_physical_device_sparse_image_format_properties2(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	format_info: &vk::PhysicalDeviceSparseImageFormatInfo2,
+	format_info: &vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
 	property_count: &mut u32,
-	properties: Option<&mut [vk::SparseImageFormatProperties2]>,
+	properties: Option<&mut [vk::SparseImageFormatProperties2<'_>]>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -13193,9 +13193,9 @@ impl Instance {
 	pub unsafe fn get_physical_device_sparse_image_format_properties2(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		format_info: &vk::PhysicalDeviceSparseImageFormatInfo2,
+		format_info: &vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
 		property_count: &mut u32,
-		properties: Option<&mut [vk::SparseImageFormatProperties2]>,
+		properties: Option<&mut [vk::SparseImageFormatProperties2<'_>]>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -13232,9 +13232,9 @@ impl Instance {
 pub unsafe fn get_physical_device_sparse_image_format_properties2_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	format_info: &vk::PhysicalDeviceSparseImageFormatInfo2,
+	format_info: &vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
 	property_count: &mut u32,
-	properties: Option<&mut [vk::SparseImageFormatProperties2]>,
+	properties: Option<&mut [vk::SparseImageFormatProperties2<'_>]>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -13281,9 +13281,9 @@ impl Instance {
 	pub unsafe fn get_physical_device_sparse_image_format_properties2_khr(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		format_info: &vk::PhysicalDeviceSparseImageFormatInfo2,
+		format_info: &vk::PhysicalDeviceSparseImageFormatInfo2<'_>,
 		property_count: &mut u32,
-		properties: Option<&mut [vk::SparseImageFormatProperties2]>,
+		properties: Option<&mut [vk::SparseImageFormatProperties2<'_>]>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -13324,7 +13324,7 @@ pub unsafe fn cmd_push_descriptor_set(
 	layout: vk::PipelineLayout,
 	set: u32,
 	descriptor_write_count: u32,
-	p_descriptor_writes: *const vk::WriteDescriptorSet,
+	p_descriptor_writes: *const vk::WriteDescriptorSet<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -13372,7 +13372,7 @@ impl Device {
 		layout: vk::PipelineLayout,
 		set: u32,
 		descriptor_write_count: u32,
-		p_descriptor_writes: *const vk::WriteDescriptorSet,
+		p_descriptor_writes: *const vk::WriteDescriptorSet<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -13415,7 +13415,7 @@ pub unsafe fn cmd_push_descriptor_set_khr(
 	layout: vk::PipelineLayout,
 	set: u32,
 	descriptor_write_count: u32,
-	p_descriptor_writes: *const vk::WriteDescriptorSet,
+	p_descriptor_writes: *const vk::WriteDescriptorSet<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -13463,7 +13463,7 @@ impl Device {
 		layout: vk::PipelineLayout,
 		set: u32,
 		descriptor_write_count: u32,
-		p_descriptor_writes: *const vk::WriteDescriptorSet,
+		p_descriptor_writes: *const vk::WriteDescriptorSet<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -13595,8 +13595,8 @@ impl Device {
 pub unsafe fn get_physical_device_external_buffer_properties(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	external_buffer_info: &vk::PhysicalDeviceExternalBufferInfo,
-	external_buffer_properties: &mut vk::ExternalBufferProperties,
+	external_buffer_info: &vk::PhysicalDeviceExternalBufferInfo<'_>,
+	external_buffer_properties: &mut vk::ExternalBufferProperties<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -13632,8 +13632,8 @@ impl Instance {
 	pub unsafe fn get_physical_device_external_buffer_properties(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		external_buffer_info: &vk::PhysicalDeviceExternalBufferInfo,
-		external_buffer_properties: &mut vk::ExternalBufferProperties,
+		external_buffer_info: &vk::PhysicalDeviceExternalBufferInfo<'_>,
+		external_buffer_properties: &mut vk::ExternalBufferProperties<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -13662,8 +13662,8 @@ impl Instance {
 pub unsafe fn get_physical_device_external_buffer_properties_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	external_buffer_info: &vk::PhysicalDeviceExternalBufferInfo,
-	external_buffer_properties: &mut vk::ExternalBufferProperties,
+	external_buffer_info: &vk::PhysicalDeviceExternalBufferInfo<'_>,
+	external_buffer_properties: &mut vk::ExternalBufferProperties<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -13699,8 +13699,8 @@ impl Instance {
 	pub unsafe fn get_physical_device_external_buffer_properties_khr(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		external_buffer_info: &vk::PhysicalDeviceExternalBufferInfo,
-		external_buffer_properties: &mut vk::ExternalBufferProperties,
+		external_buffer_info: &vk::PhysicalDeviceExternalBufferInfo<'_>,
+		external_buffer_properties: &mut vk::ExternalBufferProperties<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -13736,7 +13736,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkGetMemoryWin32HandleKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetMemoryWin32HandleKHR.html)"]
 pub unsafe fn get_memory_win32_handle_khr(
 	device: &Device,
-	p_get_win32_handle_info: *const vk::MemoryGetWin32HandleInfoKHR,
+	p_get_win32_handle_info: *const vk::MemoryGetWin32HandleInfoKHR<'_>,
 	p_handle: *mut vk::HANDLE,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -13775,7 +13775,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_memory_win32_handle_khr(
 		&self,
-		p_get_win32_handle_info: *const vk::MemoryGetWin32HandleInfoKHR,
+		p_get_win32_handle_info: *const vk::MemoryGetWin32HandleInfoKHR<'_>,
 		p_handle: *mut vk::HANDLE,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -13807,7 +13807,7 @@ pub unsafe fn get_memory_win32_handle_properties_khr(
 	device: &Device,
 	handle_type: vk::ExternalMemoryHandleTypeFlagBits,
 	handle: vk::HANDLE,
-	p_memory_win32_handle_properties: *mut vk::MemoryWin32HandlePropertiesKHR,
+	p_memory_win32_handle_properties: *mut vk::MemoryWin32HandlePropertiesKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		device
@@ -13857,7 +13857,7 @@ impl Device {
 		&self,
 		handle_type: vk::ExternalMemoryHandleTypeFlagBits,
 		handle: vk::HANDLE,
-		p_memory_win32_handle_properties: *mut vk::MemoryWin32HandlePropertiesKHR,
+		p_memory_win32_handle_properties: *mut vk::MemoryWin32HandlePropertiesKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -13892,7 +13892,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetMemoryFdKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetMemoryFdKHR.html)"]
 pub unsafe fn get_memory_fd_khr(
 	device: &Device,
-	p_get_fd_info: *const vk::MemoryGetFdInfoKHR,
+	p_get_fd_info: *const vk::MemoryGetFdInfoKHR<'_>,
 	p_fd: *mut i32,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -13930,7 +13930,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_memory_fd_khr(
 		&self,
-		p_get_fd_info: *const vk::MemoryGetFdInfoKHR,
+		p_get_fd_info: *const vk::MemoryGetFdInfoKHR<'_>,
 		p_fd: *mut i32,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -13961,7 +13961,7 @@ pub unsafe fn get_memory_fd_properties_khr(
 	device: &Device,
 	handle_type: vk::ExternalMemoryHandleTypeFlagBits,
 	fd: i32,
-	p_memory_fd_properties: *mut vk::MemoryFdPropertiesKHR,
+	p_memory_fd_properties: *mut vk::MemoryFdPropertiesKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -14000,7 +14000,7 @@ impl Device {
 		&self,
 		handle_type: vk::ExternalMemoryHandleTypeFlagBits,
 		fd: i32,
-		p_memory_fd_properties: *mut vk::MemoryFdPropertiesKHR,
+		p_memory_fd_properties: *mut vk::MemoryFdPropertiesKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_memory_fd_properties_khr(self, handle_type, fd, p_memory_fd_properties) }
@@ -14029,7 +14029,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetMemoryZirconHandleFUCHSIA`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetMemoryZirconHandleFUCHSIA.html)"]
 pub unsafe fn get_memory_zircon_handle_fuchsia(
 	device: &Device,
-	p_get_zircon_handle_info: *const vk::MemoryGetZirconHandleInfoFUCHSIA,
+	p_get_zircon_handle_info: *const vk::MemoryGetZirconHandleInfoFUCHSIA<'_>,
 	p_zircon_handle: *mut vk::zx_handle_t,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -14068,7 +14068,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_memory_zircon_handle_fuchsia(
 		&self,
-		p_get_zircon_handle_info: *const vk::MemoryGetZirconHandleInfoFUCHSIA,
+		p_get_zircon_handle_info: *const vk::MemoryGetZirconHandleInfoFUCHSIA<'_>,
 		p_zircon_handle: *mut vk::zx_handle_t,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -14100,7 +14100,7 @@ pub unsafe fn get_memory_zircon_handle_properties_fuchsia(
 	device: &Device,
 	handle_type: vk::ExternalMemoryHandleTypeFlagBits,
 	zircon_handle: vk::zx_handle_t,
-	p_memory_zircon_handle_properties: *mut vk::MemoryZirconHandlePropertiesFUCHSIA,
+	p_memory_zircon_handle_properties: *mut vk::MemoryZirconHandlePropertiesFUCHSIA<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -14149,7 +14149,7 @@ impl Device {
 		&self,
 		handle_type: vk::ExternalMemoryHandleTypeFlagBits,
 		zircon_handle: vk::zx_handle_t,
-		p_memory_zircon_handle_properties: *mut vk::MemoryZirconHandlePropertiesFUCHSIA,
+		p_memory_zircon_handle_properties: *mut vk::MemoryZirconHandlePropertiesFUCHSIA<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -14184,7 +14184,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetMemoryRemoteAddressNV`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetMemoryRemoteAddressNV.html)"]
 pub unsafe fn get_memory_remote_address_nv(
 	device: &Device,
-	p_memory_get_remote_address_info: *const vk::MemoryGetRemoteAddressInfoNV,
+	p_memory_get_remote_address_info: *const vk::MemoryGetRemoteAddressInfoNV<'_>,
 	p_address: *mut vk::RemoteAddressNV,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -14223,7 +14223,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_memory_remote_address_nv(
 		&self,
-		p_memory_get_remote_address_info: *const vk::MemoryGetRemoteAddressInfoNV,
+		p_memory_get_remote_address_info: *const vk::MemoryGetRemoteAddressInfoNV<'_>,
 		p_address: *mut vk::RemoteAddressNV,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -14246,8 +14246,8 @@ impl Device {
 pub unsafe fn get_physical_device_external_semaphore_properties(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	external_semaphore_info: &vk::PhysicalDeviceExternalSemaphoreInfo,
-	external_semaphore_properties: &mut vk::ExternalSemaphoreProperties,
+	external_semaphore_info: &vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
+	external_semaphore_properties: &mut vk::ExternalSemaphoreProperties<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -14283,8 +14283,8 @@ impl Instance {
 	pub unsafe fn get_physical_device_external_semaphore_properties(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		external_semaphore_info: &vk::PhysicalDeviceExternalSemaphoreInfo,
-		external_semaphore_properties: &mut vk::ExternalSemaphoreProperties,
+		external_semaphore_info: &vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
+		external_semaphore_properties: &mut vk::ExternalSemaphoreProperties<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -14313,8 +14313,8 @@ impl Instance {
 pub unsafe fn get_physical_device_external_semaphore_properties_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	external_semaphore_info: &vk::PhysicalDeviceExternalSemaphoreInfo,
-	external_semaphore_properties: &mut vk::ExternalSemaphoreProperties,
+	external_semaphore_info: &vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
+	external_semaphore_properties: &mut vk::ExternalSemaphoreProperties<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -14350,8 +14350,8 @@ impl Instance {
 	pub unsafe fn get_physical_device_external_semaphore_properties_khr(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		external_semaphore_info: &vk::PhysicalDeviceExternalSemaphoreInfo,
-		external_semaphore_properties: &mut vk::ExternalSemaphoreProperties,
+		external_semaphore_info: &vk::PhysicalDeviceExternalSemaphoreInfo<'_>,
+		external_semaphore_properties: &mut vk::ExternalSemaphoreProperties<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -14387,7 +14387,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkGetSemaphoreWin32HandleKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetSemaphoreWin32HandleKHR.html)"]
 pub unsafe fn get_semaphore_win32_handle_khr(
 	device: &Device,
-	p_get_win32_handle_info: *const vk::SemaphoreGetWin32HandleInfoKHR,
+	p_get_win32_handle_info: *const vk::SemaphoreGetWin32HandleInfoKHR<'_>,
 	p_handle: *mut vk::HANDLE,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -14426,7 +14426,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_semaphore_win32_handle_khr(
 		&self,
-		p_get_win32_handle_info: *const vk::SemaphoreGetWin32HandleInfoKHR,
+		p_get_win32_handle_info: *const vk::SemaphoreGetWin32HandleInfoKHR<'_>,
 		p_handle: *mut vk::HANDLE,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -14456,7 +14456,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkImportSemaphoreWin32HandleKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkImportSemaphoreWin32HandleKHR.html)"]
 pub unsafe fn import_semaphore_win32_handle_khr(
 	device: &Device,
-	p_import_semaphore_win32_handle_info: *const vk::ImportSemaphoreWin32HandleInfoKHR,
+	p_import_semaphore_win32_handle_info: *const vk::ImportSemaphoreWin32HandleInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -14494,7 +14494,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn import_semaphore_win32_handle_khr(
 		&self,
-		p_import_semaphore_win32_handle_info: *const vk::ImportSemaphoreWin32HandleInfoKHR,
+		p_import_semaphore_win32_handle_info: *const vk::ImportSemaphoreWin32HandleInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { import_semaphore_win32_handle_khr(self, p_import_semaphore_win32_handle_info) }
@@ -14522,7 +14522,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetSemaphoreFdKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetSemaphoreFdKHR.html)"]
 pub unsafe fn get_semaphore_fd_khr(
 	device: &Device,
-	p_get_fd_info: *const vk::SemaphoreGetFdInfoKHR,
+	p_get_fd_info: *const vk::SemaphoreGetFdInfoKHR<'_>,
 	p_fd: *mut i32,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -14560,7 +14560,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_semaphore_fd_khr(
 		&self,
-		p_get_fd_info: *const vk::SemaphoreGetFdInfoKHR,
+		p_get_fd_info: *const vk::SemaphoreGetFdInfoKHR<'_>,
 		p_fd: *mut i32,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -14589,7 +14589,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkImportSemaphoreFdKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkImportSemaphoreFdKHR.html)"]
 pub unsafe fn import_semaphore_fd_khr(
 	device: &Device,
-	p_import_semaphore_fd_info: *const vk::ImportSemaphoreFdInfoKHR,
+	p_import_semaphore_fd_info: *const vk::ImportSemaphoreFdInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -14626,7 +14626,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn import_semaphore_fd_khr(
 		&self,
-		p_import_semaphore_fd_info: *const vk::ImportSemaphoreFdInfoKHR,
+		p_import_semaphore_fd_info: *const vk::ImportSemaphoreFdInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { import_semaphore_fd_khr(self, p_import_semaphore_fd_info) }
@@ -14655,7 +14655,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetSemaphoreZirconHandleFUCHSIA`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetSemaphoreZirconHandleFUCHSIA.html)"]
 pub unsafe fn get_semaphore_zircon_handle_fuchsia(
 	device: &Device,
-	p_get_zircon_handle_info: *const vk::SemaphoreGetZirconHandleInfoFUCHSIA,
+	p_get_zircon_handle_info: *const vk::SemaphoreGetZirconHandleInfoFUCHSIA<'_>,
 	p_zircon_handle: *mut vk::zx_handle_t,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
@@ -14697,7 +14697,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_semaphore_zircon_handle_fuchsia(
 		&self,
-		p_get_zircon_handle_info: *const vk::SemaphoreGetZirconHandleInfoFUCHSIA,
+		p_get_zircon_handle_info: *const vk::SemaphoreGetZirconHandleInfoFUCHSIA<'_>,
 		p_zircon_handle: *mut vk::zx_handle_t,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -14727,7 +14727,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkImportSemaphoreZirconHandleFUCHSIA`](https://docs.vulkan.org/refpages/latest/refpages/source/vkImportSemaphoreZirconHandleFUCHSIA.html)"]
 pub unsafe fn import_semaphore_zircon_handle_fuchsia(
 	device: &Device,
-	p_import_semaphore_zircon_handle_info: *const vk::ImportSemaphoreZirconHandleInfoFUCHSIA,
+	p_import_semaphore_zircon_handle_info: *const vk::ImportSemaphoreZirconHandleInfoFUCHSIA<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		device
@@ -14768,7 +14768,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn import_semaphore_zircon_handle_fuchsia(
 		&self,
-		p_import_semaphore_zircon_handle_info: *const vk::ImportSemaphoreZirconHandleInfoFUCHSIA,
+		p_import_semaphore_zircon_handle_info: *const vk::ImportSemaphoreZirconHandleInfoFUCHSIA<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { import_semaphore_zircon_handle_fuchsia(self, p_import_semaphore_zircon_handle_info) }
@@ -14790,8 +14790,8 @@ impl Device {
 pub unsafe fn get_physical_device_external_fence_properties(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	external_fence_info: &vk::PhysicalDeviceExternalFenceInfo,
-	external_fence_properties: &mut vk::ExternalFenceProperties,
+	external_fence_info: &vk::PhysicalDeviceExternalFenceInfo<'_>,
+	external_fence_properties: &mut vk::ExternalFenceProperties<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -14827,8 +14827,8 @@ impl Instance {
 	pub unsafe fn get_physical_device_external_fence_properties(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		external_fence_info: &vk::PhysicalDeviceExternalFenceInfo,
-		external_fence_properties: &mut vk::ExternalFenceProperties,
+		external_fence_info: &vk::PhysicalDeviceExternalFenceInfo<'_>,
+		external_fence_properties: &mut vk::ExternalFenceProperties<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -14857,8 +14857,8 @@ impl Instance {
 pub unsafe fn get_physical_device_external_fence_properties_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	external_fence_info: &vk::PhysicalDeviceExternalFenceInfo,
-	external_fence_properties: &mut vk::ExternalFenceProperties,
+	external_fence_info: &vk::PhysicalDeviceExternalFenceInfo<'_>,
+	external_fence_properties: &mut vk::ExternalFenceProperties<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -14894,8 +14894,8 @@ impl Instance {
 	pub unsafe fn get_physical_device_external_fence_properties_khr(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		external_fence_info: &vk::PhysicalDeviceExternalFenceInfo,
-		external_fence_properties: &mut vk::ExternalFenceProperties,
+		external_fence_info: &vk::PhysicalDeviceExternalFenceInfo<'_>,
+		external_fence_properties: &mut vk::ExternalFenceProperties<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -14931,7 +14931,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkGetFenceWin32HandleKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetFenceWin32HandleKHR.html)"]
 pub unsafe fn get_fence_win32_handle_khr(
 	device: &Device,
-	p_get_win32_handle_info: *const vk::FenceGetWin32HandleInfoKHR,
+	p_get_win32_handle_info: *const vk::FenceGetWin32HandleInfoKHR<'_>,
 	p_handle: *mut vk::HANDLE,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -14970,7 +14970,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_fence_win32_handle_khr(
 		&self,
-		p_get_win32_handle_info: *const vk::FenceGetWin32HandleInfoKHR,
+		p_get_win32_handle_info: *const vk::FenceGetWin32HandleInfoKHR<'_>,
 		p_handle: *mut vk::HANDLE,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -15000,7 +15000,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkImportFenceWin32HandleKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkImportFenceWin32HandleKHR.html)"]
 pub unsafe fn import_fence_win32_handle_khr(
 	device: &Device,
-	p_import_fence_win32_handle_info: *const vk::ImportFenceWin32HandleInfoKHR,
+	p_import_fence_win32_handle_info: *const vk::ImportFenceWin32HandleInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -15038,7 +15038,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn import_fence_win32_handle_khr(
 		&self,
-		p_import_fence_win32_handle_info: *const vk::ImportFenceWin32HandleInfoKHR,
+		p_import_fence_win32_handle_info: *const vk::ImportFenceWin32HandleInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { import_fence_win32_handle_khr(self, p_import_fence_win32_handle_info) }
@@ -15066,7 +15066,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetFenceFdKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetFenceFdKHR.html)"]
 pub unsafe fn get_fence_fd_khr(
 	device: &Device,
-	p_get_fd_info: *const vk::FenceGetFdInfoKHR,
+	p_get_fd_info: *const vk::FenceGetFdInfoKHR<'_>,
 	p_fd: *mut i32,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -15104,7 +15104,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_fence_fd_khr(
 		&self,
-		p_get_fd_info: *const vk::FenceGetFdInfoKHR,
+		p_get_fd_info: *const vk::FenceGetFdInfoKHR<'_>,
 		p_fd: *mut i32,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -15133,7 +15133,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkImportFenceFdKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkImportFenceFdKHR.html)"]
 pub unsafe fn import_fence_fd_khr(
 	device: &Device,
-	p_import_fence_fd_info: *const vk::ImportFenceFdInfoKHR,
+	p_import_fence_fd_info: *const vk::ImportFenceFdInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -15170,7 +15170,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn import_fence_fd_khr(
 		&self,
-		p_import_fence_fd_info: *const vk::ImportFenceFdInfoKHR,
+		p_import_fence_fd_info: *const vk::ImportFenceFdInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { import_fence_fd_khr(self, p_import_fence_fd_info) }
@@ -15550,7 +15550,7 @@ impl Instance {
 pub unsafe fn display_power_control_ext(
 	device: &Device,
 	display: vk::DisplayKHR,
-	p_display_power_info: *const vk::DisplayPowerInfoEXT,
+	p_display_power_info: *const vk::DisplayPowerInfoEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -15588,7 +15588,7 @@ impl Device {
 	pub unsafe fn display_power_control_ext(
 		&self,
 		display: vk::DisplayKHR,
-		p_display_power_info: *const vk::DisplayPowerInfoEXT,
+		p_display_power_info: *const vk::DisplayPowerInfoEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { display_power_control_ext(self, display, p_display_power_info) }
@@ -15616,7 +15616,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkRegisterDeviceEventEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkRegisterDeviceEventEXT.html)"]
 pub unsafe fn register_device_event_ext(
 	device: &Device,
-	p_device_event_info: *const vk::DeviceEventInfoEXT,
+	p_device_event_info: *const vk::DeviceEventInfoEXT<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_fence: *mut vk::Fence,
 ) -> Result<vk::Result, CallError> {
@@ -15655,7 +15655,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn register_device_event_ext(
 		&self,
-		p_device_event_info: *const vk::DeviceEventInfoEXT,
+		p_device_event_info: *const vk::DeviceEventInfoEXT<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_fence: *mut vk::Fence,
 	) -> Result<vk::Result, CallError> {
@@ -15686,7 +15686,7 @@ impl Device {
 pub unsafe fn register_display_event_ext(
 	device: &Device,
 	display: vk::DisplayKHR,
-	p_display_event_info: *const vk::DisplayEventInfoEXT,
+	p_display_event_info: *const vk::DisplayEventInfoEXT<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_fence: *mut vk::Fence,
 ) -> Result<vk::Result, CallError> {
@@ -15734,7 +15734,7 @@ impl Device {
 	pub unsafe fn register_display_event_ext(
 		&self,
 		display: vk::DisplayKHR,
-		p_display_event_info: *const vk::DisplayEventInfoEXT,
+		p_display_event_info: *const vk::DisplayEventInfoEXT<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_fence: *mut vk::Fence,
 	) -> Result<vk::Result, CallError> {
@@ -15835,7 +15835,7 @@ pub unsafe fn get_physical_device_surface_capabilities2_ext(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	surface: vk::SurfaceKHR,
-	p_surface_capabilities: *mut vk::SurfaceCapabilities2EXT,
+	p_surface_capabilities: *mut vk::SurfaceCapabilities2EXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -15876,7 +15876,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		surface: vk::SurfaceKHR,
-		p_surface_capabilities: *mut vk::SurfaceCapabilities2EXT,
+		p_surface_capabilities: *mut vk::SurfaceCapabilities2EXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -15912,7 +15912,7 @@ impl Instance {
 pub unsafe fn enumerate_physical_device_groups(
 	instance: &Instance,
 	physical_device_group_count: &mut u32,
-	physical_device_group_properties: Option<&mut [vk::PhysicalDeviceGroupProperties]>,
+	physical_device_group_properties: Option<&mut [vk::PhysicalDeviceGroupProperties<'_>]>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -15962,7 +15962,7 @@ impl Instance {
 	pub unsafe fn enumerate_physical_device_groups(
 		&self,
 		physical_device_group_count: &mut u32,
-		physical_device_group_properties: Option<&mut [vk::PhysicalDeviceGroupProperties]>,
+		physical_device_group_properties: Option<&mut [vk::PhysicalDeviceGroupProperties<'_>]>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -15997,7 +15997,7 @@ impl Instance {
 pub unsafe fn enumerate_physical_device_groups_khr(
 	instance: &Instance,
 	physical_device_group_count: &mut u32,
-	physical_device_group_properties: Option<&mut [vk::PhysicalDeviceGroupProperties]>,
+	physical_device_group_properties: Option<&mut [vk::PhysicalDeviceGroupProperties<'_>]>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		instance
@@ -16052,7 +16052,7 @@ impl Instance {
 	pub unsafe fn enumerate_physical_device_groups_khr(
 		&self,
 		physical_device_group_count: &mut u32,
-		physical_device_group_properties: Option<&mut [vk::PhysicalDeviceGroupProperties]>,
+		physical_device_group_properties: Option<&mut [vk::PhysicalDeviceGroupProperties<'_>]>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -16224,7 +16224,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkBindBufferMemory2`](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindBufferMemory2.html)"]
 pub unsafe fn bind_buffer_memory2(
 	device: &Device,
-	bind_infos: &[vk::BindBufferMemoryInfo],
+	bind_infos: &[vk::BindBufferMemoryInfo<'_>],
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -16256,7 +16256,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn bind_buffer_memory2(
 		&self,
-		bind_infos: &[vk::BindBufferMemoryInfo],
+		bind_infos: &[vk::BindBufferMemoryInfo<'_>],
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { bind_buffer_memory2(self, bind_infos) }
@@ -16277,7 +16277,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkBindBufferMemory2KHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindBufferMemory2KHR.html)"]
 pub unsafe fn bind_buffer_memory2_khr(
 	device: &Device,
-	bind_infos: &[vk::BindBufferMemoryInfo],
+	bind_infos: &[vk::BindBufferMemoryInfo<'_>],
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -16309,7 +16309,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn bind_buffer_memory2_khr(
 		&self,
-		bind_infos: &[vk::BindBufferMemoryInfo],
+		bind_infos: &[vk::BindBufferMemoryInfo<'_>],
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { bind_buffer_memory2_khr(self, bind_infos) }
@@ -16330,7 +16330,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkBindImageMemory2`](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindImageMemory2.html)"]
 pub unsafe fn bind_image_memory2(
 	device: &Device,
-	bind_infos: &[vk::BindImageMemoryInfo],
+	bind_infos: &[vk::BindImageMemoryInfo<'_>],
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -16362,7 +16362,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn bind_image_memory2(
 		&self,
-		bind_infos: &[vk::BindImageMemoryInfo],
+		bind_infos: &[vk::BindImageMemoryInfo<'_>],
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { bind_image_memory2(self, bind_infos) }
@@ -16383,7 +16383,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkBindImageMemory2KHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkBindImageMemory2KHR.html)"]
 pub unsafe fn bind_image_memory2_khr(
 	device: &Device,
-	bind_infos: &[vk::BindImageMemoryInfo],
+	bind_infos: &[vk::BindImageMemoryInfo<'_>],
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -16415,7 +16415,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn bind_image_memory2_khr(
 		&self,
-		bind_infos: &[vk::BindImageMemoryInfo],
+		bind_infos: &[vk::BindImageMemoryInfo<'_>],
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { bind_image_memory2_khr(self, bind_infos) }
@@ -16543,7 +16543,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceGroupPresentCapabilitiesKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceGroupPresentCapabilitiesKHR.html)"]
 pub unsafe fn get_device_group_present_capabilities_khr(
 	device: &Device,
-	p_device_group_present_capabilities: *mut vk::DeviceGroupPresentCapabilitiesKHR,
+	p_device_group_present_capabilities: *mut vk::DeviceGroupPresentCapabilitiesKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -16582,7 +16582,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_group_present_capabilities_khr(
 		&self,
-		p_device_group_present_capabilities: *mut vk::DeviceGroupPresentCapabilitiesKHR,
+		p_device_group_present_capabilities: *mut vk::DeviceGroupPresentCapabilitiesKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_device_group_present_capabilities_khr(self, p_device_group_present_capabilities) }
@@ -16679,7 +16679,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkAcquireNextImage2KHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkAcquireNextImage2KHR.html)"]
 pub unsafe fn acquire_next_image2_khr(
 	device: &Device,
-	p_acquire_info: *const vk::AcquireNextImageInfoKHR,
+	p_acquire_info: *const vk::AcquireNextImageInfoKHR<'_>,
 	p_image_index: *mut u32,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -16717,7 +16717,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn acquire_next_image2_khr(
 		&self,
-		p_acquire_info: *const vk::AcquireNextImageInfoKHR,
+		p_acquire_info: *const vk::AcquireNextImageInfoKHR<'_>,
 		p_image_index: *mut u32,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -16986,7 +16986,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateDescriptorUpdateTemplate`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDescriptorUpdateTemplate.html)"]
 pub unsafe fn create_descriptor_update_template(
 	device: &Device,
-	create_info: &vk::DescriptorUpdateTemplateCreateInfo,
+	create_info: &vk::DescriptorUpdateTemplateCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::DescriptorUpdateTemplate, CallError> {
 	let __vk_function =
@@ -17028,7 +17028,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_descriptor_update_template(
 		&self,
-		create_info: &vk::DescriptorUpdateTemplateCreateInfo,
+		create_info: &vk::DescriptorUpdateTemplateCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::DescriptorUpdateTemplate, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -17050,7 +17050,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateDescriptorUpdateTemplateKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDescriptorUpdateTemplateKHR.html)"]
 pub unsafe fn create_descriptor_update_template_khr(
 	device: &Device,
-	create_info: &vk::DescriptorUpdateTemplateCreateInfo,
+	create_info: &vk::DescriptorUpdateTemplateCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::DescriptorUpdateTemplate, CallError> {
 	let __vk_function =
@@ -17092,7 +17092,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_descriptor_update_template_khr(
 		&self,
-		create_info: &vk::DescriptorUpdateTemplateCreateInfo,
+		create_info: &vk::DescriptorUpdateTemplateCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::DescriptorUpdateTemplate, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -17569,7 +17569,7 @@ pub unsafe fn set_hdr_metadata_ext(
 	device: &Device,
 	swapchain_count: u32,
 	p_swapchains: *const vk::SwapchainKHR,
-	p_metadata: *const vk::HdrMetadataEXT,
+	p_metadata: *const vk::HdrMetadataEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -17605,7 +17605,7 @@ impl Device {
 		&self,
 		swapchain_count: u32,
 		p_swapchains: *const vk::SwapchainKHR,
-		p_metadata: *const vk::HdrMetadataEXT,
+		p_metadata: *const vk::HdrMetadataEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { set_hdr_metadata_ext(self, swapchain_count, p_swapchains, p_metadata) }
@@ -17852,7 +17852,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateIOSSurfaceMVK`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateIOSSurfaceMVK.html)"]
 pub unsafe fn create_ios_surface_mvk(
 	instance: &Instance,
-	p_create_info: *const vk::IOSSurfaceCreateInfoMVK,
+	p_create_info: *const vk::IOSSurfaceCreateInfoMVK<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -17892,7 +17892,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_ios_surface_mvk(
 		&self,
-		p_create_info: *const vk::IOSSurfaceCreateInfoMVK,
+		p_create_info: *const vk::IOSSurfaceCreateInfoMVK<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -17923,7 +17923,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateMacOSSurfaceMVK`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateMacOSSurfaceMVK.html)"]
 pub unsafe fn create_mac_os_surface_mvk(
 	instance: &Instance,
-	p_create_info: *const vk::MacOSSurfaceCreateInfoMVK,
+	p_create_info: *const vk::MacOSSurfaceCreateInfoMVK<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -17963,7 +17963,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_mac_os_surface_mvk(
 		&self,
-		p_create_info: *const vk::MacOSSurfaceCreateInfoMVK,
+		p_create_info: *const vk::MacOSSurfaceCreateInfoMVK<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -17994,7 +17994,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateMetalSurfaceEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateMetalSurfaceEXT.html)"]
 pub unsafe fn create_metal_surface_ext(
 	instance: &Instance,
-	p_create_info: *const vk::MetalSurfaceCreateInfoEXT,
+	p_create_info: *const vk::MetalSurfaceCreateInfoEXT<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -18034,7 +18034,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_metal_surface_ext(
 		&self,
-		p_create_info: *const vk::MetalSurfaceCreateInfoEXT,
+		p_create_info: *const vk::MetalSurfaceCreateInfoEXT<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -18362,7 +18362,7 @@ impl Device {
 pub unsafe fn cmd_set_sample_locations_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_sample_locations_info: *const vk::SampleLocationsInfoEXT,
+	p_sample_locations_info: *const vk::SampleLocationsInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -18397,7 +18397,7 @@ impl Device {
 	pub unsafe fn cmd_set_sample_locations_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_sample_locations_info: *const vk::SampleLocationsInfoEXT,
+		p_sample_locations_info: *const vk::SampleLocationsInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_set_sample_locations_ext(self, command_buffer, p_sample_locations_info) }
@@ -18427,7 +18427,7 @@ pub unsafe fn get_physical_device_multisample_properties_ext(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	samples: vk::SampleCountFlagBits,
-	p_multisample_properties: *mut vk::MultisamplePropertiesEXT,
+	p_multisample_properties: *mut vk::MultisamplePropertiesEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -18465,7 +18465,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		samples: vk::SampleCountFlagBits,
-		p_multisample_properties: *mut vk::MultisamplePropertiesEXT,
+		p_multisample_properties: *mut vk::MultisamplePropertiesEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -18501,8 +18501,8 @@ impl Instance {
 pub unsafe fn get_physical_device_surface_capabilities2_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR,
-	p_surface_capabilities: *mut vk::SurfaceCapabilities2KHR,
+	p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+	p_surface_capabilities: *mut vk::SurfaceCapabilities2KHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -18542,8 +18542,8 @@ impl Instance {
 	pub unsafe fn get_physical_device_surface_capabilities2_khr(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR,
-		p_surface_capabilities: *mut vk::SurfaceCapabilities2KHR,
+		p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
+		p_surface_capabilities: *mut vk::SurfaceCapabilities2KHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -18579,9 +18579,9 @@ impl Instance {
 pub unsafe fn get_physical_device_surface_formats2_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR,
+	p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
 	p_surface_format_count: *mut u32,
-	p_surface_formats: *mut vk::SurfaceFormat2KHR,
+	p_surface_formats: *mut vk::SurfaceFormat2KHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -18628,9 +18628,9 @@ impl Instance {
 	pub unsafe fn get_physical_device_surface_formats2_khr(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR,
+		p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
 		p_surface_format_count: *mut u32,
-		p_surface_formats: *mut vk::SurfaceFormat2KHR,
+		p_surface_formats: *mut vk::SurfaceFormat2KHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -18668,7 +18668,7 @@ pub unsafe fn get_physical_device_display_properties2_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	p_property_count: *mut u32,
-	p_properties: *mut vk::DisplayProperties2KHR,
+	p_properties: *mut vk::DisplayProperties2KHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -18709,7 +18709,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		p_property_count: *mut u32,
-		p_properties: *mut vk::DisplayProperties2KHR,
+		p_properties: *mut vk::DisplayProperties2KHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -18746,7 +18746,7 @@ pub unsafe fn get_physical_device_display_plane_properties2_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	p_property_count: *mut u32,
-	p_properties: *mut vk::DisplayPlaneProperties2KHR,
+	p_properties: *mut vk::DisplayPlaneProperties2KHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -18787,7 +18787,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		p_property_count: *mut u32,
-		p_properties: *mut vk::DisplayPlaneProperties2KHR,
+		p_properties: *mut vk::DisplayPlaneProperties2KHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -18825,7 +18825,7 @@ pub unsafe fn get_display_mode_properties2_khr(
 	physical_device: vk::PhysicalDevice,
 	display: vk::DisplayKHR,
 	p_property_count: *mut u32,
-	p_properties: *mut vk::DisplayModeProperties2KHR,
+	p_properties: *mut vk::DisplayModeProperties2KHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -18865,7 +18865,7 @@ impl Instance {
 		physical_device: vk::PhysicalDevice,
 		display: vk::DisplayKHR,
 		p_property_count: *mut u32,
-		p_properties: *mut vk::DisplayModeProperties2KHR,
+		p_properties: *mut vk::DisplayModeProperties2KHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -18902,8 +18902,8 @@ impl Instance {
 pub unsafe fn get_display_plane_capabilities2_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	p_display_plane_info: *const vk::DisplayPlaneInfo2KHR,
-	p_capabilities: *mut vk::DisplayPlaneCapabilities2KHR,
+	p_display_plane_info: *const vk::DisplayPlaneInfo2KHR<'_>,
+	p_capabilities: *mut vk::DisplayPlaneCapabilities2KHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		instance
@@ -18944,8 +18944,8 @@ impl Instance {
 	pub unsafe fn get_display_plane_capabilities2_khr(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		p_display_plane_info: *const vk::DisplayPlaneInfo2KHR,
-		p_capabilities: *mut vk::DisplayPlaneCapabilities2KHR,
+		p_display_plane_info: *const vk::DisplayPlaneInfo2KHR<'_>,
+		p_capabilities: *mut vk::DisplayPlaneCapabilities2KHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -18973,8 +18973,8 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkGetBufferMemoryRequirements2`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferMemoryRequirements2.html)"]
 pub unsafe fn get_buffer_memory_requirements2(
 	device: &Device,
-	info: &vk::BufferMemoryRequirementsInfo2,
-	memory_requirements: &mut vk::MemoryRequirements2,
+	info: &vk::BufferMemoryRequirementsInfo2<'_>,
+	memory_requirements: &mut vk::MemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -19001,8 +19001,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_buffer_memory_requirements2(
 		&self,
-		info: &vk::BufferMemoryRequirementsInfo2,
-		memory_requirements: &mut vk::MemoryRequirements2,
+		info: &vk::BufferMemoryRequirementsInfo2<'_>,
+		memory_requirements: &mut vk::MemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_buffer_memory_requirements2(self, info, memory_requirements) }
@@ -19023,8 +19023,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetBufferMemoryRequirements2KHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferMemoryRequirements2KHR.html)"]
 pub unsafe fn get_buffer_memory_requirements2_khr(
 	device: &Device,
-	info: &vk::BufferMemoryRequirementsInfo2,
-	memory_requirements: &mut vk::MemoryRequirements2,
+	info: &vk::BufferMemoryRequirementsInfo2<'_>,
+	memory_requirements: &mut vk::MemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -19054,8 +19054,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_buffer_memory_requirements2_khr(
 		&self,
-		info: &vk::BufferMemoryRequirementsInfo2,
-		memory_requirements: &mut vk::MemoryRequirements2,
+		info: &vk::BufferMemoryRequirementsInfo2<'_>,
+		memory_requirements: &mut vk::MemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_buffer_memory_requirements2_khr(self, info, memory_requirements) }
@@ -19076,8 +19076,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetImageMemoryRequirements2`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageMemoryRequirements2.html)"]
 pub unsafe fn get_image_memory_requirements2(
 	device: &Device,
-	info: &vk::ImageMemoryRequirementsInfo2,
-	memory_requirements: &mut vk::MemoryRequirements2,
+	info: &vk::ImageMemoryRequirementsInfo2<'_>,
+	memory_requirements: &mut vk::MemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -19104,8 +19104,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_image_memory_requirements2(
 		&self,
-		info: &vk::ImageMemoryRequirementsInfo2,
-		memory_requirements: &mut vk::MemoryRequirements2,
+		info: &vk::ImageMemoryRequirementsInfo2<'_>,
+		memory_requirements: &mut vk::MemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_image_memory_requirements2(self, info, memory_requirements) }
@@ -19126,8 +19126,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetImageMemoryRequirements2KHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageMemoryRequirements2KHR.html)"]
 pub unsafe fn get_image_memory_requirements2_khr(
 	device: &Device,
-	info: &vk::ImageMemoryRequirementsInfo2,
-	memory_requirements: &mut vk::MemoryRequirements2,
+	info: &vk::ImageMemoryRequirementsInfo2<'_>,
+	memory_requirements: &mut vk::MemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -19157,8 +19157,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_image_memory_requirements2_khr(
 		&self,
-		info: &vk::ImageMemoryRequirementsInfo2,
-		memory_requirements: &mut vk::MemoryRequirements2,
+		info: &vk::ImageMemoryRequirementsInfo2<'_>,
+		memory_requirements: &mut vk::MemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_image_memory_requirements2_khr(self, info, memory_requirements) }
@@ -19186,9 +19186,9 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetImageSparseMemoryRequirements2`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageSparseMemoryRequirements2.html)"]
 pub unsafe fn get_image_sparse_memory_requirements2(
 	device: &Device,
-	info: &vk::ImageSparseMemoryRequirementsInfo2,
+	info: &vk::ImageSparseMemoryRequirementsInfo2<'_>,
 	sparse_memory_requirement_count: &mut u32,
-	sparse_memory_requirements: Option<&mut [vk::SparseImageMemoryRequirements2]>,
+	sparse_memory_requirements: Option<&mut [vk::SparseImageMemoryRequirements2<'_>]>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -19247,9 +19247,9 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_image_sparse_memory_requirements2(
 		&self,
-		info: &vk::ImageSparseMemoryRequirementsInfo2,
+		info: &vk::ImageSparseMemoryRequirementsInfo2<'_>,
 		sparse_memory_requirement_count: &mut u32,
-		sparse_memory_requirements: Option<&mut [vk::SparseImageMemoryRequirements2]>,
+		sparse_memory_requirements: Option<&mut [vk::SparseImageMemoryRequirements2<'_>]>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -19284,9 +19284,9 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetImageSparseMemoryRequirements2KHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageSparseMemoryRequirements2KHR.html)"]
 pub unsafe fn get_image_sparse_memory_requirements2_khr(
 	device: &Device,
-	info: &vk::ImageSparseMemoryRequirementsInfo2,
+	info: &vk::ImageSparseMemoryRequirementsInfo2<'_>,
 	sparse_memory_requirement_count: &mut u32,
-	sparse_memory_requirements: Option<&mut [vk::SparseImageMemoryRequirements2]>,
+	sparse_memory_requirements: Option<&mut [vk::SparseImageMemoryRequirements2<'_>]>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -19344,9 +19344,9 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_image_sparse_memory_requirements2_khr(
 		&self,
-		info: &vk::ImageSparseMemoryRequirementsInfo2,
+		info: &vk::ImageSparseMemoryRequirementsInfo2<'_>,
 		sparse_memory_requirement_count: &mut u32,
-		sparse_memory_requirements: Option<&mut [vk::SparseImageMemoryRequirements2]>,
+		sparse_memory_requirements: Option<&mut [vk::SparseImageMemoryRequirements2<'_>]>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -19381,8 +19381,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceBufferMemoryRequirements`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceBufferMemoryRequirements.html)"]
 pub unsafe fn get_device_buffer_memory_requirements(
 	device: &Device,
-	p_info: *const vk::DeviceBufferMemoryRequirements,
-	p_memory_requirements: *mut vk::MemoryRequirements2,
+	p_info: *const vk::DeviceBufferMemoryRequirements<'_>,
+	p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -19419,8 +19419,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_buffer_memory_requirements(
 		&self,
-		p_info: *const vk::DeviceBufferMemoryRequirements,
-		p_memory_requirements: *mut vk::MemoryRequirements2,
+		p_info: *const vk::DeviceBufferMemoryRequirements<'_>,
+		p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_device_buffer_memory_requirements(self, p_info, p_memory_requirements) }
@@ -19448,8 +19448,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceBufferMemoryRequirementsKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceBufferMemoryRequirementsKHR.html)"]
 pub unsafe fn get_device_buffer_memory_requirements_khr(
 	device: &Device,
-	p_info: *const vk::DeviceBufferMemoryRequirements,
-	p_memory_requirements: *mut vk::MemoryRequirements2,
+	p_info: *const vk::DeviceBufferMemoryRequirements<'_>,
+	p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -19485,8 +19485,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_buffer_memory_requirements_khr(
 		&self,
-		p_info: *const vk::DeviceBufferMemoryRequirements,
-		p_memory_requirements: *mut vk::MemoryRequirements2,
+		p_info: *const vk::DeviceBufferMemoryRequirements<'_>,
+		p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_device_buffer_memory_requirements_khr(self, p_info, p_memory_requirements) }
@@ -19514,8 +19514,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceImageMemoryRequirements`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceImageMemoryRequirements.html)"]
 pub unsafe fn get_device_image_memory_requirements(
 	device: &Device,
-	p_info: *const vk::DeviceImageMemoryRequirements,
-	p_memory_requirements: *mut vk::MemoryRequirements2,
+	p_info: *const vk::DeviceImageMemoryRequirements<'_>,
+	p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -19552,8 +19552,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_image_memory_requirements(
 		&self,
-		p_info: *const vk::DeviceImageMemoryRequirements,
-		p_memory_requirements: *mut vk::MemoryRequirements2,
+		p_info: *const vk::DeviceImageMemoryRequirements<'_>,
+		p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_device_image_memory_requirements(self, p_info, p_memory_requirements) }
@@ -19581,8 +19581,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceImageMemoryRequirementsKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceImageMemoryRequirementsKHR.html)"]
 pub unsafe fn get_device_image_memory_requirements_khr(
 	device: &Device,
-	p_info: *const vk::DeviceImageMemoryRequirements,
-	p_memory_requirements: *mut vk::MemoryRequirements2,
+	p_info: *const vk::DeviceImageMemoryRequirements<'_>,
+	p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -19619,8 +19619,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_image_memory_requirements_khr(
 		&self,
-		p_info: *const vk::DeviceImageMemoryRequirements,
-		p_memory_requirements: *mut vk::MemoryRequirements2,
+		p_info: *const vk::DeviceImageMemoryRequirements<'_>,
+		p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_device_image_memory_requirements_khr(self, p_info, p_memory_requirements) }
@@ -19648,9 +19648,9 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceImageSparseMemoryRequirements`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceImageSparseMemoryRequirements.html)"]
 pub unsafe fn get_device_image_sparse_memory_requirements(
 	device: &Device,
-	p_info: *const vk::DeviceImageMemoryRequirements,
+	p_info: *const vk::DeviceImageMemoryRequirements<'_>,
 	p_sparse_memory_requirement_count: *mut u32,
-	p_sparse_memory_requirements: *mut vk::SparseImageMemoryRequirements2,
+	p_sparse_memory_requirements: *mut vk::SparseImageMemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -19693,9 +19693,9 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_image_sparse_memory_requirements(
 		&self,
-		p_info: *const vk::DeviceImageMemoryRequirements,
+		p_info: *const vk::DeviceImageMemoryRequirements<'_>,
 		p_sparse_memory_requirement_count: *mut u32,
-		p_sparse_memory_requirements: *mut vk::SparseImageMemoryRequirements2,
+		p_sparse_memory_requirements: *mut vk::SparseImageMemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -19730,9 +19730,9 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceImageSparseMemoryRequirementsKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceImageSparseMemoryRequirementsKHR.html)"]
 pub unsafe fn get_device_image_sparse_memory_requirements_khr(
 	device: &Device,
-	p_info: *const vk::DeviceImageMemoryRequirements,
+	p_info: *const vk::DeviceImageMemoryRequirements<'_>,
 	p_sparse_memory_requirement_count: *mut u32,
-	p_sparse_memory_requirements: *mut vk::SparseImageMemoryRequirements2,
+	p_sparse_memory_requirements: *mut vk::SparseImageMemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -19775,9 +19775,9 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_image_sparse_memory_requirements_khr(
 		&self,
-		p_info: *const vk::DeviceImageMemoryRequirements,
+		p_info: *const vk::DeviceImageMemoryRequirements<'_>,
 		p_sparse_memory_requirement_count: *mut u32,
-		p_sparse_memory_requirements: *mut vk::SparseImageMemoryRequirements2,
+		p_sparse_memory_requirements: *mut vk::SparseImageMemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -19805,7 +19805,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateSamplerYcbcrConversion`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateSamplerYcbcrConversion.html)"]
 pub unsafe fn create_sampler_ycbcr_conversion(
 	device: &Device,
-	create_info: &vk::SamplerYcbcrConversionCreateInfo,
+	create_info: &vk::SamplerYcbcrConversionCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::SamplerYcbcrConversion, CallError> {
 	let __vk_function = device
@@ -19844,7 +19844,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_sampler_ycbcr_conversion(
 		&self,
-		create_info: &vk::SamplerYcbcrConversionCreateInfo,
+		create_info: &vk::SamplerYcbcrConversionCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::SamplerYcbcrConversion, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -19866,7 +19866,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateSamplerYcbcrConversionKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateSamplerYcbcrConversionKHR.html)"]
 pub unsafe fn create_sampler_ycbcr_conversion_khr(
 	device: &Device,
-	create_info: &vk::SamplerYcbcrConversionCreateInfo,
+	create_info: &vk::SamplerYcbcrConversionCreateInfo<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::SamplerYcbcrConversion, CallError> {
 	let __vk_function =
@@ -19908,7 +19908,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_sampler_ycbcr_conversion_khr(
 		&self,
-		create_info: &vk::SamplerYcbcrConversionCreateInfo,
+		create_info: &vk::SamplerYcbcrConversionCreateInfo<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::SamplerYcbcrConversion, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -20045,7 +20045,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceQueue2`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceQueue2.html)"]
 pub unsafe fn get_device_queue2(
 	device: &Device,
-	queue_info: &vk::DeviceQueueInfo2,
+	queue_info: &vk::DeviceQueueInfo2<'_>,
 	queue: &mut vk::Queue,
 ) -> Result<(), CallError> {
 	let __vk_function = device
@@ -20073,7 +20073,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_queue2(
 		&self,
-		queue_info: &vk::DeviceQueueInfo2,
+		queue_info: &vk::DeviceQueueInfo2<'_>,
 		queue: &mut vk::Queue,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -20102,7 +20102,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateValidationCacheEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateValidationCacheEXT.html)"]
 pub unsafe fn create_validation_cache_ext(
 	device: &Device,
-	p_create_info: *const vk::ValidationCacheCreateInfoEXT,
+	p_create_info: *const vk::ValidationCacheCreateInfoEXT<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_validation_cache: *mut vk::ValidationCacheEXT,
 ) -> Result<vk::Result, CallError> {
@@ -20148,7 +20148,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_validation_cache_ext(
 		&self,
-		p_create_info: *const vk::ValidationCacheCreateInfoEXT,
+		p_create_info: *const vk::ValidationCacheCreateInfoEXT<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_validation_cache: *mut vk::ValidationCacheEXT,
 	) -> Result<vk::Result, CallError> {
@@ -20373,8 +20373,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDescriptorSetLayoutSupport`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDescriptorSetLayoutSupport.html)"]
 pub unsafe fn get_descriptor_set_layout_support(
 	device: &Device,
-	create_info: &vk::DescriptorSetLayoutCreateInfo,
-	support: &mut vk::DescriptorSetLayoutSupport,
+	create_info: &vk::DescriptorSetLayoutCreateInfo<'_>,
+	support: &mut vk::DescriptorSetLayoutSupport<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -20401,8 +20401,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_descriptor_set_layout_support(
 		&self,
-		create_info: &vk::DescriptorSetLayoutCreateInfo,
-		support: &mut vk::DescriptorSetLayoutSupport,
+		create_info: &vk::DescriptorSetLayoutCreateInfo<'_>,
+		support: &mut vk::DescriptorSetLayoutSupport<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_descriptor_set_layout_support(self, create_info, support) }
@@ -20423,8 +20423,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDescriptorSetLayoutSupportKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDescriptorSetLayoutSupportKHR.html)"]
 pub unsafe fn get_descriptor_set_layout_support_khr(
 	device: &Device,
-	create_info: &vk::DescriptorSetLayoutCreateInfo,
-	support: &mut vk::DescriptorSetLayoutSupport,
+	create_info: &vk::DescriptorSetLayoutCreateInfo<'_>,
+	support: &mut vk::DescriptorSetLayoutSupport<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -20454,8 +20454,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_descriptor_set_layout_support_khr(
 		&self,
-		create_info: &vk::DescriptorSetLayoutCreateInfo,
-		support: &mut vk::DescriptorSetLayoutSupport,
+		create_info: &vk::DescriptorSetLayoutCreateInfo<'_>,
+		support: &mut vk::DescriptorSetLayoutSupport<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_descriptor_set_layout_support_khr(self, create_info, support) }
@@ -20786,7 +20786,7 @@ impl Instance {
 pub unsafe fn get_calibrated_timestamps_khr(
 	device: &Device,
 	timestamp_count: u32,
-	p_timestamp_infos: *const vk::CalibratedTimestampInfoKHR,
+	p_timestamp_infos: *const vk::CalibratedTimestampInfoKHR<'_>,
 	p_timestamps: *mut u64,
 	p_max_deviation: *mut u64,
 ) -> Result<vk::Result, CallError> {
@@ -20834,7 +20834,7 @@ impl Device {
 	pub unsafe fn get_calibrated_timestamps_khr(
 		&self,
 		timestamp_count: u32,
-		p_timestamp_infos: *const vk::CalibratedTimestampInfoKHR,
+		p_timestamp_infos: *const vk::CalibratedTimestampInfoKHR<'_>,
 		p_timestamps: *mut u64,
 		p_max_deviation: *mut u64,
 	) -> Result<vk::Result, CallError> {
@@ -20873,7 +20873,7 @@ impl Device {
 pub unsafe fn get_calibrated_timestamps_ext(
 	device: &Device,
 	timestamp_count: u32,
-	p_timestamp_infos: *const vk::CalibratedTimestampInfoKHR,
+	p_timestamp_infos: *const vk::CalibratedTimestampInfoKHR<'_>,
 	p_timestamps: *mut u64,
 	p_max_deviation: *mut u64,
 ) -> Result<vk::Result, CallError> {
@@ -20921,7 +20921,7 @@ impl Device {
 	pub unsafe fn get_calibrated_timestamps_ext(
 		&self,
 		timestamp_count: u32,
-		p_timestamp_infos: *const vk::CalibratedTimestampInfoKHR,
+		p_timestamp_infos: *const vk::CalibratedTimestampInfoKHR<'_>,
 		p_timestamps: *mut u64,
 		p_max_deviation: *mut u64,
 	) -> Result<vk::Result, CallError> {
@@ -20959,7 +20959,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkSetDebugUtilsObjectNameEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetDebugUtilsObjectNameEXT.html)"]
 pub unsafe fn set_debug_utils_object_name_ext(
 	device: &Device,
-	p_name_info: *const vk::DebugUtilsObjectNameInfoEXT,
+	p_name_info: *const vk::DebugUtilsObjectNameInfoEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -20996,7 +20996,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn set_debug_utils_object_name_ext(
 		&self,
-		p_name_info: *const vk::DebugUtilsObjectNameInfoEXT,
+		p_name_info: *const vk::DebugUtilsObjectNameInfoEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { set_debug_utils_object_name_ext(self, p_name_info) }
@@ -21024,7 +21024,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkSetDebugUtilsObjectTagEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetDebugUtilsObjectTagEXT.html)"]
 pub unsafe fn set_debug_utils_object_tag_ext(
 	device: &Device,
-	p_tag_info: *const vk::DebugUtilsObjectTagInfoEXT,
+	p_tag_info: *const vk::DebugUtilsObjectTagInfoEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -21061,7 +21061,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn set_debug_utils_object_tag_ext(
 		&self,
-		p_tag_info: *const vk::DebugUtilsObjectTagInfoEXT,
+		p_tag_info: *const vk::DebugUtilsObjectTagInfoEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { set_debug_utils_object_tag_ext(self, p_tag_info) }
@@ -21090,7 +21090,7 @@ impl Device {
 pub unsafe fn queue_begin_debug_utils_label_ext(
 	device: &Device,
 	queue: vk::Queue,
-	p_label_info: *const vk::DebugUtilsLabelEXT,
+	p_label_info: *const vk::DebugUtilsLabelEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -21125,7 +21125,7 @@ impl Device {
 	pub unsafe fn queue_begin_debug_utils_label_ext(
 		&self,
 		queue: vk::Queue,
-		p_label_info: *const vk::DebugUtilsLabelEXT,
+		p_label_info: *const vk::DebugUtilsLabelEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { queue_begin_debug_utils_label_ext(self, queue, p_label_info) }
@@ -21213,7 +21213,7 @@ impl Device {
 pub unsafe fn queue_insert_debug_utils_label_ext(
 	device: &Device,
 	queue: vk::Queue,
-	p_label_info: *const vk::DebugUtilsLabelEXT,
+	p_label_info: *const vk::DebugUtilsLabelEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -21248,7 +21248,7 @@ impl Device {
 	pub unsafe fn queue_insert_debug_utils_label_ext(
 		&self,
 		queue: vk::Queue,
-		p_label_info: *const vk::DebugUtilsLabelEXT,
+		p_label_info: *const vk::DebugUtilsLabelEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { queue_insert_debug_utils_label_ext(self, queue, p_label_info) }
@@ -21277,7 +21277,7 @@ impl Device {
 pub unsafe fn cmd_begin_debug_utils_label_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_label_info: *const vk::DebugUtilsLabelEXT,
+	p_label_info: *const vk::DebugUtilsLabelEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -21312,7 +21312,7 @@ impl Device {
 	pub unsafe fn cmd_begin_debug_utils_label_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_label_info: *const vk::DebugUtilsLabelEXT,
+		p_label_info: *const vk::DebugUtilsLabelEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_begin_debug_utils_label_ext(self, command_buffer, p_label_info) }
@@ -21403,7 +21403,7 @@ impl Device {
 pub unsafe fn cmd_insert_debug_utils_label_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_label_info: *const vk::DebugUtilsLabelEXT,
+	p_label_info: *const vk::DebugUtilsLabelEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -21438,7 +21438,7 @@ impl Device {
 	pub unsafe fn cmd_insert_debug_utils_label_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_label_info: *const vk::DebugUtilsLabelEXT,
+		p_label_info: *const vk::DebugUtilsLabelEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_insert_debug_utils_label_ext(self, command_buffer, p_label_info) }
@@ -21466,7 +21466,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateDebugUtilsMessengerEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDebugUtilsMessengerEXT.html)"]
 pub unsafe fn create_debug_utils_messenger_ext(
 	instance: &Instance,
-	p_create_info: *const vk::DebugUtilsMessengerCreateInfoEXT,
+	p_create_info: *const vk::DebugUtilsMessengerCreateInfoEXT<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_messenger: *mut vk::DebugUtilsMessengerEXT,
 ) -> Result<vk::Result, CallError> {
@@ -21505,7 +21505,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_debug_utils_messenger_ext(
 		&self,
-		p_create_info: *const vk::DebugUtilsMessengerCreateInfoEXT,
+		p_create_info: *const vk::DebugUtilsMessengerCreateInfoEXT<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_messenger: *mut vk::DebugUtilsMessengerEXT,
 	) -> Result<vk::Result, CallError> {
@@ -21601,7 +21601,7 @@ pub unsafe fn submit_debug_utils_message_ext(
 	instance: &Instance,
 	message_severity: vk::DebugUtilsMessageSeverityFlagBitsEXT,
 	message_types: vk::DebugUtilsMessageTypeFlagsEXT,
-	p_callback_data: *const vk::DebugUtilsMessengerCallbackDataEXT,
+	p_callback_data: *const vk::DebugUtilsMessengerCallbackDataEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -21644,7 +21644,7 @@ impl Instance {
 		&self,
 		message_severity: vk::DebugUtilsMessageSeverityFlagBitsEXT,
 		message_types: vk::DebugUtilsMessageTypeFlagsEXT,
-		p_callback_data: *const vk::DebugUtilsMessengerCallbackDataEXT,
+		p_callback_data: *const vk::DebugUtilsMessengerCallbackDataEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -21676,7 +21676,7 @@ pub unsafe fn get_memory_host_pointer_properties_ext(
 	device: &Device,
 	handle_type: vk::ExternalMemoryHandleTypeFlagBits,
 	p_host_pointer: *const std::ffi::c_void,
-	p_memory_host_pointer_properties: *mut vk::MemoryHostPointerPropertiesEXT,
+	p_memory_host_pointer_properties: *mut vk::MemoryHostPointerPropertiesEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		device
@@ -21725,7 +21725,7 @@ impl Device {
 		&self,
 		handle_type: vk::ExternalMemoryHandleTypeFlagBits,
 		p_host_pointer: *const std::ffi::c_void,
-		p_memory_host_pointer_properties: *mut vk::MemoryHostPointerPropertiesEXT,
+		p_memory_host_pointer_properties: *mut vk::MemoryHostPointerPropertiesEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -21840,7 +21840,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateRenderPass2`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateRenderPass2.html)"]
 pub unsafe fn create_render_pass2(
 	device: &Device,
-	create_info: &vk::RenderPassCreateInfo2,
+	create_info: &vk::RenderPassCreateInfo2<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::RenderPass, CallError> {
 	let __vk_function = device
@@ -21879,7 +21879,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_render_pass2(
 		&self,
-		create_info: &vk::RenderPassCreateInfo2,
+		create_info: &vk::RenderPassCreateInfo2<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::RenderPass, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -21901,7 +21901,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateRenderPass2KHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateRenderPass2KHR.html)"]
 pub unsafe fn create_render_pass2_khr(
 	device: &Device,
-	create_info: &vk::RenderPassCreateInfo2,
+	create_info: &vk::RenderPassCreateInfo2<'_>,
 	allocator: Option<&vk::AllocationCallbacks>,
 ) -> Result<vk::RenderPass, CallError> {
 	let __vk_function = device
@@ -21940,7 +21940,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_render_pass2_khr(
 		&self,
-		create_info: &vk::RenderPassCreateInfo2,
+		create_info: &vk::RenderPassCreateInfo2<'_>,
 		allocator: Option<&vk::AllocationCallbacks>,
 	) -> Result<vk::RenderPass, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -21963,8 +21963,8 @@ impl Device {
 pub unsafe fn cmd_begin_render_pass2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	render_pass_begin: &vk::RenderPassBeginInfo,
-	subpass_begin_info: &vk::SubpassBeginInfo,
+	render_pass_begin: &vk::RenderPassBeginInfo<'_>,
+	subpass_begin_info: &vk::SubpassBeginInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -21992,8 +21992,8 @@ impl Device {
 	pub unsafe fn cmd_begin_render_pass2(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		render_pass_begin: &vk::RenderPassBeginInfo,
-		subpass_begin_info: &vk::SubpassBeginInfo,
+		render_pass_begin: &vk::RenderPassBeginInfo<'_>,
+		subpass_begin_info: &vk::SubpassBeginInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_begin_render_pass2(self, command_buffer, render_pass_begin, subpass_begin_info) }
@@ -22015,8 +22015,8 @@ impl Device {
 pub unsafe fn cmd_begin_render_pass2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	render_pass_begin: &vk::RenderPassBeginInfo,
-	subpass_begin_info: &vk::SubpassBeginInfo,
+	render_pass_begin: &vk::RenderPassBeginInfo<'_>,
+	subpass_begin_info: &vk::SubpassBeginInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -22044,8 +22044,8 @@ impl Device {
 	pub unsafe fn cmd_begin_render_pass2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		render_pass_begin: &vk::RenderPassBeginInfo,
-		subpass_begin_info: &vk::SubpassBeginInfo,
+		render_pass_begin: &vk::RenderPassBeginInfo<'_>,
+		subpass_begin_info: &vk::SubpassBeginInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -22069,8 +22069,8 @@ impl Device {
 pub unsafe fn cmd_next_subpass2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	subpass_begin_info: &vk::SubpassBeginInfo,
-	subpass_end_info: &vk::SubpassEndInfo,
+	subpass_begin_info: &vk::SubpassBeginInfo<'_>,
+	subpass_end_info: &vk::SubpassEndInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -22098,8 +22098,8 @@ impl Device {
 	pub unsafe fn cmd_next_subpass2(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		subpass_begin_info: &vk::SubpassBeginInfo,
-		subpass_end_info: &vk::SubpassEndInfo,
+		subpass_begin_info: &vk::SubpassBeginInfo<'_>,
+		subpass_end_info: &vk::SubpassEndInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_next_subpass2(self, command_buffer, subpass_begin_info, subpass_end_info) }
@@ -22121,8 +22121,8 @@ impl Device {
 pub unsafe fn cmd_next_subpass2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	subpass_begin_info: &vk::SubpassBeginInfo,
-	subpass_end_info: &vk::SubpassEndInfo,
+	subpass_begin_info: &vk::SubpassBeginInfo<'_>,
+	subpass_end_info: &vk::SubpassEndInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -22150,8 +22150,8 @@ impl Device {
 	pub unsafe fn cmd_next_subpass2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		subpass_begin_info: &vk::SubpassBeginInfo,
-		subpass_end_info: &vk::SubpassEndInfo,
+		subpass_begin_info: &vk::SubpassBeginInfo<'_>,
+		subpass_end_info: &vk::SubpassEndInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_next_subpass2_khr(self, command_buffer, subpass_begin_info, subpass_end_info) }
@@ -22173,7 +22173,7 @@ impl Device {
 pub unsafe fn cmd_end_render_pass2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	subpass_end_info: &vk::SubpassEndInfo,
+	subpass_end_info: &vk::SubpassEndInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -22201,7 +22201,7 @@ impl Device {
 	pub unsafe fn cmd_end_render_pass2(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		subpass_end_info: &vk::SubpassEndInfo,
+		subpass_end_info: &vk::SubpassEndInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_end_render_pass2(self, command_buffer, subpass_end_info) }
@@ -22223,7 +22223,7 @@ impl Device {
 pub unsafe fn cmd_end_render_pass2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	subpass_end_info: &vk::SubpassEndInfo,
+	subpass_end_info: &vk::SubpassEndInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -22251,7 +22251,7 @@ impl Device {
 	pub unsafe fn cmd_end_render_pass2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		subpass_end_info: &vk::SubpassEndInfo,
+		subpass_end_info: &vk::SubpassEndInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_end_render_pass2_khr(self, command_buffer, subpass_end_info) }
@@ -22378,7 +22378,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkWaitSemaphores`](https://docs.vulkan.org/refpages/latest/refpages/source/vkWaitSemaphores.html)"]
 pub unsafe fn wait_semaphores(
 	device: &Device,
-	wait_info: &vk::SemaphoreWaitInfo,
+	wait_info: &vk::SemaphoreWaitInfo<'_>,
 	timeout: u64,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -22409,7 +22409,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn wait_semaphores(
 		&self,
-		wait_info: &vk::SemaphoreWaitInfo,
+		wait_info: &vk::SemaphoreWaitInfo<'_>,
 		timeout: u64,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -22431,7 +22431,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkWaitSemaphoresKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkWaitSemaphoresKHR.html)"]
 pub unsafe fn wait_semaphores_khr(
 	device: &Device,
-	wait_info: &vk::SemaphoreWaitInfo,
+	wait_info: &vk::SemaphoreWaitInfo<'_>,
 	timeout: u64,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -22462,7 +22462,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn wait_semaphores_khr(
 		&self,
-		wait_info: &vk::SemaphoreWaitInfo,
+		wait_info: &vk::SemaphoreWaitInfo<'_>,
 		timeout: u64,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -22484,7 +22484,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkSignalSemaphore`](https://docs.vulkan.org/refpages/latest/refpages/source/vkSignalSemaphore.html)"]
 pub unsafe fn signal_semaphore(
 	device: &Device,
-	signal_info: &vk::SemaphoreSignalInfo,
+	signal_info: &vk::SemaphoreSignalInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -22514,7 +22514,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn signal_semaphore(
 		&self,
-		signal_info: &vk::SemaphoreSignalInfo,
+		signal_info: &vk::SemaphoreSignalInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { signal_semaphore(self, signal_info) }
@@ -22535,7 +22535,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkSignalSemaphoreKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkSignalSemaphoreKHR.html)"]
 pub unsafe fn signal_semaphore_khr(
 	device: &Device,
-	signal_info: &vk::SemaphoreSignalInfo,
+	signal_info: &vk::SemaphoreSignalInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -22565,7 +22565,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn signal_semaphore_khr(
 		&self,
-		signal_info: &vk::SemaphoreSignalInfo,
+		signal_info: &vk::SemaphoreSignalInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { signal_semaphore_khr(self, signal_info) }
@@ -22595,7 +22595,7 @@ impl Device {
 pub unsafe fn get_android_hardware_buffer_properties_android(
 	device: &Device,
 	buffer: *const vk::AHardwareBuffer,
-	p_properties: *mut vk::AndroidHardwareBufferPropertiesANDROID,
+	p_properties: *mut vk::AndroidHardwareBufferPropertiesANDROID<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -22636,7 +22636,7 @@ impl Device {
 	pub unsafe fn get_android_hardware_buffer_properties_android(
 		&self,
 		buffer: *const vk::AHardwareBuffer,
-		p_properties: *mut vk::AndroidHardwareBufferPropertiesANDROID,
+		p_properties: *mut vk::AndroidHardwareBufferPropertiesANDROID<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_android_hardware_buffer_properties_android(self, buffer, p_properties) }
@@ -22665,7 +22665,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetMemoryAndroidHardwareBufferANDROID`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetMemoryAndroidHardwareBufferANDROID.html)"]
 pub unsafe fn get_memory_android_hardware_buffer_android(
 	device: &Device,
-	p_info: *const vk::MemoryGetAndroidHardwareBufferInfoANDROID,
+	p_info: *const vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
 	p_buffer: *mut *mut vk::AHardwareBuffer,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -22706,7 +22706,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_memory_android_hardware_buffer_android(
 		&self,
-		p_info: *const vk::MemoryGetAndroidHardwareBufferInfoANDROID,
+		p_info: *const vk::MemoryGetAndroidHardwareBufferInfoANDROID<'_>,
 		p_buffer: *mut *mut vk::AHardwareBuffer,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -23305,7 +23305,7 @@ pub unsafe fn get_queue_checkpoint_data_nv(
 	device: &Device,
 	queue: vk::Queue,
 	p_checkpoint_data_count: *mut u32,
-	p_checkpoint_data: *mut vk::CheckpointDataNV,
+	p_checkpoint_data: *mut vk::CheckpointDataNV<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -23341,7 +23341,7 @@ impl Device {
 		&self,
 		queue: vk::Queue,
 		p_checkpoint_data_count: *mut u32,
-		p_checkpoint_data: *mut vk::CheckpointDataNV,
+		p_checkpoint_data: *mut vk::CheckpointDataNV<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_queue_checkpoint_data_nv(self, queue, p_checkpoint_data_count, p_checkpoint_data) }
@@ -24110,7 +24110,7 @@ pub unsafe fn cmd_set_viewport_shading_rate_palette_nv(
 	command_buffer: vk::CommandBuffer,
 	first_viewport: u32,
 	viewport_count: u32,
-	p_shading_rate_palettes: *const vk::ShadingRatePaletteNV,
+	p_shading_rate_palettes: *const vk::ShadingRatePaletteNV<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -24157,7 +24157,7 @@ impl Device {
 		command_buffer: vk::CommandBuffer,
 		first_viewport: u32,
 		viewport_count: u32,
-		p_shading_rate_palettes: *const vk::ShadingRatePaletteNV,
+		p_shading_rate_palettes: *const vk::ShadingRatePaletteNV<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -24196,7 +24196,7 @@ pub unsafe fn cmd_set_coarse_sample_order_nv(
 	command_buffer: vk::CommandBuffer,
 	sample_order_type: vk::CoarseSampleOrderTypeNV,
 	custom_sample_order_count: u32,
-	p_custom_sample_orders: *const vk::CoarseSampleOrderCustomNV,
+	p_custom_sample_orders: *const vk::CoarseSampleOrderCustomNV<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -24240,7 +24240,7 @@ impl Device {
 		command_buffer: vk::CommandBuffer,
 		sample_order_type: vk::CoarseSampleOrderTypeNV,
 		custom_sample_order_count: u32,
-		p_custom_sample_orders: *const vk::CoarseSampleOrderCustomNV,
+		p_custom_sample_orders: *const vk::CoarseSampleOrderCustomNV<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -24829,7 +24829,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateAccelerationStructureNV`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateAccelerationStructureNV.html)"]
 pub unsafe fn create_acceleration_structure_nv(
 	device: &Device,
-	p_create_info: *const vk::AccelerationStructureCreateInfoNV,
+	p_create_info: *const vk::AccelerationStructureCreateInfoNV<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_acceleration_structure: *mut vk::AccelerationStructureNV,
 ) -> Result<vk::Result, CallError> {
@@ -24875,7 +24875,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_acceleration_structure_nv(
 		&self,
-		p_create_info: *const vk::AccelerationStructureCreateInfoNV,
+		p_create_info: *const vk::AccelerationStructureCreateInfoNV<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_acceleration_structure: *mut vk::AccelerationStructureNV,
 	) -> Result<vk::Result, CallError> {
@@ -25107,8 +25107,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetAccelerationStructureMemoryRequirementsNV`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetAccelerationStructureMemoryRequirementsNV.html)"]
 pub unsafe fn get_acceleration_structure_memory_requirements_nv(
 	device: &Device,
-	p_info: *const vk::AccelerationStructureMemoryRequirementsInfoNV,
-	p_memory_requirements: *mut vk::MemoryRequirements2,
+	p_info: *const vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
+	p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -25144,8 +25144,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_acceleration_structure_memory_requirements_nv(
 		&self,
-		p_info: *const vk::AccelerationStructureMemoryRequirementsInfoNV,
-		p_memory_requirements: *mut vk::MemoryRequirements2,
+		p_info: *const vk::AccelerationStructureMemoryRequirementsInfoNV<'_>,
+		p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -25176,7 +25176,7 @@ impl Device {
 pub unsafe fn bind_acceleration_structure_memory_nv(
 	device: &Device,
 	bind_info_count: u32,
-	p_bind_infos: *const vk::BindAccelerationStructureMemoryInfoNV,
+	p_bind_infos: *const vk::BindAccelerationStructureMemoryInfoNV<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		device
@@ -25217,7 +25217,7 @@ impl Device {
 	pub unsafe fn bind_acceleration_structure_memory_nv(
 		&self,
 		bind_info_count: u32,
-		p_bind_infos: *const vk::BindAccelerationStructureMemoryInfoNV,
+		p_bind_infos: *const vk::BindAccelerationStructureMemoryInfoNV<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { bind_acceleration_structure_memory_nv(self, bind_info_count, p_bind_infos) }
@@ -25317,7 +25317,7 @@ impl Device {
 pub unsafe fn cmd_copy_acceleration_structure_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::CopyAccelerationStructureInfoKHR,
+	p_info: *const vk::CopyAccelerationStructureInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -25355,7 +25355,7 @@ impl Device {
 	pub unsafe fn cmd_copy_acceleration_structure_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::CopyAccelerationStructureInfoKHR,
+		p_info: *const vk::CopyAccelerationStructureInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_acceleration_structure_khr(self, command_buffer, p_info) }
@@ -25384,7 +25384,7 @@ impl Device {
 pub unsafe fn copy_acceleration_structure_khr(
 	device: &Device,
 	deferred_operation: vk::DeferredOperationKHR,
-	p_info: *const vk::CopyAccelerationStructureInfoKHR,
+	p_info: *const vk::CopyAccelerationStructureInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -25422,7 +25422,7 @@ impl Device {
 	pub unsafe fn copy_acceleration_structure_khr(
 		&self,
 		deferred_operation: vk::DeferredOperationKHR,
-		p_info: *const vk::CopyAccelerationStructureInfoKHR,
+		p_info: *const vk::CopyAccelerationStructureInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { copy_acceleration_structure_khr(self, deferred_operation, p_info) }
@@ -25451,7 +25451,7 @@ impl Device {
 pub unsafe fn cmd_copy_acceleration_structure_to_memory_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::CopyAccelerationStructureToMemoryInfoKHR,
+	p_info: *const vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -25488,7 +25488,7 @@ impl Device {
 	pub unsafe fn cmd_copy_acceleration_structure_to_memory_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::CopyAccelerationStructureToMemoryInfoKHR,
+		p_info: *const vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_acceleration_structure_to_memory_khr(self, command_buffer, p_info) }
@@ -25517,7 +25517,7 @@ impl Device {
 pub unsafe fn copy_acceleration_structure_to_memory_khr(
 	device: &Device,
 	deferred_operation: vk::DeferredOperationKHR,
-	p_info: *const vk::CopyAccelerationStructureToMemoryInfoKHR,
+	p_info: *const vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -25557,7 +25557,7 @@ impl Device {
 	pub unsafe fn copy_acceleration_structure_to_memory_khr(
 		&self,
 		deferred_operation: vk::DeferredOperationKHR,
-		p_info: *const vk::CopyAccelerationStructureToMemoryInfoKHR,
+		p_info: *const vk::CopyAccelerationStructureToMemoryInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { copy_acceleration_structure_to_memory_khr(self, deferred_operation, p_info) }
@@ -25586,7 +25586,7 @@ impl Device {
 pub unsafe fn cmd_copy_memory_to_acceleration_structure_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::CopyMemoryToAccelerationStructureInfoKHR,
+	p_info: *const vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -25623,7 +25623,7 @@ impl Device {
 	pub unsafe fn cmd_copy_memory_to_acceleration_structure_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::CopyMemoryToAccelerationStructureInfoKHR,
+		p_info: *const vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_memory_to_acceleration_structure_khr(self, command_buffer, p_info) }
@@ -25652,7 +25652,7 @@ impl Device {
 pub unsafe fn copy_memory_to_acceleration_structure_khr(
 	device: &Device,
 	deferred_operation: vk::DeferredOperationKHR,
-	p_info: *const vk::CopyMemoryToAccelerationStructureInfoKHR,
+	p_info: *const vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -25692,7 +25692,7 @@ impl Device {
 	pub unsafe fn copy_memory_to_acceleration_structure_khr(
 		&self,
 		deferred_operation: vk::DeferredOperationKHR,
-		p_info: *const vk::CopyMemoryToAccelerationStructureInfoKHR,
+		p_info: *const vk::CopyMemoryToAccelerationStructureInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { copy_memory_to_acceleration_structure_khr(self, deferred_operation, p_info) }
@@ -25908,7 +25908,7 @@ impl Device {
 pub unsafe fn cmd_build_acceleration_structure_nv(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::AccelerationStructureInfoNV,
+	p_info: *const vk::AccelerationStructureInfoNV<'_>,
 	instance_data: vk::Buffer,
 	instance_offset: vk::DeviceSize,
 	update: vk::Bool32,
@@ -25966,7 +25966,7 @@ impl Device {
 	pub unsafe fn cmd_build_acceleration_structure_nv(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::AccelerationStructureInfoNV,
+		p_info: *const vk::AccelerationStructureInfoNV<'_>,
 		instance_data: vk::Buffer,
 		instance_offset: vk::DeviceSize,
 		update: vk::Bool32,
@@ -26696,7 +26696,7 @@ pub unsafe fn create_ray_tracing_pipelines_nv(
 	device: &Device,
 	pipeline_cache: vk::PipelineCache,
 	create_info_count: u32,
-	p_create_infos: *const vk::RayTracingPipelineCreateInfoNV,
+	p_create_infos: *const vk::RayTracingPipelineCreateInfoNV<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_pipelines: *mut vk::Pipeline,
 ) -> Result<vk::Result, CallError> {
@@ -26746,7 +26746,7 @@ impl Device {
 		&self,
 		pipeline_cache: vk::PipelineCache,
 		create_info_count: u32,
-		p_create_infos: *const vk::RayTracingPipelineCreateInfoNV,
+		p_create_infos: *const vk::RayTracingPipelineCreateInfoNV<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_pipelines: *mut vk::Pipeline,
 	) -> Result<vk::Result, CallError> {
@@ -26788,7 +26788,7 @@ pub unsafe fn create_ray_tracing_pipelines_khr(
 	deferred_operation: vk::DeferredOperationKHR,
 	pipeline_cache: vk::PipelineCache,
 	create_info_count: u32,
-	p_create_infos: *const vk::RayTracingPipelineCreateInfoKHR,
+	p_create_infos: *const vk::RayTracingPipelineCreateInfoKHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_pipelines: *mut vk::Pipeline,
 ) -> Result<vk::Result, CallError> {
@@ -26840,7 +26840,7 @@ impl Device {
 		deferred_operation: vk::DeferredOperationKHR,
 		pipeline_cache: vk::PipelineCache,
 		create_info_count: u32,
-		p_create_infos: *const vk::RayTracingPipelineCreateInfoKHR,
+		p_create_infos: *const vk::RayTracingPipelineCreateInfoKHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_pipelines: *mut vk::Pipeline,
 	) -> Result<vk::Result, CallError> {
@@ -26882,7 +26882,7 @@ pub unsafe fn get_physical_device_cooperative_matrix_properties_nv(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	p_property_count: *mut u32,
-	p_properties: *mut vk::CooperativeMatrixPropertiesNV,
+	p_properties: *mut vk::CooperativeMatrixPropertiesNV<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -26923,7 +26923,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		p_property_count: *mut u32,
-		p_properties: *mut vk::CooperativeMatrixPropertiesNV,
+		p_properties: *mut vk::CooperativeMatrixPropertiesNV<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -27113,8 +27113,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetClusterAccelerationStructureBuildSizesNV`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetClusterAccelerationStructureBuildSizesNV.html)"]
 pub unsafe fn get_cluster_acceleration_structure_build_sizes_nv(
 	device: &Device,
-	p_info: *const vk::ClusterAccelerationStructureInputInfoNV,
-	p_size_info: *mut vk::AccelerationStructureBuildSizesInfoKHR,
+	p_info: *const vk::ClusterAccelerationStructureInputInfoNV<'_>,
+	p_size_info: *mut vk::AccelerationStructureBuildSizesInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -27150,8 +27150,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_cluster_acceleration_structure_build_sizes_nv(
 		&self,
-		p_info: *const vk::ClusterAccelerationStructureInputInfoNV,
-		p_size_info: *mut vk::AccelerationStructureBuildSizesInfoKHR,
+		p_info: *const vk::ClusterAccelerationStructureInputInfoNV<'_>,
+		p_size_info: *mut vk::AccelerationStructureBuildSizesInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_cluster_acceleration_structure_build_sizes_nv(self, p_info, p_size_info) }
@@ -27180,7 +27180,7 @@ impl Device {
 pub unsafe fn cmd_build_cluster_acceleration_structure_indirect_nv(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_command_infos: *const vk::ClusterAccelerationStructureCommandsInfoNV,
+	p_command_infos: *const vk::ClusterAccelerationStructureCommandsInfoNV<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -27217,7 +27217,7 @@ impl Device {
 	pub unsafe fn cmd_build_cluster_acceleration_structure_indirect_nv(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_command_infos: *const vk::ClusterAccelerationStructureCommandsInfoNV,
+		p_command_infos: *const vk::ClusterAccelerationStructureCommandsInfoNV<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -27247,7 +27247,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceAccelerationStructureCompatibilityKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceAccelerationStructureCompatibilityKHR.html)"]
 pub unsafe fn get_device_acceleration_structure_compatibility_khr(
 	device: &Device,
-	p_version_info: *const vk::AccelerationStructureVersionInfoKHR,
+	p_version_info: *const vk::AccelerationStructureVersionInfoKHR<'_>,
 	p_compatibility: *mut vk::AccelerationStructureCompatibilityKHR,
 ) -> Result<(), CallError> {
 	let __vk_function = device
@@ -27284,7 +27284,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_acceleration_structure_compatibility_khr(
 		&self,
-		p_version_info: *const vk::AccelerationStructureVersionInfoKHR,
+		p_version_info: *const vk::AccelerationStructureVersionInfoKHR<'_>,
 		p_compatibility: *mut vk::AccelerationStructureCompatibilityKHR,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -27451,7 +27451,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetImageViewHandleNVX`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageViewHandleNVX.html)"]
 pub unsafe fn get_image_view_handle_nvx(
 	device: &Device,
-	p_info: *const vk::ImageViewHandleInfoNVX,
+	p_info: *const vk::ImageViewHandleInfoNVX<'_>,
 ) -> Result<u32, CallError> {
 	let __vk_function = device
 		.fp()
@@ -27485,7 +27485,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_image_view_handle_nvx(
 		&self,
-		p_info: *const vk::ImageViewHandleInfoNVX,
+		p_info: *const vk::ImageViewHandleInfoNVX<'_>,
 	) -> Result<u32, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_image_view_handle_nvx(self, p_info) }
@@ -27513,7 +27513,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetImageViewHandle64NVX`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageViewHandle64NVX.html)"]
 pub unsafe fn get_image_view_handle64_nvx(
 	device: &Device,
-	p_info: *const vk::ImageViewHandleInfoNVX,
+	p_info: *const vk::ImageViewHandleInfoNVX<'_>,
 ) -> Result<u64, CallError> {
 	let __vk_function = device
 		.fp()
@@ -27547,7 +27547,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_image_view_handle64_nvx(
 		&self,
-		p_info: *const vk::ImageViewHandleInfoNVX,
+		p_info: *const vk::ImageViewHandleInfoNVX<'_>,
 	) -> Result<u64, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_image_view_handle64_nvx(self, p_info) }
@@ -27576,7 +27576,7 @@ impl Device {
 pub unsafe fn get_image_view_address_nvx(
 	device: &Device,
 	image_view: vk::ImageView,
-	p_properties: *mut vk::ImageViewAddressPropertiesNVX,
+	p_properties: *mut vk::ImageViewAddressPropertiesNVX<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -27614,7 +27614,7 @@ impl Device {
 	pub unsafe fn get_image_view_address_nvx(
 		&self,
 		image_view: vk::ImageView,
-		p_properties: *mut vk::ImageViewAddressPropertiesNVX,
+		p_properties: *mut vk::ImageViewAddressPropertiesNVX<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_image_view_address_nvx(self, image_view, p_properties) }
@@ -27710,7 +27710,7 @@ impl Device {
 pub unsafe fn get_physical_device_surface_present_modes2_ext(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR,
+	p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
 	p_present_mode_count: *mut u32,
 	p_present_modes: *mut vk::PresentModeKHR,
 ) -> Result<vk::Result, CallError> {
@@ -27760,7 +27760,7 @@ impl Instance {
 	pub unsafe fn get_physical_device_surface_present_modes2_ext(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR,
+		p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
 		p_present_mode_count: *mut u32,
 		p_present_modes: *mut vk::PresentModeKHR,
 	) -> Result<vk::Result, CallError> {
@@ -27799,7 +27799,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceGroupSurfacePresentModes2EXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceGroupSurfacePresentModes2EXT.html)"]
 pub unsafe fn get_device_group_surface_present_modes2_ext(
 	device: &Device,
-	p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR,
+	p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
 	p_modes: *mut vk::DeviceGroupPresentModeFlagsKHR,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -27840,7 +27840,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_group_surface_present_modes2_ext(
 		&self,
-		p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR,
+		p_surface_info: *const vk::PhysicalDeviceSurfaceInfo2KHR<'_>,
 		p_modes: *mut vk::DeviceGroupPresentModeFlagsKHR,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -28012,8 +28012,8 @@ pub unsafe fn enumerate_physical_device_queue_family_performance_query_counters_
 	physical_device: vk::PhysicalDevice,
 	queue_family_index: u32,
 	p_counter_count: *mut u32,
-	p_counters: *mut vk::PerformanceCounterKHR,
-	p_counter_descriptions: *mut vk::PerformanceCounterDescriptionKHR,
+	p_counters: *mut vk::PerformanceCounterKHR<'_>,
+	p_counter_descriptions: *mut vk::PerformanceCounterDescriptionKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -28063,8 +28063,8 @@ impl Instance {
 		physical_device: vk::PhysicalDevice,
 		queue_family_index: u32,
 		p_counter_count: *mut u32,
-		p_counters: *mut vk::PerformanceCounterKHR,
-		p_counter_descriptions: *mut vk::PerformanceCounterDescriptionKHR,
+		p_counters: *mut vk::PerformanceCounterKHR<'_>,
+		p_counter_descriptions: *mut vk::PerformanceCounterDescriptionKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -28102,7 +28102,7 @@ impl Instance {
 pub unsafe fn get_physical_device_queue_family_performance_query_passes_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	p_performance_query_create_info: *const vk::QueryPoolPerformanceCreateInfoKHR,
+	p_performance_query_create_info: *const vk::QueryPoolPerformanceCreateInfoKHR<'_>,
 	p_num_passes: *mut u32,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
@@ -28146,7 +28146,7 @@ impl Instance {
 	pub unsafe fn get_physical_device_queue_family_performance_query_passes_khr(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		p_performance_query_create_info: *const vk::QueryPoolPerformanceCreateInfoKHR,
+		p_performance_query_create_info: *const vk::QueryPoolPerformanceCreateInfoKHR<'_>,
 		p_num_passes: *mut u32,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -28182,7 +28182,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkAcquireProfilingLockKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkAcquireProfilingLockKHR.html)"]
 pub unsafe fn acquire_profiling_lock_khr(
 	device: &Device,
-	p_info: *const vk::AcquireProfilingLockInfoKHR,
+	p_info: *const vk::AcquireProfilingLockInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -28219,7 +28219,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn acquire_profiling_lock_khr(
 		&self,
-		p_info: *const vk::AcquireProfilingLockInfoKHR,
+		p_info: *const vk::AcquireProfilingLockInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { acquire_profiling_lock_khr(self, p_info) }
@@ -28304,7 +28304,7 @@ impl Device {
 pub unsafe fn get_image_drm_format_modifier_properties_ext(
 	device: &Device,
 	image: vk::Image,
-	p_properties: *mut vk::ImageDrmFormatModifierPropertiesEXT,
+	p_properties: *mut vk::ImageDrmFormatModifierPropertiesEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -28344,7 +28344,7 @@ impl Device {
 	pub unsafe fn get_image_drm_format_modifier_properties_ext(
 		&self,
 		image: vk::Image,
-		p_properties: *mut vk::ImageDrmFormatModifierPropertiesEXT,
+		p_properties: *mut vk::ImageDrmFormatModifierPropertiesEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_image_drm_format_modifier_properties_ext(self, image, p_properties) }
@@ -28369,7 +28369,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetBufferOpaqueCaptureAddress`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferOpaqueCaptureAddress.html)"]
 pub unsafe fn get_buffer_opaque_capture_address(
 	device: &Device,
-	info: &vk::BufferDeviceAddressInfo,
+	info: &vk::BufferDeviceAddressInfo<'_>,
 ) -> Result<u64, CallError> {
 	let __vk_function = device
 		.fp()
@@ -28400,7 +28400,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_buffer_opaque_capture_address(
 		&self,
-		info: &vk::BufferDeviceAddressInfo,
+		info: &vk::BufferDeviceAddressInfo<'_>,
 	) -> Result<u64, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_buffer_opaque_capture_address(self, info) }
@@ -28425,7 +28425,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetBufferOpaqueCaptureAddressKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferOpaqueCaptureAddressKHR.html)"]
 pub unsafe fn get_buffer_opaque_capture_address_khr(
 	device: &Device,
-	info: &vk::BufferDeviceAddressInfo,
+	info: &vk::BufferDeviceAddressInfo<'_>,
 ) -> Result<u64, CallError> {
 	let __vk_function =
 		device
@@ -28459,7 +28459,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_buffer_opaque_capture_address_khr(
 		&self,
-		info: &vk::BufferDeviceAddressInfo,
+		info: &vk::BufferDeviceAddressInfo<'_>,
 	) -> Result<u64, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_buffer_opaque_capture_address_khr(self, info) }
@@ -28484,7 +28484,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetBufferDeviceAddress`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferDeviceAddress.html)"]
 pub unsafe fn get_buffer_device_address(
 	device: &Device,
-	info: &vk::BufferDeviceAddressInfo,
+	info: &vk::BufferDeviceAddressInfo<'_>,
 ) -> Result<vk::DeviceAddress, CallError> {
 	let __vk_function = device
 		.fp()
@@ -28515,7 +28515,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_buffer_device_address(
 		&self,
-		info: &vk::BufferDeviceAddressInfo,
+		info: &vk::BufferDeviceAddressInfo<'_>,
 	) -> Result<vk::DeviceAddress, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_buffer_device_address(self, info) }
@@ -28540,7 +28540,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetBufferDeviceAddressKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferDeviceAddressKHR.html)"]
 pub unsafe fn get_buffer_device_address_khr(
 	device: &Device,
-	info: &vk::BufferDeviceAddressInfo,
+	info: &vk::BufferDeviceAddressInfo<'_>,
 ) -> Result<vk::DeviceAddress, CallError> {
 	let __vk_function = device
 		.fp()
@@ -28571,7 +28571,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_buffer_device_address_khr(
 		&self,
-		info: &vk::BufferDeviceAddressInfo,
+		info: &vk::BufferDeviceAddressInfo<'_>,
 	) -> Result<vk::DeviceAddress, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_buffer_device_address_khr(self, info) }
@@ -28596,7 +28596,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetBufferDeviceAddressEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferDeviceAddressEXT.html)"]
 pub unsafe fn get_buffer_device_address_ext(
 	device: &Device,
-	info: &vk::BufferDeviceAddressInfo,
+	info: &vk::BufferDeviceAddressInfo<'_>,
 ) -> Result<vk::DeviceAddress, CallError> {
 	let __vk_function = device
 		.fp()
@@ -28627,7 +28627,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_buffer_device_address_ext(
 		&self,
-		info: &vk::BufferDeviceAddressInfo,
+		info: &vk::BufferDeviceAddressInfo<'_>,
 	) -> Result<vk::DeviceAddress, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_buffer_device_address_ext(self, info) }
@@ -28655,7 +28655,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateHeadlessSurfaceEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateHeadlessSurfaceEXT.html)"]
 pub unsafe fn create_headless_surface_ext(
 	instance: &Instance,
-	p_create_info: *const vk::HeadlessSurfaceCreateInfoEXT,
+	p_create_info: *const vk::HeadlessSurfaceCreateInfoEXT<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_surface: *mut vk::SurfaceKHR,
 ) -> Result<vk::Result, CallError> {
@@ -28694,7 +28694,7 @@ impl Instance {
 	#[inline]
 	pub unsafe fn create_headless_surface_ext(
 		&self,
-		p_create_info: *const vk::HeadlessSurfaceCreateInfoEXT,
+		p_create_info: *const vk::HeadlessSurfaceCreateInfoEXT<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_surface: *mut vk::SurfaceKHR,
 	) -> Result<vk::Result, CallError> {
@@ -28726,7 +28726,7 @@ pub unsafe fn get_physical_device_supported_framebuffer_mixed_samples_combinatio
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	p_combination_count: *mut u32,
-	p_combinations: *mut vk::FramebufferMixedSamplesCombinationNV,
+	p_combinations: *mut vk::FramebufferMixedSamplesCombinationNV<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -28767,7 +28767,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		p_combination_count: *mut u32,
-		p_combinations: *mut vk::FramebufferMixedSamplesCombinationNV,
+		p_combinations: *mut vk::FramebufferMixedSamplesCombinationNV<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -28802,7 +28802,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkInitializePerformanceApiINTEL`](https://docs.vulkan.org/refpages/latest/refpages/source/vkInitializePerformanceApiINTEL.html)"]
 pub unsafe fn initialize_performance_api_intel(
 	device: &Device,
-	p_initialize_info: *const vk::InitializePerformanceApiInfoINTEL,
+	p_initialize_info: *const vk::InitializePerformanceApiInfoINTEL<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -28839,7 +28839,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn initialize_performance_api_intel(
 		&self,
-		p_initialize_info: *const vk::InitializePerformanceApiInfoINTEL,
+		p_initialize_info: *const vk::InitializePerformanceApiInfoINTEL<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { initialize_performance_api_intel(self, p_initialize_info) }
@@ -28927,7 +28927,7 @@ impl Device {
 pub unsafe fn cmd_set_performance_marker_intel(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_marker_info: *const vk::PerformanceMarkerInfoINTEL,
+	p_marker_info: *const vk::PerformanceMarkerInfoINTEL<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -28965,7 +28965,7 @@ impl Device {
 	pub unsafe fn cmd_set_performance_marker_intel(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_marker_info: *const vk::PerformanceMarkerInfoINTEL,
+		p_marker_info: *const vk::PerformanceMarkerInfoINTEL<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_set_performance_marker_intel(self, command_buffer, p_marker_info) }
@@ -28994,7 +28994,7 @@ impl Device {
 pub unsafe fn cmd_set_performance_stream_marker_intel(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_marker_info: *const vk::PerformanceStreamMarkerInfoINTEL,
+	p_marker_info: *const vk::PerformanceStreamMarkerInfoINTEL<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		device
@@ -29035,7 +29035,7 @@ impl Device {
 	pub unsafe fn cmd_set_performance_stream_marker_intel(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_marker_info: *const vk::PerformanceStreamMarkerInfoINTEL,
+		p_marker_info: *const vk::PerformanceStreamMarkerInfoINTEL<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_set_performance_stream_marker_intel(self, command_buffer, p_marker_info) }
@@ -29064,7 +29064,7 @@ impl Device {
 pub unsafe fn cmd_set_performance_override_intel(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_override_info: *const vk::PerformanceOverrideInfoINTEL,
+	p_override_info: *const vk::PerformanceOverrideInfoINTEL<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		device
@@ -29105,7 +29105,7 @@ impl Device {
 	pub unsafe fn cmd_set_performance_override_intel(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_override_info: *const vk::PerformanceOverrideInfoINTEL,
+		p_override_info: *const vk::PerformanceOverrideInfoINTEL<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_set_performance_override_intel(self, command_buffer, p_override_info) }
@@ -29133,7 +29133,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkAcquirePerformanceConfigurationINTEL`](https://docs.vulkan.org/refpages/latest/refpages/source/vkAcquirePerformanceConfigurationINTEL.html)"]
 pub unsafe fn acquire_performance_configuration_intel(
 	device: &Device,
-	p_acquire_info: *const vk::PerformanceConfigurationAcquireInfoINTEL,
+	p_acquire_info: *const vk::PerformanceConfigurationAcquireInfoINTEL<'_>,
 	p_configuration: *mut vk::PerformanceConfigurationINTEL,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
@@ -29174,7 +29174,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn acquire_performance_configuration_intel(
 		&self,
-		p_acquire_info: *const vk::PerformanceConfigurationAcquireInfoINTEL,
+		p_acquire_info: *const vk::PerformanceConfigurationAcquireInfoINTEL<'_>,
 		p_configuration: *mut vk::PerformanceConfigurationINTEL,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -29404,7 +29404,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceMemoryOpaqueCaptureAddress`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceMemoryOpaqueCaptureAddress.html)"]
 pub unsafe fn get_device_memory_opaque_capture_address(
 	device: &Device,
-	info: &vk::DeviceMemoryOpaqueCaptureAddressInfo,
+	info: &vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
 ) -> Result<u64, CallError> {
 	let __vk_function =
 		device
@@ -29438,7 +29438,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_memory_opaque_capture_address(
 		&self,
-		info: &vk::DeviceMemoryOpaqueCaptureAddressInfo,
+		info: &vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
 	) -> Result<u64, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_device_memory_opaque_capture_address(self, info) }
@@ -29463,7 +29463,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceMemoryOpaqueCaptureAddressKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceMemoryOpaqueCaptureAddressKHR.html)"]
 pub unsafe fn get_device_memory_opaque_capture_address_khr(
 	device: &Device,
-	info: &vk::DeviceMemoryOpaqueCaptureAddressInfo,
+	info: &vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
 ) -> Result<u64, CallError> {
 	let __vk_function = device
 		.fp()
@@ -29496,7 +29496,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_memory_opaque_capture_address_khr(
 		&self,
-		info: &vk::DeviceMemoryOpaqueCaptureAddressInfo,
+		info: &vk::DeviceMemoryOpaqueCaptureAddressInfo<'_>,
 	) -> Result<u64, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_device_memory_opaque_capture_address_khr(self, info) }
@@ -29524,9 +29524,9 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetPipelineExecutablePropertiesKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineExecutablePropertiesKHR.html)"]
 pub unsafe fn get_pipeline_executable_properties_khr(
 	device: &Device,
-	p_pipeline_info: *const vk::PipelineInfoKHR,
+	p_pipeline_info: *const vk::PipelineInfoKHR<'_>,
 	p_executable_count: *mut u32,
-	p_properties: *mut vk::PipelineExecutablePropertiesKHR,
+	p_properties: *mut vk::PipelineExecutablePropertiesKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		device
@@ -29573,9 +29573,9 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_pipeline_executable_properties_khr(
 		&self,
-		p_pipeline_info: *const vk::PipelineInfoKHR,
+		p_pipeline_info: *const vk::PipelineInfoKHR<'_>,
 		p_executable_count: *mut u32,
-		p_properties: *mut vk::PipelineExecutablePropertiesKHR,
+		p_properties: *mut vk::PipelineExecutablePropertiesKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -29610,9 +29610,9 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetPipelineExecutableStatisticsKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineExecutableStatisticsKHR.html)"]
 pub unsafe fn get_pipeline_executable_statistics_khr(
 	device: &Device,
-	p_executable_info: *const vk::PipelineExecutableInfoKHR,
+	p_executable_info: *const vk::PipelineExecutableInfoKHR<'_>,
 	p_statistic_count: *mut u32,
-	p_statistics: *mut vk::PipelineExecutableStatisticKHR,
+	p_statistics: *mut vk::PipelineExecutableStatisticKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		device
@@ -29659,9 +29659,9 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_pipeline_executable_statistics_khr(
 		&self,
-		p_executable_info: *const vk::PipelineExecutableInfoKHR,
+		p_executable_info: *const vk::PipelineExecutableInfoKHR<'_>,
 		p_statistic_count: *mut u32,
-		p_statistics: *mut vk::PipelineExecutableStatisticKHR,
+		p_statistics: *mut vk::PipelineExecutableStatisticKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -29696,9 +29696,9 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetPipelineExecutableInternalRepresentationsKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineExecutableInternalRepresentationsKHR.html)"]
 pub unsafe fn get_pipeline_executable_internal_representations_khr(
 	device: &Device,
-	p_executable_info: *const vk::PipelineExecutableInfoKHR,
+	p_executable_info: *const vk::PipelineExecutableInfoKHR<'_>,
 	p_internal_representation_count: *mut u32,
-	p_internal_representations: *mut vk::PipelineExecutableInternalRepresentationKHR,
+	p_internal_representations: *mut vk::PipelineExecutableInternalRepresentationKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -29744,9 +29744,9 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_pipeline_executable_internal_representations_khr(
 		&self,
-		p_executable_info: *const vk::PipelineExecutableInfoKHR,
+		p_executable_info: *const vk::PipelineExecutableInfoKHR<'_>,
 		p_internal_representation_count: *mut u32,
-		p_internal_representations: *mut vk::PipelineExecutableInternalRepresentationKHR,
+		p_internal_representations: *mut vk::PipelineExecutableInternalRepresentationKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -30002,7 +30002,7 @@ pub unsafe fn get_physical_device_tool_properties(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	p_tool_count: *mut u32,
-	p_tool_properties: *mut vk::PhysicalDeviceToolProperties,
+	p_tool_properties: *mut vk::PhysicalDeviceToolProperties<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		instance
@@ -30044,7 +30044,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		p_tool_count: *mut u32,
-		p_tool_properties: *mut vk::PhysicalDeviceToolProperties,
+		p_tool_properties: *mut vk::PhysicalDeviceToolProperties<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -30076,7 +30076,7 @@ pub unsafe fn get_physical_device_tool_properties_ext(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	p_tool_count: *mut u32,
-	p_tool_properties: *mut vk::PhysicalDeviceToolProperties,
+	p_tool_properties: *mut vk::PhysicalDeviceToolProperties<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -30117,7 +30117,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		p_tool_count: *mut u32,
-		p_tool_properties: *mut vk::PhysicalDeviceToolProperties,
+		p_tool_properties: *mut vk::PhysicalDeviceToolProperties<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -30152,7 +30152,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateAccelerationStructureKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateAccelerationStructureKHR.html)"]
 pub unsafe fn create_acceleration_structure_khr(
 	device: &Device,
-	p_create_info: *const vk::AccelerationStructureCreateInfoKHR,
+	p_create_info: *const vk::AccelerationStructureCreateInfoKHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_acceleration_structure: *mut vk::AccelerationStructureKHR,
 ) -> Result<vk::Result, CallError> {
@@ -30201,7 +30201,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_acceleration_structure_khr(
 		&self,
-		p_create_info: *const vk::AccelerationStructureCreateInfoKHR,
+		p_create_info: *const vk::AccelerationStructureCreateInfoKHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_acceleration_structure: *mut vk::AccelerationStructureKHR,
 	) -> Result<vk::Result, CallError> {
@@ -30235,7 +30235,7 @@ pub unsafe fn cmd_build_acceleration_structures_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
 	info_count: u32,
-	p_infos: *const vk::AccelerationStructureBuildGeometryInfoKHR,
+	p_infos: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
 	pp_build_range_infos: *const *const vk::AccelerationStructureBuildRangeInfoKHR,
 ) -> Result<(), CallError> {
 	let __vk_function =
@@ -30275,7 +30275,7 @@ impl Device {
 		&self,
 		command_buffer: vk::CommandBuffer,
 		info_count: u32,
-		p_infos: *const vk::AccelerationStructureBuildGeometryInfoKHR,
+		p_infos: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
 		pp_build_range_infos: *const *const vk::AccelerationStructureBuildRangeInfoKHR,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -30314,7 +30314,7 @@ pub unsafe fn cmd_build_acceleration_structures_indirect_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
 	info_count: u32,
-	p_infos: *const vk::AccelerationStructureBuildGeometryInfoKHR,
+	p_infos: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
 	p_indirect_device_addresses: *const vk::DeviceAddress,
 	p_indirect_strides: *const u32,
 	pp_max_primitive_counts: *const *const u32,
@@ -30364,7 +30364,7 @@ impl Device {
 		&self,
 		command_buffer: vk::CommandBuffer,
 		info_count: u32,
-		p_infos: *const vk::AccelerationStructureBuildGeometryInfoKHR,
+		p_infos: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
 		p_indirect_device_addresses: *const vk::DeviceAddress,
 		p_indirect_strides: *const u32,
 		pp_max_primitive_counts: *const *const u32,
@@ -30407,7 +30407,7 @@ pub unsafe fn build_acceleration_structures_khr(
 	device: &Device,
 	deferred_operation: vk::DeferredOperationKHR,
 	info_count: u32,
-	p_infos: *const vk::AccelerationStructureBuildGeometryInfoKHR,
+	p_infos: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
 	pp_build_range_infos: *const *const vk::AccelerationStructureBuildRangeInfoKHR,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
@@ -30458,7 +30458,7 @@ impl Device {
 		&self,
 		deferred_operation: vk::DeferredOperationKHR,
 		info_count: u32,
-		p_infos: *const vk::AccelerationStructureBuildGeometryInfoKHR,
+		p_infos: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
 		pp_build_range_infos: *const *const vk::AccelerationStructureBuildRangeInfoKHR,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -30495,7 +30495,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetAccelerationStructureDeviceAddressKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetAccelerationStructureDeviceAddressKHR.html)"]
 pub unsafe fn get_acceleration_structure_device_address_khr(
 	device: &Device,
-	p_info: *const vk::AccelerationStructureDeviceAddressInfoKHR,
+	p_info: *const vk::AccelerationStructureDeviceAddressInfoKHR<'_>,
 ) -> Result<vk::DeviceAddress, CallError> {
 	let __vk_function = device
 		.fp()
@@ -30531,7 +30531,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_acceleration_structure_device_address_khr(
 		&self,
-		p_info: *const vk::AccelerationStructureDeviceAddressInfoKHR,
+		p_info: *const vk::AccelerationStructureDeviceAddressInfoKHR<'_>,
 	) -> Result<vk::DeviceAddress, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_acceleration_structure_device_address_khr(self, p_info) }
@@ -30884,8 +30884,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetPipelineIndirectMemoryRequirementsNV`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineIndirectMemoryRequirementsNV.html)"]
 pub unsafe fn get_pipeline_indirect_memory_requirements_nv(
 	device: &Device,
-	p_create_info: *const vk::ComputePipelineCreateInfo,
-	p_memory_requirements: *mut vk::MemoryRequirements2,
+	p_create_info: *const vk::ComputePipelineCreateInfo<'_>,
+	p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -30921,8 +30921,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_pipeline_indirect_memory_requirements_nv(
 		&self,
-		p_create_info: *const vk::ComputePipelineCreateInfo,
-		p_memory_requirements: *mut vk::MemoryRequirements2,
+		p_create_info: *const vk::ComputePipelineCreateInfo<'_>,
+		p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -30952,7 +30952,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetPipelineIndirectDeviceAddressNV`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelineIndirectDeviceAddressNV.html)"]
 pub unsafe fn get_pipeline_indirect_device_address_nv(
 	device: &Device,
-	p_info: *const vk::PipelineIndirectDeviceAddressInfoNV,
+	p_info: *const vk::PipelineIndirectDeviceAddressInfoNV<'_>,
 ) -> Result<vk::DeviceAddress, CallError> {
 	let __vk_function =
 		device
@@ -30989,7 +30989,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_pipeline_indirect_device_address_nv(
 		&self,
-		p_info: *const vk::PipelineIndirectDeviceAddressInfoNV,
+		p_info: *const vk::PipelineIndirectDeviceAddressInfoNV<'_>,
 	) -> Result<vk::DeviceAddress, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_pipeline_indirect_device_address_nv(self, p_info) }
@@ -31017,7 +31017,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkAntiLagUpdateAMD`](https://docs.vulkan.org/refpages/latest/refpages/source/vkAntiLagUpdateAMD.html)"]
 pub unsafe fn anti_lag_update_amd(
 	device: &Device,
-	p_data: *const vk::AntiLagDataAMD,
+	p_data: *const vk::AntiLagDataAMD<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -31051,7 +31051,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn anti_lag_update_amd(
 		&self,
-		p_data: *const vk::AntiLagDataAMD,
+		p_data: *const vk::AntiLagDataAMD<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { anti_lag_update_amd(self, p_data) }
@@ -35565,7 +35565,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreatePrivateDataSlot`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreatePrivateDataSlot.html)"]
 pub unsafe fn create_private_data_slot(
 	device: &Device,
-	p_create_info: *const vk::PrivateDataSlotCreateInfo,
+	p_create_info: *const vk::PrivateDataSlotCreateInfo<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_private_data_slot: *mut vk::PrivateDataSlot,
 ) -> Result<vk::Result, CallError> {
@@ -35611,7 +35611,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_private_data_slot(
 		&self,
-		p_create_info: *const vk::PrivateDataSlotCreateInfo,
+		p_create_info: *const vk::PrivateDataSlotCreateInfo<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_private_data_slot: *mut vk::PrivateDataSlot,
 	) -> Result<vk::Result, CallError> {
@@ -35641,7 +35641,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreatePrivateDataSlotEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreatePrivateDataSlotEXT.html)"]
 pub unsafe fn create_private_data_slot_ext(
 	device: &Device,
-	p_create_info: *const vk::PrivateDataSlotCreateInfo,
+	p_create_info: *const vk::PrivateDataSlotCreateInfo<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_private_data_slot: *mut vk::PrivateDataSlot,
 ) -> Result<vk::Result, CallError> {
@@ -35687,7 +35687,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_private_data_slot_ext(
 		&self,
-		p_create_info: *const vk::PrivateDataSlotCreateInfo,
+		p_create_info: *const vk::PrivateDataSlotCreateInfo<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_private_data_slot: *mut vk::PrivateDataSlot,
 	) -> Result<vk::Result, CallError> {
@@ -36149,7 +36149,7 @@ impl Device {
 pub unsafe fn cmd_copy_buffer2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	copy_buffer_info: &vk::CopyBufferInfo2,
+	copy_buffer_info: &vk::CopyBufferInfo2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -36177,7 +36177,7 @@ impl Device {
 	pub unsafe fn cmd_copy_buffer2(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		copy_buffer_info: &vk::CopyBufferInfo2,
+		copy_buffer_info: &vk::CopyBufferInfo2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_buffer2(self, command_buffer, copy_buffer_info) }
@@ -36199,7 +36199,7 @@ impl Device {
 pub unsafe fn cmd_copy_buffer2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	copy_buffer_info: &vk::CopyBufferInfo2,
+	copy_buffer_info: &vk::CopyBufferInfo2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -36227,7 +36227,7 @@ impl Device {
 	pub unsafe fn cmd_copy_buffer2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		copy_buffer_info: &vk::CopyBufferInfo2,
+		copy_buffer_info: &vk::CopyBufferInfo2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_buffer2_khr(self, command_buffer, copy_buffer_info) }
@@ -36249,7 +36249,7 @@ impl Device {
 pub unsafe fn cmd_copy_image2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	copy_image_info: &vk::CopyImageInfo2,
+	copy_image_info: &vk::CopyImageInfo2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -36277,7 +36277,7 @@ impl Device {
 	pub unsafe fn cmd_copy_image2(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		copy_image_info: &vk::CopyImageInfo2,
+		copy_image_info: &vk::CopyImageInfo2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_image2(self, command_buffer, copy_image_info) }
@@ -36299,7 +36299,7 @@ impl Device {
 pub unsafe fn cmd_copy_image2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	copy_image_info: &vk::CopyImageInfo2,
+	copy_image_info: &vk::CopyImageInfo2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -36327,7 +36327,7 @@ impl Device {
 	pub unsafe fn cmd_copy_image2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		copy_image_info: &vk::CopyImageInfo2,
+		copy_image_info: &vk::CopyImageInfo2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_image2_khr(self, command_buffer, copy_image_info) }
@@ -36349,7 +36349,7 @@ impl Device {
 pub unsafe fn cmd_blit_image2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	blit_image_info: &vk::BlitImageInfo2,
+	blit_image_info: &vk::BlitImageInfo2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -36377,7 +36377,7 @@ impl Device {
 	pub unsafe fn cmd_blit_image2(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		blit_image_info: &vk::BlitImageInfo2,
+		blit_image_info: &vk::BlitImageInfo2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_blit_image2(self, command_buffer, blit_image_info) }
@@ -36399,7 +36399,7 @@ impl Device {
 pub unsafe fn cmd_blit_image2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	blit_image_info: &vk::BlitImageInfo2,
+	blit_image_info: &vk::BlitImageInfo2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -36427,7 +36427,7 @@ impl Device {
 	pub unsafe fn cmd_blit_image2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		blit_image_info: &vk::BlitImageInfo2,
+		blit_image_info: &vk::BlitImageInfo2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_blit_image2_khr(self, command_buffer, blit_image_info) }
@@ -36449,7 +36449,7 @@ impl Device {
 pub unsafe fn cmd_copy_buffer_to_image2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	copy_buffer_to_image_info: &vk::CopyBufferToImageInfo2,
+	copy_buffer_to_image_info: &vk::CopyBufferToImageInfo2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -36477,7 +36477,7 @@ impl Device {
 	pub unsafe fn cmd_copy_buffer_to_image2(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		copy_buffer_to_image_info: &vk::CopyBufferToImageInfo2,
+		copy_buffer_to_image_info: &vk::CopyBufferToImageInfo2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_buffer_to_image2(self, command_buffer, copy_buffer_to_image_info) }
@@ -36499,7 +36499,7 @@ impl Device {
 pub unsafe fn cmd_copy_buffer_to_image2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	copy_buffer_to_image_info: &vk::CopyBufferToImageInfo2,
+	copy_buffer_to_image_info: &vk::CopyBufferToImageInfo2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -36527,7 +36527,7 @@ impl Device {
 	pub unsafe fn cmd_copy_buffer_to_image2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		copy_buffer_to_image_info: &vk::CopyBufferToImageInfo2,
+		copy_buffer_to_image_info: &vk::CopyBufferToImageInfo2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_buffer_to_image2_khr(self, command_buffer, copy_buffer_to_image_info) }
@@ -36549,7 +36549,7 @@ impl Device {
 pub unsafe fn cmd_copy_image_to_buffer2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	copy_image_to_buffer_info: &vk::CopyImageToBufferInfo2,
+	copy_image_to_buffer_info: &vk::CopyImageToBufferInfo2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -36577,7 +36577,7 @@ impl Device {
 	pub unsafe fn cmd_copy_image_to_buffer2(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		copy_image_to_buffer_info: &vk::CopyImageToBufferInfo2,
+		copy_image_to_buffer_info: &vk::CopyImageToBufferInfo2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_image_to_buffer2(self, command_buffer, copy_image_to_buffer_info) }
@@ -36599,7 +36599,7 @@ impl Device {
 pub unsafe fn cmd_copy_image_to_buffer2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	copy_image_to_buffer_info: &vk::CopyImageToBufferInfo2,
+	copy_image_to_buffer_info: &vk::CopyImageToBufferInfo2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -36627,7 +36627,7 @@ impl Device {
 	pub unsafe fn cmd_copy_image_to_buffer2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		copy_image_to_buffer_info: &vk::CopyImageToBufferInfo2,
+		copy_image_to_buffer_info: &vk::CopyImageToBufferInfo2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_image_to_buffer2_khr(self, command_buffer, copy_image_to_buffer_info) }
@@ -36649,7 +36649,7 @@ impl Device {
 pub unsafe fn cmd_resolve_image2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	resolve_image_info: &vk::ResolveImageInfo2,
+	resolve_image_info: &vk::ResolveImageInfo2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -36677,7 +36677,7 @@ impl Device {
 	pub unsafe fn cmd_resolve_image2(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		resolve_image_info: &vk::ResolveImageInfo2,
+		resolve_image_info: &vk::ResolveImageInfo2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_resolve_image2(self, command_buffer, resolve_image_info) }
@@ -36699,7 +36699,7 @@ impl Device {
 pub unsafe fn cmd_resolve_image2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	resolve_image_info: &vk::ResolveImageInfo2,
+	resolve_image_info: &vk::ResolveImageInfo2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -36727,7 +36727,7 @@ impl Device {
 	pub unsafe fn cmd_resolve_image2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		resolve_image_info: &vk::ResolveImageInfo2,
+		resolve_image_info: &vk::ResolveImageInfo2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_resolve_image2_khr(self, command_buffer, resolve_image_info) }
@@ -36825,7 +36825,7 @@ pub unsafe fn get_physical_device_fragment_shading_rates_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	p_fragment_shading_rate_count: *mut u32,
-	p_fragment_shading_rates: *mut vk::PhysicalDeviceFragmentShadingRateKHR,
+	p_fragment_shading_rates: *mut vk::PhysicalDeviceFragmentShadingRateKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -36872,7 +36872,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		p_fragment_shading_rate_count: *mut u32,
-		p_fragment_shading_rates: *mut vk::PhysicalDeviceFragmentShadingRateKHR,
+		p_fragment_shading_rates: *mut vk::PhysicalDeviceFragmentShadingRateKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -36979,9 +36979,9 @@ impl Device {
 pub unsafe fn get_acceleration_structure_build_sizes_khr(
 	device: &Device,
 	build_type: vk::AccelerationStructureBuildTypeKHR,
-	p_build_info: *const vk::AccelerationStructureBuildGeometryInfoKHR,
+	p_build_info: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
 	p_max_primitive_counts: *const u32,
-	p_size_info: *mut vk::AccelerationStructureBuildSizesInfoKHR,
+	p_size_info: *mut vk::AccelerationStructureBuildSizesInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -37026,9 +37026,9 @@ impl Device {
 	pub unsafe fn get_acceleration_structure_build_sizes_khr(
 		&self,
 		build_type: vk::AccelerationStructureBuildTypeKHR,
-		p_build_info: *const vk::AccelerationStructureBuildGeometryInfoKHR,
+		p_build_info: *const vk::AccelerationStructureBuildGeometryInfoKHR<'_>,
 		p_max_primitive_counts: *const u32,
-		p_size_info: *mut vk::AccelerationStructureBuildSizesInfoKHR,
+		p_size_info: *mut vk::AccelerationStructureBuildSizesInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -37066,9 +37066,9 @@ pub unsafe fn cmd_set_vertex_input_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
 	vertex_binding_description_count: u32,
-	p_vertex_binding_descriptions: *const vk::VertexInputBindingDescription2EXT,
+	p_vertex_binding_descriptions: *const vk::VertexInputBindingDescription2EXT<'_>,
 	vertex_attribute_description_count: u32,
-	p_vertex_attribute_descriptions: *const vk::VertexInputAttributeDescription2EXT,
+	p_vertex_attribute_descriptions: *const vk::VertexInputAttributeDescription2EXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -37112,9 +37112,9 @@ impl Device {
 		&self,
 		command_buffer: vk::CommandBuffer,
 		vertex_binding_description_count: u32,
-		p_vertex_binding_descriptions: *const vk::VertexInputBindingDescription2EXT,
+		p_vertex_binding_descriptions: *const vk::VertexInputBindingDescription2EXT<'_>,
 		vertex_attribute_description_count: u32,
-		p_vertex_attribute_descriptions: *const vk::VertexInputAttributeDescription2EXT,
+		p_vertex_attribute_descriptions: *const vk::VertexInputAttributeDescription2EXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -37219,7 +37219,7 @@ pub unsafe fn cmd_set_event2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
 	event: vk::Event,
-	dependency_info: &vk::DependencyInfo,
+	dependency_info: &vk::DependencyInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -37248,7 +37248,7 @@ impl Device {
 		&self,
 		command_buffer: vk::CommandBuffer,
 		event: vk::Event,
-		dependency_info: &vk::DependencyInfo,
+		dependency_info: &vk::DependencyInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_set_event2(self, command_buffer, event, dependency_info) }
@@ -37271,7 +37271,7 @@ pub unsafe fn cmd_set_event2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
 	event: vk::Event,
-	dependency_info: &vk::DependencyInfo,
+	dependency_info: &vk::DependencyInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -37300,7 +37300,7 @@ impl Device {
 		&self,
 		command_buffer: vk::CommandBuffer,
 		event: vk::Event,
-		dependency_info: &vk::DependencyInfo,
+		dependency_info: &vk::DependencyInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_set_event2_khr(self, command_buffer, event, dependency_info) }
@@ -37427,7 +37427,7 @@ pub unsafe fn cmd_wait_events2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
 	events: &[vk::Event],
-	dependency_infos: &[vk::DependencyInfo],
+	dependency_infos: &[vk::DependencyInfo<'_>],
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -37472,7 +37472,7 @@ impl Device {
 		&self,
 		command_buffer: vk::CommandBuffer,
 		events: &[vk::Event],
-		dependency_infos: &[vk::DependencyInfo],
+		dependency_infos: &[vk::DependencyInfo<'_>],
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_wait_events2(self, command_buffer, events, dependency_infos) }
@@ -37495,7 +37495,7 @@ pub unsafe fn cmd_wait_events2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
 	events: &[vk::Event],
-	dependency_infos: &[vk::DependencyInfo],
+	dependency_infos: &[vk::DependencyInfo<'_>],
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -37540,7 +37540,7 @@ impl Device {
 		&self,
 		command_buffer: vk::CommandBuffer,
 		events: &[vk::Event],
-		dependency_infos: &[vk::DependencyInfo],
+		dependency_infos: &[vk::DependencyInfo<'_>],
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_wait_events2_khr(self, command_buffer, events, dependency_infos) }
@@ -37562,7 +37562,7 @@ impl Device {
 pub unsafe fn cmd_pipeline_barrier2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	dependency_info: &vk::DependencyInfo,
+	dependency_info: &vk::DependencyInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -37590,7 +37590,7 @@ impl Device {
 	pub unsafe fn cmd_pipeline_barrier2(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		dependency_info: &vk::DependencyInfo,
+		dependency_info: &vk::DependencyInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_pipeline_barrier2(self, command_buffer, dependency_info) }
@@ -37612,7 +37612,7 @@ impl Device {
 pub unsafe fn cmd_pipeline_barrier2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	dependency_info: &vk::DependencyInfo,
+	dependency_info: &vk::DependencyInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -37640,7 +37640,7 @@ impl Device {
 	pub unsafe fn cmd_pipeline_barrier2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		dependency_info: &vk::DependencyInfo,
+		dependency_info: &vk::DependencyInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_pipeline_barrier2_khr(self, command_buffer, dependency_info) }
@@ -37662,7 +37662,7 @@ impl Device {
 pub unsafe fn queue_submit2(
 	device: &Device,
 	queue: vk::Queue,
-	submits: &[vk::SubmitInfo2],
+	submits: &[vk::SubmitInfo2<'_>],
 	fence: vk::Fence,
 ) -> Result<(), CallError> {
 	let __vk_function = device
@@ -37696,7 +37696,7 @@ impl Device {
 	pub unsafe fn queue_submit2(
 		&self,
 		queue: vk::Queue,
-		submits: &[vk::SubmitInfo2],
+		submits: &[vk::SubmitInfo2<'_>],
 		fence: vk::Fence,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -37719,7 +37719,7 @@ impl Device {
 pub unsafe fn queue_submit2_khr(
 	device: &Device,
 	queue: vk::Queue,
-	submits: &[vk::SubmitInfo2],
+	submits: &[vk::SubmitInfo2<'_>],
 	fence: vk::Fence,
 ) -> Result<(), CallError> {
 	let __vk_function = device
@@ -37753,7 +37753,7 @@ impl Device {
 	pub unsafe fn queue_submit2_khr(
 		&self,
 		queue: vk::Queue,
-		submits: &[vk::SubmitInfo2],
+		submits: &[vk::SubmitInfo2<'_>],
 		fence: vk::Fence,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -37964,7 +37964,7 @@ pub unsafe fn get_queue_checkpoint_data2_nv(
 	device: &Device,
 	queue: vk::Queue,
 	p_checkpoint_data_count: *mut u32,
-	p_checkpoint_data: *mut vk::CheckpointData2NV,
+	p_checkpoint_data: *mut vk::CheckpointData2NV<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -38000,7 +38000,7 @@ impl Device {
 		&self,
 		queue: vk::Queue,
 		p_checkpoint_data_count: *mut u32,
-		p_checkpoint_data: *mut vk::CheckpointData2NV,
+		p_checkpoint_data: *mut vk::CheckpointData2NV<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -38030,7 +38030,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCopyMemoryToImage`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyMemoryToImage.html)"]
 pub unsafe fn copy_memory_to_image(
 	device: &Device,
-	p_copy_memory_to_image_info: *const vk::CopyMemoryToImageInfo,
+	p_copy_memory_to_image_info: *const vk::CopyMemoryToImageInfo<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -38067,7 +38067,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn copy_memory_to_image(
 		&self,
-		p_copy_memory_to_image_info: *const vk::CopyMemoryToImageInfo,
+		p_copy_memory_to_image_info: *const vk::CopyMemoryToImageInfo<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { copy_memory_to_image(self, p_copy_memory_to_image_info) }
@@ -38095,7 +38095,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCopyMemoryToImageEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyMemoryToImageEXT.html)"]
 pub unsafe fn copy_memory_to_image_ext(
 	device: &Device,
-	p_copy_memory_to_image_info: *const vk::CopyMemoryToImageInfo,
+	p_copy_memory_to_image_info: *const vk::CopyMemoryToImageInfo<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -38132,7 +38132,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn copy_memory_to_image_ext(
 		&self,
-		p_copy_memory_to_image_info: *const vk::CopyMemoryToImageInfo,
+		p_copy_memory_to_image_info: *const vk::CopyMemoryToImageInfo<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { copy_memory_to_image_ext(self, p_copy_memory_to_image_info) }
@@ -38160,7 +38160,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCopyImageToMemory`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyImageToMemory.html)"]
 pub unsafe fn copy_image_to_memory(
 	device: &Device,
-	p_copy_image_to_memory_info: *const vk::CopyImageToMemoryInfo,
+	p_copy_image_to_memory_info: *const vk::CopyImageToMemoryInfo<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -38197,7 +38197,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn copy_image_to_memory(
 		&self,
-		p_copy_image_to_memory_info: *const vk::CopyImageToMemoryInfo,
+		p_copy_image_to_memory_info: *const vk::CopyImageToMemoryInfo<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { copy_image_to_memory(self, p_copy_image_to_memory_info) }
@@ -38225,7 +38225,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCopyImageToMemoryEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyImageToMemoryEXT.html)"]
 pub unsafe fn copy_image_to_memory_ext(
 	device: &Device,
-	p_copy_image_to_memory_info: *const vk::CopyImageToMemoryInfo,
+	p_copy_image_to_memory_info: *const vk::CopyImageToMemoryInfo<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -38262,7 +38262,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn copy_image_to_memory_ext(
 		&self,
-		p_copy_image_to_memory_info: *const vk::CopyImageToMemoryInfo,
+		p_copy_image_to_memory_info: *const vk::CopyImageToMemoryInfo<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { copy_image_to_memory_ext(self, p_copy_image_to_memory_info) }
@@ -38290,7 +38290,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCopyImageToImage`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyImageToImage.html)"]
 pub unsafe fn copy_image_to_image(
 	device: &Device,
-	p_copy_image_to_image_info: *const vk::CopyImageToImageInfo,
+	p_copy_image_to_image_info: *const vk::CopyImageToImageInfo<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -38327,7 +38327,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn copy_image_to_image(
 		&self,
-		p_copy_image_to_image_info: *const vk::CopyImageToImageInfo,
+		p_copy_image_to_image_info: *const vk::CopyImageToImageInfo<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { copy_image_to_image(self, p_copy_image_to_image_info) }
@@ -38355,7 +38355,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCopyImageToImageEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCopyImageToImageEXT.html)"]
 pub unsafe fn copy_image_to_image_ext(
 	device: &Device,
-	p_copy_image_to_image_info: *const vk::CopyImageToImageInfo,
+	p_copy_image_to_image_info: *const vk::CopyImageToImageInfo<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -38392,7 +38392,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn copy_image_to_image_ext(
 		&self,
-		p_copy_image_to_image_info: *const vk::CopyImageToImageInfo,
+		p_copy_image_to_image_info: *const vk::CopyImageToImageInfo<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { copy_image_to_image_ext(self, p_copy_image_to_image_info) }
@@ -38421,7 +38421,7 @@ impl Device {
 pub unsafe fn transition_image_layout(
 	device: &Device,
 	transition_count: u32,
-	p_transitions: *const vk::HostImageLayoutTransitionInfo,
+	p_transitions: *const vk::HostImageLayoutTransitionInfo<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -38459,7 +38459,7 @@ impl Device {
 	pub unsafe fn transition_image_layout(
 		&self,
 		transition_count: u32,
-		p_transitions: *const vk::HostImageLayoutTransitionInfo,
+		p_transitions: *const vk::HostImageLayoutTransitionInfo<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { transition_image_layout(self, transition_count, p_transitions) }
@@ -38488,7 +38488,7 @@ impl Device {
 pub unsafe fn transition_image_layout_ext(
 	device: &Device,
 	transition_count: u32,
-	p_transitions: *const vk::HostImageLayoutTransitionInfo,
+	p_transitions: *const vk::HostImageLayoutTransitionInfo<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -38526,7 +38526,7 @@ impl Device {
 	pub unsafe fn transition_image_layout_ext(
 		&self,
 		transition_count: u32,
-		p_transitions: *const vk::HostImageLayoutTransitionInfo,
+		p_transitions: *const vk::HostImageLayoutTransitionInfo<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { transition_image_layout_ext(self, transition_count, p_transitions) }
@@ -38555,8 +38555,8 @@ impl Device {
 pub unsafe fn get_physical_device_video_capabilities_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	p_video_profile: *const vk::VideoProfileInfoKHR,
-	p_capabilities: *mut vk::VideoCapabilitiesKHR,
+	p_video_profile: *const vk::VideoProfileInfoKHR<'_>,
+	p_capabilities: *mut vk::VideoCapabilitiesKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -38596,8 +38596,8 @@ impl Instance {
 	pub unsafe fn get_physical_device_video_capabilities_khr(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		p_video_profile: *const vk::VideoProfileInfoKHR,
-		p_capabilities: *mut vk::VideoCapabilitiesKHR,
+		p_video_profile: *const vk::VideoProfileInfoKHR<'_>,
+		p_capabilities: *mut vk::VideoCapabilitiesKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -38633,9 +38633,9 @@ impl Instance {
 pub unsafe fn get_physical_device_video_format_properties_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	p_video_format_info: *const vk::PhysicalDeviceVideoFormatInfoKHR,
+	p_video_format_info: *const vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
 	p_video_format_property_count: *mut u32,
-	p_video_format_properties: *mut vk::VideoFormatPropertiesKHR,
+	p_video_format_properties: *mut vk::VideoFormatPropertiesKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -38682,9 +38682,9 @@ impl Instance {
 	pub unsafe fn get_physical_device_video_format_properties_khr(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		p_video_format_info: *const vk::PhysicalDeviceVideoFormatInfoKHR,
+		p_video_format_info: *const vk::PhysicalDeviceVideoFormatInfoKHR<'_>,
 		p_video_format_property_count: *mut u32,
-		p_video_format_properties: *mut vk::VideoFormatPropertiesKHR,
+		p_video_format_properties: *mut vk::VideoFormatPropertiesKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -38721,8 +38721,8 @@ impl Instance {
 pub unsafe fn get_physical_device_video_encode_quality_level_properties_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	p_quality_level_info: *const vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR,
-	p_quality_level_properties: *mut vk::VideoEncodeQualityLevelPropertiesKHR,
+	p_quality_level_info: *const vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR<'_>,
+	p_quality_level_properties: *mut vk::VideoEncodeQualityLevelPropertiesKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -38768,8 +38768,8 @@ impl Instance {
 	pub unsafe fn get_physical_device_video_encode_quality_level_properties_khr(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		p_quality_level_info: *const vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR,
-		p_quality_level_properties: *mut vk::VideoEncodeQualityLevelPropertiesKHR,
+		p_quality_level_info: *const vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR<'_>,
+		p_quality_level_properties: *mut vk::VideoEncodeQualityLevelPropertiesKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -38804,7 +38804,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateVideoSessionKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateVideoSessionKHR.html)"]
 pub unsafe fn create_video_session_khr(
 	device: &Device,
-	p_create_info: *const vk::VideoSessionCreateInfoKHR,
+	p_create_info: *const vk::VideoSessionCreateInfoKHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_video_session: *mut vk::VideoSessionKHR,
 ) -> Result<vk::Result, CallError> {
@@ -38844,7 +38844,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_video_session_khr(
 		&self,
-		p_create_info: *const vk::VideoSessionCreateInfoKHR,
+		p_create_info: *const vk::VideoSessionCreateInfoKHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_video_session: *mut vk::VideoSessionKHR,
 	) -> Result<vk::Result, CallError> {
@@ -38938,7 +38938,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateVideoSessionParametersKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateVideoSessionParametersKHR.html)"]
 pub unsafe fn create_video_session_parameters_khr(
 	device: &Device,
-	p_create_info: *const vk::VideoSessionParametersCreateInfoKHR,
+	p_create_info: *const vk::VideoSessionParametersCreateInfoKHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_video_session_parameters: *mut vk::VideoSessionParametersKHR,
 ) -> Result<vk::Result, CallError> {
@@ -38987,7 +38987,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_video_session_parameters_khr(
 		&self,
-		p_create_info: *const vk::VideoSessionParametersCreateInfoKHR,
+		p_create_info: *const vk::VideoSessionParametersCreateInfoKHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_video_session_parameters: *mut vk::VideoSessionParametersKHR,
 	) -> Result<vk::Result, CallError> {
@@ -39025,7 +39025,7 @@ impl Device {
 pub unsafe fn update_video_session_parameters_khr(
 	device: &Device,
 	video_session_parameters: vk::VideoSessionParametersKHR,
-	p_update_info: *const vk::VideoSessionParametersUpdateInfoKHR,
+	p_update_info: *const vk::VideoSessionParametersUpdateInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		device
@@ -39066,7 +39066,7 @@ impl Device {
 	pub unsafe fn update_video_session_parameters_khr(
 		&self,
 		video_session_parameters: vk::VideoSessionParametersKHR,
-		p_update_info: *const vk::VideoSessionParametersUpdateInfoKHR,
+		p_update_info: *const vk::VideoSessionParametersUpdateInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { update_video_session_parameters_khr(self, video_session_parameters, p_update_info) }
@@ -39094,8 +39094,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetEncodedVideoSessionParametersKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetEncodedVideoSessionParametersKHR.html)"]
 pub unsafe fn get_encoded_video_session_parameters_khr(
 	device: &Device,
-	p_video_session_parameters_info: *const vk::VideoEncodeSessionParametersGetInfoKHR,
-	p_feedback_info: *mut vk::VideoEncodeSessionParametersFeedbackInfoKHR,
+	p_video_session_parameters_info: *const vk::VideoEncodeSessionParametersGetInfoKHR<'_>,
+	p_feedback_info: *mut vk::VideoEncodeSessionParametersFeedbackInfoKHR<'_>,
 	p_data_size: *mut usize,
 	p_data: *mut std::ffi::c_void,
 ) -> Result<vk::Result, CallError> {
@@ -39145,8 +39145,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_encoded_video_session_parameters_khr(
 		&self,
-		p_video_session_parameters_info: *const vk::VideoEncodeSessionParametersGetInfoKHR,
-		p_feedback_info: *mut vk::VideoEncodeSessionParametersFeedbackInfoKHR,
+		p_video_session_parameters_info: *const vk::VideoEncodeSessionParametersGetInfoKHR<'_>,
+		p_feedback_info: *mut vk::VideoEncodeSessionParametersFeedbackInfoKHR<'_>,
 		p_data_size: *mut usize,
 		p_data: *mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError> {
@@ -39253,7 +39253,7 @@ pub unsafe fn get_video_session_memory_requirements_khr(
 	device: &Device,
 	video_session: vk::VideoSessionKHR,
 	p_memory_requirements_count: *mut u32,
-	p_memory_requirements: *mut vk::VideoSessionMemoryRequirementsKHR,
+	p_memory_requirements: *mut vk::VideoSessionMemoryRequirementsKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -39301,7 +39301,7 @@ impl Device {
 		&self,
 		video_session: vk::VideoSessionKHR,
 		p_memory_requirements_count: *mut u32,
-		p_memory_requirements: *mut vk::VideoSessionMemoryRequirementsKHR,
+		p_memory_requirements: *mut vk::VideoSessionMemoryRequirementsKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -39338,7 +39338,7 @@ pub unsafe fn bind_video_session_memory_khr(
 	device: &Device,
 	video_session: vk::VideoSessionKHR,
 	bind_session_memory_info_count: u32,
-	p_bind_session_memory_infos: *const vk::BindVideoSessionMemoryInfoKHR,
+	p_bind_session_memory_infos: *const vk::BindVideoSessionMemoryInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -39384,7 +39384,7 @@ impl Device {
 		&self,
 		video_session: vk::VideoSessionKHR,
 		bind_session_memory_info_count: u32,
-		p_bind_session_memory_infos: *const vk::BindVideoSessionMemoryInfoKHR,
+		p_bind_session_memory_infos: *const vk::BindVideoSessionMemoryInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -39420,7 +39420,7 @@ impl Device {
 pub unsafe fn cmd_decode_video_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_decode_info: *const vk::VideoDecodeInfoKHR,
+	p_decode_info: *const vk::VideoDecodeInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -39455,7 +39455,7 @@ impl Device {
 	pub unsafe fn cmd_decode_video_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_decode_info: *const vk::VideoDecodeInfoKHR,
+		p_decode_info: *const vk::VideoDecodeInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_decode_video_khr(self, command_buffer, p_decode_info) }
@@ -39484,7 +39484,7 @@ impl Device {
 pub unsafe fn cmd_begin_video_coding_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_begin_info: *const vk::VideoBeginCodingInfoKHR,
+	p_begin_info: *const vk::VideoBeginCodingInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -39519,7 +39519,7 @@ impl Device {
 	pub unsafe fn cmd_begin_video_coding_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_begin_info: *const vk::VideoBeginCodingInfoKHR,
+		p_begin_info: *const vk::VideoBeginCodingInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_begin_video_coding_khr(self, command_buffer, p_begin_info) }
@@ -39548,7 +39548,7 @@ impl Device {
 pub unsafe fn cmd_control_video_coding_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_coding_control_info: *const vk::VideoCodingControlInfoKHR,
+	p_coding_control_info: *const vk::VideoCodingControlInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -39583,7 +39583,7 @@ impl Device {
 	pub unsafe fn cmd_control_video_coding_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_coding_control_info: *const vk::VideoCodingControlInfoKHR,
+		p_coding_control_info: *const vk::VideoCodingControlInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_control_video_coding_khr(self, command_buffer, p_coding_control_info) }
@@ -39612,7 +39612,7 @@ impl Device {
 pub unsafe fn cmd_end_video_coding_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_end_coding_info: *const vk::VideoEndCodingInfoKHR,
+	p_end_coding_info: *const vk::VideoEndCodingInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -39647,7 +39647,7 @@ impl Device {
 	pub unsafe fn cmd_end_video_coding_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_end_coding_info: *const vk::VideoEndCodingInfoKHR,
+		p_end_coding_info: *const vk::VideoEndCodingInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_end_video_coding_khr(self, command_buffer, p_end_coding_info) }
@@ -39676,7 +39676,7 @@ impl Device {
 pub unsafe fn cmd_encode_video_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_encode_info: *const vk::VideoEncodeInfoKHR,
+	p_encode_info: *const vk::VideoEncodeInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -39711,7 +39711,7 @@ impl Device {
 	pub unsafe fn cmd_encode_video_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_encode_info: *const vk::VideoEncodeInfoKHR,
+		p_encode_info: *const vk::VideoEncodeInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_encode_video_khr(self, command_buffer, p_encode_info) }
@@ -39904,8 +39904,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetPartitionedAccelerationStructuresBuildSizesNV`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPartitionedAccelerationStructuresBuildSizesNV.html)"]
 pub unsafe fn get_partitioned_acceleration_structures_build_sizes_nv(
 	device: &Device,
-	p_info: *const vk::PartitionedAccelerationStructureInstancesInputNV,
-	p_size_info: *mut vk::AccelerationStructureBuildSizesInfoKHR,
+	p_info: *const vk::PartitionedAccelerationStructureInstancesInputNV<'_>,
+	p_size_info: *mut vk::AccelerationStructureBuildSizesInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -39941,8 +39941,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_partitioned_acceleration_structures_build_sizes_nv(
 		&self,
-		p_info: *const vk::PartitionedAccelerationStructureInstancesInputNV,
-		p_size_info: *mut vk::AccelerationStructureBuildSizesInfoKHR,
+		p_info: *const vk::PartitionedAccelerationStructureInstancesInputNV<'_>,
+		p_size_info: *mut vk::AccelerationStructureBuildSizesInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_partitioned_acceleration_structures_build_sizes_nv(self, p_info, p_size_info) }
@@ -39971,7 +39971,7 @@ impl Device {
 pub unsafe fn cmd_build_partitioned_acceleration_structures_nv(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_build_info: *const vk::BuildPartitionedAccelerationStructureInfoNV,
+	p_build_info: *const vk::BuildPartitionedAccelerationStructureInfoNV<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -40008,7 +40008,7 @@ impl Device {
 	pub unsafe fn cmd_build_partitioned_acceleration_structures_nv(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_build_info: *const vk::BuildPartitionedAccelerationStructureInfoNV,
+		p_build_info: *const vk::BuildPartitionedAccelerationStructureInfoNV<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_build_partitioned_acceleration_structures_nv(self, command_buffer, p_build_info) }
@@ -40037,7 +40037,7 @@ impl Device {
 pub unsafe fn cmd_decompress_memory_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_decompress_memory_info_ext: *const vk::DecompressMemoryInfoEXT,
+	p_decompress_memory_info_ext: *const vk::DecompressMemoryInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -40072,7 +40072,7 @@ impl Device {
 	pub unsafe fn cmd_decompress_memory_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_decompress_memory_info_ext: *const vk::DecompressMemoryInfoEXT,
+		p_decompress_memory_info_ext: *const vk::DecompressMemoryInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_decompress_memory_ext(self, command_buffer, p_decompress_memory_info_ext) }
@@ -40194,7 +40194,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateCuModuleNVX`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateCuModuleNVX.html)"]
 pub unsafe fn create_cu_module_nvx(
 	device: &Device,
-	p_create_info: *const vk::CuModuleCreateInfoNVX,
+	p_create_info: *const vk::CuModuleCreateInfoNVX<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_module: *mut vk::CuModuleNVX,
 ) -> Result<vk::Result, CallError> {
@@ -40233,7 +40233,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_cu_module_nvx(
 		&self,
-		p_create_info: *const vk::CuModuleCreateInfoNVX,
+		p_create_info: *const vk::CuModuleCreateInfoNVX<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_module: *mut vk::CuModuleNVX,
 	) -> Result<vk::Result, CallError> {
@@ -40263,7 +40263,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateCuFunctionNVX`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateCuFunctionNVX.html)"]
 pub unsafe fn create_cu_function_nvx(
 	device: &Device,
-	p_create_info: *const vk::CuFunctionCreateInfoNVX,
+	p_create_info: *const vk::CuFunctionCreateInfoNVX<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_function: *mut vk::CuFunctionNVX,
 ) -> Result<vk::Result, CallError> {
@@ -40302,7 +40302,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_cu_function_nvx(
 		&self,
-		p_create_info: *const vk::CuFunctionCreateInfoNVX,
+		p_create_info: *const vk::CuFunctionCreateInfoNVX<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_function: *mut vk::CuFunctionNVX,
 	) -> Result<vk::Result, CallError> {
@@ -40461,7 +40461,7 @@ impl Device {
 pub unsafe fn cmd_cu_launch_kernel_nvx(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_launch_info: *const vk::CuLaunchInfoNVX,
+	p_launch_info: *const vk::CuLaunchInfoNVX<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -40496,7 +40496,7 @@ impl Device {
 	pub unsafe fn cmd_cu_launch_kernel_nvx(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_launch_info: *const vk::CuLaunchInfoNVX,
+		p_launch_info: *const vk::CuLaunchInfoNVX<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_cu_launch_kernel_nvx(self, command_buffer, p_launch_info) }
@@ -40656,7 +40656,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDescriptorEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDescriptorEXT.html)"]
 pub unsafe fn get_descriptor_ext(
 	device: &Device,
-	p_descriptor_info: *const vk::DescriptorGetInfoEXT,
+	p_descriptor_info: *const vk::DescriptorGetInfoEXT<'_>,
 	data_size: usize,
 	p_descriptor: *mut std::ffi::c_void,
 ) -> Result<(), CallError> {
@@ -40692,7 +40692,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_descriptor_ext(
 		&self,
-		p_descriptor_info: *const vk::DescriptorGetInfoEXT,
+		p_descriptor_info: *const vk::DescriptorGetInfoEXT<'_>,
 		data_size: usize,
 		p_descriptor: *mut std::ffi::c_void,
 	) -> Result<(), CallError> {
@@ -40724,7 +40724,7 @@ pub unsafe fn cmd_bind_descriptor_buffers_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
 	buffer_count: u32,
-	p_binding_infos: *const vk::DescriptorBufferBindingInfoEXT,
+	p_binding_infos: *const vk::DescriptorBufferBindingInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -40760,7 +40760,7 @@ impl Device {
 		&self,
 		command_buffer: vk::CommandBuffer,
 		buffer_count: u32,
-		p_binding_infos: *const vk::DescriptorBufferBindingInfoEXT,
+		p_binding_infos: *const vk::DescriptorBufferBindingInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_bind_descriptor_buffers_ext(self, command_buffer, buffer_count, p_binding_infos) }
@@ -40966,7 +40966,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetBufferOpaqueCaptureDescriptorDataEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetBufferOpaqueCaptureDescriptorDataEXT.html)"]
 pub unsafe fn get_buffer_opaque_capture_descriptor_data_ext(
 	device: &Device,
-	p_info: *const vk::BufferCaptureDescriptorDataInfoEXT,
+	p_info: *const vk::BufferCaptureDescriptorDataInfoEXT<'_>,
 	p_data: *mut std::ffi::c_void,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -41006,7 +41006,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_buffer_opaque_capture_descriptor_data_ext(
 		&self,
-		p_info: *const vk::BufferCaptureDescriptorDataInfoEXT,
+		p_info: *const vk::BufferCaptureDescriptorDataInfoEXT<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -41035,7 +41035,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetImageOpaqueCaptureDescriptorDataEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageOpaqueCaptureDescriptorDataEXT.html)"]
 pub unsafe fn get_image_opaque_capture_descriptor_data_ext(
 	device: &Device,
-	p_info: *const vk::ImageCaptureDescriptorDataInfoEXT,
+	p_info: *const vk::ImageCaptureDescriptorDataInfoEXT<'_>,
 	p_data: *mut std::ffi::c_void,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -41075,7 +41075,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_image_opaque_capture_descriptor_data_ext(
 		&self,
-		p_info: *const vk::ImageCaptureDescriptorDataInfoEXT,
+		p_info: *const vk::ImageCaptureDescriptorDataInfoEXT<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -41104,7 +41104,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetImageViewOpaqueCaptureDescriptorDataEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetImageViewOpaqueCaptureDescriptorDataEXT.html)"]
 pub unsafe fn get_image_view_opaque_capture_descriptor_data_ext(
 	device: &Device,
-	p_info: *const vk::ImageViewCaptureDescriptorDataInfoEXT,
+	p_info: *const vk::ImageViewCaptureDescriptorDataInfoEXT<'_>,
 	p_data: *mut std::ffi::c_void,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -41144,7 +41144,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_image_view_opaque_capture_descriptor_data_ext(
 		&self,
-		p_info: *const vk::ImageViewCaptureDescriptorDataInfoEXT,
+		p_info: *const vk::ImageViewCaptureDescriptorDataInfoEXT<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -41173,7 +41173,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetSamplerOpaqueCaptureDescriptorDataEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetSamplerOpaqueCaptureDescriptorDataEXT.html)"]
 pub unsafe fn get_sampler_opaque_capture_descriptor_data_ext(
 	device: &Device,
-	p_info: *const vk::SamplerCaptureDescriptorDataInfoEXT,
+	p_info: *const vk::SamplerCaptureDescriptorDataInfoEXT<'_>,
 	p_data: *mut std::ffi::c_void,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -41213,7 +41213,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_sampler_opaque_capture_descriptor_data_ext(
 		&self,
-		p_info: *const vk::SamplerCaptureDescriptorDataInfoEXT,
+		p_info: *const vk::SamplerCaptureDescriptorDataInfoEXT<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -41242,7 +41242,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT.html)"]
 pub unsafe fn get_acceleration_structure_opaque_capture_descriptor_data_ext(
 	device: &Device,
-	p_info: *const vk::AccelerationStructureCaptureDescriptorDataInfoEXT,
+	p_info: *const vk::AccelerationStructureCaptureDescriptorDataInfoEXT<'_>,
 	p_data: *mut std::ffi::c_void,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -41282,7 +41282,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_acceleration_structure_opaque_capture_descriptor_data_ext(
 		&self,
-		p_info: *const vk::AccelerationStructureCaptureDescriptorDataInfoEXT,
+		p_info: *const vk::AccelerationStructureCaptureDescriptorDataInfoEXT<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -41516,7 +41516,7 @@ impl Instance {
 pub unsafe fn wait_for_present2_khr(
 	device: &Device,
 	swapchain: vk::SwapchainKHR,
-	p_present_wait2_info: *const vk::PresentWait2InfoKHR,
+	p_present_wait2_info: *const vk::PresentWait2InfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -41554,7 +41554,7 @@ impl Device {
 	pub unsafe fn wait_for_present2_khr(
 		&self,
 		swapchain: vk::SwapchainKHR,
-		p_present_wait2_info: *const vk::PresentWait2InfoKHR,
+		p_present_wait2_info: *const vk::PresentWait2InfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { wait_for_present2_khr(self, swapchain, p_present_wait2_info) }
@@ -41652,7 +41652,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateBufferCollectionFUCHSIA`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateBufferCollectionFUCHSIA.html)"]
 pub unsafe fn create_buffer_collection_fuchsia(
 	device: &Device,
-	p_create_info: *const vk::BufferCollectionCreateInfoFUCHSIA,
+	p_create_info: *const vk::BufferCollectionCreateInfoFUCHSIA<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_collection: *mut vk::BufferCollectionFUCHSIA,
 ) -> Result<vk::Result, CallError> {
@@ -41692,7 +41692,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_buffer_collection_fuchsia(
 		&self,
-		p_create_info: *const vk::BufferCollectionCreateInfoFUCHSIA,
+		p_create_info: *const vk::BufferCollectionCreateInfoFUCHSIA<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_collection: *mut vk::BufferCollectionFUCHSIA,
 	) -> Result<vk::Result, CallError> {
@@ -41724,7 +41724,7 @@ impl Device {
 pub unsafe fn set_buffer_collection_buffer_constraints_fuchsia(
 	device: &Device,
 	collection: vk::BufferCollectionFUCHSIA,
-	p_buffer_constraints_info: *const vk::BufferConstraintsInfoFUCHSIA,
+	p_buffer_constraints_info: *const vk::BufferConstraintsInfoFUCHSIA<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -41765,7 +41765,7 @@ impl Device {
 	pub unsafe fn set_buffer_collection_buffer_constraints_fuchsia(
 		&self,
 		collection: vk::BufferCollectionFUCHSIA,
-		p_buffer_constraints_info: *const vk::BufferConstraintsInfoFUCHSIA,
+		p_buffer_constraints_info: *const vk::BufferConstraintsInfoFUCHSIA<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -41797,7 +41797,7 @@ impl Device {
 pub unsafe fn set_buffer_collection_image_constraints_fuchsia(
 	device: &Device,
 	collection: vk::BufferCollectionFUCHSIA,
-	p_image_constraints_info: *const vk::ImageConstraintsInfoFUCHSIA,
+	p_image_constraints_info: *const vk::ImageConstraintsInfoFUCHSIA<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -41838,7 +41838,7 @@ impl Device {
 	pub unsafe fn set_buffer_collection_image_constraints_fuchsia(
 		&self,
 		collection: vk::BufferCollectionFUCHSIA,
-		p_image_constraints_info: *const vk::ImageConstraintsInfoFUCHSIA,
+		p_image_constraints_info: *const vk::ImageConstraintsInfoFUCHSIA<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -41939,7 +41939,7 @@ impl Device {
 pub unsafe fn get_buffer_collection_properties_fuchsia(
 	device: &Device,
 	collection: vk::BufferCollectionFUCHSIA,
-	p_properties: *mut vk::BufferCollectionPropertiesFUCHSIA,
+	p_properties: *mut vk::BufferCollectionPropertiesFUCHSIA<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		device
@@ -41981,7 +41981,7 @@ impl Device {
 	pub unsafe fn get_buffer_collection_properties_fuchsia(
 		&self,
 		collection: vk::BufferCollectionFUCHSIA,
-		p_properties: *mut vk::BufferCollectionPropertiesFUCHSIA,
+		p_properties: *mut vk::BufferCollectionPropertiesFUCHSIA<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_buffer_collection_properties_fuchsia(self, collection, p_properties) }
@@ -42010,7 +42010,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateCudaModuleNV`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateCudaModuleNV.html)"]
 pub unsafe fn create_cuda_module_nv(
 	device: &Device,
-	p_create_info: *const vk::CudaModuleCreateInfoNV,
+	p_create_info: *const vk::CudaModuleCreateInfoNV<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_module: *mut vk::CudaModuleNV,
 ) -> Result<vk::Result, CallError> {
@@ -42050,7 +42050,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_cuda_module_nv(
 		&self,
-		p_create_info: *const vk::CudaModuleCreateInfoNV,
+		p_create_info: *const vk::CudaModuleCreateInfoNV<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_module: *mut vk::CudaModuleNV,
 	) -> Result<vk::Result, CallError> {
@@ -42152,7 +42152,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateCudaFunctionNV`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateCudaFunctionNV.html)"]
 pub unsafe fn create_cuda_function_nv(
 	device: &Device,
-	p_create_info: *const vk::CudaFunctionCreateInfoNV,
+	p_create_info: *const vk::CudaFunctionCreateInfoNV<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_function: *mut vk::CudaFunctionNV,
 ) -> Result<vk::Result, CallError> {
@@ -42192,7 +42192,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_cuda_function_nv(
 		&self,
-		p_create_info: *const vk::CudaFunctionCreateInfoNV,
+		p_create_info: *const vk::CudaFunctionCreateInfoNV<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_function: *mut vk::CudaFunctionNV,
 	) -> Result<vk::Result, CallError> {
@@ -42356,7 +42356,7 @@ impl Device {
 pub unsafe fn cmd_cuda_launch_kernel_nv(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_launch_info: *const vk::CudaLaunchInfoNV,
+	p_launch_info: *const vk::CudaLaunchInfoNV<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -42392,7 +42392,7 @@ impl Device {
 	pub unsafe fn cmd_cuda_launch_kernel_nv(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_launch_info: *const vk::CudaLaunchInfoNV,
+		p_launch_info: *const vk::CudaLaunchInfoNV<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_cuda_launch_kernel_nv(self, command_buffer, p_launch_info) }
@@ -42421,7 +42421,7 @@ impl Device {
 pub unsafe fn cmd_begin_rendering(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_rendering_info: *const vk::RenderingInfo,
+	p_rendering_info: *const vk::RenderingInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -42456,7 +42456,7 @@ impl Device {
 	pub unsafe fn cmd_begin_rendering(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_rendering_info: *const vk::RenderingInfo,
+		p_rendering_info: *const vk::RenderingInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_begin_rendering(self, command_buffer, p_rendering_info) }
@@ -42485,7 +42485,7 @@ impl Device {
 pub unsafe fn cmd_begin_rendering_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_rendering_info: *const vk::RenderingInfo,
+	p_rendering_info: *const vk::RenderingInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -42520,7 +42520,7 @@ impl Device {
 	pub unsafe fn cmd_begin_rendering_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_rendering_info: *const vk::RenderingInfo,
+		p_rendering_info: *const vk::RenderingInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_begin_rendering_khr(self, command_buffer, p_rendering_info) }
@@ -42611,7 +42611,7 @@ impl Device {
 pub unsafe fn cmd_end_rendering2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_rendering_end_info: *const vk::RenderingEndInfoKHR,
+	p_rendering_end_info: *const vk::RenderingEndInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -42646,7 +42646,7 @@ impl Device {
 	pub unsafe fn cmd_end_rendering2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_rendering_end_info: *const vk::RenderingEndInfoKHR,
+		p_rendering_end_info: *const vk::RenderingEndInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_end_rendering2_khr(self, command_buffer, p_rendering_end_info) }
@@ -42675,7 +42675,7 @@ impl Device {
 pub unsafe fn cmd_end_rendering2_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_rendering_end_info: *const vk::RenderingEndInfoKHR,
+	p_rendering_end_info: *const vk::RenderingEndInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -42710,7 +42710,7 @@ impl Device {
 	pub unsafe fn cmd_end_rendering2_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_rendering_end_info: *const vk::RenderingEndInfoKHR,
+		p_rendering_end_info: *const vk::RenderingEndInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_end_rendering2_ext(self, command_buffer, p_rendering_end_info) }
@@ -42800,8 +42800,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDescriptorSetLayoutHostMappingInfoVALVE`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDescriptorSetLayoutHostMappingInfoVALVE.html)"]
 pub unsafe fn get_descriptor_set_layout_host_mapping_info_valve(
 	device: &Device,
-	p_binding_reference: *const vk::DescriptorSetBindingReferenceVALVE,
-	p_host_mapping: *mut vk::DescriptorSetLayoutHostMappingInfoVALVE,
+	p_binding_reference: *const vk::DescriptorSetBindingReferenceVALVE<'_>,
+	p_host_mapping: *mut vk::DescriptorSetLayoutHostMappingInfoVALVE<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -42837,8 +42837,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_descriptor_set_layout_host_mapping_info_valve(
 		&self,
-		p_binding_reference: *const vk::DescriptorSetBindingReferenceVALVE,
-		p_host_mapping: *mut vk::DescriptorSetLayoutHostMappingInfoVALVE,
+		p_binding_reference: *const vk::DescriptorSetBindingReferenceVALVE<'_>,
+		p_host_mapping: *mut vk::DescriptorSetLayoutHostMappingInfoVALVE<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -42935,7 +42935,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateMicromapEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateMicromapEXT.html)"]
 pub unsafe fn create_micromap_ext(
 	device: &Device,
-	p_create_info: *const vk::MicromapCreateInfoEXT,
+	p_create_info: *const vk::MicromapCreateInfoEXT<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_micromap: *mut vk::MicromapEXT,
 ) -> Result<vk::Result, CallError> {
@@ -42974,7 +42974,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_micromap_ext(
 		&self,
-		p_create_info: *const vk::MicromapCreateInfoEXT,
+		p_create_info: *const vk::MicromapCreateInfoEXT<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_micromap: *mut vk::MicromapEXT,
 	) -> Result<vk::Result, CallError> {
@@ -43006,7 +43006,7 @@ pub unsafe fn cmd_build_micromaps_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
 	info_count: u32,
-	p_infos: *const vk::MicromapBuildInfoEXT,
+	p_infos: *const vk::MicromapBuildInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -43042,7 +43042,7 @@ impl Device {
 		&self,
 		command_buffer: vk::CommandBuffer,
 		info_count: u32,
-		p_infos: *const vk::MicromapBuildInfoEXT,
+		p_infos: *const vk::MicromapBuildInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_build_micromaps_ext(self, command_buffer, info_count, p_infos) }
@@ -43072,7 +43072,7 @@ pub unsafe fn build_micromaps_ext(
 	device: &Device,
 	deferred_operation: vk::DeferredOperationKHR,
 	info_count: u32,
-	p_infos: *const vk::MicromapBuildInfoEXT,
+	p_infos: *const vk::MicromapBuildInfoEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -43111,7 +43111,7 @@ impl Device {
 		&self,
 		deferred_operation: vk::DeferredOperationKHR,
 		info_count: u32,
-		p_infos: *const vk::MicromapBuildInfoEXT,
+		p_infos: *const vk::MicromapBuildInfoEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { build_micromaps_ext(self, deferred_operation, info_count, p_infos) }
@@ -43204,7 +43204,7 @@ impl Device {
 pub unsafe fn cmd_copy_micromap_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::CopyMicromapInfoEXT,
+	p_info: *const vk::CopyMicromapInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -43239,7 +43239,7 @@ impl Device {
 	pub unsafe fn cmd_copy_micromap_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::CopyMicromapInfoEXT,
+		p_info: *const vk::CopyMicromapInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_micromap_ext(self, command_buffer, p_info) }
@@ -43268,7 +43268,7 @@ impl Device {
 pub unsafe fn copy_micromap_ext(
 	device: &Device,
 	deferred_operation: vk::DeferredOperationKHR,
-	p_info: *const vk::CopyMicromapInfoEXT,
+	p_info: *const vk::CopyMicromapInfoEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -43306,7 +43306,7 @@ impl Device {
 	pub unsafe fn copy_micromap_ext(
 		&self,
 		deferred_operation: vk::DeferredOperationKHR,
-		p_info: *const vk::CopyMicromapInfoEXT,
+		p_info: *const vk::CopyMicromapInfoEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { copy_micromap_ext(self, deferred_operation, p_info) }
@@ -43335,7 +43335,7 @@ impl Device {
 pub unsafe fn cmd_copy_micromap_to_memory_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::CopyMicromapToMemoryInfoEXT,
+	p_info: *const vk::CopyMicromapToMemoryInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -43370,7 +43370,7 @@ impl Device {
 	pub unsafe fn cmd_copy_micromap_to_memory_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::CopyMicromapToMemoryInfoEXT,
+		p_info: *const vk::CopyMicromapToMemoryInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_micromap_to_memory_ext(self, command_buffer, p_info) }
@@ -43399,7 +43399,7 @@ impl Device {
 pub unsafe fn copy_micromap_to_memory_ext(
 	device: &Device,
 	deferred_operation: vk::DeferredOperationKHR,
-	p_info: *const vk::CopyMicromapToMemoryInfoEXT,
+	p_info: *const vk::CopyMicromapToMemoryInfoEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -43437,7 +43437,7 @@ impl Device {
 	pub unsafe fn copy_micromap_to_memory_ext(
 		&self,
 		deferred_operation: vk::DeferredOperationKHR,
-		p_info: *const vk::CopyMicromapToMemoryInfoEXT,
+		p_info: *const vk::CopyMicromapToMemoryInfoEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { copy_micromap_to_memory_ext(self, deferred_operation, p_info) }
@@ -43466,7 +43466,7 @@ impl Device {
 pub unsafe fn cmd_copy_memory_to_micromap_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::CopyMemoryToMicromapInfoEXT,
+	p_info: *const vk::CopyMemoryToMicromapInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -43501,7 +43501,7 @@ impl Device {
 	pub unsafe fn cmd_copy_memory_to_micromap_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::CopyMemoryToMicromapInfoEXT,
+		p_info: *const vk::CopyMemoryToMicromapInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_memory_to_micromap_ext(self, command_buffer, p_info) }
@@ -43530,7 +43530,7 @@ impl Device {
 pub unsafe fn copy_memory_to_micromap_ext(
 	device: &Device,
 	deferred_operation: vk::DeferredOperationKHR,
-	p_info: *const vk::CopyMemoryToMicromapInfoEXT,
+	p_info: *const vk::CopyMemoryToMicromapInfoEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -43568,7 +43568,7 @@ impl Device {
 	pub unsafe fn copy_memory_to_micromap_ext(
 		&self,
 		deferred_operation: vk::DeferredOperationKHR,
-		p_info: *const vk::CopyMemoryToMicromapInfoEXT,
+		p_info: *const vk::CopyMemoryToMicromapInfoEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { copy_memory_to_micromap_ext(self, deferred_operation, p_info) }
@@ -43785,7 +43785,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceMicromapCompatibilityEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceMicromapCompatibilityEXT.html)"]
 pub unsafe fn get_device_micromap_compatibility_ext(
 	device: &Device,
-	p_version_info: *const vk::MicromapVersionInfoEXT,
+	p_version_info: *const vk::MicromapVersionInfoEXT<'_>,
 	p_compatibility: *mut vk::AccelerationStructureCompatibilityKHR,
 ) -> Result<(), CallError> {
 	let __vk_function =
@@ -43823,7 +43823,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_micromap_compatibility_ext(
 		&self,
-		p_version_info: *const vk::MicromapVersionInfoEXT,
+		p_version_info: *const vk::MicromapVersionInfoEXT<'_>,
 		p_compatibility: *mut vk::AccelerationStructureCompatibilityKHR,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -43853,8 +43853,8 @@ impl Device {
 pub unsafe fn get_micromap_build_sizes_ext(
 	device: &Device,
 	build_type: vk::AccelerationStructureBuildTypeKHR,
-	p_build_info: *const vk::MicromapBuildInfoEXT,
-	p_size_info: *mut vk::MicromapBuildSizesInfoEXT,
+	p_build_info: *const vk::MicromapBuildInfoEXT<'_>,
+	p_size_info: *mut vk::MicromapBuildSizesInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -43889,8 +43889,8 @@ impl Device {
 	pub unsafe fn get_micromap_build_sizes_ext(
 		&self,
 		build_type: vk::AccelerationStructureBuildTypeKHR,
-		p_build_info: *const vk::MicromapBuildInfoEXT,
-		p_size_info: *mut vk::MicromapBuildSizesInfoEXT,
+		p_build_info: *const vk::MicromapBuildInfoEXT<'_>,
+		p_size_info: *mut vk::MicromapBuildSizesInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_micromap_build_sizes_ext(self, build_type, p_build_info, p_size_info) }
@@ -43919,7 +43919,7 @@ impl Device {
 pub unsafe fn get_shader_module_identifier_ext(
 	device: &Device,
 	shader_module: vk::ShaderModule,
-	p_identifier: *mut vk::ShaderModuleIdentifierEXT,
+	p_identifier: *mut vk::ShaderModuleIdentifierEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -43954,7 +43954,7 @@ impl Device {
 	pub unsafe fn get_shader_module_identifier_ext(
 		&self,
 		shader_module: vk::ShaderModule,
-		p_identifier: *mut vk::ShaderModuleIdentifierEXT,
+		p_identifier: *mut vk::ShaderModuleIdentifierEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_shader_module_identifier_ext(self, shader_module, p_identifier) }
@@ -43982,8 +43982,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetShaderModuleCreateInfoIdentifierEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetShaderModuleCreateInfoIdentifierEXT.html)"]
 pub unsafe fn get_shader_module_create_info_identifier_ext(
 	device: &Device,
-	p_create_info: *const vk::ShaderModuleCreateInfo,
-	p_identifier: *mut vk::ShaderModuleIdentifierEXT,
+	p_create_info: *const vk::ShaderModuleCreateInfo<'_>,
+	p_identifier: *mut vk::ShaderModuleIdentifierEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -44019,8 +44019,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_shader_module_create_info_identifier_ext(
 		&self,
-		p_create_info: *const vk::ShaderModuleCreateInfo,
-		p_identifier: *mut vk::ShaderModuleIdentifierEXT,
+		p_create_info: *const vk::ShaderModuleCreateInfo<'_>,
+		p_identifier: *mut vk::ShaderModuleIdentifierEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_shader_module_create_info_identifier_ext(self, p_create_info, p_identifier) }
@@ -44049,8 +44049,8 @@ impl Device {
 pub unsafe fn get_image_subresource_layout2(
 	device: &Device,
 	image: vk::Image,
-	p_subresource: *const vk::ImageSubresource2,
-	p_layout: *mut vk::SubresourceLayout2,
+	p_subresource: *const vk::ImageSubresource2<'_>,
+	p_layout: *mut vk::SubresourceLayout2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -44085,8 +44085,8 @@ impl Device {
 	pub unsafe fn get_image_subresource_layout2(
 		&self,
 		image: vk::Image,
-		p_subresource: *const vk::ImageSubresource2,
-		p_layout: *mut vk::SubresourceLayout2,
+		p_subresource: *const vk::ImageSubresource2<'_>,
+		p_layout: *mut vk::SubresourceLayout2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_image_subresource_layout2(self, image, p_subresource, p_layout) }
@@ -44115,8 +44115,8 @@ impl Device {
 pub unsafe fn get_image_subresource_layout2_khr(
 	device: &Device,
 	image: vk::Image,
-	p_subresource: *const vk::ImageSubresource2,
-	p_layout: *mut vk::SubresourceLayout2,
+	p_subresource: *const vk::ImageSubresource2<'_>,
+	p_layout: *mut vk::SubresourceLayout2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -44151,8 +44151,8 @@ impl Device {
 	pub unsafe fn get_image_subresource_layout2_khr(
 		&self,
 		image: vk::Image,
-		p_subresource: *const vk::ImageSubresource2,
-		p_layout: *mut vk::SubresourceLayout2,
+		p_subresource: *const vk::ImageSubresource2<'_>,
+		p_layout: *mut vk::SubresourceLayout2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_image_subresource_layout2_khr(self, image, p_subresource, p_layout) }
@@ -44181,8 +44181,8 @@ impl Device {
 pub unsafe fn get_image_subresource_layout2_ext(
 	device: &Device,
 	image: vk::Image,
-	p_subresource: *const vk::ImageSubresource2,
-	p_layout: *mut vk::SubresourceLayout2,
+	p_subresource: *const vk::ImageSubresource2<'_>,
+	p_layout: *mut vk::SubresourceLayout2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -44217,8 +44217,8 @@ impl Device {
 	pub unsafe fn get_image_subresource_layout2_ext(
 		&self,
 		image: vk::Image,
-		p_subresource: *const vk::ImageSubresource2,
-		p_layout: *mut vk::SubresourceLayout2,
+		p_subresource: *const vk::ImageSubresource2<'_>,
+		p_layout: *mut vk::SubresourceLayout2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_image_subresource_layout2_ext(self, image, p_subresource, p_layout) }
@@ -44246,7 +44246,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetPipelinePropertiesEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPipelinePropertiesEXT.html)"]
 pub unsafe fn get_pipeline_properties_ext(
 	device: &Device,
-	p_pipeline_info: *const vk::PipelineInfoKHR,
+	p_pipeline_info: *const vk::PipelineInfoKHR<'_>,
 	p_pipeline_properties: *mut vk::BaseOutStructure,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -44284,7 +44284,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_pipeline_properties_ext(
 		&self,
-		p_pipeline_info: *const vk::PipelineInfoKHR,
+		p_pipeline_info: *const vk::PipelineInfoKHR<'_>,
 		p_pipeline_properties: *mut vk::BaseOutStructure,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -44314,7 +44314,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkExportMetalObjectsEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkExportMetalObjectsEXT.html)"]
 pub unsafe fn export_metal_objects_ext(
 	device: &Device,
-	p_metal_objects_info: *mut vk::ExportMetalObjectsInfoEXT,
+	p_metal_objects_info: *mut vk::ExportMetalObjectsInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -44349,7 +44349,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn export_metal_objects_ext(
 		&self,
-		p_metal_objects_info: *mut vk::ExportMetalObjectsInfoEXT,
+		p_metal_objects_info: *mut vk::ExportMetalObjectsInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { export_metal_objects_ext(self, p_metal_objects_info) }
@@ -44378,7 +44378,7 @@ impl Device {
 pub unsafe fn cmd_bind_tile_memory_qcom(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_tile_memory_bind_info: *const vk::TileMemoryBindInfoQCOM,
+	p_tile_memory_bind_info: *const vk::TileMemoryBindInfoQCOM<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -44413,7 +44413,7 @@ impl Device {
 	pub unsafe fn cmd_bind_tile_memory_qcom(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_tile_memory_bind_info: *const vk::TileMemoryBindInfoQCOM,
+		p_tile_memory_bind_info: *const vk::TileMemoryBindInfoQCOM<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_bind_tile_memory_qcom(self, command_buffer, p_tile_memory_bind_info) }
@@ -44443,7 +44443,7 @@ pub unsafe fn get_framebuffer_tile_properties_qcom(
 	device: &Device,
 	framebuffer: vk::Framebuffer,
 	p_properties_count: *mut u32,
-	p_properties: *mut vk::TilePropertiesQCOM,
+	p_properties: *mut vk::TilePropertiesQCOM<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		device
@@ -44492,7 +44492,7 @@ impl Device {
 		&self,
 		framebuffer: vk::Framebuffer,
 		p_properties_count: *mut u32,
-		p_properties: *mut vk::TilePropertiesQCOM,
+		p_properties: *mut vk::TilePropertiesQCOM<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -44522,8 +44522,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDynamicRenderingTilePropertiesQCOM`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDynamicRenderingTilePropertiesQCOM.html)"]
 pub unsafe fn get_dynamic_rendering_tile_properties_qcom(
 	device: &Device,
-	p_rendering_info: *const vk::RenderingInfo,
-	p_properties: *mut vk::TilePropertiesQCOM,
+	p_rendering_info: *const vk::RenderingInfo<'_>,
+	p_properties: *mut vk::TilePropertiesQCOM<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -44562,8 +44562,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_dynamic_rendering_tile_properties_qcom(
 		&self,
-		p_rendering_info: *const vk::RenderingInfo,
-		p_properties: *mut vk::TilePropertiesQCOM,
+		p_rendering_info: *const vk::RenderingInfo<'_>,
+		p_properties: *mut vk::TilePropertiesQCOM<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_dynamic_rendering_tile_properties_qcom(self, p_rendering_info, p_properties) }
@@ -44592,9 +44592,9 @@ impl Device {
 pub unsafe fn get_physical_device_optical_flow_image_formats_nv(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	p_optical_flow_image_format_info: *const vk::OpticalFlowImageFormatInfoNV,
+	p_optical_flow_image_format_info: *const vk::OpticalFlowImageFormatInfoNV<'_>,
 	p_format_count: *mut u32,
-	p_image_format_properties: *mut vk::OpticalFlowImageFormatPropertiesNV,
+	p_image_format_properties: *mut vk::OpticalFlowImageFormatPropertiesNV<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -44641,9 +44641,9 @@ impl Instance {
 	pub unsafe fn get_physical_device_optical_flow_image_formats_nv(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		p_optical_flow_image_format_info: *const vk::OpticalFlowImageFormatInfoNV,
+		p_optical_flow_image_format_info: *const vk::OpticalFlowImageFormatInfoNV<'_>,
 		p_format_count: *mut u32,
-		p_image_format_properties: *mut vk::OpticalFlowImageFormatPropertiesNV,
+		p_image_format_properties: *mut vk::OpticalFlowImageFormatPropertiesNV<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -44679,7 +44679,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateOpticalFlowSessionNV`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateOpticalFlowSessionNV.html)"]
 pub unsafe fn create_optical_flow_session_nv(
 	device: &Device,
-	p_create_info: *const vk::OpticalFlowSessionCreateInfoNV,
+	p_create_info: *const vk::OpticalFlowSessionCreateInfoNV<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_session: *mut vk::OpticalFlowSessionNV,
 ) -> Result<vk::Result, CallError> {
@@ -44718,7 +44718,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_optical_flow_session_nv(
 		&self,
-		p_create_info: *const vk::OpticalFlowSessionCreateInfoNV,
+		p_create_info: *const vk::OpticalFlowSessionCreateInfoNV<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_session: *mut vk::OpticalFlowSessionNV,
 	) -> Result<vk::Result, CallError> {
@@ -44885,7 +44885,7 @@ pub unsafe fn cmd_optical_flow_execute_nv(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
 	session: vk::OpticalFlowSessionNV,
-	p_execute_info: *const vk::OpticalFlowExecuteInfoNV,
+	p_execute_info: *const vk::OpticalFlowExecuteInfoNV<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -44921,7 +44921,7 @@ impl Device {
 		&self,
 		command_buffer: vk::CommandBuffer,
 		session: vk::OpticalFlowSessionNV,
-		p_execute_info: *const vk::OpticalFlowExecuteInfoNV,
+		p_execute_info: *const vk::OpticalFlowExecuteInfoNV<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_optical_flow_execute_nv(self, command_buffer, session, p_execute_info) }
@@ -44949,8 +44949,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceFaultInfoEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceFaultInfoEXT.html)"]
 pub unsafe fn get_device_fault_info_ext(
 	device: &Device,
-	p_fault_counts: *mut vk::DeviceFaultCountsEXT,
-	p_fault_info: *mut vk::DeviceFaultInfoEXT,
+	p_fault_counts: *mut vk::DeviceFaultCountsEXT<'_>,
+	p_fault_info: *mut vk::DeviceFaultInfoEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -44987,8 +44987,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_fault_info_ext(
 		&self,
-		p_fault_counts: *mut vk::DeviceFaultCountsEXT,
-		p_fault_info: *mut vk::DeviceFaultInfoEXT,
+		p_fault_counts: *mut vk::DeviceFaultCountsEXT<'_>,
+		p_fault_info: *mut vk::DeviceFaultInfoEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_device_fault_info_ext(self, p_fault_counts, p_fault_info) }
@@ -45018,7 +45018,7 @@ pub unsafe fn get_device_fault_reports_khr(
 	device: &Device,
 	timeout: u64,
 	p_fault_counts: *mut u32,
-	p_fault_info: *mut vk::DeviceFaultInfoKHR,
+	p_fault_info: *mut vk::DeviceFaultInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -45057,7 +45057,7 @@ impl Device {
 		&self,
 		timeout: u64,
 		p_fault_counts: *mut u32,
-		p_fault_info: *mut vk::DeviceFaultInfoKHR,
+		p_fault_info: *mut vk::DeviceFaultInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_device_fault_reports_khr(self, timeout, p_fault_counts, p_fault_info) }
@@ -45085,7 +45085,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceFaultDebugInfoKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceFaultDebugInfoKHR.html)"]
 pub unsafe fn get_device_fault_debug_info_khr(
 	device: &Device,
-	p_debug_info: *mut vk::DeviceFaultDebugInfoKHR,
+	p_debug_info: *mut vk::DeviceFaultDebugInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -45122,7 +45122,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_fault_debug_info_khr(
 		&self,
-		p_debug_info: *mut vk::DeviceFaultDebugInfoKHR,
+		p_debug_info: *mut vk::DeviceFaultDebugInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_device_fault_debug_info_khr(self, p_debug_info) }
@@ -45151,7 +45151,7 @@ impl Device {
 pub unsafe fn cmd_set_depth_bias2_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_depth_bias_info: *const vk::DepthBiasInfoEXT,
+	p_depth_bias_info: *const vk::DepthBiasInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -45186,7 +45186,7 @@ impl Device {
 	pub unsafe fn cmd_set_depth_bias2_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_depth_bias_info: *const vk::DepthBiasInfoEXT,
+		p_depth_bias_info: *const vk::DepthBiasInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_set_depth_bias2_ext(self, command_buffer, p_depth_bias_info) }
@@ -45214,7 +45214,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkReleaseSwapchainImagesKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkReleaseSwapchainImagesKHR.html)"]
 pub unsafe fn release_swapchain_images_khr(
 	device: &Device,
-	p_release_info: *const vk::ReleaseSwapchainImagesInfoKHR,
+	p_release_info: *const vk::ReleaseSwapchainImagesInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -45251,7 +45251,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn release_swapchain_images_khr(
 		&self,
-		p_release_info: *const vk::ReleaseSwapchainImagesInfoKHR,
+		p_release_info: *const vk::ReleaseSwapchainImagesInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { release_swapchain_images_khr(self, p_release_info) }
@@ -45279,7 +45279,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkReleaseSwapchainImagesEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkReleaseSwapchainImagesEXT.html)"]
 pub unsafe fn release_swapchain_images_ext(
 	device: &Device,
-	p_release_info: *const vk::ReleaseSwapchainImagesInfoKHR,
+	p_release_info: *const vk::ReleaseSwapchainImagesInfoKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -45316,7 +45316,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn release_swapchain_images_ext(
 		&self,
-		p_release_info: *const vk::ReleaseSwapchainImagesInfoKHR,
+		p_release_info: *const vk::ReleaseSwapchainImagesInfoKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { release_swapchain_images_ext(self, p_release_info) }
@@ -45344,8 +45344,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceImageSubresourceLayout`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceImageSubresourceLayout.html)"]
 pub unsafe fn get_device_image_subresource_layout(
 	device: &Device,
-	p_info: *const vk::DeviceImageSubresourceInfo,
-	p_layout: *mut vk::SubresourceLayout2,
+	p_info: *const vk::DeviceImageSubresourceInfo<'_>,
+	p_layout: *mut vk::SubresourceLayout2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -45382,8 +45382,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_image_subresource_layout(
 		&self,
-		p_info: *const vk::DeviceImageSubresourceInfo,
-		p_layout: *mut vk::SubresourceLayout2,
+		p_info: *const vk::DeviceImageSubresourceInfo<'_>,
+		p_layout: *mut vk::SubresourceLayout2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_device_image_subresource_layout(self, p_info, p_layout) }
@@ -45411,8 +45411,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceImageSubresourceLayoutKHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceImageSubresourceLayoutKHR.html)"]
 pub unsafe fn get_device_image_subresource_layout_khr(
 	device: &Device,
-	p_info: *const vk::DeviceImageSubresourceInfo,
-	p_layout: *mut vk::SubresourceLayout2,
+	p_info: *const vk::DeviceImageSubresourceInfo<'_>,
+	p_layout: *mut vk::SubresourceLayout2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -45449,8 +45449,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_image_subresource_layout_khr(
 		&self,
-		p_info: *const vk::DeviceImageSubresourceInfo,
-		p_layout: *mut vk::SubresourceLayout2,
+		p_info: *const vk::DeviceImageSubresourceInfo<'_>,
+		p_layout: *mut vk::SubresourceLayout2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_device_image_subresource_layout_khr(self, p_info, p_layout) }
@@ -45478,7 +45478,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkMapMemory2`](https://docs.vulkan.org/refpages/latest/refpages/source/vkMapMemory2.html)"]
 pub unsafe fn map_memory2(
 	device: &Device,
-	p_memory_map_info: *const vk::MemoryMapInfo,
+	p_memory_map_info: *const vk::MemoryMapInfo<'_>,
 	pp_data: *mut *mut std::ffi::c_void,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -45516,7 +45516,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn map_memory2(
 		&self,
-		p_memory_map_info: *const vk::MemoryMapInfo,
+		p_memory_map_info: *const vk::MemoryMapInfo<'_>,
 		pp_data: *mut *mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -45545,7 +45545,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkMapMemory2KHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkMapMemory2KHR.html)"]
 pub unsafe fn map_memory2_khr(
 	device: &Device,
-	p_memory_map_info: *const vk::MemoryMapInfo,
+	p_memory_map_info: *const vk::MemoryMapInfo<'_>,
 	pp_data: *mut *mut std::ffi::c_void,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -45583,7 +45583,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn map_memory2_khr(
 		&self,
-		p_memory_map_info: *const vk::MemoryMapInfo,
+		p_memory_map_info: *const vk::MemoryMapInfo<'_>,
 		pp_data: *mut *mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -45612,7 +45612,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkUnmapMemory2`](https://docs.vulkan.org/refpages/latest/refpages/source/vkUnmapMemory2.html)"]
 pub unsafe fn unmap_memory2(
 	device: &Device,
-	p_memory_unmap_info: *const vk::MemoryUnmapInfo,
+	p_memory_unmap_info: *const vk::MemoryUnmapInfo<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -45649,7 +45649,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn unmap_memory2(
 		&self,
-		p_memory_unmap_info: *const vk::MemoryUnmapInfo,
+		p_memory_unmap_info: *const vk::MemoryUnmapInfo<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { unmap_memory2(self, p_memory_unmap_info) }
@@ -45677,7 +45677,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkUnmapMemory2KHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkUnmapMemory2KHR.html)"]
 pub unsafe fn unmap_memory2_khr(
 	device: &Device,
-	p_memory_unmap_info: *const vk::MemoryUnmapInfo,
+	p_memory_unmap_info: *const vk::MemoryUnmapInfo<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -45714,7 +45714,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn unmap_memory2_khr(
 		&self,
-		p_memory_unmap_info: *const vk::MemoryUnmapInfo,
+		p_memory_unmap_info: *const vk::MemoryUnmapInfo<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { unmap_memory2_khr(self, p_memory_unmap_info) }
@@ -45743,7 +45743,7 @@ impl Device {
 pub unsafe fn create_shaders_ext(
 	device: &Device,
 	create_info_count: u32,
-	p_create_infos: *const vk::ShaderCreateInfoEXT,
+	p_create_infos: *const vk::ShaderCreateInfoEXT<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_shaders: *mut vk::ShaderEXT,
 ) -> Result<vk::Result, CallError> {
@@ -45791,7 +45791,7 @@ impl Device {
 	pub unsafe fn create_shaders_ext(
 		&self,
 		create_info_count: u32,
-		p_create_infos: *const vk::ShaderCreateInfoEXT,
+		p_create_infos: *const vk::ShaderCreateInfoEXT<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_shaders: *mut vk::ShaderEXT,
 	) -> Result<vk::Result, CallError> {
@@ -46100,7 +46100,7 @@ impl Device {
 pub unsafe fn get_swapchain_timing_properties_ext(
 	device: &Device,
 	swapchain: vk::SwapchainKHR,
-	p_swapchain_timing_properties: *mut vk::SwapchainTimingPropertiesEXT,
+	p_swapchain_timing_properties: *mut vk::SwapchainTimingPropertiesEXT<'_>,
 	p_swapchain_timing_properties_counter: *mut u64,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
@@ -46149,7 +46149,7 @@ impl Device {
 	pub unsafe fn get_swapchain_timing_properties_ext(
 		&self,
 		swapchain: vk::SwapchainKHR,
-		p_swapchain_timing_properties: *mut vk::SwapchainTimingPropertiesEXT,
+		p_swapchain_timing_properties: *mut vk::SwapchainTimingPropertiesEXT<'_>,
 		p_swapchain_timing_properties_counter: *mut u64,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -46186,7 +46186,7 @@ impl Device {
 pub unsafe fn get_swapchain_time_domain_properties_ext(
 	device: &Device,
 	swapchain: vk::SwapchainKHR,
-	p_swapchain_time_domain_properties: *mut vk::SwapchainTimeDomainPropertiesEXT,
+	p_swapchain_time_domain_properties: *mut vk::SwapchainTimeDomainPropertiesEXT<'_>,
 	p_time_domains_counter: *mut u64,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
@@ -46235,7 +46235,7 @@ impl Device {
 	pub unsafe fn get_swapchain_time_domain_properties_ext(
 		&self,
 		swapchain: vk::SwapchainKHR,
-		p_swapchain_time_domain_properties: *mut vk::SwapchainTimeDomainPropertiesEXT,
+		p_swapchain_time_domain_properties: *mut vk::SwapchainTimeDomainPropertiesEXT<'_>,
 		p_time_domains_counter: *mut u64,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -46271,8 +46271,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetPastPresentationTimingEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetPastPresentationTimingEXT.html)"]
 pub unsafe fn get_past_presentation_timing_ext(
 	device: &Device,
-	p_past_presentation_timing_info: *const vk::PastPresentationTimingInfoEXT,
-	p_past_presentation_timing_properties: *mut vk::PastPresentationTimingPropertiesEXT,
+	p_past_presentation_timing_info: *const vk::PastPresentationTimingInfoEXT<'_>,
+	p_past_presentation_timing_properties: *mut vk::PastPresentationTimingPropertiesEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -46315,8 +46315,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_past_presentation_timing_ext(
 		&self,
-		p_past_presentation_timing_info: *const vk::PastPresentationTimingInfoEXT,
-		p_past_presentation_timing_properties: *mut vk::PastPresentationTimingPropertiesEXT,
+		p_past_presentation_timing_info: *const vk::PastPresentationTimingInfoEXT<'_>,
+		p_past_presentation_timing_properties: *mut vk::PastPresentationTimingPropertiesEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -46352,7 +46352,7 @@ impl Device {
 pub unsafe fn get_screen_buffer_properties_qnx(
 	device: &Device,
 	buffer: *const vk::_screen_buffer,
-	p_properties: *mut vk::ScreenBufferPropertiesQNX,
+	p_properties: *mut vk::ScreenBufferPropertiesQNX<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -46391,7 +46391,7 @@ impl Device {
 	pub unsafe fn get_screen_buffer_properties_qnx(
 		&self,
 		buffer: *const vk::_screen_buffer,
-		p_properties: *mut vk::ScreenBufferPropertiesQNX,
+		p_properties: *mut vk::ScreenBufferPropertiesQNX<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_screen_buffer_properties_qnx(self, buffer, p_properties) }
@@ -46421,7 +46421,7 @@ pub unsafe fn get_physical_device_cooperative_matrix_properties_khr(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	p_property_count: *mut u32,
-	p_properties: *mut vk::CooperativeMatrixPropertiesKHR,
+	p_properties: *mut vk::CooperativeMatrixPropertiesKHR<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -46462,7 +46462,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		p_property_count: *mut u32,
-		p_properties: *mut vk::CooperativeMatrixPropertiesKHR,
+		p_properties: *mut vk::CooperativeMatrixPropertiesKHR<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -46498,9 +46498,9 @@ impl Instance {
 pub unsafe fn get_physical_device_cooperative_matrix_properties2_ext(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	p_cooperative_matrix_info: *const vk::PhysicalDeviceCooperativeMatrixInfo2EXT,
+	p_cooperative_matrix_info: *const vk::PhysicalDeviceCooperativeMatrixInfo2EXT<'_>,
 	p_property_count: *mut u32,
-	p_properties: *mut vk::CooperativeMatrixProperties2EXT,
+	p_properties: *mut vk::CooperativeMatrixProperties2EXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -46547,9 +46547,9 @@ impl Instance {
 	pub unsafe fn get_physical_device_cooperative_matrix_properties2_ext(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		p_cooperative_matrix_info: *const vk::PhysicalDeviceCooperativeMatrixInfo2EXT,
+		p_cooperative_matrix_info: *const vk::PhysicalDeviceCooperativeMatrixInfo2EXT<'_>,
 		p_property_count: *mut u32,
-		p_properties: *mut vk::CooperativeMatrixProperties2EXT,
+		p_properties: *mut vk::CooperativeMatrixProperties2EXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -46587,7 +46587,7 @@ impl Instance {
 pub unsafe fn get_execution_graph_pipeline_scratch_size_amdx(
 	device: &Device,
 	execution_graph: vk::Pipeline,
-	p_size_info: *mut vk::ExecutionGraphPipelineScratchSizeAMDX,
+	p_size_info: *mut vk::ExecutionGraphPipelineScratchSizeAMDX<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -46628,7 +46628,7 @@ impl Device {
 	pub unsafe fn get_execution_graph_pipeline_scratch_size_amdx(
 		&self,
 		execution_graph: vk::Pipeline,
-		p_size_info: *mut vk::ExecutionGraphPipelineScratchSizeAMDX,
+		p_size_info: *mut vk::ExecutionGraphPipelineScratchSizeAMDX<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_execution_graph_pipeline_scratch_size_amdx(self, execution_graph, p_size_info) }
@@ -46658,7 +46658,7 @@ impl Device {
 pub unsafe fn get_execution_graph_pipeline_node_index_amdx(
 	device: &Device,
 	execution_graph: vk::Pipeline,
-	p_node_info: *const vk::PipelineShaderStageNodeCreateInfoAMDX,
+	p_node_info: *const vk::PipelineShaderStageNodeCreateInfoAMDX<'_>,
 	p_node_index: *mut u32,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -46701,7 +46701,7 @@ impl Device {
 	pub unsafe fn get_execution_graph_pipeline_node_index_amdx(
 		&self,
 		execution_graph: vk::Pipeline,
-		p_node_info: *const vk::PipelineShaderStageNodeCreateInfoAMDX,
+		p_node_info: *const vk::PipelineShaderStageNodeCreateInfoAMDX<'_>,
 		p_node_index: *mut u32,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -46735,7 +46735,7 @@ pub unsafe fn create_execution_graph_pipelines_amdx(
 	device: &Device,
 	pipeline_cache: vk::PipelineCache,
 	create_info_count: u32,
-	p_create_infos: *const vk::ExecutionGraphPipelineCreateInfoAMDX,
+	p_create_infos: *const vk::ExecutionGraphPipelineCreateInfoAMDX<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_pipelines: *mut vk::Pipeline,
 ) -> Result<vk::Result, CallError> {
@@ -46789,7 +46789,7 @@ impl Device {
 		&self,
 		pipeline_cache: vk::PipelineCache,
 		create_info_count: u32,
-		p_create_infos: *const vk::ExecutionGraphPipelineCreateInfoAMDX,
+		p_create_infos: *const vk::ExecutionGraphPipelineCreateInfoAMDX<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_pipelines: *mut vk::Pipeline,
 	) -> Result<vk::Result, CallError> {
@@ -47132,7 +47132,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateGpaSessionAMD`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateGpaSessionAMD.html)"]
 pub unsafe fn create_gpa_session_amd(
 	device: &Device,
-	p_create_info: *const vk::GpaSessionCreateInfoAMD,
+	p_create_info: *const vk::GpaSessionCreateInfoAMD<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_gpa_session: *mut vk::GpaSessionAMD,
 ) -> Result<vk::Result, CallError> {
@@ -47171,7 +47171,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_gpa_session_amd(
 		&self,
-		p_create_info: *const vk::GpaSessionCreateInfoAMD,
+		p_create_info: *const vk::GpaSessionCreateInfoAMD<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_gpa_session: *mut vk::GpaSessionAMD,
 	) -> Result<vk::Result, CallError> {
@@ -47265,7 +47265,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkSetGpaDeviceClockModeAMD`](https://docs.vulkan.org/refpages/latest/refpages/source/vkSetGpaDeviceClockModeAMD.html)"]
 pub unsafe fn set_gpa_device_clock_mode_amd(
 	device: &Device,
-	p_info: *mut vk::GpaDeviceClockModeInfoAMD,
+	p_info: *mut vk::GpaDeviceClockModeInfoAMD<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -47302,7 +47302,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn set_gpa_device_clock_mode_amd(
 		&self,
-		p_info: *mut vk::GpaDeviceClockModeInfoAMD,
+		p_info: *mut vk::GpaDeviceClockModeInfoAMD<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { set_gpa_device_clock_mode_amd(self, p_info) }
@@ -47330,7 +47330,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetGpaDeviceClockInfoAMD`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetGpaDeviceClockInfoAMD.html)"]
 pub unsafe fn get_gpa_device_clock_info_amd(
 	device: &Device,
-	p_info: *mut vk::GpaDeviceGetClockInfoAMD,
+	p_info: *mut vk::GpaDeviceGetClockInfoAMD<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -47367,7 +47367,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_gpa_device_clock_info_amd(
 		&self,
-		p_info: *mut vk::GpaDeviceGetClockInfoAMD,
+		p_info: *mut vk::GpaDeviceGetClockInfoAMD<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_gpa_device_clock_info_amd(self, p_info) }
@@ -47531,7 +47531,7 @@ pub unsafe fn cmd_begin_gpa_sample_amd(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
 	gpa_session: vk::GpaSessionAMD,
-	p_gpa_sample_begin_info: *const vk::GpaSampleBeginInfoAMD,
+	p_gpa_sample_begin_info: *const vk::GpaSampleBeginInfoAMD<'_>,
 	p_sample_id: *mut u32,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -47578,7 +47578,7 @@ impl Device {
 		&self,
 		command_buffer: vk::CommandBuffer,
 		gpa_session: vk::GpaSessionAMD,
-		p_gpa_sample_begin_info: *const vk::GpaSampleBeginInfoAMD,
+		p_gpa_sample_begin_info: *const vk::GpaSampleBeginInfoAMD<'_>,
 		p_sample_id: *mut u32,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -47955,7 +47955,7 @@ impl Device {
 pub unsafe fn cmd_bind_descriptor_sets2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_bind_descriptor_sets_info: *const vk::BindDescriptorSetsInfo,
+	p_bind_descriptor_sets_info: *const vk::BindDescriptorSetsInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -47990,7 +47990,7 @@ impl Device {
 	pub unsafe fn cmd_bind_descriptor_sets2(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_bind_descriptor_sets_info: *const vk::BindDescriptorSetsInfo,
+		p_bind_descriptor_sets_info: *const vk::BindDescriptorSetsInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_bind_descriptor_sets2(self, command_buffer, p_bind_descriptor_sets_info) }
@@ -48019,7 +48019,7 @@ impl Device {
 pub unsafe fn cmd_bind_descriptor_sets2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_bind_descriptor_sets_info: *const vk::BindDescriptorSetsInfo,
+	p_bind_descriptor_sets_info: *const vk::BindDescriptorSetsInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -48054,7 +48054,7 @@ impl Device {
 	pub unsafe fn cmd_bind_descriptor_sets2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_bind_descriptor_sets_info: *const vk::BindDescriptorSetsInfo,
+		p_bind_descriptor_sets_info: *const vk::BindDescriptorSetsInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_bind_descriptor_sets2_khr(self, command_buffer, p_bind_descriptor_sets_info) }
@@ -48083,7 +48083,7 @@ impl Device {
 pub unsafe fn cmd_push_constants2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_push_constants_info: *const vk::PushConstantsInfo,
+	p_push_constants_info: *const vk::PushConstantsInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -48118,7 +48118,7 @@ impl Device {
 	pub unsafe fn cmd_push_constants2(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_push_constants_info: *const vk::PushConstantsInfo,
+		p_push_constants_info: *const vk::PushConstantsInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_push_constants2(self, command_buffer, p_push_constants_info) }
@@ -48147,7 +48147,7 @@ impl Device {
 pub unsafe fn cmd_push_constants2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_push_constants_info: *const vk::PushConstantsInfo,
+	p_push_constants_info: *const vk::PushConstantsInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -48182,7 +48182,7 @@ impl Device {
 	pub unsafe fn cmd_push_constants2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_push_constants_info: *const vk::PushConstantsInfo,
+		p_push_constants_info: *const vk::PushConstantsInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_push_constants2_khr(self, command_buffer, p_push_constants_info) }
@@ -48211,7 +48211,7 @@ impl Device {
 pub unsafe fn cmd_push_descriptor_set2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_push_descriptor_set_info: *const vk::PushDescriptorSetInfo,
+	p_push_descriptor_set_info: *const vk::PushDescriptorSetInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -48246,7 +48246,7 @@ impl Device {
 	pub unsafe fn cmd_push_descriptor_set2(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_push_descriptor_set_info: *const vk::PushDescriptorSetInfo,
+		p_push_descriptor_set_info: *const vk::PushDescriptorSetInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_push_descriptor_set2(self, command_buffer, p_push_descriptor_set_info) }
@@ -48275,7 +48275,7 @@ impl Device {
 pub unsafe fn cmd_push_descriptor_set2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_push_descriptor_set_info: *const vk::PushDescriptorSetInfo,
+	p_push_descriptor_set_info: *const vk::PushDescriptorSetInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -48310,7 +48310,7 @@ impl Device {
 	pub unsafe fn cmd_push_descriptor_set2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_push_descriptor_set_info: *const vk::PushDescriptorSetInfo,
+		p_push_descriptor_set_info: *const vk::PushDescriptorSetInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_push_descriptor_set2_khr(self, command_buffer, p_push_descriptor_set_info) }
@@ -48339,7 +48339,7 @@ impl Device {
 pub unsafe fn cmd_push_descriptor_set_with_template2(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_push_descriptor_set_with_template_info: *const vk::PushDescriptorSetWithTemplateInfo,
+	p_push_descriptor_set_with_template_info: *const vk::PushDescriptorSetWithTemplateInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -48377,7 +48377,7 @@ impl Device {
 	pub unsafe fn cmd_push_descriptor_set_with_template2(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_push_descriptor_set_with_template_info: *const vk::PushDescriptorSetWithTemplateInfo,
+		p_push_descriptor_set_with_template_info: *const vk::PushDescriptorSetWithTemplateInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -48412,7 +48412,7 @@ impl Device {
 pub unsafe fn cmd_push_descriptor_set_with_template2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_push_descriptor_set_with_template_info: *const vk::PushDescriptorSetWithTemplateInfo,
+	p_push_descriptor_set_with_template_info: *const vk::PushDescriptorSetWithTemplateInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -48449,7 +48449,7 @@ impl Device {
 	pub unsafe fn cmd_push_descriptor_set_with_template2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_push_descriptor_set_with_template_info: *const vk::PushDescriptorSetWithTemplateInfo,
+		p_push_descriptor_set_with_template_info: *const vk::PushDescriptorSetWithTemplateInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -48484,7 +48484,7 @@ impl Device {
 pub unsafe fn cmd_set_descriptor_buffer_offsets2_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_set_descriptor_buffer_offsets_info: *const vk::SetDescriptorBufferOffsetsInfoEXT,
+	p_set_descriptor_buffer_offsets_info: *const vk::SetDescriptorBufferOffsetsInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -48522,7 +48522,7 @@ impl Device {
 	pub unsafe fn cmd_set_descriptor_buffer_offsets2_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_set_descriptor_buffer_offsets_info: *const vk::SetDescriptorBufferOffsetsInfoEXT,
+		p_set_descriptor_buffer_offsets_info: *const vk::SetDescriptorBufferOffsetsInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -48557,7 +48557,7 @@ impl Device {
 pub unsafe fn cmd_bind_descriptor_buffer_embedded_samplers2_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_bind_descriptor_buffer_embedded_samplers_info: *const vk::BindDescriptorBufferEmbeddedSamplersInfoEXT,
+	p_bind_descriptor_buffer_embedded_samplers_info: *const vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -48599,7 +48599,7 @@ impl Device {
 	pub unsafe fn cmd_bind_descriptor_buffer_embedded_samplers2_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_bind_descriptor_buffer_embedded_samplers_info: *const vk::BindDescriptorBufferEmbeddedSamplersInfoEXT,
+		p_bind_descriptor_buffer_embedded_samplers_info: *const vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -48634,7 +48634,7 @@ impl Device {
 pub unsafe fn set_latency_sleep_mode_nv(
 	device: &Device,
 	swapchain: vk::SwapchainKHR,
-	p_sleep_mode_info: *const vk::LatencySleepModeInfoNV,
+	p_sleep_mode_info: *const vk::LatencySleepModeInfoNV<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -48672,7 +48672,7 @@ impl Device {
 	pub unsafe fn set_latency_sleep_mode_nv(
 		&self,
 		swapchain: vk::SwapchainKHR,
-		p_sleep_mode_info: *const vk::LatencySleepModeInfoNV,
+		p_sleep_mode_info: *const vk::LatencySleepModeInfoNV<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { set_latency_sleep_mode_nv(self, swapchain, p_sleep_mode_info) }
@@ -48701,7 +48701,7 @@ impl Device {
 pub unsafe fn latency_sleep_nv(
 	device: &Device,
 	swapchain: vk::SwapchainKHR,
-	p_sleep_info: *const vk::LatencySleepInfoNV,
+	p_sleep_info: *const vk::LatencySleepInfoNV<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -48739,7 +48739,7 @@ impl Device {
 	pub unsafe fn latency_sleep_nv(
 		&self,
 		swapchain: vk::SwapchainKHR,
-		p_sleep_info: *const vk::LatencySleepInfoNV,
+		p_sleep_info: *const vk::LatencySleepInfoNV<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { latency_sleep_nv(self, swapchain, p_sleep_info) }
@@ -48768,7 +48768,7 @@ impl Device {
 pub unsafe fn set_latency_marker_nv(
 	device: &Device,
 	swapchain: vk::SwapchainKHR,
-	p_latency_marker_info: *const vk::SetLatencyMarkerInfoNV,
+	p_latency_marker_info: *const vk::SetLatencyMarkerInfoNV<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -48803,7 +48803,7 @@ impl Device {
 	pub unsafe fn set_latency_marker_nv(
 		&self,
 		swapchain: vk::SwapchainKHR,
-		p_latency_marker_info: *const vk::SetLatencyMarkerInfoNV,
+		p_latency_marker_info: *const vk::SetLatencyMarkerInfoNV<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { set_latency_marker_nv(self, swapchain, p_latency_marker_info) }
@@ -48832,7 +48832,7 @@ impl Device {
 pub unsafe fn get_latency_timings_nv(
 	device: &Device,
 	swapchain: vk::SwapchainKHR,
-	p_latency_marker_info: *mut vk::GetLatencyMarkerInfoNV,
+	p_latency_marker_info: *mut vk::GetLatencyMarkerInfoNV<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -48867,7 +48867,7 @@ impl Device {
 	pub unsafe fn get_latency_timings_nv(
 		&self,
 		swapchain: vk::SwapchainKHR,
-		p_latency_marker_info: *mut vk::GetLatencyMarkerInfoNV,
+		p_latency_marker_info: *mut vk::GetLatencyMarkerInfoNV<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_latency_timings_nv(self, swapchain, p_latency_marker_info) }
@@ -48896,7 +48896,7 @@ impl Device {
 pub unsafe fn queue_notify_out_of_band_nv(
 	device: &Device,
 	queue: vk::Queue,
-	p_queue_type_info: *const vk::OutOfBandQueueTypeInfoNV,
+	p_queue_type_info: *const vk::OutOfBandQueueTypeInfoNV<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -48931,7 +48931,7 @@ impl Device {
 	pub unsafe fn queue_notify_out_of_band_nv(
 		&self,
 		queue: vk::Queue,
-		p_queue_type_info: *const vk::OutOfBandQueueTypeInfoNV,
+		p_queue_type_info: *const vk::OutOfBandQueueTypeInfoNV<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { queue_notify_out_of_band_nv(self, queue, p_queue_type_info) }
@@ -49412,7 +49412,7 @@ impl Device {
 pub unsafe fn cmd_set_rendering_attachment_locations(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_location_info: *const vk::RenderingAttachmentLocationInfo,
+	p_location_info: *const vk::RenderingAttachmentLocationInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -49450,7 +49450,7 @@ impl Device {
 	pub unsafe fn cmd_set_rendering_attachment_locations(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_location_info: *const vk::RenderingAttachmentLocationInfo,
+		p_location_info: *const vk::RenderingAttachmentLocationInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_set_rendering_attachment_locations(self, command_buffer, p_location_info) }
@@ -49479,7 +49479,7 @@ impl Device {
 pub unsafe fn cmd_set_rendering_attachment_locations_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_location_info: *const vk::RenderingAttachmentLocationInfo,
+	p_location_info: *const vk::RenderingAttachmentLocationInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -49516,7 +49516,7 @@ impl Device {
 	pub unsafe fn cmd_set_rendering_attachment_locations_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_location_info: *const vk::RenderingAttachmentLocationInfo,
+		p_location_info: *const vk::RenderingAttachmentLocationInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_set_rendering_attachment_locations_khr(self, command_buffer, p_location_info) }
@@ -49545,7 +49545,7 @@ impl Device {
 pub unsafe fn cmd_set_rendering_input_attachment_indices(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_input_attachment_index_info: *const vk::RenderingInputAttachmentIndexInfo,
+	p_input_attachment_index_info: *const vk::RenderingInputAttachmentIndexInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -49582,7 +49582,7 @@ impl Device {
 	pub unsafe fn cmd_set_rendering_input_attachment_indices(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_input_attachment_index_info: *const vk::RenderingInputAttachmentIndexInfo,
+		p_input_attachment_index_info: *const vk::RenderingInputAttachmentIndexInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -49617,7 +49617,7 @@ impl Device {
 pub unsafe fn cmd_set_rendering_input_attachment_indices_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_input_attachment_index_info: *const vk::RenderingInputAttachmentIndexInfo,
+	p_input_attachment_index_info: *const vk::RenderingInputAttachmentIndexInfo<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -49654,7 +49654,7 @@ impl Device {
 	pub unsafe fn cmd_set_rendering_input_attachment_indices_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_input_attachment_index_info: *const vk::RenderingInputAttachmentIndexInfo,
+		p_input_attachment_index_info: *const vk::RenderingInputAttachmentIndexInfo<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -49758,7 +49758,7 @@ pub unsafe fn get_physical_device_cooperative_matrix_flexible_dimensions_propert
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	p_property_count: *mut u32,
-	p_properties: *mut vk::CooperativeMatrixFlexibleDimensionsPropertiesNV,
+	p_properties: *mut vk::CooperativeMatrixFlexibleDimensionsPropertiesNV<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -49799,7 +49799,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		p_property_count: *mut u32,
-		p_properties: *mut vk::CooperativeMatrixFlexibleDimensionsPropertiesNV,
+		p_properties: *mut vk::CooperativeMatrixFlexibleDimensionsPropertiesNV<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -49835,7 +49835,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkGetMemoryMetalHandleEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetMemoryMetalHandleEXT.html)"]
 pub unsafe fn get_memory_metal_handle_ext(
 	device: &Device,
-	p_get_metal_handle_info: *const vk::MemoryGetMetalHandleInfoEXT,
+	p_get_metal_handle_info: *const vk::MemoryGetMetalHandleInfoEXT<'_>,
 	p_handle: *mut *mut std::ffi::c_void,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -49874,7 +49874,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_memory_metal_handle_ext(
 		&self,
-		p_get_metal_handle_info: *const vk::MemoryGetMetalHandleInfoEXT,
+		p_get_metal_handle_info: *const vk::MemoryGetMetalHandleInfoEXT<'_>,
 		p_handle: *mut *mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -49906,7 +49906,7 @@ pub unsafe fn get_memory_metal_handle_properties_ext(
 	device: &Device,
 	handle_type: vk::ExternalMemoryHandleTypeFlagBits,
 	p_handle: *const std::ffi::c_void,
-	p_memory_metal_handle_properties: *mut vk::MemoryMetalHandlePropertiesEXT,
+	p_memory_metal_handle_properties: *mut vk::MemoryMetalHandlePropertiesEXT<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		device
@@ -49956,7 +49956,7 @@ impl Device {
 		&self,
 		handle_type: vk::ExternalMemoryHandleTypeFlagBits,
 		p_handle: *const std::ffi::c_void,
-		p_memory_metal_handle_properties: *mut vk::MemoryMetalHandlePropertiesEXT,
+		p_memory_metal_handle_properties: *mut vk::MemoryMetalHandlePropertiesEXT<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -49993,7 +49993,7 @@ pub unsafe fn get_physical_device_cooperative_vector_properties_nv(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	p_property_count: *mut u32,
-	p_properties: *mut vk::CooperativeVectorPropertiesNV,
+	p_properties: *mut vk::CooperativeVectorPropertiesNV<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -50034,7 +50034,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		p_property_count: *mut u32,
-		p_properties: *mut vk::CooperativeVectorPropertiesNV,
+		p_properties: *mut vk::CooperativeVectorPropertiesNV<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -50069,7 +50069,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkConvertCooperativeVectorMatrixNV`](https://docs.vulkan.org/refpages/latest/refpages/source/vkConvertCooperativeVectorMatrixNV.html)"]
 pub unsafe fn convert_cooperative_vector_matrix_nv(
 	device: &Device,
-	p_info: *const vk::ConvertCooperativeVectorMatrixInfoNV,
+	p_info: *const vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		device
@@ -50109,7 +50109,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn convert_cooperative_vector_matrix_nv(
 		&self,
-		p_info: *const vk::ConvertCooperativeVectorMatrixInfoNV,
+		p_info: *const vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { convert_cooperative_vector_matrix_nv(self, p_info) }
@@ -50139,7 +50139,7 @@ pub unsafe fn cmd_convert_cooperative_vector_matrix_nv(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
 	info_count: u32,
-	p_infos: *const vk::ConvertCooperativeVectorMatrixInfoNV,
+	p_infos: *const vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -50178,7 +50178,7 @@ impl Device {
 		&self,
 		command_buffer: vk::CommandBuffer,
 		info_count: u32,
-		p_infos: *const vk::ConvertCooperativeVectorMatrixInfoNV,
+		p_infos: *const vk::ConvertCooperativeVectorMatrixInfoNV<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_convert_cooperative_vector_matrix_nv(self, command_buffer, info_count, p_infos) }
@@ -50207,7 +50207,7 @@ impl Device {
 pub unsafe fn cmd_dispatch_tile_qcom(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_dispatch_tile_info: *const vk::DispatchTileInfoQCOM,
+	p_dispatch_tile_info: *const vk::DispatchTileInfoQCOM<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -50242,7 +50242,7 @@ impl Device {
 	pub unsafe fn cmd_dispatch_tile_qcom(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_dispatch_tile_info: *const vk::DispatchTileInfoQCOM,
+		p_dispatch_tile_info: *const vk::DispatchTileInfoQCOM<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_dispatch_tile_qcom(self, command_buffer, p_dispatch_tile_info) }
@@ -50271,7 +50271,7 @@ impl Device {
 pub unsafe fn cmd_begin_per_tile_execution_qcom(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_per_tile_begin_info: *const vk::PerTileBeginInfoQCOM,
+	p_per_tile_begin_info: *const vk::PerTileBeginInfoQCOM<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -50306,7 +50306,7 @@ impl Device {
 	pub unsafe fn cmd_begin_per_tile_execution_qcom(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_per_tile_begin_info: *const vk::PerTileBeginInfoQCOM,
+		p_per_tile_begin_info: *const vk::PerTileBeginInfoQCOM<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_begin_per_tile_execution_qcom(self, command_buffer, p_per_tile_begin_info) }
@@ -50335,7 +50335,7 @@ impl Device {
 pub unsafe fn cmd_end_per_tile_execution_qcom(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_per_tile_end_info: *const vk::PerTileEndInfoQCOM,
+	p_per_tile_end_info: *const vk::PerTileEndInfoQCOM<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -50370,7 +50370,7 @@ impl Device {
 	pub unsafe fn cmd_end_per_tile_execution_qcom(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_per_tile_end_info: *const vk::PerTileEndInfoQCOM,
+		p_per_tile_end_info: *const vk::PerTileEndInfoQCOM<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_end_per_tile_execution_qcom(self, command_buffer, p_per_tile_end_info) }
@@ -50398,7 +50398,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateExternalComputeQueueNV`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateExternalComputeQueueNV.html)"]
 pub unsafe fn create_external_compute_queue_nv(
 	device: &Device,
-	p_create_info: *const vk::ExternalComputeQueueCreateInfoNV,
+	p_create_info: *const vk::ExternalComputeQueueCreateInfoNV<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_external_queue: *mut vk::ExternalComputeQueueNV,
 ) -> Result<vk::Result, CallError> {
@@ -50444,7 +50444,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_external_compute_queue_nv(
 		&self,
-		p_create_info: *const vk::ExternalComputeQueueCreateInfoNV,
+		p_create_info: *const vk::ExternalComputeQueueCreateInfoNV<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_external_queue: *mut vk::ExternalComputeQueueNV,
 	) -> Result<vk::Result, CallError> {
@@ -50539,7 +50539,7 @@ impl Device {
 pub unsafe fn get_external_compute_queue_data_nv(
 	device: &Device,
 	external_queue: vk::ExternalComputeQueueNV,
-	params: *mut vk::ExternalComputeQueueDataParamsNV,
+	params: *mut vk::ExternalComputeQueueDataParamsNV<'_>,
 	p_data: *mut std::ffi::c_void,
 ) -> Result<(), CallError> {
 	let __vk_function = device
@@ -50575,7 +50575,7 @@ impl Device {
 	pub unsafe fn get_external_compute_queue_data_nv(
 		&self,
 		external_queue: vk::ExternalComputeQueueNV,
-		params: *mut vk::ExternalComputeQueueDataParamsNV,
+		params: *mut vk::ExternalComputeQueueDataParamsNV<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -50606,7 +50606,7 @@ pub unsafe fn enumerate_physical_device_shader_instrumentation_metrics_arm(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	p_description_count: *mut u32,
-	p_descriptions: *mut vk::ShaderInstrumentationMetricDescriptionARM,
+	p_descriptions: *mut vk::ShaderInstrumentationMetricDescriptionARM<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -50647,7 +50647,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		p_description_count: *mut u32,
-		p_descriptions: *mut vk::ShaderInstrumentationMetricDescriptionARM,
+		p_descriptions: *mut vk::ShaderInstrumentationMetricDescriptionARM<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -50682,7 +50682,7 @@ impl Instance {
 #[doc = "\n\n[Khronos reference: `vkCreateShaderInstrumentationARM`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateShaderInstrumentationARM.html)"]
 pub unsafe fn create_shader_instrumentation_arm(
 	device: &Device,
-	p_create_info: *const vk::ShaderInstrumentationCreateInfoARM,
+	p_create_info: *const vk::ShaderInstrumentationCreateInfoARM<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_instrumentation: *mut vk::ShaderInstrumentationARM,
 ) -> Result<vk::Result, CallError> {
@@ -50731,7 +50731,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_shader_instrumentation_arm(
 		&self,
-		p_create_info: *const vk::ShaderInstrumentationCreateInfoARM,
+		p_create_info: *const vk::ShaderInstrumentationCreateInfoARM<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_instrumentation: *mut vk::ShaderInstrumentationARM,
 	) -> Result<vk::Result, CallError> {
@@ -51117,7 +51117,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateTensorARM`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateTensorARM.html)"]
 pub unsafe fn create_tensor_arm(
 	device: &Device,
-	p_create_info: *const vk::TensorCreateInfoARM,
+	p_create_info: *const vk::TensorCreateInfoARM<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_tensor: *mut vk::TensorARM,
 ) -> Result<vk::Result, CallError> {
@@ -51156,7 +51156,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_tensor_arm(
 		&self,
-		p_create_info: *const vk::TensorCreateInfoARM,
+		p_create_info: *const vk::TensorCreateInfoARM<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_tensor: *mut vk::TensorARM,
 	) -> Result<vk::Result, CallError> {
@@ -51250,7 +51250,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateTensorViewARM`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateTensorViewARM.html)"]
 pub unsafe fn create_tensor_view_arm(
 	device: &Device,
-	p_create_info: *const vk::TensorViewCreateInfoARM,
+	p_create_info: *const vk::TensorViewCreateInfoARM<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_view: *mut vk::TensorViewARM,
 ) -> Result<vk::Result, CallError> {
@@ -51289,7 +51289,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_tensor_view_arm(
 		&self,
-		p_create_info: *const vk::TensorViewCreateInfoARM,
+		p_create_info: *const vk::TensorViewCreateInfoARM<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_view: *mut vk::TensorViewARM,
 	) -> Result<vk::Result, CallError> {
@@ -51383,8 +51383,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetTensorMemoryRequirementsARM`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetTensorMemoryRequirementsARM.html)"]
 pub unsafe fn get_tensor_memory_requirements_arm(
 	device: &Device,
-	p_info: *const vk::TensorMemoryRequirementsInfoARM,
-	p_memory_requirements: *mut vk::MemoryRequirements2,
+	p_info: *const vk::TensorMemoryRequirementsInfoARM<'_>,
+	p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -51421,8 +51421,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_tensor_memory_requirements_arm(
 		&self,
-		p_info: *const vk::TensorMemoryRequirementsInfoARM,
-		p_memory_requirements: *mut vk::MemoryRequirements2,
+		p_info: *const vk::TensorMemoryRequirementsInfoARM<'_>,
+		p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_tensor_memory_requirements_arm(self, p_info, p_memory_requirements) }
@@ -51451,7 +51451,7 @@ impl Device {
 pub unsafe fn bind_tensor_memory_arm(
 	device: &Device,
 	bind_info_count: u32,
-	p_bind_infos: *const vk::BindTensorMemoryInfoARM,
+	p_bind_infos: *const vk::BindTensorMemoryInfoARM<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -51489,7 +51489,7 @@ impl Device {
 	pub unsafe fn bind_tensor_memory_arm(
 		&self,
 		bind_info_count: u32,
-		p_bind_infos: *const vk::BindTensorMemoryInfoARM,
+		p_bind_infos: *const vk::BindTensorMemoryInfoARM<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { bind_tensor_memory_arm(self, bind_info_count, p_bind_infos) }
@@ -51517,8 +51517,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDeviceTensorMemoryRequirementsARM`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDeviceTensorMemoryRequirementsARM.html)"]
 pub unsafe fn get_device_tensor_memory_requirements_arm(
 	device: &Device,
-	p_info: *const vk::DeviceTensorMemoryRequirementsARM,
-	p_memory_requirements: *mut vk::MemoryRequirements2,
+	p_info: *const vk::DeviceTensorMemoryRequirementsARM<'_>,
+	p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -51554,8 +51554,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_device_tensor_memory_requirements_arm(
 		&self,
-		p_info: *const vk::DeviceTensorMemoryRequirementsARM,
-		p_memory_requirements: *mut vk::MemoryRequirements2,
+		p_info: *const vk::DeviceTensorMemoryRequirementsARM<'_>,
+		p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_device_tensor_memory_requirements_arm(self, p_info, p_memory_requirements) }
@@ -51584,7 +51584,7 @@ impl Device {
 pub unsafe fn cmd_copy_tensor_arm(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_copy_tensor_info: *const vk::CopyTensorInfoARM,
+	p_copy_tensor_info: *const vk::CopyTensorInfoARM<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -51619,7 +51619,7 @@ impl Device {
 	pub unsafe fn cmd_copy_tensor_arm(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_copy_tensor_info: *const vk::CopyTensorInfoARM,
+		p_copy_tensor_info: *const vk::CopyTensorInfoARM<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_tensor_arm(self, command_buffer, p_copy_tensor_info) }
@@ -51647,7 +51647,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetTensorOpaqueCaptureDescriptorDataARM`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetTensorOpaqueCaptureDescriptorDataARM.html)"]
 pub unsafe fn get_tensor_opaque_capture_descriptor_data_arm(
 	device: &Device,
-	p_info: *const vk::TensorCaptureDescriptorDataInfoARM,
+	p_info: *const vk::TensorCaptureDescriptorDataInfoARM<'_>,
 	p_data: *mut std::ffi::c_void,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -51687,7 +51687,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_tensor_opaque_capture_descriptor_data_arm(
 		&self,
-		p_info: *const vk::TensorCaptureDescriptorDataInfoARM,
+		p_info: *const vk::TensorCaptureDescriptorDataInfoARM<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -51716,7 +51716,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetTensorViewOpaqueCaptureDescriptorDataARM`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetTensorViewOpaqueCaptureDescriptorDataARM.html)"]
 pub unsafe fn get_tensor_view_opaque_capture_descriptor_data_arm(
 	device: &Device,
-	p_info: *const vk::TensorViewCaptureDescriptorDataInfoARM,
+	p_info: *const vk::TensorViewCaptureDescriptorDataInfoARM<'_>,
 	p_data: *mut std::ffi::c_void,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -51756,7 +51756,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_tensor_view_opaque_capture_descriptor_data_arm(
 		&self,
-		p_info: *const vk::TensorViewCaptureDescriptorDataInfoARM,
+		p_info: *const vk::TensorViewCaptureDescriptorDataInfoARM<'_>,
 		p_data: *mut std::ffi::c_void,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -51786,8 +51786,8 @@ impl Device {
 pub unsafe fn get_physical_device_external_tensor_properties_arm(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	p_external_tensor_info: *const vk::PhysicalDeviceExternalTensorInfoARM,
-	p_external_tensor_properties: *mut vk::ExternalTensorPropertiesARM,
+	p_external_tensor_info: *const vk::PhysicalDeviceExternalTensorInfoARM<'_>,
+	p_external_tensor_properties: *mut vk::ExternalTensorPropertiesARM<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -51830,8 +51830,8 @@ impl Instance {
 	pub unsafe fn get_physical_device_external_tensor_properties_arm(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		p_external_tensor_info: *const vk::PhysicalDeviceExternalTensorInfoARM,
-		p_external_tensor_properties: *mut vk::ExternalTensorPropertiesARM,
+		p_external_tensor_info: *const vk::PhysicalDeviceExternalTensorInfoARM<'_>,
+		p_external_tensor_properties: *mut vk::ExternalTensorPropertiesARM<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -51869,7 +51869,7 @@ pub unsafe fn create_data_graph_pipelines_arm(
 	deferred_operation: vk::DeferredOperationKHR,
 	pipeline_cache: vk::PipelineCache,
 	create_info_count: u32,
-	p_create_infos: *const vk::DataGraphPipelineCreateInfoARM,
+	p_create_infos: *const vk::DataGraphPipelineCreateInfoARM<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_pipelines: *mut vk::Pipeline,
 ) -> Result<vk::Result, CallError> {
@@ -51921,7 +51921,7 @@ impl Device {
 		deferred_operation: vk::DeferredOperationKHR,
 		pipeline_cache: vk::PipelineCache,
 		create_info_count: u32,
-		p_create_infos: *const vk::DataGraphPipelineCreateInfoARM,
+		p_create_infos: *const vk::DataGraphPipelineCreateInfoARM<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_pipelines: *mut vk::Pipeline,
 	) -> Result<vk::Result, CallError> {
@@ -51961,7 +51961,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateDataGraphPipelineSessionARM`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateDataGraphPipelineSessionARM.html)"]
 pub unsafe fn create_data_graph_pipeline_session_arm(
 	device: &Device,
-	p_create_info: *const vk::DataGraphPipelineSessionCreateInfoARM,
+	p_create_info: *const vk::DataGraphPipelineSessionCreateInfoARM<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_session: *mut vk::DataGraphPipelineSessionARM,
 ) -> Result<vk::Result, CallError> {
@@ -52003,7 +52003,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_data_graph_pipeline_session_arm(
 		&self,
-		p_create_info: *const vk::DataGraphPipelineSessionCreateInfoARM,
+		p_create_info: *const vk::DataGraphPipelineSessionCreateInfoARM<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_session: *mut vk::DataGraphPipelineSessionARM,
 	) -> Result<vk::Result, CallError> {
@@ -52033,9 +52033,9 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDataGraphPipelineSessionBindPointRequirementsARM`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDataGraphPipelineSessionBindPointRequirementsARM.html)"]
 pub unsafe fn get_data_graph_pipeline_session_bind_point_requirements_arm(
 	device: &Device,
-	p_info: *const vk::DataGraphPipelineSessionBindPointRequirementsInfoARM,
+	p_info: *const vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
 	p_bind_point_requirement_count: *mut u32,
-	p_bind_point_requirements: *mut vk::DataGraphPipelineSessionBindPointRequirementARM,
+	p_bind_point_requirements: *mut vk::DataGraphPipelineSessionBindPointRequirementARM<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -52081,9 +52081,9 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_data_graph_pipeline_session_bind_point_requirements_arm(
 		&self,
-		p_info: *const vk::DataGraphPipelineSessionBindPointRequirementsInfoARM,
+		p_info: *const vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'_>,
 		p_bind_point_requirement_count: *mut u32,
-		p_bind_point_requirements: *mut vk::DataGraphPipelineSessionBindPointRequirementARM,
+		p_bind_point_requirements: *mut vk::DataGraphPipelineSessionBindPointRequirementARM<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -52118,8 +52118,8 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDataGraphPipelineSessionMemoryRequirementsARM`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDataGraphPipelineSessionMemoryRequirementsARM.html)"]
 pub unsafe fn get_data_graph_pipeline_session_memory_requirements_arm(
 	device: &Device,
-	p_info: *const vk::DataGraphPipelineSessionMemoryRequirementsInfoARM,
-	p_memory_requirements: *mut vk::MemoryRequirements2,
+	p_info: *const vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<'_>,
+	p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -52155,8 +52155,8 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_data_graph_pipeline_session_memory_requirements_arm(
 		&self,
-		p_info: *const vk::DataGraphPipelineSessionMemoryRequirementsInfoARM,
-		p_memory_requirements: *mut vk::MemoryRequirements2,
+		p_info: *const vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<'_>,
+		p_memory_requirements: *mut vk::MemoryRequirements2<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -52187,7 +52187,7 @@ impl Device {
 pub unsafe fn bind_data_graph_pipeline_session_memory_arm(
 	device: &Device,
 	bind_info_count: u32,
-	p_bind_infos: *const vk::BindDataGraphPipelineSessionMemoryInfoARM,
+	p_bind_infos: *const vk::BindDataGraphPipelineSessionMemoryInfoARM<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -52227,7 +52227,7 @@ impl Device {
 	pub unsafe fn bind_data_graph_pipeline_session_memory_arm(
 		&self,
 		bind_info_count: u32,
-		p_bind_infos: *const vk::BindDataGraphPipelineSessionMemoryInfoARM,
+		p_bind_infos: *const vk::BindDataGraphPipelineSessionMemoryInfoARM<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { bind_data_graph_pipeline_session_memory_arm(self, bind_info_count, p_bind_infos) }
@@ -52324,7 +52324,7 @@ pub unsafe fn cmd_dispatch_data_graph_arm(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
 	session: vk::DataGraphPipelineSessionARM,
-	p_info: *const vk::DataGraphPipelineDispatchInfoARM,
+	p_info: *const vk::DataGraphPipelineDispatchInfoARM<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -52360,7 +52360,7 @@ impl Device {
 		&self,
 		command_buffer: vk::CommandBuffer,
 		session: vk::DataGraphPipelineSessionARM,
-		p_info: *const vk::DataGraphPipelineDispatchInfoARM,
+		p_info: *const vk::DataGraphPipelineDispatchInfoARM<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_dispatch_data_graph_arm(self, command_buffer, session, p_info) }
@@ -52388,7 +52388,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDataGraphPipelineAvailablePropertiesARM`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDataGraphPipelineAvailablePropertiesARM.html)"]
 pub unsafe fn get_data_graph_pipeline_available_properties_arm(
 	device: &Device,
-	p_pipeline_info: *const vk::DataGraphPipelineInfoARM,
+	p_pipeline_info: *const vk::DataGraphPipelineInfoARM<'_>,
 	p_properties_count: *mut u32,
 	p_properties: *mut vk::DataGraphPipelinePropertyARM,
 ) -> Result<vk::Result, CallError> {
@@ -52436,7 +52436,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_data_graph_pipeline_available_properties_arm(
 		&self,
-		p_pipeline_info: *const vk::DataGraphPipelineInfoARM,
+		p_pipeline_info: *const vk::DataGraphPipelineInfoARM<'_>,
 		p_properties_count: *mut u32,
 		p_properties: *mut vk::DataGraphPipelinePropertyARM,
 	) -> Result<vk::Result, CallError> {
@@ -52473,9 +52473,9 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetDataGraphPipelinePropertiesARM`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetDataGraphPipelinePropertiesARM.html)"]
 pub unsafe fn get_data_graph_pipeline_properties_arm(
 	device: &Device,
-	p_pipeline_info: *const vk::DataGraphPipelineInfoARM,
+	p_pipeline_info: *const vk::DataGraphPipelineInfoARM<'_>,
 	properties_count: u32,
-	p_properties: *mut vk::DataGraphPipelinePropertyQueryResultARM,
+	p_properties: *mut vk::DataGraphPipelinePropertyQueryResultARM<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function =
 		device
@@ -52522,9 +52522,9 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_data_graph_pipeline_properties_arm(
 		&self,
-		p_pipeline_info: *const vk::DataGraphPipelineInfoARM,
+		p_pipeline_info: *const vk::DataGraphPipelineInfoARM<'_>,
 		properties_count: u32,
-		p_properties: *mut vk::DataGraphPipelinePropertyQueryResultARM,
+		p_properties: *mut vk::DataGraphPipelinePropertyQueryResultARM<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -52557,7 +52557,7 @@ pub unsafe fn get_physical_device_queue_family_data_graph_properties_arm(
 	physical_device: vk::PhysicalDevice,
 	queue_family_index: u32,
 	p_queue_family_data_graph_property_count: *mut u32,
-	p_queue_family_data_graph_properties: *mut vk::QueueFamilyDataGraphPropertiesARM,
+	p_queue_family_data_graph_properties: *mut vk::QueueFamilyDataGraphPropertiesARM<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -52606,7 +52606,7 @@ impl Instance {
 		physical_device: vk::PhysicalDevice,
 		queue_family_index: u32,
 		p_queue_family_data_graph_property_count: *mut u32,
-		p_queue_family_data_graph_properties: *mut vk::QueueFamilyDataGraphPropertiesARM,
+		p_queue_family_data_graph_properties: *mut vk::QueueFamilyDataGraphPropertiesARM<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -52643,8 +52643,8 @@ impl Instance {
 pub unsafe fn get_physical_device_queue_family_data_graph_processing_engine_properties_arm(
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
-	p_queue_family_data_graph_processing_engine_info: *const vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM,
-	p_queue_family_data_graph_processing_engine_properties: *mut vk::QueueFamilyDataGraphProcessingEnginePropertiesARM,
+	p_queue_family_data_graph_processing_engine_info: *const vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'_>,
+	p_queue_family_data_graph_processing_engine_properties: *mut vk::QueueFamilyDataGraphProcessingEnginePropertiesARM<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = instance
 		.fp()
@@ -52687,8 +52687,8 @@ impl Instance {
 	pub unsafe fn get_physical_device_queue_family_data_graph_processing_engine_properties_arm(
 		&self,
 		physical_device: vk::PhysicalDevice,
-		p_queue_family_data_graph_processing_engine_info: *const vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM,
-		p_queue_family_data_graph_processing_engine_properties: *mut vk::QueueFamilyDataGraphProcessingEnginePropertiesARM,
+		p_queue_family_data_graph_processing_engine_info: *const vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'_>,
+		p_queue_family_data_graph_processing_engine_properties: *mut vk::QueueFamilyDataGraphProcessingEnginePropertiesARM<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -52725,7 +52725,7 @@ impl Instance {
 pub unsafe fn get_native_buffer_properties_ohos(
 	device: &Device,
 	buffer: *const vk::OH_NativeBuffer,
-	p_properties: *mut vk::NativeBufferPropertiesOHOS,
+	p_properties: *mut vk::NativeBufferPropertiesOHOS<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -52764,7 +52764,7 @@ impl Device {
 	pub unsafe fn get_native_buffer_properties_ohos(
 		&self,
 		buffer: *const vk::OH_NativeBuffer,
-		p_properties: *mut vk::NativeBufferPropertiesOHOS,
+		p_properties: *mut vk::NativeBufferPropertiesOHOS<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { get_native_buffer_properties_ohos(self, buffer, p_properties) }
@@ -52793,7 +52793,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkGetMemoryNativeBufferOHOS`](https://docs.vulkan.org/refpages/latest/refpages/source/vkGetMemoryNativeBufferOHOS.html)"]
 pub unsafe fn get_memory_native_buffer_ohos(
 	device: &Device,
-	p_info: *const vk::MemoryGetNativeBufferInfoOHOS,
+	p_info: *const vk::MemoryGetNativeBufferInfoOHOS<'_>,
 	p_buffer: *mut *mut vk::OH_NativeBuffer,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -52832,7 +52832,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn get_memory_native_buffer_ohos(
 		&self,
-		p_info: *const vk::MemoryGetNativeBufferInfoOHOS,
+		p_info: *const vk::MemoryGetNativeBufferInfoOHOS<'_>,
 		p_buffer: *mut *mut vk::OH_NativeBuffer,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -52862,7 +52862,7 @@ impl Device {
 pub unsafe fn queue_set_perf_hint_qcom(
 	device: &Device,
 	queue: vk::Queue,
-	p_perf_hint_info: *const vk::PerfHintInfoQCOM,
+	p_perf_hint_info: *const vk::PerfHintInfoQCOM<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
 		.fp()
@@ -52900,7 +52900,7 @@ impl Device {
 	pub unsafe fn queue_set_perf_hint_qcom(
 		&self,
 		queue: vk::Queue,
-		p_perf_hint_info: *const vk::PerfHintInfoQCOM,
+		p_perf_hint_info: *const vk::PerfHintInfoQCOM<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { queue_set_perf_hint_qcom(self, queue, p_perf_hint_info) }
@@ -52931,8 +52931,8 @@ pub unsafe fn enumerate_physical_device_queue_family_performance_counters_by_reg
 	physical_device: vk::PhysicalDevice,
 	queue_family_index: u32,
 	p_counter_count: *mut u32,
-	p_counters: *mut vk::PerformanceCounterARM,
-	p_counter_descriptions: *mut vk::PerformanceCounterDescriptionARM,
+	p_counters: *mut vk::PerformanceCounterARM<'_>,
+	p_counter_descriptions: *mut vk::PerformanceCounterDescriptionARM<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -52982,8 +52982,8 @@ impl Instance {
 		physical_device: vk::PhysicalDevice,
 		queue_family_index: u32,
 		p_counter_count: *mut u32,
-		p_counters: *mut vk::PerformanceCounterARM,
-		p_counter_descriptions: *mut vk::PerformanceCounterDescriptionARM,
+		p_counters: *mut vk::PerformanceCounterARM<'_>,
+		p_counter_descriptions: *mut vk::PerformanceCounterDescriptionARM<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -53021,7 +53021,7 @@ impl Instance {
 pub unsafe fn cmd_set_compute_occupancy_priority_nv(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_parameters: *const vk::ComputeOccupancyPriorityParametersNV,
+	p_parameters: *const vk::ComputeOccupancyPriorityParametersNV<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -53059,7 +53059,7 @@ impl Device {
 	pub unsafe fn cmd_set_compute_occupancy_priority_nv(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_parameters: *const vk::ComputeOccupancyPriorityParametersNV,
+		p_parameters: *const vk::ComputeOccupancyPriorityParametersNV<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_set_compute_occupancy_priority_nv(self, command_buffer, p_parameters) }
@@ -53088,7 +53088,7 @@ impl Device {
 pub unsafe fn write_sampler_descriptors_ext(
 	device: &Device,
 	sampler_count: u32,
-	p_samplers: *const vk::SamplerCreateInfo,
+	p_samplers: *const vk::SamplerCreateInfo<'_>,
 	p_descriptors: *const vk::HostAddressRangeEXT,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -53127,7 +53127,7 @@ impl Device {
 	pub unsafe fn write_sampler_descriptors_ext(
 		&self,
 		sampler_count: u32,
-		p_samplers: *const vk::SamplerCreateInfo,
+		p_samplers: *const vk::SamplerCreateInfo<'_>,
 		p_descriptors: *const vk::HostAddressRangeEXT,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -53157,7 +53157,7 @@ impl Device {
 pub unsafe fn write_resource_descriptors_ext(
 	device: &Device,
 	resource_count: u32,
-	p_resources: *const vk::ResourceDescriptorInfoEXT,
+	p_resources: *const vk::ResourceDescriptorInfoEXT<'_>,
 	p_descriptors: *const vk::HostAddressRangeEXT,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = device
@@ -53197,7 +53197,7 @@ impl Device {
 	pub unsafe fn write_resource_descriptors_ext(
 		&self,
 		resource_count: u32,
-		p_resources: *const vk::ResourceDescriptorInfoEXT,
+		p_resources: *const vk::ResourceDescriptorInfoEXT<'_>,
 		p_descriptors: *const vk::HostAddressRangeEXT,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -53227,7 +53227,7 @@ impl Device {
 pub unsafe fn cmd_bind_sampler_heap_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_bind_info: *const vk::BindHeapInfoEXT,
+	p_bind_info: *const vk::BindHeapInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -53262,7 +53262,7 @@ impl Device {
 	pub unsafe fn cmd_bind_sampler_heap_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_bind_info: *const vk::BindHeapInfoEXT,
+		p_bind_info: *const vk::BindHeapInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_bind_sampler_heap_ext(self, command_buffer, p_bind_info) }
@@ -53291,7 +53291,7 @@ impl Device {
 pub unsafe fn cmd_bind_resource_heap_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_bind_info: *const vk::BindHeapInfoEXT,
+	p_bind_info: *const vk::BindHeapInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -53326,7 +53326,7 @@ impl Device {
 	pub unsafe fn cmd_bind_resource_heap_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_bind_info: *const vk::BindHeapInfoEXT,
+		p_bind_info: *const vk::BindHeapInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_bind_resource_heap_ext(self, command_buffer, p_bind_info) }
@@ -53355,7 +53355,7 @@ impl Device {
 pub unsafe fn cmd_push_data_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_push_data_info: *const vk::PushDataInfoEXT,
+	p_push_data_info: *const vk::PushDataInfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -53390,7 +53390,7 @@ impl Device {
 	pub unsafe fn cmd_push_data_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_push_data_info: *const vk::PushDataInfoEXT,
+		p_push_data_info: *const vk::PushDataInfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_push_data_ext(self, command_buffer, p_push_data_info) }
@@ -53418,7 +53418,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkRegisterCustomBorderColorEXT`](https://docs.vulkan.org/refpages/latest/refpages/source/vkRegisterCustomBorderColorEXT.html)"]
 pub unsafe fn register_custom_border_color_ext(
 	device: &Device,
-	p_border_color: *const vk::SamplerCustomBorderColorCreateInfoEXT,
+	p_border_color: *const vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
 	request_index: vk::Bool32,
 	p_index: *mut u32,
 ) -> Result<vk::Result, CallError> {
@@ -53457,7 +53457,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn register_custom_border_color_ext(
 		&self,
-		p_border_color: *const vk::SamplerCustomBorderColorCreateInfoEXT,
+		p_border_color: *const vk::SamplerCustomBorderColorCreateInfoEXT<'_>,
 		request_index: vk::Bool32,
 		p_index: *mut u32,
 	) -> Result<vk::Result, CallError> {
@@ -53754,7 +53754,7 @@ impl Device {
 pub unsafe fn cmd_copy_memory_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_copy_memory_info: *const vk::CopyDeviceMemoryInfoKHR,
+	p_copy_memory_info: *const vk::CopyDeviceMemoryInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -53789,7 +53789,7 @@ impl Device {
 	pub unsafe fn cmd_copy_memory_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_copy_memory_info: *const vk::CopyDeviceMemoryInfoKHR,
+		p_copy_memory_info: *const vk::CopyDeviceMemoryInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_memory_khr(self, command_buffer, p_copy_memory_info) }
@@ -53818,7 +53818,7 @@ impl Device {
 pub unsafe fn cmd_copy_memory_to_image_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_copy_memory_info: *const vk::CopyDeviceMemoryImageInfoKHR,
+	p_copy_memory_info: *const vk::CopyDeviceMemoryImageInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -53853,7 +53853,7 @@ impl Device {
 	pub unsafe fn cmd_copy_memory_to_image_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_copy_memory_info: *const vk::CopyDeviceMemoryImageInfoKHR,
+		p_copy_memory_info: *const vk::CopyDeviceMemoryImageInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_memory_to_image_khr(self, command_buffer, p_copy_memory_info) }
@@ -53882,7 +53882,7 @@ impl Device {
 pub unsafe fn cmd_copy_image_to_memory_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_copy_memory_info: *const vk::CopyDeviceMemoryImageInfoKHR,
+	p_copy_memory_info: *const vk::CopyDeviceMemoryImageInfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -53917,7 +53917,7 @@ impl Device {
 	pub unsafe fn cmd_copy_image_to_memory_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_copy_memory_info: *const vk::CopyDeviceMemoryImageInfoKHR,
+		p_copy_memory_info: *const vk::CopyDeviceMemoryImageInfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_copy_image_to_memory_khr(self, command_buffer, p_copy_memory_info) }
@@ -54192,7 +54192,7 @@ impl Device {
 pub unsafe fn cmd_begin_conditional_rendering2_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_conditional_rendering_begin: *const vk::ConditionalRenderingBeginInfo2EXT,
+	p_conditional_rendering_begin: *const vk::ConditionalRenderingBeginInfo2EXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -54230,7 +54230,7 @@ impl Device {
 	pub unsafe fn cmd_begin_conditional_rendering2_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_conditional_rendering_begin: *const vk::ConditionalRenderingBeginInfo2EXT,
+		p_conditional_rendering_begin: *const vk::ConditionalRenderingBeginInfo2EXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -54263,7 +54263,7 @@ pub unsafe fn cmd_bind_transform_feedback_buffers2_ext(
 	command_buffer: vk::CommandBuffer,
 	first_binding: u32,
 	binding_count: u32,
-	p_binding_infos: *const vk::BindTransformFeedbackBuffer2InfoEXT,
+	p_binding_infos: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -54310,7 +54310,7 @@ impl Device {
 		command_buffer: vk::CommandBuffer,
 		first_binding: u32,
 		binding_count: u32,
-		p_binding_infos: *const vk::BindTransformFeedbackBuffer2InfoEXT,
+		p_binding_infos: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -54349,7 +54349,7 @@ pub unsafe fn cmd_begin_transform_feedback2_ext(
 	command_buffer: vk::CommandBuffer,
 	first_counter_range: u32,
 	counter_range_count: u32,
-	p_counter_infos: *const vk::BindTransformFeedbackBuffer2InfoEXT,
+	p_counter_infos: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -54393,7 +54393,7 @@ impl Device {
 		command_buffer: vk::CommandBuffer,
 		first_counter_range: u32,
 		counter_range_count: u32,
-		p_counter_infos: *const vk::BindTransformFeedbackBuffer2InfoEXT,
+		p_counter_infos: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -54432,7 +54432,7 @@ pub unsafe fn cmd_end_transform_feedback2_ext(
 	command_buffer: vk::CommandBuffer,
 	first_counter_range: u32,
 	counter_range_count: u32,
-	p_counter_infos: *const vk::BindTransformFeedbackBuffer2InfoEXT,
+	p_counter_infos: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -54476,7 +54476,7 @@ impl Device {
 		command_buffer: vk::CommandBuffer,
 		first_counter_range: u32,
 		counter_range_count: u32,
-		p_counter_infos: *const vk::BindTransformFeedbackBuffer2InfoEXT,
+		p_counter_infos: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -54515,7 +54515,7 @@ pub unsafe fn cmd_draw_indirect_byte_count2_ext(
 	command_buffer: vk::CommandBuffer,
 	instance_count: u32,
 	first_instance: u32,
-	p_counter_info: *const vk::BindTransformFeedbackBuffer2InfoEXT,
+	p_counter_info: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
 	counter_offset: u32,
 	vertex_stride: u32,
 ) -> Result<(), CallError> {
@@ -54563,7 +54563,7 @@ impl Device {
 		command_buffer: vk::CommandBuffer,
 		instance_count: u32,
 		first_instance: u32,
-		p_counter_info: *const vk::BindTransformFeedbackBuffer2InfoEXT,
+		p_counter_info: *const vk::BindTransformFeedbackBuffer2InfoEXT<'_>,
 		counter_offset: u32,
 		vertex_stride: u32,
 	) -> Result<(), CallError> {
@@ -54604,7 +54604,7 @@ impl Device {
 pub unsafe fn cmd_write_marker_to_memory_amd(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::MemoryMarkerInfoAMD,
+	p_info: *const vk::MemoryMarkerInfoAMD<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -54639,7 +54639,7 @@ impl Device {
 	pub unsafe fn cmd_write_marker_to_memory_amd(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::MemoryMarkerInfoAMD,
+		p_info: *const vk::MemoryMarkerInfoAMD<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_write_marker_to_memory_amd(self, command_buffer, p_info) }
@@ -54668,7 +54668,7 @@ impl Device {
 pub unsafe fn cmd_bind_index_buffer3_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::BindIndexBuffer3InfoKHR,
+	p_info: *const vk::BindIndexBuffer3InfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -54703,7 +54703,7 @@ impl Device {
 	pub unsafe fn cmd_bind_index_buffer3_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::BindIndexBuffer3InfoKHR,
+		p_info: *const vk::BindIndexBuffer3InfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_bind_index_buffer3_khr(self, command_buffer, p_info) }
@@ -54734,7 +54734,7 @@ pub unsafe fn cmd_bind_vertex_buffers3_khr(
 	command_buffer: vk::CommandBuffer,
 	first_binding: u32,
 	binding_count: u32,
-	p_binding_infos: *const vk::BindVertexBuffer3InfoKHR,
+	p_binding_infos: *const vk::BindVertexBuffer3InfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -54778,7 +54778,7 @@ impl Device {
 		command_buffer: vk::CommandBuffer,
 		first_binding: u32,
 		binding_count: u32,
-		p_binding_infos: *const vk::BindVertexBuffer3InfoKHR,
+		p_binding_infos: *const vk::BindVertexBuffer3InfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {
@@ -54815,7 +54815,7 @@ impl Device {
 pub unsafe fn cmd_draw_indirect2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::DrawIndirect2InfoKHR,
+	p_info: *const vk::DrawIndirect2InfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -54850,7 +54850,7 @@ impl Device {
 	pub unsafe fn cmd_draw_indirect2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::DrawIndirect2InfoKHR,
+		p_info: *const vk::DrawIndirect2InfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_draw_indirect2_khr(self, command_buffer, p_info) }
@@ -54879,7 +54879,7 @@ impl Device {
 pub unsafe fn cmd_draw_indexed_indirect2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::DrawIndirect2InfoKHR,
+	p_info: *const vk::DrawIndirect2InfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -54914,7 +54914,7 @@ impl Device {
 	pub unsafe fn cmd_draw_indexed_indirect2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::DrawIndirect2InfoKHR,
+		p_info: *const vk::DrawIndirect2InfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_draw_indexed_indirect2_khr(self, command_buffer, p_info) }
@@ -54943,7 +54943,7 @@ impl Device {
 pub unsafe fn cmd_draw_indirect_count2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::DrawIndirectCount2InfoKHR,
+	p_info: *const vk::DrawIndirectCount2InfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -54978,7 +54978,7 @@ impl Device {
 	pub unsafe fn cmd_draw_indirect_count2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::DrawIndirectCount2InfoKHR,
+		p_info: *const vk::DrawIndirectCount2InfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_draw_indirect_count2_khr(self, command_buffer, p_info) }
@@ -55007,7 +55007,7 @@ impl Device {
 pub unsafe fn cmd_draw_indexed_indirect_count2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::DrawIndirectCount2InfoKHR,
+	p_info: *const vk::DrawIndirectCount2InfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -55045,7 +55045,7 @@ impl Device {
 	pub unsafe fn cmd_draw_indexed_indirect_count2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::DrawIndirectCount2InfoKHR,
+		p_info: *const vk::DrawIndirectCount2InfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_draw_indexed_indirect_count2_khr(self, command_buffer, p_info) }
@@ -55074,7 +55074,7 @@ impl Device {
 pub unsafe fn cmd_draw_mesh_tasks_indirect2_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::DrawIndirect2InfoKHR,
+	p_info: *const vk::DrawIndirect2InfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -55109,7 +55109,7 @@ impl Device {
 	pub unsafe fn cmd_draw_mesh_tasks_indirect2_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::DrawIndirect2InfoKHR,
+		p_info: *const vk::DrawIndirect2InfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_draw_mesh_tasks_indirect2_ext(self, command_buffer, p_info) }
@@ -55138,7 +55138,7 @@ impl Device {
 pub unsafe fn cmd_draw_mesh_tasks_indirect_count2_ext(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::DrawIndirectCount2InfoKHR,
+	p_info: *const vk::DrawIndirectCount2InfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function =
 		device
@@ -55176,7 +55176,7 @@ impl Device {
 	pub unsafe fn cmd_draw_mesh_tasks_indirect_count2_ext(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::DrawIndirectCount2InfoKHR,
+		p_info: *const vk::DrawIndirectCount2InfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_draw_mesh_tasks_indirect_count2_ext(self, command_buffer, p_info) }
@@ -55205,7 +55205,7 @@ impl Device {
 pub unsafe fn cmd_dispatch_indirect2_khr(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_info: *const vk::DispatchIndirect2InfoKHR,
+	p_info: *const vk::DispatchIndirect2InfoKHR<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -55240,7 +55240,7 @@ impl Device {
 	pub unsafe fn cmd_dispatch_indirect2_khr(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_info: *const vk::DispatchIndirect2InfoKHR,
+		p_info: *const vk::DispatchIndirect2InfoKHR<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_dispatch_indirect2_khr(self, command_buffer, p_info) }
@@ -55268,7 +55268,7 @@ impl Device {
 #[doc = "\n\n[Khronos reference: `vkCreateAccelerationStructure2KHR`](https://docs.vulkan.org/refpages/latest/refpages/source/vkCreateAccelerationStructure2KHR.html)"]
 pub unsafe fn create_acceleration_structure2_khr(
 	device: &Device,
-	p_create_info: *const vk::AccelerationStructureCreateInfo2KHR,
+	p_create_info: *const vk::AccelerationStructureCreateInfo2KHR<'_>,
 	p_allocator: *const vk::AllocationCallbacks,
 	p_acceleration_structure: *mut vk::AccelerationStructureKHR,
 ) -> Result<vk::Result, CallError> {
@@ -55317,7 +55317,7 @@ impl Device {
 	#[inline]
 	pub unsafe fn create_acceleration_structure2_khr(
 		&self,
-		p_create_info: *const vk::AccelerationStructureCreateInfo2KHR,
+		p_create_info: *const vk::AccelerationStructureCreateInfo2KHR<'_>,
 		p_allocator: *const vk::AllocationCallbacks,
 		p_acceleration_structure: *mut vk::AccelerationStructureKHR,
 	) -> Result<vk::Result, CallError> {
@@ -55351,7 +55351,7 @@ pub unsafe fn get_physical_device_queue_family_data_graph_engine_operation_prope
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	queue_family_index: u32,
-	p_queue_family_data_graph_properties: *const vk::QueueFamilyDataGraphPropertiesARM,
+	p_queue_family_data_graph_properties: *const vk::QueueFamilyDataGraphPropertiesARM<'_>,
 	p_properties: *mut vk::BaseOutStructure,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
@@ -55400,7 +55400,7 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		queue_family_index: u32,
-		p_queue_family_data_graph_properties: *const vk::QueueFamilyDataGraphPropertiesARM,
+		p_queue_family_data_graph_properties: *const vk::QueueFamilyDataGraphPropertiesARM<'_>,
 		p_properties: *mut vk::BaseOutStructure,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
@@ -55438,7 +55438,7 @@ impl Instance {
 pub unsafe fn cmd_set_dispatch_parameters_arm(
 	device: &Device,
 	command_buffer: vk::CommandBuffer,
-	p_dispatch_parameters: *const vk::DispatchParametersARM,
+	p_dispatch_parameters: *const vk::DispatchParametersARM<'_>,
 ) -> Result<(), CallError> {
 	let __vk_function = device
 		.fp()
@@ -55473,7 +55473,7 @@ impl Device {
 	pub unsafe fn cmd_set_dispatch_parameters_arm(
 		&self,
 		command_buffer: vk::CommandBuffer,
-		p_dispatch_parameters: *const vk::DispatchParametersARM,
+		p_dispatch_parameters: *const vk::DispatchParametersARM<'_>,
 	) -> Result<(), CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe { cmd_set_dispatch_parameters_arm(self, command_buffer, p_dispatch_parameters) }
@@ -55503,10 +55503,10 @@ pub unsafe fn get_physical_device_queue_family_data_graph_optical_flow_image_for
 	instance: &Instance,
 	physical_device: vk::PhysicalDevice,
 	queue_family_index: u32,
-	p_queue_family_data_graph_properties: *const vk::QueueFamilyDataGraphPropertiesARM,
-	p_optical_flow_image_format_info: *const vk::DataGraphOpticalFlowImageFormatInfoARM,
+	p_queue_family_data_graph_properties: *const vk::QueueFamilyDataGraphPropertiesARM<'_>,
+	p_optical_flow_image_format_info: *const vk::DataGraphOpticalFlowImageFormatInfoARM<'_>,
 	p_format_count: *mut u32,
-	p_image_format_properties: *mut vk::DataGraphOpticalFlowImageFormatPropertiesARM,
+	p_image_format_properties: *mut vk::DataGraphOpticalFlowImageFormatPropertiesARM<'_>,
 ) -> Result<vk::Result, CallError> {
 	let __vk_function = instance
 		.fp()
@@ -55556,10 +55556,10 @@ impl Instance {
 		&self,
 		physical_device: vk::PhysicalDevice,
 		queue_family_index: u32,
-		p_queue_family_data_graph_properties: *const vk::QueueFamilyDataGraphPropertiesARM,
-		p_optical_flow_image_format_info: *const vk::DataGraphOpticalFlowImageFormatInfoARM,
+		p_queue_family_data_graph_properties: *const vk::QueueFamilyDataGraphPropertiesARM<'_>,
+		p_optical_flow_image_format_info: *const vk::DataGraphOpticalFlowImageFormatInfoARM<'_>,
 		p_format_count: *mut u32,
-		p_image_format_properties: *mut vk::DataGraphOpticalFlowImageFormatPropertiesARM,
+		p_image_format_properties: *mut vk::DataGraphOpticalFlowImageFormatPropertiesARM<'_>,
 	) -> Result<vk::Result, CallError> {
 		// SAFETY: the caller provides the canonical operation's native guarantees.
 		unsafe {

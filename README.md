@@ -25,7 +25,7 @@ and runtime qualification are separate; see the
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.4" }
+vk = { package = "vkrust", version = "0.5" }
 ```
 
 No Vulkan SDK, C compiler, C++ library or consumer-side generator is needed.
@@ -33,16 +33,16 @@ The default `loader` feature loads the system Vulkan library at runtime.
 
 ## Library and Vulkan versions
 
-The package version is **`0.4.1+1.4.365`**:
+The package version is **`0.5.0+1.4.365`**:
 
 | Version | Meaning |
 | --- | --- |
-| `0.4.1` | This Rust library's API release; Git tag `v0.4.1` |
+| `0.5.0` | This Rust library's API release; Git tag `v0.5.0` |
 | `+1.4.365` | Generated from Vulkan 1.4 headers, revision 365 |
 | `ApplicationInfo::api_version` | The Vulkan API version your application requests at runtime |
 
 Cargo treats the suffix as build metadata, so the dependency requirement stays
-`version = "0.4"`. The suffix identifies the pinned API snapshot; it is not a
+`version = "0.5"`. The suffix identifies the pinned API snapshot; it is not a
 Vulkan 1.4 driver requirement or runtime qualification claim. Applications can
 request Vulkan 1.0, 1.1 or 1.2 and use the commands/features admitted by their
 actual implementation. The examples below request Vulkan 1.0.
@@ -57,6 +57,9 @@ for the exact pinned Khronos commit.
 Use free functions when you prefer Vulkan's C-style flow, or associated methods
 when you prefer an object-oriented, Python-like spelling. Both use the same
 cached PFNs and canonical operation body.
+
+The examples use the borrowed record setters introduced in v0.5.0. These
+retain backing host storage while preparing arguments for either calling style.
 
 | Operation | Free function | Constructor or method |
 | --- | --- | --- |
@@ -83,15 +86,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // remain live during creation. This example creates no child objects.
     unsafe {
         let entry = vk::Entry::new()?;
-        let application = vk::ApplicationInfo {
-            p_application_name: c"vk example".as_ptr(),
-            api_version: vk::API_VERSION_1_0,
-            ..Default::default()
-        };
-        let info = vk::InstanceCreateInfo {
-            p_application_info: &application,
-            ..Default::default()
-        };
+        let application = vk::ApplicationInfo::default()
+            .application_name(c"vk example")
+            .api_version(vk::API_VERSION_1_0);
+        let info = vk::InstanceCreateInfo::default()
+            .application_info(&application);
 
         let instance = vk::create_instance(&entry, &info, None)?;
         let devices = vk::enumerate_physical_devices(&instance);
@@ -109,11 +108,15 @@ The equivalent instance lifecycle through `Instance`:
 
 ```rust,no_run
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // SAFETY: use the trusted system loader and a default Vulkan 1.0 create
-    // info. No children or outstanding operations remain at destruction.
+    // SAFETY: use the trusted system loader; borrowed create-info storage
+    // remains live. No children or outstanding work remain at destruction.
     unsafe {
         let entry = vk::Entry::new()?;
-        let info = vk::InstanceCreateInfo::default();
+        let application = vk::ApplicationInfo::default()
+            .application_name(c"vk example")
+            .api_version(vk::API_VERSION_1_0);
+        let info = vk::InstanceCreateInfo::default()
+            .application_info(&application);
 
         let instance = vk::Instance::new(&entry, &info, None)?;
         let devices = instance.enumerate_physical_devices();
@@ -129,6 +132,75 @@ If native creation succeeds but dispatch initialization cannot recover or
 destroy the object, `CallError::InitializationFailed` retains its handle and
 library. Applications must handle that variant explicitly to recover ownership;
 the short examples propagate it to their caller.
+
+### Borrowed record construction
+
+Use `Type::default()` followed by generated setters to prepare native arguments.
+This is the default construction approach, available without an additional
+feature flag. It works with both free functions and methods;
+these setters construct the same Vulkan records passed to either calling style.
+Direct native fields remain available, and stored borrowed records carry
+lifetime parameters.
+
+```rust
+fn main() -> Result<(), vk::ConstructionError> {
+    let application = vk::ApplicationInfo::default()
+        .application_name(c"vk example")
+        .api_version(vk::API_VERSION_1_0);
+    let info = vk::InstanceCreateInfo::default()
+        .application_info(&application);
+
+    let priorities = [1.0_f32];
+    let queues = [vk::DeviceQueueCreateInfo::default()
+        .queue_family_index(0)
+        .queue_priorities(&priorities)?];
+    let device_info = vk::DeviceCreateInfo::default()
+        .queue_create_infos(&queues)?;
+
+    assert_eq!(info.p_application_info, &application as *const _);
+    assert_eq!(device_info.queue_create_info_count, 1);
+    Ok(())
+}
+```
+
+Borrowed setters keep backing strings, records and arrays live through their
+last use. Array setters derive checked native counts; reviewed parallel arrays
+are set together. `push_next` admits registry-compatible chain types and retains
+an exclusive borrow of each inserted node:
+
+```rust,no_run
+/// The caller supplies a compatible physical device and Vulkan 1.2 query context.
+unsafe fn timeline_semaphore_supported(
+    instance: &vk::Instance,
+    physical_device: vk::PhysicalDevice,
+) -> Result<bool, vk::CallError> {
+    let mut vulkan12 = vk::PhysicalDeviceVulkan12Features::default();
+    {
+        let mut features = vk::PhysicalDeviceFeatures2::default()
+            .push_next(&mut vulkan12)?;
+        // SAFETY: the caller establishes the native query's valid usage.
+        unsafe { instance.get_physical_device_features2(physical_device, &mut features)? };
+    }
+    Ok(vulkan12.timeline_semaphore != 0)
+}
+# fn main() {}
+```
+
+These methods prepare the same native records. They do not create GPU objects,
+validate all Vulkan usage, enable features or prove GPU completion. Public raw
+pointers remain an unsafe-call obligation; borrowing an array of string pointers
+keeps the array alive, not the pointed-to strings. Ambiguous pointer/length
+relationships, opaque data and unreviewed output arrays remain raw. Existing
+bitfield getters and `set_*` accessors retain their spelling.
+
+For migration, use `Type { field: value, ..Default::default() }` rather than an
+exhaustive literal, and declare stored borrowed records as `Type<'a>`. Records
+retaining exclusive chain borrows no longer implement `Copy` or `Clone`; create
+fresh array elements with `std::array::from_fn` and borrow single records with
+`std::slice::from_ref`. The native union
+`AccelerationStructureGeometryDataKHR` uses `ManuallyDrop` for its non-Copy
+record members. Native field layout remains subject to the independent C ABI
+gate. Raw handle lifetimes and explicit destruction requirements are unchanged.
 
 ### Mix styles when recording commands
 

@@ -3,6 +3,12 @@
 #[path = "test_abi.rs"]
 mod abi;
 
+#[path = "test_construction.rs"]
+mod construction;
+
+#[path = "test_construction.gen.rs"]
+mod generated_construction;
+
 #[path = "test_version.rs"]
 mod version;
 

@@ -391,6 +391,8 @@ fn generated_output_is_checked_without_writes() {
 	);
 	for name in [
 		"src/rs/command.gen.rs",
+		"src/rs/construction.gen.rs",
+		"test/rs/test_construction.gen.rs",
 		"src/rs/load/feature.gen.rs",
 		"test/rs/test_command.gen.rs",
 	] {
@@ -544,6 +546,11 @@ fn generated_families_follow_pinned_xml_declaration_order() {
 		"{}",
 		String::from_utf8_lossy(&result.stderr)
 	);
+	assert_chain_relationships(
+		&root,
+		&source_text(&out, "src/rs/type.gen.rs"),
+		&source_text(&out, "src/rs/construction.gen.rs"),
+	);
 	let vk = registry_order(&root.join("registry/vk.xml"));
 	let video = registry_order(&root.join("registry/video.xml"));
 	let source = |name: &str| std::fs::read_to_string(out.join(name)).unwrap();
@@ -555,7 +562,13 @@ fn generated_families_follow_pinned_xml_declaration_order() {
 					.iter()
 					.find_map(|prefix| line.strip_prefix(prefix))
 			})
-			.map(|line| line.split([' ', '(', '{', '=']).next().unwrap().to_owned())
+			.map(|line| {
+				line
+					.split([' ', '(', '{', '=', '<'])
+					.next()
+					.unwrap()
+					.to_owned()
+			})
 			.collect::<Vec<_>>()
 	};
 	assert_registry_order(
@@ -658,5 +671,78 @@ fn generated_families_follow_pinned_xml_declaration_order() {
 		extensions,
 		vk.extensions.into_iter().chain(video.extensions),
 		"extension metadata",
+	);
+}
+
+fn source_text(root: &Path, name: &str) -> String {
+	std::fs::read_to_string(root.join(name)).unwrap()
+}
+
+// Read XML directly, without vk-gen's IR or lifetime/relationship resolver.
+fn assert_chain_relationships(root: &Path, records: &str, chains: &str) {
+	use quick_xml::{Reader, events::Event};
+	use std::collections::BTreeSet;
+	let admitted: BTreeSet<_> = records
+		.lines()
+		.filter_map(|line| line.strip_prefix("pub struct "))
+		.map(|line| line.split(['<', ' ', '{']).next().unwrap().to_owned())
+		.collect();
+	let xml = std::fs::read_to_string(root.join("registry/vk.xml")).unwrap();
+	let mut reader = Reader::from_str(&xml);
+	let mut expected = Vec::new();
+	loop {
+		let node = match reader.read_event().unwrap() {
+			Event::Start(node) | Event::Empty(node) => node,
+			Event::Eof => break,
+			_ => continue,
+		};
+		if node.name().as_ref() != b"type" {
+			continue;
+		}
+		let attributes: std::collections::BTreeMap<_, _> = node
+			.attributes()
+			.map(|a| {
+				let a = a.unwrap();
+				(
+					String::from_utf8(a.key.as_ref().to_vec()).unwrap(),
+					a.decode_and_unescape_value(reader.decoder())
+						.unwrap()
+						.into_owned(),
+				)
+			})
+			.collect();
+		if let (Some(name), Some(extends)) = (attributes.get("name"), attributes.get("structextends")) {
+			let name = rust_type_name(name);
+			if admitted.contains(&name) {
+				for base in extends.split(',') {
+					expected.push((name.clone(), rust_type_name(base)));
+				}
+			}
+		}
+	}
+	let compact: String = chains.chars().filter(|c| !c.is_whitespace()).collect();
+	let actual: Vec<_> = compact
+		.split("crate::Extends<vk::")
+		.skip(1)
+		.map(|entry| {
+			let base = entry.split('<').next().unwrap().to_owned();
+			let name = entry
+				.split("forvk::")
+				.nth(1)
+				.unwrap()
+				.split('<')
+				.next()
+				.unwrap()
+				.to_owned();
+			(name, base)
+		})
+		.collect();
+	assert!(
+		expected.len() > 500,
+		"incomplete independent XML chain inventory"
+	);
+	assert_eq!(
+		actual, expected,
+		"chain relationships must match pinned XML and its declaration order"
 	);
 }

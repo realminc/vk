@@ -1,6 +1,7 @@
 //! Generate reproducible Rust bindings from the paired, pinned Khronos registries.
 mod audit;
 mod capability;
+mod construction;
 mod doc;
 mod emit_commands;
 mod emit_constants;
@@ -83,16 +84,24 @@ fn run() -> Result<()> {
 	reg.features.extend(v.features);
 	reg.extensions.extend(v.extensions);
 	resolve::resolve(&mut reg)?;
+	construction::resolve(&mut reg)?;
 	let errors = audit::audit(&reg);
 	ensure!(
 		errors.is_empty(),
 		"registry audit failed:\n{}",
 		errors.join("\n")
 	);
+	eprintln!(
+		"Construction: {} borrowed types, {} setters",
+		reg.borrowed.len(),
+		construction::inventory(&reg).values().sum::<usize>()
+	);
 	let types = emit_types::emit_types(&reg)?;
 	let (commands, command_tests) = emit_commands::emit_commands(&reg)?;
 	let files = [
       ("src/rs/type.gen.rs", types),
+      ("src/rs/construction.gen.rs", construction::emit_chains(&reg)?),
+      ("test/rs/test_construction.gen.rs", construction::emit_tests(&reg)?),
       ("src/rs/load/feature.gen.rs", emit_features::emit_features(&reg)?),
       ("src/rs/enum.gen.rs", emit_enums::emit_enums(&reg)?),
       ("src/rs/constant.gen.rs", emit_constants::emit_constants(&reg)?),
@@ -188,7 +197,9 @@ fn space_items(source: &str) -> String {
 			&& (next.starts_with("///")
 				|| next.starts_with("#[")
 				|| next.starts_with("impl ")
+				|| next.starts_with("impl<")
 				|| next.starts_with("unsafe impl ")
+				|| next.starts_with("unsafe impl<")
 				|| next.starts_with("pub ")
 				|| next.starts_with("fn "))
 		{

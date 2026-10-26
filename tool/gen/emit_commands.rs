@@ -295,8 +295,11 @@ fn handwritten(name: &str) -> bool {
 	)
 }
 
-fn abi_type(name: &str) -> String {
-	let base = base_type(name);
+fn abi_type(reg: &Registry, name: &str) -> String {
+	let mut base = base_type(name);
+	if reg.borrowed.contains(name) {
+		base.push_str("<'_>");
+	}
 	if name.starts_with("Vk") {
 		format!("vk::{base}")
 	} else {
@@ -359,7 +362,12 @@ fn operation(reg: &Registry, command: &CommandDecl, recipe: Recipe) -> Result<Op
 		);
 		operation.status = command.return_type.name == "VkResult";
 		if !matches!(command.return_type.name.as_str(), "void" | "VkResult") {
-			operation.scalar = Some(crate::emit_pfn::qualified_type(&command.return_type));
+			operation.scalar = Some(crate::emit_pfn::type_str_for(
+				&command.return_type,
+				reg,
+				"'_",
+				true,
+			));
 		}
 		for (index, parameter) in command.parameters.iter().enumerate() {
 			if index == 0 && matches!(parameter.ty.name.as_str(), "VkInstance" | "VkDevice") {
@@ -375,7 +383,7 @@ fn operation(reg: &Registry, command: &CommandDecl, recipe: Recipe) -> Result<Op
 				!operation.arguments.iter().any(|a| a.name == name) && name != context,
 				"native argument name collision: {name}"
 			);
-			let ty = crate::emit_pfn::qualified_parameter_type(&parameter.ty);
+			let ty = crate::emit_pfn::parameter_type_for(&parameter.ty, reg, true);
 			operation.arguments.push(Argument {
 				name: name.clone(),
 				fixture: format!("std::mem::zeroed::<{ty}>()"),
@@ -424,7 +432,7 @@ fn operation(reg: &Registry, command: &CommandDecl, recipe: Recipe) -> Result<Op
 					.any(|ty| ty.c_name == info.ty.name && matches!(ty.kind, TypeKind::Struct { .. })),
 			"scalar query requires a device and a required input record"
 		);
-		operation.scalar = Some(abi_type(&command.return_type.name));
+		operation.scalar = Some(abi_type(reg, &command.return_type.name));
 	}
 	if command.return_type.name == "VkResult" {
 		ensure!(
@@ -494,7 +502,7 @@ fn operation(reg: &Registry, command: &CommandDecl, recipe: Recipe) -> Result<Op
 				)),
 			"creation output is not an admitted handle"
 		);
-		operation.output = Some(abi_type(&parameter.ty.name));
+		operation.output = Some(abi_type(reg, &parameter.ty.name));
 		Some(parameter.name.as_str())
 	} else {
 		None
@@ -585,7 +593,7 @@ fn operation(reg: &Registry, command: &CommandDecl, recipe: Recipe) -> Result<Op
 						.any(|member| matches!(member.name.as_str(), "sType" | "pNext")),
 					"chained enumeration outputs require initialized headers"
 				);
-				abi_type(&data.ty.name)
+				abi_type(reg, &data.ty.name)
 			};
 			operation.enumeration = Some(Enumeration { item, helper });
 		}
@@ -638,7 +646,7 @@ fn operation(reg: &Registry, command: &CommandDecl, recipe: Recipe) -> Result<Op
 			if parameter.name == data {
 				if operation.counted {
 					let count_name = argument_name(&command.parameters[command.parameters.len() - 2]);
-					let base = abi_type(&parameter.ty.name);
+					let base = abi_type(reg, &parameter.ty.name);
 					operation.arguments.push(Argument {
 						name: name.clone(),
 						ty: format!("Option<&mut [{base}]>"),
@@ -669,7 +677,7 @@ fn operation(reg: &Registry, command: &CommandDecl, recipe: Recipe) -> Result<Op
 				"unsupported array count type"
 			);
 			let first = argument_name(arrays[0]);
-			let count_type = abi_type(&parameter.ty.name);
+			let count_type = abi_type(reg, &parameter.ty.name);
 			if parameter.ty.name == "size_t" {
 				writeln!(operation.checks, "let {name} = {first}.len();").unwrap();
 			} else {
@@ -699,7 +707,7 @@ fn operation(reg: &Registry, command: &CommandDecl, recipe: Recipe) -> Result<Op
 				.parse()
 				.context("fixed array extent must be numeric")?;
 			ensure!(extent > 0, "fixed array extent must be positive");
-			let base = abi_type(&parameter.ty.name);
+			let base = abi_type(reg, &parameter.ty.name);
 			(
 				format!("&[{base}; {extent}]"),
 				format!("{name}.as_ptr()"),
@@ -707,7 +715,7 @@ fn operation(reg: &Registry, command: &CommandDecl, recipe: Recipe) -> Result<Op
 			)
 		} else if parameter.ty.pointers.is_empty() {
 			(
-				abi_type(&parameter.ty.name),
+				abi_type(reg, &parameter.ty.name),
 				name.clone(),
 				"Default::default()".into(),
 			)
@@ -726,7 +734,7 @@ fn operation(reg: &Registry, command: &CommandDecl, recipe: Recipe) -> Result<Op
 			let base = if parameter.ty.name == "void" {
 				"u8".into()
 			} else {
-				abi_type(&parameter.ty.name)
+				abi_type(reg, &parameter.ty.name)
 			};
 			let cast = if parameter.ty.name == "void" {
 				".cast()"
@@ -824,7 +832,7 @@ fn operation(reg: &Registry, command: &CommandDecl, recipe: Recipe) -> Result<Op
 /// Mock-only nonzero identities. These never reach a native implementation or
 /// get dereferenced; comparisons run inside exact-prototype mock functions.
 fn native_fixture(reg: &Registry, parameter: &Parameter, index: usize) -> Result<String> {
-	let ty = crate::emit_pfn::qualified_parameter_type(&parameter.ty);
+	let ty = crate::emit_pfn::parameter_type_for(&parameter.ty, reg, true);
 	let seed = 0x1234_0000_u64 + index as u64 * 0x100;
 	if !parameter.ty.pointers.is_empty() || !parameter.ty.arrays.is_empty() {
 		let pointer = format!("std::ptr::without_provenance_mut::<std::ffi::c_void>({seed})");
@@ -876,7 +884,7 @@ fn emit_native_mock_test(
 	let owner = operation.owner;
 	let context = operation.context;
 	let cfg = protect::cfg(&command.guards);
-	let return_type = crate::emit_pfn::qualified_type(&command.return_type);
+	let return_type = crate::emit_pfn::type_str_for(&command.return_type, reg, "'_", true);
 	let mut parameters = Vec::new();
 	let mut equal = Vec::new();
 	let mut inputs = Vec::new();
@@ -884,7 +892,7 @@ fn emit_native_mock_test(
 		let local = format!("arg_{index}");
 		parameters.push(format!(
 			"{local}: {}",
-			crate::emit_pfn::qualified_parameter_type(&parameter.ty)
+			crate::emit_pfn::parameter_type_for(&parameter.ty, reg, true)
 		));
 		let expected = if index == 0 && matches!(parameter.ty.name.as_str(), "VkDevice" | "VkInstance")
 		{

@@ -1,7 +1,7 @@
 //! Independent exact-PFN image lifecycle, storage-domain and chain-admission traces.
 use super::*;
 
-fn info(tiling: vk::ImageTiling) -> vk::ImageCreateInfo {
+fn info(tiling: vk::ImageTiling) -> vk::ImageCreateInfo<'static> {
 	vk::ImageCreateInfo {
 		image_type: vk::ImageType::_2D,
 		format: vk::Format::R8G8B8A8_UNORM,
