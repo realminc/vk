@@ -97,17 +97,47 @@ def main():
     }
     #[cfg(feature = "allocator")]
     {
+        let _ = vk::Allocator::new_with_granularity;
+        let _ = vk::Allocator::allocate_with_options;
+        let _ = vk::Allocator::find_memory_type;
+        let _ = vk::Allocator::find_memory_type_for_buffer_info;
+        let _ = vk::Allocator::find_memory_type_for_image_info;
+        let _ = vk::mem::allocate_with_options;
+        let _ = vk::mem::find_memory_type;
+        let _ = vk::mem::find_memory_type_for_buffer_info;
+        let _ = vk::mem::find_memory_type_for_image_info;
+        let _ = vk::Allocator::allocate_for_buffer;
+        let _ = vk::Allocator::allocate_for_image;
+        let _ = vk::mem::allocate_for_buffer;
+        let _ = vk::mem::allocate_for_image;
+        let _ = vk::Allocator::bind_buffer_memory;
+        let _ = vk::Allocator::bind_image_memory;
+        let _ = vk::mem::bind_buffer_memory;
+        let _ = vk::mem::bind_image_memory;
+        let _ = vk::Allocator::trim;
+        let _ = vk::Allocator::trim_with_budget;
+        let _ = vk::mem::trim;
+        let _ = vk::mem::trim_with_budget;
+        assert_eq!(vk::mem::TrimStats::default().block_bytes, 0);
         let _ = vk::Allocator::create_image_with_options;
-        let _ = vk::memory::create_image_with_options;
+        let _ = vk::mem::create_image_with_options;
         let _ = vk::Allocator::query_budget;
-        let options = vk::memory::AllocationCreateInfo {
-            usage: vk::memory::MemoryUsage::PreferDevice,
-            policy: vk::memory::AllocationPolicy::Adaptive { block_size: 65536, min_block_size: 4096 },
+        let _ = vk::Allocator::allocation_info;
+        let _ = vk::mem::allocation_info;
+        let _: Option<vk::AllocationInfo> = None;
+        let _: Option<vk::Pool> = None;
+        let _ = vk::Allocator::create_pool;
+        let _ = vk::mem::create_pool;
+        let _ = vk::Allocator::destroy_pool;
+        let _ = vk::mem::pool_statistics;
+        let options = vk::mem::AllocationCreateInfo {
+            usage: vk::mem::MemoryUsage::PreferDevice,
+            policy: vk::mem::AllocationPolicy::Adaptive { block_size: 65536, min_block_size: 4096 },
             ..Default::default()
         };
         assert!(!options.persistent_map);
         let mut block = vk::VirtualBlock::new(4096).unwrap();
-        let mut allocation = block.allocate(64, 16, vk::memory::PlacementStrategy::Default).unwrap();
+        let mut allocation = block.allocate(64, 16, vk::mem::PlacementStrategy::Default).unwrap();
         assert_eq!(block.allocation_info(&allocation).unwrap().offset, 0);
         block.free(&mut allocation).unwrap();
     }

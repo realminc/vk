@@ -14,7 +14,7 @@ autotests = false
 description = "Rust Vulkan bindings for graphics and GPU compute, with cached dispatch and a native allocator"
 include = [
   "/Cargo.toml", "/Cargo.lock", "/src/rs/**", "/test/rs/test_*.rs",
-  "/test/rs/construction/**", "/test/rs/load/**", "/test/rs/memory/**",
+  "/test/rs/construction/**", "/test/rs/load/**", "/test/rs/mem/**",
   "/README.md", "/CHANGELOG.md", "/NOTICE.md", "/rustfmt.toml",
   "/LICENSE", "/license/khronos/Apache-2.0.txt", "/LICENSE-VMA-MIT",
   "/docs/external/qualification.md", "/registry/SOURCES.md",
@@ -34,7 +34,7 @@ members = ["tool/gen"]
 default-members = [".", "tool/gen"]
 
 [workspace.package]
-version = "0.6.0+1.4.365"
+version = "0.7.0+1.4.365"
 edition = "2024"
 rust-version = "1.98.1"
 license = "MIT"
@@ -88,5 +88,5 @@ name = "load"
 path = "test/rs/test_load.rs"
 
 [[test]]
-name = "memory"
-path = "test/rs/test_memory.rs"
+name = "mem"
+path = "test/rs/test_mem.rs"

@@ -28,7 +28,9 @@ def make_archive(directory, mutation=None, version="0.3.0"):
         "src/rs/lib.rs": b'#[cfg(test)]\n#[path="../../test/rs/load/test_entry.rs"]\nmod tests;\n',
         "test/rs/load/test_entry.rs": b"", "test/rs/test_lib.rs": b"",
         "test/rs/test_command.gen.rs": b"",
-        "test/rs/test_load.rs": b"", "test/rs/test_memory.rs": b"",
+        "test/rs/test_load.rs": b"",
+        "test/rs/test_mem.rs": b'#[path="mem/test_allocator.rs"]\nmod allocator;\n',
+        "test/rs/mem/test_allocator.rs": b"",
     }
     files["Cargo.toml"] = files["Cargo.toml"].replace(b'version="0.3.0"', f'version="{version}"'.encode())
     if mutation:
@@ -59,10 +61,14 @@ class ArchiveTest(unittest.TestCase):
         files = self.check()
         self.assertIn("src/rs/lib.rs", files)
         self.assertIn("test/rs/test_command.gen.rs", files)
+        self.assertIn("test/rs/mem/test_allocator.rs", files)
 
     def test_missing_test_input_and_private_inventory_fail(self):
         for mutation in (
             lambda files: files.pop("test/rs/load/test_entry.rs"),
+            lambda files: files.pop("test/rs/mem/test_allocator.rs"),
+            lambda files: files.pop("test/rs/test_mem.rs"),
+            lambda files: files.update({"test/rs/memory/test_allocator.rs": b""}),
             lambda files: files.update({"../escape": b""}),
             lambda files: files.update({".cursor/rules/private.mdc": b""}),
             lambda files: files.update({"tool/gen/main.rs": b""}),

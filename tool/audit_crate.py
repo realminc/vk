@@ -16,8 +16,8 @@ def audit(path, version, repository=None):
         "README.md", "CHANGELOG.md", "NOTICE.md", "LICENSE", "license/khronos/Apache-2.0.txt",
         "LICENSE-VMA-MIT", "rustfmt.toml", "docs/external/qualification.md", "registry/SOURCES.md",
     }
-    prefixes = ("src/rs/", "test/rs/construction/", "test/rs/load/", "test/rs/memory/")
-    umbrellas = {f"test/rs/test_{name}.rs" for name in ("lib", "load", "memory")}
+    prefixes = ("src/rs/", "test/rs/construction/", "test/rs/load/", "test/rs/mem/")
+    umbrellas = {f"test/rs/test_{name}.rs" for name in ("lib", "load", "mem")}
     if path.stat().st_size > 10 * 1024 * 1024:
         raise ValueError("crate archive exceeds 10 MiB")
     files = {}

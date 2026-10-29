@@ -144,7 +144,7 @@ jobs:
           export VULKAN_AVAILABLE=1 VULKAN_1_1_AVAILABLE=1 VULKAN_1_2_AVAILABLE=1
           export VULKAN_TIMELINE_AVAILABLE=1
           cargo test -p vkrust --test load --all-features --locked -- --nocapture --test-threads=1
-          cargo test -p vkrust --test memory --all-features --locked -- --nocapture --test-threads=1
+          cargo test -p vkrust --test mem --all-features --locked -- --nocapture --test-threads=1
 
   release:
     name: Publish GitHub development release

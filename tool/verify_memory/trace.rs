@@ -3,7 +3,10 @@ use std::{
 	collections::BTreeMap,
 	io::{self, BufRead},
 };
-use vk::{VirtualAllocation, VirtualBlock, memory::PlacementStrategy};
+use vk::{
+	VirtualAllocation, VirtualBlock,
+	mem::{AllocationAlgorithm, PlacementStrategy},
+};
 
 fn main() {
 	let mut block = None;
@@ -15,7 +18,17 @@ fn main() {
 		let prefix = match words[0] {
 			"b" => {
 				assert!(block.is_none());
-				block = Some(VirtualBlock::new(number(1)).unwrap());
+				block = Some(
+					VirtualBlock::new_with_algorithm(
+						number(1),
+						if words.get(2) == Some(&"1") {
+							AllocationAlgorithm::Linear
+						} else {
+							AllocationAlgorithm::Tlsf
+						},
+					)
+					.unwrap(),
+				);
 				format!("b {}", number(1))
 			}
 			"a" => {
@@ -27,7 +40,12 @@ fn main() {
 					3 => PlacementStrategy::MinOffset,
 					_ => panic!("invalid strategy"),
 				};
-				match block.as_mut().unwrap().allocate(size, alignment, strategy) {
+				let result = if words.get(5) == Some(&"1") {
+					block.as_mut().unwrap().allocate_upper(size, alignment)
+				} else {
+					block.as_mut().unwrap().allocate(size, alignment, strategy)
+				};
+				match result {
 					Ok(allocation) => {
 						let info = block
 							.as_ref()

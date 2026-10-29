@@ -45,31 +45,108 @@ compare layouts, bitfields and available prototypes. Protected-platform and
 provisional C signatures remain separately unqualified.
 
 The public CI configuration adds Linux host checks, Windows/macOS host tests,
-an extracted-crate consumer and explicit Lavapipe compute/load/memory tests.
+an extracted-crate consumer and explicit Lavapipe compute/load/mem tests.
 These are configured gates until an actual workflow run succeeds. Software
 Vulkan execution is correctness evidence for that profile, not physical GPU,
 presentation, video, ray-tracing or performance qualification.
 
 Recorded physical execution is limited to x86-64 Linux, Intel HD Graphics 4400
 (Haswell), Vulkan 1.2 and Mesa. Physical Vulkan 1.3/1.4 execution, other drivers
-and architectures, WSI, positive codec/ray-tracing workloads and external
-interop remain open. Feature promotion/equivalence semantics are also incomplete;
+and architectures, WSI, positive codec/ray-tracing workloads and broader external
+interop remain open. The scoped Linux memory-import profile is described below. Feature promotion/equivalence semantics are also incomplete;
 pointer availability alone does not establish command valid usage.
 
-## Integrated memory
+## Integrated allocator
 
-The opt-in `allocator` feature supplies managed buffers and non-disjoint images,
-separate and class-partitioned pooled storage, bounded block shrinking, automatic
-memory preferences, explicit budget snapshots/local limits, shared mapping, checked
-allocation-relative cache ranges and host-only virtual TLSF placement.
-Native objects still require explicit release after exact completion.
+The opt-in `allocator` feature exposes `vk::mem` and principal root types such
+as `vk::Allocator` and `vk::Allocation`. `use vk::mem as vma` is an optional
+caller-local alias. Free allocator operations and methods share canonical
+implementations; native Vulkan operations remain at the root. For example,
+`vk::create_buffer` creates an unbound native buffer, while
+`vk::mem::create_buffer_with_options` creates, allocates and binds it.
 
-Independent failure injection, interval models and pinned VMA differential
-oracles exercise selected policies. This is not VMA-equivalent memory
-management. Mixed-class block packing, disjoint/external/protected image memory,
-custom pools, defragmentation, concurrency and full cross-device qualification remain
-open. No allocator speed advantage is claimed. Leave `allocator` disabled when
-using a separately qualified memory manager.
+The broad VMA-derived service surface is implemented in Rust. It remains
+Experimental; service presence is distinct from full donor equivalence.
+
+| Area | Implemented scope |
+| --- | --- |
+| Resources and placement | Managed ordinary buffers/non-disjoint images, existing-resource allocation/binding, separate and automatic storage, mixed buffer/image granularity packing, checked atom isolation, custom TLSF/linear pools, aliasing and host-only virtual placement. |
+| Policy and limits | Explicit and usage-based memory selection, bounded block growth/shrinking, dedication, alignment, local limits, native/cached budgets, opt-in within-budget admission and explicit trimming. |
+| Mapping and services | Shared/counted and persistent maps, allocation-relative cache operations, batch allocate/free/cache, host copies, names/user data, detailed statistics/JSON, debug guards/fill and native/CPU callbacks. |
+| Optional capabilities | Captured feature admission for core/KHR buffer device address, priority, protected and coherent memory; borrowed allocation chains, export configuration, explicit platform import accounting, FD/Win32 services and raw disjoint-plane bind2. |
+| Relocation | Explicit bounded multi-pass Fast/Balanced/Full/Extensive contexts, copy plans, ignored/pinned state, stop predicates, mapped/raw/alias-group moves and explicit commit/abort. Consumer copies, completion, resource replacement and descriptor/pointer updates remain explicit. |
+| Host concurrency | Opt-in serialized `SynchronizedAllocator` plus borrowed concurrent custom-pool, default-memory-type and distinct-backing-block phases. Ordinary `Allocator` remains non-Send/non-Sync. |
+
+`AllocationPolicy::Separate` remains the default. Select `Automatic` explicitly
+for heap-sized default pools and native-growth fallback; custom pools retain
+their own policy and identities. This is a deliberate Rust API choice, not an
+assertion of VMA's default behavior.
+
+Construction retains borrowed device/callback/chain dependencies. Native object
+lifetimes, callback user-data validity, GPU completion and external ownership
+transfers remain unsafe caller obligations. No operation or `Drop` implicitly
+submits, waits or destroys Vulkan resources. Explicit `close` requires completed
+cleanup, including empty custom-pool destruction. Mapping/cache operations do
+not establish GPU synchronization. Never infer pixel layout from an optimal
+image's mapped bytes.
+
+### Recorded evidence
+
+The pre-release allocator checkpoint passed 1,024 native-model donor traces
+(756,000 operations), 56 virtual traces (112,344 operations) and 1,600 memory
+preference cases against pinned VMA 3.4.0. These use synthetic native PFNs and
+independent interval/page/accounting models, not physical GPUs. Clang C++
+ASan/UBSan emitted no runtime diagnostics. Individual independently checked
+upper-stack granularity, linear count and large-domain donor discrepancies stay
+scoped regressions; donor agreement alone is insufficient. Mapping hysteresis
+is explicitly disabled in both native trace consumers; enabled caching has
+separate host tests.
+
+The same checkpoint passed 3,423 workspace tests/doctests, all 276 library tests
+under Rust AddressSanitizer, and 12 focused threading tests under ThreadSanitizer
+with an instrumented standard library. This is scoped evidence, not universal
+race freedom or Miri qualification. See the [v0.7.0 release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.7.0.md)
+and actual CI artifacts for the release candidate's rerun results.
+
+Recorded physical memory profiles use Intel HD Graphics 4400 (Haswell), Mesa,
+Vulkan 1.2, x86-64 Linux. Separate core/thread-safety and
+synchronization/thread-safety runs cover serialized work, concurrent custom
+pools, default-memory-type scopes and independent backing blocks. Each of the
+first three profiles completes 512 buffer lifecycles per validation mode;
+the block profile uses four backings and 128 cycles. Only one host-visible type
+is available on that device; cross-type overlap is proved by mocks, not hardware.
+
+Real Linux OPAQUE_FD and DMA-BUF buffer round trips and an OPAQUE_FD linear-image
+round trip also pass both validation modes, checking exact type/size accounting
+and bidirectional mapped payloads. Buffer profiles are host-only; both image
+aliases transition UNDEFINED to GENERAL through explicit submission before host
+pixel writes. These profiles are neither cross-process nor cross-API GPU
+ownership/semaphore-handoff qualification. Windows cached-handle branches are
+cross-compiled; native Windows execution remains open.
+
+### Differences and remaining qualification
+
+- Parallel access uses explicit borrowed phases. Arbitrary allocation/free
+  overlapping map/bind work inside the same vector is not admitted. Poisoned
+  synchronized owners reject access and retain the owner for explicit recovery.
+- Full donor policy/service equivalence and concurrent stress qualification
+  remain open. Rust retains granularity padding as free space and does not add a fallible
+  driver budget query after resource destruction during free. These placement and budget policies differ from the donor; equivalent
+  API availability does not establish identical VMA behavior.
+- Defragmentation's full native copy/data-correctness workloads, external
+  GPU ownership handoff and platform-specific import execution beyond the
+  recorded Linux profiles need broader qualification.
+- Native Windows, Android, Metal, Fuchsia, QNX and OHOS execution; non-coherent,
+  granularity-greater-than-one, positive device-address and device-group hardware
+  profiles remain unqualified. Import property queries and platform resource
+  creation remain caller-owned. Managed disjoint construction and tile heaps
+  are not admitted.
+- Comparative latency, throughput, fragmentation, metadata cost and contention
+  versus VMA are unmeasured. No performance superiority or production-readiness
+  claim follows from removing the C++ bridge or from Rust syntax.
+
+Leave `allocator` disabled when using another memory manager. Native Vulkan
+requirements continue to apply to either route.
 
 ## Distribution
 
@@ -77,7 +154,7 @@ The crates.io package is `vkrust`; its library/import name is `vk`:
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.6" }
+vk = { package = "vkrust", version = "0.7" }
 ```
 
 The public source target is `realminc/vk`. Private engineering history and

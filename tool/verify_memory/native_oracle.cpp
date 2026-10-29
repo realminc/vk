@@ -14,9 +14,11 @@
 #include <vector>
 #include <cstdlib>
 
-static void require(bool value) {
-    if (!value)
+static void require(bool value, unsigned line = __builtin_LINE()) {
+    if (!value) {
+        std::cerr << "native oracle requirement failed at line " << line << '\n';
         std::abort();
+    }
 }
 
 struct Native {
@@ -28,14 +30,15 @@ struct Native {
 struct Region {
     VkBuffer buffer;
     VmaAllocation allocation;
+    unsigned resourceClass;
 };
 
 static std::map<uint64_t, Native> memory;
 static std::map<uint64_t, uint64_t> buffers;
-static uint64_t nextHandle = 100, atom, requestSize, alignment;
+static uint64_t nextHandle = 100, atom, requestSize, alignment, granularity = 1;
 static uint32_t bits, failureType;
 static int failureSite = -1, failureCode;
-static bool coherent;
+static bool coherent, address, automaticPool;
 
 template <class T> static uint64_t number(T handle) {
     return (uint64_t)(uintptr_t)handle;
@@ -54,7 +57,7 @@ static VKAPI_ATTR void VKAPI_CALL properties(VkPhysicalDevice, VkPhysicalDeviceP
     *output = {};
     output->apiVersion = VK_API_VERSION_1_0;
     output->limits.nonCoherentAtomSize = atom;
-    output->limits.bufferImageGranularity = 1;
+    output->limits.bufferImageGranularity = granularity;
     output->limits.maxMemoryAllocationCount = 4096;
 }
 
@@ -62,7 +65,7 @@ static VKAPI_ATTR void VKAPI_CALL memoryProperties(VkPhysicalDevice,
                                                    VkPhysicalDeviceMemoryProperties *output) {
     *output = {};
     output->memoryHeapCount = 1;
-    output->memoryHeaps[0].size = 1ull << 30;
+    output->memoryHeaps[0].size = automaticPool ? 512 * 1024 : 1ull << 30;
     output->memoryHeaps[0].flags = VK_MEMORY_HEAP_DEVICE_LOCAL_BIT;
     output->memoryTypeCount = 3;
     output->memoryTypes[0].propertyFlags = 2 | (coherent ? 4 : 0);
@@ -74,7 +77,13 @@ static VKAPI_ATTR VkResult VKAPI_CALL allocateMemory(VkDevice,
                                                      const VkMemoryAllocateInfo *info,
                                                      const VkAllocationCallbacks *,
                                                      VkDeviceMemory *output) {
-    require(!info->pNext);
+    uint32_t flags = 0;
+    if (info->pNext) {
+        const auto* value = static_cast<const VkMemoryAllocateFlagsInfo*>(info->pNext);
+        require(value->sType == VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO);
+        require(!value->pNext && value->deviceMask == 0);
+        flags = value->flags;
+    }
     VkResult result = status(0, info->memoryTypeIndex);
     uint64_t id = result == VK_SUCCESS ? nextHandle++ : 0;
     if (result == VK_SUCCESS) {
@@ -83,7 +92,10 @@ static VKAPI_ATTR VkResult VKAPI_CALL allocateMemory(VkDevice,
         *output = handle<VkDeviceMemory>(id);
     }
     std::cout << "e allocate " << info->memoryTypeIndex << ' ' << info->allocationSize << ' '
-              << result << ' ' << id << '\n';
+              << result << ' ' << id;
+    if (address) std::cout << ' ' << flags;
+    else require(flags == 0);
+    std::cout << '\n';
     return result;
 }
 
@@ -179,24 +191,28 @@ static VKAPI_ATTR VkResult VKAPI_CALL invalidate(VkDevice,
     return ranges("invalidate", count, data);
 }
 
-// Mandatory VMA PFNs for unused resource families fail immediately if reached.
-static VKAPI_ATTR VkResult VKAPI_CALL createImage(VkDevice,
+// Exact image PFNs share only the synthetic driver's resource bookkeeping.
+static VKAPI_ATTR VkResult VKAPI_CALL createImage(VkDevice device,
                                                   const VkImageCreateInfo *,
-                                                  const VkAllocationCallbacks *,
-                                                  VkImage *) {
-    std::abort();
+                                                  const VkAllocationCallbacks *callbacks,
+                                                  VkImage *output) {
+    VkBufferCreateInfo info{}; info.size = requestSize;
+    VkBuffer buffer = VK_NULL_HANDLE;
+    VkResult result = createBuffer(device, &info, callbacks, &buffer);
+    if (result == VK_SUCCESS) *output = handle<VkImage>(number(buffer));
+    return result;
 }
 
-static VKAPI_ATTR void VKAPI_CALL destroyImage(VkDevice, VkImage, const VkAllocationCallbacks *) {
-    std::abort();
+static VKAPI_ATTR void VKAPI_CALL destroyImage(VkDevice device, VkImage image, const VkAllocationCallbacks *callbacks) {
+    destroyBuffer(device, handle<VkBuffer>(number(image)), callbacks);
 }
 
-static VKAPI_ATTR void VKAPI_CALL imageRequirements(VkDevice, VkImage, VkMemoryRequirements *) {
-    std::abort();
+static VKAPI_ATTR void VKAPI_CALL imageRequirements(VkDevice device, VkImage image, VkMemoryRequirements *output) {
+    requirements(device, handle<VkBuffer>(number(image)), output);
 }
 
-static VKAPI_ATTR VkResult VKAPI_CALL bindImage(VkDevice, VkImage, VkDeviceMemory, VkDeviceSize) {
-    std::abort();
+static VKAPI_ATTR VkResult VKAPI_CALL bindImage(VkDevice device, VkImage image, VkDeviceMemory memory, VkDeviceSize offset) {
+    return bindBuffer(device, handle<VkBuffer>(number(image)), memory, offset);
 }
 
 static VKAPI_ATTR void VKAPI_CALL
@@ -210,11 +226,22 @@ static void checkPointer(const VmaAllocationInfo &info, void *pointer) {
 }
 
 int main() {
+    std::cout << std::unitbuf;
     std::string line, op;
     std::getline(std::cin, line);
     std::istringstream config(line);
     int coherence, separate;
     config >> op >> atom >> coherence >> separate;
+    int customPool = 0;
+    config >> customPool;
+    automaticPool = customPool == 2;
+    int addressMode = 0;
+    config >> addressMode;
+    address = addressMode != 0;
+    config >> granularity;
+    VkDeviceSize heapLimit = 0;
+    size_t minimum = 0, maximum = automaticPool ? 2 : 1;
+    config >> heapLimit >> minimum >> maximum;
     require(op == "b");
     coherent = coherence != 0;
     VmaVulkanFunctions functions{};
@@ -240,15 +267,24 @@ int main() {
     create.physicalDevice = handle<VkPhysicalDevice>(0x3000);
     create.device = handle<VkDevice>(0x2000);
     create.vulkanApiVersion = VK_API_VERSION_1_0;
+    if (address) create.flags |= VMA_ALLOCATOR_CREATE_BUFFER_DEVICE_ADDRESS_BIT;
     create.pVulkanFunctions = &functions;
+    VkDeviceSize heapLimits[VK_MAX_MEMORY_HEAPS];
+    for (auto& value : heapLimits) value = VK_WHOLE_SIZE;
+    heapLimits[0] = heapLimit;
+    if (heapLimit) create.pHeapSizeLimit = heapLimits;
     VmaAllocator allocator = nullptr;
     require(vmaCreateAllocator(&create, &allocator) == VK_SUCCESS);
     VmaPool pool = nullptr;
     if (!separate) {
         VmaPoolCreateInfo p{};
         p.memoryTypeIndex = 0;
-        p.blockSize = 65536;
-        p.maxBlockCount = 1;
+        if (customPool == 3) p.flags = VMA_POOL_CREATE_LINEAR_ALGORITHM_BIT;
+        p.blockSize = automaticPool ? 0 : 65536;
+        p.minBlockCount = minimum;
+        p.maxBlockCount = maximum;
+        if (customPool)
+            p.minAllocationAlignment = 256;
         require(vmaCreatePool(allocator, &p, &pool) == VK_SUCCESS);
     }
     std::map<uint64_t, Region> live;
@@ -266,7 +302,10 @@ int main() {
             buffer.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
             buffer.size = requestSize;
             buffer.usage = VK_BUFFER_USAGE_STORAGE_BUFFER_BIT;
+            if (address && id % 2 == 0) buffer.usage |= VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT;
+            unsigned upper = 0, resourceClass = 0, existing = 0; input >> upper >> resourceClass >> existing;
             VmaAllocationCreateInfo a{};
+            if (upper) a.flags |= VMA_ALLOCATION_CREATE_UPPER_ADDRESS_BIT;
             a.requiredFlags = required;
             a.preferredFlags = preferred;
             a.memoryTypeBits = bits;
@@ -292,9 +331,58 @@ int main() {
             }
             Region region{};
             VmaAllocationInfo info{};
-            ok = vmaCreateBuffer(
-                     allocator, &buffer, &a, &region.buffer, &region.allocation, &info) ==
-                 VK_SUCCESS;
+            region.resourceClass = resourceClass;
+            if (resourceClass == 0) {
+                if (!existing) ok = vmaCreateBuffer(allocator, &buffer, &a, &region.buffer, &region.allocation, &info) == VK_SUCCESS;
+                else {
+                    VkResult status = createBuffer(create.device, &buffer, nullptr, &region.buffer);
+                    const bool created = status == VK_SUCCESS;
+                    bool allocated = false;
+                    if (created) {
+                        VkMemoryRequirements req{};
+                        requirements(create.device, region.buffer, &req);
+                        status = existing == 2 ? vmaAllocateMemory(allocator, &req, &a, &region.allocation, &info) : vmaAllocateMemoryForBuffer(allocator, region.buffer, &a, &region.allocation, &info);
+                        allocated = status == VK_SUCCESS;
+                    }
+                    if (allocated) status = vmaBindBufferMemory(allocator, region.allocation, region.buffer);
+                    ok = status == VK_SUCCESS;
+                    if (!ok && created) {
+                        require(buffers.count(number(region.buffer)));
+                        destroyBuffer(create.device, region.buffer, nullptr);
+                        if (allocated) vmaFreeMemory(allocator, region.allocation);
+                    }
+                }
+            } else {
+                require(resourceClass == 1 || resourceClass == 2);
+                VkImageCreateInfo image{};
+                image.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
+                image.imageType = VK_IMAGE_TYPE_2D; image.format = VK_FORMAT_R8G8B8A8_UNORM;
+                image.extent = {7, 9, 1}; image.mipLevels = 1; image.arrayLayers = 1;
+                image.samples = VK_SAMPLE_COUNT_1_BIT;
+                image.tiling = resourceClass == 1 ? VK_IMAGE_TILING_LINEAR : VK_IMAGE_TILING_OPTIMAL;
+                image.usage = VK_IMAGE_USAGE_TRANSFER_DST_BIT;
+                VkImage outputImage = VK_NULL_HANDLE;
+                if (!existing) ok = vmaCreateImage(allocator, &image, &a, &outputImage, &region.allocation, &info) == VK_SUCCESS;
+                else {
+                    VkResult status = createImage(create.device, &image, nullptr, &outputImage);
+                    const bool created = status == VK_SUCCESS;
+                    bool allocated = false;
+                    if (created) {
+                        VkMemoryRequirements req{};
+                        imageRequirements(create.device, outputImage, &req);
+                        status = existing == 2 ? vmaAllocateMemory(allocator, &req, &a, &region.allocation, &info) : vmaAllocateMemoryForImage(allocator, outputImage, &a, &region.allocation, &info);
+                        allocated = status == VK_SUCCESS;
+                    }
+                    if (allocated) status = vmaBindImageMemory(allocator, region.allocation, outputImage);
+                    ok = status == VK_SUCCESS;
+                    if (!ok && created) {
+                        require(buffers.count(number(outputImage)));
+                        destroyImage(create.device, outputImage, nullptr);
+                        if (allocated) vmaFreeMemory(allocator, region.allocation);
+                    }
+                }
+                region.buffer = handle<VkBuffer>(number(outputImage));
+            }
             if (ok) {
                 output[0] = number(region.buffer);
                 output[1] = number(info.deviceMemory);
@@ -334,7 +422,8 @@ int main() {
                               : vmaInvalidateAllocation(allocator, region.allocation, offset, size);
                 require(result == VK_SUCCESS);
             } else if (op == "f") {
-                vmaDestroyBuffer(allocator, region.buffer, region.allocation);
+                if (region.resourceClass == 0) vmaDestroyBuffer(allocator, region.buffer, region.allocation);
+                else vmaDestroyImage(allocator, handle<VkImage>(number(region.buffer)), region.allocation);
                 live.erase(id);
             } else
                 std::abort();
@@ -342,6 +431,25 @@ int main() {
         VmaTotalStatistics stats{};
         if (!closed)
             vmaCalculateStatistics(allocator, &stats);
+        if (!closed && pool) {
+            VmaStatistics poolStats{};
+            vmaGetPoolStatistics(allocator, pool, &poolStats);
+            if (customPool == 3) {
+                // Pinned AddStatistics starts the second ring vector at the first
+                // vector's null-prefix count. Keep this known undercount visible;
+                // the independent model still checks detailed/live counts exactly.
+                VmaDetailedStatistics detailedPool{};
+                vmaCalculatePoolStatistics(allocator, pool, &detailedPool);
+                require(detailedPool.statistics.allocationCount == stats.total.statistics.allocationCount);
+                require(poolStats.allocationCount <= detailedPool.statistics.allocationCount);
+                if (poolStats.allocationCount != detailedPool.statistics.allocationCount)
+                    std::cout << "e linear_pool_count " << poolStats.allocationCount << ' '
+                              << detailedPool.statistics.allocationCount << '\n';
+            } else require(poolStats.allocationCount == stats.total.statistics.allocationCount);
+            require(poolStats.allocationBytes == stats.total.statistics.allocationBytes);
+            require(poolStats.blockCount == stats.total.statistics.blockCount);
+            require(poolStats.blockBytes == stats.total.statistics.blockBytes);
+        }
         size_t mapped = 0;
         for (const auto &entry : memory)
             mapped += entry.second.mapped;

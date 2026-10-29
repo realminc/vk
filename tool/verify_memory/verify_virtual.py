@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Replay pinned VMA virtual-TLSF traces against the public Rust API and interval model."""
+"""Replay pinned VMA virtual TLSF/linear traces against the public Rust API and interval model."""
 import argparse
 import hashlib
 import json
@@ -50,8 +50,35 @@ def corpus(seed, capacity, strategy, steps):
     return "\n".join(lines) + "\n"
 
 
+def linear_corpus(seed, capacity, style, steps):
+    rng = random.Random(seed)
+    lines, ids, next_id = [f'b {capacity} 1'], [], 0
+    for step in range(steps):
+        if step % 251 == 0:
+            if step: lines.append('c')
+            ids.clear()
+            if style == 'double':
+                # Keep one live upper anchor so random lower requests cannot
+                # switch to the donor's incompatible ring mode before clear.
+                lines.append(f'a {next_id} 1 1 0 1')
+                next_id += 1
+        if ids and rng.randrange(3) == 0:
+            choice = 0 if style == 'ring' else -1 if style == 'stack' else rng.randrange(len(ids))
+            lines.append(f'f {ids.pop(choice)}')
+        else:
+            size = rng.choice([1, 7, 8, 63, 64, 65, 257, 1025])
+            alignment = 1 << rng.randrange(10)
+            if capacity > 1 << 32 and rng.randrange(4) == 0: size <<= 20
+            upper = int(style == 'double' and rng.randrange(2) == 0)
+            lines.append(f'a {next_id} {size} {alignment} {rng.randrange(4)} {upper}')
+            ids.append(next_id)
+            next_id += 1
+    lines.append('c')
+    return '\n'.join(lines) + '\n'
+
+
 def model(trace, output):
-    live, capacity = {}, None
+    live, capacity, linear, upper_ids = {}, None, False, set()
     commands, rows = trace.splitlines(), output.splitlines()
     assert len(commands) == len(rows)
     for step, (command, row) in enumerate(zip(commands, rows)):
@@ -60,8 +87,10 @@ def model(trace, output):
         assert values[0] == op, step
         if op == "b":
             capacity = int(words[1])
+            linear = len(words) == 3 and words[2] == "1"
         elif op == "a":
-            identity, size, alignment, strategy = map(int, words[1:])
+            identity, size, alignment, strategy = map(int, words[1:5])
+            upper = len(words) == 6 and words[5] == "1"
             assert int(values[1]) == identity and int(values[4]) == size
             cursor, first_fit = 0, None
             for start, end in sorted((o, o + n) for o, n in live.values()) + [(capacity, capacity)]:
@@ -70,20 +99,46 @@ def model(trace, output):
                     first_fit = aligned
                     break
                 cursor = end
+            if linear:
+                # Independent chronological-live envelope: unlike the implementation,
+                # this model keeps no paired vectors, tombstones or null counters.
+                lower = [(o, n) for i, (o, n) in live.items() if i not in upper_ids]
+                high = [(o, n) for i, (o, n) in live.items() if i in upper_ids]
+                wrapped = any(a[0] > b[0] for a, b in zip(lower, lower[1:]))
+                if upper:
+                    assert not wrapped, (step, 'undefined donor ring/upper mixture')
+                    end = min((o for o, _ in high), default=capacity)
+                    candidate = (end - size) // alignment * alignment if end >= size else -1
+                    begin = max((o + n for o, n in lower), default=0)
+                    expected = candidate if candidate >= begin else None
+                else:
+                    base = lower[-1][0] + lower[-1][1] if lower else 0
+                    end = lower[0][0] if wrapped else min((o for o, _ in high), default=capacity)
+                    candidate = (base + alignment - 1) // alignment * alignment
+                    expected = candidate if candidate <= end and size <= end - candidate else None
+                    if expected is None and not wrapped and not high:
+                        end = lower[0][0] if lower else capacity
+                        expected = 0 if size <= end else None
+                assert bool(int(values[2])) == (expected is not None), (step, command, 'linear exhaustion', expected)
             if int(values[2]):
                 offset = int(values[3])
                 assert first_fit is not None and offset % alignment == 0 and offset + size <= capacity, (step, command)
-                if strategy == 3:
+                if strategy == 3 and not linear:
                     assert offset == first_fit, (step, command)
                 assert all(offset + size <= o or o + n <= offset for o, n in live.values()), step
+                if linear:
+                    assert offset == expected, (step, command, offset, expected)
                 live[identity] = offset, size
+                if upper: upper_ids.add(identity)
             else:
-                assert first_fit is None, (step, command, "false exhaustion")
+                assert linear or first_fit is None, (step, command, "false exhaustion")
         elif op == "f":
             assert values[1] == words[1]
             live.pop(int(words[1]), None)
+            upper_ids.discard(int(words[1]))
         elif op == "c":
             live.clear()
+            upper_ids.clear()
         else:
             raise AssertionError(command)
         cursor, spans = 0, []
@@ -120,7 +175,7 @@ def main():
     if args.sanitize:
         environment['ASAN_OPTIONS'] = 'halt_on_error=1:abort_on_error=1:detect_leaks=1'
         environment['UBSAN_OPTIONS'] = 'halt_on_error=1:print_stacktrace=1'
-    cpp = os.environ.get('CXX', 'c++')
+    cpp = os.environ.get('CXX', 'clang++')
     flags = ['-std=c++17', '-O1', '-g0']
     if args.sanitize:
         flags += ['-fsanitize=address,undefined', '-fno-omit-frame-pointer']
@@ -149,6 +204,25 @@ def main():
                 model(trace, rust)
                 count += 1
                 operations += len(trace.splitlines())
+    linear_count = 0
+    for style in ['ring', 'stack', 'double']:
+        for capacity in [257, 4099, 65537, (1 << 36) + 3]:
+            for seed in [0xacbb9391, 0x3aa92122]:
+                trace = linear_corpus(seed, capacity, style, args.steps)
+                name = f'linear-{style}-{capacity}-{seed}'
+                (root / (name + '.trace')).write_text(trace)
+                c = replay(root / 'vma-trace', trace, environment)
+                rust = replay(root / 'rust-target/debug/vk-virtual-trace', trace, environment)
+                (root / (name + '.vma')).write_text(c)
+                (root / (name + '.rust')).write_text(rust)
+                if c != rust:
+                    for step, (left, right) in enumerate(zip(c.splitlines(), rust.splitlines())):
+                        if left != right: raise AssertionError((name, step, trace.splitlines()[step], left, right))
+                    raise AssertionError((name, 'output length mismatch'))
+                model(trace, rust)
+                count += 1
+                linear_count += 1
+                operations += len(trace.splitlines())
     # Reproduce the pinned donor's narrow first-map loss above class 31.
     # This intentional full-u64 correction is kept separate from parity traces.
     maximum = (1 << 64) - 1
@@ -161,7 +235,7 @@ def main():
     model(large, rust)
     assert c.splitlines()[4].split()[:3] == ['a', '2', '0']
     assert rust.splitlines()[4].split()[:4] == ['a', '2', '1', '0']
-    report = {'donor': fetch_donor.COMMIT, 'package': str(args.package.resolve()), 'traces': count, 'operations': operations, 'sanitize_cpp': args.sanitize, 'large_domain_regressions': 1, 'runtime_diagnostics': 0,
+    report = {'donor': fetch_donor.COMMIT, 'package': str(args.package.resolve()), 'traces': count, 'linear_traces': linear_count, 'operations': operations, 'sanitize_cpp': args.sanitize, 'large_domain_regressions': 1, 'runtime_diagnostics': 0,
               'cxx': checked([cpp, '--version']).stdout.splitlines()[0], 'rustc': checked(['rustc', '--version']).stdout.strip()}
     (root / 'results.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report))

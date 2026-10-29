@@ -6,7 +6,7 @@
 
 # vk
 
-**Vulkan in Rust. Native bindings, cached dispatch, two ways to call.**
+**Vulkan in Rust. Native bindings, cached dispatch and an integrated allocator.**
 
 Registry-generated Vulkan bindings for graphics, games and GPU compute,
 including the low-level building blocks for AI and ML workloads. The Cargo
@@ -25,7 +25,7 @@ and runtime qualification are separate; see the
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.6" }
+vk = { package = "vkrust", version = "0.7" }
 ```
 
 No Vulkan SDK, C compiler, C++ library or consumer-side generator is needed.
@@ -33,16 +33,16 @@ The default `loader` feature loads the system Vulkan library at runtime.
 
 ## Library and Vulkan versions
 
-The package version is **`0.6.0+1.4.365`**:
+The package version is **`0.7.0+1.4.365`**:
 
 | Version | Meaning |
 | --- | --- |
-| `0.6.0` | This Rust library's API release; Git tag `v0.6.0` |
+| `0.7.0` | This Rust library's API release; Git tag `v0.7.0` |
 | `+1.4.365` | Generated from Vulkan 1.4 headers, revision 365 |
 | `ApplicationInfo::api_version` | The Vulkan API version your application requests at runtime |
 
 Cargo treats the suffix as build metadata, so the dependency requirement stays
-`version = "0.6"`. The suffix identifies the pinned API snapshot; it is not a
+`version = "0.7"`. The suffix identifies the pinned API snapshot; it is not a
 Vulkan 1.4 driver requirement or runtime qualification claim. Applications can
 request Vulkan 1.0, 1.1 or 1.2 and use the commands/features admitted by their
 actual implementation. The examples below request Vulkan 1.0.
@@ -272,7 +272,7 @@ destroying their device or instance, using callbacks compatible with creation.
 The namespace is flat: bindings, StdVideo definitions, dispatch tables, free
 functions and the `Instance` / `Device` wrappers live directly under `vk::`.
 The two public subsystem modules are `vk::load` for library loading and
-`vk::memory` for the work-in-progress allocator.
+`vk::mem` for the Rust-native allocator.
 
 | Item | Rust convention | Native → Rust example |
 | --- | --- | --- |
@@ -316,22 +316,104 @@ caller's responsibility. The
 [API reference](https://docs.rs/vkrust/latest/vk/) documents the Rust contracts
 alongside links to the native Vulkan requirements.
 
-## Work-in-progress allocator
+## Integrated allocator
 
-Enable `features = ["allocator"]` for `vk::Allocator` and `vk::memory`.
-The Rust-native allocator is based on VMA's algorithms and behavior, with VMA
-retained as a development reference and oracle rather than a runtime C++
-dependency. It provides experimental managed buffers/images, separate and
-pooled allocations, automatic memory preferences, explicit budgets and host-only
-virtual placement. Full VMA equivalence remains unfinished. Allocation cleanup
-and native resource destruction are explicit.
+Enable `features = ["allocator"]` for the Rust-native, VMA-derived allocator:
+
+```toml
+[dependencies]
+vk = { package = "vkrust", version = "0.7", features = ["allocator"] }
+```
+
+`vk::mem` owns allocator operations and configuration; `vk::Allocator` is the
+same type as `vk::mem::Allocator`. This keeps allocator-backed creation distinct
+from the native binding `vk::create_buffer`, which creates an unbound buffer.
+Use `use vk::mem as vma;` for a familiar local alias without another crate,
+wrapper or runtime cost. Both spellings are equally valid; the canonical module
+name in this repository is `mem`.
+
+Allocator free functions and methods share one implementation, just like the
+binding API. They take the allocator explicitly and retain Rust naming rather
+than adding a second set of `vma*` symbols:
+
+| Operation | Free function | Method |
+| --- | --- | --- |
+| Create, allocate and bind buffer | `vk::mem::create_buffer_with_options(&mut allocator, &info, &options)` | `allocator.create_buffer_with_options(&info, &options)` |
+| Create, allocate and bind image | `vk::mem::create_image_with_options(&mut allocator, &info, &options)` | `allocator.create_image_with_options(&info, &options)` |
+| Allocate existing buffer's memory | `vk::mem::allocate_for_buffer(&mut allocator, buffer, &options)` | `allocator.allocate_for_buffer(buffer, &options)` |
+| Map an allocation | `vk::mem::map(&mut allocator, &allocation)` | `allocator.map(&allocation)` |
+| Inspect an allocation | `vk::mem::allocation_info(&allocator, &allocation)` | `allocator.allocation_info(&allocation)` |
+| Destroy managed buffer and free memory | `vk::mem::destroy_buffer(&mut allocator, buffer, &mut allocation)` | `allocator.destroy_buffer(buffer, &mut allocation)` |
+
+The following helper returns both objects to its caller for explicit cleanup.
+The caller supplies an allocator constructed for its device, preferably with
+`Allocator::new_from_physical_device(instance, physical_device, device)`:
+
+```rust,no_run
+# #[cfg(feature = "allocator")]
+# mod allocator_example {
+use vk::mem as vma;
+
+/// # Safety
+/// The allocator's device must be live and support this buffer size and usage.
+/// The caller must destroy the returned buffer and free its allocation after
+/// all host and GPU uses complete.
+unsafe fn create_upload_buffer(
+    allocator: &mut vk::Allocator<'_>,
+) -> Result<(vk::Buffer, vk::Allocation), vk::AllocError> {
+    let info = vk::BufferCreateInfo::default()
+        .size(4096)
+        .usage(vk::BufferUsageFlags::TRANSFER_SRC_BIT)
+        .sharing_mode(vk::SharingMode::EXCLUSIVE);
+    let options = vma::AllocationCreateInfo {
+        usage: vma::MemoryUsage::PreferHost,
+        host_access: vma::HostAccess::SequentialWrite,
+        required_flags: vk::MemoryPropertyFlags::HOST_VISIBLE_BIT,
+        policy: vma::AllocationPolicy::Automatic,
+        ..Default::default()
+    };
+
+    // Method spelling: allocator.create_buffer_with_options(&info, &options).
+    // SAFETY: the caller establishes the native valid-usage requirements.
+    unsafe { vma::create_buffer_with_options(allocator, &info, &options) }
+}
+
+/// # Safety
+/// Complete every host/GPU use and release explicit map holds first. The buffer
+/// must still be live and paired with this allocation in this allocator.
+unsafe fn destroy_completed_buffer(
+    allocator: &mut vk::Allocator<'_>,
+    buffer: vk::Buffer,
+    allocation: &mut vk::Allocation,
+) -> Result<(), vk::AllocError> {
+    // Free-function spelling: vma::destroy_buffer(allocator, buffer, allocation).
+    // SAFETY: the caller supplies completion and the matching live pair.
+    unsafe { allocator.destroy_buffer(buffer, allocation) }
+}
+# }
+# fn main() {}
+```
+
+The allocator implements managed buffers/non-disjoint images, mixed-resource
+TLSF/linear pools, automatic memory preferences, mapping and cache operations,
+budgets, callbacks, statistics, virtual placement and explicit multi-pass
+relocation. Optional synchronized access includes borrowed parallel pool,
+memory-type and backing-block phases. The pinned VMA implementation is a
+development oracle; consumers need no C++ allocator or FFI bridge.
+
+The broad allocator service surface is implemented, but remains **experimental**.
+Full VMA equivalence, unrestricted mixed-phase concurrency, broader platform and
+hardware execution, and comparative performance remain unqualified. Allocations
+and native resources need explicit cleanup; operations and `Drop` never submit
+or wait. See [qualification and limitations](https://github.com/realminc/vk/blob/main/docs/external/qualification.md)
+for the exact scope.
 
 ## Features
 
 | Cargo feature | Compiled functionality |
 | --- | --- |
 | `loader` (default) | Dynamic loading, instance/device wrappers and native operations |
-| `allocator` | Work-in-progress native memory allocator; enables `loader` |
+| `allocator` | Experimental Rust-native allocator in `vk::mem`; enables `loader` |
 | `platform-*` | Matching platform-specific ABI declarations |
 | `provisional` | Provisional registry declarations |
 
@@ -347,7 +429,7 @@ cargo run -p vkrust-gen -- --registry registry/vk.xml --video-registry registry/
 ```
 
 Runtime source lives in `src/rs`, generation in `tool/gen`, and tests in
-`test/rs`. Binding source and tests are flat; `load` and `memory` have their own
+`test/rs`. Binding source and tests are flat; `load` and `mem` have their own
 subdirectories. Generated files use singular `*.gen.rs` names. Dev/test builds
 disable incremental compilation and debug information.
 

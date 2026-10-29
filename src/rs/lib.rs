@@ -59,8 +59,9 @@ pub use load::{
 	InitializationFailure, LoadError,
 };
 #[cfg(feature = "allocator")]
-pub mod memory;
+pub mod mem;
 #[cfg(feature = "allocator")]
-pub use memory::{
-	AllocError, AllocRequest, Allocation, Allocator, VirtualAllocation, VirtualBlock,
+pub use mem::{
+	AllocError, AllocRequest, Allocation, AllocationInfo, Allocator, Pool, SynchronizedAllocator,
+	VirtualAllocation, VirtualBlock,
 };

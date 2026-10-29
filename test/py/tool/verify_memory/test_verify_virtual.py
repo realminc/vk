@@ -55,6 +55,25 @@ class VirtualOracleTest(unittest.TestCase):
             with self.assertRaisesRegex(SystemExit, 'unexpected replay diagnostics'):
                 ORACLE.replay(Path('mock-oracle'), '', {})
 
+class LinearOracleTest(unittest.TestCase):
+    def test_linear_stack_is_not_first_fit_and_rejects_wrong_cursor_and_false_exhaustion(self):
+        trace = 'b 64 1\na 0 16 8 0 0\na 1 16 8 0 0\nf 0\na 2 16 8 3 0\nc\n'
+        rows = ['b 64 0 0 64 1 64', 'a 0 1 0 16 1 16 48 1 48',
+                'a 1 1 16 16 2 32 32 1 32', 'f 0 1 16 48 2 32',
+                'a 2 1 32 16 2 32 32 2 16', 'c 0 0 64 1 64']
+        ORACLE.model(trace, '\n'.join(rows))
+        for poison in ['a 2 1 0 16 2 32 32 1 32', 'a 2 0 0 16 1 16 48 2 32']:
+            bad = rows.copy(); bad[4] = poison
+            with self.subTest(poison=poison), self.assertRaises(AssertionError):
+                ORACLE.model(trace, '\n'.join(bad))
+
+    def test_upper_alignment_and_bounds_are_independent_of_donor_agreement(self):
+        trace = 'b 64 1\na 0 17 8 0 1\nc\n'
+        valid = 'b 64 0 0 64 1 64\na 0 1 40 17 1 17 47 2 40\nc 0 0 64 1 64\n'
+        ORACLE.model(trace, valid)
+        for poison in [valid.replace('1 40 17', '1 32 17'), valid.replace('1 40 17', '1 48 17')]:
+            with self.assertRaises(AssertionError): ORACLE.model(trace, poison)
+
 
 if __name__ == '__main__':
     unittest.main()

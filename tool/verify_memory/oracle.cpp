@@ -7,6 +7,7 @@
 #include "vk_mem_alloc.h"
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <unordered_map>
 
 int main() {
@@ -16,7 +17,10 @@ int main() {
     while (std::cin >> op) {
         if (op == "b") {
             uint64_t size; std::cin >> size;
+            std::string rest; std::getline(std::cin, rest);
+            unsigned linear = 0; std::istringstream(rest) >> linear;
             VmaVirtualBlockCreateInfo info{}; info.size = size;
+            if (linear) info.flags = VMA_VIRTUAL_BLOCK_CREATE_LINEAR_ALGORITHM_BIT;
             if (block || vmaCreateVirtualBlock(&info, &block) != VK_SUCCESS) return 2;
             std::cout << "b " << size;
         } else if (op == "a") {
@@ -24,6 +28,11 @@ int main() {
             std::cin >> id >> size >> alignment >> strategy;
             VmaVirtualAllocationCreateInfo info{};
             info.size = size; info.alignment = alignment;
+            // Linear detailed statistics uses non-null userData to identify live entries.
+            // This sentinel is never dereferenced and is not an algorithm adaptation.
+            info.pUserData = reinterpret_cast<void*>(uintptr_t(1));
+            std::string rest; std::getline(std::cin, rest);
+            unsigned upper = 0; std::istringstream(rest) >> upper;
             switch (strategy) {
                 case 0: break;
                 case 1: info.flags = VMA_VIRTUAL_ALLOCATION_CREATE_STRATEGY_MIN_MEMORY_BIT; break;
@@ -31,6 +40,7 @@ int main() {
                 case 3: info.flags = VMA_VIRTUAL_ALLOCATION_CREATE_STRATEGY_MIN_OFFSET_BIT; break;
                 default: return 3;
             }
+            if (upper) info.flags |= VMA_VIRTUAL_ALLOCATION_CREATE_UPPER_ADDRESS_BIT;
             VkDeviceSize offset = 0;
             VmaVirtualAllocation allocation = VK_NULL_HANDLE;
             bool ok = vmaVirtualAllocate(block, &info, &allocation, &offset) == VK_SUCCESS;

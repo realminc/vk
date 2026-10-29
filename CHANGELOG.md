@@ -1,5 +1,148 @@
 # Changelog
 
+## 0.7.0+1.4.365 — 2026-10-29
+
+- Rename the allocator module and mirrored tests to `mem`. Use `vk::mem` or a
+  caller-local `use vk::mem as vma`; principal root type re-exports are unchanged.
+  Allocator free operations and methods retain one canonical implementation,
+  separate from the root Vulkan operations. Update archive audits, donor fixture
+  paths and the public software-Vulkan CI target for the new layout. Initialize
+  lazy test-fixture mutexes before arming host allocation failure injection on
+  Darwin; the callback-only metadata checks remain enforced.
+- Expand the Experimental allocator across mixed buffer/image storage, automatic
+  and custom TLSF/linear pools, mapping/cache services, budgets, callbacks,
+  diagnostics, external imports/exports and explicit multi-pass relocation.
+  Full VMA equivalence, unrestricted mixed-phase concurrency, broader platform
+  execution and comparative performance remain unqualified. See the
+  [release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.7.0.md)
+  for consolidated scope, evidence and migration.
+
+The following entries record implementation checkpoints; qualification applies
+only to the profiles described in the release notes.
+
+
+- Extend borrowed allocator concurrency to default memory types and distinct
+  backing blocks within one pool. Preserve map holds, block order, aggregate
+  reservations and cached Win32 export roots; route partition metadata in one
+  pass. Add real Linux DMA-BUF buffer and opaque-FD linear-image import profiles.
+  Broad platform execution, unrestricted mixed-phase concurrency and comparative
+  VMA performance remain unqualified.
+
+- Add borrowed concurrent custom-pool scopes to SynchronizedAllocator with
+  aggregate in-flight native reservations, lossless mapping/token restoration,
+  callback-owned metadata and poison-preserving recovery. Add real Linux opaque
+  file-descriptor import/export and concurrent-pool runtime profiles; broader
+  qualification remains open.
+
+- Add explicit platform import backing-size/type accounting, resource-specific
+  no-query imports, Metal texture native-zero accounting and correct host-pointer
+  dedication policy. Add opt-in per-allocator serialized threading with scoped
+  unsafe access, poison refusal and owner-preserving recovery. Broader
+  platform/driver execution and qualification remain open.
+
+- Route native allocator registries, names, block/placement storage and service/
+  relocation scratch through borrowed CPU allocation/free callbacks. Preserve
+  fallible reservation and explicit Vulkan cleanup, remove heap token identities
+  and keep caller-owned result/writer allocations separate. Broader donor,
+  platform, hardware, concurrency and performance qualification remain open.
+
+- Add borrowed CPU allocation/free callbacks for virtual TLSF/linear blocks,
+  including growth and diagnostic scratch storage. Preserve fallible placement,
+  host-only cleanup and callback lifetimes; replace virtual heap identities with
+  checked non-reusing tokens. Native CPU metadata routing and broad qualification
+  remain open.
+
+- Add unqualified compatible-vector incremental free-space ordering, mapped-block
+  preferences from host intent, reverse MinTime search and trailing-spare release.
+  Keep linear newest-block policy, exact domain isolation, mapping holds and
+  explicit native cleanup. Consolidated VMA qualification remains open.
+
+- Add cooperative relocation stop predicates, distinct interrupted-pass status,
+  panic rollback and raw/alias-group/mapped allocation moves. Preserve explicit
+  and persistent map counts, alias permissions and guard metadata; keep ordinary
+  free's mapped-allocation rejection. These additions remain unqualified.
+
+- Add unqualified Extensive relocation contexts with persistent evacuation,
+  resource-class packing and cleanup phases. Retain evacuated blocks through
+  the context, release surplus empty blocks explicitly at finish, preserve pool
+  minimums and allow trim recovery after host-only context Drop. Keep broad
+  qualification and remaining relocation/platform/metadata features open.
+
+- Add unqualified Fast/Balanced/Full relocation policies, per-domain fullness
+  ordering retained across context passes, donor average-gap copy heuristics,
+  explicit destination placement and ignored-block destination-only tracking.
+  Replace the unreleased `within_block` switch with `algorithm`; default to
+  Balanced. Consolidated qualification remains open.
+
+- Implement another unqualified allocator batch: borrowed request/pool allocation
+  chains, separate native-chain resource creation, ordinary external imports,
+  per-type exports and FD/Win32 handle services, automatic default pools and
+  mapping hysteresis, persistent relocation contexts and raw disjoint-plane
+  binding. Preserve explicit Vulkan cleanup and import handle-transfer semantics.
+  Full validation and remaining platform/metadata/relocation work are pending.
+
+- Checkpoint an unqualified native allocator service batch: mapping reference
+  counts, batch/cache/copy services, aliasing controls, native callbacks,
+  metadata/statistics/JSON, cached budgets, priority/protected/coherent feature
+  admission, debug fill/guards and explicit relocation passes. Comprehensive
+  tests, donor/package/GPU qualification and remaining VMA features are pending.
+
+- Add resource-aware memory-type queries with exact core/KHR maintenance4 and
+  temporary-resource fallback, raw separate/pooled allocation with conservative
+  granularity and checked binding, and explicit minimum allocation alignment.
+  Reuse managed creation validation, policy, placement, mapping and rollback.
+  `AllocationCreateInfo` gains `min_allocation_alignment` (default zero).
+
+- Add allocation and checked binding for existing buffers/images, with shared
+  managed-resource requirements/dedication/map paths, explicit memory policy,
+  conservative unknown-image granularity and retained caller objects on failure.
+  Validate raw separate bindings and reject repeated or mismatched library binds.
+  Preserve resource-before-storage rollback and guard duplicate native outputs.
+
+- Add explicit allocator `trim` / `trim_with_budget` operations with released
+  native block/byte counts, heap-specific pressure and pool minimum preservation.
+  Follow VMA's local-pressure and partial-free empty-spare cleanup without
+  hot-path native budget queries, host metadata allocation or live relocation.
+
+- Pack buffers and linear/optimal images into shared TLSF/linear native blocks
+  with checked buffer/image granularity pages, independent non-coherent atoms
+  and explicit failure rollback. Query the device limit or supply it through
+  `Allocator::new_with_granularity`; manual construction without it stays
+  conservative. Keep padding free and correct a reproduced pinned-VMA
+  upper-stack page conflict with an independent regression proof.
+
+- Add pinned-VMA linear placement to native custom pools and virtual blocks:
+  explicit individual/free-at-once and multi-block stack lifetimes, single-block
+  ring wrap and downward double-stack allocation. Preserve checked generations,
+  atom padding, mapping, accounting and failure rollback. Reject unsupported
+  upper-address routes before native creation; no native destruction in Drop.
+
+- Add VMA-style automatic custom pools with `block_size = 0`: heap-derived
+  preferred sizes, bounded initial growth/shrinking, reuse across block sizes
+  and pool-owned dedicated fallback. Keep fixed-type compatibility, required
+  dedication, explicit destruction and full pool accounting on every route.
+
+- Admit managed buffer device address from captured enabled core/KHR features.
+  Follow pinned VMA allocation flags for dedicated/raw storage and every pooled
+  block, including custom-pool minimums. Preserve dedication and native failure
+  rollback; capture/replay and the incompatible EXT path remain excluded.
+
+- Add native fixed-type TLSF custom pools based on pinned VMA block-vector
+  semantics: explicit block sizes, transactional minimums, maximum block counts,
+  extra alignment, empty-block retention, checked statistics and explicit
+  destruction. Reuse existing placement, mapping and memory accounting.
+  Policy records borrow their selected pool; stored types may need a lifetime
+  annotation.
+
+- Add checked live `AllocationInfo` snapshots with native binding metadata,
+  actual selected memory properties and allocation-relative mapping pointers.
+  Free and method forms share the same implementation; snapshots neither map
+  storage nor retain its lifetime.
+- Add native allocator policy profiles for storage, persistent upload,
+  readback, separate device/host buffers, ordinary images and raw
+  video-session-style requirements. Extend the pinned VMA replay and actual
+  packaged-consumer proofs to use the live snapshot API.
+
 ## 0.6.0+1.4.365 — 2026-10-26
 
 - Complete the pinned record-construction inventory, including unions, checked
