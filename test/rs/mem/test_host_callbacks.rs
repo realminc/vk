@@ -1,7 +1,7 @@
 //! Public callback-controlled virtual placement and failure/cleanup contracts.
 use vk::{
 	self, AllocError, VirtualBlock,
-	mem::{AllocationAlgorithm, PlacementStrategy},
+	mem::{AllocationAlgorithm, PlacementStrategy, SynchronizedVirtualBlock},
 };
 
 #[path = "host/test_callbacks.rs"]
@@ -207,6 +207,66 @@ fn shared_virtual_diagnostics_use_synchronized_callbacks_without_mutating_placem
 	for mut region in regions {
 		block.free(&mut region).unwrap();
 	}
+	drop(block);
+	let after = tracker.snapshot();
+	assert_eq!((after.live, after.bytes, after.unexpected), (0, 0, 0));
+	assert_eq!(after.successes, after.frees);
+}
+
+#[test]
+fn synchronized_virtual_block_callbacks_survive_worker_cleanup() {
+	let tracker = Tracker::new();
+	let callbacks = tracker.callbacks();
+	// SAFETY: the tracker synchronizes callback state and outlives the block;
+	// its allocation/free code supports all participating threads through Drop.
+	let block = unsafe {
+		SynchronizedVirtualBlock::new_with_callbacks(8192, AllocationAlgorithm::Tlsf, &callbacks)
+	}
+	.unwrap();
+	std::thread::scope(|scope| {
+		for _ in 0..4 {
+			let block = &block;
+			scope.spawn(move || {
+				for _ in 0..32 {
+					let mut region = block.allocate(32, 8, PlacementStrategy::Default).unwrap();
+					block
+						.write_statistics_json(&mut std::io::sink(), true)
+						.unwrap();
+					block.free(&mut region).unwrap();
+				}
+			});
+		}
+	});
+	assert!(block.is_empty().unwrap());
+	std::thread::scope(|scope| {
+		scope.spawn(move || drop(block)).join().unwrap();
+	});
+	let after = tracker.snapshot();
+	assert_eq!((after.live, after.bytes, after.unexpected), (0, 0, 0));
+	assert_eq!(after.successes, after.frees);
+}
+
+#[test]
+fn synchronized_virtual_block_adopts_live_callback_backed_regions() {
+	let tracker = Tracker::new();
+	let callbacks = tracker.callbacks();
+	// SAFETY: the synchronized tracker and callback record remain valid through
+	// adoption, worker access and final host cleanup.
+	let mut ordinary =
+		unsafe { VirtualBlock::new_with_callbacks(4096, AllocationAlgorithm::Tlsf, &callbacks) }
+			.unwrap();
+	let mut region = ordinary
+		.allocate(64, 16, PlacementStrategy::Default)
+		.unwrap();
+	// SAFETY: the same callback/thread contract holds after transferring the block.
+	let block = unsafe { SynchronizedVirtualBlock::new_from_block(ordinary) };
+	std::thread::scope(|scope| {
+		scope.spawn(|| {
+			assert_eq!(block.allocation_info(&region).unwrap().size, 64);
+			block.free(&mut region).unwrap();
+		});
+	});
+	assert!(block.is_empty().unwrap());
 	drop(block);
 	let after = tracker.snapshot();
 	assert_eq!((after.live, after.bytes, after.unexpected), (0, 0, 0));

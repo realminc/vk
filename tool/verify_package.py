@@ -140,6 +140,22 @@ def main():
         let mut allocation = block.allocate(64, 16, vk::mem::PlacementStrategy::Default).unwrap();
         assert_eq!(block.allocation_info(&allocation).unwrap().offset, 0);
         block.free(&mut allocation).unwrap();
+        let _ = vk::SynchronizedAllocator::map;
+        let _ = vk::SynchronizedAllocator::bind_buffer_memory2;
+        let _ = vk::SynchronizedAllocator::create_buffer_with_options;
+        fn send_sync<T: Send + Sync>() {}
+        send_sync::<vk::SynchronizedAllocator<'_>>();
+        send_sync::<vk::SynchronizedVirtualBlock<'_>>();
+        let shared = vk::mem::SynchronizedVirtualBlock::new(4096).unwrap();
+        std::thread::scope(|scope| {
+            scope.spawn(|| {
+                let mut allocation = shared.allocate(64, 16, vk::mem::PlacementStrategy::Default).unwrap();
+                assert_eq!(shared.allocation_info(&allocation).unwrap().size, 64);
+                shared.free(&mut allocation).unwrap();
+            }).join().unwrap();
+        });
+        assert!(shared.is_empty().unwrap());
+        let _exclusive = shared.into_inner().unwrap();
     }
 }
 ''')

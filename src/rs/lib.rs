@@ -63,5 +63,5 @@ pub mod mem;
 #[cfg(feature = "allocator")]
 pub use mem::{
 	AllocError, AllocRequest, Allocation, AllocationInfo, Allocator, Pool, SynchronizedAllocator,
-	VirtualAllocation, VirtualBlock,
+	SynchronizedVirtualBlock, VirtualAllocation, VirtualBlock,
 };

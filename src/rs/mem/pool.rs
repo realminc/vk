@@ -503,7 +503,7 @@ unsafe fn create_block(
 		size: block_size,
 		memory_type_index,
 		metadata,
-		mapping: Mapping::new_with_hysteresis(allocator.mapping_hysteresis),
+		mapping: MappingOwner::new_with_hysteresis(allocator.mapping_hysteresis),
 	});
 	allocator.add_native(block_size, memory_type_index, handle);
 	Ok(())
@@ -512,10 +512,15 @@ unsafe fn create_block(
 fn remove_block(allocator: &mut Allocator<'_>, index: usize) {
 	let block = &mut allocator.blocks[index];
 	debug_assert!(block.metadata.is_empty());
-	debug_assert_eq!(block.mapping.references, 0);
+	debug_assert_eq!(block.mapping.read().references, 0);
 	// SAFETY: empty unmapped block; any cached mapping has no user pointer holds.
-	unsafe { block.mapping.clear_cache(allocator.device, block.handle) }
-		.expect("preflighted cached mapping cleanup");
+	unsafe {
+		block
+			.mapping
+			.write()
+			.clear_cache(allocator.device, block.handle)
+	}
+	.expect("preflighted cached mapping cleanup");
 	// SAFETY: no regions/maps remain; native inverse PFN is immutable and preflighted.
 	unsafe {
 		allocator
@@ -619,7 +624,7 @@ pub(super) fn release_block(allocator: &mut Allocator<'_>, index: usize) {
 				&& !block.defragmentation_hold
 				&& same_domain(block)
 				&& block.metadata.is_empty()
-				&& block.mapping.references == 0
+				&& block.mapping.read().references == 0
 		})
 		.map(|(index, _)| index);
 	if empty {
@@ -643,7 +648,10 @@ pub(super) fn release_block(allocator: &mut Allocator<'_>, index: usize) {
 			.rposition(same_domain)
 			.expect("live block vector");
 		let block = &allocator.blocks[last];
-		if !block.defragmentation_hold && block.metadata.is_empty() && block.mapping.references == 0 {
+		if !block.defragmentation_hold
+			&& block.metadata.is_empty()
+			&& block.mapping.read().references == 0
+		{
 			remove_block(allocator, last);
 		}
 	}
@@ -660,7 +668,10 @@ pub(super) fn trim_blocks(
 	for index in (0..allocator.blocks.len()).rev() {
 		let block = &allocator.blocks[index];
 		let serial = block.pool;
-		if block.defragmentation_hold || block.mapping.references != 0 || !block.metadata.is_empty() {
+		if block.defragmentation_hold
+			|| block.mapping.read().references != 0
+			|| !block.metadata.is_empty()
+		{
 			continue;
 		}
 		let min = serial.map_or(0, |serial| allocator.pools[&serial].info.min_block_count);
@@ -705,7 +716,7 @@ pub(super) fn finish_defragmentation_blocks(allocator: &mut Allocator<'_>) -> Tr
 			continue;
 		}
 		block.defragmentation_hold = false;
-		if !block.metadata.is_empty() || block.mapping.references != 0 {
+		if !block.metadata.is_empty() || block.mapping.read().references != 0 {
 			continue;
 		}
 		let pool = block.pool;

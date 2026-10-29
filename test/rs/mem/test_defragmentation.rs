@@ -184,7 +184,7 @@ fn panicking_stop_predicate_rolls_back_unpublished_mapped_destinations() {
 		context.finish().unwrap();
 		drop(context);
 		assert_eq!(allocator.statistics(), before);
-		assert_eq!(allocator.blocks[0].mapping.references, 2);
+		assert_eq!(allocator.blocks[0].mapping.read().references, 2);
 		destroy_all(&mut allocator, &mut resources);
 	}
 }
@@ -354,7 +354,7 @@ fn mapped_move_preserves_explicit_and_persistent_holds_at_the_new_offset() {
 				proposal.destination.mapped_pointer
 			);
 			assert_eq!(
-				allocator.blocks[0].mapping.references,
+				allocator.blocks[0].mapping.read().references,
 				2 + u32::from(persistent)
 			);
 			assert!(!events().contains(&"map"));
@@ -415,7 +415,7 @@ fn mapped_ignore_and_destroy_release_exactly_their_owned_holds() {
 				assert!(resources[1].1.is_freed());
 			} else {
 				assert_eq!(stats.ignored_allocations, 1);
-				assert_eq!(allocator.blocks[0].mapping.references, 2);
+				assert_eq!(allocator.blocks[0].mapping.read().references, 2);
 				assert_eq!(
 					allocator.mapped_pointer(&resources[1].1).unwrap(),
 					Some(old)
@@ -498,7 +498,7 @@ fn relocation_guard_metadata_survives_and_failed_destroy_keeps_both_regions_live
 		resources[1].0 = new;
 		pass.finish().unwrap();
 		drop(pass);
-		assert_eq!(allocator.blocks[0].mapping.references, 1);
+		assert_eq!(allocator.blocks[0].mapping.read().references, 1);
 		assert_eq!(allocator.validate(&resources[1].1).unwrap().guard_size, 16);
 		assert_eq!(
 			allocator.validate(&resources[1].1).unwrap().guard_offset,
@@ -538,7 +538,7 @@ fn destination_reference_overflow_is_atomic_and_does_not_drop_source_holds() {
 			.get_mut(&resources[1].1.serial)
 			.unwrap()
 			.map_count = u32::MAX;
-		allocator.blocks[0].mapping.references = u32::MAX;
+		allocator.blocks[0].mapping.write().references = u32::MAX;
 		let before = allocator.statistics();
 		clear();
 		assert!(matches!(
@@ -556,14 +556,14 @@ fn destination_reference_overflow_is_atomic_and_does_not_drop_source_holds() {
 				.map_count,
 			u32::MAX
 		);
-		assert_eq!(allocator.blocks[0].mapping.references, u32::MAX);
+		assert_eq!(allocator.blocks[0].mapping.read().references, u32::MAX);
 		assert!(events().is_empty());
 		allocator
 			.live
 			.get_mut(&resources[1].1.serial)
 			.unwrap()
 			.map_count = 1;
-		allocator.blocks[0].mapping.references = 1;
+		allocator.blocks[0].mapping.write().references = 1;
 		allocator.unmap(&resources[1].1).unwrap();
 		destroy_all(&mut allocator, &mut resources);
 	}

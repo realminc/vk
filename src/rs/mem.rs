@@ -7,8 +7,8 @@
 //!
 //! Use `use vk::mem as vma;` for a caller-local alias. This adds no wrapper,
 //! runtime cost or second allocator type; [`crate::Allocator`] is [`Allocator`].
-//! The allocator is Experimental. Full VMA equivalence, unrestricted mixed-phase
-//! concurrency, broad platform execution and comparative performance remain
+//! The allocator is Experimental. Full VMA equivalence, broad concurrent stress,
+//! platform execution and comparative performance remain
 //! unqualified. See the [qualification report](https://github.com/realminc/vk/blob/main/docs/external/qualification.md).
 //!
 //! Allocator operations do not submit or wait. GPU completion, resource
@@ -26,7 +26,7 @@ mod policy;
 mod resource;
 mod selector;
 mod synchronized;
-pub use synchronized::SynchronizedAllocator;
+pub use synchronized::{SynchronizedAllocator, SynchronizedVirtualBlock};
 mod tlsf;
 pub mod virtual_block;
 

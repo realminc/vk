@@ -38,7 +38,7 @@ impl<'callbacks> HostMemory<'callbacks> {
 		})
 	}
 
-	unsafe fn allocate(self, layout: Layout) -> Result<NonNull<u8>, AllocError> {
+	pub(super) unsafe fn allocate(self, layout: Layout) -> Result<NonNull<u8>, AllocError> {
 		debug_assert_ne!(layout.size(), 0);
 		let pointer = if let Some(callbacks) = self.callbacks {
 			// SAFETY: constructor contract covers this borrowed callback and user
@@ -61,7 +61,7 @@ impl<'callbacks> HostMemory<'callbacks> {
 		NonNull::new(pointer).ok_or(AllocError::HostAllocationFailed)
 	}
 
-	unsafe fn deallocate(self, pointer: NonNull<u8>, layout: Layout) {
+	pub(super) unsafe fn deallocate(self, pointer: NonNull<u8>, layout: Layout) {
 		if let Some(callbacks) = self.callbacks {
 			// SAFETY: this owner acquired the live buffer using this callback
 			// family; all elements have been moved/dropped and the borrow remains live.

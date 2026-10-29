@@ -16,6 +16,10 @@ struct GateState {
 struct Gate(Mutex<GateState>, Condvar);
 
 static GATE: Mutex<Option<Arc<Gate>>> = Mutex::new(None);
+static BIND_TARGET: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
+static BIND_GATE: Mutex<Option<Arc<Gate>>> = Mutex::new(None);
+static FAIL_MAP: AtomicBool = AtomicBool::new(false);
+static FAIL_BIND: AtomicBool = AtomicBool::new(false);
 static MAP_GATE: Mutex<Option<Arc<Gate>>> = Mutex::new(None);
 pub(super) static REQ_BITS: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(1);
 
@@ -27,6 +31,10 @@ static REUSE_GATE: Mutex<Option<(u64, Arc<Gate>)>> = Mutex::new(None);
 pub(super) fn reset_native_hooks() {
 	*GATE.lock().unwrap() = None;
 	*MAP_GATE.lock().unwrap() = None;
+	*BIND_GATE.lock().unwrap() = None;
+	BIND_TARGET.store(0, Ordering::SeqCst);
+	FAIL_MAP.store(false, Ordering::SeqCst);
+	FAIL_BIND.store(false, Ordering::SeqCst);
 	REQ_BITS.store(1, Ordering::SeqCst);
 	*REUSE_GATE.lock().unwrap() = None;
 	RECYCLE.store(0, Ordering::SeqCst);
@@ -103,7 +111,22 @@ pub(super) fn allocation_gate() -> bool {
 }
 
 pub(super) fn mapping_gate() -> bool {
+	if FAIL_MAP.swap(false, Ordering::SeqCst) {
+		return false;
+	}
 	let gate = MAP_GATE.lock().unwrap().clone();
+	gate.as_ref().is_none_or(|gate| wait_gate(gate))
+}
+
+pub(super) fn binding_gate(memory: u64) -> bool {
+	let target = BIND_TARGET.load(Ordering::SeqCst);
+	if target != 0 && target != memory {
+		return true;
+	}
+	if FAIL_BIND.swap(false, Ordering::SeqCst) {
+		return false;
+	}
+	let gate = BIND_GATE.lock().unwrap().clone();
 	gate.as_ref().is_none_or(|gate| wait_gate(gate))
 }
 
@@ -773,3 +796,9 @@ fn native_resource_handle_reuse_during_another_pools_destroy_keeps_new_generatio
 
 #[path = "test_scope.rs"]
 mod scope;
+
+#[path = "test_access.rs"]
+mod access;
+
+#[path = "test_native.rs"]
+mod native;

@@ -224,3 +224,22 @@ Unknown resource classes conflict with every native class, even other raw buffer
 The independent model checks that row and rejects poisoned same-page placement
 and missing raw-address flags. These are synthetic driver checks, not physical
 non-coherent or positive BDA qualification.
+
+## Backing concurrency
+
+```bash
+python3 tool/verify_memory/verify_concurrency.py --headers <pinned-header-include-dir> --sanitize
+```
+
+The pinned donor and direct Rust API must each prove that a blocked native map
+or bind permits allocation/free on a different backing in the same custom pool.
+A separate profile checks same-backing native exclusion and four explicit holds
+sharing one native map. Both independent drivers check native ownership and full
+cleanup. The harness validates complete expected outcomes before comparing them;
+poisoned-output Python tests reject serialized execution, leaks, missing profiles
+and unbalanced maps even if both sides would agree. Default execution repeats
+three profiles four times. `--package` selects an extracted crate and `--output`
+retains compile commands, raw stdout/stderr, source hashes and result summaries.
+ASan/UBSan instruments the C++ donor and driver; Rust threading has a separate
+instrumented-stdlib TSan gate. There is no timing or full VMA equivalence claim.
+VMA's same-allocation hold accesses are externally synchronized per its contract.

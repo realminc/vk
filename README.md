@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://github.com/realminc/vk">
-    <img src="https://raw.githubusercontent.com/realminc/oa/main/sdk/asset/docs/readme/realmIdentityAscii.gif" width="100%" alt="Realm animated ASCII identity — vk, Rust Vulkan bindings">
+  <a href="https://dev.realm.software/vk">
+    <img src="https://dev.realm.software/images/realm/coverVulkan.webp" width="100%" alt="VK — native Rust Vulkan bindings, cached dispatch and allocator">
   </a>
 </p>
 
@@ -17,6 +17,8 @@ package is **`vkrust`**; the Rust library and import namespace are **`vk`**.
 [![CI](https://github.com/realminc/vk/actions/workflows/ci.yml/badge.svg)](https://github.com/realminc/vk/actions/workflows/ci.yml)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/realminc/vk/blob/main/LICENSE)
 
+[Realm](https://realm.software/) · [Developer guide](https://dev.realm.software/vk) · [Rust API reference](https://docs.rs/vkrust/latest/vk/)
+
 The project is **experimental**. Registry coverage, enabled device capabilities
 and runtime qualification are separate; see the
 [qualification and limitations](https://github.com/realminc/vk/blob/main/docs/external/qualification.md).
@@ -25,7 +27,7 @@ and runtime qualification are separate; see the
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.7" }
+vk = { package = "vkrust", version = "0.8" }
 ```
 
 No Vulkan SDK, C compiler, C++ library or consumer-side generator is needed.
@@ -33,16 +35,16 @@ The default `loader` feature loads the system Vulkan library at runtime.
 
 ## Library and Vulkan versions
 
-The package version is **`0.7.0+1.4.365`**:
+The package version is **`0.8.0+1.4.365`**:
 
 | Version | Meaning |
 | --- | --- |
-| `0.7.0` | This Rust library's API release; Git tag `v0.7.0` |
+| `0.8.0` | This Rust library's API release; Git tag `v0.8.0` |
 | `+1.4.365` | Generated from Vulkan 1.4 headers, revision 365 |
 | `ApplicationInfo::api_version` | The Vulkan API version your application requests at runtime |
 
 Cargo treats the suffix as build metadata, so the dependency requirement stays
-`version = "0.7"`. The suffix identifies the pinned API snapshot; it is not a
+`version = "0.8"`. The suffix identifies the pinned API snapshot; it is not a
 Vulkan 1.4 driver requirement or runtime qualification claim. Applications can
 request Vulkan 1.0, 1.1 or 1.2 and use the commands/features admitted by their
 actual implementation. The examples below request Vulkan 1.0.
@@ -322,7 +324,7 @@ Enable `features = ["allocator"]` for the Rust-native, VMA-derived allocator:
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.7", features = ["allocator"] }
+vk = { package = "vkrust", version = "0.8", features = ["allocator"] }
 ```
 
 `vk::mem` owns allocator operations and configuration; `vk::Allocator` is the
@@ -397,15 +399,23 @@ unsafe fn destroy_completed_buffer(
 The allocator implements managed buffers/non-disjoint images, mixed-resource
 TLSF/linear pools, automatic memory preferences, mapping and cache operations,
 budgets, callbacks, statistics, virtual placement and explicit multi-pass
-relocation. Optional synchronized access includes borrowed parallel pool,
-memory-type and backing-block phases. The pinned VMA implementation is a
-development oracle; consumers need no C++ allocator or FFI bridge.
+relocation. `SynchronizedAllocator` exposes direct `&self` methods. Its map,
+unmap and bind calls use a stable mutex per native backing, so another backing
+can allocate/free or map/bind concurrently, including within the same pool.
+Placement remains serialized per owner; borrowed pool/type scopes provide
+independent placement owners. Borrowed results, relocation and global services
+use exclusive `with_allocator` access and wait for active native calls.
+`SynchronizedVirtualBlock` optionally serializes host-only placement; VMA's
+virtual blocks themselves require external synchronization. Ordinary `Allocator`
+remains exclusive and non-Send/non-Sync.
 
-The broad allocator service surface is implemented, but remains **experimental**.
-Full VMA equivalence, unrestricted mixed-phase concurrency, broader platform and
-hardware execution, and comparative performance remain unqualified. Allocations
-and native resources need explicit cleanup; operations and `Drop` never submit
-or wait. See [qualification and limitations](https://github.com/realminc/vk/blob/main/docs/external/qualification.md)
+The pinned VMA implementation is a development oracle; consumers need no C++
+allocator or FFI bridge. The broad allocator service surface is implemented,
+but remains **experimental**. Full VMA equivalence, wider concurrent stress,
+platform and hardware execution, and comparative performance remain unqualified.
+Allocations and native resources need explicit cleanup. Host locks do not order
+GPU work or protect escaped mapped bytes; operations and `Drop` never submit or
+wait for the GPU. See [qualification and limitations](https://github.com/realminc/vk/blob/main/docs/external/qualification.md)
 for the exact scope.
 
 ## Features
@@ -432,6 +442,12 @@ Runtime source lives in `src/rs`, generation in `tool/gen`, and tests in
 `test/rs`. Binding source and tests are flat; `load` and `mem` have their own
 subdirectories. Generated files use singular `*.gen.rs` names. Dev/test builds
 disable incremental compilation and debug information.
+
+<p align="center">
+  <a href="https://realm.software/">
+    <img src="https://raw.githubusercontent.com/realminc/oa/main/sdk/asset/docs/readme/realmIdentityAscii.gif" width="100%" alt="Realm animated ASCII identity">
+  </a>
+</p>
 
 ## License
 

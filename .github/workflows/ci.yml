@@ -73,6 +73,7 @@ jobs:
           python3 tool/verify_memory/verify_policy.py --headers target/headers
           python3 tool/verify_memory/verify_virtual.py --headers target/headers --sanitize
           python3 tool/verify_memory/verify_native.py --headers target/headers --sanitize
+          python3 tool/verify_memory/verify_concurrency.py --headers target/headers --sanitize
       - name: Stage API reference and build evidence
         run: |
           mkdir -p dist

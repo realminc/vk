@@ -6,6 +6,7 @@ license.workspace = true
 repository.workspace = true
 rust-version.workspace = true
 readme = "README.md"
+homepage = "https://dev.realm.software/vk"
 documentation = "https://docs.rs/vkrust"
 keywords = ["vulkan", "gpu", "compute", "gamedev", "machine-learning"]
 categories = ["api-bindings", "graphics", "rendering::graphics-api", "game-development", "artificial-intelligence"]
@@ -34,7 +35,7 @@ members = ["tool/gen"]
 default-members = [".", "tool/gen"]
 
 [workspace.package]
-version = "0.7.0+1.4.365"
+version = "0.8.0+1.4.365"
 edition = "2024"
 rust-version = "1.98.1"
 license = "MIT"

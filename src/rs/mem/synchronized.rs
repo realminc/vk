@@ -1,16 +1,30 @@
-//! Opt-in serialized and scoped per-pool native access. Donor: VMA's externally synchronized mode
-//! and map/bind mutual exclusion. Rust adaptation: one explicitly owned mutex,
-//! scoped unsafe access, poison refusal and recovery retaining the native owner.
+//! Opt-in internally synchronized native access, following VMA 3.4.0's vector
+//! and map/bind locks. Rust adaptation: one placement owner, stable per-backing
+//! mutexes, checked native leases, explicit scope partitioning and poison recovery.
 use super::{AllocError, Allocator, AllocatorStats};
-use std::sync::{Mutex, PoisonError, TryLockError};
+use std::sync::{Condvar, Mutex, MutexGuard, PoisonError, TryLockError};
 
-/// One allocator with serialized access and explicit concurrent pool scopes.
+#[path = "synchronized/access.rs"]
+mod access;
+#[path = "synchronized/virtual_block.rs"]
+mod virtual_block;
+pub use virtual_block::SynchronizedVirtualBlock;
+
+/// One allocator with synchronized direct operations and concurrent pool scopes.
 ///
-/// Ordinary operations use one mutex per allocator, never a process-global lock.
-/// Borrowed scopes partition custom pools, default memory types or native blocks
-/// behind independent locks. Their documented placement/configuration boundaries
-/// keep one canonical owner; contention performance remains unqualified. The
-/// ordinary [`Allocator`] keeps exclusive access and has no new Send/Sync impl.
+/// Placement uses one mutex per owner. Direct map/unmap/bind operations acquire
+/// a live allocation lease, then execute under that backing's stable mutex
+/// without the placement mutex. Other backings can map/bind, allocate and free
+/// concurrently, including inside the same pool. Regions sharing one backing
+/// serialize native map/bind work and retain exact explicit/persistent counts.
+/// The first such operation fallibly reserves callback-owned backing metadata.
+///
+/// Borrowed results, relocation and global services use exclusive access and
+/// wait for outstanding native leases. `try_with_allocator` reports busy during
+/// those leases. Borrowed pool/type/block scopes add independent placement
+/// owners for their documented domains. There is no process-global lock or
+/// new Send/Sync assertion on ordinary [`Allocator`]. Performance is unmeasured.
+/// Callbacks must never reenter this owner or create cross-owner lock cycles.
 /// Vulkan completion and mapped-byte synchronization remain caller obligations.
 /// Drop frees CPU metadata only; explicitly close native storage before Drop.
 /// A scoped operation cannot return its allocator borrow:
@@ -48,25 +62,30 @@ use std::sync::{Mutex, PoisonError, TryLockError};
 /// # }
 /// ```
 pub struct SynchronizedAllocator<'device> {
-	inner: Mutex<TransferableAllocator<'device>>,
+	pub(in crate::mem) inner: Mutex<TransferableAllocator<'device>>,
+	idle: Condvar,
 }
 
-struct TransferableAllocator<'device>(Allocator<'device>, bool);
+pub(in crate::mem) struct TransferableAllocator<'device> {
+	pub(in crate::mem) allocator: Allocator<'device>,
+	pub(in crate::mem) poisoned: bool,
+	pub(in crate::mem) active: usize,
+}
 
 // SAFETY: this wrapper is created only by unsafe new, which establishes
 // any-thread validity of every retained native/callback/chain/map reference.
 // CPU containers own their initialized storage; raw mapping pointers are opaque
 // addresses, not Rust references or permission to dereference. Device is Sync.
 // Moving changes no native identity. The wrapper is private and never exposed;
-// exclusive mutex access covers registries, blocks, budgets, native counts and
-// every map/bind/free transition. with_allocator's unsafe contract preserves
+// the placement mutex covers registries, budgets, native counts and leases;
+// stable backing mutexes cover native mapping/binding transitions. with_allocator's unsafe contract preserves
 // these invariants for replacement/registration and all escaping raw pointers.
 // No Sync is asserted for the underlying allocator. Drop only releases CPU/OS
 // metadata, whose any-thread callback contract is retained by the device borrow.
 unsafe impl Send for TransferableAllocator<'_> {}
 
 impl<'device> SynchronizedAllocator<'device> {
-	/// Adopt one allocator for serialized access from any host thread.
+	/// Adopt one allocator for synchronized access from any host thread.
 	/// No native operation, allocation, mapping or thread is started.
 	/// # Safety
 	/// Every retained callback record/code/user datum, pool allocation chain and
@@ -79,8 +98,54 @@ impl<'device> SynchronizedAllocator<'device> {
 	/// No callback may unwind or reenter this same allocator.
 	pub unsafe fn new(allocator: Allocator<'device>) -> Self {
 		Self {
-			inner: Mutex::new(TransferableAllocator(allocator, false)),
+			inner: Mutex::new(TransferableAllocator {
+				allocator,
+				poisoned: false,
+				active: 0,
+			}),
+			idle: Condvar::new(),
 		}
+	}
+
+	pub(in crate::mem) fn lock_owner(
+		&self,
+	) -> Result<MutexGuard<'_, TransferableAllocator<'device>>, AllocError> {
+		let guard = self
+			.inner
+			.lock()
+			.map_err(|_| AllocError::SynchronizationPoisoned)?;
+		if guard.poisoned {
+			return Err(AllocError::SynchronizationPoisoned);
+		}
+		Ok(guard)
+	}
+
+	pub(in crate::mem) fn wait_owner<'owner>(
+		&'owner self,
+		guard: MutexGuard<'owner, TransferableAllocator<'device>>,
+	) -> Result<MutexGuard<'owner, TransferableAllocator<'device>>, AllocError> {
+		let guard = self
+			.idle
+			.wait(guard)
+			.map_err(|_| AllocError::SynchronizationPoisoned)?;
+		if guard.poisoned {
+			return Err(AllocError::SynchronizationPoisoned);
+		}
+		Ok(guard)
+	}
+
+	pub(in crate::mem) fn lock_idle(
+		&self,
+	) -> Result<MutexGuard<'_, TransferableAllocator<'device>>, AllocError> {
+		let mut guard = self.lock_owner()?;
+		while guard.active != 0 {
+			guard = self.wait_owner(guard)?;
+		}
+		Ok(guard)
+	}
+
+	pub(in crate::mem) fn notify_idle(&self) {
+		self.idle.notify_all();
 	}
 
 	/// Run one operation/batch with exclusive access to the canonical allocator.
@@ -102,14 +167,8 @@ impl<'device> SynchronizedAllocator<'device> {
 		&self,
 		operation: impl FnOnce(&mut Allocator<'device>) -> R,
 	) -> Result<R, AllocError> {
-		let mut guard = self
-			.inner
-			.lock()
-			.map_err(|_| AllocError::SynchronizationPoisoned)?;
-		if guard.1 {
-			return Err(AllocError::SynchronizationPoisoned);
-		}
-		Ok(operation(&mut guard.0))
+		let mut guard = self.lock_idle()?;
+		Ok(operation(&mut guard.allocator))
 	}
 
 	/// Attempt one exclusive operation without waiting for another host user.
@@ -128,10 +187,13 @@ impl<'device> SynchronizedAllocator<'device> {
 			Err(TryLockError::WouldBlock) => return Ok(None),
 			Err(TryLockError::Poisoned(_)) => return Err(AllocError::SynchronizationPoisoned),
 		};
-		if guard.1 {
+		if guard.poisoned {
 			return Err(AllocError::SynchronizationPoisoned);
 		}
-		Ok(Some(operation(&mut guard.0)))
+		if guard.active != 0 {
+			return Ok(None);
+		}
+		Ok(Some(operation(&mut guard.allocator)))
 	}
 
 	pub(in crate::mem) fn owner_mut(&mut self) -> &mut Allocator<'device> {
@@ -139,11 +201,11 @@ impl<'device> SynchronizedAllocator<'device> {
 			.inner
 			.get_mut()
 			.unwrap_or_else(PoisonError::into_inner)
-			.0
+			.allocator
 	}
 
 	pub(in crate::mem) fn is_poisoned(&self) -> bool {
-		self.inner.is_poisoned() || self.inner.lock().is_ok_and(|owner| owner.1)
+		self.inner.is_poisoned() || self.inner.lock().is_ok_and(|owner| owner.poisoned)
 	}
 
 	/// Run independent custom pools concurrently through borrowed child owners.
@@ -274,19 +336,13 @@ impl<'device> SynchronizedAllocator<'device> {
 		selection: super::allocator::Selection<'_>,
 		operation: impl FnOnce(&[Self]) -> R,
 	) -> Result<R, AllocError> {
-		let mut guard = self
-			.inner
-			.lock()
-			.map_err(|_| AllocError::SynchronizationPoisoned)?;
-		if guard.1 {
-			return Err(AllocError::SynchronizationPoisoned);
-		}
+		let mut guard = self.lock_idle()?;
 		// SAFETY: the parent lock excludes all ordinary access; caller retains
 		// every worker inside the borrowed scope and preserves any-thread state.
 		let (result, poisoned) =
-			unsafe { super::allocator::with_domains(&mut guard.0, selection, operation) }?;
+			unsafe { super::allocator::with_domains(&mut guard.allocator, selection, operation) }?;
 		if poisoned {
-			guard.1 = true;
+			guard.poisoned = true;
 			return Err(AllocError::SynchronizationPoisoned);
 		}
 		Ok(result)
@@ -296,14 +352,8 @@ impl<'device> SynchronizedAllocator<'device> {
 	/// # Errors
 	/// Returns SynchronizationPoisoned after a closure panic.
 	pub fn statistics(&self) -> Result<AllocatorStats, AllocError> {
-		let guard = self
-			.inner
-			.lock()
-			.map_err(|_| AllocError::SynchronizationPoisoned)?;
-		if guard.1 {
-			return Err(AllocError::SynchronizationPoisoned);
-		}
-		Ok(guard.0.statistics())
+		let guard = self.lock_idle()?;
+		Ok(guard.allocator.statistics())
 	}
 
 	/// Recover the exclusive allocator without performing native cleanup.
@@ -315,9 +365,9 @@ impl<'device> SynchronizedAllocator<'device> {
 	#[allow(clippy::result_large_err)]
 	pub fn into_inner(self) -> Result<Allocator<'device>, PoisonError<Allocator<'device>>> {
 		match self.inner.into_inner() {
-			Ok(owner) if !owner.1 => Ok(owner.0),
-			Ok(owner) => Err(PoisonError::new(owner.0)),
-			Err(error) => Err(PoisonError::new(error.into_inner().0)),
+			Ok(owner) if !owner.poisoned => Ok(owner.allocator),
+			Ok(owner) => Err(PoisonError::new(owner.allocator)),
+			Err(error) => Err(PoisonError::new(error.into_inner().allocator)),
 		}
 	}
 }

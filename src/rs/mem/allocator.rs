@@ -8,7 +8,7 @@
 use super::{
 	AllocError, AllocRequest, Allocation, AllocationCreateInfo, AllocationInfo, AllocationPolicy,
 	AllocatorStats, MemoryPriority, MemoryTypeSelector,
-	block::{Block, BlockDomain, Mapping},
+	block::{Block, BlockDomain, MappingOwner, MappingRead, MappingWrite},
 	granularity::{Granularity, ResourceClass},
 	host::{HostMap, HostMemory, HostString, HostVec, Identity},
 	metadata::{AllocationAlgorithm, Metadata, Placement},
@@ -16,7 +16,7 @@ use super::{
 use crate::{self as vk, Device, load::CallError};
 
 #[derive(Clone, Copy, PartialEq, Eq)]
-enum Resource {
+pub(in crate::mem) enum Resource {
 	Buffer(vk::Buffer),
 	Image(vk::Image),
 }
@@ -29,6 +29,21 @@ impl Resource {
 		}
 	}
 }
+
+impl From<vk::Buffer> for Resource {
+	fn from(buffer: vk::Buffer) -> Self {
+		Self::Buffer(buffer)
+	}
+}
+
+impl From<vk::Image> for Resource {
+	fn from(image: vk::Image) -> Self {
+		Self::Image(image)
+	}
+}
+
+#[path = "synchronized/native.rs"]
+pub(in crate::mem) mod native;
 
 fn import_resource(resource: Option<super::ImportResource>) -> Option<Resource> {
 	resource.map(|resource| match resource {
@@ -62,7 +77,9 @@ struct Live<'callbacks> {
 	debug_ready: bool,
 	class: ResourceClass,
 	placement: Option<Placement>,
-	mapping: Mapping,
+	mapping: MappingOwner<'callbacks>,
+	native_users: u32,
+	pending_binding: Option<(Resource, Option<vk::ImageAspectFlagBits>)>,
 }
 
 #[derive(Clone, Copy)]
@@ -820,12 +837,12 @@ impl<'device> Allocator<'device> {
 		}
 	}
 
-	fn mapping(&self, allocation: &Allocation) -> &Mapping {
+	fn mapping_owner(&self, allocation: &Allocation) -> &MappingOwner<'device> {
 		if self.live[&allocation.serial].placement.is_some() {
 			&self
 				.blocks
 				.iter()
-				.find(|b| b.handle == allocation.handle)
+				.find(|block| block.handle == allocation.handle)
 				.expect("live block")
 				.mapping
 		} else {
@@ -833,12 +850,12 @@ impl<'device> Allocator<'device> {
 		}
 	}
 
-	fn mapping_mut(&mut self, allocation: &Allocation) -> &mut Mapping {
+	fn mapping_owner_mut(&mut self, allocation: &Allocation) -> &mut MappingOwner<'device> {
 		if self.live[&allocation.serial].placement.is_some() {
 			&mut self
 				.blocks
 				.iter_mut()
-				.find(|b| b.handle == allocation.handle)
+				.find(|block| block.handle == allocation.handle)
 				.expect("live block")
 				.mapping
 		} else {
@@ -848,6 +865,14 @@ impl<'device> Allocator<'device> {
 				.expect("validated live region")
 				.mapping
 		}
+	}
+
+	fn mapping(&self, allocation: &Allocation) -> MappingRead<'_> {
+		self.mapping_owner(allocation).read()
+	}
+
+	fn mapping_mut(&mut self, allocation: &Allocation) -> MappingWrite<'_> {
+		self.mapping_owner_mut(allocation).write()
 	}
 
 	fn contains_memory(&self, memory: vk::DeviceMemory) -> bool {
@@ -1230,6 +1255,7 @@ fn publish(allocator: &mut Allocator<'_>, region: Region) -> Allocation {
 			.find(|block| block.handle == handle)
 			.expect("published pooled block")
 			.mapping
+			.write()
 			.post_alloc();
 	}
 	let serial = allocator.next_serial;
@@ -1279,7 +1305,9 @@ fn publish(allocator: &mut Allocator<'_>, region: Region) -> Allocation {
 			debug_ready: false,
 			class: ResourceClass::Unknown,
 			placement,
-			mapping: Mapping::default(),
+			mapping: MappingOwner::default(),
+			native_users: 0,
+			pending_binding: None,
 		},
 	);
 	let memory = allocator.selector.properties.memory_types[index as usize];
@@ -1336,6 +1364,9 @@ unsafe fn free_region(
 ) -> Result<(), AllocError> {
 	allocator.ensure_allocation()?;
 	let live = allocator.validate(allocation)?;
+	if live.native_users != 0 {
+		return Err(AllocError::InvalidRequest("native operation in progress"));
+	}
 	if live.map_count != 0 && !release_explicit {
 		return Err(AllocError::AlreadyMapped);
 	}
@@ -1368,7 +1399,12 @@ unsafe fn free_region(
 		let domain = BlockDomain::new_from_block(&allocator.blocks[block_index]);
 		let block = &mut allocator.blocks[block_index];
 		// SAFETY: every hold belonging to this region was released above.
-		unsafe { block.mapping.post_free(allocator.device, block.handle) }?;
+		unsafe {
+			block
+				.mapping
+				.write()
+				.post_free(allocator.device, block.handle)
+		}?;
 		block
 			.metadata
 			.free(placement)
@@ -1378,11 +1414,12 @@ unsafe fn free_region(
 		} else if block.automatic || block.pool.is_some() {
 			pool::release_block(allocator, block_index);
 		} else if block.metadata.is_empty() {
-			debug_assert_eq!(block.mapping.references, 0);
+			debug_assert_eq!(block.mapping.read().references, 0);
 			// SAFETY: no region holds remain; release the optional cache before native free.
 			unsafe {
 				allocator.blocks[block_index]
 					.mapping
+					.write()
 					.clear_cache(allocator.device, allocation.handle)
 			}?;
 			// SAFETY: all regions and maps ended; caller completed native resources.
@@ -1426,34 +1463,10 @@ pub unsafe fn map(
 	allocator: &mut Allocator<'_>,
 	allocation: &Allocation,
 ) -> Result<*mut std::ffi::c_void, AllocError> {
-	let count = allocator
-		.validate(allocation)?
-		.map_count
-		.checked_add(1)
-		.ok_or(AllocError::InvalidRange)?;
-	if !allocation.is_host_visible() {
-		return Err(AllocError::NotHostVisible);
-	}
-	let device = allocator.device;
-	// SAFETY: live visible block, checked host extent in Mapping; caller synchronizes.
-	let base = unsafe {
-		allocator
-			.mapping_mut(allocation)
-			.acquire(device, allocation.handle, allocation.block_size)
-	}?;
-	allocator
-		.live
-		.get_mut(&allocation.serial)
-		.expect("validated live region")
-		.map_count = count;
-	// wrapping_add preserves pointer provenance without claiming a Rust object
-	// bounds proof for an FFI mapping. Checked native bounds/host extent precede it.
-	Ok(
-		base
-			.cast::<u8>()
-			.wrapping_add(allocation.offset as usize)
-			.cast(),
-	)
+	let operation = native::MapOperation::prepare(allocator, allocation, true)?;
+	// SAFETY: caller meets the shared canonical operation's native/byte contract.
+	let result = unsafe { operation.execute(&mut allocator.mapping_mut(allocation)) };
+	operation.commit(allocator, result)
 }
 
 /// Release one explicit map; persistent holds and other regions remain mapped.
@@ -1463,24 +1476,10 @@ pub unsafe fn unmap(
 	allocator: &mut Allocator<'_>,
 	allocation: &Allocation,
 ) -> Result<(), AllocError> {
-	let count = allocator
-		.validate(allocation)?
-		.map_count
-		.checked_sub(1)
-		.ok_or(AllocError::NotMapped)?;
-	let device = allocator.device;
-	// SAFETY: a checked explicit hold exists and the caller ends its pointer uses.
-	unsafe {
-		allocator
-			.mapping_mut(allocation)
-			.release(device, allocation.handle)
-	}?;
-	allocator
-		.live
-		.get_mut(&allocation.serial)
-		.expect("validated live region")
-		.map_count = count;
-	Ok(())
+	let operation = native::MapOperation::prepare(allocator, allocation, false)?;
+	// SAFETY: caller ends the checked explicit hold and its pointer uses.
+	let result = unsafe { operation.execute(&mut allocator.mapping_mut(allocation)) };
+	operation.commit(allocator, result).map(|_| ())
 }
 
 /// Return a region pointer only if that region has an explicit or persistent hold.
@@ -1544,12 +1543,12 @@ pub fn statistics(allocator: &Allocator<'_>) -> AllocatorStats {
 		mapped_native_count: allocator
 			.blocks
 			.iter()
-			.filter(|b| !b.mapping.pointer.is_null())
+			.filter(|b| !b.mapping.read().pointer.is_null())
 			.count()
 			+ allocator
 				.live
 				.values()
-				.filter(|v| v.placement.is_none() && v.mapping.references != 0)
+				.filter(|v| v.placement.is_none() && v.mapping.read().references != 0)
 				.count(),
 	}
 }
@@ -2126,7 +2125,7 @@ unsafe fn allocate_pooled(
 					step
 				};
 				let block = &mut allocator.blocks[block_index];
-				let is_mapped = !block.mapping.pointer.is_null();
+				let is_mapped = block.mapping.is_mapped();
 				if !domain.contains(block)
 					|| (algorithm == AllocationAlgorithm::Linear && Some(block_index) != last_block)
 					|| (mapping_groups && ((group == 0) != (prefer_mapped == is_mapped)))
@@ -2253,7 +2252,7 @@ unsafe fn allocate_pooled(
 			size: block_size,
 			memory_type_index: index,
 			metadata,
-			mapping: Mapping::new_with_hysteresis(allocator.mapping_hysteresis),
+			mapping: MappingOwner::new_with_hysteresis(allocator.mapping_hysteresis),
 		});
 		allocator.add_native(block_size, index, handle);
 		let allocation = publish(
@@ -2285,6 +2284,9 @@ pub unsafe fn destroy_buffer(
 ) -> Result<(), AllocError> {
 	allocator.ensure_allocation()?;
 	let live = allocator.validate(allocation)?;
+	if live.native_users != 0 {
+		return Err(AllocError::InvalidRequest("native operation in progress"));
+	}
 	if live.resource != Some(Resource::Buffer(buffer)) {
 		return Err(AllocError::WrongResource);
 	}
@@ -2433,6 +2435,9 @@ pub unsafe fn destroy_image(
 ) -> Result<(), AllocError> {
 	allocator.ensure_allocation()?;
 	let live = allocator.validate(allocation)?;
+	if live.native_users != 0 {
+		return Err(AllocError::InvalidRequest("native operation in progress"));
+	}
 	if live.plane.is_some() {
 		return Err(AllocError::InvalidRequest(
 			"destroy a disjoint image once, then release every plane allocation",

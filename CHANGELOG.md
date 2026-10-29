@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.8.0+1.4.365 — 2026-10-29
+
+- Add direct synchronized allocator operations and `SynchronizedVirtualBlock`.
+  Native map/unmap/bind leases use stable per-backing locks, allowing placement
+  and free on independent backings in the same vector. Retain ownership through
+  publication/failure, exclude pending resource claims and preserve poison recovery.
+- Add pinned-VMA concurrent comparison and packaged public API proofs. Preserve
+  the measured hardware/platform limits and deliberate placement policies.
+- Refresh the README cover/Realm footer and developer links, add the crate
+  homepage, and consolidate internal verification reports into one allocator
+  summary. See the [release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.8.0.md).
+
 ## 0.7.0+1.4.365 — 2026-10-29
 
 - Rename the allocator module and mirrored tests to `mem`. Use `vk::mem` or a

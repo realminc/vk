@@ -269,8 +269,8 @@ fn cached_native_mapping_is_preferred_without_granting_an_allocation_hold() {
 			.iter()
 			.find(|block| block.handle == b.handle())
 			.unwrap();
-		assert_eq!(cached.mapping.references, 0);
-		assert!(!cached.mapping.pointer.is_null());
+		assert_eq!(cached.mapping.read().references, 0);
+		assert!(!cached.mapping.read().pointer.is_null());
 		clear();
 		let mut allocation = allocator
 			.allocate_with_options(&requirements(128), &options)

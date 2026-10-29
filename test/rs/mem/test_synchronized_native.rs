@@ -110,37 +110,23 @@ unsafe fn exercise(
 			for _ in 0..4 {
 				buffers.push(
 					shared
-						.with_allocator(|allocator| {
-							allocator.create_buffer_with_options(&buffer_info(), options)
-						})
-						.unwrap()
+						.create_buffer_with_options(&buffer_info(), options)
 						.unwrap(),
 				);
 			}
 			for (buffer, mut allocation) in buffers {
-				let pointer = shared
-					.with_allocator(|allocator| allocator.map(&allocation))
-					.unwrap()
-					.unwrap();
+				let pointer = shared.map(&allocation).unwrap();
 				// Byte access intentionally leaves the pool/owner lock. The live
 				// region and map hold survive other workers' allocations and frees.
 				let bytes = std::slice::from_raw_parts_mut(pointer.cast::<u8>(), 256);
 				let pattern = worker.wrapping_mul(53).wrapping_add(iteration);
 				bytes.fill(pattern);
 				std::thread::yield_now();
-				shared
-					.with_allocator(|allocator| {
-						allocator.flush(&allocation, 0, 256).unwrap();
-						allocator.invalidate(&allocation, 0, 256).unwrap();
-					})
-					.unwrap();
+				shared.flush(&allocation, 0, 256).unwrap();
+				shared.invalidate(&allocation, 0, 256).unwrap();
 				assert!(bytes.iter().all(|&byte| byte == pattern));
-				shared
-					.with_allocator(|allocator| {
-						allocator.unmap(&allocation).unwrap();
-						allocator.destroy_buffer(buffer, &mut allocation).unwrap();
-					})
-					.unwrap();
+				shared.unmap(&allocation).unwrap();
+				shared.destroy_buffer(buffer, &mut allocation).unwrap();
 			}
 		}
 	}

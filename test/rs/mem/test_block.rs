@@ -23,7 +23,7 @@ fn block_sized(id: u64, size: u64, used: u64) -> Block<'static> {
 		size,
 		memory_type_index: 0,
 		metadata,
-		mapping: Mapping::default(),
+		mapping: MappingOwner::default(),
 	}
 }
 

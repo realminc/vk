@@ -23,8 +23,17 @@ unsafe fn requirements_with_plane(
 	resource: Resource,
 	plane: Option<vk::ImageAspectFlagBits>,
 ) -> Result<Requirements, AllocError> {
-	let image = matches!(resource, Resource::Image(_));
-	let route = allocator.requirements_route(image)?;
+	let route = allocator.requirements_route(matches!(resource, Resource::Image(_)))?;
+	// SAFETY: same live native resource/plane query contract.
+	unsafe { query_requirements(allocator.device, route, resource, plane) }
+}
+
+unsafe fn query_requirements(
+	device: &vk::Device,
+	route: RequirementsRoute,
+	resource: Resource,
+	plane: Option<vk::ImageAspectFlagBits>,
+) -> Result<Requirements, AllocError> {
 	if plane.is_some() && matches!(route, RequirementsRoute::Legacy) {
 		return Err(AllocError::UnsupportedCapability(
 			"disjoint planes require memory requirements2",
@@ -50,14 +59,12 @@ unsafe fn requirements_with_plane(
 				};
 				match route {
 					RequirementsRoute::Legacy => {
-						output.memory_requirements = allocator.device.get_buffer_memory_requirements(buffer)?
+						output.memory_requirements = device.get_buffer_memory_requirements(buffer)?
 					}
-					RequirementsRoute::Core => allocator
-						.device
-						.get_buffer_memory_requirements2(&query, &mut output)?,
-					RequirementsRoute::Khr => allocator
-						.device
-						.get_buffer_memory_requirements2_khr(&query, &mut output)?,
+					RequirementsRoute::Core => device.get_buffer_memory_requirements2(&query, &mut output)?,
+					RequirementsRoute::Khr => {
+						device.get_buffer_memory_requirements2_khr(&query, &mut output)?
+					}
 				}
 			}
 			Resource::Image(image) => {
@@ -71,15 +78,13 @@ unsafe fn requirements_with_plane(
 					..Default::default()
 				};
 				match route {
-					RequirementsRoute::Legacy => allocator
-						.device
-						.get_image_memory_requirements(image, &mut output.memory_requirements)?,
-					RequirementsRoute::Core => allocator
-						.device
-						.get_image_memory_requirements2(&query, &mut output)?,
-					RequirementsRoute::Khr => allocator
-						.device
-						.get_image_memory_requirements2_khr(&query, &mut output)?,
+					RequirementsRoute::Legacy => {
+						device.get_image_memory_requirements(image, &mut output.memory_requirements)?
+					}
+					RequirementsRoute::Core => device.get_image_memory_requirements2(&query, &mut output)?,
+					RequirementsRoute::Khr => {
+						device.get_image_memory_requirements2_khr(&query, &mut output)?
+					}
 				}
 			}
 		}
@@ -104,10 +109,12 @@ pub(super) fn associated(allocator: &Allocator<'_>, resource: Resource) -> bool 
 			return true;
 		}
 	}
-	allocator
-		.live
-		.values()
-		.any(|live| live.resource == Some(resource))
+	allocator.live.values().any(|live| {
+		live.resource == Some(resource)
+			|| live
+				.pending_binding
+				.is_some_and(|(pending, _)| pending == resource)
+	})
 }
 
 pub(super) unsafe fn allocate_resource(
@@ -469,6 +476,50 @@ unsafe fn bind_resource(
 	extended: bool,
 	alias: bool,
 ) -> Result<(), AllocError> {
+	// SAFETY: canonical operation checks and borrowed native-chain contract.
+	let operation = unsafe {
+		prepare_bind(
+			allocator,
+			resource,
+			allocation,
+			local_offset,
+			next,
+			extended,
+			alias,
+		)
+	}?;
+	// The exclusive ordinary owner and synchronized backing leases share this
+	// exact execution/publication route. No registry guard is needed by execute.
+	let backing = allocator.mapping(allocation);
+	// SAFETY: caller owns this native resource and meets bind synchronization.
+	unsafe { operation.execute() }?;
+	drop(backing);
+	operation.commit(allocator)
+}
+
+pub(super) struct BindOperation<'device> {
+	device: &'device vk::Device,
+	route: RequirementsRoute,
+	requirements_route: Option<RequirementsRoute>,
+	resource: Resource,
+	allocation: Allocation,
+	local_offset: u64,
+	next: *const std::ffi::c_void,
+	status: Option<*mut vk::Result>,
+	pub(super) plane: Option<vk::ImageAspectFlagBits>,
+	alias: bool,
+	claim: Option<parallel::resource::Claim<'device>>,
+}
+
+pub(super) unsafe fn prepare_bind<'device>(
+	allocator: &Allocator<'device>,
+	resource: Resource,
+	allocation: &Allocation,
+	local_offset: u64,
+	next: *const std::ffi::c_void,
+	extended: bool,
+	alias: bool,
+) -> Result<BindOperation<'device>, AllocError> {
 	let route = if !extended {
 		RequirementsRoute::Legacy
 	} else {
@@ -491,6 +542,9 @@ unsafe fn bind_resource(
 	// SAFETY: caller supplies valid readable/writable native bind-chain records for this call.
 	let BindChain { status, plane } = unsafe { binding_status(next) }?;
 	let live = allocator.validate(allocation)?;
+	if live.native_users != 0 {
+		return Err(AllocError::InvalidRequest("native operation in progress"));
+	}
 	if plane.is_some() {
 		if !extended || !matches!(resource, Resource::Image(_)) || live.resource.is_some() || alias {
 			return Err(AllocError::InvalidRequest(
@@ -525,8 +579,14 @@ unsafe fn bind_resource(
 	let raw = alias || live.resource.is_none();
 	if raw
 		&& allocator.live.values().any(|other| {
-			other.resource == Some(resource)
-				&& (plane.is_none() || other.plane.is_none() || other.plane == plane)
+			(other.resource == Some(resource)
+				&& (plane.is_none() || other.plane.is_none() || other.plane == plane))
+				|| other
+					.pending_binding
+					.is_some_and(|(pending, pending_plane)| {
+						pending == resource
+							&& (plane.is_none() || pending_plane.is_none() || pending_plane == plane)
+					})
 		}) {
 		return Err(AllocError::WrongResource);
 	}
@@ -558,105 +618,144 @@ unsafe fn bind_resource(
 			require(fp.bind_image_memory2_khr.is_some(), "vkBindImageMemory2KHR")?
 		}
 	}
-	let native_offset = allocation
+	let _native_offset = allocation
 		.offset
 		.checked_add(local_offset)
 		.ok_or(AllocError::InvalidRange)?;
 	if local_offset > allocation.size || (!raw && local_offset != 0) {
 		return Err(AllocError::InvalidRange);
 	}
-	if raw {
-		// SAFETY: caller guarantees the live ordinary resource and native identity.
-		let requirements = unsafe { requirements_with_plane(allocator, resource, plane) }?;
-		if requirements.dedication == Dedication::Required {
-			return Err(AllocError::UnsupportedCapability(
-				"raw allocation cannot satisfy required resource dedication",
-			));
+	let requirements_route = if raw {
+		Some(allocator.requirements_route(matches!(resource, Resource::Image(_)))?)
+	} else {
+		None
+	};
+	Ok(BindOperation {
+		device: allocator.device,
+		route,
+		requirements_route,
+		resource,
+		allocation: allocator.token(allocation.serial)?,
+		local_offset,
+		next,
+		status,
+		plane,
+		alias,
+		claim,
+	})
+}
+
+impl BindOperation<'_> {
+	pub(super) unsafe fn execute(&self) -> Result<(), AllocError> {
+		let (route, resource, allocation, local_offset, next, status, plane) = (
+			self.route,
+			self.resource,
+			&self.allocation,
+			self.local_offset,
+			self.next,
+			self.status,
+			self.plane,
+		);
+		let native_offset = allocation.offset + local_offset;
+
+		if let Some(requirements_route) = self.requirements_route {
+			// SAFETY: caller guarantees the live ordinary resource and native identity.
+			let requirements =
+				unsafe { query_requirements(self.device, requirements_route, resource, plane) }?;
+			if requirements.dedication == Dedication::Required {
+				return Err(AllocError::UnsupportedCapability(
+					"raw allocation cannot satisfy required resource dedication",
+				));
+			}
+			if requirements.memory.memory_type_bits & (1 << allocation.memory_type_index) == 0 {
+				return Err(AllocError::NoCompatibleMemoryType);
+			}
+			if requirements.memory.size > allocation.size - local_offset
+				|| !native_offset.is_multiple_of(requirements.memory.alignment)
+			{
+				return Err(AllocError::InvalidRange);
+			}
 		}
-		if requirements.memory.memory_type_bits & (1 << allocation.memory_type_index) == 0 {
-			return Err(AllocError::NoCompatibleMemoryType);
+		if let Some(status) = status {
+			// SAFETY: validated writable output pointer from caller-owned live bind chain.
+			unsafe {
+				*status = vk::Result::NOT_READY;
+			}
 		}
-		if requirements.memory.size > allocation.size - local_offset
-			|| !native_offset.is_multiple_of(requirements.memory.alignment)
-		{
-			return Err(AllocError::InvalidRange);
-		}
-	}
-	if let Some(status) = status {
-		// SAFETY: validated writable output pointer from caller-owned live bind chain.
+		// SAFETY: one matching ordinary resource, checked storage offset/extent, admitted exact PFN and live caller chain.
 		unsafe {
-			*status = vk::Result::NOT_READY;
-		}
-	}
-	// SAFETY: one matching ordinary resource, checked storage offset/extent, admitted exact PFN and live caller chain.
-	unsafe {
-		match resource {
-			Resource::Buffer(buffer) => {
-				let info = vk::BindBufferMemoryInfo {
-					buffer,
-					memory: allocation.handle,
-					memory_offset: native_offset,
-					p_next: next,
-					..Default::default()
-				};
-				match route {
-					RequirementsRoute::Legacy => {
-						allocator
-							.device
-							.bind_buffer_memory(buffer, allocation.handle, native_offset)?
+			match resource {
+				Resource::Buffer(buffer) => {
+					let info = vk::BindBufferMemoryInfo {
+						buffer,
+						memory: allocation.handle,
+						memory_offset: native_offset,
+						p_next: next,
+						..Default::default()
+					};
+					match route {
+						RequirementsRoute::Legacy => {
+							self
+								.device
+								.bind_buffer_memory(buffer, allocation.handle, native_offset)?
+						}
+						RequirementsRoute::Core => self.device.bind_buffer_memory2(&[info])?,
+						RequirementsRoute::Khr => self.device.bind_buffer_memory2_khr(&[info])?,
 					}
-					RequirementsRoute::Core => allocator.device.bind_buffer_memory2(&[info])?,
-					RequirementsRoute::Khr => allocator.device.bind_buffer_memory2_khr(&[info])?,
 				}
-			}
-			Resource::Image(image) => {
-				let info = vk::BindImageMemoryInfo {
-					image,
-					memory: allocation.handle,
-					memory_offset: native_offset,
-					p_next: next,
-					..Default::default()
-				};
-				match route {
-					RequirementsRoute::Legacy => {
-						allocator
-							.device
-							.bind_image_memory(image, allocation.handle, native_offset)?
+				Resource::Image(image) => {
+					let info = vk::BindImageMemoryInfo {
+						image,
+						memory: allocation.handle,
+						memory_offset: native_offset,
+						p_next: next,
+						..Default::default()
+					};
+					match route {
+						RequirementsRoute::Legacy => {
+							self
+								.device
+								.bind_image_memory(image, allocation.handle, native_offset)?
+						}
+						RequirementsRoute::Core => self.device.bind_image_memory2(&[info])?,
+						RequirementsRoute::Khr => self.device.bind_image_memory2_khr(&[info])?,
 					}
-					RequirementsRoute::Core => allocator.device.bind_image_memory2(&[info])?,
-					RequirementsRoute::Khr => allocator.device.bind_image_memory2_khr(&[info])?,
 				}
 			}
 		}
-	}
-	if let Some(status) = status {
-		// SAFETY: caller-owned status storage remains live after the synchronous native call.
-		let result = unsafe { *status };
-		if result != vk::Result::SUCCESS {
-			return Err(
-				if result.as_raw() < 0 {
-					CallError::Vulkan(result)
-				} else {
-					CallError::InvalidOutput("native binding did not publish success status")
-				}
-				.into(),
-			);
+		if let Some(status) = status {
+			// SAFETY: caller-owned status storage remains live after the synchronous native call.
+			let result = unsafe { *status };
+			if result != vk::Result::SUCCESS {
+				return Err(
+					if result.as_raw() < 0 {
+						CallError::Vulkan(result)
+					} else {
+						CallError::InvalidOutput("native binding did not publish success status")
+					}
+					.into(),
+				);
+			}
 		}
+		Ok(())
 	}
-	if alias {
-		return Ok(());
+
+	pub(super) fn commit(self, allocator: &mut Allocator<'_>) -> Result<(), AllocError> {
+		if self.alias {
+			return Ok(());
+		}
+		let live = allocator
+			.live
+			.get_mut(&self.allocation.serial)
+			.expect("validated allocation");
+		live.resource = Some(self.resource);
+		live.plane = self.plane;
+		live.bound = true;
+		if let Some(claim) = self.claim {
+			claim.commit(self.allocation.serial);
+		}
+		Ok(())
 	}
-	let live = allocator
-		.live
-		.get_mut(&allocation.serial)
-		.expect("validated allocation");
-	live.resource = Some(resource);
-	live.plane = plane;
-	live.bound = true;
-	if let Some(claim) = claim {
-		claim.commit(allocation.serial);
-	}
-	Ok(())
 }
 
 /// Bind at the allocation's actual native offset. Failed binds retain allocation and resource for retry.

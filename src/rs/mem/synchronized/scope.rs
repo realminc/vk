@@ -4,7 +4,7 @@
 //! heap accounting (LICENSE-VMA-MIT). Rust adaptation: borrowed worker scope,
 //! one pool mutex, short shared reservation lock and allocation-free restoration.
 #[path = "resource.rs"]
-mod resource;
+pub(in crate::mem::allocator) mod resource;
 pub(super) use resource::claim;
 
 use super::*;

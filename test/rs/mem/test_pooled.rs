@@ -450,10 +450,10 @@ fn shared_map_counter_overflow_and_wrong_owners_precede_native_effects() {
 		clear();
 		assert_eq!(other.map(&x), Err(AllocError::WrongAllocator));
 		assert_eq!(other.free(&mut x), Err(AllocError::WrongAllocator));
-		allocator.blocks[0].mapping.references = u32::MAX;
+		allocator.blocks[0].mapping.write().references = u32::MAX;
 		assert_eq!(allocator.map(&x), Err(AllocError::InvalidRange));
 		assert!(events().is_empty());
-		allocator.blocks[0].mapping.references = 0;
+		allocator.blocks[0].mapping.write().references = 0;
 		allocator.destroy_buffer(a, &mut x).unwrap();
 		clear();
 		assert_eq!(allocator.map(&x), Err(AllocError::UnknownAllocation));

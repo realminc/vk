@@ -75,7 +75,7 @@ Experimental; service presence is distinct from full donor equivalence.
 | Mapping and services | Shared/counted and persistent maps, allocation-relative cache operations, batch allocate/free/cache, host copies, names/user data, detailed statistics/JSON, debug guards/fill and native/CPU callbacks. |
 | Optional capabilities | Captured feature admission for core/KHR buffer device address, priority, protected and coherent memory; borrowed allocation chains, export configuration, explicit platform import accounting, FD/Win32 services and raw disjoint-plane bind2. |
 | Relocation | Explicit bounded multi-pass Fast/Balanced/Full/Extensive contexts, copy plans, ignored/pinned state, stop predicates, mapped/raw/alias-group moves and explicit commit/abort. Consumer copies, completion, resource replacement and descriptor/pointer updates remain explicit. |
-| Host concurrency | Opt-in serialized `SynchronizedAllocator` plus borrowed concurrent custom-pool, default-memory-type and distinct-backing-block phases. Ordinary `Allocator` remains non-Send/non-Sync. |
+| Host concurrency | Opt-in `SynchronizedAllocator` with direct `&self` operations, dynamic per-backing map/unmap/bind leases and borrowed concurrent custom-pool, default-memory-type and distinct-backing-block phases; separately synchronized host-only `SynchronizedVirtualBlock`. Ordinary `Allocator` remains non-Send/non-Sync. |
 
 `AllocationPolicy::Separate` remains the default. Select `Automatic` explicitly
 for heap-sized default pools and native-growth fallback; custom pools retain
@@ -84,8 +84,9 @@ assertion of VMA's default behavior.
 
 Construction retains borrowed device/callback/chain dependencies. Native object
 lifetimes, callback user-data validity, GPU completion and external ownership
-transfers remain unsafe caller obligations. No operation or `Drop` implicitly
-submits, waits or destroys Vulkan resources. Explicit `close` requires completed
+transfers remain unsafe caller obligations. No operation implicitly submits or
+waits for GPU work. Native destruction uses explicit cleanup calls; `Drop` frees
+CPU metadata only. Explicit `close` requires completed
 cleanup, including empty custom-pool destruction. Mapping/cache operations do
 not establish GPU synchronization. Never infer pixel layout from an optimal
 image's mapped bytes.
@@ -102,11 +103,15 @@ scoped regressions; donor agreement alone is insufficient. Mapping hysteresis
 is explicitly disabled in both native trace consumers; enabled caching has
 separate host tests.
 
-The same checkpoint passed 3,423 workspace tests/doctests, all 276 library tests
-under Rust AddressSanitizer, and 12 focused threading tests under ThreadSanitizer
-with an instrumented standard library. This is scoped evidence, not universal
-race freedom or Miri qualification. See the [v0.7.0 release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.7.0.md)
-and actual CI artifacts for the release candidate's rerun results.
+The allocator checkpoint passed 3,438 workspace tests/doctests, including 50
+generator cases; the final runtime and extracted-crate reruns each passed 3,388.
+Rust AddressSanitizer passed 332 library/memory cases with leak detection, and
+ThreadSanitizer passed 22 threading plus 46 memory integration cases with a
+matching instrumented standard library. Both reported zero diagnostics. Four
+fresh-process repetitions of three independently checked VMA concurrency outcomes
+also passed (12 comparisons). This is scoped evidence, not universal race freedom
+or Miri qualification. See the [v0.8.0 release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.8.0.md)
+and actual CI artifacts for the release snapshot's rerun results.
 
 Recorded physical memory profiles use Intel HD Graphics 4400 (Haswell), Mesa,
 Vulkan 1.2, x86-64 Linux. Separate core/thread-safety and
@@ -126,9 +131,12 @@ cross-compiled; native Windows execution remains open.
 
 ### Differences and remaining qualification
 
-- Parallel access uses explicit borrowed phases. Arbitrary allocation/free
-  overlapping map/bind work inside the same vector is not admitted. Poisoned
-  synchronized owners reject access and retain the owner for explicit recovery.
+- Direct map/unmap/bind work releases the placement mutex under a live native
+  lease and a stable per-backing mutex. Placement/free on other backings in the
+  same vector can proceed. Placement stays serialized per owner; pool/type scopes
+  provide independent placement owners. Global services, relocation and borrowed
+  access wait for leases. This is not lock-free allocation or a contention claim.
+  Poisoned owners retain native ownership for explicit consuming recovery.
 - Full donor policy/service equivalence and concurrent stress qualification
   remain open. Rust retains granularity padding as free space and does not add a fallible
   driver budget query after resource destruction during free. These placement and budget policies differ from the donor; equivalent
@@ -154,7 +162,7 @@ The crates.io package is `vkrust`; its library/import name is `vk`:
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.7" }
+vk = { package = "vkrust", version = "0.8" }
 ```
 
 The public source target is `realminc/vk`. Private engineering history and

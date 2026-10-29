@@ -12,7 +12,9 @@ use std::{
 #[derive(Default)]
 struct Native {
 	next: u64,
-	memory: BTreeMap<u64, (Box<[u8]>, bool)>,
+	// Never resize a live backing. Vec pointer/length access touches metadata
+	// without borrowing a slice over bytes currently mapped by other workers.
+	memory: BTreeMap<u64, (Vec<u8>, bool)>,
 	types: BTreeMap<u64, u32>,
 	buffers: BTreeMap<u64, Option<(u64, u64)>>,
 	maps: usize,
@@ -51,6 +53,27 @@ impl Effect {
 impl Drop for Effect {
 	fn drop(&mut self) {
 		ACTIVE.fetch_sub(1, Ordering::SeqCst);
+	}
+}
+
+static BACKING_USERS: Mutex<std::collections::BTreeSet<u64>> =
+	Mutex::new(std::collections::BTreeSet::new());
+
+struct BackingUse(u64);
+
+impl BackingUse {
+	fn new(memory: vk::DeviceMemory) -> Self {
+		assert!(
+			BACKING_USERS.lock().unwrap().insert(memory.as_raw()),
+			"overlapping native use of one backing"
+		);
+		Self(memory.as_raw())
+	}
+}
+
+impl Drop for BackingUse {
+	fn drop(&mut self) {
+		assert!(BACKING_USERS.lock().unwrap().remove(&self.0));
 	}
 }
 
@@ -106,9 +129,7 @@ unsafe extern "system" fn memory_allocate(
 	// SAFETY: canonical allocator supplies initialized input and writable output.
 	unsafe {
 		let size = usize::try_from((*info).allocation_size).unwrap();
-		state
-			.memory
-			.insert(serial, (vec![0; size].into_boxed_slice(), false));
+		state.memory.insert(serial, (vec![0; size], false));
 		state.types.insert(serial, (*info).memory_type_index);
 		*output = vk::DeviceMemory::from_raw(serial);
 	}
@@ -122,6 +143,7 @@ unsafe extern "system" fn memory_free(
 	_: *const vk::AllocationCallbacks,
 ) {
 	let _effect = Effect::new();
+	assert!(!BACKING_USERS.lock().unwrap().contains(&memory.as_raw()));
 	let mut state = NATIVE.lock().unwrap();
 	assert!(
 		!state
@@ -145,6 +167,7 @@ unsafe extern "system" fn memory_map(
 	output: *mut *mut c_void,
 ) -> vk::Result {
 	let _effect = Effect::new();
+	let _backing = BackingUse::new(memory);
 	if !pools::mapping_gate() {
 		return vk::Result::ERROR_MEMORY_MAP_FAILED;
 	}
@@ -165,6 +188,7 @@ unsafe extern "system" fn memory_map(
 
 unsafe extern "system" fn memory_unmap(_: vk::DeviceHandle, memory: vk::DeviceMemory) {
 	let _effect = Effect::new();
+	let _backing = BackingUse::new(memory);
 	let mut state = NATIVE.lock().unwrap();
 	let (_, mapped) = state.memory.get_mut(&memory.as_raw()).unwrap();
 	assert!(*mapped);
@@ -242,6 +266,10 @@ unsafe extern "system" fn buffer_bind(
 	offset: u64,
 ) -> vk::Result {
 	let _effect = Effect::new();
+	let _backing = BackingUse::new(memory);
+	if !pools::binding_gate(memory.as_raw()) {
+		return vk::Result::ERROR_OUT_OF_DEVICE_MEMORY;
+	}
 	let mut state = NATIVE.lock().unwrap();
 	assert!(offset + 64 <= state.memory[&memory.as_raw()].0.len() as u64);
 	let binding = state.buffers.get_mut(&buffer.as_raw()).unwrap();

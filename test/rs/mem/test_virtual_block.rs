@@ -1,8 +1,40 @@
 //! Independent interval-model contracts for the public host-only allocator.
 use vk::{
 	AllocError, VirtualBlock,
-	mem::{PlacementStrategy, virtual_block},
+	mem::{AllocationAlgorithm, PlacementStrategy, SynchronizedVirtualBlock, virtual_block},
 };
+
+#[test]
+fn synchronized_virtual_block_public_operations_reject_foreign_and_stale_tokens() {
+	let block = SynchronizedVirtualBlock::new(256).unwrap();
+	let other = SynchronizedVirtualBlock::new(256).unwrap();
+	let mut region = block.allocate(64, 16, PlacementStrategy::Default).unwrap();
+	assert_eq!(other.free(&mut region), Err(AllocError::WrongAllocator));
+	assert_eq!(block.allocation_info(&region).unwrap().offset, 0);
+	block.free(&mut region).unwrap();
+	assert_eq!(block.free(&mut region), Err(AllocError::UnknownAllocation));
+	assert!(block.is_empty().unwrap());
+	let mut next = block.allocate(32, 8, PlacementStrategy::Default).unwrap();
+	block.clear().unwrap();
+	assert_eq!(
+		block.allocation_info(&next),
+		Err(AllocError::UnknownAllocation)
+	);
+	assert_eq!(block.free(&mut next), Err(AllocError::UnknownAllocation));
+}
+
+#[test]
+fn synchronized_linear_virtual_block_keeps_upper_placement_explicit() {
+	let block =
+		SynchronizedVirtualBlock::new_with_algorithm(256, AllocationAlgorithm::Linear).unwrap();
+	let mut lower = block.allocate(64, 16, PlacementStrategy::Default).unwrap();
+	let mut upper = block.allocate_upper(64, 16).unwrap();
+	assert_eq!(block.allocation_info(&upper).unwrap().offset, 192);
+	assert_eq!(block.statistics().unwrap().allocation_count, 2);
+	block.free(&mut upper).unwrap();
+	block.free(&mut lower).unwrap();
+	assert!(block.is_empty().unwrap());
+}
 
 #[test]
 fn donor_virtual_block_vector_and_checked_ownership() {
