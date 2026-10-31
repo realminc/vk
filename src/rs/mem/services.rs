@@ -174,6 +174,7 @@ fn copy_range(
 			require(
 				allocator
 					.device
+					.as_device()
 					.fp()
 					.invalidate_mapped_memory_ranges
 					.is_some(),
@@ -935,6 +936,7 @@ pub fn allocator_info(
 		physical_device: allocator.physical_device,
 		api_version: allocator
 			.device
+			.as_device()
 			.capabilities()
 			.map(|caps| caps.api_version()),
 	})

@@ -380,7 +380,7 @@ impl<'callbacks> SharedMapping<'callbacks> {
 		let storage = unsafe { self.pointer.as_ref() };
 		storage
 			.owners
-			.fetch_update(Ordering::Relaxed, Ordering::Relaxed, |count| {
+			.try_update(Ordering::Relaxed, Ordering::Relaxed, |count| {
 				(count < isize::MAX as usize).then_some(count + 1)
 			})
 			.map_err(|_| AllocError::HostAllocationFailed)?;

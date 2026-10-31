@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.9.0+1.4.365 — 2026-10-31
+
+- Add owned device retention to the allocator: `new_retained`,
+  `new_retained_with_granularity` and `new_retained_from_physical_device`
+  produce `Allocator<'static>` through a `DeviceRetention` reference-or-Arc
+  device, letting an allocator outlive its construction scope and finish on a
+  dedicated cleanup thread. `SynchronizedAllocator::new_owned` adopts such an
+  allocator directly. The borrowed constructors keep their contracts.
+- See the [release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.9.0.md).
+
 ## 0.8.0+1.4.365 — 2026-10-29
 
 - Add direct synchronized allocator operations and `SynchronizedVirtualBlock`.

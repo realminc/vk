@@ -107,6 +107,17 @@ impl<'device> SynchronizedAllocator<'device> {
 		}
 	}
 
+	/// Adopt one device-retained allocator for synchronized access from any
+	/// host thread. Every retained reference is owned or `'static`, so the
+	/// unsafe contract of [`Self::new`] is satisfied by construction; the
+	/// remaining caller obligations are the documented host-thread,
+	/// non-reentrancy and mapped-byte synchronization rules.
+	pub fn new_owned(allocator: Allocator<'static>) -> Self {
+		// SAFETY: an 'static allocator retains no caller borrow whose validity
+		// for the device borrow must be proven here.
+		unsafe { Self::new(allocator) }
+	}
+
 	pub(in crate::mem) fn lock_owner(
 		&self,
 	) -> Result<MutexGuard<'_, TransferableAllocator<'device>>, AllocError> {

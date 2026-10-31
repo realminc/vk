@@ -11,7 +11,9 @@ pub(super) unsafe fn validate_buffer(
 ) -> Result<bool, AllocError> {
 	allocator.ensure_open()?;
 	// SAFETY: caller supplies a readable native create chain for this call.
-	unsafe { super::super::resource::validate_chain(allocator.device, info.p_next, false) }?;
+	unsafe {
+		super::super::resource::validate_chain(allocator.device.as_device(), info.p_next, false)
+	}?;
 	let protected = info.flags.as_raw() & vk::BufferCreateFlagBits::PROTECTED_BIT.as_raw() != 0;
 	if protected && !allocator.protected_memory {
 		return Err(AllocError::UnsupportedCapability(
@@ -71,7 +73,9 @@ pub(super) unsafe fn validate_image(
 		_ => return Err(AllocError::UnsupportedCapability("image tiling")),
 	};
 	// SAFETY: caller supplies readable native create records and pointed-to storage.
-	unsafe { super::super::resource::validate_chain(allocator.device, info.p_next, true) }?;
+	unsafe {
+		super::super::resource::validate_chain(allocator.device.as_device(), info.p_next, true)
+	}?;
 	Ok(class)
 }
 
@@ -229,15 +233,18 @@ enum QueryRoute {
 }
 
 fn direct_route(allocator: &Allocator<'_>) -> Result<Option<QueryRoute>, AllocError> {
-	let capabilities = allocator
-		.device
-		.capabilities()
-		.ok_or(AllocError::UnsupportedCapability(
-			"resource queries require device creation metadata",
-		))?;
+	let capabilities =
+		allocator
+			.device
+			.as_device()
+			.capabilities()
+			.ok_or(AllocError::UnsupportedCapability(
+				"resource queries require device creation metadata",
+			))?;
 	Ok(if capabilities.api_version() >= vk::API_VERSION_1_3 {
 		Some(QueryRoute::Core)
-	} else if super::super::resource::extension(allocator.device, c"VK_KHR_maintenance4") {
+	} else if super::super::resource::extension(allocator.device.as_device(), c"VK_KHR_maintenance4")
+	{
 		Some(QueryRoute::Khr)
 	} else {
 		None
@@ -293,9 +300,11 @@ pub unsafe fn find_memory_type_for_buffer_info(
 			match route {
 				QueryRoute::Core => allocator
 					.device
+					.as_device()
 					.get_device_buffer_memory_requirements(&query, &mut output)?,
 				QueryRoute::Khr => allocator
 					.device
+					.as_device()
 					.get_device_buffer_memory_requirements_khr(&query, &mut output)?,
 			}
 		}
@@ -364,9 +373,11 @@ pub unsafe fn find_memory_type_for_image_info(
 			match route {
 				QueryRoute::Core => allocator
 					.device
+					.as_device()
 					.get_device_image_memory_requirements(&query, &mut output)?,
 				QueryRoute::Khr => allocator
 					.device
+					.as_device()
 					.get_device_image_memory_requirements_khr(&query, &mut output)?,
 			}
 		}
@@ -387,6 +398,7 @@ pub unsafe fn find_memory_type_for_image_info(
 		let queried = unsafe {
 			allocator
 				.device
+				.as_device()
 				.get_image_memory_requirements(image, &mut output.memory_requirements)
 		};
 		// SAFETY: same retained callbacks and no native uses; immutable PFN preflighted.

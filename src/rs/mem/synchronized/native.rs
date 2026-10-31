@@ -119,7 +119,7 @@ impl Drop for Lease<'_, '_> {
 }
 
 pub(super) struct MapOperation<'device> {
-	device: &'device vk::Device,
+	device: DeviceRetention<'device>,
 	serial: u64,
 	handle: vk::DeviceMemory,
 	block_size: u64,
@@ -151,7 +151,7 @@ impl<'device> MapOperation<'device> {
 			live.map_count.checked_sub(1).ok_or(AllocError::NotMapped)?
 		};
 		Ok(Self {
-			device: allocator.device,
+			device: allocator.device.clone(),
 			serial: allocation.serial,
 			handle: allocation.handle,
 			block_size: allocation.block_size,
@@ -168,11 +168,12 @@ impl<'device> MapOperation<'device> {
 		if self.acquire {
 			// SAFETY: the exclusive owner or live native lease prevents retirement;
 			// the backing guard serializes map/bind; caller synchronizes byte use.
-			unsafe { mapping.acquire(self.device, self.handle, self.block_size) }
+			unsafe { mapping.acquire(self.device.as_device(), self.handle, self.block_size) }
 				.map(|base| base.cast::<u8>().wrapping_add(self.offset as usize).cast())
 		} else {
 			// SAFETY: the checked explicit hold exists and caller ends its uses.
-			unsafe { mapping.release(self.device, self.handle) }.map(|()| std::ptr::null_mut())
+			unsafe { mapping.release(self.device.as_device(), self.handle) }
+				.map(|()| std::ptr::null_mut())
 		}
 	}
 

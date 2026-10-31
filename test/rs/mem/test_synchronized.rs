@@ -507,3 +507,47 @@ fn serialized_native_ownership_mapping_handoff_poison_and_host_drop() {
 
 #[path = "synchronized/test_pool.rs"]
 mod pools;
+
+#[test]
+fn retained_allocator_outlives_scope_and_finishes_on_worker_thread() {
+	let _test = TEST_LOCK
+		.lock()
+		.unwrap_or_else(std::sync::PoisonError::into_inner);
+	*NATIVE.lock().unwrap() = Native {
+		next: 1,
+		..Default::default()
+	};
+	OVERLAP.store(0, Ordering::SeqCst);
+	pools::reset_native_hooks();
+	let (_instance, device) = contexts();
+	let device = std::sync::Arc::new(device);
+	let mut properties = properties();
+	properties.memory_types[0].property_flags =
+		properties.memory_types[0].property_flags | vk::MemoryPropertyFlagBits::HOST_COHERENT_BIT;
+	// SAFETY: exact fixture metadata and native ledger; the retained path takes
+	// no borrowed callbacks. The allocator holds its own Arc<Device> clone, so
+	// it outlives this function scope and every reference here.
+	let allocator = unsafe { Allocator::new_retained(device.clone(), properties, 64).unwrap() };
+	let shared = SynchronizedAllocator::new_owned(allocator);
+	// SAFETY: exclusive synchronized access; the native ledger owns real backing.
+	let allocation = unsafe {
+		shared
+			.with_allocator(|allocator| {
+				allocator.allocate(&AllocRequest {
+					size: 64,
+					..request()
+				})
+			})
+			.unwrap()
+			.unwrap()
+	};
+	assert!(!allocation.handle.is_null());
+	// Final teardown on a dedicated worker, matching a retirement-thread release.
+	std::thread::scope(|scope| {
+		scope.spawn(move || drop(shared)).join().unwrap();
+	});
+	let mut state = NATIVE.lock().unwrap();
+	assert_eq!(state.memory.len(), 1);
+	state.buffers.clear();
+	state.memory.clear();
+}

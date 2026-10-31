@@ -25,7 +25,7 @@ unsafe fn requirements_with_plane(
 ) -> Result<Requirements, AllocError> {
 	let route = allocator.requirements_route(matches!(resource, Resource::Image(_)))?;
 	// SAFETY: same live native resource/plane query contract.
-	unsafe { query_requirements(allocator.device, route, resource, plane) }
+	unsafe { query_requirements(allocator.device.as_device(), route, resource, plane) }
 }
 
 unsafe fn query_requirements(
@@ -498,7 +498,7 @@ unsafe fn bind_resource(
 }
 
 pub(super) struct BindOperation<'device> {
-	device: &'device vk::Device,
+	device: DeviceRetention<'device>,
 	route: RequirementsRoute,
 	requirements_route: Option<RequirementsRoute>,
 	resource: Resource,
@@ -523,15 +523,20 @@ pub(super) unsafe fn prepare_bind<'device>(
 	let route = if !extended {
 		RequirementsRoute::Legacy
 	} else {
-		let capabilities = allocator
-			.device
-			.capabilities()
-			.ok_or(AllocError::UnsupportedCapability(
-				"extended binding requires creation metadata",
-			))?;
+		let capabilities =
+			allocator
+				.device
+				.as_device()
+				.capabilities()
+				.ok_or(AllocError::UnsupportedCapability(
+					"extended binding requires creation metadata",
+				))?;
 		if capabilities.api_version() >= vk::API_VERSION_1_1 {
 			RequirementsRoute::Core
-		} else if super::super::resource::extension(allocator.device, c"VK_KHR_bind_memory2") {
+		} else if super::super::resource::extension(
+			allocator.device.as_device(),
+			c"VK_KHR_bind_memory2",
+		) {
 			RequirementsRoute::Khr
 		} else {
 			return Err(AllocError::UnsupportedCapability(
@@ -553,10 +558,13 @@ pub(super) unsafe fn prepare_bind<'device>(
 		}
 		if !allocator
 			.device
+			.as_device()
 			.capabilities()
 			.is_some_and(|caps| caps.api_version() >= vk::API_VERSION_1_1)
-			&& !super::super::resource::extension(allocator.device, c"VK_KHR_sampler_ycbcr_conversion")
-		{
+			&& !super::super::resource::extension(
+				allocator.device.as_device(),
+				c"VK_KHR_sampler_ycbcr_conversion",
+			) {
 			return Err(AllocError::UnsupportedCapability(
 				"disjoint plane binding is not enabled",
 			));
@@ -631,7 +639,7 @@ pub(super) unsafe fn prepare_bind<'device>(
 		None
 	};
 	Ok(BindOperation {
-		device: allocator.device,
+		device: allocator.device.clone(),
 		route,
 		requirements_route,
 		resource,
@@ -660,8 +668,9 @@ impl BindOperation<'_> {
 
 		if let Some(requirements_route) = self.requirements_route {
 			// SAFETY: caller guarantees the live ordinary resource and native identity.
-			let requirements =
-				unsafe { query_requirements(self.device, requirements_route, resource, plane) }?;
+			let requirements = unsafe {
+				query_requirements(self.device.as_device(), requirements_route, resource, plane)
+			}?;
 			if requirements.dedication == Dedication::Required {
 				return Err(AllocError::UnsupportedCapability(
 					"raw allocation cannot satisfy required resource dedication",
@@ -694,11 +703,11 @@ impl BindOperation<'_> {
 						..Default::default()
 					};
 					match route {
-						RequirementsRoute::Legacy => {
-							self
-								.device
-								.bind_buffer_memory(buffer, allocation.handle, native_offset)?
-						}
+						RequirementsRoute::Legacy => self.device.as_device().bind_buffer_memory(
+							buffer,
+							allocation.handle,
+							native_offset,
+						)?,
 						RequirementsRoute::Core => self.device.bind_buffer_memory2(&[info])?,
 						RequirementsRoute::Khr => self.device.bind_buffer_memory2_khr(&[info])?,
 					}
@@ -715,6 +724,7 @@ impl BindOperation<'_> {
 						RequirementsRoute::Legacy => {
 							self
 								.device
+								.as_device()
 								.bind_image_memory(image, allocation.handle, native_offset)?
 						}
 						RequirementsRoute::Core => self.device.bind_image_memory2(&[info])?,

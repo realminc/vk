@@ -89,13 +89,43 @@ enum RequirementsRoute {
 	Khr,
 }
 
+/// Device retention for an [`Allocator`]: a caller borrow or an owned shared
+/// reference. The owned form lets the allocator outlive its construction
+/// scope and travel to a dedicated cleanup thread; it never creates a second
+/// device identity.
+#[derive(Clone)]
+pub enum DeviceRetention<'device> {
+	/// Borrowed device; the allocator cannot outlive the borrow.
+	Borrowed(&'device Device),
+	/// Owned shared device; the allocator may outlive its construction scope.
+	Owned(std::sync::Arc<Device>),
+}
+
+impl DeviceRetention<'_> {
+	/// Access the retained device context.
+	pub fn as_device(&self) -> &Device {
+		match self {
+			Self::Borrowed(device) => device,
+			Self::Owned(device) => device,
+		}
+	}
+}
+
+impl std::ops::Deref for DeviceRetention<'_> {
+	type Target = Device;
+
+	fn deref(&self) -> &Device {
+		self.as_device()
+	}
+}
+
 /// Borrows one device; native memory is released only by explicit operations.
 ///
 /// Each allocation has an allocator identity and generation. Dropping either
 /// the allocator or a token can leak native objects; it never calls Vulkan.
 pub struct Allocator<'device> {
 	host: HostMemory<'device>,
-	device: &'device Device,
+	device: DeviceRetention<'device>,
 	callbacks: Option<&'device vk::AllocationCallbacks>,
 	device_memory_callbacks: Option<&'device super::DeviceMemoryCallbacks>,
 	physical_device: Option<vk::PhysicalDevice>,
@@ -214,11 +244,39 @@ impl<'device> Allocator<'device> {
 		properties: vk::PhysicalDeviceMemoryProperties,
 		atom: u64,
 	) -> Result<Self, AllocError> {
+		Self::build(DeviceRetention::Borrowed(device), properties, atom)
+	}
+
+	/// Construct retaining one shared device context.
+	///
+	/// The allocator owns an `Arc` clone of the device, so it may outlive its
+	/// construction scope and be adopted or destroyed on another thread.
+	/// Follows [`Self::new`]; callback forms stay borrowed-only.
+	///
+	/// # Safety
+	/// Properties and atom size must belong to this device's physical device.
+	/// Caller must enforce device allocation size/count limits and enabled features.
+	pub unsafe fn new_retained(
+		device: std::sync::Arc<Device>,
+		properties: vk::PhysicalDeviceMemoryProperties,
+		atom: u64,
+	) -> Result<Allocator<'static>, AllocError> {
+		Self::build(DeviceRetention::Owned(device), properties, atom)
+	}
+
+	fn build<'a>(
+		device: DeviceRetention<'a>,
+		properties: vk::PhysicalDeviceMemoryProperties,
+		atom: u64,
+	) -> Result<Allocator<'a>, AllocError> {
 		let mut selector = MemoryTypeSelector::new(properties, atom)?;
-		selector.device_coherent = super::resource::device_coherent_memory(device);
+		selector.device_coherent = super::resource::device_coherent_memory(device.as_device());
 		require(device.fp().allocate_memory.is_some(), "vkAllocateMemory")?;
 		require(device.fp().free_memory.is_some(), "vkFreeMemory")?;
-		Ok(Self {
+		let buffer_device_address = super::resource::buffer_device_address(device.as_device());
+		let memory_priority = super::resource::memory_priority(device.as_device());
+		let protected_memory = super::resource::protected_memory(device.as_device());
+		Ok(Allocator {
 			host: HostMemory::default(),
 			device,
 			callbacks: None,
@@ -239,9 +297,9 @@ impl<'device> Allocator<'device> {
 			allocation_limit: u32::MAX,
 			allocation_size_limit: None,
 			integrated: None,
-			buffer_device_address: super::resource::buffer_device_address(device),
-			memory_priority: super::resource::memory_priority(device),
-			protected_memory: super::resource::protected_memory(device),
+			buffer_device_address,
+			memory_priority,
+			protected_memory,
 			budget_query: None,
 			budget_cache: None,
 			budget_operations: 0,
@@ -283,6 +341,26 @@ impl<'device> Allocator<'device> {
 		}
 		// SAFETY: identical supplied metadata and native lifetime contract.
 		let mut allocator = unsafe { Self::new(device, properties, atom) }?;
+		allocator.granularity = Granularity(Some(granularity));
+		Ok(allocator)
+	}
+
+	/// [`Self::new_with_granularity`] retaining one shared device context.
+	/// # Safety
+	/// Same metadata and native lifetime contract as `new_with_granularity`.
+	pub unsafe fn new_retained_with_granularity(
+		device: std::sync::Arc<Device>,
+		properties: vk::PhysicalDeviceMemoryProperties,
+		atom: u64,
+		granularity: u64,
+	) -> Result<Allocator<'static>, AllocError> {
+		if !granularity.is_power_of_two() {
+			return Err(AllocError::InvalidProperties(
+				"buffer/image granularity must be a nonzero power of two",
+			));
+		}
+		// SAFETY: identical supplied metadata and native lifetime contract.
+		let mut allocator = unsafe { Self::new_retained(device, properties, atom) }?;
 		allocator.granularity = Granularity(Some(granularity));
 		Ok(allocator)
 	}
@@ -371,6 +449,99 @@ impl<'device> Allocator<'device> {
 		// SAFETY: metadata was queried from the caller's matching physical device.
 		let mut allocator = unsafe {
 			Self::new_with_granularity(
+				device,
+				memory,
+				properties.limits.non_coherent_atom_size,
+				properties.limits.buffer_image_granularity,
+			)
+		}?;
+		allocator.integrated = Some(properties.device_type == vk::PhysicalDeviceType::INTEGRATED_GPU);
+		allocator.physical_device = Some(physical_device);
+		allocator.budget_query = budget::capture_query(instance, physical_device);
+		allocator.instance_handle = Some(instance.handle());
+		allocator.physical_properties = Some(properties);
+		allocator.allocation_limit = properties.limits.max_memory_allocation_count;
+		allocator.allocation_size_limit = allocation_size_limit;
+		// Select/validate the exact admitted requirements command before publication.
+		allocator.buffer_route()?;
+		Ok(allocator)
+	}
+
+	/// [`Self::new_from_physical_device`] retaining one shared device context.
+	///
+	/// # Safety
+	/// `physical_device` must belong to `instance` and be the physical device used
+	/// to create `device`. Native ownership and host synchronization remain the
+	/// caller's responsibility.
+	pub unsafe fn new_retained_from_physical_device(
+		instance: &vk::Instance,
+		physical_device: vk::PhysicalDevice,
+		device: std::sync::Arc<Device>,
+	) -> Result<Allocator<'static>, AllocError> {
+		let parent = instance
+			.capabilities()
+			.ok_or(AllocError::UnsupportedCapability(
+				"instance creation metadata is required",
+			))?;
+		let capabilities = device
+			.capabilities()
+			.ok_or(AllocError::UnsupportedCapability(
+				"device creation metadata is required",
+			))?;
+		if !capabilities.matches_instance(parent) {
+			return Err(AllocError::InvalidProperties(
+				"device/instance metadata disagree",
+			));
+		}
+		if physical_device.is_null() {
+			return Err(AllocError::InvalidProperties("null physical device"));
+		}
+		// SAFETY: caller guarantees the selected physical device and parent lifetime.
+		let properties = unsafe { instance.get_physical_device_properties(physical_device) }?;
+		let maintenance3 = capabilities
+			.device_extensions()
+			.is_some_and(|mut extensions| extensions.any(|name| name == c"VK_KHR_maintenance3"));
+		let allocation_size_limit = if capabilities.api_version() >= vk::API_VERSION_1_1 || maintenance3
+		{
+			let mut limits = vk::PhysicalDeviceMaintenance3Properties::default();
+			let mut output = vk::PhysicalDeviceProperties2 {
+				p_next: std::ptr::from_mut(&mut limits).cast(),
+				..Default::default()
+			};
+			if parent.instance_api_version() >= vk::API_VERSION_1_1 {
+				// SAFETY: admitted core query, matching physical device and initialized chain.
+				unsafe { instance.get_physical_device_properties2(physical_device, &mut output) }?;
+			} else if parent
+				.instance_extensions()
+				.any(|name| name == c"VK_KHR_get_physical_device_properties2")
+			{
+				// SAFETY: exact KHR query is admitted by the enabled instance extension;
+				// the device enabled maintenance3, which supplies this property record.
+				unsafe { instance.get_physical_device_properties2_khr(physical_device, &mut output) }?;
+			} else {
+				return Err(AllocError::UnsupportedCapability(
+					"maintenance3 requires properties2",
+				));
+			}
+			if limits.max_memory_allocation_size == 0 {
+				return Err(AllocError::InvalidProperties(
+					"zero native allocation-size limit",
+				));
+			}
+			Some(limits.max_memory_allocation_size)
+		} else {
+			None
+		};
+		// SAFETY: same live physical device.
+		let memory = unsafe { instance.get_physical_device_memory_properties(physical_device) }?;
+		if properties.limits.max_memory_allocation_count == 0 {
+			return Err(AllocError::InvalidProperties(
+				"zero native allocation limit",
+			));
+		}
+		// SAFETY: metadata was queried from the caller's matching physical device.
+		let mut allocator = unsafe {
+			Self::new_retained_with_granularity(
 				device,
 				memory,
 				properties.limits.non_coherent_atom_size,
@@ -885,12 +1056,14 @@ impl<'device> Allocator<'device> {
 	}
 
 	fn requirements_route(&self, image: bool) -> Result<RequirementsRoute, AllocError> {
-		let capabilities = self
-			.device
-			.capabilities()
-			.ok_or(AllocError::UnsupportedCapability(
-				"managed resources require device creation metadata",
-			))?;
+		let capabilities =
+			self
+				.device
+				.as_device()
+				.capabilities()
+				.ok_or(AllocError::UnsupportedCapability(
+					"managed resources require device creation metadata",
+				))?;
 		let fp = self.device.fp();
 		let (core, khr, legacy) = if image {
 			(
@@ -927,8 +1100,8 @@ impl<'device> Allocator<'device> {
 			require(core.0, core.1)?;
 			return Ok(RequirementsRoute::Core);
 		}
-		if super::resource::extension(self.device, c"VK_KHR_dedicated_allocation") {
-			if !super::resource::extension(self.device, c"VK_KHR_get_memory_requirements2") {
+		if super::resource::extension(self.device.as_device(), c"VK_KHR_dedicated_allocation") {
+			if !super::resource::extension(self.device.as_device(), c"VK_KHR_get_memory_requirements2") {
 				return Err(AllocError::UnsupportedCapability(
 					"dedication requires VK_KHR_get_memory_requirements2",
 				));
@@ -1381,13 +1554,13 @@ unsafe fn free_region(
 		.checked_add(u32::from(live.persistent))
 		.ok_or(AllocError::InvalidRange)?;
 	if holds != 0 {
-		let device = allocator.device;
+		let device = allocator.device.clone();
 		// SAFETY: ordinary free rejected explicit maps; relocation ends all counted
 		// pointer uses. The canonical shared owner releases exactly these holds.
 		unsafe {
 			allocator
 				.mapping_mut(allocation)
-				.release_many(device, allocation.handle, holds)
+				.release_many(device.as_device(), allocation.handle, holds)
 		}?;
 	}
 	if let Some(placement) = placement {
@@ -1403,7 +1576,7 @@ unsafe fn free_region(
 			block
 				.mapping
 				.write()
-				.post_free(allocator.device, block.handle)
+				.post_free(allocator.device.as_device(), block.handle)
 		}?;
 		block
 			.metadata
@@ -1420,12 +1593,13 @@ unsafe fn free_region(
 				allocator.blocks[block_index]
 					.mapping
 					.write()
-					.clear_cache(allocator.device, allocation.handle)
+					.clear_cache(allocator.device.as_device(), allocation.handle)
 			}?;
 			// SAFETY: all regions and maps ended; caller completed native resources.
 			unsafe {
 				allocator
 					.device
+					.as_device()
 					.free_memory(allocation.handle, allocator.callbacks)
 			}?;
 			let block = allocator.blocks.remove(block_index);
@@ -1437,6 +1611,7 @@ unsafe fn free_region(
 		unsafe {
 			allocator
 				.device
+				.as_device()
 				.free_memory(allocation.handle, allocator.callbacks)
 		}?;
 		allocator.remove_native(
@@ -1708,6 +1883,7 @@ pub unsafe fn create_buffer_with_options(
 			allocator.release_resource_claim(&allocation);
 			allocator
 				.device
+				.as_device()
 				.destroy_buffer(buffer, allocator.callbacks)
 				.expect("preflighted cleanup");
 			rollback_allocation(allocator, &mut allocation).expect("preflighted allocation rollback");
@@ -1809,9 +1985,10 @@ unsafe fn allocate_managed(
 		}
 		if !allocator
 			.device
+			.as_device()
 			.capabilities()
 			.is_some_and(|caps| caps.api_version() >= vk::API_VERSION_1_1)
-			&& !super::resource::extension(allocator.device, c"VK_KHR_dedicated_allocation")
+			&& !super::resource::extension(allocator.device.as_device(), c"VK_KHR_dedicated_allocation")
 		{
 			return Err(AllocError::UnsupportedCapability(
 				"import dedication requires core 1.1 or KHR_dedicated_allocation",
@@ -2305,6 +2482,7 @@ pub unsafe fn destroy_buffer(
 		allocator.release_resource_claim(allocation);
 		allocator
 			.device
+			.as_device()
 			.destroy_buffer(buffer, allocator.callbacks)?;
 		allocator
 			.live
@@ -2415,6 +2593,7 @@ pub unsafe fn create_image_with_options(
 			allocator.release_resource_claim(&allocation);
 			allocator
 				.device
+				.as_device()
 				.destroy_image(image, allocator.callbacks)
 				.expect("preflighted cleanup");
 			rollback_allocation(allocator, &mut allocation).expect("preflighted allocation rollback");

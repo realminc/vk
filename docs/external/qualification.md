@@ -82,7 +82,9 @@ for heap-sized default pools and native-growth fallback; custom pools retain
 their own policy and identities. This is a deliberate Rust API choice, not an
 assertion of VMA's default behavior.
 
-Construction retains borrowed device/callback/chain dependencies. Native object
+Construction retains borrowed device/callback/chain dependencies; the optional
+`new_retained` constructors instead hold an owned `Arc<Device>` clone, producing
+`Allocator<'static>` that may finish on a dedicated cleanup thread. Native object
 lifetimes, callback user-data validity, GPU completion and external ownership
 transfers remain unsafe caller obligations. No operation implicitly submits or
 waits for GPU work. Native destruction uses explicit cleanup calls; `Drop` frees
@@ -110,7 +112,9 @@ ThreadSanitizer passed 22 threading plus 46 memory integration cases with a
 matching instrumented standard library. Both reported zero diagnostics. Four
 fresh-process repetitions of three independently checked VMA concurrency outcomes
 also passed (12 comparisons). This is scoped evidence, not universal race freedom
-or Miri qualification. See the [v0.8.0 release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.8.0.md)
+or Miri qualification. The v0.9.0 owned-retention delta adds native-ledger
+scope/lifetime/thread tests but no new sanitizer, donor or hardware profile.
+See the [v0.9.0 release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.9.0.md)
 and actual CI artifacts for the release snapshot's rerun results.
 
 Recorded physical memory profiles use Intel HD Graphics 4400 (Haswell), Mesa,

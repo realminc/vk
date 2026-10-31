@@ -27,7 +27,7 @@ and runtime qualification are separate; see the
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.8" }
+vk = { package = "vkrust", version = "0.9" }
 ```
 
 No Vulkan SDK, C compiler, C++ library or consumer-side generator is needed.
@@ -35,16 +35,16 @@ The default `loader` feature loads the system Vulkan library at runtime.
 
 ## Library and Vulkan versions
 
-The package version is **`0.8.0+1.4.365`**:
+The package version is **`0.9.0+1.4.365`**:
 
 | Version | Meaning |
 | --- | --- |
-| `0.8.0` | This Rust library's API release; Git tag `v0.8.0` |
+| `0.9.0` | This Rust library's API release; Git tag `v0.9.0` |
 | `+1.4.365` | Generated from Vulkan 1.4 headers, revision 365 |
 | `ApplicationInfo::api_version` | The Vulkan API version your application requests at runtime |
 
 Cargo treats the suffix as build metadata, so the dependency requirement stays
-`version = "0.8"`. The suffix identifies the pinned API snapshot; it is not a
+`version = "0.9"`. The suffix identifies the pinned API snapshot; it is not a
 Vulkan 1.4 driver requirement or runtime qualification claim. Applications can
 request Vulkan 1.0, 1.1 or 1.2 and use the commands/features admitted by their
 actual implementation. The examples below request Vulkan 1.0.
@@ -324,7 +324,7 @@ Enable `features = ["allocator"]` for the Rust-native, VMA-derived allocator:
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.8", features = ["allocator"] }
+vk = { package = "vkrust", version = "0.9", features = ["allocator"] }
 ```
 
 `vk::mem` owns allocator operations and configuration; `vk::Allocator` is the
@@ -407,7 +407,10 @@ independent placement owners. Borrowed results, relocation and global services
 use exclusive `with_allocator` access and wait for active native calls.
 `SynchronizedVirtualBlock` optionally serializes host-only placement; VMA's
 virtual blocks themselves require external synchronization. Ordinary `Allocator`
-remains exclusive and non-Send/non-Sync.
+remains exclusive and non-Send/non-Sync. The `new_retained` constructor
+family produces `Allocator<'static>` backed by an owned `Arc<Device>` clone,
+letting an allocator outlive its construction scope and finish on a dedicated
+cleanup thread; `SynchronizedAllocator::new_owned` adopts it directly.
 
 The pinned VMA implementation is a development oracle; consumers need no C++
 allocator or FFI bridge. The broad allocator service surface is implemented,

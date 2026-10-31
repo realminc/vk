@@ -10,7 +10,7 @@ pub(super) fn validate_types(
 	allocator: &Allocator<'_>,
 	types: vk::ExternalMemoryHandleTypeFlags,
 ) -> Result<(), AllocError> {
-	crate::mem::resource::validate_external_types(allocator.device, types)
+	crate::mem::resource::validate_external_types(allocator.device.as_device(), types)
 }
 
 pub(super) fn allocation_exports(
@@ -366,6 +366,7 @@ pub unsafe fn get_memory_win32_handle(
 		unsafe {
 			allocator
 				.device
+				.as_device()
 				.get_memory_win32_handle_khr(&info, &mut handle)
 		}?;
 		if handle.is_null() || handle == (-1_isize) as *mut std::ffi::c_void {
@@ -454,7 +455,7 @@ fn validate_allocation_chain(
 	chain: ChainData,
 ) -> Result<(), AllocError> {
 	if let Some(name) = chain.import_extension
-		&& !crate::mem::resource::extension(allocator.device, name)
+		&& !crate::mem::resource::extension(allocator.device.as_device(), name)
 	{
 		return Err(AllocError::UnsupportedCapability(
 			"memory import extension is not enabled",
@@ -463,9 +464,10 @@ fn validate_allocation_chain(
 	if let Some(flags) = chain.flags {
 		if !allocator
 			.device
+			.as_device()
 			.capabilities()
 			.is_some_and(|caps| caps.api_version() >= vk::API_VERSION_1_1)
-			&& !crate::mem::resource::extension(allocator.device, c"VK_KHR_device_group")
+			&& !crate::mem::resource::extension(allocator.device.as_device(), c"VK_KHR_device_group")
 		{
 			return Err(AllocError::UnsupportedCapability(
 				"allocation flags require core 1.1 or enabled device_group",

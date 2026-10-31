@@ -469,12 +469,12 @@ unsafe fn prepare_destination(
 		.checked_add(u32::from(persistent))
 		.ok_or(AllocError::InvalidRange)?;
 	if holds != 0 {
-		let device = allocator.device;
+		let device = allocator.device.clone();
 		// SAFETY: host-visible source implies the identical native type is visible;
 		// exclusive allocator borrow serializes mapping and no destination uses exist.
 		unsafe {
 			allocator.mapping_mut(destination).acquire_many(
-				device,
+				device.as_device(),
 				destination.handle,
 				destination.block_size,
 				holds,
@@ -789,7 +789,7 @@ impl DefragmentationPass<'_, '_> {
 
 	/// Access the same borrowed device for explicit replacement/copy/completion operations.
 	pub fn device(&self) -> &vk::Device {
-		self.allocator.device
+		self.allocator.device.as_device()
 	}
 
 	/// Retained native callbacks for explicit old/replacement resource destruction.

@@ -518,13 +518,14 @@ fn remove_block(allocator: &mut Allocator<'_>, index: usize) {
 		block
 			.mapping
 			.write()
-			.clear_cache(allocator.device, block.handle)
+			.clear_cache(allocator.device.as_device(), block.handle)
 	}
 	.expect("preflighted cached mapping cleanup");
 	// SAFETY: no regions/maps remain; native inverse PFN is immutable and preflighted.
 	unsafe {
 		allocator
 			.device
+			.as_device()
 			.free_memory(block.handle, allocator.callbacks)
 	}
 	.expect("preflighted pool cleanup");

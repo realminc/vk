@@ -377,7 +377,7 @@ impl Drop for Scope<'_, '_> {
 fn new_child<'device>(root: &Allocator<'device>, domain: Domain) -> Allocator<'device> {
 	Allocator {
 		host: root.host,
-		device: root.device,
+		device: root.device.clone(),
 		callbacks: root.callbacks,
 		device_memory_callbacks: root.device_memory_callbacks,
 		physical_device: root.physical_device,

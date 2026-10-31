@@ -161,7 +161,7 @@ pub unsafe fn query_budget(
 ) -> Result<BudgetSnapshot, AllocError> {
 	allocator.ensure_open()?;
 	let snapshot = budget_snapshot(allocator);
-	if !crate::mem::resource::extension(allocator.device, c"VK_EXT_memory_budget") {
+	if !crate::mem::resource::extension(allocator.device.as_device(), c"VK_EXT_memory_budget") {
 		return Ok(snapshot);
 	}
 	let parent = instance
@@ -171,6 +171,7 @@ pub unsafe fn query_budget(
 		))?;
 	let capabilities = allocator
 		.device
+		.as_device()
 		.capabilities()
 		.expect("extension requires metadata");
 	if physical.is_null() || !capabilities.matches_instance(parent) {
@@ -282,27 +283,28 @@ pub(super) fn capture_query(
 pub fn refresh_budget(allocator: &mut Allocator<'_>) -> Result<BudgetSnapshot, AllocError> {
 	allocator.ensure_global()?;
 	allocator.ensure_open()?;
-	let snapshot = if crate::mem::resource::extension(allocator.device, c"VK_EXT_memory_budget") {
-		let query = allocator
-			.budget_query
-			.ok_or(AllocError::UnsupportedCapability(
-				"retained physical budget context is required",
-			))?;
-		let function = query
-			.function
-			.ok_or(crate::load::CallError::MissingCommand(query.name))?;
-		let mut budget = vk::PhysicalDeviceMemoryBudgetPropertiesEXT::default();
-		let mut output = vk::PhysicalDeviceMemoryProperties2 {
-			p_next: std::ptr::from_mut(&mut budget).cast(),
-			..Default::default()
+	let snapshot =
+		if crate::mem::resource::extension(allocator.device.as_device(), c"VK_EXT_memory_budget") {
+			let query = allocator
+				.budget_query
+				.ok_or(AllocError::UnsupportedCapability(
+					"retained physical budget context is required",
+				))?;
+			let function = query
+				.function
+				.ok_or(crate::load::CallError::MissingCommand(query.name))?;
+			let mut budget = vk::PhysicalDeviceMemoryBudgetPropertiesEXT::default();
+			let mut output = vk::PhysicalDeviceMemoryProperties2 {
+				p_next: std::ptr::from_mut(&mut budget).cast(),
+				..Default::default()
+			};
+			// SAFETY: context was captured under the allocator's native parent-lifetime/identity contract;
+			// the borrowed Device retains the loader library and both outputs are initialized stack records.
+			unsafe { function(query.physical, &mut output) };
+			validate_budget(allocator, &output, &budget)?
+		} else {
+			budget_snapshot(allocator)
 		};
-		// SAFETY: context was captured under the allocator's native parent-lifetime/identity contract;
-		// the borrowed Device retains the loader library and both outputs are initialized stack records.
-		unsafe { function(query.physical, &mut output) };
-		validate_budget(allocator, &output, &budget)?
-	} else {
-		budget_snapshot(allocator)
-	};
 	allocator.budget_cache = Some(snapshot);
 	allocator.budget_operations = 0;
 	Ok(snapshot)
@@ -426,7 +428,7 @@ impl Allocator<'_> {
 }
 
 pub(super) fn validate_profile(allocator: &Allocator<'_>) -> Result<(), AllocError> {
-	if crate::mem::resource::extension(allocator.device, c"VK_EXT_memory_budget") {
+	if crate::mem::resource::extension(allocator.device.as_device(), c"VK_EXT_memory_budget") {
 		let query = allocator
 			.budget_query
 			.ok_or(AllocError::UnsupportedCapability(
