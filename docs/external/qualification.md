@@ -114,7 +114,10 @@ fresh-process repetitions of three independently checked VMA concurrency outcome
 also passed (12 comparisons). This is scoped evidence, not universal race freedom
 or Miri qualification. The v0.9.0 owned-retention delta adds native-ledger
 scope/lifetime/thread tests but no new sanitizer, donor or hardware profile.
-See the [v0.9.0 release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.9.0.md)
+The v0.10.0 fluent-setter rename is a source-level spelling change over the
+same generated construction contracts; it adds no new native surface and no
+new sanitizer, donor or hardware profile.
+See the [v0.10.0 release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.10.0.md)
 and actual CI artifacts for the release snapshot's rerun results.
 
 Recorded physical memory profiles use Intel HD Graphics 4400 (Haswell), Mesa,

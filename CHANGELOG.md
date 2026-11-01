@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.10.0+1.4.365 — 2026-11-01
+
+- Rename every generated fluent record-construction setter to the `set_*`
+  prefix on its existing ergonomic name (`application_info` →
+  `set_application_info`, `queue_create_infos` → `set_queue_create_infos`).
+  Source-breaking, ABI-preserving: raw `#[repr(C)]` fields, dispatch, allocator,
+  `push_next`, sealed `ChainNode` internals and StdVideo `set_*` bitfield
+  accessors are unchanged. Migrate call sites mechanically; there are no legacy
+  aliases.
+- See the [release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.10.0.md).
+
 ## 0.9.0+1.4.365 — 2026-10-31
 
 - Add owned device retention to the allocator: `new_retained`,

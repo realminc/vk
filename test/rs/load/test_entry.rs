@@ -14,9 +14,9 @@ fn headless_instance_create_destroy() {
 		.expect("query Vulkan version");
 	assert!(vk::api_version_major(version) >= 1);
 	let app = vk::ApplicationInfo::default()
-		.application_name(c"vk borrowed construction")
-		.api_version(vk::API_VERSION_1_0);
-	let info = vk::InstanceCreateInfo::default().application_info(&app);
+		.set_application_name(c"vk borrowed construction")
+		.set_api_version(vk::API_VERSION_1_0);
+	let info = vk::InstanceCreateInfo::default().set_application_info(&app);
 	// SAFETY: pointers refer to live inputs; no extensions or callbacks are used.
 	let instance = unsafe { entry.create_instance(&info, None) }.expect("create headless instance");
 	assert!(!instance.handle().is_null());
@@ -75,11 +75,11 @@ fn native_device_dispatch_caps_requested_version_by_selected_physical_device() {
 			& !0xfff;
 		let priorities = [1.0];
 		let queues = [vk::DeviceQueueCreateInfo::default()
-			.queue_family_index(family)
-			.queue_priorities(&priorities)
+			.set_queue_family_index(family)
+			.set_queue_priorities(&priorities)
 			.unwrap()];
 		let info = vk::DeviceCreateInfo::default()
-			.queue_create_infos(&queues)
+			.set_queue_create_infos(&queues)
 			.unwrap();
 		let device = instance.create_device(physical, &info, None).unwrap();
 		let effective = requested.min(physical_version);

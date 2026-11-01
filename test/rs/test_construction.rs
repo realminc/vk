@@ -5,23 +5,23 @@ use vk::{ConstructionError, StructureType};
 fn strings_nested_records_and_arrays_keep_exact_native_fields() -> Result<(), ConstructionError> {
 	let name = std::ffi::CString::new("construction").unwrap();
 	let application = vk::ApplicationInfo::default()
-		.application_name(&name)
-		.api_version(vk::API_VERSION_1_0);
-	let info = vk::InstanceCreateInfo::default().application_info(&application);
+		.set_application_name(&name)
+		.set_api_version(vk::API_VERSION_1_0);
+	let info = vk::InstanceCreateInfo::default().set_application_info(&application);
 	assert_eq!(application.p_application_name, name.as_ptr());
 	assert_eq!(info.p_application_info, std::ptr::from_ref(&application));
 	assert_eq!(info.s_type, StructureType::INSTANCE_CREATE_INFO);
 	assert!(info.p_next.is_null());
 	let priorities = [1.0, 0.25];
 	let queues = [vk::DeviceQueueCreateInfo::default()
-		.queue_family_index(7)
-		.queue_priorities(&priorities)?];
-	let device = vk::DeviceCreateInfo::default().queue_create_infos(&queues)?;
+		.set_queue_family_index(7)
+		.set_queue_priorities(&priorities)?];
+	let device = vk::DeviceCreateInfo::default().set_queue_create_infos(&queues)?;
 	assert_eq!(device.queue_create_info_count, 1);
 	assert_eq!(device.p_queue_create_infos, queues.as_ptr());
 	assert_eq!(queues[0].queue_count, 2);
 	assert_eq!(queues[0].p_queue_priorities, priorities.as_ptr());
-	let empty = vk::DeviceQueueCreateInfo::default().queue_priorities(&[])?;
+	let empty = vk::DeviceQueueCreateInfo::default().set_queue_priorities(&[])?;
 	assert_eq!(empty.queue_count, 0);
 	Ok(())
 }
@@ -30,7 +30,7 @@ fn strings_nested_records_and_arrays_keep_exact_native_fields() -> Result<(), Co
 fn pointer_arrays_borrow_array_without_claiming_string_ownership() -> Result<(), ConstructionError>
 {
 	let names = [c"VK_EXAMPLE_one".as_ptr(), c"VK_EXAMPLE_two".as_ptr()];
-	let info = vk::InstanceCreateInfo::default().enabled_extension_names(&names)?;
+	let info = vk::InstanceCreateInfo::default().set_enabled_extension_names(&names)?;
 	assert_eq!(info.enabled_extension_count, 2);
 	assert_eq!(info.pp_enabled_extension_names, names.as_ptr());
 	Ok(())
@@ -251,15 +251,15 @@ fn shared_counts_require_matching_parallel_arrays() -> Result<(), ConstructionEr
 	let semaphores = [vk::Semaphore::NULL; 2];
 	let stages = [vk::PipelineStageFlags::from_raw(1); 2];
 	let values = [3_u64, 7];
-	let submit = vk::SubmitInfo::default().wait_semaphores(&semaphores, &stages)?;
+	let submit = vk::SubmitInfo::default().set_wait_semaphores(&semaphores, &stages)?;
 	assert_eq!(submit.wait_semaphore_count, 2);
 	assert_eq!(submit.p_wait_semaphores, semaphores.as_ptr());
 	assert_eq!(submit.p_wait_dst_stage_mask, stages.as_ptr());
-	let wait = vk::SemaphoreWaitInfo::default().semaphores(&semaphores, &values)?;
+	let wait = vk::SemaphoreWaitInfo::default().set_semaphores(&semaphores, &values)?;
 	assert_eq!(wait.semaphore_count, 2);
 	assert_eq!(wait.p_values, values.as_ptr());
 	assert!(matches!(
-		vk::SubmitInfo::default().wait_semaphores(&semaphores, &stages[..1]),
+		vk::SubmitInfo::default().set_wait_semaphores(&semaphores, &stages[..1]),
 		Err(ConstructionError::LengthMismatch {
 			expected: 2,
 			actual: 1,
@@ -267,7 +267,7 @@ fn shared_counts_require_matching_parallel_arrays() -> Result<(), ConstructionEr
 		})
 	));
 	assert!(matches!(
-		vk::SemaphoreWaitInfo::default().semaphores(&semaphores, &values[..1]),
+		vk::SemaphoreWaitInfo::default().set_semaphores(&semaphores, &values[..1]),
 		Err(ConstructionError::LengthMismatch {
 			expected: 2,
 			actual: 1,
@@ -283,14 +283,14 @@ fn descriptor_payload_selection_clears_conflicting_native_arrays() -> Result<(),
 	let images = [vk::DescriptorImageInfo::default()];
 	let buffers = [vk::DescriptorBufferInfo::default(); 2];
 	let views = [vk::BufferView::NULL; 3];
-	let write = vk::WriteDescriptorSet::default().image_info(&images)?;
+	let write = vk::WriteDescriptorSet::default().set_image_info(&images)?;
 	assert_eq!(write.descriptor_count, 1);
 	assert_eq!(write.p_image_info, images.as_ptr());
-	let write = write.buffer_info(&buffers)?;
+	let write = write.set_buffer_info(&buffers)?;
 	assert_eq!(write.descriptor_count, 2);
 	assert!(write.p_image_info.is_null());
 	assert_eq!(write.p_buffer_info, buffers.as_ptr());
-	let write = write.texel_buffer_view(&views)?;
+	let write = write.set_texel_buffer_view(&views)?;
 	assert_eq!(write.descriptor_count, 3);
 	assert!(write.p_image_info.is_null());
 	assert!(write.p_buffer_info.is_null());
@@ -301,21 +301,21 @@ fn descriptor_payload_selection_clears_conflicting_native_arrays() -> Result<(),
 #[test]
 fn word_and_byte_payloads_use_native_byte_extents() -> Result<(), ConstructionError> {
 	let words = [0x0723_0203_u32, 0, 1, 2];
-	let shader = vk::ShaderModuleCreateInfo::default().code(&words);
+	let shader = vk::ShaderModuleCreateInfo::default().set_code(&words);
 	assert_eq!(shader.code_size, 16);
 	assert_eq!(shader.p_code, words.as_ptr());
 	let bytes = [0_u8, 5, 255, 7, 9];
-	let specialization = vk::SpecializationInfo::default().data(&bytes)?;
+	let specialization = vk::SpecializationInfo::default().set_data(&bytes)?;
 	assert_eq!(specialization.data_size, 5);
 	assert_eq!(specialization.p_data, bytes.as_ptr().cast());
-	let cache = vk::PipelineCacheCreateInfo::default().initial_data(&bytes)?;
+	let cache = vk::PipelineCacheCreateInfo::default().set_initial_data(&bytes)?;
 	assert_eq!(cache.initial_data_size, 5);
 	assert_eq!(cache.p_initial_data, bytes.as_ptr().cast());
-	let inline = vk::WriteDescriptorSetInlineUniformBlock::default().data(&bytes)?;
+	let inline = vk::WriteDescriptorSetInlineUniformBlock::default().set_data(&bytes)?;
 	assert_eq!(inline.data_size, 5);
-	let empty = vk::ShaderModuleCreateInfo::default().code(&[]);
+	let empty = vk::ShaderModuleCreateInfo::default().set_code(&[]);
 	assert_eq!(empty.code_size, 0);
-	let empty = vk::PipelineCacheCreateInfo::default().initial_data(&[])?;
+	let empty = vk::PipelineCacheCreateInfo::default().set_initial_data(&[])?;
 	assert_eq!(empty.initial_data_size, 0);
 	Ok(())
 }
@@ -328,7 +328,8 @@ fn optional_parallel_arrays_and_writable_results_share_one_count() -> Result<(),
 	let mut results = [vk::Result::NOT_READY; 2];
 	let results_address = results.as_mut_ptr();
 	{
-		let present = vk::PresentInfoKHR::default().swapchains(&swaps, &indices, Some(&mut results))?;
+		let present =
+			vk::PresentInfoKHR::default().set_swapchains(&swaps, &indices, Some(&mut results))?;
 		assert_eq!(present.swapchain_count, 2);
 		assert_eq!(present.p_swapchains, swaps.as_ptr());
 		assert_eq!(present.p_image_indices, indices.as_ptr());
@@ -337,10 +338,10 @@ fn optional_parallel_arrays_and_writable_results_share_one_count() -> Result<(),
 		unsafe { present.p_results.add(1).write(vk::Result::SUCCESS) };
 	}
 	assert_eq!(results, [vk::Result::NOT_READY, vk::Result::SUCCESS]);
-	let no_results = vk::PresentInfoKHR::default().swapchains(&swaps, &indices, None)?;
+	let no_results = vk::PresentInfoKHR::default().set_swapchains(&swaps, &indices, None)?;
 	assert!(no_results.p_results.is_null());
 	assert!(matches!(
-		vk::PresentInfoKHR::default().swapchains(&swaps, &indices[..1], None),
+		vk::PresentInfoKHR::default().set_swapchains(&swaps, &indices[..1], None),
 		Err(ConstructionError::LengthMismatch {
 			field: "pImageIndices",
 			..
@@ -348,7 +349,7 @@ fn optional_parallel_arrays_and_writable_results_share_one_count() -> Result<(),
 	));
 	let mut too_short = [vk::Result::NOT_READY];
 	assert!(matches!(
-		vk::PresentInfoKHR::default().swapchains(&swaps, &indices, Some(&mut too_short)),
+		vk::PresentInfoKHR::default().set_swapchains(&swaps, &indices, Some(&mut too_short)),
 		Err(ConstructionError::LengthMismatch {
 			field: "pResults",
 			..
@@ -356,12 +357,12 @@ fn optional_parallel_arrays_and_writable_results_share_one_count() -> Result<(),
 	));
 	assert_eq!(too_short[0], vk::Result::NOT_READY);
 	let attachments = [vk::AttachmentReference::default(); 2];
-	let subpass = vk::SubpassDescription::default().color_attachments(&attachments, None)?;
+	let subpass = vk::SubpassDescription::default().set_color_attachments(&attachments, None)?;
 	assert_eq!(subpass.color_attachment_count, 2);
 	assert!(subpass.p_resolve_attachments.is_null());
 	assert!(
 		vk::SubpassDescription::default()
-			.color_attachments(&attachments, Some(&attachments[..1]))
+			.set_color_attachments(&attachments, Some(&attachments[..1]))
 			.is_err()
 	);
 	Ok(())
@@ -369,13 +370,13 @@ fn optional_parallel_arrays_and_writable_results_share_one_count() -> Result<(),
 
 #[test]
 fn fully_optional_groups_preserve_explicit_query_counts() -> Result<(), ConstructionError> {
-	let query = vk::SwapchainTimeDomainPropertiesEXT::default().time_domains(0, None, None)?;
+	let query = vk::SwapchainTimeDomainPropertiesEXT::default().set_time_domains(0, None, None)?;
 	assert_eq!(query.time_domain_count, 0);
 	assert!(query.p_time_domains.is_null());
 	assert!(query.p_time_domain_ids.is_null());
 	let mut domains = [vk::TimeDomainKHR::default(); 2];
 	let mut ids = [0_u64; 2];
-	let info = vk::SwapchainTimeDomainPropertiesEXT::default().time_domains(
+	let info = vk::SwapchainTimeDomainPropertiesEXT::default().set_time_domains(
 		2,
 		Some(&mut domains),
 		Some(&mut ids),
@@ -383,11 +384,11 @@ fn fully_optional_groups_preserve_explicit_query_counts() -> Result<(), Construc
 	assert_eq!(info.time_domain_count, 2);
 	assert!(
 		vk::SwapchainTimeDomainPropertiesEXT::default()
-			.time_domains(3, None, Some(&mut ids))
+			.set_time_domains(3, None, Some(&mut ids))
 			.is_err()
 	);
 	let extent = [5_u64, 9];
-	let tensor = vk::TensorCopyARM::default().src_offset(2, None, None, Some(&extent))?;
+	let tensor = vk::TensorCopyARM::default().set_src_offset(2, None, None, Some(&extent))?;
 	assert_eq!(tensor.dimension_count, 2);
 	assert_eq!(tensor.p_extent, extent.as_ptr());
 	assert!(tensor.p_src_offset.is_null());
@@ -398,21 +399,22 @@ fn fully_optional_groups_preserve_explicit_query_counts() -> Result<(), Construc
 fn indirect_alternatives_clear_other_representations() -> Result<(), ConstructionError> {
 	let geometries: [_; 2] = std::array::from_fn(|_| vk::AccelerationStructureGeometryKHR::default());
 	let addresses = geometries.each_ref().map(std::ptr::from_ref);
-	let direct = vk::AccelerationStructureBuildGeometryInfoKHR::default().geometries(&geometries)?;
+	let direct =
+		vk::AccelerationStructureBuildGeometryInfoKHR::default().set_geometries(&geometries)?;
 	assert_eq!(direct.geometry_count, 2);
 	assert_eq!(direct.p_geometries, geometries.as_ptr());
 	assert!(direct.pp_geometries.is_null());
-	let indirect = direct.pp_geometries(&addresses[..1])?;
+	let indirect = direct.set_pp_geometries(&addresses[..1])?;
 	assert_eq!(indirect.geometry_count, 1);
 	assert!(indirect.p_geometries.is_null());
 	assert_eq!(indirect.pp_geometries, addresses.as_ptr());
-	let direct = indirect.geometries(&geometries)?;
+	let direct = indirect.set_geometries(&geometries)?;
 	assert!(direct.pp_geometries.is_null());
 	let usages = [vk::MicromapUsageEXT::default(); 2];
 	let pointers = usages.each_ref().map(std::ptr::from_ref);
 	let info = vk::MicromapBuildInfoEXT::default()
-		.usage_counts(&usages)?
-		.pp_usage_counts(&pointers)?;
+		.set_usage_counts(&usages)?
+		.set_pp_usage_counts(&pointers)?;
 	assert_eq!(info.usage_counts_count, 2);
 	assert!(info.p_usage_counts.is_null());
 	assert_eq!(info.pp_usage_counts, pointers.as_ptr());
@@ -425,7 +427,8 @@ fn writable_byte_and_scalar_storage_remains_initialized_and_borrowed()
 	let mut bytes = [0_u8; 5];
 	let address = bytes.as_mut_ptr();
 	{
-		let mut output = vk::PipelineExecutableInternalRepresentationKHR::default().data(&mut bytes)?;
+		let mut output =
+			vk::PipelineExecutableInternalRepresentationKHR::default().set_data(&mut bytes)?;
 		assert_eq!(output.data_size, 5);
 		assert_eq!(output.p_data, address.cast());
 		// SAFETY: exactly five initialized bytes are exclusively borrowed.
@@ -438,7 +441,7 @@ fn writable_byte_and_scalar_storage_remains_initialized_and_borrowed()
 	assert_eq!(bytes, [0, 0, 0, 0, 255]);
 	let mut result = vk::Result::NOT_READY;
 	{
-		let status = vk::BindMemoryStatus::default().result(&mut result);
+		let status = vk::BindMemoryStatus::default().set_result(&mut result);
 		// SAFETY: the constructor borrows one initialized result exclusively.
 		unsafe { status.p_result.write(vk::Result::SUCCESS) };
 	}
@@ -451,32 +454,33 @@ fn fixed_formula_and_parent_sized_video_storage_have_exact_extents() -> Result<(
 {
 	let mask = [u32::MAX; 2];
 	let info = vk::PipelineMultisampleStateCreateInfo::default()
-		.rasterization_samples(vk::SampleCountFlagBits::_64_BIT)
-		.sample_mask(&mask)?;
+		.set_rasterization_samples(vk::SampleCountFlagBits::_64_BIT)
+		.set_sample_mask(&mask)?;
 	assert_eq!(info.p_sample_mask, mask.as_ptr());
 	assert!(
 		vk::PipelineMultisampleStateCreateInfo::default()
-			.rasterization_samples(vk::SampleCountFlagBits::_64_BIT)
-			.sample_mask(&mask[..1])
+			.set_rasterization_samples(vk::SampleCountFlagBits::_64_BIT)
+			.set_sample_mask(&mask[..1])
 			.is_err()
 	);
 	let version = [0_u8; 2 * vk::UUID_SIZE as usize];
-	let info = vk::AccelerationStructureVersionInfoKHR::default().version_data(&version);
+	let info = vk::AccelerationStructureVersionInfoKHR::default().set_version_data(&version);
 	assert_eq!(info.p_version_data, version.as_ptr());
 	let offsets = [1_i32; 255];
-	let sps = vk::StdVideoH264SequenceParameterSet::default().offset_for_ref_frame(&offsets)?;
+	let sps = vk::StdVideoH264SequenceParameterSet::default().set_offset_for_ref_frame(&offsets)?;
 	assert_eq!(sps.num_ref_frames_in_pic_order_cnt_cycle, 255);
 	let too_many = [1_i32; 256];
 	assert!(matches!(
-		vk::StdVideoH264SequenceParameterSet::default().offset_for_ref_frame(&too_many),
+		vk::StdVideoH264SequenceParameterSet::default().set_offset_for_ref_frame(&too_many),
 		Err(ConstructionError::CountOverflow { count: 256, .. })
 	));
 	let layers = [vk::StdVideoH265SubLayerHrdParameters::default(); 3];
-	let hrd = vk::StdVideoH265HrdParameters::default().sub_layer_hrd_parameters_nal(2, &layers)?;
+	let hrd =
+		vk::StdVideoH265HrdParameters::default().set_sub_layer_hrd_parameters_nal(2, &layers)?;
 	assert_eq!(hrd.p_sub_layer_hrd_parameters_nal, layers.as_ptr());
 	assert!(
 		vk::StdVideoH265HrdParameters::default()
-			.sub_layer_hrd_parameters_nal(1, &layers)
+			.set_sub_layer_hrd_parameters_nal(1, &layers)
 			.is_err()
 	);
 	Ok(())
@@ -485,12 +489,12 @@ fn fixed_formula_and_parent_sized_video_storage_have_exact_extents() -> Result<(
 #[test]
 fn layer_values_count_elements_and_select_native_storage_type() -> Result<(), ConstructionError> {
 	let values = [2_i64, 9];
-	let setting = vk::LayerSettingEXT::default().values_int64(&values)?;
+	let setting = vk::LayerSettingEXT::default().set_values_int64(&values)?;
 	assert_eq!(setting.r#type, vk::LayerSettingTypeEXT::INT64_EXT);
 	assert_eq!(setting.value_count, 2);
 	assert_eq!(setting.p_values, values.as_ptr().cast());
 	let names = [c"one".as_ptr(), c"two".as_ptr()];
-	let setting = setting.values_strings(&names)?;
+	let setting = setting.set_values_strings(&names)?;
 	assert_eq!(setting.r#type, vk::LayerSettingTypeEXT::STRING_EXT);
 	assert_eq!(setting.value_count, 2);
 	assert_eq!(setting.p_values, names.as_ptr().cast());
@@ -508,7 +512,7 @@ fn fault_buffers_populate_the_separate_native_capacity_record() -> Result<(), Co
 		vendors.as_mut_ptr(),
 		binary.as_mut_ptr(),
 	);
-	let info = vk::DeviceFaultInfoEXT::default().buffers(
+	let info = vk::DeviceFaultInfoEXT::default().set_buffers(
 		&mut counts,
 		&mut addresses,
 		&mut vendors,
@@ -526,16 +530,16 @@ fn fault_buffers_populate_the_separate_native_capacity_record() -> Result<(), Co
 #[test]
 fn union_construction_and_opaque_native_setters_preserve_exact_values() {
 	let sampler = vk::Sampler::NULL;
-	let data = vk::DescriptorDataEXT::default().sampler(&sampler);
+	let data = vk::DescriptorDataEXT::default().set_sampler(&sampler);
 	// SAFETY: this is the exact union member most recently initialized.
 	assert_eq!(unsafe { data.p_sampler }, std::ptr::from_ref(&sampler));
-	let clear = vk::ClearColorValue::default().uint32([1, 2, 3, 4]);
+	let clear = vk::ClearColorValue::default().set_uint32([1, 2, 3, 4]);
 	// SAFETY: this is the exact union member most recently initialized.
 	assert_eq!(unsafe { clear.uint32 }, [1, 2, 3, 4]);
 	let mut user = 7_u32;
 	let address = std::ptr::from_mut(&mut user).cast();
 	// SAFETY: the test only compares the pointer, with no callbacks or native use.
-	let callbacks = unsafe { vk::AllocationCallbacks::default().user_data(address) };
+	let callbacks = unsafe { vk::AllocationCallbacks::default().set_user_data(address) };
 	assert_eq!(callbacks.p_user_data, address);
 }
 
@@ -543,17 +547,17 @@ fn union_construction_and_opaque_native_setters_preserve_exact_values() {
 fn direct_native_counts_preserve_null_pointer_and_extension_payload_paths()
 -> Result<(), ConstructionError> {
 	let dynamic = vk::PipelineViewportStateCreateInfo::default()
-		.viewport_count(2)
-		.scissor_count(2);
+		.set_viewport_count(2)
+		.set_scissor_count(2);
 	assert_eq!(dynamic.viewport_count, 2);
 	assert_eq!(dynamic.scissor_count, 2);
 	assert!(dynamic.p_viewports.is_null());
 	assert!(dynamic.p_scissors.is_null());
 	let bytes = [0_u8; 4];
-	let mut inline = vk::WriteDescriptorSetInlineUniformBlock::default().data(&bytes)?;
+	let mut inline = vk::WriteDescriptorSetInlineUniformBlock::default().set_data(&bytes)?;
 	let write = vk::WriteDescriptorSet::default()
-		.descriptor_type(vk::DescriptorType::INLINE_UNIFORM_BLOCK)
-		.descriptor_count(4)
+		.set_descriptor_type(vk::DescriptorType::INLINE_UNIFORM_BLOCK)
+		.set_descriptor_count(4)
 		.push_next(&mut inline)?;
 	assert_eq!(write.descriptor_count, 4);
 	assert!(write.p_image_info.is_null());

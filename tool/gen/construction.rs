@@ -286,6 +286,14 @@ fn method(member: &StructMember) -> String {
 	}
 }
 
+/// Public fluent construction setters carry an explicit `set_` prefix on the
+/// existing ergonomic name; raw Khronos pointer prefixes stay stripped.
+/// `r#` keyword escapes belong to the receiver spelling, not the setter name.
+fn setter_name(member: &StructMember) -> String {
+	let base = method(member);
+	format!("set_{}", base.strip_prefix("r#").unwrap_or(&base))
+}
+
 fn retains_borrow(kind: &Setter) -> bool {
 	!matches!(kind, Setter::Value | Setter::NativeCount | Setter::Raw)
 }
@@ -404,7 +412,25 @@ pub fn resolve(reg: &mut Registry) -> Result<()> {
 			}
 		}
 		if matches!(ty.kind, TypeKind::Struct { .. } | TypeKind::Union { .. }) {
-			let _ = recipes(reg, ty, "'a", false)?;
+			let bitfield_writers: std::collections::BTreeSet<String> = members(ty)
+				.iter()
+				.filter(|m| m.bitfield.is_some())
+				.map(|m| format!("set_{}", names::member_name(&m.name)))
+				.collect();
+			for recipe in recipes(reg, ty, "'a", false)? {
+				ensure!(
+					recipe.method.starts_with("set_"),
+					"construction method {}.{} missed the set_ prefix",
+					ty.c_name,
+					recipe.method
+				);
+				ensure!(
+					!bitfield_writers.contains(&recipe.method),
+					"construction method {}.{} collides with a bitfield accessor",
+					ty.c_name,
+					recipe.method
+				);
+			}
 		}
 	}
 	Ok(())
@@ -444,7 +470,7 @@ fn recipe(
 ) -> Recipe {
 	let field = names::member_name(&member.name);
 	let mut recipe = Recipe {
-		method: method(member),
+		method: setter_name(member),
 		parameters: vec![],
 		body: String::new(),
 		doc: format!("Set native field `{}` without native effects.", member.name),
@@ -598,7 +624,7 @@ fn group_recipe(
 		ty.c_name
 	);
 	let mut recipe = Recipe {
-		method: method(fields[0]),
+		method: setter_name(fields[0]),
 		parameters: vec![],
 		body: String::new(),
 		doc: format!(
@@ -700,7 +726,7 @@ fn layer_recipes(reg: &Registry, lifetime: &str, qualified: bool) -> Result<Vec<
 		);
 		let variant = names::enum_variant(native, "VkLayerSettingTypeEXT");
 		result.push(Recipe {
-   method: format!("values_{suffix}"),
+   method: format!("set_values_{suffix}"),
    parameters: vec![("value".into(), format!("&{lifetime} [{element}]"))],
    body: format!("let count = crate::construction::count(\"pValues\", value.len())?; self.r#type = {}LayerSettingTypeEXT::{variant}; self.value_count = count; self.p_values = value.as_ptr().cast();", if qualified { "vk::" } else { "" }),
    doc: "Borrow typed layer values and set their native type and element count.\n/// For strings the borrow covers the pointer table, not the strings it names.\n///\n/// # Errors\n/// Returns a construction error if the element count exceeds u32.".into(),
@@ -716,7 +742,7 @@ fn layer_recipes(reg: &Registry, lifetime: &str, qualified: bool) -> Result<Vec<
 fn fault_recipe(lifetime: &str, qualified: bool) -> Recipe {
 	let prefix = if qualified { "vk::" } else { "" };
 	Recipe {
-  method: "buffers".into(),
+  method: "set_buffers".into(),
   parameters: vec![
    ("counts".into(), format!("&mut {prefix}DeviceFaultCountsEXT<'_>")),
    ("address_infos".into(), format!("&{lifetime} mut [{prefix}DeviceFaultAddressInfoKHR]")),
@@ -787,7 +813,7 @@ pub fn emit_setters(out: &mut String, reg: &Registry, ty: &TypeDecl) -> Result<(
 		writeln!(out, "/// {}", recipe.doc)?;
 		for member in members(ty)
 			.iter()
-			.filter(|member| method(member) == recipe.method)
+			.filter(|member| setter_name(member) == recipe.method)
 		{
 			crate::doc::alias(out, &member.name, &recipe.method);
 		}

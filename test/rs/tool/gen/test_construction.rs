@@ -131,6 +131,34 @@ fn formula_metadata_is_preserved_and_changed_native_shapes_are_rejected() {
 }
 
 #[test]
+fn fluent_setters_take_the_set_prefix_on_existing_names() {
+	let mut reg = registry(
+		r#"<registry><types>
+<type category="struct" name="VkFixture">
+<member><type>uint32_t</type><name>count</name></member>
+<member><type>uint32_t</type><name>handleCount</name></member>
+<member len="count">const <type>uint32_t</type>*<name>pData</name></member>
+<member len="handleCount">const <type>uint32_t</type>*<name>ppHandles</name></member>
+<member>const <type>char</type>*<name>pName</name></member>
+</type></types></registry>"#,
+	);
+	resolve(&mut reg).unwrap();
+	let mut out = String::new();
+	emit_setters(&mut out, &reg, &reg.types[0]).unwrap();
+	for expected in [
+		"fn set_count(",
+		"fn set_data(",
+		"fn set_handles(",
+		"fn set_name(",
+	] {
+		assert!(out.contains(expected), "missing renamed setter: {expected}");
+	}
+	for old in ["fn count(", "fn data(", "fn handles(", "fn name("] {
+		assert!(!out.contains(old), "unprefixed setter survived: {old}");
+	}
+}
+
+#[test]
 fn unknown_math_extents_fail_instead_of_publishing_raw_fallbacks() {
 	let mut reg = registry(
 		r#"<registry><types><type category="struct" name="VkFixture">

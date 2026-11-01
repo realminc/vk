@@ -27,7 +27,7 @@ and runtime qualification are separate; see the
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.9" }
+vk = { package = "vkrust", version = "0.10" }
 ```
 
 No Vulkan SDK, C compiler, C++ library or consumer-side generator is needed.
@@ -35,16 +35,16 @@ The default `loader` feature loads the system Vulkan library at runtime.
 
 ## Library and Vulkan versions
 
-The package version is **`0.9.0+1.4.365`**:
+The package version is **`0.10.0+1.4.365`**:
 
 | Version | Meaning |
 | --- | --- |
-| `0.9.0` | This Rust library's API release; Git tag `v0.9.0` |
+| `0.10.0` | This Rust library's API release; Git tag `v0.10.0` |
 | `+1.4.365` | Generated from Vulkan 1.4 headers, revision 365 |
 | `ApplicationInfo::api_version` | The Vulkan API version your application requests at runtime |
 
 Cargo treats the suffix as build metadata, so the dependency requirement stays
-`version = "0.9"`. The suffix identifies the pinned API snapshot; it is not a
+`version = "0.10"`. The suffix identifies the pinned API snapshot; it is not a
 Vulkan 1.4 driver requirement or runtime qualification claim. Applications can
 request Vulkan 1.0, 1.1 or 1.2 and use the commands/features admitted by their
 actual implementation. The examples below request Vulkan 1.0.
@@ -84,23 +84,23 @@ The enumeration result is propagated after cleanup, including on query failure.
 
 ```rust,no_run
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // SAFETY: use the trusted system Vulkan loader; all create-info pointers
-    // remain live during creation. This example creates no child objects.
-    unsafe {
-        let entry = vk::Entry::new()?;
-        let application = vk::ApplicationInfo::default()
-            .application_name(c"vk example")
-            .api_version(vk::API_VERSION_1_0);
-        let info = vk::InstanceCreateInfo::default()
-            .application_info(&application);
+	// SAFETY: use the trusted system Vulkan loader; all create-info pointers
+	// remain live during creation. This example creates no child objects.
+	unsafe {
+		let entry = vk::Entry::new()?;
+		let application = vk::ApplicationInfo::default()
+			.set_application_name(c"vk example")
+			.set_api_version(vk::API_VERSION_1_0);
+		let info = vk::InstanceCreateInfo::default()
+			.set_application_info(&application);
 
-        let instance = vk::create_instance(&entry, &info, None)?;
-        let devices = vk::enumerate_physical_devices(&instance);
-        vk::destroy_instance(instance, None);
+		let instance = vk::create_instance(&entry, &info, None)?;
+		let devices = vk::enumerate_physical_devices(&instance);
+		vk::destroy_instance(instance, None);
 
-        println!("Physical devices: {}", devices?.len());
-    }
-    Ok(())
+		println!("Physical devices: {}", devices?.len());
+	}
+	Ok(())
 }
 ```
 
@@ -110,23 +110,23 @@ The equivalent instance lifecycle through `Instance`:
 
 ```rust,no_run
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // SAFETY: use the trusted system loader; borrowed create-info storage
-    // remains live. No children or outstanding work remain at destruction.
-    unsafe {
-        let entry = vk::Entry::new()?;
-        let application = vk::ApplicationInfo::default()
-            .application_name(c"vk example")
-            .api_version(vk::API_VERSION_1_0);
-        let info = vk::InstanceCreateInfo::default()
-            .application_info(&application);
+	// SAFETY: use the trusted system loader; borrowed create-info storage
+	// remains live. No children or outstanding work remain at destruction.
+	unsafe {
+		let entry = vk::Entry::new()?;
+		let application = vk::ApplicationInfo::default()
+			.set_application_name(c"vk example")
+			.set_api_version(vk::API_VERSION_1_0);
+		let info = vk::InstanceCreateInfo::default()
+			.set_application_info(&application);
 
-        let instance = vk::Instance::new(&entry, &info, None)?;
-        let devices = instance.enumerate_physical_devices();
-        instance.destroy(None);
+		let instance = vk::Instance::new(&entry, &info, None)?;
+		let devices = instance.enumerate_physical_devices();
+		instance.destroy(None);
 
-        println!("Physical devices: {}", devices?.len());
-    }
-    Ok(())
+		println!("Physical devices: {}", devices?.len());
+	}
+	Ok(())
 }
 ```
 
@@ -146,22 +146,22 @@ lifetime parameters.
 
 ```rust
 fn main() -> Result<(), vk::ConstructionError> {
-    let application = vk::ApplicationInfo::default()
-        .application_name(c"vk example")
-        .api_version(vk::API_VERSION_1_0);
-    let info = vk::InstanceCreateInfo::default()
-        .application_info(&application);
+	let application = vk::ApplicationInfo::default()
+		.set_application_name(c"vk example")
+		.set_api_version(vk::API_VERSION_1_0);
+	let info = vk::InstanceCreateInfo::default()
+		.set_application_info(&application);
 
-    let priorities = [1.0_f32];
-    let queues = [vk::DeviceQueueCreateInfo::default()
-        .queue_family_index(0)
-        .queue_priorities(&priorities)?];
-    let device_info = vk::DeviceCreateInfo::default()
-        .queue_create_infos(&queues)?;
+	let priorities = [1.0_f32];
+	let queues = [vk::DeviceQueueCreateInfo::default()
+		.set_queue_family_index(0)
+		.set_queue_priorities(&priorities)?];
+	let device_info = vk::DeviceCreateInfo::default()
+		.set_queue_create_infos(&queues)?;
 
-    assert_eq!(info.p_application_info, &application as *const _);
-    assert_eq!(device_info.queue_create_info_count, 1);
-    Ok(())
+	assert_eq!(info.p_application_info, &application as *const _);
+	assert_eq!(device_info.queue_create_info_count, 1);
+	Ok(())
 }
 ```
 
@@ -173,17 +173,17 @@ an exclusive borrow of each inserted node:
 ```rust,no_run
 /// The caller supplies a compatible physical device and Vulkan 1.2 query context.
 unsafe fn timeline_semaphore_supported(
-    instance: &vk::Instance,
-    physical_device: vk::PhysicalDevice,
+	instance: &vk::Instance,
+	physical_device: vk::PhysicalDevice,
 ) -> Result<bool, vk::CallError> {
-    let mut vulkan12 = vk::PhysicalDeviceVulkan12Features::default();
-    {
-        let mut features = vk::PhysicalDeviceFeatures2::default()
-            .push_next(&mut vulkan12)?;
-        // SAFETY: the caller establishes the native query's valid usage.
-        unsafe { instance.get_physical_device_features2(physical_device, &mut features)? };
-    }
-    Ok(vulkan12.timeline_semaphore != 0)
+	let mut vulkan12 = vk::PhysicalDeviceVulkan12Features::default();
+	{
+		let mut features = vk::PhysicalDeviceFeatures2::default()
+			.push_next(&mut vulkan12)?;
+		// SAFETY: the caller establishes the native query's valid usage.
+		unsafe { instance.get_physical_device_features2(physical_device, &mut features)? };
+	}
+	Ok(vulkan12.timeline_semaphore != 0)
 }
 # fn main() {}
 ```
@@ -191,7 +191,8 @@ unsafe fn timeline_semaphore_supported(
 These methods prepare the same native records. They do not create GPU objects,
 validate all Vulkan usage, enable features or prove GPU completion. Public raw
 pointers remain an unsafe-call obligation; borrowing a pointer array keeps the
-array alive, not the objects behind its pointers. Existing bitfield getters and
+array alive, not the objects behind its pointers. Fluent field setters use the
+`set_*` prefix on the semantic field name, while existing bitfield getters and
 `set_*` accessors retain their spelling.
 
 Version 0.6.0 completes construction coverage for all 1,552 pinned records/unions,
@@ -221,15 +222,15 @@ device or dispatch table:
 /// compute pipeline; descriptor sets, push constants and resource barriers
 /// required by its shader must already be valid for this dispatch.
 unsafe fn record_compute(
-    device: &vk::Device,
-    commands: vk::CommandBuffer,
-    pipeline: vk::Pipeline,
+	device: &vk::Device,
+	commands: vk::CommandBuffer,
+	pipeline: vk::Pipeline,
 ) -> Result<(), vk::CallError> {
-    unsafe {
-        vk::cmd_bind_pipeline(device, commands, vk::PipelineBindPoint::COMPUTE, pipeline)?;
-        device.cmd_dispatch(commands, 1, 1, 1)?;
-    }
-    Ok(())
+	unsafe {
+		vk::cmd_bind_pipeline(device, commands, vk::PipelineBindPoint::COMPUTE, pipeline)?;
+		device.cmd_dispatch(commands, 1, 1, 1)?;
+	}
+	Ok(())
 }
 ```
 
@@ -252,10 +253,10 @@ know which native handle and PFN table to use.
 
 ```rust,no_run
 fn native_handles(instance: &vk::Instance, device: &vk::Device) {
-    let instance_handle: vk::InstanceHandle = instance.handle();
-    let device_handle: vk::DeviceHandle = device.handle();
-    assert!(!instance_handle.is_null());
-    assert!(!device_handle.is_null());
+	let instance_handle: vk::InstanceHandle = instance.handle();
+	let device_handle: vk::DeviceHandle = device.handle();
+	assert!(!instance_handle.is_null());
+	assert!(!device_handle.is_null());
 }
 ```
 
@@ -282,6 +283,7 @@ The two public subsystem modules are `vk::load` for library loading and
 | Constants | `SCREAMING_SNAKE_CASE` | `VK_SUCCESS` → `vk::Result::SUCCESS` |
 | Functions and methods | `snake_case` | `vkCmdDispatch` → `vk::cmd_dispatch` / `device.cmd_dispatch` |
 | Struct members | `snake_case` | `pApplicationInfo` → `p_application_info` |
+| Fluent setters | `set_*` + semantic name | `pApplicationInfo` → `set_application_info` |
 | Raw instance/device handles | Explicit `Handle` suffix | `VkDevice` → `vk::DeviceHandle` |
 
 Vulkan acronyms, vendor suffixes, `StdVideo*` names and `PFN_vk*` aliases remain
@@ -324,7 +326,7 @@ Enable `features = ["allocator"]` for the Rust-native, VMA-derived allocator:
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.9", features = ["allocator"] }
+vk = { package = "vkrust", version = "0.10", features = ["allocator"] }
 ```
 
 `vk::mem` owns allocator operations and configuration; `vk::Allocator` is the
@@ -361,36 +363,36 @@ use vk::mem as vma;
 /// The caller must destroy the returned buffer and free its allocation after
 /// all host and GPU uses complete.
 unsafe fn create_upload_buffer(
-    allocator: &mut vk::Allocator<'_>,
+	allocator: &mut vk::Allocator<'_>,
 ) -> Result<(vk::Buffer, vk::Allocation), vk::AllocError> {
-    let info = vk::BufferCreateInfo::default()
-        .size(4096)
-        .usage(vk::BufferUsageFlags::TRANSFER_SRC_BIT)
-        .sharing_mode(vk::SharingMode::EXCLUSIVE);
-    let options = vma::AllocationCreateInfo {
-        usage: vma::MemoryUsage::PreferHost,
-        host_access: vma::HostAccess::SequentialWrite,
-        required_flags: vk::MemoryPropertyFlags::HOST_VISIBLE_BIT,
-        policy: vma::AllocationPolicy::Automatic,
-        ..Default::default()
-    };
+	let info = vk::BufferCreateInfo::default()
+		.set_size(4096)
+		.set_usage(vk::BufferUsageFlags::TRANSFER_SRC_BIT)
+		.set_sharing_mode(vk::SharingMode::EXCLUSIVE);
+	let options = vma::AllocationCreateInfo {
+		usage: vma::MemoryUsage::PreferHost,
+		host_access: vma::HostAccess::SequentialWrite,
+		required_flags: vk::MemoryPropertyFlags::HOST_VISIBLE_BIT,
+		policy: vma::AllocationPolicy::Automatic,
+		..Default::default()
+	};
 
-    // Method spelling: allocator.create_buffer_with_options(&info, &options).
-    // SAFETY: the caller establishes the native valid-usage requirements.
-    unsafe { vma::create_buffer_with_options(allocator, &info, &options) }
+	// Method spelling: allocator.create_buffer_with_options(&info, &options).
+	// SAFETY: the caller establishes the native valid-usage requirements.
+	unsafe { vma::create_buffer_with_options(allocator, &info, &options) }
 }
 
 /// # Safety
 /// Complete every host/GPU use and release explicit map holds first. The buffer
 /// must still be live and paired with this allocation in this allocator.
 unsafe fn destroy_completed_buffer(
-    allocator: &mut vk::Allocator<'_>,
-    buffer: vk::Buffer,
-    allocation: &mut vk::Allocation,
+	allocator: &mut vk::Allocator<'_>,
+	buffer: vk::Buffer,
+	allocation: &mut vk::Allocation,
 ) -> Result<(), vk::AllocError> {
-    // Free-function spelling: vma::destroy_buffer(allocator, buffer, allocation).
-    // SAFETY: the caller supplies completion and the matching live pair.
-    unsafe { allocator.destroy_buffer(buffer, allocation) }
+	// Free-function spelling: vma::destroy_buffer(allocator, buffer, allocation).
+	// SAFETY: the caller supplies completion and the matching live pair.
+	unsafe { allocator.destroy_buffer(buffer, allocation) }
 }
 # }
 # fn main() {}
