@@ -27,7 +27,7 @@ and runtime qualification are separate; see the
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.10" }
+vk = { package = "vkrust", version = "0.11" }
 ```
 
 No Vulkan SDK, C compiler, C++ library or consumer-side generator is needed.
@@ -35,16 +35,16 @@ The default `loader` feature loads the system Vulkan library at runtime.
 
 ## Library and Vulkan versions
 
-The package version is **`0.10.0+1.4.365`**:
+The package version is **`0.11.0+1.4.365`**:
 
 | Version | Meaning |
 | --- | --- |
-| `0.10.0` | This Rust library's API release; Git tag `v0.10.0` |
+| `0.11.0` | This Rust library's API release; Git tag `v0.11.0` |
 | `+1.4.365` | Generated from Vulkan 1.4 headers, revision 365 |
 | `ApplicationInfo::api_version` | The Vulkan API version your application requests at runtime |
 
 Cargo treats the suffix as build metadata, so the dependency requirement stays
-`version = "0.10"`. The suffix identifies the pinned API snapshot; it is not a
+`version = "0.11"`. The suffix identifies the pinned API snapshot; it is not a
 Vulkan 1.4 driver requirement or runtime qualification claim. Applications can
 request Vulkan 1.0, 1.1 or 1.2 and use the commands/features admitted by their
 actual implementation. The examples below request Vulkan 1.0.
@@ -60,8 +60,8 @@ Use free functions when you prefer Vulkan's C-style flow, or associated methods
 when you prefer an object-oriented, Python-like spelling. Both use the same
 cached PFNs and canonical operation body.
 
-The examples use the borrowed record setters introduced in v0.5.0. These
-retain backing host storage while preparing arguments for either calling style.
+The examples use borrowed record setters, which retain backing host storage
+while preparing arguments for either calling style.
 
 | Operation | Free function | Constructor or method |
 | --- | --- | --- |
@@ -88,10 +88,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 	// remain live during creation. This example creates no child objects.
 	unsafe {
 		let entry = vk::Entry::new()?;
-		let application = vk::ApplicationInfo::default()
+		let application = vk::ApplicationInfo::new()
 			.set_application_name(c"vk example")
 			.set_api_version(vk::API_VERSION_1_0);
-		let info = vk::InstanceCreateInfo::default()
+		let info = vk::InstanceCreateInfo::new()
 			.set_application_info(&application);
 
 		let instance = vk::create_instance(&entry, &info, None)?;
@@ -114,10 +114,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 	// remains live. No children or outstanding work remain at destruction.
 	unsafe {
 		let entry = vk::Entry::new()?;
-		let application = vk::ApplicationInfo::default()
+		let application = vk::ApplicationInfo::new()
 			.set_application_name(c"vk example")
 			.set_api_version(vk::API_VERSION_1_0);
-		let info = vk::InstanceCreateInfo::default()
+		let info = vk::InstanceCreateInfo::new()
 			.set_application_info(&application);
 
 		let instance = vk::Instance::new(&entry, &info, None)?;
@@ -137,7 +137,8 @@ the short examples propagate it to their caller.
 
 ### Borrowed record construction
 
-Use `Type::default()` followed by generated setters to prepare native arguments.
+Use `Type::new()` followed by generated setters to prepare native arguments.
+`Type::default()` produces the same generated initial state.
 This is the default construction approach, available without an additional
 feature flag. It works with both free functions and methods;
 these setters construct the same Vulkan records passed to either calling style.
@@ -146,17 +147,17 @@ lifetime parameters.
 
 ```rust
 fn main() -> Result<(), vk::ConstructionError> {
-	let application = vk::ApplicationInfo::default()
+	let application = vk::ApplicationInfo::new()
 		.set_application_name(c"vk example")
 		.set_api_version(vk::API_VERSION_1_0);
-	let info = vk::InstanceCreateInfo::default()
+	let info = vk::InstanceCreateInfo::new()
 		.set_application_info(&application);
 
 	let priorities = [1.0_f32];
-	let queues = [vk::DeviceQueueCreateInfo::default()
+	let queues = [vk::DeviceQueueCreateInfo::new()
 		.set_queue_family_index(0)
 		.set_queue_priorities(&priorities)?];
-	let device_info = vk::DeviceCreateInfo::default()
+	let device_info = vk::DeviceCreateInfo::new()
 		.set_queue_create_infos(&queues)?;
 
 	assert_eq!(info.p_application_info, &application as *const _);
@@ -176,9 +177,9 @@ unsafe fn timeline_semaphore_supported(
 	instance: &vk::Instance,
 	physical_device: vk::PhysicalDevice,
 ) -> Result<bool, vk::CallError> {
-	let mut vulkan12 = vk::PhysicalDeviceVulkan12Features::default();
+	let mut vulkan12 = vk::PhysicalDeviceVulkan12Features::new();
 	{
-		let mut features = vk::PhysicalDeviceFeatures2::default()
+		let mut features = vk::PhysicalDeviceFeatures2::new()
 			.push_next(&mut vulkan12)?;
 		// SAFETY: the caller establishes the native query's valid usage.
 		unsafe { instance.get_physical_device_features2(physical_device, &mut features)? };
@@ -195,13 +196,13 @@ array alive, not the objects behind its pointers. Fluent field setters use the
 `set_*` prefix on the semantic field name, while existing bitfield getters and
 `set_*` accessors retain their spelling.
 
-Version 0.6.0 completes construction coverage for all 1,552 pinned records/unions,
-with 5,450 setters covering byte payloads, SPIR-V words, optional parallel arrays,
-initialized writable outputs and reviewed parent/cross-record capacities. Opaque
-addresses and foreign objects without a known host extent use explicit unsafe
-pointer setters. See the [changelog](CHANGELOG.md) for compatibility changes.
+Generated records and unions carry complete construction coverage: byte
+payloads, SPIR-V words, optional parallel arrays, initialized writable outputs
+and reviewed parent/cross-record capacities. Opaque addresses and foreign
+objects without a known host extent use explicit unsafe pointer setters. See
+the [changelog](CHANGELOG.md) for compatibility changes.
 
-For migration, use `Type { field: value, ..Default::default() }` rather than an
+Use `Type { field: value, ..Default::default() }` rather than an
 exhaustive literal, and declare stored borrowed records as `Type<'a>`. Records
 retaining exclusive chain borrows no longer implement `Copy` or `Clone`; create
 fresh array elements with `std::array::from_fn` and borrow single records with
@@ -291,7 +292,7 @@ recognizable. C-compatible representations preserve layout independently of
 field spelling.
 
 ```rust
-let info = vk::InstanceCreateInfo::default();
+let info = vk::InstanceCreateInfo::new();
 assert_eq!(info.s_type, vk::StructureType::INSTANCE_CREATE_INFO);
 assert!(info.p_next.is_null());
 assert!(vk::DeviceHandle::NULL.is_null());
@@ -326,7 +327,7 @@ Enable `features = ["allocator"]` for the Rust-native, VMA-derived allocator:
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.10", features = ["allocator"] }
+vk = { package = "vkrust", version = "0.11", features = ["allocator"] }
 ```
 
 `vk::mem` owns allocator operations and configuration; `vk::Allocator` is the
@@ -365,7 +366,7 @@ use vk::mem as vma;
 unsafe fn create_upload_buffer(
 	allocator: &mut vk::Allocator<'_>,
 ) -> Result<(vk::Buffer, vk::Allocation), vk::AllocError> {
-	let info = vk::BufferCreateInfo::default()
+	let info = vk::BufferCreateInfo::new()
 		.set_size(4096)
 		.set_usage(vk::BufferUsageFlags::TRANSFER_SRC_BIT)
 		.set_sharing_mode(vk::SharingMode::EXCLUSIVE);

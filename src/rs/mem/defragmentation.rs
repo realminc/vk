@@ -46,6 +46,15 @@ impl Default for DefragmentationInfo<'_> {
 	}
 }
 
+impl<'pool> DefragmentationInfo<'pool> {
+	/// Construct the record with its default state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
+
 /// Allocator-recorded primary resource, or raw storage, associated with a move.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum DefragmentationResource {
@@ -79,6 +88,15 @@ pub struct DefragmentationStats {
 	pub freed_bytes: u64,
 	pub ignored_allocations: usize,
 	pub destroyed_allocations: usize,
+}
+
+impl DefragmentationStats {
+	/// Construct the record with its default state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
 }
 
 struct Move {
@@ -753,7 +771,7 @@ unsafe fn plan<'allocator, 'device>(
 	Ok(DefragmentationPass {
 		allocator,
 		moves,
-		stats: DefragmentationStats::default(),
+		stats: DefragmentationStats::new(),
 		finished: false,
 		interrupted: counters.interrupted,
 		context: None,
@@ -1199,7 +1217,7 @@ impl<'allocator, 'device> DefragmentationContext<'allocator, 'device> {
 		}
 		let state = ContextState {
 			ignored: HostVec::new(allocator.host),
-			stats: DefragmentationStats::default(),
+			stats: DefragmentationStats::new(),
 			active: false,
 		};
 		Ok(Self {

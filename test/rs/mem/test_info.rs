@@ -1,6 +1,11 @@
 //! Live snapshot identity, byte extents and per-region mapping transitions.
 use super::*;
-use crate::mem::{AllocationCreateInfo, AllocationInfo, AllocationPolicy, allocation_info};
+use crate::mem::{
+	AllocationCreateInfo, AllocationInfo, AllocationPolicy, AllocatorStats, BudgetSnapshot,
+	DebugMemorySettings, DefragmentationInfo, DefragmentationStats, DetailedStatistics,
+	DeviceMemoryCallbacks, HeapBudget, MemoryPriority, MemoryStatistics, MemoryUsage, PoolCreateInfo,
+	PoolStats, TrimStats, allocation_info,
+};
 
 #[test]
 fn snapshots_are_checked_without_native_effects_and_track_explicit_mapping() {
@@ -138,4 +143,31 @@ fn pooled_snapshots_expose_region_offsets_and_only_the_regions_own_mapping() {
 		allocator.destroy_buffer(b, &mut y).unwrap();
 		allocator.close().unwrap();
 	}
+}
+
+#[test]
+fn record_constructors_delegate_to_default() {
+	assert_eq!(DebugMemorySettings::new(), DebugMemorySettings::default());
+	assert_eq!(AllocatorStats::new(), AllocatorStats::default());
+	assert_eq!(HeapBudget::new(), HeapBudget::default());
+	assert_eq!(BudgetSnapshot::new(), BudgetSnapshot::default());
+	assert_eq!(TrimStats::new(), TrimStats::default());
+	assert_eq!(PoolCreateInfo::new(), PoolCreateInfo::default());
+	assert_eq!(PoolStats::new(), PoolStats::default());
+	assert_eq!(DefragmentationStats::new(), DefragmentationStats::default());
+	assert_eq!(DetailedStatistics::new(), DetailedStatistics::default());
+	assert_eq!(MemoryStatistics::new(), MemoryStatistics::default());
+	let callbacks = DeviceMemoryCallbacks::new();
+	assert!(callbacks.allocated.is_none());
+	assert!(callbacks.freed.is_none());
+	assert!(callbacks.p_user_data.is_null());
+	let options = AllocationCreateInfo::new();
+	assert!(options.pool.is_none());
+	assert_eq!(options.usage, MemoryUsage::Explicit);
+	assert_eq!(options.priority, MemoryPriority::default());
+	assert_eq!(options.memory_type_bits, u32::MAX);
+	let defragmentation = DefragmentationInfo::new();
+	assert!(defragmentation.pool.is_none());
+	assert_eq!(defragmentation.max_bytes, u64::MAX);
+	assert_eq!(defragmentation.max_allocations, usize::MAX);
 }

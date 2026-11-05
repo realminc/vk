@@ -304,7 +304,7 @@ impl<'device> Allocator<'device> {
 			budget_cache: None,
 			budget_operations: 0,
 			current_frame_index: 0,
-			debug_settings: super::DebugMemorySettings::default(),
+			debug_settings: super::DebugMemorySettings::new(),
 			external_types: [vk::ExternalMemoryHandleTypeFlags::empty(); 32],
 			preferred_large_heap_block_size: 256 * 1024 * 1024,
 			mapping_hysteresis: true,
@@ -410,7 +410,7 @@ impl<'device> Allocator<'device> {
 			.is_some_and(|mut extensions| extensions.any(|name| name == c"VK_KHR_maintenance3"));
 		let allocation_size_limit = if capabilities.api_version() >= vk::API_VERSION_1_1 || maintenance3
 		{
-			let mut limits = vk::PhysicalDeviceMaintenance3Properties::default();
+			let mut limits = vk::PhysicalDeviceMaintenance3Properties::new();
 			let mut output = vk::PhysicalDeviceProperties2 {
 				p_next: std::ptr::from_mut(&mut limits).cast(),
 				..Default::default()
@@ -503,7 +503,7 @@ impl<'device> Allocator<'device> {
 			.is_some_and(|mut extensions| extensions.any(|name| name == c"VK_KHR_maintenance3"));
 		let allocation_size_limit = if capabilities.api_version() >= vk::API_VERSION_1_1 || maintenance3
 		{
-			let mut limits = vk::PhysicalDeviceMaintenance3Properties::default();
+			let mut limits = vk::PhysicalDeviceMaintenance3Properties::new();
 			let mut output = vk::PhysicalDeviceProperties2 {
 				p_next: std::ptr::from_mut(&mut limits).cast(),
 				..Default::default()
@@ -1972,7 +1972,7 @@ unsafe fn allocate_managed(
 	} else {
 		storage.chain = pool_chain;
 	}
-	let mut imported_dedicated = vk::MemoryDedicatedAllocateInfo::default();
+	let mut imported_dedicated = vk::MemoryDedicatedAllocateInfo::new();
 	if let Some(resource) = storage
 		.chain
 		.import_info

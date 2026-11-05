@@ -42,6 +42,15 @@ pub struct PoolCreateInfo {
 	pub min_allocation_alignment: u64,
 }
 
+impl PoolCreateInfo {
+	/// Construct the record with its default state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
+
 /// Local pool statistics. No native budget query or host allocation is performed.
 /// Free spans describe physical holes; alignment/granularity may prevent their use.
 /// Linear holes additionally wait for their stack/ring lifetime to retire.
@@ -55,6 +64,15 @@ pub struct PoolStats {
 	pub block_bytes: u64,
 	pub free_bytes: u64,
 	pub largest_free_region: u64,
+}
+
+impl PoolStats {
+	/// Construct the record with its default state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
 }
 
 pub(super) struct PoolState<'callbacks> {
@@ -565,7 +583,7 @@ pub fn destroy_pool(allocator: &mut Allocator<'_>, pool: &mut Pool) -> Result<()
 /// Rejects closed, foreign and destroyed pool identities.
 pub fn pool_statistics(allocator: &Allocator<'_>, pool: &Pool) -> Result<PoolStats, AllocError> {
 	validate(allocator, pool)?;
-	let mut result = PoolStats::default();
+	let mut result = PoolStats::new();
 	for block in allocator
 		.blocks
 		.iter()
@@ -665,7 +683,7 @@ pub(super) fn trim_blocks(
 	snapshot: &mut BudgetSnapshot,
 	all: bool,
 ) -> TrimStats {
-	let mut result = TrimStats::default();
+	let mut result = TrimStats::new();
 	for index in (0..allocator.blocks.len()).rev() {
 		let block = &allocator.blocks[index];
 		let serial = block.pool;
@@ -710,7 +728,7 @@ pub(super) fn trim_blocks(
 // Explicit context completion releases their surplus empty storage; Drop only
 // clears the host holds, leaving trim/reuse/close as native cleanup boundaries.
 pub(super) fn finish_defragmentation_blocks(allocator: &mut Allocator<'_>) -> TrimStats {
-	let mut result = TrimStats::default();
+	let mut result = TrimStats::new();
 	for index in (0..allocator.blocks.len()).rev() {
 		let block = &mut allocator.blocks[index];
 		if !block.defragmentation_hold {

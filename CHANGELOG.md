@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.11.0+1.4.365 — 2026-11-05
+
+- Add `Type::new()` to every generated Vulkan record and to public `vk::mem`
+  configuration and snapshot records with `Default`; each delegates to its
+  existing `Default` implementation, which remains the single initialization
+  source and trait entry point. Generated contract tests prove `new()`
+  signatures and canonical `sType`/`pNext` initial state.
+- Migrate repository documentation and `vk::mem` call sites from
+  `Type::default()` to `Type::new()`; `..Default::default()` struct-update
+  syntax is unchanged. Source-compatible, no breaking changes.
+- See the [release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.11.0.md).
+
 ## 0.10.0+1.4.365 — 2026-11-01
 
 - Rename every generated fluent record-construction setter to the `set_*`

@@ -16,6 +16,15 @@ pub struct TrimStats {
 	pub block_bytes: u64,
 }
 
+impl TrimStats {
+	/// Construct the record with its default state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
+
 impl Allocator<'_> {
 	/// Set a local native-byte ceiling. Existing allocations are never evicted.
 	pub fn set_heap_limit(&mut self, heap: u32, limit: u64) -> Result<(), AllocError> {
@@ -179,7 +188,7 @@ pub unsafe fn query_budget(
 			"budget context metadata disagree",
 		));
 	}
-	let mut budget = vk::PhysicalDeviceMemoryBudgetPropertiesEXT::default();
+	let mut budget = vk::PhysicalDeviceMemoryBudgetPropertiesEXT::new();
 	let mut output = vk::PhysicalDeviceMemoryProperties2 {
 		p_next: std::ptr::from_mut(&mut budget).cast(),
 		..Default::default()
@@ -293,7 +302,7 @@ pub fn refresh_budget(allocator: &mut Allocator<'_>) -> Result<BudgetSnapshot, A
 			let function = query
 				.function
 				.ok_or(crate::load::CallError::MissingCommand(query.name))?;
-			let mut budget = vk::PhysicalDeviceMemoryBudgetPropertiesEXT::default();
+			let mut budget = vk::PhysicalDeviceMemoryBudgetPropertiesEXT::new();
 			let mut output = vk::PhysicalDeviceMemoryProperties2 {
 				p_next: std::ptr::from_mut(&mut budget).cast(),
 				..Default::default()

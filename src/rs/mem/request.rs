@@ -289,7 +289,7 @@ pub unsafe fn find_memory_type_for_buffer_info(
 	let protected = info.flags.as_raw() & vk::BufferCreateFlagBits::PROTECTED_BIT.as_raw() != 0;
 	required = resource_properties(allocator, protected, required)?;
 	validate_options(allocator, options, required)?;
-	let mut output = vk::MemoryRequirements2::default();
+	let mut output = vk::MemoryRequirements2::new();
 	if let Some(route) = direct_route(allocator)? {
 		let query = vk::DeviceBufferMemoryRequirements {
 			p_create_info: info,
@@ -362,7 +362,7 @@ pub unsafe fn find_memory_type_for_image_info(
 	let protected = info.flags.as_raw() & vk::ImageCreateFlagBits::PROTECTED_BIT.as_raw() != 0;
 	required = resource_properties(allocator, protected, required)?;
 	validate_options(allocator, options, required)?;
-	let mut output = vk::MemoryRequirements2::default();
+	let mut output = vk::MemoryRequirements2::new();
 	if let Some(route) = direct_route(allocator)? {
 		let query = vk::DeviceImageMemoryRequirements {
 			p_create_info: info,

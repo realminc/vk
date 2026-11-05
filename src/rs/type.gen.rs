@@ -5967,6 +5967,13 @@ impl<'a> Default for BaseOutStructure<'a> {
 }
 
 impl<'a> BaseOutStructure<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `sType` without native effects.
 	#[doc(alias = "sType")]
 	#[inline]
@@ -6010,6 +6017,13 @@ impl<'a> Default for BaseInStructure<'a> {
 }
 
 impl<'a> BaseInStructure<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `sType` without native effects.
 	#[doc(alias = "sType")]
 	#[inline]
@@ -6049,6 +6063,13 @@ impl Default for Offset2D {
 }
 
 impl Offset2D {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `x` without native effects.
 	#[doc(alias = "x")]
 	#[inline]
@@ -6090,6 +6111,13 @@ impl Default for Offset3D {
 }
 
 impl Offset3D {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `x` without native effects.
 	#[doc(alias = "x")]
 	#[inline]
@@ -6138,6 +6166,13 @@ impl Default for Extent2D {
 }
 
 impl Extent2D {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `width` without native effects.
 	#[doc(alias = "width")]
 	#[inline]
@@ -6179,6 +6214,13 @@ impl Default for Extent3D {
 }
 
 impl Extent3D {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `width` without native effects.
 	#[doc(alias = "width")]
 	#[inline]
@@ -6237,6 +6279,13 @@ impl Default for Viewport {
 }
 
 impl Viewport {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `x` without native effects.
 	#[doc(alias = "x")]
 	#[inline]
@@ -6312,6 +6361,13 @@ impl Default for Rect2D {
 }
 
 impl Rect2D {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `offset` without native effects.
 	#[doc(alias = "offset")]
 	#[inline]
@@ -6355,6 +6411,13 @@ impl Default for ClearRect {
 }
 
 impl ClearRect {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rect` without native effects.
 	#[doc(alias = "rect")]
 	#[inline]
@@ -6407,6 +6470,13 @@ impl Default for ComponentMapping {
 }
 
 impl ComponentMapping {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `r` without native effects.
 	#[doc(alias = "r")]
 	#[inline]
@@ -6486,6 +6556,13 @@ impl Default for PhysicalDeviceProperties {
 }
 
 impl PhysicalDeviceProperties {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `apiVersion` without native effects.
 	#[doc(alias = "apiVersion")]
 	#[inline]
@@ -6593,6 +6670,13 @@ impl Default for ExtensionProperties {
 }
 
 impl ExtensionProperties {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `extensionName` without native effects.
 	#[doc(alias = "extensionName")]
 	#[inline]
@@ -6642,6 +6726,13 @@ impl Default for LayerProperties {
 }
 
 impl LayerProperties {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `layerName` without native effects.
 	#[doc(alias = "layerName")]
 	#[inline]
@@ -6726,6 +6817,13 @@ impl<'a> Default for ApplicationInfo<'a> {
 }
 
 impl<'a> ApplicationInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pApplicationName` without native effects.
 	#[doc(alias = "pApplicationName")]
 	#[inline]
@@ -6823,6 +6921,13 @@ impl Default for AllocationCallbacks {
 }
 
 impl AllocationCallbacks {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native pointer `pUserData` explicitly. No borrow or extent is inferred.
 	///
 	/// # Safety
@@ -6923,6 +7028,13 @@ impl<'a> Default for DeviceQueueCreateInfo<'a> {
 }
 
 impl<'a> DeviceQueueCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -7039,6 +7151,13 @@ impl<'a> Default for DeviceCreateInfo<'a> {
 }
 
 impl<'a> DeviceCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -7211,6 +7330,13 @@ impl<'a> Default for InstanceCreateInfo<'a> {
 }
 
 impl<'a> InstanceCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -7337,6 +7463,13 @@ impl Default for QueueFamilyProperties {
 }
 
 impl QueueFamilyProperties {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `queueFlags` without native effects.
 	#[doc(alias = "queueFlags")]
 	#[inline]
@@ -7402,6 +7535,13 @@ impl Default for PhysicalDeviceMemoryProperties {
 }
 
 impl PhysicalDeviceMemoryProperties {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `memoryTypeCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -7477,6 +7617,13 @@ impl<'a> Default for MemoryAllocateInfo<'a> {
 }
 
 impl<'a> MemoryAllocateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `allocationSize` without native effects.
 	#[doc(alias = "allocationSize")]
 	#[inline]
@@ -7536,6 +7683,13 @@ impl Default for MemoryRequirements {
 }
 
 impl MemoryRequirements {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `size` without native effects.
 	#[doc(alias = "size")]
 	#[inline]
@@ -7588,6 +7742,13 @@ impl Default for SparseImageFormatProperties {
 }
 
 impl SparseImageFormatProperties {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `aspectMask` without native effects.
 	#[doc(alias = "aspectMask")]
 	#[inline]
@@ -7647,6 +7808,13 @@ impl Default for SparseImageMemoryRequirements {
 }
 
 impl SparseImageMemoryRequirements {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `formatProperties` without native effects.
 	#[doc(alias = "formatProperties")]
 	#[inline]
@@ -7715,6 +7883,13 @@ impl Default for MemoryType {
 }
 
 impl MemoryType {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `propertyFlags` without native effects.
 	#[doc(alias = "propertyFlags")]
 	#[inline]
@@ -7754,6 +7929,13 @@ impl Default for MemoryHeap {
 }
 
 impl MemoryHeap {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `size` without native effects.
 	#[doc(alias = "size")]
 	#[inline]
@@ -7805,6 +7987,13 @@ impl<'a> Default for MappedMemoryRange<'a> {
 }
 
 impl<'a> MappedMemoryRange<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memory` without native effects.
 	#[doc(alias = "memory")]
 	#[inline]
@@ -7875,6 +8064,13 @@ impl Default for FormatProperties {
 }
 
 impl FormatProperties {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `linearTilingFeatures` without native effects.
 	#[doc(alias = "linearTilingFeatures")]
 	#[inline]
@@ -7934,6 +8130,13 @@ impl Default for ImageFormatProperties {
 }
 
 impl ImageFormatProperties {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxExtent` without native effects.
 	#[doc(alias = "maxExtent")]
 	#[inline]
@@ -8002,6 +8205,13 @@ impl Default for DescriptorBufferInfo {
 }
 
 impl DescriptorBufferInfo {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `buffer` without native effects.
 	#[doc(alias = "buffer")]
 	#[inline]
@@ -8054,6 +8264,13 @@ impl Default for DescriptorImageInfo {
 }
 
 impl DescriptorImageInfo {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `sampler` without native effects.
 	#[doc(alias = "sampler")]
 	#[inline]
@@ -8132,6 +8349,13 @@ impl<'a> Default for WriteDescriptorSet<'a> {
 }
 
 impl<'a> WriteDescriptorSet<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dstSet` without native effects.
 	#[doc(alias = "dstSet")]
 	#[inline]
@@ -8311,6 +8535,13 @@ impl<'a> Default for CopyDescriptorSet<'a> {
 }
 
 impl<'a> CopyDescriptorSet<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcSet` without native effects.
 	#[doc(alias = "srcSet")]
 	#[inline]
@@ -8420,6 +8651,13 @@ impl<'a> Default for BufferUsageFlags2CreateInfo<'a> {
 }
 
 impl<'a> BufferUsageFlags2CreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `usage` without native effects.
 	#[doc(alias = "usage")]
 	#[inline]
@@ -8492,6 +8730,13 @@ impl<'a> Default for BufferCreateInfo<'a> {
 }
 
 impl<'a> BufferCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -8613,6 +8858,13 @@ impl<'a> Default for BufferViewCreateInfo<'a> {
 }
 
 impl<'a> BufferViewCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -8701,6 +8953,13 @@ impl Default for ImageSubresource {
 }
 
 impl ImageSubresource {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `aspectMask` without native effects.
 	#[doc(alias = "aspectMask")]
 	#[inline]
@@ -8757,6 +9016,13 @@ impl Default for ImageSubresourceLayers {
 }
 
 impl ImageSubresourceLayers {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `aspectMask` without native effects.
 	#[doc(alias = "aspectMask")]
 	#[inline]
@@ -8825,6 +9091,13 @@ impl Default for ImageSubresourceRange {
 }
 
 impl ImageSubresourceRange {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `aspectMask` without native effects.
 	#[doc(alias = "aspectMask")]
 	#[inline]
@@ -8903,6 +9176,13 @@ impl<'a> Default for MemoryBarrier<'a> {
 }
 
 impl<'a> MemoryBarrier<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcAccessMask` without native effects.
 	#[doc(alias = "srcAccessMask")]
 	#[inline]
@@ -8983,6 +9263,13 @@ impl<'a> Default for BufferMemoryBarrier<'a> {
 }
 
 impl<'a> BufferMemoryBarrier<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcAccessMask` without native effects.
 	#[doc(alias = "srcAccessMask")]
 	#[inline]
@@ -9113,6 +9400,13 @@ impl<'a> Default for ImageMemoryBarrier<'a> {
 }
 
 impl<'a> ImageMemoryBarrier<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcAccessMask` without native effects.
 	#[doc(alias = "srcAccessMask")]
 	#[inline]
@@ -9262,6 +9556,13 @@ impl<'a> Default for ImageCreateInfo<'a> {
 }
 
 impl<'a> ImageCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -9438,6 +9739,13 @@ impl<'a> Default for ImageCreateFlags2CreateInfoKHR<'a> {
 }
 
 impl<'a> ImageCreateFlags2CreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -9493,6 +9801,13 @@ impl<'a> Default for ImageUsageFlags2CreateInfoKHR<'a> {
 }
 
 impl<'a> ImageUsageFlags2CreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `usage` without native effects.
 	#[doc(alias = "usage")]
 	#[inline]
@@ -9549,6 +9864,13 @@ impl Default for SubresourceLayout {
 }
 
 impl SubresourceLayout {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `offset` without native effects.
 	#[doc(alias = "offset")]
 	#[inline]
@@ -9635,6 +9957,13 @@ impl<'a> Default for ImageViewCreateInfo<'a> {
 }
 
 impl<'a> ImageViewCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -9731,6 +10060,13 @@ impl Default for BufferCopy {
 }
 
 impl BufferCopy {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcOffset` without native effects.
 	#[doc(alias = "srcOffset")]
 	#[inline]
@@ -9787,6 +10123,13 @@ impl Default for SparseMemoryBind {
 }
 
 impl SparseMemoryBind {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `resourceOffset` without native effects.
 	#[doc(alias = "resourceOffset")]
 	#[inline]
@@ -9862,6 +10205,13 @@ impl Default for SparseImageMemoryBind {
 }
 
 impl SparseImageMemoryBind {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `subresource` without native effects.
 	#[doc(alias = "subresource")]
 	#[inline]
@@ -9943,6 +10293,13 @@ impl<'a> Default for SparseBufferMemoryBindInfo<'a> {
 }
 
 impl<'a> SparseBufferMemoryBindInfo<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `buffer` without native effects.
 	#[doc(alias = "buffer")]
 	#[inline]
@@ -10010,6 +10367,13 @@ impl<'a> Default for SparseImageOpaqueMemoryBindInfo<'a> {
 }
 
 impl<'a> SparseImageOpaqueMemoryBindInfo<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `image` without native effects.
 	#[doc(alias = "image")]
 	#[inline]
@@ -10077,6 +10441,13 @@ impl<'a> Default for SparseImageMemoryBindInfo<'a> {
 }
 
 impl<'a> SparseImageMemoryBindInfo<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `image` without native effects.
 	#[doc(alias = "image")]
 	#[inline]
@@ -10174,6 +10545,13 @@ impl<'a> Default for BindSparseInfo<'a> {
 }
 
 impl<'a> BindSparseInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `waitSemaphoreCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -10377,6 +10755,13 @@ impl Default for ImageCopy {
 }
 
 impl ImageCopy {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcSubresource` without native effects.
 	#[doc(alias = "srcSubresource")]
 	#[inline]
@@ -10451,6 +10836,13 @@ impl Default for ImageBlit {
 }
 
 impl ImageBlit {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcSubresource` without native effects.
 	#[doc(alias = "srcSubresource")]
 	#[inline]
@@ -10522,6 +10914,13 @@ impl Default for BufferImageCopy {
 }
 
 impl BufferImageCopy {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `bufferOffset` without native effects.
 	#[doc(alias = "bufferOffset")]
 	#[inline]
@@ -10599,6 +10998,13 @@ impl Default for StridedDeviceAddressRangeKHR {
 }
 
 impl StridedDeviceAddressRangeKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `address` without native effects.
 	#[doc(alias = "address")]
 	#[inline]
@@ -10651,6 +11057,13 @@ impl Default for CopyMemoryIndirectCommandKHR {
 }
 
 impl CopyMemoryIndirectCommandKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcAddress` without native effects.
 	#[doc(alias = "srcAddress")]
 	#[inline]
@@ -10721,6 +11134,13 @@ impl<'a> Default for CopyMemoryIndirectInfoKHR<'a> {
 }
 
 impl<'a> CopyMemoryIndirectInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcCopyFlags` without native effects.
 	#[doc(alias = "srcCopyFlags")]
 	#[inline]
@@ -10809,6 +11229,13 @@ impl Default for CopyMemoryToImageIndirectCommandKHR {
 }
 
 impl CopyMemoryToImageIndirectCommandKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcAddress` without native effects.
 	#[doc(alias = "srcAddress")]
 	#[inline]
@@ -10912,6 +11339,13 @@ impl<'a> Default for CopyMemoryToImageIndirectInfoKHR<'a> {
 }
 
 impl<'a> CopyMemoryToImageIndirectInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcCopyFlags` without native effects.
 	#[doc(alias = "srcCopyFlags")]
 	#[inline]
@@ -11027,6 +11461,13 @@ impl Default for ImageResolve {
 }
 
 impl ImageResolve {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcSubresource` without native effects.
 	#[doc(alias = "srcSubresource")]
 	#[inline]
@@ -11107,6 +11548,13 @@ impl<'a> Default for ShaderModuleCreateInfo<'a> {
 }
 
 impl<'a> ShaderModuleCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -11186,6 +11634,13 @@ impl<'a> Default for DescriptorSetLayoutBinding<'a> {
 }
 
 impl<'a> DescriptorSetLayoutBinding<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `binding` without native effects.
 	#[doc(alias = "binding")]
 	#[inline]
@@ -11279,6 +11734,13 @@ impl<'a> Default for DescriptorSetLayoutCreateInfo<'a> {
 }
 
 impl<'a> DescriptorSetLayoutCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -11358,6 +11820,13 @@ impl Default for DescriptorPoolSize {
 }
 
 impl DescriptorPoolSize {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -11414,6 +11883,13 @@ impl<'a> Default for DescriptorPoolCreateInfo<'a> {
 }
 
 impl<'a> DescriptorPoolCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -11516,6 +11992,13 @@ impl<'a> Default for DescriptorSetAllocateInfo<'a> {
 }
 
 impl<'a> DescriptorSetAllocateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `descriptorPool` without native effects.
 	#[doc(alias = "descriptorPool")]
 	#[inline]
@@ -11597,6 +12080,13 @@ impl Default for SpecializationMapEntry {
 }
 
 impl SpecializationMapEntry {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `constantID` without native effects.
 	#[doc(alias = "constantID")]
 	#[inline]
@@ -11655,6 +12145,13 @@ impl<'a> Default for SpecializationInfo<'a> {
 }
 
 impl<'a> SpecializationInfo<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `mapEntryCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -11756,6 +12253,13 @@ impl<'a> Default for PipelineShaderStageCreateInfo<'a> {
 }
 
 impl<'a> PipelineShaderStageCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -11857,6 +12361,13 @@ impl<'a> Default for ComputePipelineCreateInfo<'a> {
 }
 
 impl<'a> ComputePipelineCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -11954,6 +12465,13 @@ impl<'a> Default for ComputePipelineIndirectBufferInfoNV<'a> {
 }
 
 impl<'a> ComputePipelineIndirectBufferInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceAddress` without native effects.
 	#[doc(alias = "deviceAddress")]
 	#[inline]
@@ -12027,6 +12545,13 @@ impl<'a> Default for PipelineCreateFlags2CreateInfo<'a> {
 }
 
 impl<'a> PipelineCreateFlags2CreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -12081,6 +12606,13 @@ impl Default for VertexInputBindingDescription {
 }
 
 impl VertexInputBindingDescription {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `binding` without native effects.
 	#[doc(alias = "binding")]
 	#[inline]
@@ -12133,6 +12665,13 @@ impl Default for VertexInputAttributeDescription {
 }
 
 impl VertexInputAttributeDescription {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `location` without native effects.
 	#[doc(alias = "location")]
 	#[inline]
@@ -12210,6 +12749,13 @@ impl<'a> Default for PipelineVertexInputStateCreateInfo<'a> {
 }
 
 impl<'a> PipelineVertexInputStateCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -12332,6 +12878,13 @@ impl<'a> Default for PipelineInputAssemblyStateCreateInfo<'a> {
 }
 
 impl<'a> PipelineInputAssemblyStateCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -12408,6 +12961,13 @@ impl<'a> Default for PipelineTessellationStateCreateInfo<'a> {
 }
 
 impl<'a> PipelineTessellationStateCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -12484,6 +13044,13 @@ impl<'a> Default for PipelineViewportStateCreateInfo<'a> {
 }
 
 impl<'a> PipelineViewportStateCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -12631,6 +13198,13 @@ impl<'a> Default for PipelineRasterizationStateCreateInfo<'a> {
 }
 
 impl<'a> PipelineRasterizationStateCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -12794,6 +13368,13 @@ impl<'a> Default for PipelineMultisampleStateCreateInfo<'a> {
 }
 
 impl<'a> PipelineMultisampleStateCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -12929,6 +13510,13 @@ impl Default for PipelineColorBlendAttachmentState {
 }
 
 impl PipelineColorBlendAttachmentState {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `blendEnable` without native effects.
 	#[doc(alias = "blendEnable")]
 	#[inline]
@@ -13045,6 +13633,13 @@ impl<'a> Default for PipelineColorBlendStateCreateInfo<'a> {
 }
 
 impl<'a> PipelineColorBlendStateCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -13164,6 +13759,13 @@ impl<'a> Default for PipelineDynamicStateCreateInfo<'a> {
 }
 
 impl<'a> PipelineDynamicStateCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -13258,6 +13860,13 @@ impl Default for StencilOpState {
 }
 
 impl StencilOpState {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `failOp` without native effects.
 	#[doc(alias = "failOp")]
 	#[inline]
@@ -13375,6 +13984,13 @@ impl<'a> Default for PipelineDepthStencilStateCreateInfo<'a> {
 }
 
 impl<'a> PipelineDepthStencilStateCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -13557,6 +14173,13 @@ impl<'a> Default for GraphicsPipelineCreateInfo<'a> {
 }
 
 impl<'a> GraphicsPipelineCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -13793,6 +14416,13 @@ impl<'a> Default for PipelineCacheCreateInfo<'a> {
 }
 
 impl<'a> PipelineCacheCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -13882,6 +14512,13 @@ impl Default for PipelineCacheHeaderVersionOne {
 }
 
 impl PipelineCacheHeaderVersionOne {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `headerSize` without native effects.
 	#[doc(alias = "headerSize")]
 	#[inline]
@@ -13959,6 +14596,13 @@ impl Default for PipelineCacheHeaderVersionDataGraphQCOM {
 }
 
 impl PipelineCacheHeaderVersionDataGraphQCOM {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `headerSize` without native effects.
 	#[doc(alias = "headerSize")]
 	#[inline]
@@ -14031,6 +14675,13 @@ impl Default for PushConstantRange {
 }
 
 impl PushConstantRange {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stageFlags` without native effects.
 	#[doc(alias = "stageFlags")]
 	#[inline]
@@ -14093,6 +14744,13 @@ impl<'a> Default for PipelineBinaryCreateInfoKHR<'a> {
 }
 
 impl<'a> PipelineBinaryCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pKeysAndDataInfo` without native effects.
 	#[doc(alias = "pKeysAndDataInfo")]
 	#[inline]
@@ -14170,6 +14828,13 @@ impl<'a> Default for PipelineBinaryHandlesInfoKHR<'a> {
 }
 
 impl<'a> PipelineBinaryHandlesInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `pipelineBinaryCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -14242,6 +14907,13 @@ impl<'a> Default for PipelineBinaryDataKHR<'a> {
 }
 
 impl<'a> PipelineBinaryDataKHR<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `dataSize` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -14301,6 +14973,13 @@ impl<'a> Default for PipelineBinaryKeysAndDataKHR<'a> {
 }
 
 impl<'a> PipelineBinaryKeysAndDataKHR<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `binaryCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -14380,6 +15059,13 @@ impl<'a> Default for PipelineBinaryKeyKHR<'a> {
 }
 
 impl<'a> PipelineBinaryKeyKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `keySize` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -14451,6 +15137,13 @@ impl<'a> Default for PipelineBinaryInfoKHR<'a> {
 }
 
 impl<'a> PipelineBinaryInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `binaryCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -14528,6 +15221,13 @@ impl<'a> Default for ReleaseCapturedPipelineDataInfoKHR<'a> {
 }
 
 impl<'a> ReleaseCapturedPipelineDataInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipeline` without native effects.
 	#[doc(alias = "pipeline")]
 	#[inline]
@@ -14584,6 +15284,13 @@ impl<'a> Default for PipelineBinaryDataInfoKHR<'a> {
 }
 
 impl<'a> PipelineBinaryDataInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineBinary` without native effects.
 	#[doc(alias = "pipelineBinary")]
 	#[inline]
@@ -14637,6 +15344,13 @@ impl<'a> Default for PipelineCreateInfoKHR<'a> {
 }
 
 impl<'a> PipelineCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -14695,6 +15409,13 @@ impl<'a> Default for PipelineLayoutCreateInfo<'a> {
 }
 
 impl<'a> PipelineLayoutCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -14857,6 +15578,13 @@ impl<'a> Default for SamplerCreateInfo<'a> {
 }
 
 impl<'a> SamplerCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -15050,6 +15778,13 @@ impl<'a> Default for CommandPoolCreateInfo<'a> {
 }
 
 impl<'a> CommandPoolCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -15120,6 +15855,13 @@ impl<'a> Default for CommandBufferAllocateInfo<'a> {
 }
 
 impl<'a> CommandBufferAllocateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `commandPool` without native effects.
 	#[doc(alias = "commandPool")]
 	#[inline]
@@ -15207,6 +15949,13 @@ impl<'a> Default for CommandBufferInheritanceInfo<'a> {
 }
 
 impl<'a> CommandBufferInheritanceInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `renderPass` without native effects.
 	#[doc(alias = "renderPass")]
 	#[inline]
@@ -15310,6 +16059,13 @@ impl<'a> Default for CommandBufferBeginInfo<'a> {
 }
 
 impl<'a> CommandBufferBeginInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -15386,6 +16142,13 @@ impl<'a> Default for RenderPassBeginInfo<'a> {
 }
 
 impl<'a> RenderPassBeginInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `renderPass` without native effects.
 	#[doc(alias = "renderPass")]
 	#[inline]
@@ -15484,6 +16247,13 @@ impl Default for ClearColorValue {
 }
 
 impl ClearColorValue {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `float32` without native effects.
 	#[doc(alias = "float32")]
 	#[inline]
@@ -15532,6 +16302,13 @@ impl Default for ClearDepthStencilValue {
 }
 
 impl ClearDepthStencilValue {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `depth` without native effects.
 	#[doc(alias = "depth")]
 	#[inline]
@@ -15572,6 +16349,13 @@ impl Default for ClearValue {
 }
 
 impl ClearValue {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `color` without native effects.
 	#[doc(alias = "color")]
 	#[inline]
@@ -15616,6 +16400,13 @@ impl Default for ClearAttachment {
 }
 
 impl ClearAttachment {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `aspectMask` without native effects.
 	#[doc(alias = "aspectMask")]
 	#[inline]
@@ -15684,6 +16475,13 @@ impl Default for AttachmentDescription {
 }
 
 impl AttachmentDescription {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -15786,6 +16584,13 @@ impl Default for AttachmentReference {
 }
 
 impl AttachmentReference {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `attachment` without native effects.
 	#[doc(alias = "attachment")]
 	#[inline]
@@ -15852,6 +16657,13 @@ impl<'a> Default for SubpassDescription<'a> {
 }
 
 impl<'a> SubpassDescription<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -16029,6 +16841,13 @@ impl Default for SubpassDependency {
 }
 
 impl SubpassDependency {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcSubpass` without native effects.
 	#[doc(alias = "srcSubpass")]
 	#[inline]
@@ -16139,6 +16958,13 @@ impl<'a> Default for RenderPassCreateInfo<'a> {
 }
 
 impl<'a> RenderPassCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -16287,6 +17113,13 @@ impl<'a> Default for EventCreateInfo<'a> {
 }
 
 impl<'a> EventCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -16342,6 +17175,13 @@ impl<'a> Default for FenceCreateInfo<'a> {
 }
 
 impl<'a> FenceCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -16550,6 +17390,13 @@ impl Default for PhysicalDeviceFeatures {
 }
 
 impl PhysicalDeviceFeatures {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `robustBufferAccess` without native effects.
 	#[doc(alias = "robustBufferAccess")]
 	#[inline]
@@ -17077,6 +17924,13 @@ impl Default for PhysicalDeviceSparseProperties {
 }
 
 impl PhysicalDeviceSparseProperties {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `residencyStandard2DBlockShape` without native effects.
 	#[doc(alias = "residencyStandard2DBlockShape")]
 	#[inline]
@@ -17457,6 +18311,13 @@ impl Default for PhysicalDeviceLimits {
 }
 
 impl PhysicalDeviceLimits {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxImageDimension1D` without native effects.
 	#[doc(alias = "maxImageDimension1D")]
 	#[inline]
@@ -18440,6 +19301,13 @@ impl<'a> Default for SemaphoreCreateInfo<'a> {
 }
 
 impl<'a> SemaphoreCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -18504,6 +19372,13 @@ impl<'a> Default for QueryPoolCreateInfo<'a> {
 }
 
 impl<'a> QueryPoolCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -18601,6 +19476,13 @@ impl<'a> Default for FramebufferCreateInfo<'a> {
 }
 
 impl<'a> FramebufferCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -18723,6 +19605,13 @@ impl Default for DrawIndirectCommand {
 }
 
 impl DrawIndirectCommand {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `vertexCount` without native effects.
 	#[doc(alias = "vertexCount")]
 	#[inline]
@@ -18791,6 +19680,13 @@ impl Default for DrawIndexedIndirectCommand {
 }
 
 impl DrawIndexedIndirectCommand {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `indexCount` without native effects.
 	#[doc(alias = "indexCount")]
 	#[inline]
@@ -18859,6 +19755,13 @@ impl Default for DispatchIndirectCommand {
 }
 
 impl DispatchIndirectCommand {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `x` without native effects.
 	#[doc(alias = "x")]
 	#[inline]
@@ -18909,6 +19812,13 @@ impl Default for MultiDrawInfoEXT {
 }
 
 impl MultiDrawInfoEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `firstVertex` without native effects.
 	#[doc(alias = "firstVertex")]
 	#[inline]
@@ -18953,6 +19863,13 @@ impl Default for MultiDrawIndexedInfoEXT {
 }
 
 impl MultiDrawIndexedInfoEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `firstIndex` without native effects.
 	#[doc(alias = "firstIndex")]
 	#[inline]
@@ -19028,6 +19945,13 @@ impl<'a> Default for SubmitInfo<'a> {
 }
 
 impl<'a> SubmitInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `waitSemaphoreCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -19193,6 +20117,13 @@ impl<'a> Default for DisplayPropertiesKHR<'a> {
 }
 
 impl<'a> DisplayPropertiesKHR<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `display` without native effects.
 	#[doc(alias = "display")]
 	#[inline]
@@ -19279,6 +20210,13 @@ impl Default for DisplayPlanePropertiesKHR {
 }
 
 impl DisplayPlanePropertiesKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `currentDisplay` without native effects.
 	#[doc(alias = "currentDisplay")]
 	#[inline]
@@ -19320,6 +20258,13 @@ impl Default for DisplayModeParametersKHR {
 }
 
 impl DisplayModeParametersKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `visibleRegion` without native effects.
 	#[doc(alias = "visibleRegion")]
 	#[inline]
@@ -19360,6 +20305,13 @@ impl Default for DisplayModePropertiesKHR {
 }
 
 impl DisplayModePropertiesKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `displayMode` without native effects.
 	#[doc(alias = "displayMode")]
 	#[inline]
@@ -19409,6 +20361,13 @@ impl<'a> Default for DisplayModeCreateInfoKHR<'a> {
 }
 
 impl<'a> DisplayModeCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -19488,6 +20447,13 @@ impl Default for DisplayPlaneCapabilitiesKHR {
 }
 
 impl DisplayPlaneCapabilitiesKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `supportedAlpha` without native effects.
 	#[doc(alias = "supportedAlpha")]
 	#[inline]
@@ -19618,6 +20584,13 @@ impl<'a> Default for DisplaySurfaceCreateInfoKHR<'a> {
 }
 
 impl<'a> DisplaySurfaceCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -19737,6 +20710,13 @@ impl<'a> Default for DisplaySurfaceStereoCreateInfoNV<'a> {
 }
 
 impl<'a> DisplaySurfaceStereoCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stereoType` without native effects.
 	#[doc(alias = "stereoType")]
 	#[inline]
@@ -19798,6 +20778,13 @@ impl<'a> Default for DisplayPresentInfoKHR<'a> {
 }
 
 impl<'a> DisplayPresentInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcRect` without native effects.
 	#[doc(alias = "srcRect")]
 	#[inline]
@@ -19889,6 +20876,13 @@ impl Default for SurfaceCapabilitiesKHR {
 }
 
 impl SurfaceCapabilitiesKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minImageCount` without native effects.
 	#[doc(alias = "minImageCount")]
 	#[inline]
@@ -20013,6 +21007,13 @@ impl<'a> Default for AndroidSurfaceCreateInfoKHR<'a> {
 
 #[cfg(feature = "platform-android")]
 impl<'a> AndroidSurfaceCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -20087,6 +21088,13 @@ impl<'a> Default for ViSurfaceCreateInfoNN<'a> {
 
 #[cfg(feature = "platform-vi")]
 impl<'a> ViSurfaceCreateInfoNN<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -20163,6 +21171,13 @@ impl<'a> Default for WaylandSurfaceCreateInfoKHR<'a> {
 
 #[cfg(feature = "platform-wayland")]
 impl<'a> WaylandSurfaceCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -20253,6 +21268,13 @@ impl<'a> Default for UbmSurfaceCreateInfoSEC<'a> {
 
 #[cfg(feature = "platform-ubm")]
 impl<'a> UbmSurfaceCreateInfoSEC<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -20343,6 +21365,13 @@ impl<'a> Default for Win32SurfaceCreateInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> Win32SurfaceCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -20423,6 +21452,13 @@ impl<'a> Default for XlibSurfaceCreateInfoKHR<'a> {
 
 #[cfg(feature = "platform-xlib")]
 impl<'a> XlibSurfaceCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -20508,6 +21544,13 @@ impl<'a> Default for XcbSurfaceCreateInfoKHR<'a> {
 
 #[cfg(feature = "platform-xcb")]
 impl<'a> XcbSurfaceCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -20593,6 +21636,13 @@ impl<'a> Default for DirectFBSurfaceCreateInfoEXT<'a> {
 
 #[cfg(feature = "platform-directfb")]
 impl<'a> DirectFBSurfaceCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -20682,6 +21732,13 @@ impl<'a> Default for ImagePipeSurfaceCreateInfoFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> ImagePipeSurfaceCreateInfoFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -20752,6 +21809,13 @@ impl<'a> Default for StreamDescriptorSurfaceCreateInfoGGP<'a> {
 
 #[cfg(feature = "platform-ggp")]
 impl<'a> StreamDescriptorSurfaceCreateInfoGGP<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -20823,6 +21887,13 @@ impl<'a> Default for ScreenSurfaceCreateInfoQNX<'a> {
 
 #[cfg(feature = "platform-screen")]
 impl<'a> ScreenSurfaceCreateInfoQNX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -20899,6 +21970,13 @@ impl Default for SurfaceFormatKHR {
 }
 
 impl SurfaceFormatKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `format` without native effects.
 	#[doc(alias = "format")]
 	#[inline]
@@ -20989,6 +22067,13 @@ impl<'a> Default for SwapchainCreateInfoKHR<'a> {
 }
 
 impl<'a> SwapchainCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -21208,6 +22293,13 @@ impl<'a> Default for PresentInfoKHR<'a> {
 }
 
 impl<'a> PresentInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `waitSemaphoreCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -21349,6 +22441,13 @@ impl<'a> Default for DebugReportCallbackCreateInfoEXT<'a> {
 }
 
 impl<'a> DebugReportCallbackCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -21431,6 +22530,13 @@ impl<'a> Default for ValidationFlagsEXT<'a> {
 }
 
 impl<'a> ValidationFlagsEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `disabledValidationCheckCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -21518,6 +22624,13 @@ impl<'a> Default for ValidationFeaturesEXT<'a> {
 }
 
 impl<'a> ValidationFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `enabledValidationFeatureCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -21630,6 +22743,13 @@ impl<'a> Default for LayerSettingsCreateInfoEXT<'a> {
 }
 
 impl<'a> LayerSettingsCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `settingCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -21711,6 +22831,13 @@ impl<'a> Default for LayerSettingEXT<'a> {
 }
 
 impl<'a> LayerSettingEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pLayerName` without native effects.
 	#[doc(alias = "pLayerName")]
 	#[inline]
@@ -21930,6 +23057,13 @@ impl<'a> Default for PipelineRasterizationStateRasterizationOrderAMD<'a> {
 }
 
 impl<'a> PipelineRasterizationStateRasterizationOrderAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rasterizationOrder` without native effects.
 	#[doc(alias = "rasterizationOrder")]
 	#[inline]
@@ -21991,6 +23125,13 @@ impl<'a> Default for DebugMarkerObjectNameInfoEXT<'a> {
 }
 
 impl<'a> DebugMarkerObjectNameInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `objectType` without native effects.
 	#[doc(alias = "objectType")]
 	#[inline]
@@ -22076,6 +23217,13 @@ impl<'a> Default for DebugMarkerObjectTagInfoEXT<'a> {
 }
 
 impl<'a> DebugMarkerObjectTagInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `objectType` without native effects.
 	#[doc(alias = "objectType")]
 	#[inline]
@@ -22180,6 +23328,13 @@ impl<'a> Default for DebugMarkerMarkerInfoEXT<'a> {
 }
 
 impl<'a> DebugMarkerMarkerInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pMarkerName` without native effects.
 	#[doc(alias = "pMarkerName")]
 	#[inline]
@@ -22245,6 +23400,13 @@ impl<'a> Default for DedicatedAllocationImageCreateInfoNV<'a> {
 }
 
 impl<'a> DedicatedAllocationImageCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dedicatedAllocation` without native effects.
 	#[doc(alias = "dedicatedAllocation")]
 	#[inline]
@@ -22301,6 +23463,13 @@ impl<'a> Default for DedicatedAllocationBufferCreateInfoNV<'a> {
 }
 
 impl<'a> DedicatedAllocationBufferCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dedicatedAllocation` without native effects.
 	#[doc(alias = "dedicatedAllocation")]
 	#[inline]
@@ -22358,6 +23527,13 @@ impl<'a> Default for DedicatedAllocationMemoryAllocateInfoNV<'a> {
 }
 
 impl<'a> DedicatedAllocationMemoryAllocateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `image` without native effects.
 	#[doc(alias = "image")]
 	#[inline]
@@ -22422,6 +23598,13 @@ impl Default for ExternalImageFormatPropertiesNV {
 }
 
 impl ExternalImageFormatPropertiesNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageFormatProperties` without native effects.
 	#[doc(alias = "imageFormatProperties")]
 	#[inline]
@@ -22491,6 +23674,13 @@ impl<'a> Default for ExternalMemoryImageCreateInfoNV<'a> {
 }
 
 impl<'a> ExternalMemoryImageCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleTypes` without native effects.
 	#[doc(alias = "handleTypes")]
 	#[inline]
@@ -22547,6 +23737,13 @@ impl<'a> Default for ExportMemoryAllocateInfoNV<'a> {
 }
 
 impl<'a> ExportMemoryAllocateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleTypes` without native effects.
 	#[doc(alias = "handleTypes")]
 	#[inline]
@@ -22608,6 +23805,13 @@ impl<'a> Default for ImportMemoryWin32HandleInfoNV<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> ImportMemoryWin32HandleInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleType` without native effects.
 	#[doc(alias = "handleType")]
 	#[inline]
@@ -22679,6 +23883,13 @@ impl<'a> Default for ExportMemoryWin32HandleInfoNV<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> ExportMemoryWin32HandleInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native pointer `pAttributes` explicitly. No borrow or extent is inferred.
 	///
 	/// # Safety
@@ -22770,6 +23981,13 @@ impl<'a> Default for Win32KeyedMutexAcquireReleaseInfoNV<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> Win32KeyedMutexAcquireReleaseInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `acquireCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -22920,6 +24138,13 @@ impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceGeneratedCommands` without native effects.
 	#[doc(alias = "deviceGeneratedCommands")]
 	#[inline]
@@ -22975,6 +24200,13 @@ impl<'a> Default for PushConstantBankInfoNV<'a> {
 }
 
 impl<'a> PushConstantBankInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `bank` without native effects.
 	#[doc(alias = "bank")]
 	#[inline]
@@ -23031,6 +24263,13 @@ impl<'a> Default for PhysicalDevicePushConstantBankFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDevicePushConstantBankFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pushConstantBank` without native effects.
 	#[doc(alias = "pushConstantBank")]
 	#[inline]
@@ -23096,6 +24335,13 @@ impl<'a> Default for PhysicalDevicePushConstantBankPropertiesNV<'a> {
 }
 
 impl<'a> PhysicalDevicePushConstantBankPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxGraphicsPushConstantBanks` without native effects.
 	#[doc(alias = "maxGraphicsPushConstantBanks")]
 	#[inline]
@@ -23185,6 +24431,13 @@ impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> 
 }
 
 impl<'a> PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceGeneratedCompute` without native effects.
 	#[doc(alias = "deviceGeneratedCompute")]
 	#[inline]
@@ -23259,6 +24512,13 @@ impl<'a> Default for DevicePrivateDataCreateInfo<'a> {
 }
 
 impl<'a> DevicePrivateDataCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `privateDataSlotRequestCount` without native effects.
 	#[doc(alias = "privateDataSlotRequestCount")]
 	#[inline]
@@ -23318,6 +24578,13 @@ impl<'a> Default for PrivateDataSlotCreateInfo<'a> {
 }
 
 impl<'a> PrivateDataSlotCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -23378,6 +24645,13 @@ impl<'a> Default for PhysicalDevicePrivateDataFeatures<'a> {
 }
 
 impl<'a> PhysicalDevicePrivateDataFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `privateData` without native effects.
 	#[doc(alias = "privateData")]
 	#[inline]
@@ -23438,6 +24712,13 @@ impl<'a> Default for PhysicalDevicePrivateDataBaseHandleFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDevicePrivateDataBaseHandleFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `privateDataBaseHandle` without native effects.
 	#[doc(alias = "privateDataBaseHandle")]
 	#[inline]
@@ -23518,6 +24799,13 @@ impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxGraphicsShaderGroupCount` without native effects.
 	#[doc(alias = "maxGraphicsShaderGroupCount")]
 	#[inline]
@@ -23646,6 +24934,13 @@ impl<'a> Default for PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceClusterAccelerationStructureFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `clusterAccelerationStructure` without native effects.
 	#[doc(alias = "clusterAccelerationStructure")]
 	#[inline]
@@ -23723,6 +25018,13 @@ impl<'a> Default for PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> 
 }
 
 impl<'a> PhysicalDeviceClusterAccelerationStructurePropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxVerticesPerCluster` without native effects.
 	#[doc(alias = "maxVerticesPerCluster")]
 	#[inline]
@@ -23835,6 +25137,13 @@ impl Default for StridedDeviceAddressNV {
 }
 
 impl StridedDeviceAddressNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `startAddress` without native effects.
 	#[doc(alias = "startAddress")]
 	#[inline]
@@ -23884,6 +25193,13 @@ impl<'a> Default for RayTracingPipelineClusterAccelerationStructureCreateInfoNV<
 }
 
 impl<'a> RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `allowClusterAccelerationStructure` without native effects.
 	#[doc(alias = "allowClusterAccelerationStructure")]
 	#[inline]
@@ -23961,7 +25277,14 @@ impl Default for ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {
 	}
 }
 
-impl ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {}
+impl ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `VkClusterAccelerationStructureMoveObjectsInfoNV`."]
 #[doc(alias = "VkClusterAccelerationStructureMoveObjectsInfoNV")]
@@ -23982,6 +25305,13 @@ impl Default for ClusterAccelerationStructureMoveObjectsInfoNV {
 }
 
 impl ClusterAccelerationStructureMoveObjectsInfoNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcAccelerationStructure` without native effects.
 	#[doc(alias = "srcAccelerationStructure")]
 	#[inline]
@@ -24017,6 +25347,13 @@ impl Default for ClusterAccelerationStructureBuildClustersBottomLevelInfoNV {
 }
 
 impl ClusterAccelerationStructureBuildClustersBottomLevelInfoNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `clusterReferencesCount` without native effects.
 	#[doc(alias = "clusterReferencesCount")]
 	#[inline]
@@ -24064,6 +25401,13 @@ impl Default for ClusterAccelerationStructureGetTemplateIndicesInfoNV {
 }
 
 impl ClusterAccelerationStructureGetTemplateIndicesInfoNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `clusterTemplateAddress` without native effects.
 	#[doc(alias = "clusterTemplateAddress")]
 	#[inline]
@@ -24185,6 +25529,13 @@ impl Default for ClusterAccelerationStructureBuildTriangleClusterInfoNV {
 }
 
 impl ClusterAccelerationStructureBuildTriangleClusterInfoNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `clusterID` without native effects.
 	#[doc(alias = "clusterID")]
 	#[inline]
@@ -24411,6 +25762,13 @@ impl Default for ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV 
 }
 
 impl ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `clusterID` without native effects.
 	#[doc(alias = "clusterID")]
 	#[inline]
@@ -24581,6 +25939,13 @@ impl Default for ClusterAccelerationStructureInstantiateClusterInfoNV {
 }
 
 impl ClusterAccelerationStructureInstantiateClusterInfoNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `clusterIdOffset` without native effects.
 	#[doc(alias = "clusterIdOffset")]
 	#[inline]
@@ -24641,6 +26006,13 @@ impl<'a> Default for ClusterAccelerationStructureClustersBottomLevelInputNV<'a> 
 }
 
 impl<'a> ClusterAccelerationStructureClustersBottomLevelInputNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxTotalClusterCount` without native effects.
 	#[doc(alias = "maxTotalClusterCount")]
 	#[inline]
@@ -24727,6 +26099,13 @@ impl<'a> Default for ClusterAccelerationStructureTriangleClusterInputNV<'a> {
 }
 
 impl<'a> ClusterAccelerationStructureTriangleClusterInputNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `vertexFormat` without native effects.
 	#[doc(alias = "vertexFormat")]
 	#[inline]
@@ -24851,6 +26230,13 @@ impl<'a> Default for ClusterAccelerationStructureMoveObjectsInputNV<'a> {
 }
 
 impl<'a> ClusterAccelerationStructureMoveObjectsInputNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -24922,6 +26308,13 @@ impl<'a> Default for ClusterAccelerationStructureOpInputNV<'a> {
 }
 
 impl<'a> ClusterAccelerationStructureOpInputNV<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pClustersBottomLevel` without native effects.
 	#[doc(alias = "pClustersBottomLevel")]
 	#[inline]
@@ -24999,6 +26392,13 @@ impl<'a> Default for ClusterAccelerationStructureInputInfoNV<'a> {
 }
 
 impl<'a> ClusterAccelerationStructureInputInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxAccelerationStructureCount` without native effects.
 	#[doc(alias = "maxAccelerationStructureCount")]
 	#[inline]
@@ -25111,6 +26511,13 @@ impl<'a> Default for ClusterAccelerationStructureCommandsInfoNV<'a> {
 }
 
 impl<'a> ClusterAccelerationStructureCommandsInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `input` without native effects.
 	#[doc(alias = "input")]
 	#[inline]
@@ -25233,6 +26640,13 @@ impl<'a> Default for PhysicalDeviceMultiDrawPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceMultiDrawPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxMultiDrawCount` without native effects.
 	#[doc(alias = "maxMultiDrawCount")]
 	#[inline]
@@ -25298,6 +26712,13 @@ impl<'a> Default for GraphicsShaderGroupCreateInfoNV<'a> {
 }
 
 impl<'a> GraphicsShaderGroupCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `stageCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -25409,6 +26830,13 @@ impl<'a> Default for GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
 }
 
 impl<'a> GraphicsPipelineShaderGroupsCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `groupCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -25508,6 +26936,13 @@ impl Default for BindShaderGroupIndirectCommandNV {
 }
 
 impl BindShaderGroupIndirectCommandNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `groupIndex` without native effects.
 	#[doc(alias = "groupIndex")]
 	#[inline]
@@ -25542,6 +26977,13 @@ impl Default for BindIndexBufferIndirectCommandNV {
 }
 
 impl BindIndexBufferIndirectCommandNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `bufferAddress` without native effects.
 	#[doc(alias = "bufferAddress")]
 	#[inline]
@@ -25593,6 +27035,13 @@ impl Default for BindVertexBufferIndirectCommandNV {
 }
 
 impl BindVertexBufferIndirectCommandNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `bufferAddress` without native effects.
 	#[doc(alias = "bufferAddress")]
 	#[inline]
@@ -25639,6 +27088,13 @@ impl Default for SetStateFlagsIndirectCommandNV {
 }
 
 impl SetStateFlagsIndirectCommandNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `data` without native effects.
 	#[doc(alias = "data")]
 	#[inline]
@@ -25669,6 +27125,13 @@ impl Default for IndirectCommandsStreamNV {
 }
 
 impl IndirectCommandsStreamNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `buffer` without native effects.
 	#[doc(alias = "buffer")]
 	#[inline]
@@ -25751,6 +27214,13 @@ impl<'a> Default for IndirectCommandsLayoutTokenNV<'a> {
 }
 
 impl<'a> IndirectCommandsLayoutTokenNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tokenType` without native effects.
 	#[doc(alias = "tokenType")]
 	#[inline]
@@ -25949,6 +27419,13 @@ impl<'a> Default for IndirectCommandsLayoutCreateInfoNV<'a> {
 }
 
 impl<'a> IndirectCommandsLayoutCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -26111,6 +27588,13 @@ impl<'a> Default for GeneratedCommandsInfoNV<'a> {
 }
 
 impl<'a> GeneratedCommandsInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineBindPoint` without native effects.
 	#[doc(alias = "pipelineBindPoint")]
 	#[inline]
@@ -26296,6 +27780,13 @@ impl<'a> Default for GeneratedCommandsMemoryRequirementsInfoNV<'a> {
 }
 
 impl<'a> GeneratedCommandsMemoryRequirementsInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineBindPoint` without native effects.
 	#[doc(alias = "pipelineBindPoint")]
 	#[inline]
@@ -26381,6 +27872,13 @@ impl<'a> Default for PipelineIndirectDeviceAddressInfoNV<'a> {
 }
 
 impl<'a> PipelineIndirectDeviceAddressInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineBindPoint` without native effects.
 	#[doc(alias = "pipelineBindPoint")]
 	#[inline]
@@ -26436,6 +27934,13 @@ impl Default for BindPipelineIndirectCommandNV {
 }
 
 impl BindPipelineIndirectCommandNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineAddress` without native effects.
 	#[doc(alias = "pipelineAddress")]
 	#[inline]
@@ -26474,6 +27979,13 @@ impl<'a> Default for PhysicalDeviceFeatures2<'a> {
 }
 
 impl<'a> PhysicalDeviceFeatures2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `features` without native effects.
 	#[doc(alias = "features")]
 	#[inline]
@@ -26533,6 +28045,13 @@ impl<'a> Default for PhysicalDeviceProperties2<'a> {
 }
 
 impl<'a> PhysicalDeviceProperties2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `properties` without native effects.
 	#[doc(alias = "properties")]
 	#[inline]
@@ -26593,6 +28112,13 @@ impl<'a> Default for FormatProperties2<'a> {
 }
 
 impl<'a> FormatProperties2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `formatProperties` without native effects.
 	#[doc(alias = "formatProperties")]
 	#[inline]
@@ -26653,6 +28179,13 @@ impl<'a> Default for ImageFormatProperties2<'a> {
 }
 
 impl<'a> ImageFormatProperties2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageFormatProperties` without native effects.
 	#[doc(alias = "imageFormatProperties")]
 	#[inline]
@@ -26720,6 +28253,13 @@ impl<'a> Default for PhysicalDeviceImageFormatInfo2<'a> {
 }
 
 impl<'a> PhysicalDeviceImageFormatInfo2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `format` without native effects.
 	#[doc(alias = "format")]
 	#[inline]
@@ -26816,6 +28356,13 @@ impl<'a> Default for QueueFamilyProperties2<'a> {
 }
 
 impl<'a> QueueFamilyProperties2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `queueFamilyProperties` without native effects.
 	#[doc(alias = "queueFamilyProperties")]
 	#[inline]
@@ -26876,6 +28423,13 @@ impl<'a> Default for PhysicalDeviceMemoryProperties2<'a> {
 }
 
 impl<'a> PhysicalDeviceMemoryProperties2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memoryProperties` without native effects.
 	#[doc(alias = "memoryProperties")]
 	#[inline]
@@ -26935,6 +28489,13 @@ impl<'a> Default for SparseImageFormatProperties2<'a> {
 }
 
 impl<'a> SparseImageFormatProperties2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `properties` without native effects.
 	#[doc(alias = "properties")]
 	#[inline]
@@ -27002,6 +28563,13 @@ impl<'a> Default for PhysicalDeviceSparseImageFormatInfo2<'a> {
 }
 
 impl<'a> PhysicalDeviceSparseImageFormatInfo2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `format` without native effects.
 	#[doc(alias = "format")]
 	#[inline]
@@ -27098,6 +28666,13 @@ impl<'a> Default for PhysicalDevicePushDescriptorProperties<'a> {
 }
 
 impl<'a> PhysicalDevicePushDescriptorProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxPushDescriptors` without native effects.
 	#[doc(alias = "maxPushDescriptors")]
 	#[inline]
@@ -27153,6 +28728,13 @@ impl Default for ConformanceVersion {
 }
 
 impl ConformanceVersion {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `major` without native effects.
 	#[doc(alias = "major")]
 	#[inline]
@@ -27232,6 +28814,13 @@ impl<'a> Default for PhysicalDeviceDriverProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceDriverProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `driverID` without native effects.
 	#[doc(alias = "driverID")]
 	#[inline]
@@ -27328,6 +28917,13 @@ impl<'a> Default for PresentRegionsKHR<'a> {
 }
 
 impl<'a> PresentRegionsKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `swapchainCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -27401,6 +28997,13 @@ impl<'a> Default for PresentRegionKHR<'a> {
 }
 
 impl<'a> PresentRegionKHR<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `rectangleCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -27455,6 +29058,13 @@ impl Default for RectLayerKHR {
 }
 
 impl RectLayerKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `offset` without native effects.
 	#[doc(alias = "offset")]
 	#[inline]
@@ -27515,6 +29125,13 @@ impl<'a> Default for PhysicalDeviceVariablePointersFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceVariablePointersFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `variablePointersStorageBuffer` without native effects.
 	#[doc(alias = "variablePointersStorageBuffer")]
 	#[inline]
@@ -27588,6 +29205,13 @@ impl Default for ExternalMemoryProperties {
 }
 
 impl ExternalMemoryProperties {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `externalMemoryFeatures` without native effects.
 	#[doc(alias = "externalMemoryFeatures")]
 	#[inline]
@@ -27652,6 +29276,13 @@ impl<'a> Default for PhysicalDeviceExternalImageFormatInfo<'a> {
 }
 
 impl<'a> PhysicalDeviceExternalImageFormatInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleType` without native effects.
 	#[doc(alias = "handleType")]
 	#[inline]
@@ -27712,6 +29343,13 @@ impl<'a> Default for ExternalImageFormatProperties<'a> {
 }
 
 impl<'a> ExternalImageFormatProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `externalMemoryProperties` without native effects.
 	#[doc(alias = "externalMemoryProperties")]
 	#[inline]
@@ -27776,6 +29414,13 @@ impl<'a> Default for PhysicalDeviceExternalBufferInfo<'a> {
 }
 
 impl<'a> PhysicalDeviceExternalBufferInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -27854,6 +29499,13 @@ impl<'a> Default for ExternalBufferProperties<'a> {
 }
 
 impl<'a> ExternalBufferProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `externalMemoryProperties` without native effects.
 	#[doc(alias = "externalMemoryProperties")]
 	#[inline]
@@ -27926,6 +29578,13 @@ impl<'a> Default for PhysicalDeviceIDProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceIDProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceUUID` without native effects.
 	#[doc(alias = "deviceUUID")]
 	#[inline]
@@ -28022,6 +29681,13 @@ impl<'a> Default for ExternalMemoryImageCreateInfo<'a> {
 }
 
 impl<'a> ExternalMemoryImageCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleTypes` without native effects.
 	#[doc(alias = "handleTypes")]
 	#[inline]
@@ -28082,6 +29748,13 @@ impl<'a> Default for ExternalMemoryBufferCreateInfo<'a> {
 }
 
 impl<'a> ExternalMemoryBufferCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleTypes` without native effects.
 	#[doc(alias = "handleTypes")]
 	#[inline]
@@ -28142,6 +29815,13 @@ impl<'a> Default for ExportMemoryAllocateInfo<'a> {
 }
 
 impl<'a> ExportMemoryAllocateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleTypes` without native effects.
 	#[doc(alias = "handleTypes")]
 	#[inline]
@@ -28209,6 +29889,13 @@ impl<'a> Default for ImportMemoryWin32HandleInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> ImportMemoryWin32HandleInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleType` without native effects.
 	#[doc(alias = "handleType")]
 	#[inline]
@@ -28291,6 +29978,13 @@ impl<'a> Default for ExportMemoryWin32HandleInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> ExportMemoryWin32HandleInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native pointer `pAttributes` explicitly. No borrow or extent is inferred.
 	///
 	/// # Safety
@@ -28375,6 +30069,13 @@ impl<'a> Default for ImportMemoryZirconHandleInfoFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> ImportMemoryZirconHandleInfoFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleType` without native effects.
 	#[doc(alias = "handleType")]
 	#[inline]
@@ -28443,6 +30144,13 @@ impl<'a> Default for MemoryZirconHandlePropertiesFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> MemoryZirconHandlePropertiesFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memoryTypeBits` without native effects.
 	#[doc(alias = "memoryTypeBits")]
 	#[inline]
@@ -28504,6 +30212,13 @@ impl<'a> Default for MemoryGetZirconHandleInfoFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> MemoryGetZirconHandleInfoFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memory` without native effects.
 	#[doc(alias = "memory")]
 	#[inline]
@@ -28572,6 +30287,13 @@ impl<'a> Default for MemoryWin32HandlePropertiesKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> MemoryWin32HandlePropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memoryTypeBits` without native effects.
 	#[doc(alias = "memoryTypeBits")]
 	#[inline]
@@ -28633,6 +30355,13 @@ impl<'a> Default for MemoryGetWin32HandleInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> MemoryGetWin32HandleInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memory` without native effects.
 	#[doc(alias = "memory")]
 	#[inline]
@@ -28700,6 +30429,13 @@ impl<'a> Default for ImportMemoryFdInfoKHR<'a> {
 }
 
 impl<'a> ImportMemoryFdInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleType` without native effects.
 	#[doc(alias = "handleType")]
 	#[inline]
@@ -28765,6 +30501,13 @@ impl<'a> Default for MemoryFdPropertiesKHR<'a> {
 }
 
 impl<'a> MemoryFdPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memoryTypeBits` without native effects.
 	#[doc(alias = "memoryTypeBits")]
 	#[inline]
@@ -28823,6 +30566,13 @@ impl<'a> Default for MemoryGetFdInfoKHR<'a> {
 }
 
 impl<'a> MemoryGetFdInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memory` without native effects.
 	#[doc(alias = "memory")]
 	#[inline]
@@ -28909,6 +30659,13 @@ impl<'a> Default for Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> Win32KeyedMutexAcquireReleaseInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `acquireCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -29064,6 +30821,13 @@ impl<'a> Default for ImportMemoryMetalHandleInfoEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> ImportMemoryMetalHandleInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleType` without native effects.
 	#[doc(alias = "handleType")]
 	#[inline]
@@ -29137,6 +30901,13 @@ impl<'a> Default for MemoryMetalHandlePropertiesEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> MemoryMetalHandlePropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memoryTypeBits` without native effects.
 	#[doc(alias = "memoryTypeBits")]
 	#[inline]
@@ -29198,6 +30969,13 @@ impl<'a> Default for MemoryGetMetalHandleInfoEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> MemoryGetMetalHandleInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memory` without native effects.
 	#[doc(alias = "memory")]
 	#[inline]
@@ -29263,6 +31041,13 @@ impl<'a> Default for PhysicalDeviceExternalSemaphoreInfo<'a> {
 }
 
 impl<'a> PhysicalDeviceExternalSemaphoreInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleType` without native effects.
 	#[doc(alias = "handleType")]
 	#[inline]
@@ -29329,6 +31114,13 @@ impl<'a> Default for ExternalSemaphoreProperties<'a> {
 }
 
 impl<'a> ExternalSemaphoreProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `exportFromImportedHandleTypes` without native effects.
 	#[doc(alias = "exportFromImportedHandleTypes")]
 	#[inline]
@@ -29410,6 +31202,13 @@ impl<'a> Default for ExportSemaphoreCreateInfo<'a> {
 }
 
 impl<'a> ExportSemaphoreCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleTypes` without native effects.
 	#[doc(alias = "handleTypes")]
 	#[inline]
@@ -29481,6 +31280,13 @@ impl<'a> Default for ImportSemaphoreWin32HandleInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> ImportSemaphoreWin32HandleInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `semaphore` without native effects.
 	#[doc(alias = "semaphore")]
 	#[inline]
@@ -29581,6 +31387,13 @@ impl<'a> Default for ExportSemaphoreWin32HandleInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> ExportSemaphoreWin32HandleInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native pointer `pAttributes` explicitly. No borrow or extent is inferred.
 	///
 	/// # Safety
@@ -29672,6 +31485,13 @@ impl<'a> Default for D3D12FenceSubmitInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> D3D12FenceSubmitInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `waitSemaphoreValuesCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -29786,6 +31606,13 @@ impl<'a> Default for SemaphoreGetWin32HandleInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> SemaphoreGetWin32HandleInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `semaphore` without native effects.
 	#[doc(alias = "semaphore")]
 	#[inline]
@@ -29857,6 +31684,13 @@ impl<'a> Default for ImportSemaphoreFdInfoKHR<'a> {
 }
 
 impl<'a> ImportSemaphoreFdInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `semaphore` without native effects.
 	#[doc(alias = "semaphore")]
 	#[inline]
@@ -29942,6 +31776,13 @@ impl<'a> Default for SemaphoreGetFdInfoKHR<'a> {
 }
 
 impl<'a> SemaphoreGetFdInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `semaphore` without native effects.
 	#[doc(alias = "semaphore")]
 	#[inline]
@@ -30017,6 +31858,13 @@ impl<'a> Default for ImportSemaphoreZirconHandleInfoFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> ImportSemaphoreZirconHandleInfoFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `semaphore` without native effects.
 	#[doc(alias = "semaphore")]
 	#[inline]
@@ -30105,6 +31953,13 @@ impl<'a> Default for SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> SemaphoreGetZirconHandleInfoFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `semaphore` without native effects.
 	#[doc(alias = "semaphore")]
 	#[inline]
@@ -30170,6 +32025,13 @@ impl<'a> Default for PhysicalDeviceExternalFenceInfo<'a> {
 }
 
 impl<'a> PhysicalDeviceExternalFenceInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleType` without native effects.
 	#[doc(alias = "handleType")]
 	#[inline]
@@ -30236,6 +32098,13 @@ impl<'a> Default for ExternalFenceProperties<'a> {
 }
 
 impl<'a> ExternalFenceProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `exportFromImportedHandleTypes` without native effects.
 	#[doc(alias = "exportFromImportedHandleTypes")]
 	#[inline]
@@ -30317,6 +32186,13 @@ impl<'a> Default for ExportFenceCreateInfo<'a> {
 }
 
 impl<'a> ExportFenceCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleTypes` without native effects.
 	#[doc(alias = "handleTypes")]
 	#[inline]
@@ -30388,6 +32264,13 @@ impl<'a> Default for ImportFenceWin32HandleInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> ImportFenceWin32HandleInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fence` without native effects.
 	#[doc(alias = "fence")]
 	#[inline]
@@ -30488,6 +32371,13 @@ impl<'a> Default for ExportFenceWin32HandleInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> ExportFenceWin32HandleInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native pointer `pAttributes` explicitly. No borrow or extent is inferred.
 	///
 	/// # Safety
@@ -30572,6 +32462,13 @@ impl<'a> Default for FenceGetWin32HandleInfoKHR<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> FenceGetWin32HandleInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fence` without native effects.
 	#[doc(alias = "fence")]
 	#[inline]
@@ -30643,6 +32540,13 @@ impl<'a> Default for ImportFenceFdInfoKHR<'a> {
 }
 
 impl<'a> ImportFenceFdInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fence` without native effects.
 	#[doc(alias = "fence")]
 	#[inline]
@@ -30728,6 +32632,13 @@ impl<'a> Default for FenceGetFdInfoKHR<'a> {
 }
 
 impl<'a> FenceGetFdInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fence` without native effects.
 	#[doc(alias = "fence")]
 	#[inline]
@@ -30798,6 +32709,13 @@ impl<'a> Default for PhysicalDeviceMultiviewFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceMultiviewFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `multiview` without native effects.
 	#[doc(alias = "multiview")]
 	#[inline]
@@ -30879,6 +32797,13 @@ impl<'a> Default for PhysicalDeviceMultiviewProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceMultiviewProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxMultiviewViewCount` without native effects.
 	#[doc(alias = "maxMultiviewViewCount")]
 	#[inline]
@@ -30963,6 +32888,13 @@ impl<'a> Default for RenderPassMultiviewCreateInfo<'a> {
 }
 
 impl<'a> RenderPassMultiviewCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `subpassCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -31137,6 +33069,13 @@ impl<'a> Default for SurfaceCapabilities2EXT<'a> {
 }
 
 impl<'a> SurfaceCapabilities2EXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minImageCount` without native effects.
 	#[doc(alias = "minImageCount")]
 	#[inline]
@@ -31283,6 +33222,13 @@ impl<'a> Default for DisplayPowerInfoEXT<'a> {
 }
 
 impl<'a> DisplayPowerInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `powerState` without native effects.
 	#[doc(alias = "powerState")]
 	#[inline]
@@ -31339,6 +33285,13 @@ impl<'a> Default for DeviceEventInfoEXT<'a> {
 }
 
 impl<'a> DeviceEventInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceEvent` without native effects.
 	#[doc(alias = "deviceEvent")]
 	#[inline]
@@ -31395,6 +33348,13 @@ impl<'a> Default for DisplayEventInfoEXT<'a> {
 }
 
 impl<'a> DisplayEventInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `displayEvent` without native effects.
 	#[doc(alias = "displayEvent")]
 	#[inline]
@@ -31451,6 +33411,13 @@ impl<'a> Default for SwapchainCounterCreateInfoEXT<'a> {
 }
 
 impl<'a> SwapchainCounterCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `surfaceCounters` without native effects.
 	#[doc(alias = "surfaceCounters")]
 	#[inline]
@@ -31513,6 +33480,13 @@ impl<'a> Default for PhysicalDeviceGroupProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceGroupProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `physicalDeviceCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -31599,6 +33573,13 @@ impl<'a> Default for MemoryAllocateFlagsInfo<'a> {
 }
 
 impl<'a> MemoryAllocateFlagsInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -31672,6 +33653,13 @@ impl<'a> Default for BindBufferMemoryInfo<'a> {
 }
 
 impl<'a> BindBufferMemoryInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `buffer` without native effects.
 	#[doc(alias = "buffer")]
 	#[inline]
@@ -31753,6 +33741,13 @@ impl<'a> Default for BindBufferMemoryDeviceGroupInfo<'a> {
 }
 
 impl<'a> BindBufferMemoryDeviceGroupInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `deviceIndexCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -31839,6 +33834,13 @@ impl<'a> Default for BindImageMemoryInfo<'a> {
 }
 
 impl<'a> BindImageMemoryInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `image` without native effects.
 	#[doc(alias = "image")]
 	#[inline]
@@ -31926,6 +33928,13 @@ impl<'a> Default for BindImageMemoryDeviceGroupInfo<'a> {
 }
 
 impl<'a> BindImageMemoryDeviceGroupInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `deviceIndexCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -32045,6 +34054,13 @@ impl<'a> Default for DeviceGroupRenderPassBeginInfo<'a> {
 }
 
 impl<'a> DeviceGroupRenderPassBeginInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceMask` without native effects.
 	#[doc(alias = "deviceMask")]
 	#[inline]
@@ -32136,6 +34152,13 @@ impl<'a> Default for DeviceGroupCommandBufferBeginInfo<'a> {
 }
 
 impl<'a> DeviceGroupCommandBufferBeginInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceMask` without native effects.
 	#[doc(alias = "deviceMask")]
 	#[inline]
@@ -32211,6 +34234,13 @@ impl<'a> Default for DeviceGroupSubmitInfo<'a> {
 }
 
 impl<'a> DeviceGroupSubmitInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `waitSemaphoreCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -32358,6 +34388,13 @@ impl<'a> Default for DeviceGroupBindSparseInfo<'a> {
 }
 
 impl<'a> DeviceGroupBindSparseInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `resourceDeviceIndex` without native effects.
 	#[doc(alias = "resourceDeviceIndex")]
 	#[inline]
@@ -32429,6 +34466,13 @@ impl<'a> Default for DeviceGroupPresentCapabilitiesKHR<'a> {
 }
 
 impl<'a> DeviceGroupPresentCapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentMask` without native effects.
 	#[doc(alias = "presentMask")]
 	#[inline]
@@ -32493,6 +34537,13 @@ impl<'a> Default for ImageSwapchainCreateInfoKHR<'a> {
 }
 
 impl<'a> ImageSwapchainCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `swapchain` without native effects.
 	#[doc(alias = "swapchain")]
 	#[inline]
@@ -32551,6 +34602,13 @@ impl<'a> Default for BindImageMemorySwapchainInfoKHR<'a> {
 }
 
 impl<'a> BindImageMemorySwapchainInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `swapchain` without native effects.
 	#[doc(alias = "swapchain")]
 	#[inline]
@@ -32624,6 +34682,13 @@ impl<'a> Default for AcquireNextImageInfoKHR<'a> {
 }
 
 impl<'a> AcquireNextImageInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `swapchain` without native effects.
 	#[doc(alias = "swapchain")]
 	#[inline]
@@ -32721,6 +34786,13 @@ impl<'a> Default for DeviceGroupPresentInfoKHR<'a> {
 }
 
 impl<'a> DeviceGroupPresentInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `swapchainCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -32811,6 +34883,13 @@ impl<'a> Default for DeviceGroupDeviceCreateInfo<'a> {
 }
 
 impl<'a> DeviceGroupDeviceCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `physicalDeviceCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -32892,6 +34971,13 @@ impl<'a> Default for DeviceGroupSwapchainCreateInfoKHR<'a> {
 }
 
 impl<'a> DeviceGroupSwapchainCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `modes` without native effects.
 	#[doc(alias = "modes")]
 	#[inline]
@@ -32951,6 +35037,13 @@ impl Default for DescriptorUpdateTemplateEntry {
 }
 
 impl DescriptorUpdateTemplateEntry {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dstBinding` without native effects.
 	#[doc(alias = "dstBinding")]
 	#[inline]
@@ -33058,6 +35151,13 @@ impl<'a> Default for DescriptorUpdateTemplateCreateInfo<'a> {
 }
 
 impl<'a> DescriptorUpdateTemplateCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -33185,6 +35285,13 @@ impl Default for XYColorEXT {
 }
 
 impl XYColorEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `x` without native effects.
 	#[doc(alias = "x")]
 	#[inline]
@@ -33233,6 +35340,13 @@ impl<'a> Default for PhysicalDevicePresentIdFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDevicePresentIdFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentId` without native effects.
 	#[doc(alias = "presentId")]
 	#[inline]
@@ -33292,6 +35406,13 @@ impl<'a> Default for PresentIdKHR<'a> {
 }
 
 impl<'a> PresentIdKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `swapchainCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -33370,6 +35491,13 @@ impl<'a> Default for PhysicalDevicePresentId2FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDevicePresentId2FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentId2` without native effects.
 	#[doc(alias = "presentId2")]
 	#[inline]
@@ -33429,6 +35557,13 @@ impl<'a> Default for PresentId2KHR<'a> {
 }
 
 impl<'a> PresentId2KHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `swapchainCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -33509,6 +35644,13 @@ impl<'a> Default for PresentWait2InfoKHR<'a> {
 }
 
 impl<'a> PresentWait2InfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentId` without native effects.
 	#[doc(alias = "presentId")]
 	#[inline]
@@ -33574,6 +35716,13 @@ impl<'a> Default for PhysicalDevicePresentWaitFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDevicePresentWaitFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentWait` without native effects.
 	#[doc(alias = "presentWait")]
 	#[inline]
@@ -33630,6 +35779,13 @@ impl<'a> Default for PhysicalDevicePresentWait2FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDevicePresentWait2FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentWait2` without native effects.
 	#[doc(alias = "presentWait2")]
 	#[inline]
@@ -33692,6 +35848,13 @@ impl<'a> Default for PhysicalDevicePresentTimingFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDevicePresentTimingFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentTiming` without native effects.
 	#[doc(alias = "presentTiming")]
 	#[inline]
@@ -33775,6 +35938,13 @@ impl<'a> Default for PresentTimingSurfaceCapabilitiesEXT<'a> {
 }
 
 impl<'a> PresentTimingSurfaceCapabilitiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentTimingSupported` without native effects.
 	#[doc(alias = "presentTimingSupported")]
 	#[inline]
@@ -33861,6 +36031,13 @@ impl<'a> Default for SwapchainTimingPropertiesEXT<'a> {
 }
 
 impl<'a> SwapchainTimingPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `refreshDuration` without native effects.
 	#[doc(alias = "refreshDuration")]
 	#[inline]
@@ -33932,6 +36109,13 @@ impl<'a> Default for SwapchainTimeDomainPropertiesEXT<'a> {
 }
 
 impl<'a> SwapchainTimeDomainPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `timeDomainCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -34023,6 +36207,13 @@ impl Default for PresentStageTimeEXT {
 }
 
 impl PresentStageTimeEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stage` without native effects.
 	#[doc(alias = "stage")]
 	#[inline]
@@ -34072,6 +36263,13 @@ impl<'a> Default for PastPresentationTimingInfoEXT<'a> {
 }
 
 impl<'a> PastPresentationTimingInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -34146,6 +36344,13 @@ impl<'a> Default for PastPresentationTimingPropertiesEXT<'a> {
 }
 
 impl<'a> PastPresentationTimingPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `timingPropertiesCounter` without native effects.
 	#[doc(alias = "timingPropertiesCounter")]
 	#[inline]
@@ -34260,6 +36465,13 @@ impl<'a> Default for PastPresentationTimingEXT<'a> {
 }
 
 impl<'a> PastPresentationTimingEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentId` without native effects.
 	#[doc(alias = "presentId")]
 	#[inline]
@@ -34386,6 +36598,13 @@ impl<'a> Default for PresentTimingsInfoEXT<'a> {
 }
 
 impl<'a> PresentTimingsInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `swapchainCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -34475,6 +36694,13 @@ impl<'a> Default for PresentTimingInfoEXT<'a> {
 }
 
 impl<'a> PresentTimingInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -34572,6 +36798,13 @@ impl<'a> Default for SwapchainCalibratedTimestampInfoEXT<'a> {
 }
 
 impl<'a> SwapchainCalibratedTimestampInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `swapchain` without native effects.
 	#[doc(alias = "swapchain")]
 	#[inline]
@@ -34667,6 +36900,13 @@ impl<'a> Default for HdrMetadataEXT<'a> {
 }
 
 impl<'a> HdrMetadataEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `displayPrimaryRed` without native effects.
 	#[doc(alias = "displayPrimaryRed")]
 	#[inline]
@@ -34789,6 +37029,13 @@ impl<'a> Default for HdrVividDynamicMetadataHUAWEI<'a> {
 }
 
 impl<'a> HdrVividDynamicMetadataHUAWEI<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `dynamicMetadataSize` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -34867,6 +37114,13 @@ impl<'a> Default for DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
 }
 
 impl<'a> DisplayNativeHdrSurfaceCapabilitiesAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `localDimmingSupport` without native effects.
 	#[doc(alias = "localDimmingSupport")]
 	#[inline]
@@ -34923,6 +37177,13 @@ impl<'a> Default for SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
 }
 
 impl<'a> SwapchainDisplayNativeHdrCreateInfoAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `localDimmingEnable` without native effects.
 	#[doc(alias = "localDimmingEnable")]
 	#[inline]
@@ -34969,6 +37230,13 @@ impl Default for RefreshCycleDurationGOOGLE {
 }
 
 impl RefreshCycleDurationGOOGLE {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `refreshDuration` without native effects.
 	#[doc(alias = "refreshDuration")]
 	#[inline]
@@ -35010,6 +37278,13 @@ impl Default for PastPresentationTimingGOOGLE {
 }
 
 impl PastPresentationTimingGOOGLE {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentID` without native effects.
 	#[doc(alias = "presentID")]
 	#[inline]
@@ -35088,6 +37363,13 @@ impl<'a> Default for PresentTimesInfoGOOGLE<'a> {
 }
 
 impl<'a> PresentTimesInfoGOOGLE<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `swapchainCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -35159,6 +37441,13 @@ impl Default for PresentTimeGOOGLE {
 }
 
 impl PresentTimeGOOGLE {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentID` without native effects.
 	#[doc(alias = "presentID")]
 	#[inline]
@@ -35212,6 +37501,13 @@ impl<'a> Default for IOSSurfaceCreateInfoMVK<'a> {
 
 #[cfg(feature = "platform-ios")]
 impl<'a> IOSSurfaceCreateInfoMVK<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -35287,6 +37583,13 @@ impl<'a> Default for MacOSSurfaceCreateInfoMVK<'a> {
 
 #[cfg(feature = "platform-macos")]
 impl<'a> MacOSSurfaceCreateInfoMVK<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -35362,6 +37665,13 @@ impl<'a> Default for MetalSurfaceCreateInfoEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> MetalSurfaceCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -35423,6 +37733,13 @@ impl Default for ViewportWScalingNV {
 }
 
 impl ViewportWScalingNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `xcoeff` without native effects.
 	#[doc(alias = "xcoeff")]
 	#[inline]
@@ -35477,6 +37794,13 @@ impl<'a> Default for PipelineViewportWScalingStateCreateInfoNV<'a> {
 }
 
 impl<'a> PipelineViewportWScalingStateCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `viewportWScalingEnable` without native effects.
 	#[doc(alias = "viewportWScalingEnable")]
 	#[inline]
@@ -35559,6 +37883,13 @@ impl Default for ViewportSwizzleNV {
 }
 
 impl ViewportSwizzleNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `x` without native effects.
 	#[doc(alias = "x")]
 	#[inline]
@@ -35630,6 +37961,13 @@ impl<'a> Default for PipelineViewportSwizzleStateCreateInfoNV<'a> {
 }
 
 impl<'a> PipelineViewportSwizzleStateCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -35717,6 +38055,13 @@ impl<'a> Default for PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceDiscardRectanglePropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxDiscardRectangles` without native effects.
 	#[doc(alias = "maxDiscardRectangles")]
 	#[inline]
@@ -35781,6 +38126,13 @@ impl<'a> Default for PipelineDiscardRectangleStateCreateInfoEXT<'a> {
 }
 
 impl<'a> PipelineDiscardRectangleStateCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -35877,6 +38229,13 @@ impl<'a> Default for PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
 }
 
 impl<'a> PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `perViewPositionAllComponents` without native effects.
 	#[doc(alias = "perViewPositionAllComponents")]
 	#[inline]
@@ -35928,6 +38287,13 @@ impl Default for InputAttachmentAspectReference {
 }
 
 impl InputAttachmentAspectReference {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `subpass` without native effects.
 	#[doc(alias = "subpass")]
 	#[inline]
@@ -35992,6 +38358,13 @@ impl<'a> Default for RenderPassInputAttachmentAspectCreateInfo<'a> {
 }
 
 impl<'a> RenderPassInputAttachmentAspectCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `aspectReferenceCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -36074,6 +38447,13 @@ impl<'a> Default for PhysicalDeviceSurfaceInfo2KHR<'a> {
 }
 
 impl<'a> PhysicalDeviceSurfaceInfo2KHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `surface` without native effects.
 	#[doc(alias = "surface")]
 	#[inline]
@@ -36130,6 +38510,13 @@ impl<'a> Default for SurfaceCapabilities2KHR<'a> {
 }
 
 impl<'a> SurfaceCapabilities2KHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `surfaceCapabilities` without native effects.
 	#[doc(alias = "surfaceCapabilities")]
 	#[inline]
@@ -36186,6 +38573,13 @@ impl<'a> Default for SurfaceFormat2KHR<'a> {
 }
 
 impl<'a> SurfaceFormat2KHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `surfaceFormat` without native effects.
 	#[doc(alias = "surfaceFormat")]
 	#[inline]
@@ -36242,6 +38636,13 @@ impl<'a> Default for DisplayProperties2KHR<'a> {
 }
 
 impl<'a> DisplayProperties2KHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `displayProperties` without native effects.
 	#[doc(alias = "displayProperties")]
 	#[inline]
@@ -36298,6 +38699,13 @@ impl<'a> Default for DisplayPlaneProperties2KHR<'a> {
 }
 
 impl<'a> DisplayPlaneProperties2KHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `displayPlaneProperties` without native effects.
 	#[doc(alias = "displayPlaneProperties")]
 	#[inline]
@@ -36354,6 +38762,13 @@ impl<'a> Default for DisplayModeProperties2KHR<'a> {
 }
 
 impl<'a> DisplayModeProperties2KHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `displayModeProperties` without native effects.
 	#[doc(alias = "displayModeProperties")]
 	#[inline]
@@ -36410,6 +38825,13 @@ impl<'a> Default for DisplayModeStereoPropertiesNV<'a> {
 }
 
 impl<'a> DisplayModeStereoPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `hdmi3DSupported` without native effects.
 	#[doc(alias = "hdmi3DSupported")]
 	#[inline]
@@ -36468,6 +38890,13 @@ impl<'a> Default for DisplayPlaneInfo2KHR<'a> {
 }
 
 impl<'a> DisplayPlaneInfo2KHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `mode` without native effects.
 	#[doc(alias = "mode")]
 	#[inline]
@@ -36532,6 +38961,13 @@ impl<'a> Default for DisplayPlaneCapabilities2KHR<'a> {
 }
 
 impl<'a> DisplayPlaneCapabilities2KHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `capabilities` without native effects.
 	#[doc(alias = "capabilities")]
 	#[inline]
@@ -36588,6 +39024,13 @@ impl<'a> Default for SharedPresentSurfaceCapabilitiesKHR<'a> {
 }
 
 impl<'a> SharedPresentSurfaceCapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `sharedPresentSupportedUsageFlags` without native effects.
 	#[doc(alias = "sharedPresentSupportedUsageFlags")]
 	#[inline]
@@ -36644,6 +39087,13 @@ impl<'a> Default for SwapchainFlagsSurfaceCapabilitiesEXT<'a> {
 }
 
 impl<'a> SwapchainFlagsSurfaceCapabilitiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `swapchainSupportedFlags` without native effects.
 	#[doc(alias = "swapchainSupportedFlags")]
 	#[inline]
@@ -36700,6 +39150,13 @@ impl<'a> Default for SharedPresentSurfaceCapabilities2KHR<'a> {
 }
 
 impl<'a> SharedPresentSurfaceCapabilities2KHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `sharedPresentSupportedUsageFlags` without native effects.
 	#[doc(alias = "sharedPresentSupportedUsageFlags")]
 	#[inline]
@@ -36765,6 +39222,13 @@ impl<'a> Default for PhysicalDevice16BitStorageFeatures<'a> {
 }
 
 impl<'a> PhysicalDevice16BitStorageFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `storageBuffer16BitAccess` without native effects.
 	#[doc(alias = "storageBuffer16BitAccess")]
 	#[inline]
@@ -36861,6 +39325,13 @@ impl<'a> Default for PhysicalDeviceSubgroupProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceSubgroupProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `subgroupSize` without native effects.
 	#[doc(alias = "subgroupSize")]
 	#[inline]
@@ -36944,6 +39415,13 @@ impl<'a> Default for PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderSubgroupExtendedTypes` without native effects.
 	#[doc(alias = "shaderSubgroupExtendedTypes")]
 	#[inline]
@@ -37004,6 +39482,13 @@ impl<'a> Default for BufferMemoryRequirementsInfo2<'a> {
 }
 
 impl<'a> BufferMemoryRequirementsInfo2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `buffer` without native effects.
 	#[doc(alias = "buffer")]
 	#[inline]
@@ -37064,6 +39549,13 @@ impl<'a> Default for DeviceBufferMemoryRequirements<'a> {
 }
 
 impl<'a> DeviceBufferMemoryRequirements<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pCreateInfo` without native effects.
 	#[doc(alias = "pCreateInfo")]
 	#[inline]
@@ -37123,6 +39615,13 @@ impl<'a> Default for ImageMemoryRequirementsInfo2<'a> {
 }
 
 impl<'a> ImageMemoryRequirementsInfo2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `image` without native effects.
 	#[doc(alias = "image")]
 	#[inline]
@@ -37182,6 +39681,13 @@ impl<'a> Default for ImageSparseMemoryRequirementsInfo2<'a> {
 }
 
 impl<'a> ImageSparseMemoryRequirementsInfo2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `image` without native effects.
 	#[doc(alias = "image")]
 	#[inline]
@@ -37245,6 +39751,13 @@ impl<'a> Default for DeviceImageMemoryRequirements<'a> {
 }
 
 impl<'a> DeviceImageMemoryRequirements<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pCreateInfo` without native effects.
 	#[doc(alias = "pCreateInfo")]
 	#[inline]
@@ -37314,6 +39827,13 @@ impl<'a> Default for MemoryRequirements2<'a> {
 }
 
 impl<'a> MemoryRequirements2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memoryRequirements` without native effects.
 	#[doc(alias = "memoryRequirements")]
 	#[inline]
@@ -37374,6 +39894,13 @@ impl<'a> Default for SparseImageMemoryRequirements2<'a> {
 }
 
 impl<'a> SparseImageMemoryRequirements2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memoryRequirements` without native effects.
 	#[doc(alias = "memoryRequirements")]
 	#[inline]
@@ -37434,6 +39961,13 @@ impl<'a> Default for PhysicalDevicePointClippingProperties<'a> {
 }
 
 impl<'a> PhysicalDevicePointClippingProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pointClippingBehavior` without native effects.
 	#[doc(alias = "pointClippingBehavior")]
 	#[inline]
@@ -37497,6 +40031,13 @@ impl<'a> Default for MemoryDedicatedRequirements<'a> {
 }
 
 impl<'a> MemoryDedicatedRequirements<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `prefersDedicatedAllocation` without native effects.
 	#[doc(alias = "prefersDedicatedAllocation")]
 	#[inline]
@@ -37567,6 +40108,13 @@ impl<'a> Default for MemoryDedicatedAllocateInfo<'a> {
 }
 
 impl<'a> MemoryDedicatedAllocateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `image` without native effects.
 	#[doc(alias = "image")]
 	#[inline]
@@ -37635,6 +40183,13 @@ impl<'a> Default for ImageViewUsageCreateInfo<'a> {
 }
 
 impl<'a> ImageViewUsageCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `usage` without native effects.
 	#[doc(alias = "usage")]
 	#[inline]
@@ -37690,6 +40245,13 @@ impl<'a> Default for ImageViewUsage2CreateInfoKHR<'a> {
 }
 
 impl<'a> ImageViewUsage2CreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `usage` without native effects.
 	#[doc(alias = "usage")]
 	#[inline]
@@ -37749,6 +40311,13 @@ impl<'a> Default for ImageViewSlicedCreateInfoEXT<'a> {
 }
 
 impl<'a> ImageViewSlicedCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `sliceOffset` without native effects.
 	#[doc(alias = "sliceOffset")]
 	#[inline]
@@ -37818,6 +40387,13 @@ impl<'a> Default for PipelineTessellationDomainOriginStateCreateInfo<'a> {
 }
 
 impl<'a> PipelineTessellationDomainOriginStateCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `domainOrigin` without native effects.
 	#[doc(alias = "domainOrigin")]
 	#[inline]
@@ -37878,6 +40454,13 @@ impl<'a> Default for SamplerYcbcrConversionInfo<'a> {
 }
 
 impl<'a> SamplerYcbcrConversionInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `conversion` without native effects.
 	#[doc(alias = "conversion")]
 	#[inline]
@@ -37957,6 +40540,13 @@ impl<'a> Default for SamplerYcbcrConversionCreateInfo<'a> {
 }
 
 impl<'a> SamplerYcbcrConversionCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `format` without native effects.
 	#[doc(alias = "format")]
 	#[inline]
@@ -38080,6 +40670,13 @@ impl<'a> Default for BindImagePlaneMemoryInfo<'a> {
 }
 
 impl<'a> BindImagePlaneMemoryInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `planeAspect` without native effects.
 	#[doc(alias = "planeAspect")]
 	#[inline]
@@ -38140,6 +40737,13 @@ impl<'a> Default for ImagePlaneMemoryRequirementsInfo<'a> {
 }
 
 impl<'a> ImagePlaneMemoryRequirementsInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `planeAspect` without native effects.
 	#[doc(alias = "planeAspect")]
 	#[inline]
@@ -38200,6 +40804,13 @@ impl<'a> Default for PhysicalDeviceSamplerYcbcrConversionFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceSamplerYcbcrConversionFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `samplerYcbcrConversion` without native effects.
 	#[doc(alias = "samplerYcbcrConversion")]
 	#[inline]
@@ -38261,6 +40872,13 @@ impl<'a> Default for SamplerYcbcrConversionImageFormatProperties<'a> {
 }
 
 impl<'a> SamplerYcbcrConversionImageFormatProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `combinedImageSamplerDescriptorCount` without native effects.
 	#[doc(alias = "combinedImageSamplerDescriptorCount")]
 	#[inline]
@@ -38322,6 +40940,13 @@ impl<'a> Default for TextureLODGatherFormatPropertiesAMD<'a> {
 }
 
 impl<'a> TextureLODGatherFormatPropertiesAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `supportsTextureGatherLODBiasAMD` without native effects.
 	#[doc(alias = "supportsTextureGatherLODBiasAMD")]
 	#[inline]
@@ -38381,6 +41006,13 @@ impl<'a> Default for ConditionalRenderingBeginInfoEXT<'a> {
 }
 
 impl<'a> ConditionalRenderingBeginInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `buffer` without native effects.
 	#[doc(alias = "buffer")]
 	#[inline]
@@ -38455,6 +41087,13 @@ impl<'a> Default for ProtectedSubmitInfo<'a> {
 }
 
 impl<'a> ProtectedSubmitInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `protectedSubmit` without native effects.
 	#[doc(alias = "protectedSubmit")]
 	#[inline]
@@ -38511,6 +41150,13 @@ impl<'a> Default for PhysicalDeviceProtectedMemoryFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceProtectedMemoryFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `protectedMemory` without native effects.
 	#[doc(alias = "protectedMemory")]
 	#[inline]
@@ -38567,6 +41213,13 @@ impl<'a> Default for PhysicalDeviceProtectedMemoryProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceProtectedMemoryProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `protectedNoFault` without native effects.
 	#[doc(alias = "protectedNoFault")]
 	#[inline]
@@ -38628,6 +41281,13 @@ impl<'a> Default for DeviceQueueInfo2<'a> {
 }
 
 impl<'a> DeviceQueueInfo2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -38707,6 +41367,13 @@ impl<'a> Default for PipelineCoverageToColorStateCreateInfoNV<'a> {
 }
 
 impl<'a> PipelineCoverageToColorStateCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -38784,6 +41451,13 @@ impl<'a> Default for PhysicalDeviceSamplerFilterMinmaxProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceSamplerFilterMinmaxProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `filterMinmaxSingleComponentFormats` without native effects.
 	#[doc(alias = "filterMinmaxSingleComponentFormats")]
 	#[inline]
@@ -38845,6 +41519,13 @@ impl Default for SampleLocationEXT {
 }
 
 impl SampleLocationEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `x` without native effects.
 	#[doc(alias = "x")]
 	#[inline]
@@ -38902,6 +41583,13 @@ impl<'a> Default for SampleLocationsInfoEXT<'a> {
 }
 
 impl<'a> SampleLocationsInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `sampleLocationsPerPixel` without native effects.
 	#[doc(alias = "sampleLocationsPerPixel")]
 	#[inline]
@@ -38992,6 +41680,13 @@ impl<'a> Default for AttachmentSampleLocationsEXT<'a> {
 }
 
 impl<'a> AttachmentSampleLocationsEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `attachmentIndex` without native effects.
 	#[doc(alias = "attachmentIndex")]
 	#[inline]
@@ -39034,6 +41729,13 @@ impl<'a> Default for SubpassSampleLocationsEXT<'a> {
 }
 
 impl<'a> SubpassSampleLocationsEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `subpassIndex` without native effects.
 	#[doc(alias = "subpassIndex")]
 	#[inline]
@@ -39091,6 +41793,13 @@ impl<'a> Default for RenderPassSampleLocationsBeginInfoEXT<'a> {
 }
 
 impl<'a> RenderPassSampleLocationsBeginInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `attachmentInitialSampleLocationsCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -39203,6 +41912,13 @@ impl<'a> Default for PipelineSampleLocationsStateCreateInfoEXT<'a> {
 }
 
 impl<'a> PipelineSampleLocationsStateCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `sampleLocationsEnable` without native effects.
 	#[doc(alias = "sampleLocationsEnable")]
 	#[inline]
@@ -39280,6 +41996,13 @@ impl<'a> Default for PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceSampleLocationsPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `sampleLocationSampleCounts` without native effects.
 	#[doc(alias = "sampleLocationSampleCounts")]
 	#[inline]
@@ -39372,6 +42095,13 @@ impl<'a> Default for MultisamplePropertiesEXT<'a> {
 }
 
 impl<'a> MultisamplePropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxSampleLocationGridSize` without native effects.
 	#[doc(alias = "maxSampleLocationGridSize")]
 	#[inline]
@@ -39428,6 +42158,13 @@ impl<'a> Default for SamplerReductionModeCreateInfo<'a> {
 }
 
 impl<'a> SamplerReductionModeCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `reductionMode` without native effects.
 	#[doc(alias = "reductionMode")]
 	#[inline]
@@ -39488,6 +42225,13 @@ impl<'a> Default for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `advancedBlendCoherentOperations` without native effects.
 	#[doc(alias = "advancedBlendCoherentOperations")]
 	#[inline]
@@ -39544,6 +42288,13 @@ impl<'a> Default for PhysicalDeviceMultiDrawFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceMultiDrawFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `multiDraw` without native effects.
 	#[doc(alias = "multiDraw")]
 	#[inline]
@@ -39615,6 +42366,13 @@ impl<'a> Default for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `advancedBlendMaxColorAttachments` without native effects.
 	#[doc(alias = "advancedBlendMaxColorAttachments")]
 	#[inline]
@@ -39722,6 +42480,13 @@ impl<'a> Default for PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
 }
 
 impl<'a> PipelineColorBlendAdvancedStateCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcPremultiplied` without native effects.
 	#[doc(alias = "srcPremultiplied")]
 	#[inline]
@@ -39799,6 +42564,13 @@ impl<'a> Default for PhysicalDeviceInlineUniformBlockFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceInlineUniformBlockFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `inlineUniformBlock` without native effects.
 	#[doc(alias = "inlineUniformBlock")]
 	#[inline]
@@ -39884,6 +42656,13 @@ impl<'a> Default for PhysicalDeviceInlineUniformBlockProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceInlineUniformBlockProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxInlineUniformBlockSize` without native effects.
 	#[doc(alias = "maxInlineUniformBlockSize")]
 	#[inline]
@@ -39990,6 +42769,13 @@ impl<'a> Default for WriteDescriptorSetInlineUniformBlock<'a> {
 }
 
 impl<'a> WriteDescriptorSetInlineUniformBlock<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `dataSize` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -40072,6 +42858,13 @@ impl<'a> Default for DescriptorPoolInlineUniformBlockCreateInfo<'a> {
 }
 
 impl<'a> DescriptorPoolInlineUniformBlockCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxInlineUniformBlockBindings` without native effects.
 	#[doc(alias = "maxInlineUniformBlockBindings")]
 	#[inline]
@@ -40144,6 +42937,13 @@ impl<'a> Default for PipelineCoverageModulationStateCreateInfoNV<'a> {
 }
 
 impl<'a> PipelineCoverageModulationStateCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -40252,6 +43052,13 @@ impl<'a> Default for ImageFormatListCreateInfo<'a> {
 }
 
 impl<'a> ImageFormatListCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `viewFormatCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -40339,6 +43146,13 @@ impl<'a> Default for ValidationCacheCreateInfoEXT<'a> {
 }
 
 impl<'a> ValidationCacheCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -40426,6 +43240,13 @@ impl<'a> Default for ShaderModuleValidationCacheCreateInfoEXT<'a> {
 }
 
 impl<'a> ShaderModuleValidationCacheCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `validationCache` without native effects.
 	#[doc(alias = "validationCache")]
 	#[inline]
@@ -40485,6 +43306,13 @@ impl<'a> Default for PhysicalDeviceMaintenance3Properties<'a> {
 }
 
 impl<'a> PhysicalDeviceMaintenance3Properties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxPerSetDescriptors` without native effects.
 	#[doc(alias = "maxPerSetDescriptors")]
 	#[inline]
@@ -40553,6 +43381,13 @@ impl<'a> Default for PhysicalDeviceMaintenance4Features<'a> {
 }
 
 impl<'a> PhysicalDeviceMaintenance4Features<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maintenance4` without native effects.
 	#[doc(alias = "maintenance4")]
 	#[inline]
@@ -40613,6 +43448,13 @@ impl<'a> Default for PhysicalDeviceMaintenance4Properties<'a> {
 }
 
 impl<'a> PhysicalDeviceMaintenance4Properties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxBufferSize` without native effects.
 	#[doc(alias = "maxBufferSize")]
 	#[inline]
@@ -40672,6 +43514,13 @@ impl<'a> Default for PhysicalDeviceMaintenance5Features<'a> {
 }
 
 impl<'a> PhysicalDeviceMaintenance5Features<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maintenance5` without native effects.
 	#[doc(alias = "maintenance5")]
 	#[inline]
@@ -40747,6 +43596,13 @@ impl<'a> Default for PhysicalDeviceMaintenance5Properties<'a> {
 }
 
 impl<'a> PhysicalDeviceMaintenance5Properties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `earlyFragmentMultisampleCoverageAfterSampleCounting` without native effects.
 	#[doc(alias = "earlyFragmentMultisampleCoverageAfterSampleCounting")]
 	#[inline]
@@ -40857,6 +43713,13 @@ impl<'a> Default for PhysicalDeviceMaintenance6Features<'a> {
 }
 
 impl<'a> PhysicalDeviceMaintenance6Features<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maintenance6` without native effects.
 	#[doc(alias = "maintenance6")]
 	#[inline]
@@ -40923,6 +43786,13 @@ impl<'a> Default for PhysicalDeviceMaintenance6Properties<'a> {
 }
 
 impl<'a> PhysicalDeviceMaintenance6Properties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `blockTexelViewCompatibleMultipleLayers` without native effects.
 	#[doc(alias = "blockTexelViewCompatibleMultipleLayers")]
 	#[inline]
@@ -41000,6 +43870,13 @@ impl<'a> Default for PhysicalDeviceMaintenance7FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceMaintenance7FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maintenance7` without native effects.
 	#[doc(alias = "maintenance7")]
 	#[inline]
@@ -41077,6 +43954,13 @@ impl<'a> Default for PhysicalDeviceMaintenance7PropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceMaintenance7PropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `robustFragmentShadingRateAttachmentAccess` without native effects.
 	#[doc(alias = "robustFragmentShadingRateAttachmentAccess")]
 	#[inline]
@@ -41208,6 +44092,13 @@ impl<'a> Default for PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceLayeredApiPropertiesListKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `layeredApiCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -41295,6 +44186,13 @@ impl<'a> Default for PhysicalDeviceLayeredApiPropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceLayeredApiPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `vendorID` without native effects.
 	#[doc(alias = "vendorID")]
 	#[inline]
@@ -41380,6 +44278,13 @@ impl<'a> Default for PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceLayeredApiVulkanPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `properties` without native effects.
 	#[doc(alias = "properties")]
 	#[inline]
@@ -41435,6 +44340,13 @@ impl<'a> Default for PhysicalDeviceMaintenance8FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceMaintenance8FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maintenance8` without native effects.
 	#[doc(alias = "maintenance8")]
 	#[inline]
@@ -41490,6 +44402,13 @@ impl<'a> Default for PhysicalDeviceMaintenance9FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceMaintenance9FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maintenance9` without native effects.
 	#[doc(alias = "maintenance9")]
 	#[inline]
@@ -41549,6 +44468,13 @@ impl<'a> Default for PhysicalDeviceMaintenance9PropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceMaintenance9PropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `image2DViewOf3DSparse` without native effects.
 	#[doc(alias = "image2DViewOf3DSparse")]
 	#[inline]
@@ -41616,6 +44542,13 @@ impl<'a> Default for PhysicalDeviceMaintenance11FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceMaintenance11FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maintenance11` without native effects.
 	#[doc(alias = "maintenance11")]
 	#[inline]
@@ -41678,6 +44611,13 @@ impl<'a> Default for PhysicalDeviceMaintenance10PropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceMaintenance10PropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rgba4OpaqueBlackSwizzled` without native effects.
 	#[doc(alias = "rgba4OpaqueBlackSwizzled")]
 	#[inline]
@@ -41754,6 +44694,13 @@ impl<'a> Default for PhysicalDeviceMaintenance10FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceMaintenance10FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maintenance10` without native effects.
 	#[doc(alias = "maintenance10")]
 	#[inline]
@@ -41810,6 +44757,13 @@ impl<'a> Default for QueueFamilyOwnershipTransferPropertiesKHR<'a> {
 }
 
 impl<'a> QueueFamilyOwnershipTransferPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `optimalImageTransferToQueueFamilies` without native effects.
 	#[doc(alias = "optimalImageTransferToQueueFamilies")]
 	#[inline]
@@ -41866,6 +44820,13 @@ impl<'a> Default for QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a>
 }
 
 impl<'a> QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `optimalImageTransferGranularity` without native effects.
 	#[doc(alias = "optimalImageTransferGranularity")]
 	#[inline]
@@ -41934,6 +44895,13 @@ impl<'a> Default for RenderingAreaInfo<'a> {
 }
 
 impl<'a> RenderingAreaInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `viewMask` without native effects.
 	#[doc(alias = "viewMask")]
 	#[inline]
@@ -42042,6 +45010,13 @@ impl<'a> Default for DescriptorSetLayoutSupport<'a> {
 }
 
 impl<'a> DescriptorSetLayoutSupport<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `supported` without native effects.
 	#[doc(alias = "supported")]
 	#[inline]
@@ -42102,6 +45077,13 @@ impl<'a> Default for PhysicalDeviceShaderDrawParametersFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderDrawParametersFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderDrawParameters` without native effects.
 	#[doc(alias = "shaderDrawParameters")]
 	#[inline]
@@ -42166,6 +45148,13 @@ impl<'a> Default for PhysicalDeviceShaderFloat16Int8Features<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderFloat16Int8Features<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderFloat16` without native effects.
 	#[doc(alias = "shaderFloat16")]
 	#[inline]
@@ -42288,6 +45277,13 @@ impl<'a> Default for PhysicalDeviceFloatControlsProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceFloatControlsProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `denormBehaviorIndependence` without native effects.
 	#[doc(alias = "denormBehaviorIndependence")]
 	#[inline]
@@ -42495,6 +45491,13 @@ impl<'a> Default for PhysicalDeviceHostQueryResetFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceHostQueryResetFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `hostQueryReset` without native effects.
 	#[doc(alias = "hostQueryReset")]
 	#[inline]
@@ -42557,6 +45560,13 @@ impl Default for ShaderResourceUsageAMD {
 }
 
 impl ShaderResourceUsageAMD {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `numUsedVgprs` without native effects.
 	#[doc(alias = "numUsedVgprs")]
 	#[inline]
@@ -42640,6 +45650,13 @@ impl Default for ShaderStatisticsInfoAMD {
 }
 
 impl ShaderStatisticsInfoAMD {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderStageMask` without native effects.
 	#[doc(alias = "shaderStageMask")]
 	#[inline]
@@ -42733,6 +45750,13 @@ impl<'a> Default for PhysicalDeviceElapsedTimerQueryFeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceElapsedTimerQueryFeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `elapsedTimerQuery` without native effects.
 	#[doc(alias = "elapsedTimerQuery")]
 	#[inline]
@@ -42789,6 +45813,13 @@ impl<'a> Default for DeviceQueueGlobalPriorityCreateInfo<'a> {
 }
 
 impl<'a> DeviceQueueGlobalPriorityCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `globalPriority` without native effects.
 	#[doc(alias = "globalPriority")]
 	#[inline]
@@ -42853,6 +45884,13 @@ impl<'a> Default for PhysicalDeviceGlobalPriorityQueryFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceGlobalPriorityQueryFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `globalPriorityQuery` without native effects.
 	#[doc(alias = "globalPriorityQuery")]
 	#[inline]
@@ -42921,6 +45959,13 @@ impl<'a> Default for QueueFamilyGlobalPriorityProperties<'a> {
 }
 
 impl<'a> QueueFamilyGlobalPriorityProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `priorityCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -43006,6 +46051,13 @@ impl<'a> Default for DebugUtilsObjectNameInfoEXT<'a> {
 }
 
 impl<'a> DebugUtilsObjectNameInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `objectType` without native effects.
 	#[doc(alias = "objectType")]
 	#[inline]
@@ -43092,6 +46144,13 @@ impl<'a> Default for DebugUtilsObjectTagInfoEXT<'a> {
 }
 
 impl<'a> DebugUtilsObjectTagInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `objectType` without native effects.
 	#[doc(alias = "objectType")]
 	#[inline]
@@ -43196,6 +46255,13 @@ impl<'a> Default for DebugUtilsLabelEXT<'a> {
 }
 
 impl<'a> DebugUtilsLabelEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pLabelName` without native effects.
 	#[doc(alias = "pLabelName")]
 	#[inline]
@@ -43272,6 +46338,13 @@ impl<'a> Default for DebugUtilsMessengerCreateInfoEXT<'a> {
 }
 
 impl<'a> DebugUtilsMessengerCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -43395,6 +46468,13 @@ impl<'a> Default for DebugUtilsMessengerCallbackDataEXT<'a> {
 }
 
 impl<'a> DebugUtilsMessengerCallbackDataEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -43571,6 +46651,13 @@ impl<'a> Default for PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceMemoryReport` without native effects.
 	#[doc(alias = "deviceMemoryReport")]
 	#[inline]
@@ -43632,6 +46719,13 @@ impl<'a> Default for DeviceDeviceMemoryReportCreateInfoEXT<'a> {
 }
 
 impl<'a> DeviceDeviceMemoryReportCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -43726,6 +46820,13 @@ impl<'a> Default for DeviceMemoryReportCallbackDataEXT<'a> {
 }
 
 impl<'a> DeviceMemoryReportCallbackDataEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -43839,6 +46940,13 @@ impl<'a> Default for ImportMemoryHostPointerInfoEXT<'a> {
 }
 
 impl<'a> ImportMemoryHostPointerInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleType` without native effects.
 	#[doc(alias = "handleType")]
 	#[inline]
@@ -43909,6 +47017,13 @@ impl<'a> Default for MemoryHostPointerPropertiesEXT<'a> {
 }
 
 impl<'a> MemoryHostPointerPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memoryTypeBits` without native effects.
 	#[doc(alias = "memoryTypeBits")]
 	#[inline]
@@ -43965,6 +47080,13 @@ impl<'a> Default for PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceExternalMemoryHostPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minImportedHostPointerAlignment` without native effects.
 	#[doc(alias = "minImportedHostPointerAlignment")]
 	#[inline]
@@ -44045,6 +47167,13 @@ impl<'a> Default for PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceConservativeRasterizationPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `primitiveOverestimationSize` without native effects.
 	#[doc(alias = "primitiveOverestimationSize")]
 	#[inline]
@@ -44173,6 +47302,13 @@ impl<'a> Default for CalibratedTimestampInfoKHR<'a> {
 }
 
 impl<'a> CalibratedTimestampInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `timeDomain` without native effects.
 	#[doc(alias = "timeDomain")]
 	#[inline]
@@ -44272,6 +47408,13 @@ impl<'a> Default for PhysicalDeviceShaderCorePropertiesAMD<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderCorePropertiesAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderEngineCount` without native effects.
 	#[doc(alias = "shaderEngineCount")]
 	#[inline]
@@ -44448,6 +47591,13 @@ impl<'a> Default for PhysicalDeviceShaderCoreProperties2AMD<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderCoreProperties2AMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderCoreFeatures` without native effects.
 	#[doc(alias = "shaderCoreFeatures")]
 	#[inline]
@@ -44518,6 +47668,13 @@ impl<'a> Default for PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
 }
 
 impl<'a> PipelineRasterizationConservativeStateCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -44652,6 +47809,13 @@ impl<'a> Default for PhysicalDeviceDescriptorIndexingFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceDescriptorIndexingFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderInputAttachmentArrayDynamicIndexing` without native effects.
 	#[doc(alias = "shaderInputAttachmentArrayDynamicIndexing")]
 	#[inline]
@@ -44962,6 +48126,13 @@ impl<'a> Default for PhysicalDeviceDescriptorIndexingProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceDescriptorIndexingProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxUpdateAfterBindDescriptorsInAllPools` without native effects.
 	#[doc(alias = "maxUpdateAfterBindDescriptorsInAllPools")]
 	#[inline]
@@ -45260,6 +48431,13 @@ impl<'a> Default for DescriptorSetLayoutBindingFlagsCreateInfo<'a> {
 }
 
 impl<'a> DescriptorSetLayoutBindingFlagsCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `bindingCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -45346,6 +48524,13 @@ impl<'a> Default for DescriptorSetVariableDescriptorCountAllocateInfo<'a> {
 }
 
 impl<'a> DescriptorSetVariableDescriptorCountAllocateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `descriptorSetCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -45429,6 +48614,13 @@ impl<'a> Default for DescriptorSetVariableDescriptorCountLayoutSupport<'a> {
 }
 
 impl<'a> DescriptorSetVariableDescriptorCountLayoutSupport<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxVariableDescriptorCount` without native effects.
 	#[doc(alias = "maxVariableDescriptorCount")]
 	#[inline]
@@ -45511,6 +48703,13 @@ impl<'a> Default for AttachmentDescription2<'a> {
 }
 
 impl<'a> AttachmentDescription2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -45647,6 +48846,13 @@ impl<'a> Default for AttachmentReference2<'a> {
 }
 
 impl<'a> AttachmentReference2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `attachment` without native effects.
 	#[doc(alias = "attachment")]
 	#[inline]
@@ -45754,6 +48960,13 @@ impl<'a> Default for SubpassDescription2<'a> {
 }
 
 impl<'a> SubpassDescription2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -45974,6 +49187,13 @@ impl<'a> Default for SubpassDependency2<'a> {
 }
 
 impl<'a> SubpassDependency2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcSubpass` without native effects.
 	#[doc(alias = "srcSubpass")]
 	#[inline]
@@ -46120,6 +49340,13 @@ impl<'a> Default for RenderPassCreateInfo2<'a> {
 }
 
 impl<'a> RenderPassCreateInfo2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -46303,6 +49530,13 @@ impl<'a> Default for SubpassBeginInfo<'a> {
 }
 
 impl<'a> SubpassBeginInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `contents` without native effects.
 	#[doc(alias = "contents")]
 	#[inline]
@@ -46360,6 +49594,13 @@ impl<'a> Default for SubpassEndInfo<'a> {
 }
 
 impl<'a> SubpassEndInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -46411,6 +49652,13 @@ impl<'a> Default for PhysicalDeviceTimelineSemaphoreFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceTimelineSemaphoreFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `timelineSemaphore` without native effects.
 	#[doc(alias = "timelineSemaphore")]
 	#[inline]
@@ -46472,6 +49720,13 @@ impl<'a> Default for PhysicalDeviceTimelineSemaphoreProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceTimelineSemaphoreProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxTimelineSemaphoreValueDifference` without native effects.
 	#[doc(alias = "maxTimelineSemaphoreValueDifference")]
 	#[inline]
@@ -46536,6 +49791,13 @@ impl<'a> Default for SemaphoreTypeCreateInfo<'a> {
 }
 
 impl<'a> SemaphoreTypeCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `semaphoreType` without native effects.
 	#[doc(alias = "semaphoreType")]
 	#[inline]
@@ -46614,6 +49876,13 @@ impl<'a> Default for TimelineSemaphoreSubmitInfo<'a> {
 }
 
 impl<'a> TimelineSemaphoreSubmitInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `waitSemaphoreValueCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -46735,6 +50004,13 @@ impl<'a> Default for SemaphoreWaitInfo<'a> {
 }
 
 impl<'a> SemaphoreWaitInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -46843,6 +50119,13 @@ impl<'a> Default for SemaphoreSignalInfo<'a> {
 }
 
 impl<'a> SemaphoreSignalInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `semaphore` without native effects.
 	#[doc(alias = "semaphore")]
 	#[inline]
@@ -46903,6 +50186,13 @@ impl Default for VertexInputBindingDivisorDescription {
 }
 
 impl VertexInputBindingDivisorDescription {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `binding` without native effects.
 	#[doc(alias = "binding")]
 	#[inline]
@@ -46962,6 +50252,13 @@ impl<'a> Default for PipelineVertexInputDivisorStateCreateInfo<'a> {
 }
 
 impl<'a> PipelineVertexInputDivisorStateCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `vertexBindingDivisorCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -47050,6 +50347,13 @@ impl<'a> Default for PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxVertexAttribDivisor` without native effects.
 	#[doc(alias = "maxVertexAttribDivisor")]
 	#[inline]
@@ -47109,6 +50413,13 @@ impl<'a> Default for PhysicalDeviceVertexAttributeDivisorProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceVertexAttributeDivisorProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxVertexAttribDivisor` without native effects.
 	#[doc(alias = "maxVertexAttribDivisor")]
 	#[inline]
@@ -47188,6 +50499,13 @@ impl<'a> Default for PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDevicePCIBusInfoPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pciDomain` without native effects.
 	#[doc(alias = "pciDomain")]
 	#[inline]
@@ -47273,6 +50591,13 @@ impl<'a> Default for ImportAndroidHardwareBufferInfoANDROID<'a> {
 
 #[cfg(feature = "platform-android")]
 impl<'a> ImportAndroidHardwareBufferInfoANDROID<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native pointer `buffer` explicitly. No borrow or extent is inferred.
 	///
 	/// # Safety
@@ -47337,6 +50662,13 @@ impl<'a> Default for AndroidHardwareBufferUsageANDROID<'a> {
 
 #[cfg(feature = "platform-android")]
 impl<'a> AndroidHardwareBufferUsageANDROID<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `androidHardwareBufferUsage` without native effects.
 	#[doc(alias = "androidHardwareBufferUsage")]
 	#[inline]
@@ -47399,6 +50731,13 @@ impl<'a> Default for AndroidHardwareBufferPropertiesANDROID<'a> {
 
 #[cfg(feature = "platform-android")]
 impl<'a> AndroidHardwareBufferPropertiesANDROID<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `allocationSize` without native effects.
 	#[doc(alias = "allocationSize")]
 	#[inline]
@@ -47466,6 +50805,13 @@ impl<'a> Default for MemoryGetAndroidHardwareBufferInfoANDROID<'a> {
 
 #[cfg(feature = "platform-android")]
 impl<'a> MemoryGetAndroidHardwareBufferInfoANDROID<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memory` without native effects.
 	#[doc(alias = "memory")]
 	#[inline]
@@ -47545,6 +50891,13 @@ impl<'a> Default for AndroidHardwareBufferFormatPropertiesANDROID<'a> {
 
 #[cfg(feature = "platform-android")]
 impl<'a> AndroidHardwareBufferFormatPropertiesANDROID<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `format` without native effects.
 	#[doc(alias = "format")]
 	#[inline]
@@ -47664,6 +51017,13 @@ impl<'a> Default for CommandBufferInheritanceConditionalRenderingInfoEXT<'a> {
 }
 
 impl<'a> CommandBufferInheritanceConditionalRenderingInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `conditionalRenderingEnable` without native effects.
 	#[doc(alias = "conditionalRenderingEnable")]
 	#[inline]
@@ -47723,6 +51083,13 @@ impl<'a> Default for ExternalFormatANDROID<'a> {
 
 #[cfg(feature = "platform-android")]
 impl<'a> ExternalFormatANDROID<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `externalFormat` without native effects.
 	#[doc(alias = "externalFormat")]
 	#[inline]
@@ -47785,6 +51152,13 @@ impl<'a> Default for PhysicalDevice8BitStorageFeatures<'a> {
 }
 
 impl<'a> PhysicalDevice8BitStorageFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `storageBuffer8BitAccess` without native effects.
 	#[doc(alias = "storageBuffer8BitAccess")]
 	#[inline]
@@ -47866,6 +51240,13 @@ impl<'a> Default for PhysicalDeviceConditionalRenderingFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceConditionalRenderingFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `conditionalRendering` without native effects.
 	#[doc(alias = "conditionalRendering")]
 	#[inline]
@@ -47937,6 +51318,13 @@ impl<'a> Default for PhysicalDeviceVulkanMemoryModelFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceVulkanMemoryModelFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `vulkanMemoryModel` without native effects.
 	#[doc(alias = "vulkanMemoryModel")]
 	#[inline]
@@ -48019,6 +51407,13 @@ impl<'a> Default for PhysicalDeviceShaderAtomicInt64Features<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderAtomicInt64Features<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderBufferInt64Atomics` without native effects.
 	#[doc(alias = "shaderBufferInt64Atomics")]
 	#[inline]
@@ -48122,6 +51517,13 @@ impl<'a> Default for PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderAtomicFloatFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderBufferFloat32Atomics` without native effects.
 	#[doc(alias = "shaderBufferFloat32Atomics")]
 	#[inline]
@@ -48310,6 +51712,13 @@ impl<'a> Default for PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderBufferFloat16Atomics` without native effects.
 	#[doc(alias = "shaderBufferFloat16Atomics")]
 	#[inline]
@@ -48468,6 +51877,13 @@ impl<'a> Default for PhysicalDeviceVertexAttributeDivisorFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceVertexAttributeDivisorFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `vertexAttributeInstanceRateDivisor` without native effects.
 	#[doc(alias = "vertexAttributeInstanceRateDivisor")]
 	#[inline]
@@ -48543,6 +51959,13 @@ impl<'a> Default for QueueFamilyCheckpointPropertiesNV<'a> {
 }
 
 impl<'a> QueueFamilyCheckpointPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `checkpointExecutionStageMask` without native effects.
 	#[doc(alias = "checkpointExecutionStageMask")]
 	#[inline]
@@ -48601,6 +52024,13 @@ impl<'a> Default for CheckpointDataNV<'a> {
 }
 
 impl<'a> CheckpointDataNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stage` without native effects.
 	#[doc(alias = "stage")]
 	#[inline]
@@ -48680,6 +52110,13 @@ impl<'a> Default for PhysicalDeviceDepthStencilResolveProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceDepthStencilResolveProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `supportedDepthResolveModes` without native effects.
 	#[doc(alias = "supportedDepthResolveModes")]
 	#[inline]
@@ -48774,6 +52211,13 @@ impl<'a> Default for SubpassDescriptionDepthStencilResolve<'a> {
 }
 
 impl<'a> SubpassDescriptionDepthStencilResolve<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `depthResolveMode` without native effects.
 	#[doc(alias = "depthResolveMode")]
 	#[inline]
@@ -48855,6 +52299,13 @@ impl<'a> Default for ImageViewASTCDecodeModeEXT<'a> {
 }
 
 impl<'a> ImageViewASTCDecodeModeEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `decodeMode` without native effects.
 	#[doc(alias = "decodeMode")]
 	#[inline]
@@ -48911,6 +52362,13 @@ impl<'a> Default for PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceASTCDecodeFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `decodeModeSharedExponent` without native effects.
 	#[doc(alias = "decodeModeSharedExponent")]
 	#[inline]
@@ -48970,6 +52428,13 @@ impl<'a> Default for PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceTransformFeedbackFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `transformFeedback` without native effects.
 	#[doc(alias = "transformFeedback")]
 	#[inline]
@@ -49062,6 +52527,13 @@ impl<'a> Default for PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceTransformFeedbackPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxTransformFeedbackStreams` without native effects.
 	#[doc(alias = "maxTransformFeedbackStreams")]
 	#[inline]
@@ -49201,6 +52673,13 @@ impl<'a> Default for PipelineRasterizationStateStreamCreateInfoEXT<'a> {
 }
 
 impl<'a> PipelineRasterizationStateStreamCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -49266,6 +52745,13 @@ impl<'a> Default for PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `representativeFragmentTest` without native effects.
 	#[doc(alias = "representativeFragmentTest")]
 	#[inline]
@@ -49322,6 +52808,13 @@ impl<'a> Default for PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
 }
 
 impl<'a> PipelineRepresentativeFragmentTestStateCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `representativeFragmentTestEnable` without native effects.
 	#[doc(alias = "representativeFragmentTestEnable")]
 	#[inline]
@@ -49378,6 +52871,13 @@ impl<'a> Default for PhysicalDeviceExclusiveScissorFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceExclusiveScissorFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `exclusiveScissor` without native effects.
 	#[doc(alias = "exclusiveScissor")]
 	#[inline]
@@ -49437,6 +52937,13 @@ impl<'a> Default for PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
 }
 
 impl<'a> PipelineViewportExclusiveScissorStateCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `exclusiveScissorCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -49515,6 +53022,13 @@ impl<'a> Default for PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceCornerSampledImageFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cornerSampledImage` without native effects.
 	#[doc(alias = "cornerSampledImage")]
 	#[inline]
@@ -49574,6 +53088,13 @@ impl<'a> Default for PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `computeDerivativeGroupQuads` without native effects.
 	#[doc(alias = "computeDerivativeGroupQuads")]
 	#[inline]
@@ -49644,6 +53165,13 @@ impl<'a> Default for PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `meshAndTaskShaderDerivatives` without native effects.
 	#[doc(alias = "meshAndTaskShaderDerivatives")]
 	#[inline]
@@ -49705,6 +53233,13 @@ impl<'a> Default for PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderImageFootprintFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageFootprint` without native effects.
 	#[doc(alias = "imageFootprint")]
 	#[inline]
@@ -49761,6 +53296,13 @@ impl<'a> Default for PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'a
 }
 
 impl<'a> PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dedicatedAllocationImageAliasing` without native effects.
 	#[doc(alias = "dedicatedAllocationImageAliasing")]
 	#[inline]
@@ -49820,6 +53362,13 @@ impl<'a> Default for PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `indirectMemoryCopy` without native effects.
 	#[doc(alias = "indirectMemoryCopy")]
 	#[inline]
@@ -49885,6 +53434,13 @@ impl<'a> Default for PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceCopyMemoryIndirectFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `indirectCopy` without native effects.
 	#[doc(alias = "indirectCopy")]
 	#[inline]
@@ -49941,6 +53497,13 @@ impl<'a> Default for PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `supportedQueues` without native effects.
 	#[doc(alias = "supportedQueues")]
 	#[inline]
@@ -50002,6 +53565,13 @@ impl<'a> Default for PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceMemoryDecompressionFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memoryDecompression` without native effects.
 	#[doc(alias = "memoryDecompression")]
 	#[inline]
@@ -50066,6 +53636,13 @@ impl<'a> Default for PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceMemoryDecompressionPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `decompressionMethods` without native effects.
 	#[doc(alias = "decompressionMethods")]
 	#[inline]
@@ -50131,6 +53708,13 @@ impl<'a> Default for ShadingRatePaletteNV<'a> {
 }
 
 impl<'a> ShadingRatePaletteNV<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `shadingRatePaletteEntryCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -50198,6 +53782,13 @@ impl<'a> Default for PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
 }
 
 impl<'a> PipelineViewportShadingRateImageStateCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shadingRateImageEnable` without native effects.
 	#[doc(alias = "shadingRateImageEnable")]
 	#[inline]
@@ -50288,6 +53879,13 @@ impl<'a> Default for PhysicalDeviceShadingRateImageFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceShadingRateImageFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shadingRateImage` without native effects.
 	#[doc(alias = "shadingRateImage")]
 	#[inline]
@@ -50359,6 +53957,13 @@ impl<'a> Default for PhysicalDeviceShadingRateImagePropertiesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceShadingRateImagePropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shadingRateTexelSize` without native effects.
 	#[doc(alias = "shadingRateTexelSize")]
 	#[inline]
@@ -50433,6 +54038,13 @@ impl<'a> Default for PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {
 }
 
 impl<'a> PhysicalDeviceInvocationMaskFeaturesHUAWEI<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `invocationMask` without native effects.
 	#[doc(alias = "invocationMask")]
 	#[inline]
@@ -50484,6 +54096,13 @@ impl Default for CoarseSampleLocationNV {
 }
 
 impl CoarseSampleLocationNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pixelX` without native effects.
 	#[doc(alias = "pixelX")]
 	#[inline]
@@ -50542,6 +54161,13 @@ impl<'a> Default for CoarseSampleOrderCustomNV<'a> {
 }
 
 impl<'a> CoarseSampleOrderCustomNV<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shadingRate` without native effects.
 	#[doc(alias = "shadingRate")]
 	#[inline]
@@ -50627,6 +54253,13 @@ impl<'a> Default for PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
 }
 
 impl<'a> PipelineViewportCoarseSampleOrderStateCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `sampleOrderType` without native effects.
 	#[doc(alias = "sampleOrderType")]
 	#[inline]
@@ -50717,6 +54350,13 @@ impl<'a> Default for PhysicalDeviceMeshShaderFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceMeshShaderFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `taskShader` without native effects.
 	#[doc(alias = "taskShader")]
 	#[inline]
@@ -50818,6 +54458,13 @@ impl<'a> Default for PhysicalDeviceMeshShaderPropertiesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceMeshShaderPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxDrawMeshTasksCount` without native effects.
 	#[doc(alias = "maxDrawMeshTasksCount")]
 	#[inline]
@@ -50975,6 +54622,13 @@ impl Default for DrawMeshTasksIndirectCommandNV {
 }
 
 impl DrawMeshTasksIndirectCommandNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `taskCount` without native effects.
 	#[doc(alias = "taskCount")]
 	#[inline]
@@ -51035,6 +54689,13 @@ impl<'a> Default for PhysicalDeviceMeshShaderFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceMeshShaderFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `taskShader` without native effects.
 	#[doc(alias = "taskShader")]
 	#[inline]
@@ -51208,6 +54869,13 @@ impl<'a> Default for PhysicalDeviceMeshShaderPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceMeshShaderPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxTaskWorkGroupTotalCount` without native effects.
 	#[doc(alias = "maxTaskWorkGroupTotalCount")]
 	#[inline]
@@ -51503,6 +55171,13 @@ impl Default for DrawMeshTasksIndirectCommandEXT {
 }
 
 impl DrawMeshTasksIndirectCommandEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `groupCountX` without native effects.
 	#[doc(alias = "groupCountX")]
 	#[inline]
@@ -51571,6 +55246,13 @@ impl<'a> Default for RayTracingShaderGroupCreateInfoNV<'a> {
 }
 
 impl<'a> RayTracingShaderGroupCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -51677,6 +55359,13 @@ impl<'a> Default for RayTracingShaderGroupCreateInfoKHR<'a> {
 }
 
 impl<'a> RayTracingShaderGroupCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -51808,6 +55497,13 @@ impl<'a> Default for RayTracingPipelineCreateInfoNV<'a> {
 }
 
 impl<'a> RayTracingPipelineCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -51993,6 +55689,13 @@ impl<'a> Default for RayTracingPipelineCreateInfoKHR<'a> {
 }
 
 impl<'a> RayTracingPipelineCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -52207,6 +55910,13 @@ impl<'a> Default for GeometryTrianglesNV<'a> {
 }
 
 impl<'a> GeometryTrianglesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `vertexData` without native effects.
 	#[doc(alias = "vertexData")]
 	#[inline]
@@ -52360,6 +56070,13 @@ impl<'a> Default for GeometryAABBNV<'a> {
 }
 
 impl<'a> GeometryAABBNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `aabbData` without native effects.
 	#[doc(alias = "aabbData")]
 	#[inline]
@@ -52435,6 +56152,13 @@ impl<'a> Default for GeometryDataNV<'a> {
 }
 
 impl<'a> GeometryDataNV<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `triangles` without native effects.
 	#[doc(alias = "triangles")]
 	#[inline]
@@ -52487,6 +56211,13 @@ impl<'a> Default for GeometryNV<'a> {
 }
 
 impl<'a> GeometryNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `geometryType` without native effects.
 	#[doc(alias = "geometryType")]
 	#[inline]
@@ -52571,6 +56302,13 @@ impl<'a> Default for AccelerationStructureInfoNV<'a> {
 }
 
 impl<'a> AccelerationStructureInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -52678,6 +56416,13 @@ impl<'a> Default for AccelerationStructureCreateInfoNV<'a> {
 }
 
 impl<'a> AccelerationStructureCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `compactedSize` without native effects.
 	#[doc(alias = "compactedSize")]
 	#[inline]
@@ -52754,6 +56499,13 @@ impl<'a> Default for BindAccelerationStructureMemoryInfoNV<'a> {
 }
 
 impl<'a> BindAccelerationStructureMemoryInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `accelerationStructure` without native effects.
 	#[doc(alias = "accelerationStructure")]
 	#[inline]
@@ -52862,6 +56614,13 @@ impl<'a> Default for WriteDescriptorSetAccelerationStructureKHR<'a> {
 }
 
 impl<'a> WriteDescriptorSetAccelerationStructureKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `accelerationStructureCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -52943,6 +56702,13 @@ impl<'a> Default for WriteDescriptorSetAccelerationStructureNV<'a> {
 }
 
 impl<'a> WriteDescriptorSetAccelerationStructureNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `accelerationStructureCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -53023,6 +56789,13 @@ impl<'a> Default for AccelerationStructureMemoryRequirementsInfoNV<'a> {
 }
 
 impl<'a> AccelerationStructureMemoryRequirementsInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -53100,6 +56873,13 @@ impl<'a> Default for PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceAccelerationStructureFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `accelerationStructure` without native effects.
 	#[doc(alias = "accelerationStructure")]
 	#[inline]
@@ -53207,6 +56987,13 @@ impl<'a> Default for PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceRayTracingPipelineFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rayTracingPipeline` without native effects.
 	#[doc(alias = "rayTracingPipeline")]
 	#[inline]
@@ -53305,6 +57092,13 @@ impl<'a> Default for PhysicalDeviceRayQueryFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceRayQueryFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rayQuery` without native effects.
 	#[doc(alias = "rayQuery")]
 	#[inline]
@@ -53382,6 +57176,13 @@ impl<'a> Default for PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceAccelerationStructurePropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxGeometryCount` without native effects.
 	#[doc(alias = "maxGeometryCount")]
 	#[inline]
@@ -53528,6 +57329,13 @@ impl<'a> Default for PhysicalDeviceRayTracingPipelinePropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceRayTracingPipelinePropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderGroupHandleSize` without native effects.
 	#[doc(alias = "shaderGroupHandleSize")]
 	#[inline]
@@ -53668,6 +57476,13 @@ impl<'a> Default for PhysicalDeviceRayTracingPropertiesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceRayTracingPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderGroupHandleSize` without native effects.
 	#[doc(alias = "shaderGroupHandleSize")]
 	#[inline]
@@ -53781,6 +57596,13 @@ impl Default for StridedDeviceAddressRegionKHR {
 }
 
 impl StridedDeviceAddressRegionKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceAddress` without native effects.
 	#[doc(alias = "deviceAddress")]
 	#[inline]
@@ -53831,6 +57653,13 @@ impl Default for TraceRaysIndirectCommandKHR {
 }
 
 impl TraceRaysIndirectCommandKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `width` without native effects.
 	#[doc(alias = "width")]
 	#[inline]
@@ -53914,6 +57743,13 @@ impl Default for TraceRaysIndirectCommand2KHR {
 }
 
 impl TraceRaysIndirectCommand2KHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `raygenShaderRecordAddress` without native effects.
 	#[doc(alias = "raygenShaderRecordAddress")]
 	#[inline]
@@ -54073,6 +57909,13 @@ impl<'a> Default for PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rayTracingMaintenance1` without native effects.
 	#[doc(alias = "rayTracingMaintenance1")]
 	#[inline]
@@ -54141,6 +57984,13 @@ impl<'a> Default for DrmFormatModifierPropertiesListEXT<'a> {
 }
 
 impl<'a> DrmFormatModifierPropertiesListEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `drmFormatModifierCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -54215,6 +58065,13 @@ impl Default for DrmFormatModifierPropertiesEXT {
 }
 
 impl DrmFormatModifierPropertiesEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `drmFormatModifier` without native effects.
 	#[doc(alias = "drmFormatModifier")]
 	#[inline]
@@ -54281,6 +58138,13 @@ impl<'a> Default for PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceImageDrmFormatModifierInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `drmFormatModifier` without native effects.
 	#[doc(alias = "drmFormatModifier")]
 	#[inline]
@@ -54380,6 +58244,13 @@ impl<'a> Default for ImageDrmFormatModifierListCreateInfoEXT<'a> {
 }
 
 impl<'a> ImageDrmFormatModifierListCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `drmFormatModifierCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -54464,6 +58335,13 @@ impl<'a> Default for ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
 }
 
 impl<'a> ImageDrmFormatModifierExplicitCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `drmFormatModifier` without native effects.
 	#[doc(alias = "drmFormatModifier")]
 	#[inline]
@@ -54551,6 +58429,13 @@ impl<'a> Default for ImageDrmFormatModifierPropertiesEXT<'a> {
 }
 
 impl<'a> ImageDrmFormatModifierPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `drmFormatModifier` without native effects.
 	#[doc(alias = "drmFormatModifier")]
 	#[inline]
@@ -54607,6 +58492,13 @@ impl<'a> Default for ImageStencilUsageCreateInfo<'a> {
 }
 
 impl<'a> ImageStencilUsageCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stencilUsage` without native effects.
 	#[doc(alias = "stencilUsage")]
 	#[inline]
@@ -54667,6 +58559,13 @@ impl<'a> Default for ImageStencilUsage2CreateInfoKHR<'a> {
 }
 
 impl<'a> ImageStencilUsage2CreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stencilUsage` without native effects.
 	#[doc(alias = "stencilUsage")]
 	#[inline]
@@ -54723,6 +58622,13 @@ impl<'a> Default for DeviceMemoryOverallocationCreateInfoAMD<'a> {
 }
 
 impl<'a> DeviceMemoryOverallocationCreateInfoAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `overallocationBehavior` without native effects.
 	#[doc(alias = "overallocationBehavior")]
 	#[inline]
@@ -54785,6 +58691,13 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceFragmentDensityMapFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fragmentDensityMap` without native effects.
 	#[doc(alias = "fragmentDensityMap")]
 	#[inline]
@@ -54859,6 +58772,13 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceFragmentDensityMap2FeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fragmentDensityMapDeferred` without native effects.
 	#[doc(alias = "fragmentDensityMapDeferred")]
 	#[inline]
@@ -54915,6 +58835,13 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fragmentDensityMapOffset` without native effects.
 	#[doc(alias = "fragmentDensityMapOffset")]
 	#[inline]
@@ -54982,6 +58909,13 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceFragmentDensityMapPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minFragmentDensityTexelSize` without native effects.
 	#[doc(alias = "minFragmentDensityTexelSize")]
 	#[inline]
@@ -55065,6 +58999,13 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceFragmentDensityMap2PropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `subsampledLoads` without native effects.
 	#[doc(alias = "subsampledLoads")]
 	#[inline]
@@ -55148,6 +59089,13 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fragmentDensityOffsetGranularity` without native effects.
 	#[doc(alias = "fragmentDensityOffsetGranularity")]
 	#[inline]
@@ -55209,6 +59157,13 @@ impl<'a> Default for RenderPassFragmentDensityMapCreateInfoEXT<'a> {
 }
 
 impl<'a> RenderPassFragmentDensityMapCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fragmentDensityMapAttachment` without native effects.
 	#[doc(alias = "fragmentDensityMapAttachment")]
 	#[inline]
@@ -55268,6 +59223,13 @@ impl<'a> Default for RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
 }
 
 impl<'a> RenderPassFragmentDensityMapOffsetEndInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `fragmentDensityOffsetCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -55351,6 +59313,13 @@ impl<'a> Default for PhysicalDeviceScalarBlockLayoutFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceScalarBlockLayoutFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `scalarBlockLayout` without native effects.
 	#[doc(alias = "scalarBlockLayout")]
 	#[inline]
@@ -55412,6 +59381,13 @@ impl<'a> Default for SurfaceProtectedCapabilitiesKHR<'a> {
 }
 
 impl<'a> SurfaceProtectedCapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `supportsProtected` without native effects.
 	#[doc(alias = "supportsProtected")]
 	#[inline]
@@ -55468,6 +59444,13 @@ impl<'a> Default for PhysicalDeviceUniformBufferStandardLayoutFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceUniformBufferStandardLayoutFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `uniformBufferStandardLayout` without native effects.
 	#[doc(alias = "uniformBufferStandardLayout")]
 	#[inline]
@@ -55529,6 +59512,13 @@ impl<'a> Default for PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceDepthClipEnableFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `depthClipEnable` without native effects.
 	#[doc(alias = "depthClipEnable")]
 	#[inline]
@@ -55587,6 +59577,13 @@ impl<'a> Default for PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
 }
 
 impl<'a> PipelineRasterizationDepthClipStateCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -55655,6 +59652,13 @@ impl<'a> Default for PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceMemoryBudgetPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `heapBudget` without native effects.
 	#[doc(alias = "heapBudget")]
 	#[inline]
@@ -55720,6 +59724,13 @@ impl<'a> Default for PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceMemoryPriorityFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memoryPriority` without native effects.
 	#[doc(alias = "memoryPriority")]
 	#[inline]
@@ -55775,6 +59786,13 @@ impl<'a> Default for MemoryPriorityAllocateInfoEXT<'a> {
 }
 
 impl<'a> MemoryPriorityAllocateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `priority` without native effects.
 	#[doc(alias = "priority")]
 	#[inline]
@@ -55831,6 +59849,13 @@ impl<'a> Default for PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pageableDeviceLocalMemory` without native effects.
 	#[doc(alias = "pageableDeviceLocalMemory")]
 	#[inline]
@@ -55893,6 +59918,13 @@ impl<'a> Default for PhysicalDeviceBufferDeviceAddressFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceBufferDeviceAddressFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `bufferDeviceAddress` without native effects.
 	#[doc(alias = "bufferDeviceAddress")]
 	#[inline]
@@ -55978,6 +60010,13 @@ impl<'a> Default for PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceBufferDeviceAddressFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `bufferDeviceAddress` without native effects.
 	#[doc(alias = "bufferDeviceAddress")]
 	#[inline]
@@ -56056,6 +60095,13 @@ impl<'a> Default for BufferDeviceAddressInfo<'a> {
 }
 
 impl<'a> BufferDeviceAddressInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `buffer` without native effects.
 	#[doc(alias = "buffer")]
 	#[inline]
@@ -56120,6 +60166,13 @@ impl<'a> Default for BufferOpaqueCaptureAddressCreateInfo<'a> {
 }
 
 impl<'a> BufferOpaqueCaptureAddressCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `opaqueCaptureAddress` without native effects.
 	#[doc(alias = "opaqueCaptureAddress")]
 	#[inline]
@@ -56180,6 +60233,13 @@ impl<'a> Default for BufferDeviceAddressCreateInfoEXT<'a> {
 }
 
 impl<'a> BufferDeviceAddressCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceAddress` without native effects.
 	#[doc(alias = "deviceAddress")]
 	#[inline]
@@ -56236,6 +60296,13 @@ impl<'a> Default for PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceImageViewImageFormatInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageViewType` without native effects.
 	#[doc(alias = "imageViewType")]
 	#[inline]
@@ -56295,6 +60362,13 @@ impl<'a> Default for FilterCubicImageViewImageFormatPropertiesEXT<'a> {
 }
 
 impl<'a> FilterCubicImageViewImageFormatPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `filterCubic` without native effects.
 	#[doc(alias = "filterCubic")]
 	#[inline]
@@ -56360,6 +60434,13 @@ impl<'a> Default for PhysicalDeviceImagelessFramebufferFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceImagelessFramebufferFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imagelessFramebuffer` without native effects.
 	#[doc(alias = "imagelessFramebuffer")]
 	#[inline]
@@ -56424,6 +60505,13 @@ impl<'a> Default for FramebufferAttachmentsCreateInfo<'a> {
 }
 
 impl<'a> FramebufferAttachmentsCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `attachmentImageInfoCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -56520,6 +60608,13 @@ impl<'a> Default for FramebufferAttachmentImageInfo<'a> {
 }
 
 impl<'a> FramebufferAttachmentImageInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -56650,6 +60745,13 @@ impl<'a> Default for RenderPassAttachmentBeginInfo<'a> {
 }
 
 impl<'a> RenderPassAttachmentBeginInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `attachmentCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -56732,6 +60834,13 @@ impl<'a> Default for PhysicalDeviceTextureCompressionASTCHDRFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceTextureCompressionASTCHDRFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `textureCompressionASTC_HDR` without native effects.
 	#[doc(alias = "textureCompressionASTC_HDR")]
 	#[inline]
@@ -56796,6 +60905,13 @@ impl<'a> Default for PhysicalDeviceCooperativeMatrixFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceCooperativeMatrixFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cooperativeMatrix` without native effects.
 	#[doc(alias = "cooperativeMatrix")]
 	#[inline]
@@ -56861,6 +60977,13 @@ impl<'a> Default for PhysicalDeviceCooperativeMatrixPropertiesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceCooperativeMatrixPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cooperativeMatrixSupportedStages` without native effects.
 	#[doc(alias = "cooperativeMatrixSupportedStages")]
 	#[inline]
@@ -56937,6 +61060,13 @@ impl<'a> Default for CooperativeMatrixPropertiesNV<'a> {
 }
 
 impl<'a> CooperativeMatrixPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `MSize` without native effects.
 	#[doc(alias = "MSize")]
 	#[inline]
@@ -57056,6 +61186,13 @@ impl<'a> Default for PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceYcbcrImageArraysFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `ycbcrImageArrays` without native effects.
 	#[doc(alias = "ycbcrImageArrays")]
 	#[inline]
@@ -57117,6 +61254,13 @@ impl<'a> Default for ImageViewHandleInfoNVX<'a> {
 }
 
 impl<'a> ImageViewHandleInfoNVX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageView` without native effects.
 	#[doc(alias = "imageView")]
 	#[inline]
@@ -57193,6 +61337,13 @@ impl<'a> Default for ImageViewAddressPropertiesNVX<'a> {
 }
 
 impl<'a> ImageViewAddressPropertiesNVX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceAddress` without native effects.
 	#[doc(alias = "deviceAddress")]
 	#[inline]
@@ -57261,6 +61412,13 @@ impl<'a> Default for PresentFrameTokenGGP<'a> {
 
 #[cfg(feature = "platform-ggp")]
 impl<'a> PresentFrameTokenGGP<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `frameToken` without native effects.
 	#[doc(alias = "frameToken")]
 	#[inline]
@@ -57308,6 +61466,13 @@ impl Default for PipelineCreationFeedback {
 }
 
 impl PipelineCreationFeedback {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -57366,6 +61531,13 @@ impl<'a> Default for PipelineCreationFeedbackCreateInfo<'a> {
 }
 
 impl<'a> PipelineCreationFeedbackCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pPipelineCreationFeedback` without native effects.
 	#[doc(alias = "pPipelineCreationFeedback")]
 	#[inline]
@@ -57460,6 +61632,13 @@ impl<'a> Default for SurfaceFullScreenExclusiveInfoEXT<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> SurfaceFullScreenExclusiveInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fullScreenExclusive` without native effects.
 	#[doc(alias = "fullScreenExclusive")]
 	#[inline]
@@ -57518,6 +61697,13 @@ impl<'a> Default for SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> SurfaceFullScreenExclusiveWin32InfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `hmonitor` without native effects.
 	#[doc(alias = "hmonitor")]
 	#[inline]
@@ -57577,6 +61763,13 @@ impl<'a> Default for SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
 
 #[cfg(feature = "platform-win32")]
 impl<'a> SurfaceCapabilitiesFullScreenExclusiveEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fullScreenExclusiveSupported` without native effects.
 	#[doc(alias = "fullScreenExclusiveSupported")]
 	#[inline]
@@ -57633,6 +61826,13 @@ impl<'a> Default for PhysicalDevicePresentBarrierFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDevicePresentBarrierFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentBarrier` without native effects.
 	#[doc(alias = "presentBarrier")]
 	#[inline]
@@ -57689,6 +61889,13 @@ impl<'a> Default for SurfaceCapabilitiesPresentBarrierNV<'a> {
 }
 
 impl<'a> SurfaceCapabilitiesPresentBarrierNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentBarrierSupported` without native effects.
 	#[doc(alias = "presentBarrierSupported")]
 	#[inline]
@@ -57745,6 +61952,13 @@ impl<'a> Default for SwapchainPresentBarrierCreateInfoNV<'a> {
 }
 
 impl<'a> SwapchainPresentBarrierCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentBarrierEnable` without native effects.
 	#[doc(alias = "presentBarrierEnable")]
 	#[inline]
@@ -57804,6 +62018,13 @@ impl<'a> Default for PhysicalDevicePerformanceQueryFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDevicePerformanceQueryFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `performanceCounterQueryPools` without native effects.
 	#[doc(alias = "performanceCounterQueryPools")]
 	#[inline]
@@ -57869,6 +62090,13 @@ impl<'a> Default for PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDevicePerformanceQueryPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `allowCommandBufferQueryCopies` without native effects.
 	#[doc(alias = "allowCommandBufferQueryCopies")]
 	#[inline]
@@ -57930,6 +62158,13 @@ impl<'a> Default for PerformanceCounterKHR<'a> {
 }
 
 impl<'a> PerformanceCounterKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `unit` without native effects.
 	#[doc(alias = "unit")]
 	#[inline]
@@ -58018,6 +62253,13 @@ impl<'a> Default for PerformanceCounterDescriptionKHR<'a> {
 }
 
 impl<'a> PerformanceCounterDescriptionKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -58110,6 +62352,13 @@ impl<'a> Default for QueryPoolPerformanceCreateInfoKHR<'a> {
 }
 
 impl<'a> QueryPoolPerformanceCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `queueFamilyIndex` without native effects.
 	#[doc(alias = "queueFamilyIndex")]
 	#[inline]
@@ -58196,6 +62445,13 @@ impl Default for PerformanceCounterResultKHR {
 }
 
 impl PerformanceCounterResultKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `int32` without native effects.
 	#[doc(alias = "int32")]
 	#[inline]
@@ -58281,6 +62537,13 @@ impl<'a> Default for AcquireProfilingLockInfoKHR<'a> {
 }
 
 impl<'a> AcquireProfilingLockInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -58346,6 +62609,13 @@ impl<'a> Default for PerformanceQuerySubmitInfoKHR<'a> {
 }
 
 impl<'a> PerformanceQuerySubmitInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `counterPassIndex` without native effects.
 	#[doc(alias = "counterPassIndex")]
 	#[inline]
@@ -58401,6 +62671,13 @@ impl<'a> Default for HeadlessSurfaceCreateInfoEXT<'a> {
 }
 
 impl<'a> HeadlessSurfaceCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -58457,6 +62734,13 @@ impl<'a> Default for PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceCoverageReductionModeFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `coverageReductionMode` without native effects.
 	#[doc(alias = "coverageReductionMode")]
 	#[inline]
@@ -58515,6 +62799,13 @@ impl<'a> Default for PipelineCoverageReductionStateCreateInfoNV<'a> {
 }
 
 impl<'a> PipelineCoverageReductionStateCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -58589,6 +62880,13 @@ impl<'a> Default for FramebufferMixedSamplesCombinationNV<'a> {
 }
 
 impl<'a> FramebufferMixedSamplesCombinationNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `coverageReductionMode` without native effects.
 	#[doc(alias = "coverageReductionMode")]
 	#[inline]
@@ -58672,6 +62970,13 @@ impl<'a> Default for PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderIntegerFunctions2` without native effects.
 	#[doc(alias = "shaderIntegerFunctions2")]
 	#[inline]
@@ -58730,6 +63035,13 @@ impl<'a> Default for PerformanceValueDataINTEL<'a> {
 }
 
 impl<'a> PerformanceValueDataINTEL<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `value32` without native effects.
 	#[doc(alias = "value32")]
 	#[inline]
@@ -58798,6 +63110,13 @@ impl<'a> Default for PerformanceValueINTEL<'a> {
 }
 
 impl<'a> PerformanceValueINTEL<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -58846,6 +63165,13 @@ impl<'a> Default for InitializePerformanceApiInfoINTEL<'a> {
 }
 
 impl<'a> InitializePerformanceApiInfoINTEL<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native pointer `pUserData` explicitly. No borrow or extent is inferred.
 	///
 	/// # Safety
@@ -58907,6 +63233,13 @@ impl<'a> Default for QueryPoolPerformanceQueryCreateInfoINTEL<'a> {
 }
 
 impl<'a> QueryPoolPerformanceQueryCreateInfoINTEL<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `performanceCountersSampling` without native effects.
 	#[doc(alias = "performanceCountersSampling")]
 	#[inline]
@@ -58966,6 +63299,13 @@ impl<'a> Default for PerformanceMarkerInfoINTEL<'a> {
 }
 
 impl<'a> PerformanceMarkerInfoINTEL<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `marker` without native effects.
 	#[doc(alias = "marker")]
 	#[inline]
@@ -59021,6 +63361,13 @@ impl<'a> Default for PerformanceStreamMarkerInfoINTEL<'a> {
 }
 
 impl<'a> PerformanceStreamMarkerInfoINTEL<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `marker` without native effects.
 	#[doc(alias = "marker")]
 	#[inline]
@@ -59080,6 +63427,13 @@ impl<'a> Default for PerformanceOverrideInfoINTEL<'a> {
 }
 
 impl<'a> PerformanceOverrideInfoINTEL<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -59153,6 +63507,13 @@ impl<'a> Default for PerformanceConfigurationAcquireInfoINTEL<'a> {
 }
 
 impl<'a> PerformanceConfigurationAcquireInfoINTEL<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -59212,6 +63573,13 @@ impl<'a> Default for PhysicalDeviceShaderClockFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderClockFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderSubgroupClock` without native effects.
 	#[doc(alias = "shaderSubgroupClock")]
 	#[inline]
@@ -59277,6 +63645,13 @@ impl<'a> Default for PhysicalDeviceIndexTypeUint8Features<'a> {
 }
 
 impl<'a> PhysicalDeviceIndexTypeUint8Features<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `indexTypeUint8` without native effects.
 	#[doc(alias = "indexTypeUint8")]
 	#[inline]
@@ -59344,6 +63719,13 @@ impl<'a> Default for PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderSMBuiltinsPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderSMCount` without native effects.
 	#[doc(alias = "shaderSMCount")]
 	#[inline]
@@ -59409,6 +63791,13 @@ impl<'a> Default for PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderSMBuiltinsFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderSMBuiltins` without native effects.
 	#[doc(alias = "shaderSMBuiltins")]
 	#[inline]
@@ -59471,6 +63860,13 @@ impl<'a> Default for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fragmentShaderSampleInterlock` without native effects.
 	#[doc(alias = "fragmentShaderSampleInterlock")]
 	#[inline]
@@ -59545,6 +63941,13 @@ impl<'a> Default for PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `separateDepthStencilLayouts` without native effects.
 	#[doc(alias = "separateDepthStencilLayouts")]
 	#[inline]
@@ -59606,6 +64009,13 @@ impl<'a> Default for AttachmentReferenceStencilLayout<'a> {
 }
 
 impl<'a> AttachmentReferenceStencilLayout<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stencilLayout` without native effects.
 	#[doc(alias = "stencilLayout")]
 	#[inline]
@@ -59665,6 +64075,13 @@ impl<'a> Default for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `primitiveTopologyListRestart` without native effects.
 	#[doc(alias = "primitiveTopologyListRestart")]
 	#[inline]
@@ -59737,6 +64154,13 @@ impl<'a> Default for AttachmentDescriptionStencilLayout<'a> {
 }
 
 impl<'a> AttachmentDescriptionStencilLayout<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stencilInitialLayout` without native effects.
 	#[doc(alias = "stencilInitialLayout")]
 	#[inline]
@@ -59806,6 +64230,13 @@ impl<'a> Default for PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineExecutableInfo` without native effects.
 	#[doc(alias = "pipelineExecutableInfo")]
 	#[inline]
@@ -59861,6 +64292,13 @@ impl<'a> Default for PipelineInfoKHR<'a> {
 }
 
 impl<'a> PipelineInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipeline` without native effects.
 	#[doc(alias = "pipeline")]
 	#[inline]
@@ -59927,6 +64365,13 @@ impl<'a> Default for PipelineExecutablePropertiesKHR<'a> {
 }
 
 impl<'a> PipelineExecutablePropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stages` without native effects.
 	#[doc(alias = "stages")]
 	#[inline]
@@ -60015,6 +64460,13 @@ impl<'a> Default for PipelineExecutableInfoKHR<'a> {
 }
 
 impl<'a> PipelineExecutableInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipeline` without native effects.
 	#[doc(alias = "pipeline")]
 	#[inline]
@@ -60075,6 +64527,13 @@ impl Default for PipelineExecutableStatisticValueKHR {
 }
 
 impl PipelineExecutableStatisticValueKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `b32` without native effects.
 	#[doc(alias = "b32")]
 	#[inline]
@@ -60146,6 +64605,13 @@ impl<'a> Default for PipelineExecutableStatisticKHR<'a> {
 }
 
 impl<'a> PipelineExecutableStatisticKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `name` without native effects.
 	#[doc(alias = "name")]
 	#[inline]
@@ -60242,6 +64708,13 @@ impl<'a> Default for PipelineExecutableInternalRepresentationKHR<'a> {
 }
 
 impl<'a> PipelineExecutableInternalRepresentationKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `name` without native effects.
 	#[doc(alias = "name")]
 	#[inline]
@@ -60350,6 +64823,13 @@ impl<'a> Default for PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderDemoteToHelperInvocation` without native effects.
 	#[doc(alias = "shaderDemoteToHelperInvocation")]
 	#[inline]
@@ -60411,6 +64891,13 @@ impl<'a> Default for PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `texelBufferAlignment` without native effects.
 	#[doc(alias = "texelBufferAlignment")]
 	#[inline]
@@ -60476,6 +64963,13 @@ impl<'a> Default for PhysicalDeviceTexelBufferAlignmentProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceTexelBufferAlignmentProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `storageTexelBufferOffsetAlignmentBytes` without native effects.
 	#[doc(alias = "storageTexelBufferOffsetAlignmentBytes")]
 	#[inline]
@@ -60567,6 +65061,13 @@ impl<'a> Default for PhysicalDeviceSubgroupSizeControlFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceSubgroupSizeControlFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `subgroupSizeControl` without native effects.
 	#[doc(alias = "subgroupSizeControl")]
 	#[inline]
@@ -60646,6 +65147,13 @@ impl<'a> Default for PhysicalDeviceSubgroupSizeControlProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceSubgroupSizeControlProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minSubgroupSize` without native effects.
 	#[doc(alias = "minSubgroupSize")]
 	#[inline]
@@ -60734,6 +65242,13 @@ impl<'a> Default for PipelineShaderStageRequiredSubgroupSizeCreateInfo<'a> {
 }
 
 impl<'a> PipelineShaderStageRequiredSubgroupSizeCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `requiredSubgroupSize` without native effects.
 	#[doc(alias = "requiredSubgroupSize")]
 	#[inline]
@@ -60802,6 +65317,13 @@ impl<'a> Default for SubpassShadingPipelineCreateInfoHUAWEI<'a> {
 }
 
 impl<'a> SubpassShadingPipelineCreateInfoHUAWEI<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `renderPass` without native effects.
 	#[doc(alias = "renderPass")]
 	#[inline]
@@ -60867,6 +65389,13 @@ impl<'a> Default for PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
 }
 
 impl<'a> PhysicalDeviceSubpassShadingPropertiesHUAWEI<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxSubpassShadingWorkgroupSizeAspectRatio` without native effects.
 	#[doc(alias = "maxSubpassShadingWorkgroupSizeAspectRatio")]
 	#[inline]
@@ -60932,6 +65461,13 @@ impl<'a> Default for PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
 }
 
 impl<'a> PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxWorkGroupCount` without native effects.
 	#[doc(alias = "maxWorkGroupCount")]
 	#[inline]
@@ -61015,6 +65551,13 @@ impl<'a> Default for MemoryOpaqueCaptureAddressAllocateInfo<'a> {
 }
 
 impl<'a> MemoryOpaqueCaptureAddressAllocateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `opaqueCaptureAddress` without native effects.
 	#[doc(alias = "opaqueCaptureAddress")]
 	#[inline]
@@ -61074,6 +65617,13 @@ impl<'a> Default for DeviceMemoryOpaqueCaptureAddressInfo<'a> {
 }
 
 impl<'a> DeviceMemoryOpaqueCaptureAddressInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memory` without native effects.
 	#[doc(alias = "memory")]
 	#[inline]
@@ -61149,6 +65699,13 @@ impl<'a> Default for PhysicalDeviceLineRasterizationFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceLineRasterizationFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rectangularLines` without native effects.
 	#[doc(alias = "rectangularLines")]
 	#[inline]
@@ -61260,6 +65817,13 @@ impl<'a> Default for PhysicalDeviceLineRasterizationProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceLineRasterizationProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `lineSubPixelPrecisionBits` without native effects.
 	#[doc(alias = "lineSubPixelPrecisionBits")]
 	#[inline]
@@ -61335,6 +65899,13 @@ impl<'a> Default for PipelineRasterizationLineStateCreateInfo<'a> {
 }
 
 impl<'a> PipelineRasterizationLineStateCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `lineRasterizationMode` without native effects.
 	#[doc(alias = "lineRasterizationMode")]
 	#[inline]
@@ -61428,6 +65999,13 @@ impl<'a> Default for PhysicalDevicePipelineCreationCacheControlFeatures<'a> {
 }
 
 impl<'a> PhysicalDevicePipelineCreationCacheControlFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineCreationCacheControl` without native effects.
 	#[doc(alias = "pipelineCreationCacheControl")]
 	#[inline]
@@ -61521,6 +66099,13 @@ impl<'a> Default for PhysicalDeviceVulkan11Features<'a> {
 }
 
 impl<'a> PhysicalDeviceVulkan11Features<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `storageBuffer16BitAccess` without native effects.
 	#[doc(alias = "storageBuffer16BitAccess")]
 	#[inline]
@@ -61718,6 +66303,13 @@ impl<'a> Default for PhysicalDeviceVulkan11Properties<'a> {
 }
 
 impl<'a> PhysicalDeviceVulkan11Properties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceUUID` without native effects.
 	#[doc(alias = "deviceUUID")]
 	#[inline]
@@ -62038,6 +66630,13 @@ impl<'a> Default for PhysicalDeviceVulkan12Features<'a> {
 }
 
 impl<'a> PhysicalDeviceVulkan12Features<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `samplerMirrorClampToEdge` without native effects.
 	#[doc(alias = "samplerMirrorClampToEdge")]
 	#[inline]
@@ -62673,6 +67272,13 @@ impl<'a> Default for PhysicalDeviceVulkan12Properties<'a> {
 }
 
 impl<'a> PhysicalDeviceVulkan12Properties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `driverID` without native effects.
 	#[doc(alias = "driverID")]
 	#[inline]
@@ -63273,6 +67879,13 @@ impl<'a> Default for PhysicalDeviceVulkan13Features<'a> {
 }
 
 impl<'a> PhysicalDeviceVulkan13Features<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `robustImageAccess` without native effects.
 	#[doc(alias = "robustImageAccess")]
 	#[inline]
@@ -63591,6 +68204,13 @@ impl<'a> Default for PhysicalDeviceVulkan13Properties<'a> {
 }
 
 impl<'a> PhysicalDeviceVulkan13Properties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minSubgroupSize` without native effects.
 	#[doc(alias = "minSubgroupSize")]
 	#[inline]
@@ -64171,6 +68791,13 @@ impl<'a> Default for PhysicalDeviceVulkan14Features<'a> {
 }
 
 impl<'a> PhysicalDeviceVulkan14Features<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `globalPriorityQuery` without native effects.
 	#[doc(alias = "globalPriorityQuery")]
 	#[inline]
@@ -64479,6 +69106,13 @@ impl<'a> Default for PhysicalDeviceVulkan14Properties<'a> {
 }
 
 impl<'a> PhysicalDeviceVulkan14Properties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `lineSubPixelPrecisionBits` without native effects.
 	#[doc(alias = "lineSubPixelPrecisionBits")]
 	#[inline]
@@ -64798,6 +69432,13 @@ impl<'a> Default for PipelineCompilerControlCreateInfoAMD<'a> {
 }
 
 impl<'a> PipelineCompilerControlCreateInfoAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `compilerControlFlags` without native effects.
 	#[doc(alias = "compilerControlFlags")]
 	#[inline]
@@ -64854,6 +69495,13 @@ impl<'a> Default for PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
 }
 
 impl<'a> PhysicalDeviceCoherentMemoryFeaturesAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceCoherentMemory` without native effects.
 	#[doc(alias = "deviceCoherentMemory")]
 	#[inline]
@@ -64917,6 +69565,13 @@ impl Default for GpaPerfBlockPropertiesAMD {
 }
 
 impl GpaPerfBlockPropertiesAMD {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `blockType` without native effects.
 	#[doc(alias = "blockType")]
 	#[inline]
@@ -65019,6 +69674,13 @@ impl<'a> Default for PhysicalDeviceGpaFeaturesAMD<'a> {
 }
 
 impl<'a> PhysicalDeviceGpaFeaturesAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `perfCounters` without native effects.
 	#[doc(alias = "perfCounters")]
 	#[inline]
@@ -65113,6 +69775,13 @@ impl<'a> Default for PhysicalDeviceGpaPropertiesAMD<'a> {
 }
 
 impl<'a> PhysicalDeviceGpaPropertiesAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -65218,6 +69887,13 @@ impl<'a> Default for PhysicalDeviceGpaProperties2AMD<'a> {
 }
 
 impl<'a> PhysicalDeviceGpaProperties2AMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `revisionId` without native effects.
 	#[doc(alias = "revisionId")]
 	#[inline]
@@ -65270,6 +69946,13 @@ impl Default for GpaPerfCounterAMD {
 }
 
 impl GpaPerfCounterAMD {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `blockType` without native effects.
 	#[doc(alias = "blockType")]
 	#[inline]
@@ -65366,6 +70049,13 @@ impl<'a> Default for GpaSampleBeginInfoAMD<'a> {
 }
 
 impl<'a> GpaSampleBeginInfoAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `sampleType` without native effects.
 	#[doc(alias = "sampleType")]
 	#[inline]
@@ -65558,6 +70248,13 @@ impl<'a> Default for GpaDeviceClockModeInfoAMD<'a> {
 }
 
 impl<'a> GpaDeviceClockModeInfoAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `clockMode` without native effects.
 	#[doc(alias = "clockMode")]
 	#[inline]
@@ -65641,6 +70338,13 @@ impl<'a> Default for GpaDeviceGetClockInfoAMD<'a> {
 }
 
 impl<'a> GpaDeviceGetClockInfoAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memoryClockRatioToPeak` without native effects.
 	#[doc(alias = "memoryClockRatioToPeak")]
 	#[inline]
@@ -65724,6 +70428,13 @@ impl<'a> Default for GpaSessionCreateInfoAMD<'a> {
 }
 
 impl<'a> GpaSessionCreateInfoAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `secondaryCopySource` without native effects.
 	#[doc(alias = "secondaryCopySource")]
 	#[inline]
@@ -65787,6 +70498,13 @@ impl<'a> Default for PhysicalDeviceToolProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceToolProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `name` without native effects.
 	#[doc(alias = "name")]
 	#[inline]
@@ -65891,6 +70609,13 @@ impl<'a> Default for SamplerCustomBorderColorCreateInfoEXT<'a> {
 }
 
 impl<'a> SamplerCustomBorderColorCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `customBorderColor` without native effects.
 	#[doc(alias = "customBorderColor")]
 	#[inline]
@@ -65956,6 +70681,13 @@ impl<'a> Default for PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceCustomBorderColorPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxCustomBorderColorSamplers` without native effects.
 	#[doc(alias = "maxCustomBorderColorSamplers")]
 	#[inline]
@@ -66015,6 +70747,13 @@ impl<'a> Default for PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceCustomBorderColorFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `customBorderColors` without native effects.
 	#[doc(alias = "customBorderColors")]
 	#[inline]
@@ -66081,6 +70820,13 @@ impl<'a> Default for SamplerBorderColorComponentMappingCreateInfoEXT<'a> {
 }
 
 impl<'a> SamplerBorderColorComponentMappingCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `components` without native effects.
 	#[doc(alias = "components")]
 	#[inline]
@@ -66149,6 +70895,13 @@ impl<'a> Default for PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceBorderColorSwizzleFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `borderColorSwizzle` without native effects.
 	#[doc(alias = "borderColorSwizzle")]
 	#[inline]
@@ -66207,6 +70960,13 @@ impl Default for DeviceOrHostAddressKHR {
 }
 
 impl DeviceOrHostAddressKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceAddress` without native effects.
 	#[doc(alias = "deviceAddress")]
 	#[inline]
@@ -66253,6 +71013,13 @@ impl Default for DeviceOrHostAddressConstKHR {
 }
 
 impl DeviceOrHostAddressConstKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceAddress` without native effects.
 	#[doc(alias = "deviceAddress")]
 	#[inline]
@@ -66302,6 +71069,13 @@ impl Default for DeviceOrHostAddressConstAMDX {
 
 #[cfg(feature = "provisional")]
 impl DeviceOrHostAddressConstAMDX {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceAddress` without native effects.
 	#[doc(alias = "deviceAddress")]
 	#[inline]
@@ -66373,6 +71147,13 @@ impl<'a> Default for AccelerationStructureGeometryTrianglesDataKHR<'a> {
 }
 
 impl<'a> AccelerationStructureGeometryTrianglesDataKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `vertexFormat` without native effects.
 	#[doc(alias = "vertexFormat")]
 	#[inline]
@@ -66484,6 +71265,13 @@ impl<'a> Default for AccelerationStructureGeometryAabbsDataKHR<'a> {
 }
 
 impl<'a> AccelerationStructureGeometryAabbsDataKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `data` without native effects.
 	#[doc(alias = "data")]
 	#[inline]
@@ -66551,6 +71339,13 @@ impl<'a> Default for AccelerationStructureGeometryInstancesDataKHR<'a> {
 }
 
 impl<'a> AccelerationStructureGeometryInstancesDataKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `arrayOfPointers` without native effects.
 	#[doc(alias = "arrayOfPointers")]
 	#[inline]
@@ -66646,6 +71441,13 @@ impl<'a> Default for AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {
 }
 
 impl<'a> AccelerationStructureGeometryLinearSweptSpheresDataNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `vertexFormat` without native effects.
 	#[doc(alias = "vertexFormat")]
 	#[inline]
@@ -66816,6 +71618,13 @@ impl<'a> Default for AccelerationStructureGeometrySpheresDataNV<'a> {
 }
 
 impl<'a> AccelerationStructureGeometrySpheresDataNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `vertexFormat` without native effects.
 	#[doc(alias = "vertexFormat")]
 	#[inline]
@@ -66938,6 +71747,13 @@ impl<'a> Default for AccelerationStructureGeometryDataKHR<'a> {
 }
 
 impl<'a> AccelerationStructureGeometryDataKHR<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `triangles` without native effects.
 	#[doc(alias = "triangles")]
 	#[inline]
@@ -66999,6 +71815,13 @@ impl<'a> Default for AccelerationStructureGeometryKHR<'a> {
 }
 
 impl<'a> AccelerationStructureGeometryKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `geometryType` without native effects.
 	#[doc(alias = "geometryType")]
 	#[inline]
@@ -67094,6 +71917,13 @@ impl<'a> Default for AccelerationStructureBuildGeometryInfoKHR<'a> {
 }
 
 impl<'a> AccelerationStructureBuildGeometryInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -67248,6 +72078,13 @@ impl Default for AccelerationStructureBuildRangeInfoKHR {
 }
 
 impl AccelerationStructureBuildRangeInfoKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `primitiveCount` without native effects.
 	#[doc(alias = "primitiveCount")]
 	#[inline]
@@ -67325,6 +72162,13 @@ impl<'a> Default for AccelerationStructureCreateInfoKHR<'a> {
 }
 
 impl<'a> AccelerationStructureCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `createFlags` without native effects.
 	#[doc(alias = "createFlags")]
 	#[inline]
@@ -67431,6 +72275,13 @@ impl Default for AabbPositionsKHR {
 }
 
 impl AabbPositionsKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minX` without native effects.
 	#[doc(alias = "minX")]
 	#[inline]
@@ -67508,6 +72359,13 @@ impl Default for TransformMatrixKHR {
 }
 
 impl TransformMatrixKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `matrix` without native effects.
 	#[doc(alias = "matrix")]
 	#[inline]
@@ -67589,6 +72447,13 @@ impl Default for AccelerationStructureInstanceKHR {
 }
 
 impl AccelerationStructureInstanceKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `transform` without native effects.
 	#[doc(alias = "transform")]
 	#[inline]
@@ -67641,6 +72506,13 @@ impl<'a> Default for AccelerationStructureDeviceAddressInfoKHR<'a> {
 }
 
 impl<'a> AccelerationStructureDeviceAddressInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `accelerationStructure` without native effects.
 	#[doc(alias = "accelerationStructure")]
 	#[inline]
@@ -67697,6 +72569,13 @@ impl<'a> Default for AccelerationStructureVersionInfoKHR<'a> {
 }
 
 impl<'a> AccelerationStructureVersionInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Borrow the two UUIDs required by the native version-data extent.
 	#[doc(alias = "pVersionData")]
 	#[inline]
@@ -67756,6 +72635,13 @@ impl<'a> Default for CopyAccelerationStructureInfoKHR<'a> {
 }
 
 impl<'a> CopyAccelerationStructureInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `src` without native effects.
 	#[doc(alias = "src")]
 	#[inline]
@@ -67833,6 +72719,13 @@ impl<'a> Default for CopyAccelerationStructureToMemoryInfoKHR<'a> {
 }
 
 impl<'a> CopyAccelerationStructureToMemoryInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `src` without native effects.
 	#[doc(alias = "src")]
 	#[inline]
@@ -67910,6 +72803,13 @@ impl<'a> Default for CopyMemoryToAccelerationStructureInfoKHR<'a> {
 }
 
 impl<'a> CopyMemoryToAccelerationStructureInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `src` without native effects.
 	#[doc(alias = "src")]
 	#[inline]
@@ -67987,6 +72887,13 @@ impl<'a> Default for RayTracingPipelineInterfaceCreateInfoKHR<'a> {
 }
 
 impl<'a> RayTracingPipelineInterfaceCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxPipelineRayPayloadSize` without native effects.
 	#[doc(alias = "maxPipelineRayPayloadSize")]
 	#[inline]
@@ -68055,6 +72962,13 @@ impl<'a> Default for PipelineLibraryCreateInfoKHR<'a> {
 }
 
 impl<'a> PipelineLibraryCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `libraryCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -68133,6 +73047,13 @@ impl<'a> Default for PhysicalDeviceExtendedDynamicStateFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceExtendedDynamicStateFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `extendedDynamicState` without native effects.
 	#[doc(alias = "extendedDynamicState")]
 	#[inline]
@@ -68195,6 +73116,13 @@ impl<'a> Default for PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceExtendedDynamicState2FeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `extendedDynamicState2` without native effects.
 	#[doc(alias = "extendedDynamicState2")]
 	#[inline]
@@ -68359,6 +73287,13 @@ impl<'a> Default for PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceExtendedDynamicState3FeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `extendedDynamicState3TessellationDomainOrigin` without native effects.
 	#[doc(alias = "extendedDynamicState3TessellationDomainOrigin")]
 	#[inline]
@@ -68700,6 +73635,13 @@ impl<'a> Default for PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceExtendedDynamicState3PropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dynamicPrimitiveTopologyUnrestricted` without native effects.
 	#[doc(alias = "dynamicPrimitiveTopologyUnrestricted")]
 	#[inline]
@@ -68756,6 +73698,13 @@ impl<'a> Default for PhysicalDeviceExtendedFlagsFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceExtendedFlagsFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `extendedFlags` without native effects.
 	#[doc(alias = "extendedFlags")]
 	#[inline]
@@ -68817,6 +73766,13 @@ impl Default for ColorBlendEquationEXT {
 }
 
 impl ColorBlendEquationEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcColorBlendFactor` without native effects.
 	#[doc(alias = "srcColorBlendFactor")]
 	#[inline]
@@ -68903,6 +73859,13 @@ impl Default for ColorBlendAdvancedEXT {
 }
 
 impl ColorBlendAdvancedEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `advancedBlendOp` without native effects.
 	#[doc(alias = "advancedBlendOp")]
 	#[inline]
@@ -68977,6 +73940,13 @@ impl<'a> Default for RenderPassTransformBeginInfoQCOM<'a> {
 }
 
 impl<'a> RenderPassTransformBeginInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `transform` without native effects.
 	#[doc(alias = "transform")]
 	#[inline]
@@ -69032,6 +74002,13 @@ impl<'a> Default for CopyCommandTransformInfoQCOM<'a> {
 }
 
 impl<'a> CopyCommandTransformInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `transform` without native effects.
 	#[doc(alias = "transform")]
 	#[inline]
@@ -69090,6 +74067,13 @@ impl<'a> Default for CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
 }
 
 impl<'a> CommandBufferInheritanceRenderPassTransformInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `transform` without native effects.
 	#[doc(alias = "transform")]
 	#[inline]
@@ -69155,6 +74139,13 @@ impl<'a> Default for PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a
 }
 
 impl<'a> PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `partitionedAccelerationStructure` without native effects.
 	#[doc(alias = "partitionedAccelerationStructure")]
 	#[inline]
@@ -69211,6 +74202,13 @@ impl<'a> Default for PhysicalDevicePartitionedAccelerationStructurePropertiesNV<
 }
 
 impl<'a> PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxPartitionCount` without native effects.
 	#[doc(alias = "maxPartitionCount")]
 	#[inline]
@@ -69263,6 +74261,13 @@ impl Default for BuildPartitionedAccelerationStructureIndirectCommandNV {
 }
 
 impl BuildPartitionedAccelerationStructureIndirectCommandNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `opType` without native effects.
 	#[doc(alias = "opType")]
 	#[inline]
@@ -69320,6 +74325,13 @@ impl<'a> Default for PartitionedAccelerationStructureFlagsNV<'a> {
 }
 
 impl<'a> PartitionedAccelerationStructureFlagsNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `enablePartitionTranslation` without native effects.
 	#[doc(alias = "enablePartitionTranslation")]
 	#[inline]
@@ -69389,6 +74401,13 @@ impl Default for PartitionedAccelerationStructureWriteInstanceDataNV {
 }
 
 impl PartitionedAccelerationStructureWriteInstanceDataNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `transform` without native effects.
 	#[doc(alias = "transform")]
 	#[inline]
@@ -69499,6 +74518,13 @@ impl Default for PartitionedAccelerationStructureUpdateInstanceDataNV {
 }
 
 impl PartitionedAccelerationStructureUpdateInstanceDataNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `instanceIndex` without native effects.
 	#[doc(alias = "instanceIndex")]
 	#[inline]
@@ -69549,6 +74575,13 @@ impl Default for PartitionedAccelerationStructureWritePartitionTranslationDataNV
 }
 
 impl PartitionedAccelerationStructureWritePartitionTranslationDataNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `partitionIndex` without native effects.
 	#[doc(alias = "partitionIndex")]
 	#[inline]
@@ -69600,6 +74633,13 @@ impl<'a> Default for WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
 }
 
 impl<'a> WriteDescriptorSetPartitionedAccelerationStructureNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `accelerationStructureCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -69689,6 +74729,13 @@ impl<'a> Default for PartitionedAccelerationStructureInstancesInputNV<'a> {
 }
 
 impl<'a> PartitionedAccelerationStructureInstancesInputNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -69795,6 +74842,13 @@ impl<'a> Default for BuildPartitionedAccelerationStructureInfoNV<'a> {
 }
 
 impl<'a> BuildPartitionedAccelerationStructureInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `input` without native effects.
 	#[doc(alias = "input")]
 	#[inline]
@@ -69896,6 +74950,13 @@ impl<'a> Default for PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceDiagnosticsConfigFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `diagnosticsConfig` without native effects.
 	#[doc(alias = "diagnosticsConfig")]
 	#[inline]
@@ -69951,6 +75012,13 @@ impl<'a> Default for DeviceDiagnosticsConfigCreateInfoNV<'a> {
 }
 
 impl<'a> DeviceDiagnosticsConfigCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -70007,6 +75075,13 @@ impl<'a> Default for PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderZeroInitializeWorkgroupMemory` without native effects.
 	#[doc(alias = "shaderZeroInitializeWorkgroupMemory")]
 	#[inline]
@@ -70068,6 +75143,13 @@ impl<'a> Default for PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'
 }
 
 impl<'a> PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderSubgroupUniformControlFlow` without native effects.
 	#[doc(alias = "shaderSubgroupUniformControlFlow")]
 	#[inline]
@@ -70130,6 +75212,13 @@ impl<'a> Default for PhysicalDeviceRobustness2FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceRobustness2FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `robustBufferAccess2` without native effects.
 	#[doc(alias = "robustBufferAccess2")]
 	#[inline]
@@ -70211,6 +75300,13 @@ impl<'a> Default for PhysicalDeviceRobustness2PropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceRobustness2PropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `robustStorageBufferAccessSizeAlignment` without native effects.
 	#[doc(alias = "robustStorageBufferAccessSizeAlignment")]
 	#[inline]
@@ -70280,6 +75376,13 @@ impl<'a> Default for PhysicalDeviceImageRobustnessFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceImageRobustnessFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `robustImageAccess` without native effects.
 	#[doc(alias = "robustImageAccess")]
 	#[inline]
@@ -70349,6 +75452,13 @@ impl<'a> Default for PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> 
 }
 
 impl<'a> PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `workgroupMemoryExplicitLayout` without native effects.
 	#[doc(alias = "workgroupMemoryExplicitLayout")]
 	#[inline]
@@ -70476,6 +75586,13 @@ impl<'a> Default for PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> PhysicalDevicePortabilitySubsetFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `constantAlphaColorBlendFactors` without native effects.
 	#[doc(alias = "constantAlphaColorBlendFactors")]
 	#[inline]
@@ -70661,6 +75778,13 @@ impl<'a> Default for PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> PhysicalDevicePortabilitySubsetPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minVertexInputBindingStrideAlignment` without native effects.
 	#[doc(alias = "minVertexInputBindingStrideAlignment")]
 	#[inline]
@@ -70720,6 +75844,13 @@ impl<'a> Default for PhysicalDevice4444FormatsFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDevice4444FormatsFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `formatA4R4G4B4` without native effects.
 	#[doc(alias = "formatA4R4G4B4")]
 	#[inline]
@@ -70785,6 +75916,13 @@ impl<'a> Default for PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
 }
 
 impl<'a> PhysicalDeviceSubpassShadingFeaturesHUAWEI<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `subpassShading` without native effects.
 	#[doc(alias = "subpassShading")]
 	#[inline]
@@ -70844,6 +75982,13 @@ impl<'a> Default for PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
 }
 
 impl<'a> PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `clustercullingShader` without native effects.
 	#[doc(alias = "clustercullingShader")]
 	#[inline]
@@ -70909,6 +76054,13 @@ impl<'a> Default for PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
 }
 
 impl<'a> PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `clusterShadingRate` without native effects.
 	#[doc(alias = "clusterShadingRate")]
 	#[inline]
@@ -70970,6 +76122,13 @@ impl<'a> Default for BufferCopy2<'a> {
 }
 
 impl<'a> BufferCopy2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcOffset` without native effects.
 	#[doc(alias = "srcOffset")]
 	#[inline]
@@ -71059,6 +76218,13 @@ impl<'a> Default for ImageCopy2<'a> {
 }
 
 impl<'a> ImageCopy2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcSubresource` without native effects.
 	#[doc(alias = "srcSubresource")]
 	#[inline]
@@ -71164,6 +76330,13 @@ impl<'a> Default for ImageBlit2<'a> {
 }
 
 impl<'a> ImageBlit2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcSubresource` without native effects.
 	#[doc(alias = "srcSubresource")]
 	#[inline]
@@ -71266,6 +76439,13 @@ impl<'a> Default for BufferImageCopy2<'a> {
 }
 
 impl<'a> BufferImageCopy2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `bufferOffset` without native effects.
 	#[doc(alias = "bufferOffset")]
 	#[inline]
@@ -71382,6 +76562,13 @@ impl<'a> Default for ImageResolve2<'a> {
 }
 
 impl<'a> ImageResolve2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcSubresource` without native effects.
 	#[doc(alias = "srcSubresource")]
 	#[inline]
@@ -71487,6 +76674,13 @@ impl<'a> Default for CopyBufferInfo2<'a> {
 }
 
 impl<'a> CopyBufferInfo2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcBuffer` without native effects.
 	#[doc(alias = "srcBuffer")]
 	#[inline]
@@ -71602,6 +76796,13 @@ impl<'a> Default for CopyImageInfo2<'a> {
 }
 
 impl<'a> CopyImageInfo2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcImage` without native effects.
 	#[doc(alias = "srcImage")]
 	#[inline]
@@ -71737,6 +76938,13 @@ impl<'a> Default for BlitImageInfo2<'a> {
 }
 
 impl<'a> BlitImageInfo2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcImage` without native effects.
 	#[doc(alias = "srcImage")]
 	#[inline]
@@ -71876,6 +77084,13 @@ impl<'a> Default for CopyBufferToImageInfo2<'a> {
 }
 
 impl<'a> CopyBufferToImageInfo2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcBuffer` without native effects.
 	#[doc(alias = "srcBuffer")]
 	#[inline]
@@ -71997,6 +77212,13 @@ impl<'a> Default for CopyImageToBufferInfo2<'a> {
 }
 
 impl<'a> CopyImageToBufferInfo2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcImage` without native effects.
 	#[doc(alias = "srcImage")]
 	#[inline]
@@ -72121,6 +77343,13 @@ impl<'a> Default for ResolveImageInfo2<'a> {
 }
 
 impl<'a> ResolveImageInfo2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcImage` without native effects.
 	#[doc(alias = "srcImage")]
 	#[inline]
@@ -72242,6 +77471,13 @@ impl<'a> Default for PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderImageInt64Atomics` without native effects.
 	#[doc(alias = "shaderImageInt64Atomics")]
 	#[inline]
@@ -72310,6 +77546,13 @@ impl<'a> Default for FragmentShadingRateAttachmentInfoKHR<'a> {
 }
 
 impl<'a> FragmentShadingRateAttachmentInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pFragmentShadingRateAttachment` without native effects.
 	#[doc(alias = "pFragmentShadingRateAttachment")]
 	#[inline]
@@ -72381,6 +77624,13 @@ impl<'a> Default for PipelineFragmentShadingRateStateCreateInfoKHR<'a> {
 }
 
 impl<'a> PipelineFragmentShadingRateStateCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fragmentSize` without native effects.
 	#[doc(alias = "fragmentSize")]
 	#[inline]
@@ -72452,6 +77702,13 @@ impl<'a> Default for PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceFragmentShadingRateFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineFragmentShadingRate` without native effects.
 	#[doc(alias = "pipelineFragmentShadingRate")]
 	#[inline]
@@ -72574,6 +77831,13 @@ impl<'a> Default for PhysicalDeviceFragmentShadingRatePropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceFragmentShadingRatePropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minFragmentShadingRateAttachmentTexelSize` without native effects.
 	#[doc(alias = "minFragmentShadingRateAttachmentTexelSize")]
 	#[inline]
@@ -72792,6 +78056,13 @@ impl<'a> Default for PhysicalDeviceFragmentShadingRateKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceFragmentShadingRateKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `sampleCounts` without native effects.
 	#[doc(alias = "sampleCounts")]
 	#[inline]
@@ -72857,6 +78128,13 @@ impl<'a> Default for PhysicalDeviceShaderTerminateInvocationFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderTerminateInvocationFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderTerminateInvocation` without native effects.
 	#[doc(alias = "shaderTerminateInvocation")]
 	#[inline]
@@ -72924,6 +78202,13 @@ impl<'a> Default for PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fragmentShadingRateEnums` without native effects.
 	#[doc(alias = "fragmentShadingRateEnums")]
 	#[inline]
@@ -72998,6 +78283,13 @@ impl<'a> Default for PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxFragmentShadingRateInvocationCount` without native effects.
 	#[doc(alias = "maxFragmentShadingRateInvocationCount")]
 	#[inline]
@@ -73063,6 +78355,13 @@ impl<'a> Default for PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {
 }
 
 impl<'a> PipelineFragmentShadingRateEnumStateCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shadingRateType` without native effects.
 	#[doc(alias = "shadingRateType")]
 	#[inline]
@@ -73143,6 +78442,13 @@ impl<'a> Default for AccelerationStructureBuildSizesInfoKHR<'a> {
 }
 
 impl<'a> AccelerationStructureBuildSizesInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `accelerationStructureSize` without native effects.
 	#[doc(alias = "accelerationStructureSize")]
 	#[inline]
@@ -73220,6 +78526,13 @@ impl<'a> Default for PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceImage2DViewOf3DFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `image2DViewOf3D` without native effects.
 	#[doc(alias = "image2DViewOf3D")]
 	#[inline]
@@ -73285,6 +78598,13 @@ impl<'a> Default for PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageSlicedViewOf3D` without native effects.
 	#[doc(alias = "imageSlicedViewOf3D")]
 	#[inline]
@@ -73342,6 +78662,13 @@ impl<'a> Default for PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT
 }
 
 impl<'a> PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `attachmentFeedbackLoopDynamicState` without native effects.
 	#[doc(alias = "attachmentFeedbackLoopDynamicState")]
 	#[inline]
@@ -73398,6 +78725,13 @@ impl<'a> Default for PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `legacyVertexAttributes` without native effects.
 	#[doc(alias = "legacyVertexAttributes")]
 	#[inline]
@@ -73454,6 +78788,13 @@ impl<'a> Default for PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `nativeUnalignedPerformance` without native effects.
 	#[doc(alias = "nativeUnalignedPerformance")]
 	#[inline]
@@ -73510,6 +78851,13 @@ impl<'a> Default for PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `mutableDescriptorType` without native effects.
 	#[doc(alias = "mutableDescriptorType")]
 	#[inline]
@@ -73566,6 +78914,13 @@ impl<'a> Default for MutableDescriptorTypeListEXT<'a> {
 }
 
 impl<'a> MutableDescriptorTypeListEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `descriptorTypeCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -73634,6 +78989,13 @@ impl<'a> Default for MutableDescriptorTypeCreateInfoEXT<'a> {
 }
 
 impl<'a> MutableDescriptorTypeCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `mutableDescriptorTypeListCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -73716,6 +79078,13 @@ impl<'a> Default for PhysicalDeviceDepthClipControlFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceDepthClipControlFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `depthClipControl` without native effects.
 	#[doc(alias = "depthClipControl")]
 	#[inline]
@@ -73772,6 +79141,13 @@ impl<'a> Default for PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `zeroInitializeDeviceMemory` without native effects.
 	#[doc(alias = "zeroInitializeDeviceMemory")]
 	#[inline]
@@ -73825,6 +79201,13 @@ impl<'a> Default for BeginCustomResolveInfoEXT<'a> {
 }
 
 impl<'a> BeginCustomResolveInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -73872,6 +79255,13 @@ impl<'a> Default for PhysicalDeviceCustomResolveFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceCustomResolveFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `customResolve` without native effects.
 	#[doc(alias = "customResolve")]
 	#[inline]
@@ -73940,6 +79330,13 @@ impl<'a> Default for CustomResolveCreateInfoEXT<'a> {
 }
 
 impl<'a> CustomResolveCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `customResolve` without native effects.
 	#[doc(alias = "customResolve")]
 	#[inline]
@@ -74048,6 +79445,13 @@ impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceGeneratedCommands` without native effects.
 	#[doc(alias = "deviceGeneratedCommands")]
 	#[inline]
@@ -74146,6 +79550,13 @@ impl<'a> Default for PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxIndirectPipelineCount` without native effects.
 	#[doc(alias = "maxIndirectPipelineCount")]
 	#[inline]
@@ -74309,6 +79720,13 @@ impl<'a> Default for GeneratedCommandsPipelineInfoEXT<'a> {
 }
 
 impl<'a> GeneratedCommandsPipelineInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipeline` without native effects.
 	#[doc(alias = "pipeline")]
 	#[inline]
@@ -74368,6 +79786,13 @@ impl<'a> Default for GeneratedCommandsShaderInfoEXT<'a> {
 }
 
 impl<'a> GeneratedCommandsShaderInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `shaderCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -74455,6 +79880,13 @@ impl<'a> Default for GeneratedCommandsMemoryRequirementsInfoEXT<'a> {
 }
 
 impl<'a> GeneratedCommandsMemoryRequirementsInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `indirectExecutionSet` without native effects.
 	#[doc(alias = "indirectExecutionSet")]
 	#[inline]
@@ -74541,6 +79973,13 @@ impl<'a> Default for IndirectExecutionSetPipelineInfoEXT<'a> {
 }
 
 impl<'a> IndirectExecutionSetPipelineInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `initialPipeline` without native effects.
 	#[doc(alias = "initialPipeline")]
 	#[inline]
@@ -74609,6 +80048,13 @@ impl<'a> Default for IndirectExecutionSetShaderLayoutInfoEXT<'a> {
 }
 
 impl<'a> IndirectExecutionSetShaderLayoutInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `setLayoutCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -74702,6 +80148,13 @@ impl<'a> Default for IndirectExecutionSetShaderInfoEXT<'a> {
 }
 
 impl<'a> IndirectExecutionSetShaderInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `shaderCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -74833,6 +80286,13 @@ impl<'a> Default for IndirectExecutionSetInfoEXT<'a> {
 }
 
 impl<'a> IndirectExecutionSetInfoEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pPipelineInfo` without native effects.
 	#[doc(alias = "pPipelineInfo")]
 	#[inline]
@@ -74882,6 +80342,13 @@ impl<'a> Default for IndirectExecutionSetCreateInfoEXT<'a> {
 }
 
 impl<'a> IndirectExecutionSetCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -74974,6 +80441,13 @@ impl<'a> Default for GeneratedCommandsInfoEXT<'a> {
 }
 
 impl<'a> GeneratedCommandsInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderStages` without native effects.
 	#[doc(alias = "shaderStages")]
 	#[inline]
@@ -75112,6 +80586,13 @@ impl<'a> Default for WriteIndirectExecutionSetPipelineEXT<'a> {
 }
 
 impl<'a> WriteIndirectExecutionSetPipelineEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `index` without native effects.
 	#[doc(alias = "index")]
 	#[inline]
@@ -75178,6 +80659,13 @@ impl<'a> Default for WriteIndirectExecutionSetShaderEXT<'a> {
 }
 
 impl<'a> WriteIndirectExecutionSetShaderEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `index` without native effects.
 	#[doc(alias = "index")]
 	#[inline]
@@ -75257,6 +80745,13 @@ impl<'a> Default for IndirectCommandsLayoutCreateInfoEXT<'a> {
 }
 
 impl<'a> IndirectCommandsLayoutCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -75374,6 +80869,13 @@ impl<'a> Default for IndirectCommandsLayoutTokenEXT<'a> {
 }
 
 impl<'a> IndirectCommandsLayoutTokenEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -75443,6 +80945,13 @@ impl Default for DrawIndirectCountIndirectCommandEXT {
 }
 
 impl DrawIndirectCountIndirectCommandEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `bufferAddress` without native effects.
 	#[doc(alias = "bufferAddress")]
 	#[inline]
@@ -75490,6 +80999,13 @@ impl Default for IndirectCommandsVertexBufferTokenEXT {
 }
 
 impl IndirectCommandsVertexBufferTokenEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `vertexBindingUnit` without native effects.
 	#[doc(alias = "vertexBindingUnit")]
 	#[inline]
@@ -75523,6 +81039,13 @@ impl Default for BindVertexBufferIndirectCommandEXT {
 }
 
 impl BindVertexBufferIndirectCommandEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `bufferAddress` without native effects.
 	#[doc(alias = "bufferAddress")]
 	#[inline]
@@ -75569,6 +81092,13 @@ impl Default for IndirectCommandsIndexBufferTokenEXT {
 }
 
 impl IndirectCommandsIndexBufferTokenEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `mode` without native effects.
 	#[doc(alias = "mode")]
 	#[inline]
@@ -75603,6 +81133,13 @@ impl Default for BindIndexBufferIndirectCommandEXT {
 }
 
 impl BindIndexBufferIndirectCommandEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `bufferAddress` without native effects.
 	#[doc(alias = "bufferAddress")]
 	#[inline]
@@ -75650,6 +81187,13 @@ impl Default for IndirectCommandsPushConstantTokenEXT {
 }
 
 impl IndirectCommandsPushConstantTokenEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `updateRange` without native effects.
 	#[doc(alias = "updateRange")]
 	#[inline]
@@ -75681,6 +81225,13 @@ impl Default for IndirectCommandsExecutionSetTokenEXT {
 }
 
 impl IndirectCommandsExecutionSetTokenEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -75730,6 +81281,13 @@ impl<'a> Default for IndirectCommandsTokenDataEXT<'a> {
 }
 
 impl<'a> IndirectCommandsTokenDataEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pPushConstant` without native effects.
 	#[doc(alias = "pPushConstant")]
 	#[inline]
@@ -75796,6 +81354,13 @@ impl<'a> Default for PipelineViewportDepthClipControlCreateInfoEXT<'a> {
 }
 
 impl<'a> PipelineViewportDepthClipControlCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `negativeOneToOne` without native effects.
 	#[doc(alias = "negativeOneToOne")]
 	#[inline]
@@ -75852,6 +81417,13 @@ impl<'a> Default for PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceDepthClampControlFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `depthClampControl` without native effects.
 	#[doc(alias = "depthClampControl")]
 	#[inline]
@@ -75911,6 +81483,13 @@ impl<'a> Default for PipelineViewportDepthClampControlCreateInfoEXT<'a> {
 }
 
 impl<'a> PipelineViewportDepthClampControlCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `depthClampMode` without native effects.
 	#[doc(alias = "depthClampMode")]
 	#[inline]
@@ -75976,6 +81555,13 @@ impl<'a> Default for PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `vertexInputDynamicState` without native effects.
 	#[doc(alias = "vertexInputDynamicState")]
 	#[inline]
@@ -76032,6 +81618,13 @@ impl<'a> Default for PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceExternalMemoryRDMAFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `externalMemoryRDMA` without native effects.
 	#[doc(alias = "externalMemoryRDMA")]
 	#[inline]
@@ -76088,6 +81681,13 @@ impl<'a> Default for PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'
 }
 
 impl<'a> PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderRelaxedExtendedInstruction` without native effects.
 	#[doc(alias = "shaderRelaxedExtendedInstruction")]
 	#[inline]
@@ -76150,6 +81750,13 @@ impl<'a> Default for VertexInputBindingDescription2EXT<'a> {
 }
 
 impl<'a> VertexInputBindingDescription2EXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `binding` without native effects.
 	#[doc(alias = "binding")]
 	#[inline]
@@ -76238,6 +81845,13 @@ impl<'a> Default for VertexInputAttributeDescription2EXT<'a> {
 }
 
 impl<'a> VertexInputAttributeDescription2EXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `location` without native effects.
 	#[doc(alias = "location")]
 	#[inline]
@@ -76321,6 +81935,13 @@ impl<'a> Default for PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceColorWriteEnableFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `colorWriteEnable` without native effects.
 	#[doc(alias = "colorWriteEnable")]
 	#[inline]
@@ -76380,6 +82001,13 @@ impl<'a> Default for PipelineColorWriteCreateInfoEXT<'a> {
 }
 
 impl<'a> PipelineColorWriteCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `attachmentCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -76467,6 +82095,13 @@ impl<'a> Default for MemoryBarrier2<'a> {
 }
 
 impl<'a> MemoryBarrier2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcStageMask` without native effects.
 	#[doc(alias = "srcStageMask")]
 	#[inline]
@@ -76580,6 +82215,13 @@ impl<'a> Default for ImageMemoryBarrier2<'a> {
 }
 
 impl<'a> ImageMemoryBarrier2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcStageMask` without native effects.
 	#[doc(alias = "srcStageMask")]
 	#[inline]
@@ -76742,6 +82384,13 @@ impl<'a> Default for BufferMemoryBarrier2<'a> {
 }
 
 impl<'a> BufferMemoryBarrier2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcStageMask` without native effects.
 	#[doc(alias = "srcStageMask")]
 	#[inline]
@@ -76877,6 +82526,13 @@ impl<'a> Default for MemoryBarrierAccessFlags3KHR<'a> {
 }
 
 impl<'a> MemoryBarrierAccessFlags3KHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcAccessMask3` without native effects.
 	#[doc(alias = "srcAccessMask3")]
 	#[inline]
@@ -76960,6 +82616,13 @@ impl<'a> Default for DependencyInfo<'a> {
 }
 
 impl<'a> DependencyInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dependencyFlags` without native effects.
 	#[doc(alias = "dependencyFlags")]
 	#[inline]
@@ -77120,6 +82783,13 @@ impl<'a> Default for SemaphoreSubmitInfo<'a> {
 }
 
 impl<'a> SemaphoreSubmitInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `semaphore` without native effects.
 	#[doc(alias = "semaphore")]
 	#[inline]
@@ -77210,6 +82880,13 @@ impl<'a> Default for CommandBufferSubmitInfo<'a> {
 }
 
 impl<'a> CommandBufferSubmitInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `commandBuffer` without native effects.
 	#[doc(alias = "commandBuffer")]
 	#[inline]
@@ -77296,6 +82973,13 @@ impl<'a> Default for SubmitInfo2<'a> {
 }
 
 impl<'a> SubmitInfo2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -77449,6 +83133,13 @@ impl<'a> Default for QueueFamilyCheckpointProperties2NV<'a> {
 }
 
 impl<'a> QueueFamilyCheckpointProperties2NV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `checkpointExecutionStageMask` without native effects.
 	#[doc(alias = "checkpointExecutionStageMask")]
 	#[inline]
@@ -77507,6 +83198,13 @@ impl<'a> Default for CheckpointData2NV<'a> {
 }
 
 impl<'a> CheckpointData2NV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stage` without native effects.
 	#[doc(alias = "stage")]
 	#[inline]
@@ -77576,6 +83274,13 @@ impl<'a> Default for PhysicalDeviceSynchronization2Features<'a> {
 }
 
 impl<'a> PhysicalDeviceSynchronization2Features<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `synchronization2` without native effects.
 	#[doc(alias = "synchronization2")]
 	#[inline]
@@ -77639,6 +83344,13 @@ impl<'a> Default for PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `unifiedImageLayouts` without native effects.
 	#[doc(alias = "unifiedImageLayouts")]
 	#[inline]
@@ -77704,6 +83416,13 @@ impl<'a> Default for PhysicalDeviceHostImageCopyFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceHostImageCopyFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `hostImageCopy` without native effects.
 	#[doc(alias = "hostImageCopy")]
 	#[inline]
@@ -77779,6 +83498,13 @@ impl<'a> Default for PhysicalDeviceHostImageCopyProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceHostImageCopyProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `copySrcLayoutCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -77925,6 +83651,13 @@ impl<'a> Default for MemoryToImageCopy<'a> {
 }
 
 impl<'a> MemoryToImageCopy<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native pointer `pHostPointer` explicitly. No borrow or extent is inferred.
 	///
 	/// # Safety
@@ -78050,6 +83783,13 @@ impl<'a> Default for ImageToMemoryCopy<'a> {
 }
 
 impl<'a> ImageToMemoryCopy<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native pointer `pHostPointer` explicitly. No borrow or extent is inferred.
 	///
 	/// # Safety
@@ -78171,6 +83911,13 @@ impl<'a> Default for CopyMemoryToImageInfo<'a> {
 }
 
 impl<'a> CopyMemoryToImageInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -78291,6 +84038,13 @@ impl<'a> Default for CopyImageToMemoryInfo<'a> {
 }
 
 impl<'a> CopyImageToMemoryInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -78417,6 +84171,13 @@ impl<'a> Default for CopyImageToImageInfo<'a> {
 }
 
 impl<'a> CopyImageToImageInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -78552,6 +84313,13 @@ impl<'a> Default for HostImageLayoutTransitionInfo<'a> {
 }
 
 impl<'a> HostImageLayoutTransitionInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `image` without native effects.
 	#[doc(alias = "image")]
 	#[inline]
@@ -78638,6 +84406,13 @@ impl<'a> Default for SubresourceHostMemcpySize<'a> {
 }
 
 impl<'a> SubresourceHostMemcpySize<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `size` without native effects.
 	#[doc(alias = "size")]
 	#[inline]
@@ -78701,6 +84476,13 @@ impl<'a> Default for HostImageCopyDevicePerformanceQuery<'a> {
 }
 
 impl<'a> HostImageCopyDevicePerformanceQuery<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `optimalDeviceAccess` without native effects.
 	#[doc(alias = "optimalDeviceAccess")]
 	#[inline]
@@ -78776,6 +84558,13 @@ impl<'a> Default for PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `primitivesGeneratedQuery` without native effects.
 	#[doc(alias = "primitivesGeneratedQuery")]
 	#[inline]
@@ -78850,6 +84639,13 @@ impl<'a> Default for PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceLegacyDitheringFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `legacyDithering` without native effects.
 	#[doc(alias = "legacyDithering")]
 	#[inline]
@@ -78907,6 +84703,13 @@ impl<'a> Default for PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<
 }
 
 impl<'a> PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `multisampledRenderToSingleSampled` without native effects.
 	#[doc(alias = "multisampledRenderToSingleSampled")]
 	#[inline]
@@ -78963,6 +84766,13 @@ impl<'a> Default for SurfaceCapabilitiesPresentId2KHR<'a> {
 }
 
 impl<'a> SurfaceCapabilitiesPresentId2KHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentId2Supported` without native effects.
 	#[doc(alias = "presentId2Supported")]
 	#[inline]
@@ -79019,6 +84829,13 @@ impl<'a> Default for SurfaceCapabilitiesPresentWait2KHR<'a> {
 }
 
 impl<'a> SurfaceCapabilitiesPresentWait2KHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentWait2Supported` without native effects.
 	#[doc(alias = "presentWait2Supported")]
 	#[inline]
@@ -79074,6 +84891,13 @@ impl<'a> Default for SubpassResolvePerformanceQueryEXT<'a> {
 }
 
 impl<'a> SubpassResolvePerformanceQueryEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `optimal` without native effects.
 	#[doc(alias = "optimal")]
 	#[inline]
@@ -79133,6 +84957,13 @@ impl<'a> Default for MultisampledRenderToSingleSampledInfoEXT<'a> {
 }
 
 impl<'a> MultisampledRenderToSingleSampledInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `multisampledRenderToSingleSampledEnable` without native effects.
 	#[doc(alias = "multisampledRenderToSingleSampledEnable")]
 	#[inline]
@@ -79198,6 +85029,13 @@ impl<'a> Default for PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT<'a> 
 }
 
 impl<'a> PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `multisampledRenderToSwapchain` without native effects.
 	#[doc(alias = "multisampledRenderToSwapchain")]
 	#[inline]
@@ -79254,6 +85092,13 @@ impl<'a> Default for PhysicalDevicePipelineProtectedAccessFeatures<'a> {
 }
 
 impl<'a> PhysicalDevicePipelineProtectedAccessFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineProtectedAccess` without native effects.
 	#[doc(alias = "pipelineProtectedAccess")]
 	#[inline]
@@ -79315,6 +85160,13 @@ impl<'a> Default for QueueFamilyVideoPropertiesKHR<'a> {
 }
 
 impl<'a> QueueFamilyVideoPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `videoCodecOperations` without native effects.
 	#[doc(alias = "videoCodecOperations")]
 	#[inline]
@@ -79371,6 +85223,13 @@ impl<'a> Default for QueueFamilyQueryResultStatusPropertiesKHR<'a> {
 }
 
 impl<'a> QueueFamilyQueryResultStatusPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `queryResultStatusSupport` without native effects.
 	#[doc(alias = "queryResultStatusSupport")]
 	#[inline]
@@ -79430,6 +85289,13 @@ impl<'a> Default for VideoProfileListInfoKHR<'a> {
 }
 
 impl<'a> VideoProfileListInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `profileCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -79508,6 +85374,13 @@ impl<'a> Default for PhysicalDeviceVideoFormatInfoKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceVideoFormatInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageUsage` without native effects.
 	#[doc(alias = "imageUsage")]
 	#[inline]
@@ -79578,6 +85451,13 @@ impl<'a> Default for VideoFormatPropertiesKHR<'a> {
 }
 
 impl<'a> VideoFormatPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `format` without native effects.
 	#[doc(alias = "format")]
 	#[inline]
@@ -79679,6 +85559,13 @@ impl<'a> Default for VideoEncodeQuantizationMapCapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoEncodeQuantizationMapCapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxQuantizationMapExtent` without native effects.
 	#[doc(alias = "maxQuantizationMapExtent")]
 	#[inline]
@@ -79738,6 +85625,13 @@ impl<'a> Default for VideoEncodeH264QuantizationMapCapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264QuantizationMapCapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minQpDelta` without native effects.
 	#[doc(alias = "minQpDelta")]
 	#[inline]
@@ -79806,6 +85700,13 @@ impl<'a> Default for VideoEncodeH265QuantizationMapCapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265QuantizationMapCapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minQpDelta` without native effects.
 	#[doc(alias = "minQpDelta")]
 	#[inline]
@@ -79874,6 +85775,13 @@ impl<'a> Default for VideoEncodeAV1QuantizationMapCapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoEncodeAV1QuantizationMapCapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minQIndexDelta` without native effects.
 	#[doc(alias = "minQIndexDelta")]
 	#[inline]
@@ -79939,6 +85847,13 @@ impl<'a> Default for VideoFormatQuantizationMapPropertiesKHR<'a> {
 }
 
 impl<'a> VideoFormatQuantizationMapPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `quantizationMapTexelSize` without native effects.
 	#[doc(alias = "quantizationMapTexelSize")]
 	#[inline]
@@ -79995,6 +85910,13 @@ impl<'a> Default for VideoFormatH265QuantizationMapPropertiesKHR<'a> {
 }
 
 impl<'a> VideoFormatH265QuantizationMapPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `compatibleCtbSizes` without native effects.
 	#[doc(alias = "compatibleCtbSizes")]
 	#[inline]
@@ -80051,6 +85973,13 @@ impl<'a> Default for VideoFormatAV1QuantizationMapPropertiesKHR<'a> {
 }
 
 impl<'a> VideoFormatAV1QuantizationMapPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `compatibleSuperblockSizes` without native effects.
 	#[doc(alias = "compatibleSuperblockSizes")]
 	#[inline]
@@ -80119,6 +86048,13 @@ impl<'a> Default for VideoProfileInfoKHR<'a> {
 }
 
 impl<'a> VideoProfileInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `videoCodecOperation` without native effects.
 	#[doc(alias = "videoCodecOperation")]
 	#[inline]
@@ -80225,6 +86161,13 @@ impl<'a> Default for VideoCapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoCapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -80356,6 +86299,13 @@ impl<'a> Default for VideoSessionMemoryRequirementsKHR<'a> {
 }
 
 impl<'a> VideoSessionMemoryRequirementsKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memoryBindIndex` without native effects.
 	#[doc(alias = "memoryBindIndex")]
 	#[inline]
@@ -80429,6 +86379,13 @@ impl<'a> Default for BindVideoSessionMemoryInfoKHR<'a> {
 }
 
 impl<'a> BindVideoSessionMemoryInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memoryBindIndex` without native effects.
 	#[doc(alias = "memoryBindIndex")]
 	#[inline]
@@ -80521,6 +86478,13 @@ impl<'a> Default for VideoPictureResourceInfoKHR<'a> {
 }
 
 impl<'a> VideoPictureResourceInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `codedOffset` without native effects.
 	#[doc(alias = "codedOffset")]
 	#[inline]
@@ -80607,6 +86571,13 @@ impl<'a> Default for VideoReferenceSlotInfoKHR<'a> {
 }
 
 impl<'a> VideoReferenceSlotInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `slotIndex` without native effects.
 	#[doc(alias = "slotIndex")]
 	#[inline]
@@ -80671,6 +86642,13 @@ impl<'a> Default for VideoDecodeCapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoDecodeCapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -80727,6 +86705,13 @@ impl<'a> Default for VideoDecodeUsageInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeUsageInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `videoUsageHints` without native effects.
 	#[doc(alias = "videoUsageHints")]
 	#[inline]
@@ -80803,6 +86788,13 @@ impl<'a> Default for VideoDecodeInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -80935,6 +86927,13 @@ impl<'a> Default for PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceVideoMaintenance1FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `videoMaintenance1` without native effects.
 	#[doc(alias = "videoMaintenance1")]
 	#[inline]
@@ -80991,6 +86990,13 @@ impl<'a> Default for PhysicalDeviceVideoMaintenance2FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceVideoMaintenance2FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `videoMaintenance2` without native effects.
 	#[doc(alias = "videoMaintenance2")]
 	#[inline]
@@ -81053,6 +87059,13 @@ impl<'a> Default for VideoInlineQueryInfoKHR<'a> {
 }
 
 impl<'a> VideoInlineQueryInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `queryPool` without native effects.
 	#[doc(alias = "queryPool")]
 	#[inline]
@@ -81130,6 +87143,13 @@ impl Default for StdVideoDecodeH264PictureInfo {
 }
 
 impl StdVideoDecodeH264PictureInfo {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -81231,6 +87251,13 @@ impl Default for StdVideoDecodeH264ReferenceInfo {
 }
 
 impl StdVideoDecodeH264ReferenceInfo {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -81303,6 +87330,13 @@ impl<'a> Default for VideoDecodeH264ProfileInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeH264ProfileInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stdProfileIdc` without native effects.
 	#[doc(alias = "stdProfileIdc")]
 	#[inline]
@@ -81371,6 +87405,13 @@ impl<'a> Default for VideoDecodeH264CapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoDecodeH264CapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxLevelIdc` without native effects.
 	#[doc(alias = "maxLevelIdc")]
 	#[inline]
@@ -81477,6 +87518,13 @@ impl<'a> Default for StdVideoH264SequenceParameterSet<'a> {
 }
 
 impl<'a> StdVideoH264SequenceParameterSet<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -81759,6 +87807,13 @@ impl<'a> Default for StdVideoH264PictureParameterSet<'a> {
 }
 
 impl<'a> StdVideoH264PictureParameterSet<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -81897,6 +87952,13 @@ impl<'a> Default for VideoDecodeH264SessionParametersAddInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeH264SessionParametersAddInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `stdSPSCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -82012,6 +88074,13 @@ impl<'a> Default for VideoDecodeH264SessionParametersCreateInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeH264SessionParametersCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxStdSPSCount` without native effects.
 	#[doc(alias = "maxStdSPSCount")]
 	#[inline]
@@ -82092,6 +88161,13 @@ impl<'a> Default for VideoDecodeH264InlineSessionParametersInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeH264InlineSessionParametersInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pStdSPS` without native effects.
 	#[doc(alias = "pStdSPS")]
 	#[inline]
@@ -82163,6 +88239,13 @@ impl<'a> Default for VideoDecodeH264PictureInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeH264PictureInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pStdPictureInfo` without native effects.
 	#[doc(alias = "pStdPictureInfo")]
 	#[inline]
@@ -82250,6 +88333,13 @@ impl<'a> Default for VideoDecodeH264DpbSlotInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeH264DpbSlotInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pStdReferenceInfo` without native effects.
 	#[doc(alias = "pStdReferenceInfo")]
 	#[inline]
@@ -82321,6 +88411,13 @@ impl<'a> Default for StdVideoH265VideoParameterSet<'a> {
 }
 
 impl<'a> StdVideoH265VideoParameterSet<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -82532,6 +88629,13 @@ impl<'a> Default for StdVideoH265SequenceParameterSet<'a> {
 }
 
 impl<'a> StdVideoH265SequenceParameterSet<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -82994,6 +89098,13 @@ impl<'a> Default for StdVideoH265PictureParameterSet<'a> {
 }
 
 impl<'a> StdVideoH265PictureParameterSet<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -83377,6 +89488,13 @@ impl Default for StdVideoDecodeH265PictureInfo {
 }
 
 impl StdVideoDecodeH265PictureInfo {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -83506,6 +89624,13 @@ impl Default for StdVideoDecodeH265ReferenceInfo {
 }
 
 impl StdVideoDecodeH265ReferenceInfo {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -83554,6 +89679,13 @@ impl<'a> Default for VideoDecodeH265ProfileInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeH265ProfileInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stdProfileIdc` without native effects.
 	#[doc(alias = "stdProfileIdc")]
 	#[inline]
@@ -83610,6 +89742,13 @@ impl<'a> Default for VideoDecodeH265CapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoDecodeH265CapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxLevelIdc` without native effects.
 	#[doc(alias = "maxLevelIdc")]
 	#[inline]
@@ -83681,6 +89820,13 @@ impl<'a> Default for VideoDecodeH265SessionParametersAddInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeH265SessionParametersAddInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `stdVPSCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -83830,6 +89976,13 @@ impl<'a> Default for VideoDecodeH265SessionParametersCreateInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeH265SessionParametersCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxStdVPSCount` without native effects.
 	#[doc(alias = "maxStdVPSCount")]
 	#[inline]
@@ -83922,6 +90075,13 @@ impl<'a> Default for VideoDecodeH265InlineSessionParametersInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeH265InlineSessionParametersInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pStdVPS` without native effects.
 	#[doc(alias = "pStdVPS")]
 	#[inline]
@@ -84002,6 +90162,13 @@ impl<'a> Default for VideoDecodeH265PictureInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeH265PictureInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pStdPictureInfo` without native effects.
 	#[doc(alias = "pStdPictureInfo")]
 	#[inline]
@@ -84089,6 +90256,13 @@ impl<'a> Default for VideoDecodeH265DpbSlotInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeH265DpbSlotInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pStdReferenceInfo` without native effects.
 	#[doc(alias = "pStdReferenceInfo")]
 	#[inline]
@@ -84172,6 +90346,13 @@ impl<'a> Default for StdVideoDecodeVP9PictureInfo<'a> {
 }
 
 impl<'a> StdVideoDecodeVP9PictureInfo<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -84364,6 +90545,13 @@ impl<'a> Default for PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceVideoDecodeVP9FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `videoDecodeVP9` without native effects.
 	#[doc(alias = "videoDecodeVP9")]
 	#[inline]
@@ -84420,6 +90608,13 @@ impl<'a> Default for VideoDecodeVP9ProfileInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeVP9ProfileInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stdProfile` without native effects.
 	#[doc(alias = "stdProfile")]
 	#[inline]
@@ -84476,6 +90671,13 @@ impl<'a> Default for VideoDecodeVP9CapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoDecodeVP9CapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxLevel` without native effects.
 	#[doc(alias = "maxLevel")]
 	#[inline]
@@ -84544,6 +90746,13 @@ impl<'a> Default for VideoDecodeVP9PictureInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeVP9PictureInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pStdPictureInfo` without native effects.
 	#[doc(alias = "pStdPictureInfo")]
 	#[inline]
@@ -84657,6 +90866,13 @@ impl<'a> Default for StdVideoAV1SequenceHeader<'a> {
 }
 
 impl<'a> StdVideoAV1SequenceHeader<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -84862,6 +91078,13 @@ impl<'a> Default for StdVideoDecodeAV1PictureInfo<'a> {
 }
 
 impl<'a> StdVideoDecodeAV1PictureInfo<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -85113,6 +91336,13 @@ impl Default for StdVideoDecodeAV1ReferenceInfo {
 }
 
 impl StdVideoDecodeAV1ReferenceInfo {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -85194,6 +91424,13 @@ impl<'a> Default for VideoDecodeAV1ProfileInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeAV1ProfileInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stdProfile` without native effects.
 	#[doc(alias = "stdProfile")]
 	#[inline]
@@ -85259,6 +91496,13 @@ impl<'a> Default for VideoDecodeAV1CapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoDecodeAV1CapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxLevel` without native effects.
 	#[doc(alias = "maxLevel")]
 	#[inline]
@@ -85315,6 +91559,13 @@ impl<'a> Default for VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeAV1SessionParametersCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pStdSequenceHeader` without native effects.
 	#[doc(alias = "pStdSequenceHeader")]
 	#[inline]
@@ -85371,6 +91622,13 @@ impl<'a> Default for VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeAV1InlineSessionParametersInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pStdSequenceHeader` without native effects.
 	#[doc(alias = "pStdSequenceHeader")]
 	#[inline]
@@ -85442,6 +91700,13 @@ impl<'a> Default for VideoDecodeAV1PictureInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeAV1PictureInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pStdPictureInfo` without native effects.
 	#[doc(alias = "pStdPictureInfo")]
 	#[inline]
@@ -85566,6 +91831,13 @@ impl<'a> Default for VideoDecodeAV1DpbSlotInfoKHR<'a> {
 }
 
 impl<'a> VideoDecodeAV1DpbSlotInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pStdReferenceInfo` without native effects.
 	#[doc(alias = "pStdReferenceInfo")]
 	#[inline]
@@ -85645,6 +91917,13 @@ impl<'a> Default for VideoSessionCreateInfoKHR<'a> {
 }
 
 impl<'a> VideoSessionCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `queueFamilyIndex` without native effects.
 	#[doc(alias = "queueFamilyIndex")]
 	#[inline]
@@ -85778,6 +92057,13 @@ impl<'a> Default for VideoSessionParametersCreateInfoKHR<'a> {
 }
 
 impl<'a> VideoSessionParametersCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -85852,6 +92138,13 @@ impl<'a> Default for VideoSessionParametersUpdateInfoKHR<'a> {
 }
 
 impl<'a> VideoSessionParametersUpdateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `updateSequenceCount` without native effects.
 	#[doc(alias = "updateSequenceCount")]
 	#[inline]
@@ -85908,6 +92201,13 @@ impl<'a> Default for VideoEncodeSessionParametersGetInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeSessionParametersGetInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `videoSessionParameters` without native effects.
 	#[doc(alias = "videoSessionParameters")]
 	#[inline]
@@ -85964,6 +92264,13 @@ impl<'a> Default for VideoEncodeSessionParametersFeedbackInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeSessionParametersFeedbackInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `hasOverrides` without native effects.
 	#[doc(alias = "hasOverrides")]
 	#[inline]
@@ -86031,6 +92338,13 @@ impl<'a> Default for VideoBeginCodingInfoKHR<'a> {
 }
 
 impl<'a> VideoBeginCodingInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -86135,6 +92449,13 @@ impl<'a> Default for VideoEndCodingInfoKHR<'a> {
 }
 
 impl<'a> VideoEndCodingInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -86190,6 +92511,13 @@ impl<'a> Default for VideoCodingControlInfoKHR<'a> {
 }
 
 impl<'a> VideoCodingControlInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -86252,6 +92580,13 @@ impl<'a> Default for VideoEncodeUsageInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeUsageInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `videoUsageHints` without native effects.
 	#[doc(alias = "videoUsageHints")]
 	#[inline]
@@ -86349,6 +92684,13 @@ impl<'a> Default for VideoEncodeInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -86493,6 +92835,13 @@ impl<'a> Default for VideoEncodeQuantizationMapInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeQuantizationMapInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `quantizationMap` without native effects.
 	#[doc(alias = "quantizationMap")]
 	#[inline]
@@ -86558,6 +92907,13 @@ impl<'a> Default for VideoEncodeQuantizationMapSessionParametersCreateInfoKHR<'a
 }
 
 impl<'a> VideoEncodeQuantizationMapSessionParametersCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `quantizationMapTexelSize` without native effects.
 	#[doc(alias = "quantizationMapTexelSize")]
 	#[inline]
@@ -86614,6 +92970,13 @@ impl<'a> Default for PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `videoEncodeQuantizationMap` without native effects.
 	#[doc(alias = "videoEncodeQuantizationMap")]
 	#[inline]
@@ -86670,6 +93033,13 @@ impl<'a> Default for QueryPoolVideoEncodeFeedbackCreateInfoKHR<'a> {
 }
 
 impl<'a> QueryPoolVideoEncodeFeedbackCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `encodeFeedbackFlags` without native effects.
 	#[doc(alias = "encodeFeedbackFlags")]
 	#[inline]
@@ -86726,6 +93096,13 @@ impl<'a> Default for VideoEncodeQualityLevelInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeQualityLevelInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `qualityLevel` without native effects.
 	#[doc(alias = "qualityLevel")]
 	#[inline]
@@ -86785,6 +93162,13 @@ impl<'a> Default for PhysicalDeviceVideoEncodeQualityLevelInfoKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceVideoEncodeQualityLevelInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pVideoProfile` without native effects.
 	#[doc(alias = "pVideoProfile")]
 	#[inline]
@@ -86853,6 +93237,13 @@ impl<'a> Default for VideoEncodeQualityLevelPropertiesKHR<'a> {
 }
 
 impl<'a> VideoEncodeQualityLevelPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `preferredRateControlMode` without native effects.
 	#[doc(alias = "preferredRateControlMode")]
 	#[inline]
@@ -86935,6 +93326,13 @@ impl<'a> Default for VideoEncodeRateControlInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeRateControlInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -87058,6 +93456,13 @@ impl<'a> Default for VideoEncodeRateControlLayerInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeRateControlLayerInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `averageBitrate` without native effects.
 	#[doc(alias = "averageBitrate")]
 	#[inline]
@@ -87158,6 +93563,13 @@ impl<'a> Default for VideoEncodeCapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoEncodeCapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -87268,6 +93680,13 @@ impl<'a> Default for PhysicalDeviceVideoEncodeFeedback2FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceVideoEncodeFeedback2FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `videoEncodeFeedback2` without native effects.
 	#[doc(alias = "videoEncodeFeedback2")]
 	#[inline]
@@ -87327,6 +93746,13 @@ impl<'a> Default for VideoEncodeFeedback2CapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoEncodeFeedback2CapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxPerPartitionFeedbackEntries` without native effects.
 	#[doc(alias = "maxPerPartitionFeedbackEntries")]
 	#[inline]
@@ -87398,6 +93824,13 @@ impl<'a> Default for QueryPoolVideoEncodePerPartitionFeedbackCreateInfoKHR<'a> {
 }
 
 impl<'a> QueryPoolVideoEncodePerPartitionFeedbackCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxPerPartitionFeedbackEntries` without native effects.
 	#[doc(alias = "maxPerPartitionFeedbackEntries")]
 	#[inline]
@@ -87501,6 +93934,13 @@ impl<'a> Default for VideoEncodeH264CapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264CapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -87689,6 +94129,13 @@ impl<'a> Default for VideoEncodeH264QualityLevelPropertiesKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264QualityLevelPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `preferredRateControlFlags` without native effects.
 	#[doc(alias = "preferredRateControlFlags")]
 	#[inline]
@@ -87829,6 +94276,13 @@ impl<'a> Default for StdVideoEncodeH264SliceHeader<'a> {
 }
 
 impl<'a> StdVideoEncodeH264SliceHeader<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -87962,6 +94416,13 @@ impl<'a> Default for StdVideoEncodeH264PictureInfo<'a> {
 }
 
 impl<'a> StdVideoEncodeH264PictureInfo<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -88084,6 +94545,13 @@ impl Default for StdVideoEncodeH264ReferenceInfo {
 }
 
 impl StdVideoEncodeH264ReferenceInfo {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -88180,6 +94648,13 @@ impl<'a> Default for VideoEncodeH264SessionCreateInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264SessionCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `useMaxLevelIdc` without native effects.
 	#[doc(alias = "useMaxLevelIdc")]
 	#[inline]
@@ -88254,6 +94729,13 @@ impl<'a> Default for VideoEncodeH264SessionParametersAddInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264SessionParametersAddInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `stdSPSCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -88369,6 +94851,13 @@ impl<'a> Default for VideoEncodeH264SessionParametersCreateInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264SessionParametersCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxStdSPSCount` without native effects.
 	#[doc(alias = "maxStdSPSCount")]
 	#[inline]
@@ -88455,6 +94944,13 @@ impl<'a> Default for VideoEncodeH264SessionParametersGetInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264SessionParametersGetInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `writeStdSPS` without native effects.
 	#[doc(alias = "writeStdSPS")]
 	#[inline]
@@ -88541,6 +95037,13 @@ impl<'a> Default for VideoEncodeH264SessionParametersFeedbackInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264SessionParametersFeedbackInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `hasStdSPSOverrides` without native effects.
 	#[doc(alias = "hasStdSPSOverrides")]
 	#[inline]
@@ -88606,6 +95109,13 @@ impl<'a> Default for VideoEncodeH264DpbSlotInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264DpbSlotInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pStdReferenceInfo` without native effects.
 	#[doc(alias = "pStdReferenceInfo")]
 	#[inline]
@@ -88671,6 +95181,13 @@ impl<'a> Default for VideoEncodeH264PictureInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264PictureInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `naluSliceEntryCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -88767,6 +95284,13 @@ impl<'a> Default for VideoEncodeH264ProfileInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264ProfileInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stdProfileIdc` without native effects.
 	#[doc(alias = "stdProfileIdc")]
 	#[inline]
@@ -88826,6 +95350,13 @@ impl<'a> Default for VideoEncodeH264NaluSliceInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264NaluSliceInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `constantQp` without native effects.
 	#[doc(alias = "constantQp")]
 	#[inline]
@@ -88902,6 +95433,13 @@ impl<'a> Default for VideoEncodeH264RateControlInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264RateControlInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -88990,6 +95528,13 @@ impl Default for VideoEncodeH264QpKHR {
 }
 
 impl VideoEncodeH264QpKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `qpI` without native effects.
 	#[doc(alias = "qpI")]
 	#[inline]
@@ -89043,6 +95588,13 @@ impl Default for VideoEncodeH264FrameSizeKHR {
 }
 
 impl VideoEncodeH264FrameSizeKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `frameISize` without native effects.
 	#[doc(alias = "frameISize")]
 	#[inline]
@@ -89109,6 +95661,13 @@ impl<'a> Default for VideoEncodeH264GopRemainingFrameInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264GopRemainingFrameInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `useGopRemainingFrames` without native effects.
 	#[doc(alias = "useGopRemainingFrames")]
 	#[inline]
@@ -89207,6 +95766,13 @@ impl<'a> Default for VideoEncodeH264RateControlLayerInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH264RateControlLayerInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `useMinQp` without native effects.
 	#[doc(alias = "useMinQp")]
 	#[inline]
@@ -89352,6 +95918,13 @@ impl<'a> Default for VideoEncodeH265CapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265CapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -89567,6 +96140,13 @@ impl<'a> Default for VideoEncodeH265QualityLevelPropertiesKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265QualityLevelPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `preferredRateControlFlags` without native effects.
 	#[doc(alias = "preferredRateControlFlags")]
 	#[inline]
@@ -89706,6 +96286,13 @@ impl<'a> Default for StdVideoEncodeH265PictureInfo<'a> {
 }
 
 impl<'a> StdVideoEncodeH265PictureInfo<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -89864,6 +96451,13 @@ impl<'a> Default for StdVideoEncodeH265SliceSegmentHeader<'a> {
 }
 
 impl<'a> StdVideoEncodeH265SliceSegmentHeader<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -90025,6 +96619,13 @@ impl Default for StdVideoEncodeH265ReferenceInfo {
 }
 
 impl StdVideoEncodeH265ReferenceInfo {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -90094,6 +96695,13 @@ impl<'a> Default for VideoEncodeH265SessionCreateInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265SessionCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `useMaxLevelIdc` without native effects.
 	#[doc(alias = "useMaxLevelIdc")]
 	#[inline]
@@ -90174,6 +96782,13 @@ impl<'a> Default for VideoEncodeH265SessionParametersAddInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265SessionParametersAddInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `stdVPSCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -90323,6 +96938,13 @@ impl<'a> Default for VideoEncodeH265SessionParametersCreateInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265SessionParametersCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxStdVPSCount` without native effects.
 	#[doc(alias = "maxStdVPSCount")]
 	#[inline]
@@ -90424,6 +97046,13 @@ impl<'a> Default for VideoEncodeH265SessionParametersGetInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265SessionParametersGetInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `writeStdVPS` without native effects.
 	#[doc(alias = "writeStdVPS")]
 	#[inline]
@@ -90531,6 +97160,13 @@ impl<'a> Default for VideoEncodeH265SessionParametersFeedbackInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265SessionParametersFeedbackInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `hasStdVPSOverrides` without native effects.
 	#[doc(alias = "hasStdVPSOverrides")]
 	#[inline]
@@ -90611,6 +97247,13 @@ impl<'a> Default for VideoEncodeH265PictureInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265PictureInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `naluSliceSegmentEntryCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -90701,6 +97344,13 @@ impl<'a> Default for VideoEncodeH265NaluSliceSegmentInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265NaluSliceSegmentInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `constantQp` without native effects.
 	#[doc(alias = "constantQp")]
 	#[inline]
@@ -90780,6 +97430,13 @@ impl<'a> Default for VideoEncodeH265RateControlInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265RateControlInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -90868,6 +97525,13 @@ impl Default for VideoEncodeH265QpKHR {
 }
 
 impl VideoEncodeH265QpKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `qpI` without native effects.
 	#[doc(alias = "qpI")]
 	#[inline]
@@ -90921,6 +97585,13 @@ impl Default for VideoEncodeH265FrameSizeKHR {
 }
 
 impl VideoEncodeH265FrameSizeKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `frameISize` without native effects.
 	#[doc(alias = "frameISize")]
 	#[inline]
@@ -90987,6 +97658,13 @@ impl<'a> Default for VideoEncodeH265GopRemainingFrameInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265GopRemainingFrameInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `useGopRemainingFrames` without native effects.
 	#[doc(alias = "useGopRemainingFrames")]
 	#[inline]
@@ -91085,6 +97763,13 @@ impl<'a> Default for VideoEncodeH265RateControlLayerInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265RateControlLayerInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `useMinQp` without native effects.
 	#[doc(alias = "useMinQp")]
 	#[inline]
@@ -91186,6 +97871,13 @@ impl<'a> Default for VideoEncodeH265ProfileInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265ProfileInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stdProfileIdc` without native effects.
 	#[doc(alias = "stdProfileIdc")]
 	#[inline]
@@ -91242,6 +97934,13 @@ impl<'a> Default for VideoEncodeH265DpbSlotInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeH265DpbSlotInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pStdReferenceInfo` without native effects.
 	#[doc(alias = "pStdReferenceInfo")]
 	#[inline]
@@ -91366,6 +98065,13 @@ impl<'a> Default for VideoEncodeAV1CapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoEncodeAV1CapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -91671,6 +98377,13 @@ impl<'a> Default for VideoEncodeAV1QualityLevelPropertiesKHR<'a> {
 }
 
 impl<'a> VideoEncodeAV1QualityLevelPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `preferredRateControlFlags` without native effects.
 	#[doc(alias = "preferredRateControlFlags")]
 	#[inline]
@@ -91855,6 +98568,13 @@ impl Default for StdVideoEncodeAV1ExtensionHeader {
 }
 
 impl StdVideoEncodeAV1ExtensionHeader {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `temporal_id` without native effects.
 	#[doc(alias = "temporal_id")]
 	#[inline]
@@ -91899,6 +98619,13 @@ impl Default for StdVideoEncodeAV1DecoderModelInfo {
 }
 
 impl StdVideoEncodeAV1DecoderModelInfo {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `buffer_delay_length_minus_1` without native effects.
 	#[doc(alias = "buffer_delay_length_minus_1")]
 	#[inline]
@@ -91974,6 +98701,13 @@ impl Default for StdVideoEncodeAV1OperatingPointInfo {
 }
 
 impl StdVideoEncodeAV1OperatingPointInfo {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -92119,6 +98853,13 @@ impl<'a> Default for StdVideoEncodeAV1PictureInfo<'a> {
 }
 
 impl<'a> StdVideoEncodeAV1PictureInfo<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -92398,6 +99139,13 @@ impl<'a> Default for StdVideoEncodeAV1ReferenceInfo<'a> {
 }
 
 impl<'a> StdVideoEncodeAV1ReferenceInfo<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -92482,6 +99230,13 @@ impl<'a> Default for PhysicalDeviceVideoEncodeAV1FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceVideoEncodeAV1FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `videoEncodeAV1` without native effects.
 	#[doc(alias = "videoEncodeAV1")]
 	#[inline]
@@ -92541,6 +99296,13 @@ impl<'a> Default for VideoEncodeAV1SessionCreateInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeAV1SessionCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `useMaxLevel` without native effects.
 	#[doc(alias = "useMaxLevel")]
 	#[inline]
@@ -92615,6 +99377,13 @@ impl<'a> Default for VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeAV1SessionParametersCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pStdSequenceHeader` without native effects.
 	#[doc(alias = "pStdSequenceHeader")]
 	#[inline]
@@ -92714,6 +99483,13 @@ impl<'a> Default for VideoEncodeAV1DpbSlotInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeAV1DpbSlotInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pStdReferenceInfo` without native effects.
 	#[doc(alias = "pStdReferenceInfo")]
 	#[inline]
@@ -92788,6 +99564,13 @@ impl<'a> Default for VideoEncodeAV1PictureInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeAV1PictureInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `predictionMode` without native effects.
 	#[doc(alias = "predictionMode")]
 	#[inline]
@@ -92901,6 +99684,13 @@ impl<'a> Default for VideoEncodeAV1ProfileInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeAV1ProfileInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stdProfile` without native effects.
 	#[doc(alias = "stdProfile")]
 	#[inline]
@@ -92968,6 +99758,13 @@ impl<'a> Default for VideoEncodeAV1RateControlInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeAV1RateControlInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -93056,6 +99853,13 @@ impl Default for VideoEncodeAV1QIndexKHR {
 }
 
 impl VideoEncodeAV1QIndexKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `intraQIndex` without native effects.
 	#[doc(alias = "intraQIndex")]
 	#[inline]
@@ -93109,6 +99913,13 @@ impl Default for VideoEncodeAV1FrameSizeKHR {
 }
 
 impl VideoEncodeAV1FrameSizeKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `intraFrameSize` without native effects.
 	#[doc(alias = "intraFrameSize")]
 	#[inline]
@@ -93175,6 +99986,13 @@ impl<'a> Default for VideoEncodeAV1GopRemainingFrameInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeAV1GopRemainingFrameInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `useGopRemainingFrames` without native effects.
 	#[doc(alias = "useGopRemainingFrames")]
 	#[inline]
@@ -93273,6 +100091,13 @@ impl<'a> Default for VideoEncodeAV1RateControlLayerInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeAV1RateControlLayerInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `useMinQIndex` without native effects.
 	#[doc(alias = "useMinQIndex")]
 	#[inline]
@@ -93374,6 +100199,13 @@ impl<'a> Default for PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceInheritedViewportScissorFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `inheritedViewportScissor2D` without native effects.
 	#[doc(alias = "inheritedViewportScissor2D")]
 	#[inline]
@@ -93436,6 +100268,13 @@ impl<'a> Default for CommandBufferInheritanceViewportScissorInfoNV<'a> {
 }
 
 impl<'a> CommandBufferInheritanceViewportScissorInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `viewportScissor2D` without native effects.
 	#[doc(alias = "viewportScissor2D")]
 	#[inline]
@@ -93520,6 +100359,13 @@ impl<'a> Default for PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `ycbcr2plane444Formats` without native effects.
 	#[doc(alias = "ycbcr2plane444Formats")]
 	#[inline]
@@ -93579,6 +100425,13 @@ impl<'a> Default for PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceProvokingVertexFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `provokingVertexLast` without native effects.
 	#[doc(alias = "provokingVertexLast")]
 	#[inline]
@@ -93647,6 +100500,13 @@ impl<'a> Default for PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceProvokingVertexPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `provokingVertexModePerPipeline` without native effects.
 	#[doc(alias = "provokingVertexModePerPipeline")]
 	#[inline]
@@ -93715,6 +100575,13 @@ impl<'a> Default for PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> 
 }
 
 impl<'a> PipelineRasterizationProvokingVertexStateCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `provokingVertexMode` without native effects.
 	#[doc(alias = "provokingVertexMode")]
 	#[inline]
@@ -93783,6 +100650,13 @@ impl<'a> Default for VideoEncodeIntraRefreshCapabilitiesKHR<'a> {
 }
 
 impl<'a> VideoEncodeIntraRefreshCapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `intraRefreshModes` without native effects.
 	#[doc(alias = "intraRefreshModes")]
 	#[inline]
@@ -93875,6 +100749,13 @@ impl<'a> Default for VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeSessionIntraRefreshCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `intraRefreshMode` without native effects.
 	#[doc(alias = "intraRefreshMode")]
 	#[inline]
@@ -93934,6 +100815,13 @@ impl<'a> Default for VideoEncodeIntraRefreshInfoKHR<'a> {
 }
 
 impl<'a> VideoEncodeIntraRefreshInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `intraRefreshCycleDuration` without native effects.
 	#[doc(alias = "intraRefreshCycleDuration")]
 	#[inline]
@@ -93999,6 +100887,13 @@ impl<'a> Default for VideoReferenceIntraRefreshInfoKHR<'a> {
 }
 
 impl<'a> VideoReferenceIntraRefreshInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dirtyIntraRefreshRegions` without native effects.
 	#[doc(alias = "dirtyIntraRefreshRegions")]
 	#[inline]
@@ -94055,6 +100950,13 @@ impl<'a> Default for PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `videoEncodeIntraRefresh` without native effects.
 	#[doc(alias = "videoEncodeIntraRefresh")]
 	#[inline]
@@ -94114,6 +101016,13 @@ impl<'a> Default for CuModuleCreateInfoNVX<'a> {
 }
 
 impl<'a> CuModuleCreateInfoNVX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `dataSize` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -94192,6 +101101,13 @@ impl<'a> Default for CuModuleTexturingModeCreateInfoNVX<'a> {
 }
 
 impl<'a> CuModuleTexturingModeCreateInfoNVX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `use64bitTexturing` without native effects.
 	#[doc(alias = "use64bitTexturing")]
 	#[inline]
@@ -94250,6 +101166,13 @@ impl<'a> Default for CuFunctionCreateInfoNVX<'a> {
 }
 
 impl<'a> CuFunctionCreateInfoNVX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `module` without native effects.
 	#[doc(alias = "module")]
 	#[inline]
@@ -94347,6 +101270,13 @@ impl<'a> Default for CuLaunchInfoNVX<'a> {
 }
 
 impl<'a> CuLaunchInfoNVX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `function` without native effects.
 	#[doc(alias = "function")]
 	#[inline]
@@ -94537,6 +101467,13 @@ impl<'a> Default for PhysicalDeviceDescriptorBufferFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceDescriptorBufferFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `descriptorBuffer` without native effects.
 	#[doc(alias = "descriptorBuffer")]
 	#[inline]
@@ -94716,6 +101653,13 @@ impl<'a> Default for PhysicalDeviceDescriptorBufferPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceDescriptorBufferPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `combinedImageSamplerDescriptorSingleArray` without native effects.
 	#[doc(alias = "combinedImageSamplerDescriptorSingleArray")]
 	#[inline]
@@ -95063,6 +102007,13 @@ impl<'a> Default for PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `combinedImageSamplerDensityMapDescriptorSize` without native effects.
 	#[doc(alias = "combinedImageSamplerDensityMapDescriptorSize")]
 	#[inline]
@@ -95122,6 +102073,13 @@ impl<'a> Default for DescriptorAddressInfoEXT<'a> {
 }
 
 impl<'a> DescriptorAddressInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `address` without native effects.
 	#[doc(alias = "address")]
 	#[inline]
@@ -95197,6 +102155,13 @@ impl<'a> Default for DescriptorBufferBindingInfoEXT<'a> {
 }
 
 impl<'a> DescriptorBufferBindingInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `address` without native effects.
 	#[doc(alias = "address")]
 	#[inline]
@@ -95261,6 +102226,13 @@ impl<'a> Default for DescriptorBufferBindingPushDescriptorBufferHandleEXT<'a> {
 }
 
 impl<'a> DescriptorBufferBindingPushDescriptorBufferHandleEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `buffer` without native effects.
 	#[doc(alias = "buffer")]
 	#[inline]
@@ -95336,6 +102308,13 @@ impl<'a> Default for DescriptorDataEXT<'a> {
 }
 
 impl<'a> DescriptorDataEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pSampler` without native effects.
 	#[doc(alias = "pSampler")]
 	#[inline]
@@ -95457,6 +102436,13 @@ impl<'a> Default for DescriptorGetInfoEXT<'a> {
 }
 
 impl<'a> DescriptorGetInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -95521,6 +102507,13 @@ impl<'a> Default for BufferCaptureDescriptorDataInfoEXT<'a> {
 }
 
 impl<'a> BufferCaptureDescriptorDataInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `buffer` without native effects.
 	#[doc(alias = "buffer")]
 	#[inline]
@@ -95576,6 +102569,13 @@ impl<'a> Default for ImageCaptureDescriptorDataInfoEXT<'a> {
 }
 
 impl<'a> ImageCaptureDescriptorDataInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `image` without native effects.
 	#[doc(alias = "image")]
 	#[inline]
@@ -95632,6 +102632,13 @@ impl<'a> Default for ImageViewCaptureDescriptorDataInfoEXT<'a> {
 }
 
 impl<'a> ImageViewCaptureDescriptorDataInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageView` without native effects.
 	#[doc(alias = "imageView")]
 	#[inline]
@@ -95687,6 +102694,13 @@ impl<'a> Default for SamplerCaptureDescriptorDataInfoEXT<'a> {
 }
 
 impl<'a> SamplerCaptureDescriptorDataInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `sampler` without native effects.
 	#[doc(alias = "sampler")]
 	#[inline]
@@ -95746,6 +102760,13 @@ impl<'a> Default for AccelerationStructureCaptureDescriptorDataInfoEXT<'a> {
 }
 
 impl<'a> AccelerationStructureCaptureDescriptorDataInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `accelerationStructure` without native effects.
 	#[doc(alias = "accelerationStructure")]
 	#[inline]
@@ -95811,6 +102832,13 @@ impl<'a> Default for OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {
 }
 
 impl<'a> OpaqueCaptureDescriptorDataCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native pointer `opaqueCaptureDescriptorData` explicitly. No borrow or extent is inferred.
 	///
 	/// # Safety
@@ -95875,6 +102903,13 @@ impl<'a> Default for PhysicalDeviceShaderIntegerDotProductFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderIntegerDotProductFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderIntegerDotProduct` without native effects.
 	#[doc(alias = "shaderIntegerDotProduct")]
 	#[inline]
@@ -96024,6 +103059,13 @@ impl<'a> Default for PhysicalDeviceShaderIntegerDotProductProperties<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderIntegerDotProductProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `integerDotProduct8BitUnsignedAccelerated` without native effects.
 	#[doc(alias = "integerDotProduct8BitUnsignedAccelerated")]
 	#[inline]
@@ -96425,6 +103467,13 @@ impl<'a> Default for PhysicalDeviceDrmPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceDrmPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `hasPrimary` without native effects.
 	#[doc(alias = "hasPrimary")]
 	#[inline]
@@ -96526,6 +103575,13 @@ impl<'a> Default for PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fragmentShaderBarycentric` without native effects.
 	#[doc(alias = "fragmentShaderBarycentric")]
 	#[inline]
@@ -96582,6 +103638,13 @@ impl<'a> Default for PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `triStripVertexOrderIndependentOfProvokingVertex` without native effects.
 	#[doc(alias = "triStripVertexOrderIndependentOfProvokingVertex")]
 	#[inline]
@@ -96647,6 +103710,13 @@ impl<'a> Default for PhysicalDeviceShaderFmaFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderFmaFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderFmaFloat16` without native effects.
 	#[doc(alias = "shaderFmaFloat16")]
 	#[inline]
@@ -96724,6 +103794,13 @@ impl<'a> Default for PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceRayTracingMotionBlurFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rayTracingMotionBlur` without native effects.
 	#[doc(alias = "rayTracingMotionBlur")]
 	#[inline]
@@ -96789,6 +103866,13 @@ impl<'a> Default for PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceRayTracingValidationFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rayTracingValidation` without native effects.
 	#[doc(alias = "rayTracingValidation")]
 	#[inline]
@@ -96847,6 +103931,13 @@ impl<'a> Default for PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `spheres` without native effects.
 	#[doc(alias = "spheres")]
 	#[inline]
@@ -96912,6 +104003,13 @@ impl<'a> Default for AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
 }
 
 impl<'a> AccelerationStructureGeometryMotionTrianglesDataNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `vertexData` without native effects.
 	#[doc(alias = "vertexData")]
 	#[inline]
@@ -96970,6 +104068,13 @@ impl<'a> Default for AccelerationStructureMotionInfoNV<'a> {
 }
 
 impl<'a> AccelerationStructureMotionInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxInstances` without native effects.
 	#[doc(alias = "maxInstances")]
 	#[inline]
@@ -97054,6 +104159,13 @@ impl Default for SRTDataNV {
 }
 
 impl SRTDataNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `sx` without native effects.
 	#[doc(alias = "sx")]
 	#[inline]
@@ -97270,6 +104382,13 @@ impl Default for AccelerationStructureSRTMotionInstanceNV {
 }
 
 impl AccelerationStructureSRTMotionInstanceNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `transformT0` without native effects.
 	#[doc(alias = "transformT0")]
 	#[inline]
@@ -97369,6 +104488,13 @@ impl Default for AccelerationStructureMatrixMotionInstanceNV {
 }
 
 impl AccelerationStructureMatrixMotionInstanceNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `transformT0` without native effects.
 	#[doc(alias = "transformT0")]
 	#[inline]
@@ -97422,6 +104548,13 @@ impl Default for AccelerationStructureMotionInstanceDataNV {
 }
 
 impl AccelerationStructureMotionInstanceDataNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `staticInstance` without native effects.
 	#[doc(alias = "staticInstance")]
 	#[inline]
@@ -97478,6 +104611,13 @@ impl Default for AccelerationStructureMotionInstanceNV {
 }
 
 impl AccelerationStructureMotionInstanceNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -97541,6 +104681,13 @@ impl<'a> Default for MemoryGetRemoteAddressInfoNV<'a> {
 }
 
 impl<'a> MemoryGetRemoteAddressInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memory` without native effects.
 	#[doc(alias = "memory")]
 	#[inline]
@@ -97610,6 +104757,13 @@ impl<'a> Default for ImportMemoryBufferCollectionFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> ImportMemoryBufferCollectionFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `collection` without native effects.
 	#[doc(alias = "collection")]
 	#[inline]
@@ -97679,6 +104833,13 @@ impl<'a> Default for BufferCollectionImageCreateInfoFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> BufferCollectionImageCreateInfoFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `collection` without native effects.
 	#[doc(alias = "collection")]
 	#[inline]
@@ -97748,6 +104909,13 @@ impl<'a> Default for BufferCollectionBufferCreateInfoFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> BufferCollectionBufferCreateInfoFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `collection` without native effects.
 	#[doc(alias = "collection")]
 	#[inline]
@@ -97816,6 +104984,13 @@ impl<'a> Default for BufferCollectionCreateInfoFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> BufferCollectionCreateInfoFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `collectionToken` without native effects.
 	#[doc(alias = "collectionToken")]
 	#[inline]
@@ -97905,6 +105080,13 @@ impl<'a> Default for BufferCollectionPropertiesFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> BufferCollectionPropertiesFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memoryTypeBits` without native effects.
 	#[doc(alias = "memoryTypeBits")]
 	#[inline]
@@ -98060,6 +105242,13 @@ impl<'a> Default for BufferConstraintsInfoFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> BufferConstraintsInfoFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `createInfo` without native effects.
 	#[doc(alias = "createInfo")]
 	#[inline]
@@ -98140,6 +105329,13 @@ impl<'a> Default for SysmemColorSpaceFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> SysmemColorSpaceFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `colorSpace` without native effects.
 	#[doc(alias = "colorSpace")]
 	#[inline]
@@ -98213,6 +105409,13 @@ impl<'a> Default for ImageFormatConstraintsInfoFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> ImageFormatConstraintsInfoFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageCreateInfo` without native effects.
 	#[doc(alias = "imageCreateInfo")]
 	#[inline]
@@ -98338,6 +105541,13 @@ impl<'a> Default for ImageConstraintsInfoFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> ImageConstraintsInfoFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `formatConstraintsCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -98452,6 +105662,13 @@ impl<'a> Default for BufferCollectionConstraintsInfoFUCHSIA<'a> {
 
 #[cfg(feature = "platform-fuchsia")]
 impl<'a> BufferCollectionConstraintsInfoFUCHSIA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minBufferCount` without native effects.
 	#[doc(alias = "minBufferCount")]
 	#[inline]
@@ -98628,6 +105845,13 @@ impl<'a> Default for CudaModuleCreateInfoNV<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> CudaModuleCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `dataSize` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -98711,6 +105935,13 @@ impl<'a> Default for CudaFunctionCreateInfoNV<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> CudaFunctionCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `module` without native effects.
 	#[doc(alias = "module")]
 	#[inline]
@@ -98811,6 +106042,13 @@ impl<'a> Default for CudaLaunchInfoNV<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> CudaLaunchInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `function` without native effects.
 	#[doc(alias = "function")]
 	#[inline]
@@ -98992,6 +106230,13 @@ impl<'a> Default for PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `formatRgba10x6WithoutYCbCrSampler` without native effects.
 	#[doc(alias = "formatRgba10x6WithoutYCbCrSampler")]
 	#[inline]
@@ -99054,6 +106299,13 @@ impl<'a> Default for FormatProperties3<'a> {
 }
 
 impl<'a> FormatProperties3<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `linearTilingFeatures` without native effects.
 	#[doc(alias = "linearTilingFeatures")]
 	#[inline]
@@ -99138,6 +106390,13 @@ impl<'a> Default for FormatProperties4KHR<'a> {
 }
 
 impl<'a> FormatProperties4KHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `linearTilingFeatures` without native effects.
 	#[doc(alias = "linearTilingFeatures")]
 	#[inline]
@@ -99215,6 +106474,13 @@ impl<'a> Default for DrmFormatModifierPropertiesList2EXT<'a> {
 }
 
 impl<'a> DrmFormatModifierPropertiesList2EXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `drmFormatModifierCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -99289,6 +106555,13 @@ impl Default for DrmFormatModifierProperties2EXT {
 }
 
 impl DrmFormatModifierProperties2EXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `drmFormatModifier` without native effects.
 	#[doc(alias = "drmFormatModifier")]
 	#[inline]
@@ -99369,6 +106642,13 @@ impl<'a> Default for AndroidHardwareBufferFormatProperties2ANDROID<'a> {
 
 #[cfg(feature = "platform-android")]
 impl<'a> AndroidHardwareBufferFormatProperties2ANDROID<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `format` without native effects.
 	#[doc(alias = "format")]
 	#[inline]
@@ -99500,6 +106780,13 @@ impl<'a> Default for PipelineRenderingCreateInfo<'a> {
 }
 
 impl<'a> PipelineRenderingCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `viewMask` without native effects.
 	#[doc(alias = "viewMask")]
 	#[inline]
@@ -99629,6 +106916,13 @@ impl<'a> Default for RenderingInfo<'a> {
 }
 
 impl<'a> RenderingInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -99762,6 +107056,13 @@ impl<'a> Default for RenderingEndInfoKHR<'a> {
 }
 
 impl<'a> RenderingEndInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -99834,6 +107135,13 @@ impl<'a> Default for RenderingAttachmentInfo<'a> {
 }
 
 impl<'a> RenderingAttachmentInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageView` without native effects.
 	#[doc(alias = "imageView")]
 	#[inline]
@@ -99963,6 +107271,13 @@ impl<'a> Default for RenderingFragmentShadingRateAttachmentInfoKHR<'a> {
 }
 
 impl<'a> RenderingFragmentShadingRateAttachmentInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageView` without native effects.
 	#[doc(alias = "imageView")]
 	#[inline]
@@ -100040,6 +107355,13 @@ impl<'a> Default for RenderingFragmentDensityMapAttachmentInfoEXT<'a> {
 }
 
 impl<'a> RenderingFragmentDensityMapAttachmentInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageView` without native effects.
 	#[doc(alias = "imageView")]
 	#[inline]
@@ -100105,6 +107427,13 @@ impl<'a> Default for PhysicalDeviceDynamicRenderingFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceDynamicRenderingFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dynamicRendering` without native effects.
 	#[doc(alias = "dynamicRendering")]
 	#[inline]
@@ -100182,6 +107511,13 @@ impl<'a> Default for CommandBufferInheritanceRenderingInfo<'a> {
 }
 
 impl<'a> CommandBufferInheritanceRenderingInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -100315,6 +107651,13 @@ impl<'a> Default for AttachmentSampleCountInfoAMD<'a> {
 }
 
 impl<'a> AttachmentSampleCountInfoAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `colorAttachmentCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -100409,6 +107752,13 @@ impl<'a> Default for MultiviewPerViewAttributesInfoNVX<'a> {
 }
 
 impl<'a> MultiviewPerViewAttributesInfoNVX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `perViewAttributes` without native effects.
 	#[doc(alias = "perViewAttributes")]
 	#[inline]
@@ -100474,6 +107824,13 @@ impl<'a> Default for PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceImageViewMinLodFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minLod` without native effects.
 	#[doc(alias = "minLod")]
 	#[inline]
@@ -100530,6 +107887,13 @@ impl<'a> Default for ImageViewMinLodCreateInfoEXT<'a> {
 }
 
 impl<'a> ImageViewMinLodCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minLod` without native effects.
 	#[doc(alias = "minLod")]
 	#[inline]
@@ -100593,6 +107957,13 @@ impl<'a> Default for PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT
 }
 
 impl<'a> PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rasterizationOrderColorAttachmentAccess` without native effects.
 	#[doc(alias = "rasterizationOrderColorAttachmentAccess")]
 	#[inline]
@@ -100672,6 +108043,13 @@ impl<'a> Default for PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceLinearColorAttachmentFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `linearColorAttachment` without native effects.
 	#[doc(alias = "linearColorAttachment")]
 	#[inline]
@@ -100728,6 +108106,13 @@ impl<'a> Default for PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `graphicsPipelineLibrary` without native effects.
 	#[doc(alias = "graphicsPipelineLibrary")]
 	#[inline]
@@ -100784,6 +108169,13 @@ impl<'a> Default for PhysicalDevicePipelineBinaryFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDevicePipelineBinaryFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineBinaries` without native effects.
 	#[doc(alias = "pipelineBinaries")]
 	#[inline]
@@ -100840,6 +108232,13 @@ impl<'a> Default for DevicePipelineBinaryInternalCacheControlKHR<'a> {
 }
 
 impl<'a> DevicePipelineBinaryInternalCacheControlKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `disableInternalCache` without native effects.
 	#[doc(alias = "disableInternalCache")]
 	#[inline]
@@ -100908,6 +108307,13 @@ impl<'a> Default for PhysicalDevicePipelineBinaryPropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDevicePipelineBinaryPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineBinaryInternalCache` without native effects.
 	#[doc(alias = "pipelineBinaryInternalCache")]
 	#[inline]
@@ -101003,6 +108409,13 @@ impl<'a> Default for PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `graphicsPipelineLibraryFastLinking` without native effects.
 	#[doc(alias = "graphicsPipelineLibraryFastLinking")]
 	#[inline]
@@ -101070,6 +108483,13 @@ impl<'a> Default for GraphicsPipelineLibraryCreateInfoEXT<'a> {
 }
 
 impl<'a> GraphicsPipelineLibraryCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -101127,6 +108547,13 @@ impl<'a> Default for PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesA
 }
 
 impl<'a> PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dataGraphNeuralAcceleratorStatistics` without native effects.
 	#[doc(alias = "dataGraphNeuralAcceleratorStatistics")]
 	#[inline]
@@ -101183,6 +108610,13 @@ impl<'a> Default for DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineNeuralStatisticsCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `allowNeuralStatistics` without native effects.
 	#[doc(alias = "allowNeuralStatistics")]
 	#[inline]
@@ -101238,6 +108672,13 @@ impl<'a> Default for DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `mode` without native effects.
 	#[doc(alias = "mode")]
 	#[inline]
@@ -101306,6 +108747,13 @@ impl<'a> Default for TensorExplicitTilingFormatPropertiesARM<'a> {
 }
 
 impl<'a> TensorExplicitTilingFormatPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `brick16TilingTensorFeatures` without native effects.
 	#[doc(alias = "brick16TilingTensorFeatures")]
 	#[inline]
@@ -101397,6 +108845,13 @@ impl<'a> Default for TensorRollingBackingCreateInfoARM<'a> {
 }
 
 impl<'a> TensorRollingBackingCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `wraps` without native effects.
 	#[doc(alias = "wraps")]
 	#[inline]
@@ -101456,6 +108911,13 @@ impl<'a> Default for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {
 }
 
 impl<'a> PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `descriptorSetHostMapping` without native effects.
 	#[doc(alias = "descriptorSetHostMapping")]
 	#[inline]
@@ -101514,6 +108976,13 @@ impl<'a> Default for DescriptorSetBindingReferenceVALVE<'a> {
 }
 
 impl<'a> DescriptorSetBindingReferenceVALVE<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `descriptorSetLayout` without native effects.
 	#[doc(alias = "descriptorSetLayout")]
 	#[inline]
@@ -101582,6 +109051,13 @@ impl<'a> Default for DescriptorSetLayoutHostMappingInfoVALVE<'a> {
 }
 
 impl<'a> DescriptorSetLayoutHostMappingInfoVALVE<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `descriptorOffset` without native effects.
 	#[doc(alias = "descriptorOffset")]
 	#[inline]
@@ -101653,6 +109129,13 @@ impl<'a> Default for PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceNestedCommandBufferFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `nestedCommandBuffer` without native effects.
 	#[doc(alias = "nestedCommandBuffer")]
 	#[inline]
@@ -101727,6 +109210,13 @@ impl<'a> Default for PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceNestedCommandBufferPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxCommandBufferNestingLevel` without native effects.
 	#[doc(alias = "maxCommandBufferNestingLevel")]
 	#[inline]
@@ -101783,6 +109273,13 @@ impl<'a> Default for PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderModuleIdentifier` without native effects.
 	#[doc(alias = "shaderModuleIdentifier")]
 	#[inline]
@@ -101839,6 +109336,13 @@ impl<'a> Default for PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderModuleIdentifierAlgorithmUUID` without native effects.
 	#[doc(alias = "shaderModuleIdentifierAlgorithmUUID")]
 	#[inline]
@@ -101901,6 +109405,13 @@ impl<'a> Default for PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
 }
 
 impl<'a> PipelineShaderStageModuleIdentifierCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `identifierSize` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -101981,6 +109492,13 @@ impl<'a> Default for ShaderModuleIdentifierEXT<'a> {
 }
 
 impl<'a> ShaderModuleIdentifierEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `identifierSize` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -102057,6 +109575,13 @@ impl<'a> Default for ImageCompressionControlEXT<'a> {
 }
 
 impl<'a> ImageCompressionControlEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -102144,6 +109669,13 @@ impl<'a> Default for PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceImageCompressionControlFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageCompressionControl` without native effects.
 	#[doc(alias = "imageCompressionControl")]
 	#[inline]
@@ -102203,6 +109735,13 @@ impl<'a> Default for ImageCompressionPropertiesEXT<'a> {
 }
 
 impl<'a> ImageCompressionPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageCompressionFlags` without native effects.
 	#[doc(alias = "imageCompressionFlags")]
 	#[inline]
@@ -102271,6 +109810,13 @@ impl<'a> Default for PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'
 }
 
 impl<'a> PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageCompressionControlSwapchain` without native effects.
 	#[doc(alias = "imageCompressionControlSwapchain")]
 	#[inline]
@@ -102327,6 +109873,13 @@ impl<'a> Default for ImageSubresource2<'a> {
 }
 
 impl<'a> ImageSubresource2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageSubresource` without native effects.
 	#[doc(alias = "imageSubresource")]
 	#[inline]
@@ -102391,6 +109944,13 @@ impl<'a> Default for SubresourceLayout2<'a> {
 }
 
 impl<'a> SubresourceLayout2<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `subresourceLayout` without native effects.
 	#[doc(alias = "subresourceLayout")]
 	#[inline]
@@ -102455,6 +110015,13 @@ impl<'a> Default for RenderPassCreationControlEXT<'a> {
 }
 
 impl<'a> RenderPassCreationControlEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `disallowMerging` without native effects.
 	#[doc(alias = "disallowMerging")]
 	#[inline]
@@ -102501,6 +110068,13 @@ impl Default for RenderPassCreationFeedbackInfoEXT {
 }
 
 impl RenderPassCreationFeedbackInfoEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `postMergeSubpassCount` without native effects.
 	#[doc(alias = "postMergeSubpassCount")]
 	#[inline]
@@ -102540,6 +110114,13 @@ impl<'a> Default for RenderPassCreationFeedbackCreateInfoEXT<'a> {
 }
 
 impl<'a> RenderPassCreationFeedbackCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pRenderPassFeedback` without native effects.
 	#[doc(alias = "pRenderPassFeedback")]
 	#[inline]
@@ -102594,6 +110175,13 @@ impl Default for RenderPassSubpassFeedbackInfoEXT {
 }
 
 impl RenderPassSubpassFeedbackInfoEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `subpassMergeStatus` without native effects.
 	#[doc(alias = "subpassMergeStatus")]
 	#[inline]
@@ -102654,6 +110242,13 @@ impl<'a> Default for RenderPassSubpassFeedbackCreateInfoEXT<'a> {
 }
 
 impl<'a> RenderPassSubpassFeedbackCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pSubpassFeedback` without native effects.
 	#[doc(alias = "pSubpassFeedback")]
 	#[inline]
@@ -102710,6 +110305,13 @@ impl<'a> Default for PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `subpassMergeFeedback` without native effects.
 	#[doc(alias = "subpassMergeFeedback")]
 	#[inline]
@@ -102792,6 +110394,13 @@ impl<'a> Default for MicromapBuildInfoEXT<'a> {
 }
 
 impl<'a> MicromapBuildInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -102979,6 +110588,13 @@ impl<'a> Default for AccelerationStructureGeometryMicromapDataKHR<'a> {
 }
 
 impl<'a> AccelerationStructureGeometryMicromapDataKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `usageCountsCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -103118,6 +110734,13 @@ impl<'a> Default for MicromapCreateInfoEXT<'a> {
 }
 
 impl<'a> MicromapCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `createFlags` without native effects.
 	#[doc(alias = "createFlags")]
 	#[inline]
@@ -103219,6 +110842,13 @@ impl<'a> Default for MicromapVersionInfoEXT<'a> {
 }
 
 impl<'a> MicromapVersionInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Borrow the two UUIDs required by the native version-data extent.
 	#[doc(alias = "pVersionData")]
 	#[inline]
@@ -103278,6 +110908,13 @@ impl<'a> Default for CopyMicromapInfoEXT<'a> {
 }
 
 impl<'a> CopyMicromapInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `src` without native effects.
 	#[doc(alias = "src")]
 	#[inline]
@@ -103355,6 +110992,13 @@ impl<'a> Default for CopyMicromapToMemoryInfoEXT<'a> {
 }
 
 impl<'a> CopyMicromapToMemoryInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `src` without native effects.
 	#[doc(alias = "src")]
 	#[inline]
@@ -103432,6 +111076,13 @@ impl<'a> Default for CopyMemoryToMicromapInfoEXT<'a> {
 }
 
 impl<'a> CopyMemoryToMicromapInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `src` without native effects.
 	#[doc(alias = "src")]
 	#[inline]
@@ -103511,6 +111162,13 @@ impl<'a> Default for MicromapBuildSizesInfoEXT<'a> {
 }
 
 impl<'a> MicromapBuildSizesInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `micromapSize` without native effects.
 	#[doc(alias = "micromapSize")]
 	#[inline]
@@ -103579,6 +111237,13 @@ impl Default for MicromapUsageKHR {
 }
 
 impl MicromapUsageKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `count` without native effects.
 	#[doc(alias = "count")]
 	#[inline]
@@ -103630,6 +111295,13 @@ impl Default for MicromapUsageEXT {
 }
 
 impl MicromapUsageEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `count` without native effects.
 	#[doc(alias = "count")]
 	#[inline]
@@ -103682,6 +111354,13 @@ impl Default for MicromapTriangleKHR {
 }
 
 impl MicromapTriangleKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dataOffset` without native effects.
 	#[doc(alias = "dataOffset")]
 	#[inline]
@@ -103742,6 +111421,13 @@ impl<'a> Default for PhysicalDeviceOpacityMicromapFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceOpacityMicromapFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `micromap` without native effects.
 	#[doc(alias = "micromap")]
 	#[inline]
@@ -103803,6 +111489,13 @@ impl<'a> Default for PhysicalDeviceOpacityMicromapFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceOpacityMicromapFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `micromap` without native effects.
 	#[doc(alias = "micromap")]
 	#[inline]
@@ -103886,6 +111579,13 @@ impl<'a> Default for PhysicalDeviceOpacityMicromapPropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceOpacityMicromapPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxOpacity2StateSubdivisionLevel` without native effects.
 	#[doc(alias = "maxOpacity2StateSubdivisionLevel")]
 	#[inline]
@@ -103972,6 +111672,13 @@ impl<'a> Default for PhysicalDeviceOpacityMicromapPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceOpacityMicromapPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxOpacity2StateSubdivisionLevel` without native effects.
 	#[doc(alias = "maxOpacity2StateSubdivisionLevel")]
 	#[inline]
@@ -104048,6 +111755,13 @@ impl<'a> Default for AccelerationStructureTrianglesOpacityMicromapKHR<'a> {
 }
 
 impl<'a> AccelerationStructureTrianglesOpacityMicromapKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `indexType` without native effects.
 	#[doc(alias = "indexType")]
 	#[inline]
@@ -104160,6 +111874,13 @@ impl<'a> Default for AccelerationStructureTrianglesOpacityMicromapEXT<'a> {
 }
 
 impl<'a> AccelerationStructureTrianglesOpacityMicromapEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `indexType` without native effects.
 	#[doc(alias = "indexType")]
 	#[inline]
@@ -104309,6 +112030,13 @@ impl<'a> Default for PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> PhysicalDeviceDisplacementMicromapFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `displacementMicromap` without native effects.
 	#[doc(alias = "displacementMicromap")]
 	#[inline]
@@ -104368,6 +112096,13 @@ impl<'a> Default for PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> PhysicalDeviceDisplacementMicromapPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxDisplacementMicromapSubdivisionLevel` without native effects.
 	#[doc(alias = "maxDisplacementMicromapSubdivisionLevel")]
 	#[inline]
@@ -104471,6 +112206,13 @@ impl<'a> Default for AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> AccelerationStructureTrianglesDisplacementMicromapNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `displacementBiasAndScaleFormat` without native effects.
 	#[doc(alias = "displacementBiasAndScaleFormat")]
 	#[inline]
@@ -104695,6 +112437,13 @@ impl<'a> Default for PipelinePropertiesIdentifierEXT<'a> {
 }
 
 impl<'a> PipelinePropertiesIdentifierEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineIdentifier` without native effects.
 	#[doc(alias = "pipelineIdentifier")]
 	#[inline]
@@ -104751,6 +112500,13 @@ impl<'a> Default for PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDevicePipelinePropertiesFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelinePropertiesIdentifier` without native effects.
 	#[doc(alias = "pipelinePropertiesIdentifier")]
 	#[inline]
@@ -104807,6 +112563,13 @@ impl<'a> Default for PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a
 }
 
 impl<'a> PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderEarlyAndLateFragmentTests` without native effects.
 	#[doc(alias = "shaderEarlyAndLateFragmentTests")]
 	#[inline]
@@ -104863,6 +112626,13 @@ impl<'a> Default for ExternalMemoryAcquireUnmodifiedEXT<'a> {
 }
 
 impl<'a> ExternalMemoryAcquireUnmodifiedEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `acquireUnmodifiedMemory` without native effects.
 	#[doc(alias = "acquireUnmodifiedMemory")]
 	#[inline]
@@ -104922,6 +112692,13 @@ impl<'a> Default for ExportMetalObjectCreateInfoEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> ExportMetalObjectCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `exportObjectType` without native effects.
 	#[doc(alias = "exportObjectType")]
 	#[inline]
@@ -104978,6 +112755,13 @@ impl<'a> Default for ExportMetalObjectsInfoEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> ExportMetalObjectsInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -105028,6 +112812,13 @@ impl<'a> Default for ExportMetalDeviceInfoEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> ExportMetalDeviceInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `mtlDevice` without native effects.
 	#[doc(alias = "mtlDevice")]
 	#[inline]
@@ -105089,6 +112880,13 @@ impl<'a> Default for ExportMetalCommandQueueInfoEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> ExportMetalCommandQueueInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `queue` without native effects.
 	#[doc(alias = "queue")]
 	#[inline]
@@ -105159,6 +112957,13 @@ impl<'a> Default for ExportMetalBufferInfoEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> ExportMetalBufferInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memory` without native effects.
 	#[doc(alias = "memory")]
 	#[inline]
@@ -105227,6 +113032,13 @@ impl<'a> Default for ImportMetalBufferInfoEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> ImportMetalBufferInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `mtlBuffer` without native effects.
 	#[doc(alias = "mtlBuffer")]
 	#[inline]
@@ -105296,6 +113108,13 @@ impl<'a> Default for ExportMetalTextureInfoEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> ExportMetalTextureInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `image` without native effects.
 	#[doc(alias = "image")]
 	#[inline]
@@ -105393,6 +113212,13 @@ impl<'a> Default for ImportMetalTextureInfoEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> ImportMetalTextureInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `plane` without native effects.
 	#[doc(alias = "plane")]
 	#[inline]
@@ -105463,6 +113289,13 @@ impl<'a> Default for ExportMetalIOSurfaceInfoEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> ExportMetalIOSurfaceInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `image` without native effects.
 	#[doc(alias = "image")]
 	#[inline]
@@ -105531,6 +113364,13 @@ impl<'a> Default for ImportMetalIOSurfaceInfoEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> ImportMetalIOSurfaceInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `ioSurface` without native effects.
 	#[doc(alias = "ioSurface")]
 	#[inline]
@@ -105594,6 +113434,13 @@ impl<'a> Default for ExportMetalSharedEventInfoEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> ExportMetalSharedEventInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `semaphore` without native effects.
 	#[doc(alias = "semaphore")]
 	#[inline]
@@ -105671,6 +113518,13 @@ impl<'a> Default for ImportMetalSharedEventInfoEXT<'a> {
 
 #[cfg(feature = "platform-metal")]
 impl<'a> ImportMetalSharedEventInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `mtlSharedEvent` without native effects.
 	#[doc(alias = "mtlSharedEvent")]
 	#[inline]
@@ -105727,6 +113581,13 @@ impl<'a> Default for PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `nonSeamlessCubeMap` without native effects.
 	#[doc(alias = "nonSeamlessCubeMap")]
 	#[inline]
@@ -105783,6 +113644,13 @@ impl<'a> Default for PhysicalDevicePipelineRobustnessFeatures<'a> {
 }
 
 impl<'a> PhysicalDevicePipelineRobustnessFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineRobustness` without native effects.
 	#[doc(alias = "pipelineRobustness")]
 	#[inline]
@@ -105852,6 +113720,13 @@ impl<'a> Default for PipelineRobustnessCreateInfo<'a> {
 }
 
 impl<'a> PipelineRobustnessCreateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `storageBuffers` without native effects.
 	#[doc(alias = "storageBuffers")]
 	#[inline]
@@ -105948,6 +113823,13 @@ impl<'a> Default for PhysicalDevicePipelineRobustnessProperties<'a> {
 }
 
 impl<'a> PhysicalDevicePipelineRobustnessProperties<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `defaultRobustnessStorageBuffers` without native effects.
 	#[doc(alias = "defaultRobustnessStorageBuffers")]
 	#[inline]
@@ -106051,6 +113933,13 @@ impl<'a> Default for ImageViewSampleWeightCreateInfoQCOM<'a> {
 }
 
 impl<'a> ImageViewSampleWeightCreateInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `filterCenter` without native effects.
 	#[doc(alias = "filterCenter")]
 	#[inline]
@@ -106125,6 +114014,13 @@ impl<'a> Default for PhysicalDeviceShaderMultipleWaitQueuesFeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderMultipleWaitQueuesFeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderMultipleWaitQueues` without native effects.
 	#[doc(alias = "shaderMultipleWaitQueues")]
 	#[inline]
@@ -106181,6 +114077,13 @@ impl<'a> Default for PhysicalDeviceShaderMultipleWaitQueuesPropertiesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderMultipleWaitQueuesPropertiesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxShaderWaitQueues` without native effects.
 	#[doc(alias = "maxShaderWaitQueues")]
 	#[inline]
@@ -106243,6 +114146,13 @@ impl<'a> Default for PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceImageProcessingFeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `textureSampleWeighted` without native effects.
 	#[doc(alias = "textureSampleWeighted")]
 	#[inline]
@@ -106326,6 +114236,13 @@ impl<'a> Default for PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceImageProcessingPropertiesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxWeightFilterPhases` without native effects.
 	#[doc(alias = "maxWeightFilterPhases")]
 	#[inline]
@@ -106409,6 +114326,13 @@ impl<'a> Default for PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceTilePropertiesFeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tileProperties` without native effects.
 	#[doc(alias = "tileProperties")]
 	#[inline]
@@ -106470,6 +114394,13 @@ impl<'a> Default for TilePropertiesQCOM<'a> {
 }
 
 impl<'a> TilePropertiesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tileSize` without native effects.
 	#[doc(alias = "tileSize")]
 	#[inline]
@@ -106543,6 +114474,13 @@ impl<'a> Default for TileMemoryBindInfoQCOM<'a> {
 }
 
 impl<'a> TileMemoryBindInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memory` without native effects.
 	#[doc(alias = "memory")]
 	#[inline]
@@ -106599,6 +114537,13 @@ impl<'a> Default for PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
 }
 
 impl<'a> PhysicalDeviceAmigoProfilingFeaturesSEC<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `amigoProfiling` without native effects.
 	#[doc(alias = "amigoProfiling")]
 	#[inline]
@@ -106658,6 +114603,13 @@ impl<'a> Default for AmigoProfilingSubmitInfoSEC<'a> {
 }
 
 impl<'a> AmigoProfilingSubmitInfoSEC<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `firstDrawTimestamp` without native effects.
 	#[doc(alias = "firstDrawTimestamp")]
 	#[inline]
@@ -106723,6 +114675,13 @@ impl<'a> Default for PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `attachmentFeedbackLoopLayout` without native effects.
 	#[doc(alias = "attachmentFeedbackLoopLayout")]
 	#[inline]
@@ -106784,6 +114743,13 @@ impl<'a> Default for AttachmentFeedbackLoopInfoEXT<'a> {
 }
 
 impl<'a> AttachmentFeedbackLoopInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `feedbackLoopEnable` without native effects.
 	#[doc(alias = "feedbackLoopEnable")]
 	#[inline]
@@ -106840,6 +114806,13 @@ impl<'a> Default for PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceAddressBindingReportFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `reportAddressBinding` without native effects.
 	#[doc(alias = "reportAddressBinding")]
 	#[inline]
@@ -106895,6 +114868,13 @@ impl<'a> Default for RenderingAttachmentFlagsInfoKHR<'a> {
 }
 
 impl<'a> RenderingAttachmentFlagsInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -106956,6 +114936,13 @@ impl<'a> Default for ResolveImageModeInfoKHR<'a> {
 }
 
 impl<'a> ResolveImageModeInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -107037,6 +115024,13 @@ impl<'a> Default for DeviceAddressBindingCallbackDataEXT<'a> {
 }
 
 impl<'a> DeviceAddressBindingCallbackDataEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -107120,6 +115114,13 @@ impl<'a> Default for PhysicalDeviceOpticalFlowFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceOpticalFlowFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `opticalFlow` without native effects.
 	#[doc(alias = "opticalFlow")]
 	#[inline]
@@ -107206,6 +115207,13 @@ impl<'a> Default for PhysicalDeviceOpticalFlowPropertiesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceOpticalFlowPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `supportedOutputGridSizes` without native effects.
 	#[doc(alias = "supportedOutputGridSizes")]
 	#[inline]
@@ -107351,6 +115359,13 @@ impl<'a> Default for OpticalFlowImageFormatInfoNV<'a> {
 }
 
 impl<'a> OpticalFlowImageFormatInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `usage` without native effects.
 	#[doc(alias = "usage")]
 	#[inline]
@@ -107406,6 +115421,13 @@ impl<'a> Default for OpticalFlowImageFormatPropertiesNV<'a> {
 }
 
 impl<'a> OpticalFlowImageFormatPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `format` without native effects.
 	#[doc(alias = "format")]
 	#[inline]
@@ -107483,6 +115505,13 @@ impl<'a> Default for OpticalFlowSessionCreateInfoNV<'a> {
 }
 
 impl<'a> OpticalFlowSessionCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `width` without native effects.
 	#[doc(alias = "width")]
 	#[inline]
@@ -107615,6 +115644,13 @@ impl<'a> Default for OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
 }
 
 impl<'a> OpticalFlowSessionCreatePrivateDataInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `id` without native effects.
 	#[doc(alias = "id")]
 	#[inline]
@@ -107699,6 +115735,13 @@ impl<'a> Default for OpticalFlowExecuteInfoNV<'a> {
 }
 
 impl<'a> OpticalFlowExecuteInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -107789,6 +115832,13 @@ impl<'a> Default for PhysicalDeviceFaultFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceFaultFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceFault` without native effects.
 	#[doc(alias = "deviceFault")]
 	#[inline]
@@ -107850,6 +115900,13 @@ impl Default for DeviceFaultAddressInfoKHR {
 }
 
 impl DeviceFaultAddressInfoKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `addressType` without native effects.
 	#[doc(alias = "addressType")]
 	#[inline]
@@ -107906,6 +115963,13 @@ impl Default for DeviceFaultVendorInfoKHR {
 }
 
 impl DeviceFaultVendorInfoKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `description` without native effects.
 	#[doc(alias = "description")]
 	#[inline]
@@ -107983,6 +116047,13 @@ impl<'a> Default for DeviceFaultInfoKHR<'a> {
 }
 
 impl<'a> DeviceFaultInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -108090,6 +116161,13 @@ impl<'a> Default for DeviceFaultDebugInfoKHR<'a> {
 }
 
 impl<'a> DeviceFaultDebugInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `vendorBinarySize` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -108174,6 +116252,13 @@ impl<'a> Default for DeviceFaultCountsEXT<'a> {
 }
 
 impl<'a> DeviceFaultCountsEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `addressInfoCount` without native effects.
 	#[doc(alias = "addressInfoCount")]
 	#[inline]
@@ -108256,6 +116341,13 @@ impl<'a> Default for DeviceFaultInfoEXT<'a> {
 }
 
 impl<'a> DeviceFaultInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `description` without native effects.
 	#[doc(alias = "description")]
 	#[inline]
@@ -108363,6 +116455,13 @@ impl Default for DeviceFaultVendorBinaryHeaderVersionOneKHR {
 }
 
 impl DeviceFaultVendorBinaryHeaderVersionOneKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `headerSize` without native effects.
 	#[doc(alias = "headerSize")]
 	#[inline]
@@ -108505,6 +116604,13 @@ impl<'a> Default for PhysicalDeviceFaultFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceFaultFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceFault` without native effects.
 	#[doc(alias = "deviceFault")]
 	#[inline]
@@ -108588,6 +116694,13 @@ impl<'a> Default for PhysicalDeviceFaultPropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceFaultPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxDeviceFaultCount` without native effects.
 	#[doc(alias = "maxDeviceFaultCount")]
 	#[inline]
@@ -108649,6 +116762,13 @@ impl<'a> Default for PhysicalDevicePipelineLibraryGroupHandlesFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDevicePipelineLibraryGroupHandlesFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineLibraryGroupHandles` without native effects.
 	#[doc(alias = "pipelineLibraryGroupHandles")]
 	#[inline]
@@ -108711,6 +116831,13 @@ impl<'a> Default for DepthBiasInfoEXT<'a> {
 }
 
 impl<'a> DepthBiasInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `depthBiasConstantFactor` without native effects.
 	#[doc(alias = "depthBiasConstantFactor")]
 	#[inline]
@@ -108788,6 +116915,13 @@ impl<'a> Default for DepthBiasRepresentationInfoEXT<'a> {
 }
 
 impl<'a> DepthBiasRepresentationInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `depthBiasRepresentation` without native effects.
 	#[doc(alias = "depthBiasRepresentation")]
 	#[inline]
@@ -108855,6 +116989,13 @@ impl Default for DecompressMemoryRegionNV {
 }
 
 impl DecompressMemoryRegionNV {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcAddress` without native effects.
 	#[doc(alias = "srcAddress")]
 	#[inline]
@@ -108929,6 +117070,13 @@ impl Default for DecompressMemoryRegionEXT {
 }
 
 impl DecompressMemoryRegionEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcAddress` without native effects.
 	#[doc(alias = "srcAddress")]
 	#[inline]
@@ -109001,6 +117149,13 @@ impl<'a> Default for DecompressMemoryInfoEXT<'a> {
 }
 
 impl<'a> DecompressMemoryInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `decompressionMethod` without native effects.
 	#[doc(alias = "decompressionMethod")]
 	#[inline]
@@ -109094,6 +117249,13 @@ impl<'a> Default for PhysicalDeviceShaderCoreBuiltinsPropertiesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderCoreBuiltinsPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderCoreMask` without native effects.
 	#[doc(alias = "shaderCoreMask")]
 	#[inline]
@@ -109168,6 +117330,13 @@ impl<'a> Default for PhysicalDeviceShaderCoreBuiltinsFeaturesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderCoreBuiltinsFeaturesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderCoreBuiltins` without native effects.
 	#[doc(alias = "shaderCoreBuiltins")]
 	#[inline]
@@ -109247,6 +117416,13 @@ impl<'a> Default for FrameBoundaryEXT<'a> {
 }
 
 impl<'a> FrameBoundaryEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -109411,6 +117587,13 @@ impl<'a> Default for PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceFrameBoundaryFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `frameBoundary` without native effects.
 	#[doc(alias = "frameBoundary")]
 	#[inline]
@@ -109467,6 +117650,13 @@ impl<'a> Default for PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<
 }
 
 impl<'a> PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dynamicRenderingUnusedAttachments` without native effects.
 	#[doc(alias = "dynamicRenderingUnusedAttachments")]
 	#[inline]
@@ -109523,6 +117713,13 @@ impl<'a> Default for PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `internallySynchronizedQueues` without native effects.
 	#[doc(alias = "internallySynchronizedQueues")]
 	#[inline]
@@ -109579,6 +117776,13 @@ impl<'a> Default for SurfacePresentModeKHR<'a> {
 }
 
 impl<'a> SurfacePresentModeKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentMode` without native effects.
 	#[doc(alias = "presentMode")]
 	#[inline]
@@ -109651,6 +117855,13 @@ impl<'a> Default for SurfacePresentScalingCapabilitiesKHR<'a> {
 }
 
 impl<'a> SurfacePresentScalingCapabilitiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `supportedPresentScaling` without native effects.
 	#[doc(alias = "supportedPresentScaling")]
 	#[inline]
@@ -109750,6 +117961,13 @@ impl<'a> Default for SurfacePresentModeCompatibilityKHR<'a> {
 }
 
 impl<'a> SurfacePresentModeCompatibilityKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `presentModeCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -109832,6 +118050,13 @@ impl<'a> Default for PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `swapchainMaintenance1` without native effects.
 	#[doc(alias = "swapchainMaintenance1")]
 	#[inline]
@@ -109896,6 +118121,13 @@ impl<'a> Default for SwapchainPresentFenceInfoKHR<'a> {
 }
 
 impl<'a> SwapchainPresentFenceInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `swapchainCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -109981,6 +118213,13 @@ impl<'a> Default for SwapchainPresentModesCreateInfoKHR<'a> {
 }
 
 impl<'a> SwapchainPresentModesCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `presentModeCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -110066,6 +118305,13 @@ impl<'a> Default for SwapchainPresentModeInfoKHR<'a> {
 }
 
 impl<'a> SwapchainPresentModeInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `swapchainCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -110154,6 +118400,13 @@ impl<'a> Default for SwapchainPresentScalingCreateInfoKHR<'a> {
 }
 
 impl<'a> SwapchainPresentScalingCreateInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `scalingBehavior` without native effects.
 	#[doc(alias = "scalingBehavior")]
 	#[inline]
@@ -110237,6 +118490,13 @@ impl<'a> Default for ReleaseSwapchainImagesInfoKHR<'a> {
 }
 
 impl<'a> ReleaseSwapchainImagesInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `swapchain` without native effects.
 	#[doc(alias = "swapchain")]
 	#[inline]
@@ -110337,6 +118597,13 @@ impl<'a> Default for PhysicalDeviceDepthBiasControlFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceDepthBiasControlFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `depthBiasControl` without native effects.
 	#[doc(alias = "depthBiasControl")]
 	#[inline]
@@ -110420,6 +118687,13 @@ impl<'a> Default for PhysicalDeviceRayTracingInvocationReorderFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceRayTracingInvocationReorderFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rayTracingInvocationReorder` without native effects.
 	#[doc(alias = "rayTracingInvocationReorder")]
 	#[inline]
@@ -110476,6 +118750,13 @@ impl<'a> Default for PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rayTracingInvocationReorder` without native effects.
 	#[doc(alias = "rayTracingInvocationReorder")]
 	#[inline]
@@ -110535,6 +118816,13 @@ impl<'a> Default for PhysicalDeviceRayTracingInvocationReorderPropertiesEXT<'a> 
 }
 
 impl<'a> PhysicalDeviceRayTracingInvocationReorderPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rayTracingInvocationReorderReorderingHint` without native effects.
 	#[doc(alias = "rayTracingInvocationReorderReorderingHint")]
 	#[inline]
@@ -110603,6 +118891,13 @@ impl<'a> Default for PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rayTracingInvocationReorderReorderingHint` without native effects.
 	#[doc(alias = "rayTracingInvocationReorderReorderingHint")]
 	#[inline]
@@ -110662,6 +118957,13 @@ impl<'a> Default for PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `extendedSparseAddressSpace` without native effects.
 	#[doc(alias = "extendedSparseAddressSpace")]
 	#[inline]
@@ -110724,6 +119026,13 @@ impl<'a> Default for PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `extendedSparseAddressSpaceSize` without native effects.
 	#[doc(alias = "extendedSparseAddressSpaceSize")]
 	#[inline]
@@ -110800,6 +119109,13 @@ impl<'a> Default for DirectDriverLoadingInfoLUNARG<'a> {
 }
 
 impl<'a> DirectDriverLoadingInfoLUNARG<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -110870,6 +119186,13 @@ impl<'a> Default for DirectDriverLoadingListLUNARG<'a> {
 }
 
 impl<'a> DirectDriverLoadingListLUNARG<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `mode` without native effects.
 	#[doc(alias = "mode")]
 	#[inline]
@@ -110957,6 +119280,13 @@ impl<'a> Default for PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `multiviewPerViewViewports` without native effects.
 	#[doc(alias = "multiviewPerViewViewports")]
 	#[inline]
@@ -111013,6 +119343,13 @@ impl<'a> Default for PhysicalDeviceRayTracingPositionFetchFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceRayTracingPositionFetchFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rayTracingPositionFetch` without native effects.
 	#[doc(alias = "rayTracingPositionFetch")]
 	#[inline]
@@ -111072,6 +119409,13 @@ impl<'a> Default for DeviceImageSubresourceInfo<'a> {
 }
 
 impl<'a> DeviceImageSubresourceInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pCreateInfo` without native effects.
 	#[doc(alias = "pCreateInfo")]
 	#[inline]
@@ -111147,6 +119491,13 @@ impl<'a> Default for PhysicalDeviceShaderCorePropertiesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderCorePropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pixelRate` without native effects.
 	#[doc(alias = "pixelRate")]
 	#[inline]
@@ -111221,6 +119572,13 @@ impl<'a> Default for PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `multiviewPerViewRenderAreas` without native effects.
 	#[doc(alias = "multiviewPerViewRenderAreas")]
 	#[inline]
@@ -111280,6 +119638,13 @@ impl<'a> Default for MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
 }
 
 impl<'a> MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `perViewRenderAreaCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -111358,6 +119723,13 @@ impl<'a> Default for QueryLowLatencySupportNV<'a> {
 }
 
 impl<'a> QueryLowLatencySupportNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native pointer `pQueriedLowLatencyData` explicitly. No borrow or extent is inferred.
 	///
 	/// # Safety
@@ -111424,6 +119796,13 @@ impl<'a> Default for MemoryMapInfo<'a> {
 }
 
 impl<'a> MemoryMapInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -111512,6 +119891,13 @@ impl<'a> Default for MemoryUnmapInfo<'a> {
 }
 
 impl<'a> MemoryUnmapInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -111581,6 +119967,13 @@ impl<'a> Default for PhysicalDeviceShaderObjectFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderObjectFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderObject` without native effects.
 	#[doc(alias = "shaderObject")]
 	#[inline]
@@ -111640,6 +120033,13 @@ impl<'a> Default for PhysicalDeviceShaderObjectPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderObjectPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderBinaryUUID` without native effects.
 	#[doc(alias = "shaderBinaryUUID")]
 	#[inline]
@@ -111736,6 +120136,13 @@ impl<'a> Default for ShaderCreateInfoEXT<'a> {
 }
 
 impl<'a> ShaderCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -111936,6 +120343,13 @@ impl<'a> Default for PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderTileImageFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderTileImageColorReadAccess` without native effects.
 	#[doc(alias = "shaderTileImageColorReadAccess")]
 	#[inline]
@@ -112016,6 +120430,13 @@ impl<'a> Default for PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderTileImagePropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderTileImageCoherentReadAccelerated` without native effects.
 	#[doc(alias = "shaderTileImageCoherentReadAccelerated")]
 	#[inline]
@@ -112095,6 +120516,13 @@ impl<'a> Default for ImportScreenBufferInfoQNX<'a> {
 
 #[cfg(feature = "platform-screen")]
 impl<'a> ImportScreenBufferInfoQNX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native pointer `buffer` explicitly. No borrow or extent is inferred.
 	///
 	/// # Safety
@@ -112162,6 +120590,13 @@ impl<'a> Default for ScreenBufferPropertiesQNX<'a> {
 
 #[cfg(feature = "platform-screen")]
 impl<'a> ScreenBufferPropertiesQNX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `allocationSize` without native effects.
 	#[doc(alias = "allocationSize")]
 	#[inline]
@@ -112253,6 +120688,13 @@ impl<'a> Default for ScreenBufferFormatPropertiesQNX<'a> {
 
 #[cfg(feature = "platform-screen")]
 impl<'a> ScreenBufferFormatPropertiesQNX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `format` without native effects.
 	#[doc(alias = "format")]
 	#[inline]
@@ -112384,6 +120826,13 @@ impl<'a> Default for ExternalFormatQNX<'a> {
 
 #[cfg(feature = "platform-screen")]
 impl<'a> ExternalFormatQNX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `externalFormat` without native effects.
 	#[doc(alias = "externalFormat")]
 	#[inline]
@@ -112443,6 +120892,13 @@ impl<'a> Default for PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
 
 #[cfg(feature = "platform-screen")]
 impl<'a> PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `screenBufferImport` without native effects.
 	#[doc(alias = "screenBufferImport")]
 	#[inline]
@@ -112502,6 +120958,13 @@ impl<'a> Default for PhysicalDeviceCooperativeMatrixFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceCooperativeMatrixFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cooperativeMatrix` without native effects.
 	#[doc(alias = "cooperativeMatrix")]
 	#[inline]
@@ -112590,6 +121053,13 @@ impl<'a> Default for CooperativeMatrixPropertiesKHR<'a> {
 }
 
 impl<'a> CooperativeMatrixPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `MSize` without native effects.
 	#[doc(alias = "MSize")]
 	#[inline]
@@ -112724,6 +121194,13 @@ impl<'a> Default for PhysicalDeviceCooperativeMatrixInfo2EXT<'a> {
 }
 
 impl<'a> PhysicalDeviceCooperativeMatrixInfo2EXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `scope` without native effects.
 	#[doc(alias = "scope")]
 	#[inline]
@@ -112825,6 +121302,13 @@ impl<'a> Default for CooperativeMatrixProperties2EXT<'a> {
 }
 
 impl<'a> CooperativeMatrixProperties2EXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `MGranularity` without native effects.
 	#[doc(alias = "MGranularity")]
 	#[inline]
@@ -112935,6 +121419,13 @@ impl<'a> Default for PhysicalDeviceCooperativeMatrixPropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceCooperativeMatrixPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cooperativeMatrixSupportedStages` without native effects.
 	#[doc(alias = "cooperativeMatrixSupportedStages")]
 	#[inline]
@@ -112991,6 +121482,13 @@ impl<'a> Default for PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cooperativeMatrixConversion` without native effects.
 	#[doc(alias = "cooperativeMatrixConversion")]
 	#[inline]
@@ -113068,6 +121566,13 @@ impl<'a> Default for PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> PhysicalDeviceShaderEnqueuePropertiesAMDX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxExecutionGraphDepth` without native effects.
 	#[doc(alias = "maxExecutionGraphDepth")]
 	#[inline]
@@ -113184,6 +121689,13 @@ impl<'a> Default for PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> PhysicalDeviceShaderEnqueueFeaturesAMDX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderEnqueue` without native effects.
 	#[doc(alias = "shaderEnqueue")]
 	#[inline]
@@ -113268,6 +121780,13 @@ impl<'a> Default for ExecutionGraphPipelineCreateInfoAMDX<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> ExecutionGraphPipelineCreateInfoAMDX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -113396,6 +121915,13 @@ impl<'a> Default for PipelineShaderStageNodeCreateInfoAMDX<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> PipelineShaderStageNodeCreateInfoAMDX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pName` without native effects.
 	#[doc(alias = "pName")]
 	#[inline]
@@ -113470,6 +121996,13 @@ impl<'a> Default for ExecutionGraphPipelineScratchSizeAMDX<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> ExecutionGraphPipelineScratchSizeAMDX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minSize` without native effects.
 	#[doc(alias = "minSize")]
 	#[inline]
@@ -113545,6 +122078,13 @@ impl Default for DispatchGraphInfoAMDX {
 
 #[cfg(feature = "provisional")]
 impl DispatchGraphInfoAMDX {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `nodeIndex` without native effects.
 	#[doc(alias = "nodeIndex")]
 	#[inline]
@@ -113607,6 +122147,13 @@ impl Default for DispatchGraphCountInfoAMDX {
 
 #[cfg(feature = "provisional")]
 impl DispatchGraphCountInfoAMDX {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `count` without native effects.
 	#[doc(alias = "count")]
 	#[inline]
@@ -113664,6 +122211,13 @@ impl<'a> Default for PhysicalDeviceAntiLagFeaturesAMD<'a> {
 }
 
 impl<'a> PhysicalDeviceAntiLagFeaturesAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `antiLag` without native effects.
 	#[doc(alias = "antiLag")]
 	#[inline]
@@ -113725,6 +122279,13 @@ impl<'a> Default for AntiLagDataAMD<'a> {
 }
 
 impl<'a> AntiLagDataAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `mode` without native effects.
 	#[doc(alias = "mode")]
 	#[inline]
@@ -113801,6 +122362,13 @@ impl<'a> Default for AntiLagPresentationInfoAMD<'a> {
 }
 
 impl<'a> AntiLagPresentationInfoAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stage` without native effects.
 	#[doc(alias = "stage")]
 	#[inline]
@@ -113866,6 +122434,13 @@ impl<'a> Default for BindMemoryStatus<'a> {
 }
 
 impl<'a> BindMemoryStatus<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pResult` without native effects.
 	#[doc(alias = "pResult")]
 	#[inline]
@@ -113922,6 +122497,13 @@ impl<'a> Default for PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceTileMemoryHeapFeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tileMemoryHeap` without native effects.
 	#[doc(alias = "tileMemoryHeap")]
 	#[inline]
@@ -113981,6 +122563,13 @@ impl<'a> Default for PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceTileMemoryHeapPropertiesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `queueSubmitBoundary` without native effects.
 	#[doc(alias = "queueSubmitBoundary")]
 	#[inline]
@@ -114045,6 +122634,13 @@ impl<'a> Default for TileMemorySizeInfoQCOM<'a> {
 }
 
 impl<'a> TileMemorySizeInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `size` without native effects.
 	#[doc(alias = "size")]
 	#[inline]
@@ -114102,6 +122698,13 @@ impl<'a> Default for TileMemoryRequirementsQCOM<'a> {
 }
 
 impl<'a> TileMemoryRequirementsQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `size` without native effects.
 	#[doc(alias = "size")]
 	#[inline]
@@ -114188,6 +122791,13 @@ impl<'a> Default for BindDescriptorSetsInfo<'a> {
 }
 
 impl<'a> BindDescriptorSetsInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stageFlags` without native effects.
 	#[doc(alias = "stageFlags")]
 	#[inline]
@@ -114337,6 +122947,13 @@ impl<'a> Default for PushConstantsInfo<'a> {
 }
 
 impl<'a> PushConstantsInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `layout` without native effects.
 	#[doc(alias = "layout")]
 	#[inline]
@@ -114456,6 +123073,13 @@ impl<'a> Default for PushDescriptorSetInfo<'a> {
 }
 
 impl<'a> PushDescriptorSetInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stageFlags` without native effects.
 	#[doc(alias = "stageFlags")]
 	#[inline]
@@ -114572,6 +123196,13 @@ impl<'a> Default for PushDescriptorSetWithTemplateInfo<'a> {
 }
 
 impl<'a> PushDescriptorSetWithTemplateInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `descriptorUpdateTemplate` without native effects.
 	#[doc(alias = "descriptorUpdateTemplate")]
 	#[inline]
@@ -114678,6 +123309,13 @@ impl<'a> Default for SetDescriptorBufferOffsetsInfoEXT<'a> {
 }
 
 impl<'a> SetDescriptorBufferOffsetsInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stageFlags` without native effects.
 	#[doc(alias = "stageFlags")]
 	#[inline]
@@ -114803,6 +123441,13 @@ impl<'a> Default for BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
 }
 
 impl<'a> BindDescriptorBufferEmbeddedSamplersInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stageFlags` without native effects.
 	#[doc(alias = "stageFlags")]
 	#[inline]
@@ -114877,6 +123522,13 @@ impl<'a> Default for PhysicalDeviceCubicClampFeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceCubicClampFeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cubicRangeClamp` without native effects.
 	#[doc(alias = "cubicRangeClamp")]
 	#[inline]
@@ -114933,6 +123585,13 @@ impl<'a> Default for PhysicalDeviceYcbcrDegammaFeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceYcbcrDegammaFeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `ycbcrDegamma` without native effects.
 	#[doc(alias = "ycbcrDegamma")]
 	#[inline]
@@ -114992,6 +123651,13 @@ impl<'a> Default for SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'a> {
 }
 
 impl<'a> SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `enableYDegamma` without native effects.
 	#[doc(alias = "enableYDegamma")]
 	#[inline]
@@ -115057,6 +123723,13 @@ impl<'a> Default for PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceCubicWeightsFeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `selectableCubicWeights` without native effects.
 	#[doc(alias = "selectableCubicWeights")]
 	#[inline]
@@ -115113,6 +123786,13 @@ impl<'a> Default for SamplerCubicWeightsCreateInfoQCOM<'a> {
 }
 
 impl<'a> SamplerCubicWeightsCreateInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cubicWeights` without native effects.
 	#[doc(alias = "cubicWeights")]
 	#[inline]
@@ -115169,6 +123849,13 @@ impl<'a> Default for BlitImageCubicWeightsInfoQCOM<'a> {
 }
 
 impl<'a> BlitImageCubicWeightsInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cubicWeights` without native effects.
 	#[doc(alias = "cubicWeights")]
 	#[inline]
@@ -115225,6 +123912,13 @@ impl<'a> Default for PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceImageProcessing2FeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `textureBlockMatch2` without native effects.
 	#[doc(alias = "textureBlockMatch2")]
 	#[inline]
@@ -115281,6 +123975,13 @@ impl<'a> Default for PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceImageProcessing2PropertiesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxBlockMatchWindow` without native effects.
 	#[doc(alias = "maxBlockMatchWindow")]
 	#[inline]
@@ -115340,6 +124041,13 @@ impl<'a> Default for SamplerBlockMatchWindowCreateInfoQCOM<'a> {
 }
 
 impl<'a> SamplerBlockMatchWindowCreateInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `windowExtent` without native effects.
 	#[doc(alias = "windowExtent")]
 	#[inline]
@@ -115411,6 +124119,13 @@ impl<'a> Default for PhysicalDeviceImageProcessing3FeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceImageProcessing3FeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageGatherLinear` without native effects.
 	#[doc(alias = "imageGatherLinear")]
 	#[inline]
@@ -115485,6 +124200,13 @@ impl<'a> Default for PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `descriptorPoolOverallocation` without native effects.
 	#[doc(alias = "descriptorPoolOverallocation")]
 	#[inline]
@@ -115541,6 +124263,13 @@ impl<'a> Default for PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
 }
 
 impl<'a> PhysicalDeviceLayeredDriverPropertiesMSFT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `underlyingAPI` without native effects.
 	#[doc(alias = "underlyingAPI")]
 	#[inline]
@@ -115600,6 +124329,13 @@ impl<'a> Default for PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDevicePerStageDescriptorSetFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `perStageDescriptorSet` without native effects.
 	#[doc(alias = "perStageDescriptorSet")]
 	#[inline]
@@ -115668,6 +124404,13 @@ impl<'a> Default for PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
 
 #[cfg(feature = "platform-android")]
 impl<'a> PhysicalDeviceExternalFormatResolveFeaturesANDROID<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `externalFormatResolve` without native effects.
 	#[doc(alias = "externalFormatResolve")]
 	#[inline]
@@ -115733,6 +124476,13 @@ impl<'a> Default for PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
 
 #[cfg(feature = "platform-android")]
 impl<'a> PhysicalDeviceExternalFormatResolvePropertiesANDROID<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `nullColorAttachmentWithExternalFormatResolve` without native effects.
 	#[doc(alias = "nullColorAttachmentWithExternalFormatResolve")]
 	#[inline]
@@ -115810,6 +124560,13 @@ impl<'a> Default for AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
 
 #[cfg(feature = "platform-android")]
 impl<'a> AndroidHardwareBufferFormatResolvePropertiesANDROID<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `colorAttachmentFormat` without native effects.
 	#[doc(alias = "colorAttachmentFormat")]
 	#[inline]
@@ -115872,6 +124629,13 @@ impl<'a> Default for LatencySleepModeInfoNV<'a> {
 }
 
 impl<'a> LatencySleepModeInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `lowLatencyMode` without native effects.
 	#[doc(alias = "lowLatencyMode")]
 	#[inline]
@@ -115948,6 +124712,13 @@ impl<'a> Default for LatencySleepInfoNV<'a> {
 }
 
 impl<'a> LatencySleepInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `signalSemaphore` without native effects.
 	#[doc(alias = "signalSemaphore")]
 	#[inline]
@@ -116015,6 +124786,13 @@ impl<'a> Default for SetLatencyMarkerInfoNV<'a> {
 }
 
 impl<'a> SetLatencyMarkerInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentID` without native effects.
 	#[doc(alias = "presentID")]
 	#[inline]
@@ -116083,6 +124861,13 @@ impl<'a> Default for GetLatencyMarkerInfoNV<'a> {
 }
 
 impl<'a> GetLatencyMarkerInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `timingCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -116200,6 +124985,13 @@ impl<'a> Default for LatencyTimingsFrameReportNV<'a> {
 }
 
 impl<'a> LatencyTimingsFrameReportNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentID` without native effects.
 	#[doc(alias = "presentID")]
 	#[inline]
@@ -116373,6 +125165,13 @@ impl<'a> Default for OutOfBandQueueTypeInfoNV<'a> {
 }
 
 impl<'a> OutOfBandQueueTypeInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `queueType` without native effects.
 	#[doc(alias = "queueType")]
 	#[inline]
@@ -116429,6 +125228,13 @@ impl<'a> Default for LatencySubmissionPresentIdNV<'a> {
 }
 
 impl<'a> LatencySubmissionPresentIdNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentID` without native effects.
 	#[doc(alias = "presentID")]
 	#[inline]
@@ -116485,6 +125291,13 @@ impl<'a> Default for SwapchainLatencyCreateInfoNV<'a> {
 }
 
 impl<'a> SwapchainLatencyCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `latencyModeEnable` without native effects.
 	#[doc(alias = "latencyModeEnable")]
 	#[inline]
@@ -116544,6 +125357,13 @@ impl<'a> Default for LatencySurfaceCapabilitiesNV<'a> {
 }
 
 impl<'a> LatencySurfaceCapabilitiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `presentModeCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -116625,6 +125445,13 @@ impl<'a> Default for PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> PhysicalDeviceCudaKernelLaunchFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cudaKernelLaunchFeatures` without native effects.
 	#[doc(alias = "cudaKernelLaunchFeatures")]
 	#[inline]
@@ -116687,6 +125514,13 @@ impl<'a> Default for PhysicalDeviceCudaKernelLaunchPropertiesNV<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> PhysicalDeviceCudaKernelLaunchPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `computeCapabilityMinor` without native effects.
 	#[doc(alias = "computeCapabilityMinor")]
 	#[inline]
@@ -116752,6 +125586,13 @@ impl<'a> Default for DeviceQueueShaderCoreControlCreateInfoARM<'a> {
 }
 
 impl<'a> DeviceQueueShaderCoreControlCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderCoreCount` without native effects.
 	#[doc(alias = "shaderCoreCount")]
 	#[inline]
@@ -116808,6 +125649,13 @@ impl<'a> Default for PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceSchedulingControlsFeaturesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `schedulingControls` without native effects.
 	#[doc(alias = "schedulingControls")]
 	#[inline]
@@ -116864,6 +125712,13 @@ impl<'a> Default for PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceSchedulingControlsPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `schedulingControlsFlags` without native effects.
 	#[doc(alias = "schedulingControlsFlags")]
 	#[inline]
@@ -116930,6 +125785,13 @@ impl<'a> Default for PhysicalDeviceSchedulingControlsDispatchParametersPropertie
 }
 
 impl<'a> PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `schedulingControlsMaxWarpsCount` without native effects.
 	#[doc(alias = "schedulingControlsMaxWarpsCount")]
 	#[inline]
@@ -117010,6 +125872,13 @@ impl<'a> Default for DispatchParametersARM<'a> {
 }
 
 impl<'a> DispatchParametersARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `workGroupBatchSize` without native effects.
 	#[doc(alias = "workGroupBatchSize")]
 	#[inline]
@@ -117084,6 +125953,13 @@ impl<'a> Default for PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'a> {
 }
 
 impl<'a> PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `relaxedLineRasterization` without native effects.
 	#[doc(alias = "relaxedLineRasterization")]
 	#[inline]
@@ -117140,6 +126016,13 @@ impl<'a> Default for PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceRenderPassStripedFeaturesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `renderPassStriped` without native effects.
 	#[doc(alias = "renderPassStriped")]
 	#[inline]
@@ -117199,6 +126082,13 @@ impl<'a> Default for PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceRenderPassStripedPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `renderPassStripeGranularity` without native effects.
 	#[doc(alias = "renderPassStripeGranularity")]
 	#[inline]
@@ -117264,6 +126154,13 @@ impl<'a> Default for RenderPassStripeInfoARM<'a> {
 }
 
 impl<'a> RenderPassStripeInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stripeArea` without native effects.
 	#[doc(alias = "stripeArea")]
 	#[inline]
@@ -117323,6 +126220,13 @@ impl<'a> Default for RenderPassStripeBeginInfoARM<'a> {
 }
 
 impl<'a> RenderPassStripeBeginInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `stripeInfoCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -117404,6 +126308,13 @@ impl<'a> Default for RenderPassStripeSubmitInfoARM<'a> {
 }
 
 impl<'a> RenderPassStripeSubmitInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `stripeSemaphoreInfoCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -117482,6 +126393,13 @@ impl<'a> Default for PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
 }
 
 impl<'a> PhysicalDevicePipelineOpacityMicromapFeaturesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineOpacityMicromap` without native effects.
 	#[doc(alias = "pipelineOpacityMicromap")]
 	#[inline]
@@ -117538,6 +126456,13 @@ impl<'a> Default for PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderMaximalReconvergence` without native effects.
 	#[doc(alias = "shaderMaximalReconvergence")]
 	#[inline]
@@ -117597,6 +126522,13 @@ impl<'a> Default for PhysicalDeviceShaderSubgroupRotateFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderSubgroupRotateFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderSubgroupRotate` without native effects.
 	#[doc(alias = "shaderSubgroupRotate")]
 	#[inline]
@@ -117667,6 +126599,13 @@ impl<'a> Default for PhysicalDeviceShaderExpectAssumeFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderExpectAssumeFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderExpectAssume` without native effects.
 	#[doc(alias = "shaderExpectAssume")]
 	#[inline]
@@ -117728,6 +126667,13 @@ impl<'a> Default for PhysicalDeviceShaderFloatControls2Features<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderFloatControls2Features<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderFloatControls2` without native effects.
 	#[doc(alias = "shaderFloatControls2")]
 	#[inline]
@@ -117789,6 +126735,13 @@ impl<'a> Default for PhysicalDeviceDynamicRenderingLocalReadFeatures<'a> {
 }
 
 impl<'a> PhysicalDeviceDynamicRenderingLocalReadFeatures<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dynamicRenderingLocalRead` without native effects.
 	#[doc(alias = "dynamicRenderingLocalRead")]
 	#[inline]
@@ -117853,6 +126806,13 @@ impl<'a> Default for RenderingAttachmentLocationInfo<'a> {
 }
 
 impl<'a> RenderingAttachmentLocationInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `colorAttachmentCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -117944,6 +126904,13 @@ impl<'a> Default for RenderingInputAttachmentIndexInfo<'a> {
 }
 
 impl<'a> RenderingInputAttachmentIndexInfo<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `colorAttachmentCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -118044,6 +127011,13 @@ impl<'a> Default for PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderQuadControlFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderQuadControl` without native effects.
 	#[doc(alias = "shaderQuadControl")]
 	#[inline]
@@ -118100,6 +127074,13 @@ impl<'a> Default for PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderFloat16VectorAtomics` without native effects.
 	#[doc(alias = "shaderFloat16VectorAtomics")]
 	#[inline]
@@ -118162,6 +127143,13 @@ impl<'a> Default for PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceMapMemoryPlacedFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memoryMapPlaced` without native effects.
 	#[doc(alias = "memoryMapPlaced")]
 	#[inline]
@@ -118236,6 +127224,13 @@ impl<'a> Default for PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceMapMemoryPlacedPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minPlacedMemoryMapAlignment` without native effects.
 	#[doc(alias = "minPlacedMemoryMapAlignment")]
 	#[inline]
@@ -118292,6 +127287,13 @@ impl<'a> Default for MemoryMapPlacedInfoEXT<'a> {
 }
 
 impl<'a> MemoryMapPlacedInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native pointer `pPlacedAddress` explicitly. No borrow or extent is inferred.
 	///
 	/// # Safety
@@ -118359,6 +127361,13 @@ impl<'a> Default for PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderBfloat16FeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderBFloat16Type` without native effects.
 	#[doc(alias = "shaderBFloat16Type")]
 	#[inline]
@@ -118433,6 +127442,13 @@ impl<'a> Default for PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceRawAccessChainsFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderRawAccessChains` without native effects.
 	#[doc(alias = "shaderRawAccessChains")]
 	#[inline]
@@ -118489,6 +127505,13 @@ impl<'a> Default for PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceCommandBufferInheritanceFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `commandBufferInheritance` without native effects.
 	#[doc(alias = "commandBufferInheritance")]
 	#[inline]
@@ -118545,6 +127568,13 @@ impl<'a> Default for PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
 }
 
 impl<'a> PhysicalDeviceImageAlignmentControlFeaturesMESA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageAlignmentControl` without native effects.
 	#[doc(alias = "imageAlignmentControl")]
 	#[inline]
@@ -118601,6 +127631,13 @@ impl<'a> Default for PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
 }
 
 impl<'a> PhysicalDeviceImageAlignmentControlPropertiesMESA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `supportedImageAlignmentMask` without native effects.
 	#[doc(alias = "supportedImageAlignmentMask")]
 	#[inline]
@@ -118657,6 +127694,13 @@ impl<'a> Default for ImageAlignmentControlCreateInfoMESA<'a> {
 }
 
 impl<'a> ImageAlignmentControlCreateInfoMESA<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maximumRequestedAlignment` without native effects.
 	#[doc(alias = "maximumRequestedAlignment")]
 	#[inline]
@@ -118713,6 +127757,13 @@ impl<'a> Default for PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderReplicatedComposites` without native effects.
 	#[doc(alias = "shaderReplicatedComposites")]
 	#[inline]
@@ -118774,6 +127825,13 @@ impl<'a> Default for PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentModeFifoLatestReady` without native effects.
 	#[doc(alias = "presentModeFifoLatestReady")]
 	#[inline]
@@ -118823,6 +127881,13 @@ impl Default for DepthClampRangeEXT {
 }
 
 impl DepthClampRangeEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `minDepthClamp` without native effects.
 	#[doc(alias = "minDepthClamp")]
 	#[inline]
@@ -118889,6 +127954,13 @@ impl<'a> Default for PhysicalDeviceCooperativeMatrix2FeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceCooperativeMatrix2FeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cooperativeMatrixWorkgroupScope` without native effects.
 	#[doc(alias = "cooperativeMatrixWorkgroupScope")]
 	#[inline]
@@ -119005,6 +128077,13 @@ impl<'a> Default for PhysicalDeviceCooperativeMatrix2PropertiesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceCooperativeMatrix2PropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cooperativeMatrixWorkgroupScopeMaxWorkgroupSize` without native effects.
 	#[doc(alias = "cooperativeMatrixWorkgroupScopeMaxWorkgroupSize")]
 	#[inline]
@@ -119108,6 +128187,13 @@ impl<'a> Default for CooperativeMatrixFlexibleDimensionsPropertiesNV<'a> {
 }
 
 impl<'a> CooperativeMatrixFlexibleDimensionsPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `MGranularity` without native effects.
 	#[doc(alias = "MGranularity")]
 	#[inline]
@@ -119245,6 +128331,13 @@ impl<'a> Default for PhysicalDeviceCooperativeMatrixDecodeVectorFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceCooperativeMatrixDecodeVectorFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cooperativeMatrixDecodeVector` without native effects.
 	#[doc(alias = "cooperativeMatrixDecodeVector")]
 	#[inline]
@@ -119301,6 +128394,13 @@ impl<'a> Default for PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
 }
 
 impl<'a> PhysicalDeviceHdrVividFeaturesHUAWEI<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `hdrVivid` without native effects.
 	#[doc(alias = "hdrVivid")]
 	#[inline]
@@ -119357,6 +128457,13 @@ impl<'a> Default for PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `vertexAttributeRobustness` without native effects.
 	#[doc(alias = "vertexAttributeRobustness")]
 	#[inline]
@@ -119416,6 +128523,13 @@ impl<'a> Default for PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
 
 #[cfg(feature = "provisional")]
 impl<'a> PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `denseGeometryFormat` without native effects.
 	#[doc(alias = "denseGeometryFormat")]
 	#[inline]
@@ -119492,6 +128606,13 @@ impl<'a> Default for AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'
 
 #[cfg(feature = "provisional")]
 impl<'a> AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `compressedData` without native effects.
 	#[doc(alias = "compressedData")]
 	#[inline]
@@ -119602,6 +128723,13 @@ impl<'a> Default for PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceDepthClampZeroOneFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `depthClampZeroOne` without native effects.
 	#[doc(alias = "depthClampZeroOne")]
 	#[inline]
@@ -119661,6 +128789,13 @@ impl<'a> Default for PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceCooperativeVectorFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cooperativeVector` without native effects.
 	#[doc(alias = "cooperativeVector")]
 	#[inline]
@@ -119740,6 +128875,13 @@ impl<'a> Default for CooperativeVectorPropertiesNV<'a> {
 }
 
 impl<'a> CooperativeVectorPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `inputType` without native effects.
 	#[doc(alias = "inputType")]
 	#[inline]
@@ -119850,6 +128992,13 @@ impl<'a> Default for PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceCooperativeVectorPropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cooperativeVectorSupportedStages` without native effects.
 	#[doc(alias = "cooperativeVectorSupportedStages")]
 	#[inline]
@@ -119966,6 +129115,13 @@ impl<'a> Default for ConvertCooperativeVectorMatrixInfoNV<'a> {
 }
 
 impl<'a> ConvertCooperativeVectorMatrixInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcSize` without native effects.
 	#[doc(alias = "srcSize")]
 	#[inline]
@@ -120160,6 +129316,13 @@ impl<'a> Default for PhysicalDeviceTileShadingFeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceTileShadingFeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tileShading` without native effects.
 	#[doc(alias = "tileShading")]
 	#[inline]
@@ -120342,6 +129505,13 @@ impl<'a> Default for PhysicalDeviceTileShadingPropertiesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceTileShadingPropertiesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxApronSize` without native effects.
 	#[doc(alias = "maxApronSize")]
 	#[inline]
@@ -120427,6 +129597,13 @@ impl<'a> Default for RenderPassTileShadingCreateInfoQCOM<'a> {
 }
 
 impl<'a> RenderPassTileShadingCreateInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -120489,6 +129666,13 @@ impl<'a> Default for PerTileBeginInfoQCOM<'a> {
 }
 
 impl<'a> PerTileBeginInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -120533,6 +129717,13 @@ impl<'a> Default for PerTileEndInfoQCOM<'a> {
 }
 
 impl<'a> PerTileEndInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -120577,6 +129768,13 @@ impl<'a> Default for DispatchTileInfoQCOM<'a> {
 }
 
 impl<'a> DispatchTileInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -120624,6 +129822,13 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'a> 
 }
 
 impl<'a> PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxFragmentDensityMapLayers` without native effects.
 	#[doc(alias = "maxFragmentDensityMapLayers")]
 	#[inline]
@@ -120680,6 +129885,13 @@ impl<'a> Default for PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
 }
 
 impl<'a> PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `fragmentDensityMapLayered` without native effects.
 	#[doc(alias = "fragmentDensityMapLayered")]
 	#[inline]
@@ -120736,6 +129948,13 @@ impl<'a> Default for PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
 }
 
 impl<'a> PipelineFragmentDensityMapLayeredCreateInfoVALVE<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxFragmentDensityMapLayers` without native effects.
 	#[doc(alias = "maxFragmentDensityMapLayers")]
 	#[inline]
@@ -120795,6 +130014,13 @@ impl<'a> Default for SetPresentConfigNV<'a> {
 }
 
 impl<'a> SetPresentConfigNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `numFramesPerBatch` without native effects.
 	#[doc(alias = "numFramesPerBatch")]
 	#[inline]
@@ -120860,6 +130086,13 @@ impl<'a> Default for PhysicalDevicePresentMeteringFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDevicePresentMeteringFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `presentMetering` without native effects.
 	#[doc(alias = "presentMetering")]
 	#[inline]
@@ -120916,6 +130149,13 @@ impl<'a> Default for ExternalComputeQueueDeviceCreateInfoNV<'a> {
 }
 
 impl<'a> ExternalComputeQueueDeviceCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `reservedExternalQueues` without native effects.
 	#[doc(alias = "reservedExternalQueues")]
 	#[inline]
@@ -120972,6 +130212,13 @@ impl<'a> Default for ExternalComputeQueueCreateInfoNV<'a> {
 }
 
 impl<'a> ExternalComputeQueueCreateInfoNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `preferredQueue` without native effects.
 	#[doc(alias = "preferredQueue")]
 	#[inline]
@@ -121028,6 +130275,13 @@ impl<'a> Default for ExternalComputeQueueDataParamsNV<'a> {
 }
 
 impl<'a> ExternalComputeQueueDataParamsNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceIndex` without native effects.
 	#[doc(alias = "deviceIndex")]
 	#[inline]
@@ -121087,6 +130341,13 @@ impl<'a> Default for PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceExternalComputeQueuePropertiesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `externalDataSize` without native effects.
 	#[doc(alias = "externalDataSize")]
 	#[inline]
@@ -121184,6 +130445,13 @@ impl<'a> Default for PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a
 }
 
 impl<'a> PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderUniformBufferUnsizedArray` without native effects.
 	#[doc(alias = "shaderUniformBufferUnsizedArray")]
 	#[inline]
@@ -121249,6 +130517,13 @@ impl<'a> Default for PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderMixedFloatDotProductFloat16AccFloat32` without native effects.
 	#[doc(alias = "shaderMixedFloatDotProductFloat16AccFloat32")]
 	#[inline]
@@ -121332,6 +130607,13 @@ impl<'a> Default for PhysicalDevicePrimitiveRestartIndexFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDevicePrimitiveRestartIndexFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `primitiveRestartIndex` without native effects.
 	#[doc(alias = "primitiveRestartIndex")]
 	#[inline]
@@ -121388,6 +130670,13 @@ impl<'a> Default for PhysicalDeviceFormatPackFeaturesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceFormatPackFeaturesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `formatPack` without native effects.
 	#[doc(alias = "formatPack")]
 	#[inline]
@@ -121444,6 +130733,13 @@ impl<'a> Default for PhysicalDeviceThrottleHintFeaturesSEC<'a> {
 }
 
 impl<'a> PhysicalDeviceThrottleHintFeaturesSEC<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `throttleHint` without native effects.
 	#[doc(alias = "throttleHint")]
 	#[inline]
@@ -121500,6 +130796,13 @@ impl<'a> Default for ThrottleHintSubmitInfoSEC<'a> {
 }
 
 impl<'a> ThrottleHintSubmitInfoSEC<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `throttleHint` without native effects.
 	#[doc(alias = "throttleHint")]
 	#[inline]
@@ -121568,6 +130871,13 @@ impl<'a> Default for TensorDescriptionARM<'a> {
 }
 
 impl<'a> TensorDescriptionARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tiling` without native effects.
 	#[doc(alias = "tiling")]
 	#[inline]
@@ -121702,6 +131012,13 @@ impl<'a> Default for TensorCreateInfoARM<'a> {
 }
 
 impl<'a> TensorCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -121810,6 +131127,13 @@ impl<'a> Default for TensorViewCreateInfoARM<'a> {
 }
 
 impl<'a> TensorViewCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -121883,6 +131207,13 @@ impl<'a> Default for TensorMemoryRequirementsInfoARM<'a> {
 }
 
 impl<'a> TensorMemoryRequirementsInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tensor` without native effects.
 	#[doc(alias = "tensor")]
 	#[inline]
@@ -121943,6 +131274,13 @@ impl<'a> Default for BindTensorMemoryInfoARM<'a> {
 }
 
 impl<'a> BindTensorMemoryInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tensor` without native effects.
 	#[doc(alias = "tensor")]
 	#[inline]
@@ -122020,6 +131358,13 @@ impl<'a> Default for WriteDescriptorSetTensorARM<'a> {
 }
 
 impl<'a> WriteDescriptorSetTensorARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `tensorViewCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -122101,6 +131446,13 @@ impl<'a> Default for TensorFormatPropertiesARM<'a> {
 }
 
 impl<'a> TensorFormatPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `optimalTilingTensorFeatures` without native effects.
 	#[doc(alias = "optimalTilingTensorFeatures")]
 	#[inline]
@@ -122202,6 +131554,13 @@ impl<'a> Default for PhysicalDeviceTensorPropertiesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceTensorPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxTensorDimensionCount` without native effects.
 	#[doc(alias = "maxTensorDimensionCount")]
 	#[inline]
@@ -122389,6 +131748,13 @@ impl<'a> Default for TensorMemoryBarrierARM<'a> {
 }
 
 impl<'a> TensorMemoryBarrierARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcStageMask` without native effects.
 	#[doc(alias = "srcStageMask")]
 	#[inline]
@@ -122502,6 +131868,13 @@ impl<'a> Default for TensorDependencyInfoARM<'a> {
 }
 
 impl<'a> TensorDependencyInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `tensorMemoryBarrierCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -122594,6 +131967,13 @@ impl<'a> Default for PhysicalDeviceTensorFeaturesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceTensorFeaturesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tensorNonPacked` without native effects.
 	#[doc(alias = "tensorNonPacked")]
 	#[inline]
@@ -122695,6 +132075,13 @@ impl<'a> Default for DeviceTensorMemoryRequirementsARM<'a> {
 }
 
 impl<'a> DeviceTensorMemoryRequirementsARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pCreateInfo` without native effects.
 	#[doc(alias = "pCreateInfo")]
 	#[inline]
@@ -122760,6 +132147,13 @@ impl<'a> Default for CopyTensorInfoARM<'a> {
 }
 
 impl<'a> CopyTensorInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcTensor` without native effects.
 	#[doc(alias = "srcTensor")]
 	#[inline]
@@ -122865,6 +132259,13 @@ impl<'a> Default for TensorCopyARM<'a> {
 }
 
 impl<'a> TensorCopyARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `dimensionCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -122974,6 +132375,13 @@ impl<'a> Default for MemoryDedicatedAllocateInfoTensorARM<'a> {
 }
 
 impl<'a> MemoryDedicatedAllocateInfoTensorARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tensor` without native effects.
 	#[doc(alias = "tensor")]
 	#[inline]
@@ -123036,6 +132444,13 @@ impl<'a> Default for PhysicalDeviceDescriptorBufferTensorPropertiesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceDescriptorBufferTensorPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tensorCaptureReplayDescriptorDataSize` without native effects.
 	#[doc(alias = "tensorCaptureReplayDescriptorDataSize")]
 	#[inline]
@@ -123110,6 +132525,13 @@ impl<'a> Default for PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceDescriptorBufferTensorFeaturesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `descriptorBufferTensorDescriptors` without native effects.
 	#[doc(alias = "descriptorBufferTensorDescriptors")]
 	#[inline]
@@ -123165,6 +132587,13 @@ impl<'a> Default for TensorCaptureDescriptorDataInfoARM<'a> {
 }
 
 impl<'a> TensorCaptureDescriptorDataInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tensor` without native effects.
 	#[doc(alias = "tensor")]
 	#[inline]
@@ -123221,6 +132650,13 @@ impl<'a> Default for TensorViewCaptureDescriptorDataInfoARM<'a> {
 }
 
 impl<'a> TensorViewCaptureDescriptorDataInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tensorView` without native effects.
 	#[doc(alias = "tensorView")]
 	#[inline]
@@ -123277,6 +132713,13 @@ impl<'a> Default for DescriptorGetTensorInfoARM<'a> {
 }
 
 impl<'a> DescriptorGetTensorInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tensorView` without native effects.
 	#[doc(alias = "tensorView")]
 	#[inline]
@@ -123336,6 +132779,13 @@ impl<'a> Default for FrameBoundaryTensorsARM<'a> {
 }
 
 impl<'a> FrameBoundaryTensorsARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `tensorCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -123419,6 +132869,13 @@ impl<'a> Default for PhysicalDeviceExternalTensorInfoARM<'a> {
 }
 
 impl<'a> PhysicalDeviceExternalTensorInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -123493,6 +132950,13 @@ impl<'a> Default for ExternalTensorPropertiesARM<'a> {
 }
 
 impl<'a> ExternalTensorPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `externalMemoryProperties` without native effects.
 	#[doc(alias = "externalMemoryProperties")]
 	#[inline]
@@ -123549,6 +133013,13 @@ impl<'a> Default for ExternalMemoryTensorCreateInfoARM<'a> {
 }
 
 impl<'a> ExternalMemoryTensorCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `handleTypes` without native effects.
 	#[doc(alias = "handleTypes")]
 	#[inline]
@@ -123608,6 +133079,13 @@ impl<'a> Default for PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderFloat8FeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderFloat8` without native effects.
 	#[doc(alias = "shaderFloat8")]
 	#[inline]
@@ -123677,6 +133155,13 @@ impl<'a> Default for SurfaceCreateInfoOHOS<'a> {
 
 #[cfg(feature = "platform-ohos")]
 impl<'a> SurfaceCreateInfoOHOS<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -123759,6 +133244,13 @@ impl<'a> Default for PhysicalDeviceDataGraphFeaturesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceDataGraphFeaturesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dataGraph` without native effects.
 	#[doc(alias = "dataGraph")]
 	#[inline]
@@ -123857,6 +133349,13 @@ impl<'a> Default for DataGraphPipelineConstantTensorSemiStructuredSparsityInfoAR
 }
 
 impl<'a> DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dimension` without native effects.
 	#[doc(alias = "dimension")]
 	#[inline]
@@ -123933,6 +133432,13 @@ impl<'a> Default for DataGraphPipelineConstantARM<'a> {
 }
 
 impl<'a> DataGraphPipelineConstantARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `id` without native effects.
 	#[doc(alias = "id")]
 	#[inline]
@@ -124008,6 +133514,13 @@ impl<'a> Default for DataGraphPipelineResourceInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineResourceInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `descriptorSet` without native effects.
 	#[doc(alias = "descriptorSet")]
 	#[inline]
@@ -124081,6 +133594,13 @@ impl<'a> Default for DataGraphPipelineResourceInfoImageLayoutARM<'a> {
 }
 
 impl<'a> DataGraphPipelineResourceInfoImageLayoutARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `layout` without native effects.
 	#[doc(alias = "layout")]
 	#[inline]
@@ -124137,6 +133657,13 @@ impl<'a> Default for DataGraphPipelineCompilerControlCreateInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineCompilerControlCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pVendorOptions` without native effects.
 	#[doc(alias = "pVendorOptions")]
 	#[inline]
@@ -124200,6 +133727,13 @@ impl<'a> Default for DataGraphPipelineCreateInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -124307,6 +133841,13 @@ impl<'a> Default for DataGraphPipelineShaderModuleCreateInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineShaderModuleCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `module` without native effects.
 	#[doc(alias = "module")]
 	#[inline]
@@ -124414,6 +133955,13 @@ impl<'a> Default for DataGraphPipelineSessionCreateInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineSessionCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -124478,6 +134026,13 @@ impl<'a> Default for DataGraphPipelineSessionBindPointRequirementsInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineSessionBindPointRequirementsInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `session` without native effects.
 	#[doc(alias = "session")]
 	#[inline]
@@ -124540,6 +134095,13 @@ impl<'a> Default for DataGraphPipelineSessionBindPointRequirementARM<'a> {
 }
 
 impl<'a> DataGraphPipelineSessionBindPointRequirementARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `bindPoint` without native effects.
 	#[doc(alias = "bindPoint")]
 	#[inline]
@@ -124619,6 +134181,13 @@ impl<'a> Default for DataGraphPipelineSessionMemoryRequirementsInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineSessionMemoryRequirementsInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `session` without native effects.
 	#[doc(alias = "session")]
 	#[inline]
@@ -124703,6 +134272,13 @@ impl<'a> Default for BindDataGraphPipelineSessionMemoryInfoARM<'a> {
 }
 
 impl<'a> BindDataGraphPipelineSessionMemoryInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `session` without native effects.
 	#[doc(alias = "session")]
 	#[inline]
@@ -124795,6 +134371,13 @@ impl<'a> Default for DataGraphPipelineInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dataGraphPipeline` without native effects.
 	#[doc(alias = "dataGraphPipeline")]
 	#[inline]
@@ -124859,6 +134442,13 @@ impl<'a> Default for DataGraphPipelinePropertyQueryResultARM<'a> {
 }
 
 impl<'a> DataGraphPipelinePropertyQueryResultARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `property` without native effects.
 	#[doc(alias = "property")]
 	#[inline]
@@ -124958,6 +134548,13 @@ impl<'a> Default for DataGraphPipelineIdentifierCreateInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineIdentifierCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `identifierSize` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -125035,6 +134632,13 @@ impl<'a> Default for DataGraphPipelineDispatchInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineDispatchInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -125083,6 +134687,13 @@ impl Default for PhysicalDeviceDataGraphProcessingEngineARM {
 }
 
 impl PhysicalDeviceDataGraphProcessingEngineARM {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -125125,6 +134736,13 @@ impl Default for PhysicalDeviceDataGraphOperationSupportARM {
 }
 
 impl PhysicalDeviceDataGraphOperationSupportARM {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `operationType` without native effects.
 	#[doc(alias = "operationType")]
 	#[inline]
@@ -125186,6 +134804,13 @@ impl<'a> Default for QueueFamilyDataGraphPropertiesARM<'a> {
 }
 
 impl<'a> QueueFamilyDataGraphPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `engine` without native effects.
 	#[doc(alias = "engine")]
 	#[inline]
@@ -125255,6 +134880,13 @@ impl<'a> Default for PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'
 }
 
 impl<'a> PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `queueFamilyIndex` without native effects.
 	#[doc(alias = "queueFamilyIndex")]
 	#[inline]
@@ -125323,6 +134955,13 @@ impl<'a> Default for QueueFamilyDataGraphProcessingEnginePropertiesARM<'a> {
 }
 
 impl<'a> QueueFamilyDataGraphProcessingEnginePropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `foreignSemaphoreHandleTypes` without native effects.
 	#[doc(alias = "foreignSemaphoreHandleTypes")]
 	#[inline]
@@ -125394,6 +135033,13 @@ impl<'a> Default for DataGraphProcessingEngineCreateInfoARM<'a> {
 }
 
 impl<'a> DataGraphProcessingEngineCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `processingEngineCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -125472,6 +135118,13 @@ impl<'a> Default for PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
 }
 
 impl<'a> PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pipelineCacheIncrementalMode` without native effects.
 	#[doc(alias = "pipelineCacheIncrementalMode")]
 	#[inline]
@@ -125528,6 +135181,13 @@ impl<'a> Default for DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
 }
 
 impl<'a> DataGraphPipelineBuiltinModelCreateInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pOperation` without native effects.
 	#[doc(alias = "pOperation")]
 	#[inline]
@@ -125584,6 +135244,13 @@ impl<'a> Default for PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceDataGraphModelFeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dataGraphModel` without native effects.
 	#[doc(alias = "dataGraphModel")]
 	#[inline]
@@ -125640,6 +135307,13 @@ impl<'a> Default for PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderUntypedPointersFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderUntypedPointers` without native effects.
 	#[doc(alias = "shaderUntypedPointers")]
 	#[inline]
@@ -125696,6 +135370,13 @@ impl<'a> Default for PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
 }
 
 impl<'a> PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `videoEncodeRgbConversion` without native effects.
 	#[doc(alias = "videoEncodeRgbConversion")]
 	#[inline]
@@ -125761,6 +135442,13 @@ impl<'a> Default for VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
 }
 
 impl<'a> VideoEncodeRgbConversionCapabilitiesVALVE<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rgbModels` without native effects.
 	#[doc(alias = "rgbModels")]
 	#[inline]
@@ -125844,6 +135532,13 @@ impl<'a> Default for VideoEncodeProfileRgbConversionInfoVALVE<'a> {
 }
 
 impl<'a> VideoEncodeProfileRgbConversionInfoVALVE<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `performEncodeRgbConversion` without native effects.
 	#[doc(alias = "performEncodeRgbConversion")]
 	#[inline]
@@ -125909,6 +135604,13 @@ impl<'a> Default for VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
 }
 
 impl<'a> VideoEncodeSessionRgbConversionCreateInfoVALVE<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `rgbModel` without native effects.
 	#[doc(alias = "rgbModel")]
 	#[inline]
@@ -125992,6 +135694,13 @@ impl<'a> Default for PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShader64BitIndexingFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shader64BitIndexing` without native effects.
 	#[doc(alias = "shader64BitIndexing")]
 	#[inline]
@@ -126051,6 +135760,13 @@ impl<'a> Default for NativeBufferUsageOHOS<'a> {
 
 #[cfg(feature = "platform-ohos")]
 impl<'a> NativeBufferUsageOHOS<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `OHOSNativeBufferUsage` without native effects.
 	#[doc(alias = "OHOSNativeBufferUsage")]
 	#[inline]
@@ -126113,6 +135829,13 @@ impl<'a> Default for NativeBufferPropertiesOHOS<'a> {
 
 #[cfg(feature = "platform-ohos")]
 impl<'a> NativeBufferPropertiesOHOS<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `allocationSize` without native effects.
 	#[doc(alias = "allocationSize")]
 	#[inline]
@@ -126201,6 +135924,13 @@ impl<'a> Default for NativeBufferFormatPropertiesOHOS<'a> {
 
 #[cfg(feature = "platform-ohos")]
 impl<'a> NativeBufferFormatPropertiesOHOS<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `format` without native effects.
 	#[doc(alias = "format")]
 	#[inline]
@@ -126322,6 +136052,13 @@ impl<'a> Default for ImportNativeBufferInfoOHOS<'a> {
 
 #[cfg(feature = "platform-ohos")]
 impl<'a> ImportNativeBufferInfoOHOS<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native pointer `buffer` explicitly. No borrow or extent is inferred.
 	///
 	/// # Safety
@@ -126385,6 +136122,13 @@ impl<'a> Default for MemoryGetNativeBufferInfoOHOS<'a> {
 
 #[cfg(feature = "platform-ohos")]
 impl<'a> MemoryGetNativeBufferInfoOHOS<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memory` without native effects.
 	#[doc(alias = "memory")]
 	#[inline]
@@ -126444,6 +136188,13 @@ impl<'a> Default for ExternalFormatOHOS<'a> {
 
 #[cfg(feature = "platform-ohos")]
 impl<'a> ExternalFormatOHOS<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `externalFormat` without native effects.
 	#[doc(alias = "externalFormat")]
 	#[inline]
@@ -126501,6 +136252,13 @@ impl<'a> Default for PerfHintInfoQCOM<'a> {
 }
 
 impl<'a> PerfHintInfoQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -126566,6 +136324,13 @@ impl<'a> Default for PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceQueuePerfHintFeaturesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `queuePerfHint` without native effects.
 	#[doc(alias = "queuePerfHint")]
 	#[inline]
@@ -126622,6 +136387,13 @@ impl<'a> Default for PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {
 }
 
 impl<'a> PhysicalDeviceQueuePerfHintPropertiesQCOM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `supportedQueues` without native effects.
 	#[doc(alias = "supportedQueues")]
 	#[inline]
@@ -126678,6 +136450,13 @@ impl<'a> Default for PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {
 }
 
 impl<'a> PhysicalDevicePerformanceCountersByRegionFeaturesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `performanceCountersByRegion` without native effects.
 	#[doc(alias = "performanceCountersByRegion")]
 	#[inline]
@@ -126746,6 +136525,13 @@ impl<'a> Default for PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> 
 }
 
 impl<'a> PhysicalDevicePerformanceCountersByRegionPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxPerRegionPerformanceCounters` without native effects.
 	#[doc(alias = "maxPerRegionPerformanceCounters")]
 	#[inline]
@@ -126838,6 +136624,13 @@ impl<'a> Default for PerformanceCounterARM<'a> {
 }
 
 impl<'a> PerformanceCounterARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `counterID` without native effects.
 	#[doc(alias = "counterID")]
 	#[inline]
@@ -126895,6 +136688,13 @@ impl<'a> Default for PerformanceCounterDescriptionARM<'a> {
 }
 
 impl<'a> PerformanceCounterDescriptionARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -126972,6 +136772,13 @@ impl<'a> Default for RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
 }
 
 impl<'a> RenderPassPerformanceCountersByRegionBeginInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `counterAddressCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -127093,6 +136900,13 @@ impl<'a> Default for ComputeOccupancyPriorityParametersNV<'a> {
 }
 
 impl<'a> ComputeOccupancyPriorityParametersNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `occupancyPriority` without native effects.
 	#[doc(alias = "occupancyPriority")]
 	#[inline]
@@ -127158,6 +136972,13 @@ impl<'a> Default for PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
 }
 
 impl<'a> PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `computeOccupancyPriority` without native effects.
 	#[doc(alias = "computeOccupancyPriority")]
 	#[inline]
@@ -127214,6 +137035,13 @@ impl<'a> Default for PhysicalDeviceShaderLongVectorFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderLongVectorFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `longVector` without native effects.
 	#[doc(alias = "longVector")]
 	#[inline]
@@ -127270,6 +137098,13 @@ impl<'a> Default for PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderLongVectorPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxVectorComponents` without native effects.
 	#[doc(alias = "maxVectorComponents")]
 	#[inline]
@@ -127326,6 +137161,13 @@ impl<'a> Default for PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `textureCompressionASTC_3D` without native effects.
 	#[doc(alias = "textureCompressionASTC_3D")]
 	#[inline]
@@ -127382,6 +137224,13 @@ impl<'a> Default for PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderSubgroupPartitioned` without native effects.
 	#[doc(alias = "shaderSubgroupPartitioned")]
 	#[inline]
@@ -127430,6 +137279,13 @@ impl<'a> Default for HostAddressRangeEXT<'a> {
 }
 
 impl<'a> HostAddressRangeEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Borrow `address` and set checked native byte size `size`.
 	/// The borrow covers this storage only; nested raw pointers, format, alignment
 	/// and asynchronous retention remain native-call obligations.
@@ -127484,6 +137340,13 @@ impl<'a> Default for HostAddressRangeConstEXT<'a> {
 }
 
 impl<'a> HostAddressRangeConstEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Borrow `address` and set checked native byte size `size`.
 	/// The borrow covers this storage only; nested raw pointers, format, alignment
 	/// and asynchronous retention remain native-call obligations.
@@ -127547,6 +137410,13 @@ impl<'a> Default for TexelBufferDescriptorInfoEXT<'a> {
 }
 
 impl<'a> TexelBufferDescriptorInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `format` without native effects.
 	#[doc(alias = "format")]
 	#[inline]
@@ -127614,6 +137484,13 @@ impl<'a> Default for ImageDescriptorInfoEXT<'a> {
 }
 
 impl<'a> ImageDescriptorInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pView` without native effects.
 	#[doc(alias = "pView")]
 	#[inline]
@@ -127680,6 +137557,13 @@ impl<'a> Default for ResourceDescriptorDataEXT<'a> {
 }
 
 impl<'a> ResourceDescriptorDataEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pImage` without native effects.
 	#[doc(alias = "pImage")]
 	#[inline]
@@ -127747,6 +137631,13 @@ impl<'a> Default for ResourceDescriptorInfoEXT<'a> {
 }
 
 impl<'a> ResourceDescriptorInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `type` without native effects.
 	#[doc(alias = "type")]
 	#[inline]
@@ -127818,6 +137709,13 @@ impl<'a> Default for BindHeapInfoEXT<'a> {
 }
 
 impl<'a> BindHeapInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `heapRange` without native effects.
 	#[doc(alias = "heapRange")]
 	#[inline]
@@ -127893,6 +137791,13 @@ impl<'a> Default for PushDataInfoEXT<'a> {
 }
 
 impl<'a> PushDataInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `offset` without native effects.
 	#[doc(alias = "offset")]
 	#[inline]
@@ -127962,6 +137867,13 @@ impl<'a> Default for DescriptorMappingSourceConstantOffsetEXT<'a> {
 }
 
 impl<'a> DescriptorMappingSourceConstantOffsetEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `heapOffset` without native effects.
 	#[doc(alias = "heapOffset")]
 	#[inline]
@@ -128056,6 +137968,13 @@ impl<'a> Default for DescriptorMappingSourcePushIndexEXT<'a> {
 }
 
 impl<'a> DescriptorMappingSourcePushIndexEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `heapOffset` without native effects.
 	#[doc(alias = "heapOffset")]
 	#[inline]
@@ -128201,6 +138120,13 @@ impl<'a> Default for DescriptorMappingSourceIndirectIndexEXT<'a> {
 }
 
 impl<'a> DescriptorMappingSourceIndirectIndexEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `heapOffset` without native effects.
 	#[doc(alias = "heapOffset")]
 	#[inline]
@@ -128358,6 +138284,13 @@ impl<'a> Default for DescriptorMappingSourceIndirectIndexArrayEXT<'a> {
 }
 
 impl<'a> DescriptorMappingSourceIndirectIndexArrayEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `heapOffset` without native effects.
 	#[doc(alias = "heapOffset")]
 	#[inline]
@@ -128471,6 +138404,13 @@ impl Default for DescriptorMappingSourceHeapDataEXT {
 }
 
 impl DescriptorMappingSourceHeapDataEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `heapOffset` without native effects.
 	#[doc(alias = "heapOffset")]
 	#[inline]
@@ -128538,6 +138478,13 @@ impl<'a> Default for DescriptorMappingSourceShaderRecordIndexEXT<'a> {
 }
 
 impl<'a> DescriptorMappingSourceShaderRecordIndexEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `heapOffset` without native effects.
 	#[doc(alias = "heapOffset")]
 	#[inline]
@@ -128651,6 +138598,13 @@ impl Default for DescriptorMappingSourceIndirectAddressEXT {
 }
 
 impl DescriptorMappingSourceIndirectAddressEXT {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pushOffset` without native effects.
 	#[doc(alias = "pushOffset")]
 	#[inline]
@@ -128721,6 +138675,13 @@ impl<'a> Default for DescriptorMappingSourceDataEXT<'a> {
 }
 
 impl<'a> DescriptorMappingSourceDataEXT<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `constantOffset` without native effects.
 	#[doc(alias = "constantOffset")]
 	#[inline]
@@ -128873,6 +138834,13 @@ impl<'a> Default for DescriptorSetAndBindingMappingEXT<'a> {
 }
 
 impl<'a> DescriptorSetAndBindingMappingEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `descriptorSet` without native effects.
 	#[doc(alias = "descriptorSet")]
 	#[inline]
@@ -128977,6 +138945,13 @@ impl<'a> Default for ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
 }
 
 impl<'a> ShaderDescriptorSetAndBindingMappingInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `mappingCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -129054,6 +139029,13 @@ impl<'a> Default for SamplerCustomBorderColorIndexCreateInfoEXT<'a> {
 }
 
 impl<'a> SamplerCustomBorderColorIndexCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `index` without native effects.
 	#[doc(alias = "index")]
 	#[inline]
@@ -129110,6 +139092,13 @@ impl<'a> Default for OpaqueCaptureDataCreateInfoEXT<'a> {
 }
 
 impl<'a> OpaqueCaptureDataCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pData` without native effects.
 	#[doc(alias = "pData")]
 	#[inline]
@@ -129169,6 +139158,13 @@ impl<'a> Default for IndirectCommandsLayoutPushDataTokenNV<'a> {
 }
 
 impl<'a> IndirectCommandsLayoutPushDataTokenNV<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pushDataOffset` without native effects.
 	#[doc(alias = "pushDataOffset")]
 	#[inline]
@@ -129234,6 +139230,13 @@ impl<'a> Default for SubsampledImageFormatPropertiesEXT<'a> {
 }
 
 impl<'a> SubsampledImageFormatPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `subsampledImageDescriptorCount` without native effects.
 	#[doc(alias = "subsampledImageDescriptorCount")]
 	#[inline]
@@ -129290,6 +139293,13 @@ impl<'a> Default for PhysicalDeviceShaderSplitBarrierFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderSplitBarrierFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderSplitBarrier` without native effects.
 	#[doc(alias = "shaderSplitBarrier")]
 	#[inline]
@@ -129346,6 +139356,13 @@ impl<'a> Default for PhysicalDeviceShaderSplitBarrierPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderSplitBarrierPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `splitBarrierReservedSharedMemory` without native effects.
 	#[doc(alias = "splitBarrierReservedSharedMemory")]
 	#[inline]
@@ -129405,6 +139422,13 @@ impl<'a> Default for PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceDescriptorHeapFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `descriptorHeap` without native effects.
 	#[doc(alias = "descriptorHeap")]
 	#[inline]
@@ -129524,6 +139548,13 @@ impl<'a> Default for PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceDescriptorHeapPropertiesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `samplerHeapAlignment` without native effects.
 	#[doc(alias = "samplerHeapAlignment")]
 	#[inline]
@@ -129745,6 +139776,13 @@ impl<'a> Default for CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
 }
 
 impl<'a> CommandBufferInheritanceDescriptorHeapInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `pSamplerHeapBindInfo` without native effects.
 	#[doc(alias = "pSamplerHeapBindInfo")]
 	#[inline]
@@ -129816,6 +139854,13 @@ impl<'a> Default for PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceDescriptorHeapTensorPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tensorDescriptorSize` without native effects.
 	#[doc(alias = "tensorDescriptorSize")]
 	#[inline]
@@ -129890,6 +139935,13 @@ impl<'a> Default for PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderInstrumentationFeaturesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderInstrumentation` without native effects.
 	#[doc(alias = "shaderInstrumentation")]
 	#[inline]
@@ -129949,6 +140001,13 @@ impl<'a> Default for PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderInstrumentationPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `numMetrics` without native effects.
 	#[doc(alias = "numMetrics")]
 	#[inline]
@@ -130011,6 +140070,13 @@ impl<'a> Default for ShaderInstrumentationCreateInfoARM<'a> {
 }
 
 impl<'a> ShaderInstrumentationCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Prepend one registry-compatible node, retaining its exclusive borrow.
 	///
 	/// The node must have a null `p_next` and both headers must have canonical tags.
@@ -130059,6 +140125,13 @@ impl<'a> Default for ShaderInstrumentationMetricDescriptionARM<'a> {
 }
 
 impl<'a> ShaderInstrumentationMetricDescriptionARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `name` without native effects.
 	#[doc(alias = "name")]
 	#[inline]
@@ -130125,6 +140198,13 @@ impl Default for ShaderInstrumentationMetricDataHeaderARM {
 }
 
 impl ShaderInstrumentationMetricDataHeaderARM {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `resultIndex` without native effects.
 	#[doc(alias = "resultIndex")]
 	#[inline]
@@ -130182,6 +140262,13 @@ impl Default for DeviceAddressRangeKHR {
 }
 
 impl DeviceAddressRangeKHR {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `address` without native effects.
 	#[doc(alias = "address")]
 	#[inline]
@@ -130243,6 +140330,13 @@ impl<'a> Default for DeviceMemoryCopyKHR<'a> {
 }
 
 impl<'a> DeviceMemoryCopyKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcRange` without native effects.
 	#[doc(alias = "srcRange")]
 	#[inline]
@@ -130329,6 +140423,13 @@ impl<'a> Default for CopyDeviceMemoryInfoKHR<'a> {
 }
 
 impl<'a> CopyDeviceMemoryInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `regionCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -130428,6 +140529,13 @@ impl<'a> Default for DeviceMemoryImageCopyKHR<'a> {
 }
 
 impl<'a> DeviceMemoryImageCopyKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `addressRange` without native effects.
 	#[doc(alias = "addressRange")]
 	#[inline]
@@ -130552,6 +140660,13 @@ impl<'a> Default for CopyDeviceMemoryImageInfoKHR<'a> {
 }
 
 impl<'a> CopyDeviceMemoryImageInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `image` without native effects.
 	#[doc(alias = "image")]
 	#[inline]
@@ -130642,6 +140757,13 @@ impl<'a> Default for MemoryRangeBarriersInfoKHR<'a> {
 }
 
 impl<'a> MemoryRangeBarriersInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `memoryRangeBarrierCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -130741,6 +140863,13 @@ impl<'a> Default for MemoryRangeBarrierKHR<'a> {
 }
 
 impl<'a> MemoryRangeBarrierKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `srcStageMask` without native effects.
 	#[doc(alias = "srcStageMask")]
 	#[inline]
@@ -130860,6 +140989,13 @@ impl<'a> Default for PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceAddressCommands` without native effects.
 	#[doc(alias = "deviceAddressCommands")]
 	#[inline]
@@ -130921,6 +141057,13 @@ impl<'a> Default for ConditionalRenderingBeginInfo2EXT<'a> {
 }
 
 impl<'a> ConditionalRenderingBeginInfo2EXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `addressRange` without native effects.
 	#[doc(alias = "addressRange")]
 	#[inline]
@@ -131003,6 +141146,13 @@ impl<'a> Default for AccelerationStructureCreateInfo2KHR<'a> {
 }
 
 impl<'a> AccelerationStructureCreateInfo2KHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `createFlags` without native effects.
 	#[doc(alias = "createFlags")]
 	#[inline]
@@ -131092,6 +141242,13 @@ impl<'a> Default for BindIndexBuffer3InfoKHR<'a> {
 }
 
 impl<'a> BindIndexBuffer3InfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `addressRange` without native effects.
 	#[doc(alias = "addressRange")]
 	#[inline]
@@ -131172,6 +141329,13 @@ impl<'a> Default for BindVertexBuffer3InfoKHR<'a> {
 }
 
 impl<'a> BindVertexBuffer3InfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `setStride` without native effects.
 	#[doc(alias = "setStride")]
 	#[inline]
@@ -131252,6 +141416,13 @@ impl<'a> Default for DrawIndirect2InfoKHR<'a> {
 }
 
 impl<'a> DrawIndirect2InfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `addressRange` without native effects.
 	#[doc(alias = "addressRange")]
 	#[inline]
@@ -131338,6 +141509,13 @@ impl<'a> Default for DrawIndirectCount2InfoKHR<'a> {
 }
 
 impl<'a> DrawIndirectCount2InfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `addressRange` without native effects.
 	#[doc(alias = "addressRange")]
 	#[inline]
@@ -131433,6 +141611,13 @@ impl<'a> Default for DispatchIndirect2InfoKHR<'a> {
 }
 
 impl<'a> DispatchIndirect2InfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `addressRange` without native effects.
 	#[doc(alias = "addressRange")]
 	#[inline]
@@ -131501,6 +141686,13 @@ impl<'a> Default for BindTransformFeedbackBuffer2InfoEXT<'a> {
 }
 
 impl<'a> BindTransformFeedbackBuffer2InfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `addressRange` without native effects.
 	#[doc(alias = "addressRange")]
 	#[inline]
@@ -131573,6 +141765,13 @@ impl<'a> Default for MemoryMarkerInfoAMD<'a> {
 }
 
 impl<'a> MemoryMarkerInfoAMD<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `stage` without native effects.
 	#[doc(alias = "stage")]
 	#[inline]
@@ -131656,6 +141855,13 @@ impl<'a> Default for PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderConstantDataFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderConstantData` without native effects.
 	#[doc(alias = "shaderConstantData")]
 	#[inline]
@@ -131712,6 +141918,13 @@ impl<'a> Default for PhysicalDeviceShaderAbortFeaturesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderAbortFeaturesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderAbort` without native effects.
 	#[doc(alias = "shaderAbort")]
 	#[inline]
@@ -131768,6 +141981,13 @@ impl<'a> Default for PhysicalDeviceShaderAbortPropertiesKHR<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderAbortPropertiesKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxShaderAbortMessageSize` without native effects.
 	#[doc(alias = "maxShaderAbortMessageSize")]
 	#[inline]
@@ -131827,6 +142047,13 @@ impl<'a> Default for DeviceFaultShaderAbortMessageInfoKHR<'a> {
 }
 
 impl<'a> DeviceFaultShaderAbortMessageInfoKHR<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `messageDataSize` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -131897,6 +142124,13 @@ impl Default for DataGraphTOSANameQualityARM {
 }
 
 impl DataGraphTOSANameQualityARM {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `name` without native effects.
 	#[doc(alias = "name")]
 	#[inline]
@@ -131959,6 +142193,13 @@ impl<'a> Default for QueueFamilyDataGraphTOSAPropertiesARM<'a> {
 }
 
 impl<'a> QueueFamilyDataGraphTOSAPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native count `profileCount` directly without checking associated pointer extents.
 	/// Use the borrowed array helpers to derive matching storage and counts together.
 	/// Direct count edits support null-query/dynamic-state paths and remain a
@@ -132080,6 +142321,13 @@ impl<'a> Default for DataGraphPipelineSingleNodeConnectionARM<'a> {
 }
 
 impl<'a> DataGraphPipelineSingleNodeConnectionARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `set` without native effects.
 	#[doc(alias = "set")]
 	#[inline]
@@ -132154,6 +142402,13 @@ impl<'a> Default for PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `dataGraphOpticalFlow` without native effects.
 	#[doc(alias = "dataGraphOpticalFlow")]
 	#[inline]
@@ -132231,6 +142486,13 @@ impl<'a> Default for QueueFamilyDataGraphOpticalFlowPropertiesARM<'a> {
 }
 
 impl<'a> QueueFamilyDataGraphOpticalFlowPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `supportedOutputGridSizes` without native effects.
 	#[doc(alias = "supportedOutputGridSizes")]
 	#[inline]
@@ -132355,6 +142617,13 @@ impl<'a> Default for DataGraphOpticalFlowImageFormatInfoARM<'a> {
 }
 
 impl<'a> DataGraphOpticalFlowImageFormatInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `usage` without native effects.
 	#[doc(alias = "usage")]
 	#[inline]
@@ -132410,6 +142679,13 @@ impl<'a> Default for DataGraphOpticalFlowImageFormatPropertiesARM<'a> {
 }
 
 impl<'a> DataGraphOpticalFlowImageFormatPropertiesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `format` without native effects.
 	#[doc(alias = "format")]
 	#[inline]
@@ -132472,6 +142748,13 @@ impl<'a> Default for DataGraphPipelineSingleNodeCreateInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineSingleNodeCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `nodeType` without native effects.
 	#[doc(alias = "nodeType")]
 	#[inline]
@@ -132580,6 +142863,13 @@ impl<'a> Default for DataGraphPipelineOpticalFlowCreateInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineOpticalFlowCreateInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `width` without native effects.
 	#[doc(alias = "width")]
 	#[inline]
@@ -132710,6 +143000,13 @@ impl<'a> Default for DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
 }
 
 impl<'a> DataGraphPipelineOpticalFlowDispatchInfoARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -132775,6 +143072,13 @@ impl<'a> Default for PhysicalDeviceImageTilingControlFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceImageTilingControlFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `imageTilingControl` without native effects.
 	#[doc(alias = "imageTilingControl")]
 	#[inline]
@@ -132831,6 +143135,13 @@ impl<'a> Default for ImageTilingControlCreateInfoEXT<'a> {
 }
 
 impl<'a> ImageTilingControlCreateInfoEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `tilingControl` without native effects.
 	#[doc(alias = "tilingControl")]
 	#[inline]
@@ -132896,6 +143207,13 @@ impl<'a> Default for PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT<'a> {
 }
 
 impl<'a> PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `shaderFloat4` without native effects.
 	#[doc(alias = "shaderFloat4")]
 	#[inline]
@@ -132991,6 +143309,13 @@ impl<'a> Default for PhysicalDeviceCooperativeMatrixMaintenance1FeaturesEXT<'a> 
 }
 
 impl<'a> PhysicalDeviceCooperativeMatrixMaintenance1FeaturesEXT<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cooperativeMatrixProperties2` without native effects.
 	#[doc(alias = "cooperativeMatrixProperties2")]
 	#[inline]
@@ -133084,6 +143409,13 @@ impl<'a> Default for PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeature
 }
 
 impl<'a> PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeaturesVALVE<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `bufferDeviceAddressAllocationAlignment` without native effects.
 	#[doc(alias = "bufferDeviceAddressAllocationAlignment")]
 	#[inline]
@@ -133141,6 +143473,13 @@ impl<'a> Default for PhysicalDeviceBufferDeviceAddressAllocationAlignmentPropert
 }
 
 impl<'a> PhysicalDeviceBufferDeviceAddressAllocationAlignmentPropertiesVALVE<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `maxBufferDeviceAddressAllocationAlignment` without native effects.
 	#[doc(alias = "maxBufferDeviceAddressAllocationAlignment")]
 	#[inline]
@@ -133196,6 +143535,13 @@ impl<'a> Default for BufferDeviceAddressAlignmentAllocateInfoVALVE<'a> {
 }
 
 impl<'a> BufferDeviceAddressAlignmentAllocateInfoVALVE<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `alignment` without native effects.
 	#[doc(alias = "alignment")]
 	#[inline]
@@ -133258,6 +143604,13 @@ impl<'a> Default for PhysicalDeviceInfoPropertiesINTEL<'a> {
 }
 
 impl<'a> PhysicalDeviceInfoPropertiesINTEL<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `deviceIpVersionArch` without native effects.
 	#[doc(alias = "deviceIpVersionArch")]
 	#[inline]
@@ -133332,6 +143685,13 @@ impl<'a> Default for PhysicalDeviceCooperativeMatrixLayoutsFeaturesARM<'a> {
 }
 
 impl<'a> PhysicalDeviceCooperativeMatrixLayoutsFeaturesARM<'a> {
+	/// Construct the record with its canonical `sType` tag and default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cooperativeMatrixArmLayouts` without native effects.
 	#[doc(alias = "cooperativeMatrixArmLayouts")]
 	#[inline]
@@ -133496,7 +143856,14 @@ impl Default for StdVideoH264SpsVuiFlags {
 	}
 }
 
-impl StdVideoH264SpsVuiFlags {}
+impl StdVideoH264SpsVuiFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoH264HrdParameters`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoH264HrdParameters`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -133535,6 +143902,13 @@ impl Default for StdVideoH264HrdParameters {
 }
 
 impl StdVideoH264HrdParameters {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cpb_cnt_minus1` without native effects.
 	#[doc(alias = "cpb_cnt_minus1")]
 	#[inline]
@@ -133691,6 +144065,13 @@ impl<'a> Default for StdVideoH264SequenceParameterSetVui<'a> {
 }
 
 impl<'a> StdVideoH264SequenceParameterSetVui<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -134013,7 +144394,14 @@ impl Default for StdVideoH264SpsFlags {
 	}
 }
 
-impl StdVideoH264SpsFlags {}
+impl StdVideoH264SpsFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoH264ScalingLists`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoH264ScalingLists`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -134042,6 +144430,13 @@ impl Default for StdVideoH264ScalingLists {
 }
 
 impl StdVideoH264ScalingLists {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `scaling_list_present_mask` without native effects.
 	#[doc(alias = "scaling_list_present_mask")]
 	#[inline]
@@ -134184,7 +144579,14 @@ impl Default for StdVideoH264PpsFlags {
 	}
 }
 
-impl StdVideoH264PpsFlags {}
+impl StdVideoH264PpsFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoDecodeH264PictureInfoFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoDecodeH264PictureInfoFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -134264,7 +144666,14 @@ impl Default for StdVideoDecodeH264PictureInfoFlags {
 	}
 }
 
-impl StdVideoDecodeH264PictureInfoFlags {}
+impl StdVideoDecodeH264PictureInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoDecodeH264ReferenceInfoFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoDecodeH264ReferenceInfoFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -134323,7 +144732,14 @@ impl Default for StdVideoDecodeH264ReferenceInfoFlags {
 	}
 }
 
-impl StdVideoDecodeH264ReferenceInfoFlags {}
+impl StdVideoDecodeH264ReferenceInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoEncodeH264WeightTableFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoEncodeH264WeightTableFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -134348,6 +144764,13 @@ impl Default for StdVideoEncodeH264WeightTableFlags {
 }
 
 impl StdVideoEncodeH264WeightTableFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `luma_weight_l0_flag` without native effects.
 	#[doc(alias = "luma_weight_l0_flag")]
 	#[inline]
@@ -134426,6 +144849,13 @@ impl Default for StdVideoEncodeH264WeightTable {
 }
 
 impl StdVideoEncodeH264WeightTable {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -134601,7 +145031,14 @@ impl Default for StdVideoEncodeH264SliceHeaderFlags {
 	}
 }
 
-impl StdVideoEncodeH264SliceHeaderFlags {}
+impl StdVideoEncodeH264SliceHeaderFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoEncodeH264PictureInfoFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoEncodeH264PictureInfoFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -134681,7 +145118,14 @@ impl Default for StdVideoEncodeH264PictureInfoFlags {
 	}
 }
 
-impl StdVideoEncodeH264PictureInfoFlags {}
+impl StdVideoEncodeH264PictureInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoEncodeH264ReferenceInfoFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoEncodeH264ReferenceInfoFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -134720,7 +145164,14 @@ impl Default for StdVideoEncodeH264ReferenceInfoFlags {
 	}
 }
 
-impl StdVideoEncodeH264ReferenceInfoFlags {}
+impl StdVideoEncodeH264ReferenceInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoEncodeH264ReferenceListsInfoFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoEncodeH264ReferenceListsInfoFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -134769,7 +145220,14 @@ impl Default for StdVideoEncodeH264ReferenceListsInfoFlags {
 	}
 }
 
-impl StdVideoEncodeH264ReferenceListsInfoFlags {}
+impl StdVideoEncodeH264ReferenceListsInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoEncodeH264RefListModEntry`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoEncodeH264RefListModEntry`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -134792,6 +145250,13 @@ impl Default for StdVideoEncodeH264RefListModEntry {
 }
 
 impl StdVideoEncodeH264RefListModEntry {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `modification_of_pic_nums_idc` without native effects.
 	#[doc(alias = "modification_of_pic_nums_idc")]
 	#[inline]
@@ -134848,6 +145313,13 @@ impl Default for StdVideoEncodeH264RefPicMarkingEntry {
 }
 
 impl StdVideoEncodeH264RefPicMarkingEntry {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `memory_management_control_operation` without native effects.
 	#[doc(alias = "memory_management_control_operation")]
 	#[inline]
@@ -134946,6 +145418,13 @@ impl<'a> Default for StdVideoEncodeH264ReferenceListsInfo<'a> {
 }
 
 impl<'a> StdVideoEncodeH264ReferenceListsInfo<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -135167,7 +145646,14 @@ impl Default for StdVideoH265ProfileTierLevelFlags {
 	}
 }
 
-impl StdVideoH265ProfileTierLevelFlags {}
+impl StdVideoH265ProfileTierLevelFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoH265ProfileTierLevel`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoH265ProfileTierLevel`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -135190,6 +145676,13 @@ impl Default for StdVideoH265ProfileTierLevel {
 }
 
 impl StdVideoH265ProfileTierLevel {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -135239,6 +145732,13 @@ impl Default for StdVideoH265DecPicBufMgr {
 }
 
 impl StdVideoH265DecPicBufMgr {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `max_latency_increase_plus1` without native effects.
 	#[doc(alias = "max_latency_increase_plus1")]
 	#[inline]
@@ -135301,6 +145801,13 @@ impl Default for StdVideoH265SubLayerHrdParameters {
 }
 
 impl StdVideoH265SubLayerHrdParameters {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `bit_rate_value_minus1` without native effects.
 	#[doc(alias = "bit_rate_value_minus1")]
 	#[inline]
@@ -135446,7 +145953,14 @@ impl Default for StdVideoH265HrdFlags {
 	}
 }
 
-impl StdVideoH265HrdFlags {}
+impl StdVideoH265HrdFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoH265HrdParameters`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoH265HrdParameters`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -135497,6 +146011,13 @@ impl<'a> Default for StdVideoH265HrdParameters<'a> {
 }
 
 impl<'a> StdVideoH265HrdParameters<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -135728,7 +146249,14 @@ impl Default for StdVideoH265VpsFlags {
 	}
 }
 
-impl StdVideoH265VpsFlags {}
+impl StdVideoH265VpsFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoH265ScalingLists`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoH265ScalingLists`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -135767,6 +146295,13 @@ impl Default for StdVideoH265ScalingLists {
 }
 
 impl StdVideoH265ScalingLists {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `ScalingList4x4` without native effects.
 	#[doc(alias = "ScalingList4x4")]
 	#[inline]
@@ -135881,7 +146416,14 @@ impl Default for StdVideoH265ShortTermRefPicSetFlags {
 	}
 }
 
-impl StdVideoH265ShortTermRefPicSetFlags {}
+impl StdVideoH265ShortTermRefPicSetFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoH265ShortTermRefPicSet`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoH265ShortTermRefPicSet`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -135926,6 +146468,13 @@ impl Default for StdVideoH265ShortTermRefPicSet {
 }
 
 impl StdVideoH265ShortTermRefPicSet {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -136078,6 +146627,13 @@ impl Default for StdVideoH265LongTermRefPicsSps {
 }
 
 impl StdVideoH265LongTermRefPicsSps {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `used_by_curr_pic_lt_sps_flag` without native effects.
 	#[doc(alias = "used_by_curr_pic_lt_sps_flag")]
 	#[inline]
@@ -136297,7 +146853,14 @@ impl Default for StdVideoH265SpsVuiFlags {
 	}
 }
 
-impl StdVideoH265SpsVuiFlags {}
+impl StdVideoH265SpsVuiFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoH265SequenceParameterSetVui`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoH265SequenceParameterSetVui`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -136369,6 +146932,13 @@ impl<'a> Default for StdVideoH265SequenceParameterSetVui<'a> {
 }
 
 impl<'a> StdVideoH265SequenceParameterSetVui<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -136624,6 +147194,13 @@ impl Default for StdVideoH265PredictorPaletteEntries {
 }
 
 impl StdVideoH265PredictorPaletteEntries {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `PredictorPaletteEntries` without native effects.
 	#[doc(alias = "PredictorPaletteEntries")]
 	#[inline]
@@ -136955,7 +147532,14 @@ impl Default for StdVideoH265SpsFlags {
 	}
 }
 
-impl StdVideoH265SpsFlags {}
+impl StdVideoH265SpsFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoH265PpsFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoH265PpsFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -137284,7 +147868,14 @@ impl Default for StdVideoH265PpsFlags {
 	}
 }
 
-impl StdVideoH265PpsFlags {}
+impl StdVideoH265PpsFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoDecodeH265PictureInfoFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoDecodeH265PictureInfoFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -137346,7 +147937,14 @@ impl Default for StdVideoDecodeH265PictureInfoFlags {
 	}
 }
 
-impl StdVideoDecodeH265PictureInfoFlags {}
+impl StdVideoDecodeH265PictureInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoDecodeH265ReferenceInfoFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoDecodeH265ReferenceInfoFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -137385,7 +147983,14 @@ impl Default for StdVideoDecodeH265ReferenceInfoFlags {
 	}
 }
 
-impl StdVideoDecodeH265ReferenceInfoFlags {}
+impl StdVideoDecodeH265ReferenceInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoEncodeH265WeightTableFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoEncodeH265WeightTableFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -137410,6 +148015,13 @@ impl Default for StdVideoEncodeH265WeightTableFlags {
 }
 
 impl StdVideoEncodeH265WeightTableFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `luma_weight_l0_flag` without native effects.
 	#[doc(alias = "luma_weight_l0_flag")]
 	#[inline]
@@ -137488,6 +148100,13 @@ impl Default for StdVideoEncodeH265WeightTable {
 }
 
 impl StdVideoEncodeH265WeightTable {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -137645,6 +148264,13 @@ impl Default for StdVideoEncodeH265LongTermRefPics {
 }
 
 impl StdVideoEncodeH265LongTermRefPics {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `num_long_term_sps` without native effects.
 	#[doc(alias = "num_long_term_sps")]
 	#[inline]
@@ -137865,7 +148491,14 @@ impl Default for StdVideoEncodeH265SliceSegmentHeaderFlags {
 	}
 }
 
-impl StdVideoEncodeH265SliceSegmentHeaderFlags {}
+impl StdVideoEncodeH265SliceSegmentHeaderFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoEncodeH265ReferenceListsInfoFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoEncodeH265ReferenceListsInfoFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -137914,7 +148547,14 @@ impl Default for StdVideoEncodeH265ReferenceListsInfoFlags {
 	}
 }
 
-impl StdVideoEncodeH265ReferenceListsInfoFlags {}
+impl StdVideoEncodeH265ReferenceListsInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoEncodeH265ReferenceListsInfo`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoEncodeH265ReferenceListsInfo`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -137947,6 +148587,13 @@ impl Default for StdVideoEncodeH265ReferenceListsInfo {
 }
 
 impl StdVideoEncodeH265ReferenceListsInfo {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -138141,7 +148788,14 @@ impl Default for StdVideoEncodeH265PictureInfoFlags {
 	}
 }
 
-impl StdVideoEncodeH265PictureInfoFlags {}
+impl StdVideoEncodeH265PictureInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoEncodeH265ReferenceInfoFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoEncodeH265ReferenceInfoFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -138190,7 +148844,14 @@ impl Default for StdVideoEncodeH265ReferenceInfoFlags {
 	}
 }
 
-impl StdVideoEncodeH265ReferenceInfoFlags {}
+impl StdVideoEncodeH265ReferenceInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoVP9ColorConfigFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoVP9ColorConfigFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -138229,7 +148890,14 @@ impl Default for StdVideoVP9ColorConfigFlags {
 	}
 }
 
-impl StdVideoVP9ColorConfigFlags {}
+impl StdVideoVP9ColorConfigFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoVP9ColorConfig`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoVP9ColorConfig`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -138259,6 +148927,13 @@ impl Default for StdVideoVP9ColorConfig {
 }
 
 impl StdVideoVP9ColorConfig {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -138361,7 +149036,14 @@ impl Default for StdVideoVP9LoopFilterFlags {
 	}
 }
 
-impl StdVideoVP9LoopFilterFlags {}
+impl StdVideoVP9LoopFilterFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoVP9LoopFilter`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoVP9LoopFilter`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -138392,6 +149074,13 @@ impl Default for StdVideoVP9LoopFilter {
 }
 
 impl StdVideoVP9LoopFilter {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -138529,7 +149218,14 @@ impl Default for StdVideoVP9SegmentationFlags {
 	}
 }
 
-impl StdVideoVP9SegmentationFlags {}
+impl StdVideoVP9SegmentationFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoVP9Segmentation`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoVP9Segmentation`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -138559,6 +149255,13 @@ impl Default for StdVideoVP9Segmentation {
 }
 
 impl StdVideoVP9Segmentation {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -138722,7 +149425,14 @@ impl Default for StdVideoDecodeVP9PictureInfoFlags {
 	}
 }
 
-impl StdVideoDecodeVP9PictureInfoFlags {}
+impl StdVideoDecodeVP9PictureInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoAV1ColorConfigFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoAV1ColorConfigFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -138791,7 +149501,14 @@ impl Default for StdVideoAV1ColorConfigFlags {
 	}
 }
 
-impl StdVideoAV1ColorConfigFlags {}
+impl StdVideoAV1ColorConfigFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoAV1ColorConfig`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoAV1ColorConfig`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -138827,6 +149544,13 @@ impl Default for StdVideoAV1ColorConfig {
 }
 
 impl StdVideoAV1ColorConfig {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -138946,7 +149670,14 @@ impl Default for StdVideoAV1TimingInfoFlags {
 	}
 }
 
-impl StdVideoAV1TimingInfoFlags {}
+impl StdVideoAV1TimingInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoAV1TimingInfo`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoAV1TimingInfo`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -138971,6 +149702,13 @@ impl Default for StdVideoAV1TimingInfo {
 }
 
 impl StdVideoAV1TimingInfo {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -139225,7 +149963,14 @@ impl Default for StdVideoAV1SequenceHeaderFlags {
 	}
 }
 
-impl StdVideoAV1SequenceHeaderFlags {}
+impl StdVideoAV1SequenceHeaderFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoAV1LoopFilterFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoAV1LoopFilterFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -139274,7 +150019,14 @@ impl Default for StdVideoAV1LoopFilterFlags {
 	}
 }
 
-impl StdVideoAV1LoopFilterFlags {}
+impl StdVideoAV1LoopFilterFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoAV1LoopFilter`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoAV1LoopFilter`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -139305,6 +150057,13 @@ impl Default for StdVideoAV1LoopFilter {
 }
 
 impl StdVideoAV1LoopFilter {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -139425,7 +150184,14 @@ impl Default for StdVideoAV1QuantizationFlags {
 	}
 }
 
-impl StdVideoAV1QuantizationFlags {}
+impl StdVideoAV1QuantizationFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoAV1Quantization`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoAV1Quantization`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -139467,6 +150233,13 @@ impl Default for StdVideoAV1Quantization {
 }
 
 impl StdVideoAV1Quantization {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -139580,6 +150353,13 @@ impl Default for StdVideoAV1Segmentation {
 }
 
 impl StdVideoAV1Segmentation {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `FeatureEnabled` without native effects.
 	#[doc(alias = "FeatureEnabled")]
 	#[inline]
@@ -139639,7 +150419,14 @@ impl Default for StdVideoAV1TileInfoFlags {
 	}
 }
 
-impl StdVideoAV1TileInfoFlags {}
+impl StdVideoAV1TileInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoAV1TileInfo`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoAV1TileInfo`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -139684,6 +150471,13 @@ impl<'a> Default for StdVideoAV1TileInfo<'a> {
 }
 
 impl<'a> StdVideoAV1TileInfo<'a> {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -139842,6 +150636,13 @@ impl Default for StdVideoAV1CDEF {
 }
 
 impl StdVideoAV1CDEF {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `cdef_damping_minus_3` without native effects.
 	#[doc(alias = "cdef_damping_minus_3")]
 	#[inline]
@@ -139931,6 +150732,13 @@ impl Default for StdVideoAV1LoopRestoration {
 }
 
 impl StdVideoAV1LoopRestoration {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `FrameRestorationType` without native effects.
 	#[doc(alias = "FrameRestorationType")]
 	#[inline]
@@ -139977,6 +150785,13 @@ impl Default for StdVideoAV1GlobalMotion {
 }
 
 impl StdVideoAV1GlobalMotion {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `GmType` without native effects.
 	#[doc(alias = "GmType")]
 	#[inline]
@@ -140067,7 +150882,14 @@ impl Default for StdVideoAV1FilmGrainFlags {
 	}
 }
 
-impl StdVideoAV1FilmGrainFlags {}
+impl StdVideoAV1FilmGrainFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoAV1FilmGrain`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoAV1FilmGrain`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -140134,6 +150956,13 @@ impl Default for StdVideoAV1FilmGrain {
 }
 
 impl StdVideoAV1FilmGrain {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	/// Set native field `flags` without native effects.
 	#[doc(alias = "flags")]
 	#[inline]
@@ -140703,7 +151532,14 @@ impl Default for StdVideoDecodeAV1PictureInfoFlags {
 	}
 }
 
-impl StdVideoDecodeAV1PictureInfoFlags {}
+impl StdVideoDecodeAV1PictureInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoDecodeAV1ReferenceInfoFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoDecodeAV1ReferenceInfoFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -140752,7 +151588,14 @@ impl Default for StdVideoDecodeAV1ReferenceInfoFlags {
 	}
 }
 
-impl StdVideoDecodeAV1ReferenceInfoFlags {}
+impl StdVideoDecodeAV1ReferenceInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoEncodeAV1OperatingPointInfoFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoEncodeAV1OperatingPointInfoFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -140811,7 +151654,14 @@ impl Default for StdVideoEncodeAV1OperatingPointInfoFlags {
 	}
 }
 
-impl StdVideoEncodeAV1OperatingPointInfoFlags {}
+impl StdVideoEncodeAV1OperatingPointInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoEncodeAV1PictureInfoFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoEncodeAV1PictureInfoFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -141132,7 +151982,14 @@ impl Default for StdVideoEncodeAV1PictureInfoFlags {
 	}
 }
 
-impl StdVideoEncodeAV1PictureInfoFlags {}
+impl StdVideoEncodeAV1PictureInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
 
 #[doc = "Native structure `StdVideoEncodeAV1ReferenceInfoFlags`."]
 #[doc = "\n\n[Khronos registry source: `StdVideoEncodeAV1ReferenceInfoFlags`](https://github.com/KhronosGroup/Vulkan-Headers/blob/acbb9391c0a597272800cd3f4363661c00a27c77/registry/video.xml)"]
@@ -141181,4 +152038,11 @@ impl Default for StdVideoEncodeAV1ReferenceInfoFlags {
 	}
 }
 
-impl StdVideoEncodeAV1ReferenceInfoFlags {}
+impl StdVideoEncodeAV1ReferenceInfoFlags {
+	/// Construct the record with its default native state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}

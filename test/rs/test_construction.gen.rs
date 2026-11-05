@@ -4,6 +4,7 @@ use ::vk;
 
 #[test]
 fn vk_base_out_structure_construction_contract() {
+	let _: fn() -> vk::BaseOutStructure<'static> = vk::BaseOutStructure::new;
 	let _: fn(vk::BaseOutStructure<'static>, vk::StructureType) -> vk::BaseOutStructure<'static> =
 		vk::BaseOutStructure::set_s_type;
 	let _: fn(
@@ -14,6 +15,7 @@ fn vk_base_out_structure_construction_contract() {
 
 #[test]
 fn vk_base_in_structure_construction_contract() {
+	let _: fn() -> vk::BaseInStructure<'static> = vk::BaseInStructure::new;
 	let _: fn(vk::BaseInStructure<'static>, vk::StructureType) -> vk::BaseInStructure<'static> =
 		vk::BaseInStructure::set_s_type;
 	let _: fn(
@@ -24,12 +26,14 @@ fn vk_base_in_structure_construction_contract() {
 
 #[test]
 fn vk_offset2_d_construction_contract() {
+	let _: fn() -> vk::Offset2D = vk::Offset2D::new;
 	let _: fn(vk::Offset2D, i32) -> vk::Offset2D = vk::Offset2D::set_x;
 	let _: fn(vk::Offset2D, i32) -> vk::Offset2D = vk::Offset2D::set_y;
 }
 
 #[test]
 fn vk_offset3_d_construction_contract() {
+	let _: fn() -> vk::Offset3D = vk::Offset3D::new;
 	let _: fn(vk::Offset3D, i32) -> vk::Offset3D = vk::Offset3D::set_x;
 	let _: fn(vk::Offset3D, i32) -> vk::Offset3D = vk::Offset3D::set_y;
 	let _: fn(vk::Offset3D, i32) -> vk::Offset3D = vk::Offset3D::set_z;
@@ -37,12 +41,14 @@ fn vk_offset3_d_construction_contract() {
 
 #[test]
 fn vk_extent2_d_construction_contract() {
+	let _: fn() -> vk::Extent2D = vk::Extent2D::new;
 	let _: fn(vk::Extent2D, u32) -> vk::Extent2D = vk::Extent2D::set_width;
 	let _: fn(vk::Extent2D, u32) -> vk::Extent2D = vk::Extent2D::set_height;
 }
 
 #[test]
 fn vk_extent3_d_construction_contract() {
+	let _: fn() -> vk::Extent3D = vk::Extent3D::new;
 	let _: fn(vk::Extent3D, u32) -> vk::Extent3D = vk::Extent3D::set_width;
 	let _: fn(vk::Extent3D, u32) -> vk::Extent3D = vk::Extent3D::set_height;
 	let _: fn(vk::Extent3D, u32) -> vk::Extent3D = vk::Extent3D::set_depth;
@@ -50,6 +56,7 @@ fn vk_extent3_d_construction_contract() {
 
 #[test]
 fn vk_viewport_construction_contract() {
+	let _: fn() -> vk::Viewport = vk::Viewport::new;
 	let _: fn(vk::Viewport, f32) -> vk::Viewport = vk::Viewport::set_x;
 	let _: fn(vk::Viewport, f32) -> vk::Viewport = vk::Viewport::set_y;
 	let _: fn(vk::Viewport, f32) -> vk::Viewport = vk::Viewport::set_width;
@@ -60,12 +67,14 @@ fn vk_viewport_construction_contract() {
 
 #[test]
 fn vk_rect2_d_construction_contract() {
+	let _: fn() -> vk::Rect2D = vk::Rect2D::new;
 	let _: fn(vk::Rect2D, vk::Offset2D) -> vk::Rect2D = vk::Rect2D::set_offset;
 	let _: fn(vk::Rect2D, vk::Extent2D) -> vk::Rect2D = vk::Rect2D::set_extent;
 }
 
 #[test]
 fn vk_clear_rect_construction_contract() {
+	let _: fn() -> vk::ClearRect = vk::ClearRect::new;
 	let _: fn(vk::ClearRect, vk::Rect2D) -> vk::ClearRect = vk::ClearRect::set_rect;
 	let _: fn(vk::ClearRect, u32) -> vk::ClearRect = vk::ClearRect::set_base_array_layer;
 	let _: fn(vk::ClearRect, u32) -> vk::ClearRect = vk::ClearRect::set_layer_count;
@@ -73,6 +82,7 @@ fn vk_clear_rect_construction_contract() {
 
 #[test]
 fn vk_component_mapping_construction_contract() {
+	let _: fn() -> vk::ComponentMapping = vk::ComponentMapping::new;
 	let _: fn(vk::ComponentMapping, vk::ComponentSwizzle) -> vk::ComponentMapping =
 		vk::ComponentMapping::set_r;
 	let _: fn(vk::ComponentMapping, vk::ComponentSwizzle) -> vk::ComponentMapping =
@@ -85,6 +95,7 @@ fn vk_component_mapping_construction_contract() {
 
 #[test]
 fn vk_physical_device_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceProperties = vk::PhysicalDeviceProperties::new;
 	let _: fn(vk::PhysicalDeviceProperties, u32) -> vk::PhysicalDeviceProperties =
 		vk::PhysicalDeviceProperties::set_api_version;
 	let _: fn(vk::PhysicalDeviceProperties, u32) -> vk::PhysicalDeviceProperties =
@@ -115,6 +126,7 @@ fn vk_physical_device_properties_construction_contract() {
 
 #[test]
 fn vk_extension_properties_construction_contract() {
+	let _: fn() -> vk::ExtensionProperties = vk::ExtensionProperties::new;
 	let _: fn(
 		vk::ExtensionProperties,
 		[std::ffi::c_char; vk::MAX_EXTENSION_NAME_SIZE as usize],
@@ -125,6 +137,7 @@ fn vk_extension_properties_construction_contract() {
 
 #[test]
 fn vk_layer_properties_construction_contract() {
+	let _: fn() -> vk::LayerProperties = vk::LayerProperties::new;
 	let _: fn(
 		vk::LayerProperties,
 		[std::ffi::c_char; vk::MAX_EXTENSION_NAME_SIZE as usize],
@@ -141,7 +154,11 @@ fn vk_layer_properties_construction_contract() {
 
 #[test]
 fn vk_application_info_construction_contract() {
+	let _: fn() -> vk::ApplicationInfo<'static> = vk::ApplicationInfo::new;
 	let value = vk::ApplicationInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::APPLICATION_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::ApplicationInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::APPLICATION_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::ApplicationInfo<'static>, &'static std::ffi::CStr) -> vk::ApplicationInfo<'static> =
@@ -158,6 +175,7 @@ fn vk_application_info_construction_contract() {
 
 #[test]
 fn vk_allocation_callbacks_construction_contract() {
+	let _: fn() -> vk::AllocationCallbacks = vk::AllocationCallbacks::new;
 	let _: unsafe fn(vk::AllocationCallbacks, *mut std::ffi::c_void) -> vk::AllocationCallbacks =
 		vk::AllocationCallbacks::set_user_data;
 	let _: fn(vk::AllocationCallbacks, vk::PFN_vkAllocationFunction) -> vk::AllocationCallbacks =
@@ -178,7 +196,11 @@ fn vk_allocation_callbacks_construction_contract() {
 
 #[test]
 fn vk_device_queue_create_info_construction_contract() {
+	let _: fn() -> vk::DeviceQueueCreateInfo<'static> = vk::DeviceQueueCreateInfo::new;
 	let value = vk::DeviceQueueCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::DEVICE_QUEUE_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceQueueCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::DEVICE_QUEUE_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -198,7 +220,11 @@ fn vk_device_queue_create_info_construction_contract() {
 
 #[test]
 fn vk_device_create_info_construction_contract() {
+	let _: fn() -> vk::DeviceCreateInfo<'static> = vk::DeviceCreateInfo::new;
 	let value = vk::DeviceCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::DEVICE_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::DEVICE_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::DeviceCreateInfo<'static>, vk::DeviceCreateFlags) -> vk::DeviceCreateInfo<'static> =
@@ -232,7 +258,11 @@ fn vk_device_create_info_construction_contract() {
 
 #[test]
 fn vk_instance_create_info_construction_contract() {
+	let _: fn() -> vk::InstanceCreateInfo<'static> = vk::InstanceCreateInfo::new;
 	let value = vk::InstanceCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::INSTANCE_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::InstanceCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::INSTANCE_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -261,6 +291,7 @@ fn vk_instance_create_info_construction_contract() {
 
 #[test]
 fn vk_queue_family_properties_construction_contract() {
+	let _: fn() -> vk::QueueFamilyProperties = vk::QueueFamilyProperties::new;
 	let _: fn(vk::QueueFamilyProperties, vk::QueueFlags) -> vk::QueueFamilyProperties =
 		vk::QueueFamilyProperties::set_queue_flags;
 	let _: fn(vk::QueueFamilyProperties, u32) -> vk::QueueFamilyProperties =
@@ -273,6 +304,7 @@ fn vk_queue_family_properties_construction_contract() {
 
 #[test]
 fn vk_physical_device_memory_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMemoryProperties = vk::PhysicalDeviceMemoryProperties::new;
 	let _: fn(vk::PhysicalDeviceMemoryProperties, u32) -> vk::PhysicalDeviceMemoryProperties =
 		vk::PhysicalDeviceMemoryProperties::set_memory_type_count;
 	let _: fn(
@@ -289,7 +321,11 @@ fn vk_physical_device_memory_properties_construction_contract() {
 
 #[test]
 fn vk_memory_allocate_info_construction_contract() {
+	let _: fn() -> vk::MemoryAllocateInfo<'static> = vk::MemoryAllocateInfo::new;
 	let value = vk::MemoryAllocateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::MEMORY_ALLOCATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryAllocateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::MEMORY_ALLOCATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::MemoryAllocateInfo<'static>, vk::DeviceSize) -> vk::MemoryAllocateInfo<'static> =
@@ -300,6 +336,7 @@ fn vk_memory_allocate_info_construction_contract() {
 
 #[test]
 fn vk_memory_requirements_construction_contract() {
+	let _: fn() -> vk::MemoryRequirements = vk::MemoryRequirements::new;
 	let _: fn(vk::MemoryRequirements, vk::DeviceSize) -> vk::MemoryRequirements =
 		vk::MemoryRequirements::set_size;
 	let _: fn(vk::MemoryRequirements, vk::DeviceSize) -> vk::MemoryRequirements =
@@ -310,6 +347,7 @@ fn vk_memory_requirements_construction_contract() {
 
 #[test]
 fn vk_sparse_image_format_properties_construction_contract() {
+	let _: fn() -> vk::SparseImageFormatProperties = vk::SparseImageFormatProperties::new;
 	let _: fn(
 		vk::SparseImageFormatProperties,
 		vk::ImageAspectFlags,
@@ -324,6 +362,7 @@ fn vk_sparse_image_format_properties_construction_contract() {
 
 #[test]
 fn vk_sparse_image_memory_requirements_construction_contract() {
+	let _: fn() -> vk::SparseImageMemoryRequirements = vk::SparseImageMemoryRequirements::new;
 	let _: fn(
 		vk::SparseImageMemoryRequirements,
 		vk::SparseImageFormatProperties,
@@ -349,6 +388,7 @@ fn vk_sparse_image_memory_requirements_construction_contract() {
 
 #[test]
 fn vk_memory_type_construction_contract() {
+	let _: fn() -> vk::MemoryType = vk::MemoryType::new;
 	let _: fn(vk::MemoryType, vk::MemoryPropertyFlags) -> vk::MemoryType =
 		vk::MemoryType::set_property_flags;
 	let _: fn(vk::MemoryType, u32) -> vk::MemoryType = vk::MemoryType::set_heap_index;
@@ -356,13 +396,18 @@ fn vk_memory_type_construction_contract() {
 
 #[test]
 fn vk_memory_heap_construction_contract() {
+	let _: fn() -> vk::MemoryHeap = vk::MemoryHeap::new;
 	let _: fn(vk::MemoryHeap, vk::DeviceSize) -> vk::MemoryHeap = vk::MemoryHeap::set_size;
 	let _: fn(vk::MemoryHeap, vk::MemoryHeapFlags) -> vk::MemoryHeap = vk::MemoryHeap::set_flags;
 }
 
 #[test]
 fn vk_mapped_memory_range_construction_contract() {
+	let _: fn() -> vk::MappedMemoryRange<'static> = vk::MappedMemoryRange::new;
 	let value = vk::MappedMemoryRange::default();
+	assert_eq!(value.s_type, vk::StructureType::MAPPED_MEMORY_RANGE);
+	assert!(value.p_next.is_null());
+	let value = vk::MappedMemoryRange::new();
 	assert_eq!(value.s_type, vk::StructureType::MAPPED_MEMORY_RANGE);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::MappedMemoryRange<'static>, vk::DeviceMemory) -> vk::MappedMemoryRange<'static> =
@@ -375,6 +420,7 @@ fn vk_mapped_memory_range_construction_contract() {
 
 #[test]
 fn vk_format_properties_construction_contract() {
+	let _: fn() -> vk::FormatProperties = vk::FormatProperties::new;
 	let _: fn(vk::FormatProperties, vk::FormatFeatureFlags) -> vk::FormatProperties =
 		vk::FormatProperties::set_linear_tiling_features;
 	let _: fn(vk::FormatProperties, vk::FormatFeatureFlags) -> vk::FormatProperties =
@@ -385,6 +431,7 @@ fn vk_format_properties_construction_contract() {
 
 #[test]
 fn vk_image_format_properties_construction_contract() {
+	let _: fn() -> vk::ImageFormatProperties = vk::ImageFormatProperties::new;
 	let _: fn(vk::ImageFormatProperties, vk::Extent3D) -> vk::ImageFormatProperties =
 		vk::ImageFormatProperties::set_max_extent;
 	let _: fn(vk::ImageFormatProperties, u32) -> vk::ImageFormatProperties =
@@ -399,6 +446,7 @@ fn vk_image_format_properties_construction_contract() {
 
 #[test]
 fn vk_descriptor_buffer_info_construction_contract() {
+	let _: fn() -> vk::DescriptorBufferInfo = vk::DescriptorBufferInfo::new;
 	let _: fn(vk::DescriptorBufferInfo, vk::Buffer) -> vk::DescriptorBufferInfo =
 		vk::DescriptorBufferInfo::set_buffer;
 	let _: fn(vk::DescriptorBufferInfo, vk::DeviceSize) -> vk::DescriptorBufferInfo =
@@ -409,6 +457,7 @@ fn vk_descriptor_buffer_info_construction_contract() {
 
 #[test]
 fn vk_descriptor_image_info_construction_contract() {
+	let _: fn() -> vk::DescriptorImageInfo = vk::DescriptorImageInfo::new;
 	let _: fn(vk::DescriptorImageInfo, vk::Sampler) -> vk::DescriptorImageInfo =
 		vk::DescriptorImageInfo::set_sampler;
 	let _: fn(vk::DescriptorImageInfo, vk::ImageView) -> vk::DescriptorImageInfo =
@@ -419,7 +468,11 @@ fn vk_descriptor_image_info_construction_contract() {
 
 #[test]
 fn vk_write_descriptor_set_construction_contract() {
+	let _: fn() -> vk::WriteDescriptorSet<'static> = vk::WriteDescriptorSet::new;
 	let value = vk::WriteDescriptorSet::default();
+	assert_eq!(value.s_type, vk::StructureType::WRITE_DESCRIPTOR_SET);
+	assert!(value.p_next.is_null());
+	let value = vk::WriteDescriptorSet::new();
 	assert_eq!(value.s_type, vk::StructureType::WRITE_DESCRIPTOR_SET);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::WriteDescriptorSet<'static>, vk::DescriptorSet) -> vk::WriteDescriptorSet<'static> =
@@ -453,7 +506,11 @@ fn vk_write_descriptor_set_construction_contract() {
 
 #[test]
 fn vk_copy_descriptor_set_construction_contract() {
+	let _: fn() -> vk::CopyDescriptorSet<'static> = vk::CopyDescriptorSet::new;
 	let value = vk::CopyDescriptorSet::default();
+	assert_eq!(value.s_type, vk::StructureType::COPY_DESCRIPTOR_SET);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyDescriptorSet::new();
 	assert_eq!(value.s_type, vk::StructureType::COPY_DESCRIPTOR_SET);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::CopyDescriptorSet<'static>, vk::DescriptorSet) -> vk::CopyDescriptorSet<'static> =
@@ -474,7 +531,14 @@ fn vk_copy_descriptor_set_construction_contract() {
 
 #[test]
 fn vk_buffer_usage_flags2_create_info_construction_contract() {
+	let _: fn() -> vk::BufferUsageFlags2CreateInfo<'static> = vk::BufferUsageFlags2CreateInfo::new;
 	let value = vk::BufferUsageFlags2CreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BUFFER_USAGE_FLAGS_2_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferUsageFlags2CreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BUFFER_USAGE_FLAGS_2_CREATE_INFO
@@ -488,7 +552,11 @@ fn vk_buffer_usage_flags2_create_info_construction_contract() {
 
 #[test]
 fn vk_buffer_create_info_construction_contract() {
+	let _: fn() -> vk::BufferCreateInfo<'static> = vk::BufferCreateInfo::new;
 	let value = vk::BufferCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::BUFFER_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::BUFFER_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::BufferCreateInfo<'static>, vk::BufferCreateFlags) -> vk::BufferCreateInfo<'static> =
@@ -510,7 +578,11 @@ fn vk_buffer_create_info_construction_contract() {
 
 #[test]
 fn vk_buffer_view_create_info_construction_contract() {
+	let _: fn() -> vk::BufferViewCreateInfo<'static> = vk::BufferViewCreateInfo::new;
 	let value = vk::BufferViewCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::BUFFER_VIEW_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferViewCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::BUFFER_VIEW_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -533,6 +605,7 @@ fn vk_buffer_view_create_info_construction_contract() {
 
 #[test]
 fn vk_image_subresource_construction_contract() {
+	let _: fn() -> vk::ImageSubresource = vk::ImageSubresource::new;
 	let _: fn(vk::ImageSubresource, vk::ImageAspectFlags) -> vk::ImageSubresource =
 		vk::ImageSubresource::set_aspect_mask;
 	let _: fn(vk::ImageSubresource, u32) -> vk::ImageSubresource =
@@ -543,6 +616,7 @@ fn vk_image_subresource_construction_contract() {
 
 #[test]
 fn vk_image_subresource_layers_construction_contract() {
+	let _: fn() -> vk::ImageSubresourceLayers = vk::ImageSubresourceLayers::new;
 	let _: fn(vk::ImageSubresourceLayers, vk::ImageAspectFlags) -> vk::ImageSubresourceLayers =
 		vk::ImageSubresourceLayers::set_aspect_mask;
 	let _: fn(vk::ImageSubresourceLayers, u32) -> vk::ImageSubresourceLayers =
@@ -555,6 +629,7 @@ fn vk_image_subresource_layers_construction_contract() {
 
 #[test]
 fn vk_image_subresource_range_construction_contract() {
+	let _: fn() -> vk::ImageSubresourceRange = vk::ImageSubresourceRange::new;
 	let _: fn(vk::ImageSubresourceRange, vk::ImageAspectFlags) -> vk::ImageSubresourceRange =
 		vk::ImageSubresourceRange::set_aspect_mask;
 	let _: fn(vk::ImageSubresourceRange, u32) -> vk::ImageSubresourceRange =
@@ -569,7 +644,11 @@ fn vk_image_subresource_range_construction_contract() {
 
 #[test]
 fn vk_memory_barrier_construction_contract() {
+	let _: fn() -> vk::MemoryBarrier<'static> = vk::MemoryBarrier::new;
 	let value = vk::MemoryBarrier::default();
+	assert_eq!(value.s_type, vk::StructureType::MEMORY_BARRIER);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryBarrier::new();
 	assert_eq!(value.s_type, vk::StructureType::MEMORY_BARRIER);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::MemoryBarrier<'static>, vk::AccessFlags) -> vk::MemoryBarrier<'static> =
@@ -580,7 +659,11 @@ fn vk_memory_barrier_construction_contract() {
 
 #[test]
 fn vk_buffer_memory_barrier_construction_contract() {
+	let _: fn() -> vk::BufferMemoryBarrier<'static> = vk::BufferMemoryBarrier::new;
 	let value = vk::BufferMemoryBarrier::default();
+	assert_eq!(value.s_type, vk::StructureType::BUFFER_MEMORY_BARRIER);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferMemoryBarrier::new();
 	assert_eq!(value.s_type, vk::StructureType::BUFFER_MEMORY_BARRIER);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::BufferMemoryBarrier<'static>, vk::AccessFlags) -> vk::BufferMemoryBarrier<'static> =
@@ -601,7 +684,11 @@ fn vk_buffer_memory_barrier_construction_contract() {
 
 #[test]
 fn vk_image_memory_barrier_construction_contract() {
+	let _: fn() -> vk::ImageMemoryBarrier<'static> = vk::ImageMemoryBarrier::new;
 	let value = vk::ImageMemoryBarrier::default();
+	assert_eq!(value.s_type, vk::StructureType::IMAGE_MEMORY_BARRIER);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageMemoryBarrier::new();
 	assert_eq!(value.s_type, vk::StructureType::IMAGE_MEMORY_BARRIER);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::ImageMemoryBarrier<'static>, vk::AccessFlags) -> vk::ImageMemoryBarrier<'static> =
@@ -626,7 +713,11 @@ fn vk_image_memory_barrier_construction_contract() {
 
 #[test]
 fn vk_image_create_info_construction_contract() {
+	let _: fn() -> vk::ImageCreateInfo<'static> = vk::ImageCreateInfo::new;
 	let value = vk::ImageCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::IMAGE_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::IMAGE_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::ImageCreateInfo<'static>, vk::ImageCreateFlags) -> vk::ImageCreateInfo<'static> =
@@ -662,7 +753,15 @@ fn vk_image_create_info_construction_contract() {
 
 #[test]
 fn vk_image_create_flags2_create_info_khr_construction_contract() {
+	let _: fn() -> vk::ImageCreateFlags2CreateInfoKHR<'static> =
+		vk::ImageCreateFlags2CreateInfoKHR::new;
 	let value = vk::ImageCreateFlags2CreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_CREATE_FLAGS_2_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageCreateFlags2CreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_CREATE_FLAGS_2_CREATE_INFO_KHR
@@ -676,7 +775,15 @@ fn vk_image_create_flags2_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_image_usage_flags2_create_info_khr_construction_contract() {
+	let _: fn() -> vk::ImageUsageFlags2CreateInfoKHR<'static> =
+		vk::ImageUsageFlags2CreateInfoKHR::new;
 	let value = vk::ImageUsageFlags2CreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_USAGE_FLAGS_2_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageUsageFlags2CreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_USAGE_FLAGS_2_CREATE_INFO_KHR
@@ -690,6 +797,7 @@ fn vk_image_usage_flags2_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_subresource_layout_construction_contract() {
+	let _: fn() -> vk::SubresourceLayout = vk::SubresourceLayout::new;
 	let _: fn(vk::SubresourceLayout, vk::DeviceSize) -> vk::SubresourceLayout =
 		vk::SubresourceLayout::set_offset;
 	let _: fn(vk::SubresourceLayout, vk::DeviceSize) -> vk::SubresourceLayout =
@@ -704,7 +812,11 @@ fn vk_subresource_layout_construction_contract() {
 
 #[test]
 fn vk_image_view_create_info_construction_contract() {
+	let _: fn() -> vk::ImageViewCreateInfo<'static> = vk::ImageViewCreateInfo::new;
 	let value = vk::ImageViewCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::IMAGE_VIEW_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageViewCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::IMAGE_VIEW_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -731,6 +843,7 @@ fn vk_image_view_create_info_construction_contract() {
 
 #[test]
 fn vk_buffer_copy_construction_contract() {
+	let _: fn() -> vk::BufferCopy = vk::BufferCopy::new;
 	let _: fn(vk::BufferCopy, vk::DeviceSize) -> vk::BufferCopy = vk::BufferCopy::set_src_offset;
 	let _: fn(vk::BufferCopy, vk::DeviceSize) -> vk::BufferCopy = vk::BufferCopy::set_dst_offset;
 	let _: fn(vk::BufferCopy, vk::DeviceSize) -> vk::BufferCopy = vk::BufferCopy::set_size;
@@ -738,6 +851,7 @@ fn vk_buffer_copy_construction_contract() {
 
 #[test]
 fn vk_sparse_memory_bind_construction_contract() {
+	let _: fn() -> vk::SparseMemoryBind = vk::SparseMemoryBind::new;
 	let _: fn(vk::SparseMemoryBind, vk::DeviceSize) -> vk::SparseMemoryBind =
 		vk::SparseMemoryBind::set_resource_offset;
 	let _: fn(vk::SparseMemoryBind, vk::DeviceSize) -> vk::SparseMemoryBind =
@@ -752,6 +866,7 @@ fn vk_sparse_memory_bind_construction_contract() {
 
 #[test]
 fn vk_sparse_image_memory_bind_construction_contract() {
+	let _: fn() -> vk::SparseImageMemoryBind = vk::SparseImageMemoryBind::new;
 	let _: fn(vk::SparseImageMemoryBind, vk::ImageSubresource) -> vk::SparseImageMemoryBind =
 		vk::SparseImageMemoryBind::set_subresource;
 	let _: fn(vk::SparseImageMemoryBind, vk::Offset3D) -> vk::SparseImageMemoryBind =
@@ -768,6 +883,7 @@ fn vk_sparse_image_memory_bind_construction_contract() {
 
 #[test]
 fn vk_sparse_buffer_memory_bind_info_construction_contract() {
+	let _: fn() -> vk::SparseBufferMemoryBindInfo<'static> = vk::SparseBufferMemoryBindInfo::new;
 	let _: fn(
 		vk::SparseBufferMemoryBindInfo<'static>,
 		vk::Buffer,
@@ -786,6 +902,8 @@ fn vk_sparse_buffer_memory_bind_info_construction_contract() {
 
 #[test]
 fn vk_sparse_image_opaque_memory_bind_info_construction_contract() {
+	let _: fn() -> vk::SparseImageOpaqueMemoryBindInfo<'static> =
+		vk::SparseImageOpaqueMemoryBindInfo::new;
 	let _: fn(
 		vk::SparseImageOpaqueMemoryBindInfo<'static>,
 		vk::Image,
@@ -806,6 +924,7 @@ fn vk_sparse_image_opaque_memory_bind_info_construction_contract() {
 
 #[test]
 fn vk_sparse_image_memory_bind_info_construction_contract() {
+	let _: fn() -> vk::SparseImageMemoryBindInfo<'static> = vk::SparseImageMemoryBindInfo::new;
 	let _: fn(
 		vk::SparseImageMemoryBindInfo<'static>,
 		vk::Image,
@@ -822,7 +941,11 @@ fn vk_sparse_image_memory_bind_info_construction_contract() {
 
 #[test]
 fn vk_bind_sparse_info_construction_contract() {
+	let _: fn() -> vk::BindSparseInfo<'static> = vk::BindSparseInfo::new;
 	let value = vk::BindSparseInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::BIND_SPARSE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::BindSparseInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::BIND_SPARSE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::BindSparseInfo<'static>, u32) -> vk::BindSparseInfo<'static> =
@@ -864,6 +987,7 @@ fn vk_bind_sparse_info_construction_contract() {
 
 #[test]
 fn vk_image_copy_construction_contract() {
+	let _: fn() -> vk::ImageCopy = vk::ImageCopy::new;
 	let _: fn(vk::ImageCopy, vk::ImageSubresourceLayers) -> vk::ImageCopy =
 		vk::ImageCopy::set_src_subresource;
 	let _: fn(vk::ImageCopy, vk::Offset3D) -> vk::ImageCopy = vk::ImageCopy::set_src_offset;
@@ -875,6 +999,7 @@ fn vk_image_copy_construction_contract() {
 
 #[test]
 fn vk_image_blit_construction_contract() {
+	let _: fn() -> vk::ImageBlit = vk::ImageBlit::new;
 	let _: fn(vk::ImageBlit, vk::ImageSubresourceLayers) -> vk::ImageBlit =
 		vk::ImageBlit::set_src_subresource;
 	let _: fn(vk::ImageBlit, [vk::Offset3D; 2]) -> vk::ImageBlit = vk::ImageBlit::set_src_offsets;
@@ -885,6 +1010,7 @@ fn vk_image_blit_construction_contract() {
 
 #[test]
 fn vk_buffer_image_copy_construction_contract() {
+	let _: fn() -> vk::BufferImageCopy = vk::BufferImageCopy::new;
 	let _: fn(vk::BufferImageCopy, vk::DeviceSize) -> vk::BufferImageCopy =
 		vk::BufferImageCopy::set_buffer_offset;
 	let _: fn(vk::BufferImageCopy, u32) -> vk::BufferImageCopy =
@@ -901,6 +1027,7 @@ fn vk_buffer_image_copy_construction_contract() {
 
 #[test]
 fn vk_strided_device_address_range_khr_construction_contract() {
+	let _: fn() -> vk::StridedDeviceAddressRangeKHR = vk::StridedDeviceAddressRangeKHR::new;
 	let _: fn(
 		vk::StridedDeviceAddressRangeKHR,
 		vk::DeviceAddress,
@@ -913,6 +1040,7 @@ fn vk_strided_device_address_range_khr_construction_contract() {
 
 #[test]
 fn vk_copy_memory_indirect_command_khr_construction_contract() {
+	let _: fn() -> vk::CopyMemoryIndirectCommandKHR = vk::CopyMemoryIndirectCommandKHR::new;
 	let _: fn(
 		vk::CopyMemoryIndirectCommandKHR,
 		vk::DeviceAddress,
@@ -927,7 +1055,14 @@ fn vk_copy_memory_indirect_command_khr_construction_contract() {
 
 #[test]
 fn vk_copy_memory_indirect_info_khr_construction_contract() {
+	let _: fn() -> vk::CopyMemoryIndirectInfoKHR<'static> = vk::CopyMemoryIndirectInfoKHR::new;
 	let value = vk::CopyMemoryIndirectInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COPY_MEMORY_INDIRECT_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyMemoryIndirectInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COPY_MEMORY_INDIRECT_INFO_KHR
@@ -952,6 +1087,8 @@ fn vk_copy_memory_indirect_info_khr_construction_contract() {
 
 #[test]
 fn vk_copy_memory_to_image_indirect_command_khr_construction_contract() {
+	let _: fn() -> vk::CopyMemoryToImageIndirectCommandKHR =
+		vk::CopyMemoryToImageIndirectCommandKHR::new;
 	let _: fn(
 		vk::CopyMemoryToImageIndirectCommandKHR,
 		vk::DeviceAddress,
@@ -986,7 +1123,15 @@ fn vk_copy_memory_to_image_indirect_command_khr_construction_contract() {
 
 #[test]
 fn vk_copy_memory_to_image_indirect_info_khr_construction_contract() {
+	let _: fn() -> vk::CopyMemoryToImageIndirectInfoKHR<'static> =
+		vk::CopyMemoryToImageIndirectInfoKHR::new;
 	let value = vk::CopyMemoryToImageIndirectInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COPY_MEMORY_TO_IMAGE_INDIRECT_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyMemoryToImageIndirectInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COPY_MEMORY_TO_IMAGE_INDIRECT_INFO_KHR
@@ -1028,6 +1173,7 @@ fn vk_copy_memory_to_image_indirect_info_khr_construction_contract() {
 
 #[test]
 fn vk_image_resolve_construction_contract() {
+	let _: fn() -> vk::ImageResolve = vk::ImageResolve::new;
 	let _: fn(vk::ImageResolve, vk::ImageSubresourceLayers) -> vk::ImageResolve =
 		vk::ImageResolve::set_src_subresource;
 	let _: fn(vk::ImageResolve, vk::Offset3D) -> vk::ImageResolve = vk::ImageResolve::set_src_offset;
@@ -1039,7 +1185,11 @@ fn vk_image_resolve_construction_contract() {
 
 #[test]
 fn vk_shader_module_create_info_construction_contract() {
+	let _: fn() -> vk::ShaderModuleCreateInfo<'static> = vk::ShaderModuleCreateInfo::new;
 	let value = vk::ShaderModuleCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::SHADER_MODULE_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::ShaderModuleCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::SHADER_MODULE_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -1056,6 +1206,7 @@ fn vk_shader_module_create_info_construction_contract() {
 
 #[test]
 fn vk_descriptor_set_layout_binding_construction_contract() {
+	let _: fn() -> vk::DescriptorSetLayoutBinding<'static> = vk::DescriptorSetLayoutBinding::new;
 	let _: fn(
 		vk::DescriptorSetLayoutBinding<'static>,
 		u32,
@@ -1083,7 +1234,15 @@ fn vk_descriptor_set_layout_binding_construction_contract() {
 
 #[test]
 fn vk_descriptor_set_layout_create_info_construction_contract() {
+	let _: fn() -> vk::DescriptorSetLayoutCreateInfo<'static> =
+		vk::DescriptorSetLayoutCreateInfo::new;
 	let value = vk::DescriptorSetLayoutCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DESCRIPTOR_SET_LAYOUT_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorSetLayoutCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DESCRIPTOR_SET_LAYOUT_CREATE_INFO
@@ -1109,6 +1268,7 @@ fn vk_descriptor_set_layout_create_info_construction_contract() {
 
 #[test]
 fn vk_descriptor_pool_size_construction_contract() {
+	let _: fn() -> vk::DescriptorPoolSize = vk::DescriptorPoolSize::new;
 	let _: fn(vk::DescriptorPoolSize, vk::DescriptorType) -> vk::DescriptorPoolSize =
 		vk::DescriptorPoolSize::set_type;
 	let _: fn(vk::DescriptorPoolSize, u32) -> vk::DescriptorPoolSize =
@@ -1117,7 +1277,11 @@ fn vk_descriptor_pool_size_construction_contract() {
 
 #[test]
 fn vk_descriptor_pool_create_info_construction_contract() {
+	let _: fn() -> vk::DescriptorPoolCreateInfo<'static> = vk::DescriptorPoolCreateInfo::new;
 	let value = vk::DescriptorPoolCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::DESCRIPTOR_POOL_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorPoolCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::DESCRIPTOR_POOL_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -1137,7 +1301,14 @@ fn vk_descriptor_pool_create_info_construction_contract() {
 
 #[test]
 fn vk_descriptor_set_allocate_info_construction_contract() {
+	let _: fn() -> vk::DescriptorSetAllocateInfo<'static> = vk::DescriptorSetAllocateInfo::new;
 	let value = vk::DescriptorSetAllocateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DESCRIPTOR_SET_ALLOCATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorSetAllocateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DESCRIPTOR_SET_ALLOCATE_INFO
@@ -1159,6 +1330,7 @@ fn vk_descriptor_set_allocate_info_construction_contract() {
 
 #[test]
 fn vk_specialization_map_entry_construction_contract() {
+	let _: fn() -> vk::SpecializationMapEntry = vk::SpecializationMapEntry::new;
 	let _: fn(vk::SpecializationMapEntry, u32) -> vk::SpecializationMapEntry =
 		vk::SpecializationMapEntry::set_constant_id;
 	let _: fn(vk::SpecializationMapEntry, u32) -> vk::SpecializationMapEntry =
@@ -1169,6 +1341,7 @@ fn vk_specialization_map_entry_construction_contract() {
 
 #[test]
 fn vk_specialization_info_construction_contract() {
+	let _: fn() -> vk::SpecializationInfo<'static> = vk::SpecializationInfo::new;
 	let _: fn(vk::SpecializationInfo<'static>, u32) -> vk::SpecializationInfo<'static> =
 		vk::SpecializationInfo::set_map_entry_count;
 	let _: fn(
@@ -1187,7 +1360,15 @@ fn vk_specialization_info_construction_contract() {
 
 #[test]
 fn vk_pipeline_shader_stage_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineShaderStageCreateInfo<'static> =
+		vk::PipelineShaderStageCreateInfo::new;
 	let value = vk::PipelineShaderStageCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_SHADER_STAGE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineShaderStageCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_SHADER_STAGE_CREATE_INFO
@@ -1218,7 +1399,14 @@ fn vk_pipeline_shader_stage_create_info_construction_contract() {
 
 #[test]
 fn vk_compute_pipeline_create_info_construction_contract() {
+	let _: fn() -> vk::ComputePipelineCreateInfo<'static> = vk::ComputePipelineCreateInfo::new;
 	let value = vk::ComputePipelineCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COMPUTE_PIPELINE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ComputePipelineCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COMPUTE_PIPELINE_CREATE_INFO
@@ -1247,7 +1435,15 @@ fn vk_compute_pipeline_create_info_construction_contract() {
 
 #[test]
 fn vk_compute_pipeline_indirect_buffer_info_nv_construction_contract() {
+	let _: fn() -> vk::ComputePipelineIndirectBufferInfoNV<'static> =
+		vk::ComputePipelineIndirectBufferInfoNV::new;
 	let value = vk::ComputePipelineIndirectBufferInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COMPUTE_PIPELINE_INDIRECT_BUFFER_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ComputePipelineIndirectBufferInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COMPUTE_PIPELINE_INDIRECT_BUFFER_INFO_NV
@@ -1272,7 +1468,15 @@ fn vk_compute_pipeline_indirect_buffer_info_nv_construction_contract() {
 
 #[test]
 fn vk_pipeline_create_flags2_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineCreateFlags2CreateInfo<'static> =
+		vk::PipelineCreateFlags2CreateInfo::new;
 	let value = vk::PipelineCreateFlags2CreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_CREATE_FLAGS_2_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineCreateFlags2CreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_CREATE_FLAGS_2_CREATE_INFO
@@ -1286,6 +1490,7 @@ fn vk_pipeline_create_flags2_create_info_construction_contract() {
 
 #[test]
 fn vk_vertex_input_binding_description_construction_contract() {
+	let _: fn() -> vk::VertexInputBindingDescription = vk::VertexInputBindingDescription::new;
 	let _: fn(vk::VertexInputBindingDescription, u32) -> vk::VertexInputBindingDescription =
 		vk::VertexInputBindingDescription::set_binding;
 	let _: fn(vk::VertexInputBindingDescription, u32) -> vk::VertexInputBindingDescription =
@@ -1298,6 +1503,7 @@ fn vk_vertex_input_binding_description_construction_contract() {
 
 #[test]
 fn vk_vertex_input_attribute_description_construction_contract() {
+	let _: fn() -> vk::VertexInputAttributeDescription = vk::VertexInputAttributeDescription::new;
 	let _: fn(vk::VertexInputAttributeDescription, u32) -> vk::VertexInputAttributeDescription =
 		vk::VertexInputAttributeDescription::set_location;
 	let _: fn(vk::VertexInputAttributeDescription, u32) -> vk::VertexInputAttributeDescription =
@@ -1312,7 +1518,15 @@ fn vk_vertex_input_attribute_description_construction_contract() {
 
 #[test]
 fn vk_pipeline_vertex_input_state_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineVertexInputStateCreateInfo<'static> =
+		vk::PipelineVertexInputStateCreateInfo::new;
 	let value = vk::PipelineVertexInputStateCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineVertexInputStateCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO
@@ -1351,7 +1565,15 @@ fn vk_pipeline_vertex_input_state_create_info_construction_contract() {
 
 #[test]
 fn vk_pipeline_input_assembly_state_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineInputAssemblyStateCreateInfo<'static> =
+		vk::PipelineInputAssemblyStateCreateInfo::new;
 	let value = vk::PipelineInputAssemblyStateCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineInputAssemblyStateCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO
@@ -1376,7 +1598,15 @@ fn vk_pipeline_input_assembly_state_create_info_construction_contract() {
 
 #[test]
 fn vk_pipeline_tessellation_state_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineTessellationStateCreateInfo<'static> =
+		vk::PipelineTessellationStateCreateInfo::new;
 	let value = vk::PipelineTessellationStateCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_TESSELLATION_STATE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineTessellationStateCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_TESSELLATION_STATE_CREATE_INFO
@@ -1396,7 +1626,15 @@ fn vk_pipeline_tessellation_state_create_info_construction_contract() {
 
 #[test]
 fn vk_pipeline_viewport_state_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineViewportStateCreateInfo<'static> =
+		vk::PipelineViewportStateCreateInfo::new;
 	let value = vk::PipelineViewportStateCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_VIEWPORT_STATE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineViewportStateCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_VIEWPORT_STATE_CREATE_INFO
@@ -1434,7 +1672,15 @@ fn vk_pipeline_viewport_state_create_info_construction_contract() {
 
 #[test]
 fn vk_pipeline_rasterization_state_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineRasterizationStateCreateInfo<'static> =
+		vk::PipelineRasterizationStateCreateInfo::new;
 	let value = vk::PipelineRasterizationStateCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_RASTERIZATION_STATE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineRasterizationStateCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_RASTERIZATION_STATE_CREATE_INFO
@@ -1499,7 +1745,15 @@ fn vk_pipeline_rasterization_state_create_info_construction_contract() {
 
 #[test]
 fn vk_pipeline_multisample_state_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineMultisampleStateCreateInfo<'static> =
+		vk::PipelineMultisampleStateCreateInfo::new;
 	let value = vk::PipelineMultisampleStateCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_MULTISAMPLE_STATE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineMultisampleStateCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_MULTISAMPLE_STATE_CREATE_INFO
@@ -1546,6 +1800,7 @@ fn vk_pipeline_multisample_state_create_info_construction_contract() {
 
 #[test]
 fn vk_pipeline_color_blend_attachment_state_construction_contract() {
+	let _: fn() -> vk::PipelineColorBlendAttachmentState = vk::PipelineColorBlendAttachmentState::new;
 	let _: fn(
 		vk::PipelineColorBlendAttachmentState,
 		vk::Bool32,
@@ -1590,7 +1845,15 @@ fn vk_pipeline_color_blend_attachment_state_construction_contract() {
 
 #[test]
 fn vk_pipeline_color_blend_state_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineColorBlendStateCreateInfo<'static> =
+		vk::PipelineColorBlendStateCreateInfo::new;
 	let value = vk::PipelineColorBlendStateCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_COLOR_BLEND_STATE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineColorBlendStateCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_COLOR_BLEND_STATE_CREATE_INFO
@@ -1632,7 +1895,15 @@ fn vk_pipeline_color_blend_state_create_info_construction_contract() {
 
 #[test]
 fn vk_pipeline_dynamic_state_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineDynamicStateCreateInfo<'static> =
+		vk::PipelineDynamicStateCreateInfo::new;
 	let value = vk::PipelineDynamicStateCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_DYNAMIC_STATE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineDynamicStateCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_DYNAMIC_STATE_CREATE_INFO
@@ -1658,6 +1929,7 @@ fn vk_pipeline_dynamic_state_create_info_construction_contract() {
 
 #[test]
 fn vk_stencil_op_state_construction_contract() {
+	let _: fn() -> vk::StencilOpState = vk::StencilOpState::new;
 	let _: fn(vk::StencilOpState, vk::StencilOp) -> vk::StencilOpState =
 		vk::StencilOpState::set_fail_op;
 	let _: fn(vk::StencilOpState, vk::StencilOp) -> vk::StencilOpState =
@@ -1673,7 +1945,15 @@ fn vk_stencil_op_state_construction_contract() {
 
 #[test]
 fn vk_pipeline_depth_stencil_state_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineDepthStencilStateCreateInfo<'static> =
+		vk::PipelineDepthStencilStateCreateInfo::new;
 	let value = vk::PipelineDepthStencilStateCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineDepthStencilStateCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO
@@ -1733,7 +2013,14 @@ fn vk_pipeline_depth_stencil_state_create_info_construction_contract() {
 
 #[test]
 fn vk_graphics_pipeline_create_info_construction_contract() {
+	let _: fn() -> vk::GraphicsPipelineCreateInfo<'static> = vk::GraphicsPipelineCreateInfo::new;
 	let value = vk::GraphicsPipelineCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::GRAPHICS_PIPELINE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::GraphicsPipelineCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::GRAPHICS_PIPELINE_CREATE_INFO
@@ -1822,7 +2109,11 @@ fn vk_graphics_pipeline_create_info_construction_contract() {
 
 #[test]
 fn vk_pipeline_cache_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineCacheCreateInfo<'static> = vk::PipelineCacheCreateInfo::new;
 	let value = vk::PipelineCacheCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::PIPELINE_CACHE_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineCacheCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::PIPELINE_CACHE_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -1840,6 +2131,7 @@ fn vk_pipeline_cache_create_info_construction_contract() {
 
 #[test]
 fn vk_pipeline_cache_header_version_one_construction_contract() {
+	let _: fn() -> vk::PipelineCacheHeaderVersionOne = vk::PipelineCacheHeaderVersionOne::new;
 	let _: fn(vk::PipelineCacheHeaderVersionOne, u32) -> vk::PipelineCacheHeaderVersionOne =
 		vk::PipelineCacheHeaderVersionOne::set_header_size;
 	let _: fn(
@@ -1859,6 +2151,8 @@ fn vk_pipeline_cache_header_version_one_construction_contract() {
 
 #[test]
 fn vk_pipeline_cache_header_version_data_graph_qcom_construction_contract() {
+	let _: fn() -> vk::PipelineCacheHeaderVersionDataGraphQCOM =
+		vk::PipelineCacheHeaderVersionDataGraphQCOM::new;
 	let _: fn(
 		vk::PipelineCacheHeaderVersionDataGraphQCOM,
 		u32,
@@ -1888,6 +2182,7 @@ fn vk_pipeline_cache_header_version_data_graph_qcom_construction_contract() {
 
 #[test]
 fn vk_push_constant_range_construction_contract() {
+	let _: fn() -> vk::PushConstantRange = vk::PushConstantRange::new;
 	let _: fn(vk::PushConstantRange, vk::ShaderStageFlags) -> vk::PushConstantRange =
 		vk::PushConstantRange::set_stage_flags;
 	let _: fn(vk::PushConstantRange, u32) -> vk::PushConstantRange =
@@ -1897,7 +2192,14 @@ fn vk_push_constant_range_construction_contract() {
 
 #[test]
 fn vk_pipeline_binary_create_info_khr_construction_contract() {
+	let _: fn() -> vk::PipelineBinaryCreateInfoKHR<'static> = vk::PipelineBinaryCreateInfoKHR::new;
 	let value = vk::PipelineBinaryCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_BINARY_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineBinaryCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_BINARY_CREATE_INFO_KHR
@@ -1921,7 +2223,14 @@ fn vk_pipeline_binary_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_pipeline_binary_handles_info_khr_construction_contract() {
+	let _: fn() -> vk::PipelineBinaryHandlesInfoKHR<'static> = vk::PipelineBinaryHandlesInfoKHR::new;
 	let value = vk::PipelineBinaryHandlesInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_BINARY_HANDLES_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineBinaryHandlesInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_BINARY_HANDLES_INFO_KHR
@@ -1943,6 +2252,7 @@ fn vk_pipeline_binary_handles_info_khr_construction_contract() {
 
 #[test]
 fn vk_pipeline_binary_data_khr_construction_contract() {
+	let _: fn() -> vk::PipelineBinaryDataKHR<'static> = vk::PipelineBinaryDataKHR::new;
 	let _: fn(vk::PipelineBinaryDataKHR<'static>, usize) -> vk::PipelineBinaryDataKHR<'static> =
 		vk::PipelineBinaryDataKHR::set_data_size;
 	let _: fn(
@@ -1954,6 +2264,7 @@ fn vk_pipeline_binary_data_khr_construction_contract() {
 
 #[test]
 fn vk_pipeline_binary_keys_and_data_khr_construction_contract() {
+	let _: fn() -> vk::PipelineBinaryKeysAndDataKHR<'static> = vk::PipelineBinaryKeysAndDataKHR::new;
 	let _: fn(
 		vk::PipelineBinaryKeysAndDataKHR<'static>,
 		u32,
@@ -1970,7 +2281,11 @@ fn vk_pipeline_binary_keys_and_data_khr_construction_contract() {
 
 #[test]
 fn vk_pipeline_binary_key_khr_construction_contract() {
+	let _: fn() -> vk::PipelineBinaryKeyKHR<'static> = vk::PipelineBinaryKeyKHR::new;
 	let value = vk::PipelineBinaryKeyKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::PIPELINE_BINARY_KEY_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineBinaryKeyKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::PIPELINE_BINARY_KEY_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::PipelineBinaryKeyKHR<'static>, u32) -> vk::PipelineBinaryKeyKHR<'static> =
@@ -1983,7 +2298,11 @@ fn vk_pipeline_binary_key_khr_construction_contract() {
 
 #[test]
 fn vk_pipeline_binary_info_khr_construction_contract() {
+	let _: fn() -> vk::PipelineBinaryInfoKHR<'static> = vk::PipelineBinaryInfoKHR::new;
 	let value = vk::PipelineBinaryInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::PIPELINE_BINARY_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineBinaryInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::PIPELINE_BINARY_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::PipelineBinaryInfoKHR<'static>, u32) -> vk::PipelineBinaryInfoKHR<'static> =
@@ -1997,7 +2316,15 @@ fn vk_pipeline_binary_info_khr_construction_contract() {
 
 #[test]
 fn vk_release_captured_pipeline_data_info_khr_construction_contract() {
+	let _: fn() -> vk::ReleaseCapturedPipelineDataInfoKHR<'static> =
+		vk::ReleaseCapturedPipelineDataInfoKHR::new;
 	let value = vk::ReleaseCapturedPipelineDataInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RELEASE_CAPTURED_PIPELINE_DATA_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ReleaseCapturedPipelineDataInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RELEASE_CAPTURED_PIPELINE_DATA_INFO_KHR
@@ -2012,7 +2339,14 @@ fn vk_release_captured_pipeline_data_info_khr_construction_contract() {
 
 #[test]
 fn vk_pipeline_binary_data_info_khr_construction_contract() {
+	let _: fn() -> vk::PipelineBinaryDataInfoKHR<'static> = vk::PipelineBinaryDataInfoKHR::new;
 	let value = vk::PipelineBinaryDataInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_BINARY_DATA_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineBinaryDataInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_BINARY_DATA_INFO_KHR
@@ -2026,14 +2360,22 @@ fn vk_pipeline_binary_data_info_khr_construction_contract() {
 
 #[test]
 fn vk_pipeline_create_info_khr_construction_contract() {
+	let _: fn() -> vk::PipelineCreateInfoKHR<'static> = vk::PipelineCreateInfoKHR::new;
 	let value = vk::PipelineCreateInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::PIPELINE_CREATE_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineCreateInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::PIPELINE_CREATE_INFO_KHR);
 	assert!(value.p_next.is_null());
 }
 
 #[test]
 fn vk_pipeline_layout_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineLayoutCreateInfo<'static> = vk::PipelineLayoutCreateInfo::new;
 	let value = vk::PipelineLayoutCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::PIPELINE_LAYOUT_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineLayoutCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::PIPELINE_LAYOUT_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -2058,7 +2400,11 @@ fn vk_pipeline_layout_create_info_construction_contract() {
 
 #[test]
 fn vk_sampler_create_info_construction_contract() {
+	let _: fn() -> vk::SamplerCreateInfo<'static> = vk::SamplerCreateInfo::new;
 	let value = vk::SamplerCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::SAMPLER_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::SamplerCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::SAMPLER_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -2107,7 +2453,11 @@ fn vk_sampler_create_info_construction_contract() {
 
 #[test]
 fn vk_command_pool_create_info_construction_contract() {
+	let _: fn() -> vk::CommandPoolCreateInfo<'static> = vk::CommandPoolCreateInfo::new;
 	let value = vk::CommandPoolCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::COMMAND_POOL_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::CommandPoolCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::COMMAND_POOL_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -2120,7 +2470,14 @@ fn vk_command_pool_create_info_construction_contract() {
 
 #[test]
 fn vk_command_buffer_allocate_info_construction_contract() {
+	let _: fn() -> vk::CommandBufferAllocateInfo<'static> = vk::CommandBufferAllocateInfo::new;
 	let value = vk::CommandBufferAllocateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COMMAND_BUFFER_ALLOCATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CommandBufferAllocateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COMMAND_BUFFER_ALLOCATE_INFO
@@ -2140,7 +2497,14 @@ fn vk_command_buffer_allocate_info_construction_contract() {
 
 #[test]
 fn vk_command_buffer_inheritance_info_construction_contract() {
+	let _: fn() -> vk::CommandBufferInheritanceInfo<'static> = vk::CommandBufferInheritanceInfo::new;
 	let value = vk::CommandBufferInheritanceInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COMMAND_BUFFER_INHERITANCE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CommandBufferInheritanceInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COMMAND_BUFFER_INHERITANCE_INFO
@@ -2176,7 +2540,11 @@ fn vk_command_buffer_inheritance_info_construction_contract() {
 
 #[test]
 fn vk_command_buffer_begin_info_construction_contract() {
+	let _: fn() -> vk::CommandBufferBeginInfo<'static> = vk::CommandBufferBeginInfo::new;
 	let value = vk::CommandBufferBeginInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::COMMAND_BUFFER_BEGIN_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::CommandBufferBeginInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::COMMAND_BUFFER_BEGIN_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -2191,7 +2559,11 @@ fn vk_command_buffer_begin_info_construction_contract() {
 
 #[test]
 fn vk_render_pass_begin_info_construction_contract() {
+	let _: fn() -> vk::RenderPassBeginInfo<'static> = vk::RenderPassBeginInfo::new;
 	let value = vk::RenderPassBeginInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::RENDER_PASS_BEGIN_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassBeginInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::RENDER_PASS_BEGIN_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::RenderPassBeginInfo<'static>, vk::RenderPass) -> vk::RenderPassBeginInfo<'static> =
@@ -2211,6 +2583,7 @@ fn vk_render_pass_begin_info_construction_contract() {
 
 #[test]
 fn vk_clear_color_value_construction_contract() {
+	let _: fn() -> vk::ClearColorValue = vk::ClearColorValue::new;
 	let _: fn(vk::ClearColorValue, [f32; 4]) -> vk::ClearColorValue =
 		vk::ClearColorValue::set_float32;
 	let _: fn(vk::ClearColorValue, [i32; 4]) -> vk::ClearColorValue = vk::ClearColorValue::set_int32;
@@ -2219,6 +2592,7 @@ fn vk_clear_color_value_construction_contract() {
 
 #[test]
 fn vk_clear_depth_stencil_value_construction_contract() {
+	let _: fn() -> vk::ClearDepthStencilValue = vk::ClearDepthStencilValue::new;
 	let _: fn(vk::ClearDepthStencilValue, f32) -> vk::ClearDepthStencilValue =
 		vk::ClearDepthStencilValue::set_depth;
 	let _: fn(vk::ClearDepthStencilValue, u32) -> vk::ClearDepthStencilValue =
@@ -2227,6 +2601,7 @@ fn vk_clear_depth_stencil_value_construction_contract() {
 
 #[test]
 fn vk_clear_value_construction_contract() {
+	let _: fn() -> vk::ClearValue = vk::ClearValue::new;
 	let _: fn(vk::ClearValue, vk::ClearColorValue) -> vk::ClearValue = vk::ClearValue::set_color;
 	let _: fn(vk::ClearValue, vk::ClearDepthStencilValue) -> vk::ClearValue =
 		vk::ClearValue::set_depth_stencil;
@@ -2234,6 +2609,7 @@ fn vk_clear_value_construction_contract() {
 
 #[test]
 fn vk_clear_attachment_construction_contract() {
+	let _: fn() -> vk::ClearAttachment = vk::ClearAttachment::new;
 	let _: fn(vk::ClearAttachment, vk::ImageAspectFlags) -> vk::ClearAttachment =
 		vk::ClearAttachment::set_aspect_mask;
 	let _: fn(vk::ClearAttachment, u32) -> vk::ClearAttachment =
@@ -2244,6 +2620,7 @@ fn vk_clear_attachment_construction_contract() {
 
 #[test]
 fn vk_attachment_description_construction_contract() {
+	let _: fn() -> vk::AttachmentDescription = vk::AttachmentDescription::new;
 	let _: fn(
 		vk::AttachmentDescription,
 		vk::AttachmentDescriptionFlags,
@@ -2268,6 +2645,7 @@ fn vk_attachment_description_construction_contract() {
 
 #[test]
 fn vk_attachment_reference_construction_contract() {
+	let _: fn() -> vk::AttachmentReference = vk::AttachmentReference::new;
 	let _: fn(vk::AttachmentReference, u32) -> vk::AttachmentReference =
 		vk::AttachmentReference::set_attachment;
 	let _: fn(vk::AttachmentReference, vk::ImageLayout) -> vk::AttachmentReference =
@@ -2276,6 +2654,7 @@ fn vk_attachment_reference_construction_contract() {
 
 #[test]
 fn vk_subpass_description_construction_contract() {
+	let _: fn() -> vk::SubpassDescription<'static> = vk::SubpassDescription::new;
 	let _: fn(
 		vk::SubpassDescription<'static>,
 		vk::SubpassDescriptionFlags,
@@ -2315,6 +2694,7 @@ fn vk_subpass_description_construction_contract() {
 
 #[test]
 fn vk_subpass_dependency_construction_contract() {
+	let _: fn() -> vk::SubpassDependency = vk::SubpassDependency::new;
 	let _: fn(vk::SubpassDependency, u32) -> vk::SubpassDependency =
 		vk::SubpassDependency::set_src_subpass;
 	let _: fn(vk::SubpassDependency, u32) -> vk::SubpassDependency =
@@ -2333,7 +2713,11 @@ fn vk_subpass_dependency_construction_contract() {
 
 #[test]
 fn vk_render_pass_create_info_construction_contract() {
+	let _: fn() -> vk::RenderPassCreateInfo<'static> = vk::RenderPassCreateInfo::new;
 	let value = vk::RenderPassCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::RENDER_PASS_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::RENDER_PASS_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -2365,7 +2749,11 @@ fn vk_render_pass_create_info_construction_contract() {
 
 #[test]
 fn vk_event_create_info_construction_contract() {
+	let _: fn() -> vk::EventCreateInfo<'static> = vk::EventCreateInfo::new;
 	let value = vk::EventCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::EVENT_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::EventCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::EVENT_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::EventCreateInfo<'static>, vk::EventCreateFlags) -> vk::EventCreateInfo<'static> =
@@ -2374,7 +2762,11 @@ fn vk_event_create_info_construction_contract() {
 
 #[test]
 fn vk_fence_create_info_construction_contract() {
+	let _: fn() -> vk::FenceCreateInfo<'static> = vk::FenceCreateInfo::new;
 	let value = vk::FenceCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::FENCE_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::FenceCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::FENCE_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::FenceCreateInfo<'static>, vk::FenceCreateFlags) -> vk::FenceCreateInfo<'static> =
@@ -2383,6 +2775,7 @@ fn vk_fence_create_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFeatures = vk::PhysicalDeviceFeatures::new;
 	let _: fn(vk::PhysicalDeviceFeatures, vk::Bool32) -> vk::PhysicalDeviceFeatures =
 		vk::PhysicalDeviceFeatures::set_robust_buffer_access;
 	let _: fn(vk::PhysicalDeviceFeatures, vk::Bool32) -> vk::PhysicalDeviceFeatures =
@@ -2497,6 +2890,7 @@ fn vk_physical_device_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_sparse_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSparseProperties = vk::PhysicalDeviceSparseProperties::new;
 	let _: fn(vk::PhysicalDeviceSparseProperties, vk::Bool32) -> vk::PhysicalDeviceSparseProperties =
 		vk::PhysicalDeviceSparseProperties::set_residency_standard2_d_block_shape;
 	let _: fn(vk::PhysicalDeviceSparseProperties, vk::Bool32) -> vk::PhysicalDeviceSparseProperties =
@@ -2511,6 +2905,7 @@ fn vk_physical_device_sparse_properties_construction_contract() {
 
 #[test]
 fn vk_physical_device_limits_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceLimits = vk::PhysicalDeviceLimits::new;
 	let _: fn(vk::PhysicalDeviceLimits, u32) -> vk::PhysicalDeviceLimits =
 		vk::PhysicalDeviceLimits::set_max_image_dimension1_d;
 	let _: fn(vk::PhysicalDeviceLimits, u32) -> vk::PhysicalDeviceLimits =
@@ -2727,7 +3122,11 @@ fn vk_physical_device_limits_construction_contract() {
 
 #[test]
 fn vk_semaphore_create_info_construction_contract() {
+	let _: fn() -> vk::SemaphoreCreateInfo<'static> = vk::SemaphoreCreateInfo::new;
 	let value = vk::SemaphoreCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::SEMAPHORE_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::SemaphoreCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::SEMAPHORE_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -2738,7 +3137,11 @@ fn vk_semaphore_create_info_construction_contract() {
 
 #[test]
 fn vk_query_pool_create_info_construction_contract() {
+	let _: fn() -> vk::QueryPoolCreateInfo<'static> = vk::QueryPoolCreateInfo::new;
 	let value = vk::QueryPoolCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::QUERY_POOL_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::QueryPoolCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::QUERY_POOL_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -2757,7 +3160,11 @@ fn vk_query_pool_create_info_construction_contract() {
 
 #[test]
 fn vk_framebuffer_create_info_construction_contract() {
+	let _: fn() -> vk::FramebufferCreateInfo<'static> = vk::FramebufferCreateInfo::new;
 	let value = vk::FramebufferCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::FRAMEBUFFER_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::FramebufferCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::FRAMEBUFFER_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -2785,6 +3192,7 @@ fn vk_framebuffer_create_info_construction_contract() {
 
 #[test]
 fn vk_draw_indirect_command_construction_contract() {
+	let _: fn() -> vk::DrawIndirectCommand = vk::DrawIndirectCommand::new;
 	let _: fn(vk::DrawIndirectCommand, u32) -> vk::DrawIndirectCommand =
 		vk::DrawIndirectCommand::set_vertex_count;
 	let _: fn(vk::DrawIndirectCommand, u32) -> vk::DrawIndirectCommand =
@@ -2797,6 +3205,7 @@ fn vk_draw_indirect_command_construction_contract() {
 
 #[test]
 fn vk_draw_indexed_indirect_command_construction_contract() {
+	let _: fn() -> vk::DrawIndexedIndirectCommand = vk::DrawIndexedIndirectCommand::new;
 	let _: fn(vk::DrawIndexedIndirectCommand, u32) -> vk::DrawIndexedIndirectCommand =
 		vk::DrawIndexedIndirectCommand::set_index_count;
 	let _: fn(vk::DrawIndexedIndirectCommand, u32) -> vk::DrawIndexedIndirectCommand =
@@ -2811,6 +3220,7 @@ fn vk_draw_indexed_indirect_command_construction_contract() {
 
 #[test]
 fn vk_dispatch_indirect_command_construction_contract() {
+	let _: fn() -> vk::DispatchIndirectCommand = vk::DispatchIndirectCommand::new;
 	let _: fn(vk::DispatchIndirectCommand, u32) -> vk::DispatchIndirectCommand =
 		vk::DispatchIndirectCommand::set_x;
 	let _: fn(vk::DispatchIndirectCommand, u32) -> vk::DispatchIndirectCommand =
@@ -2821,6 +3231,7 @@ fn vk_dispatch_indirect_command_construction_contract() {
 
 #[test]
 fn vk_multi_draw_info_ext_construction_contract() {
+	let _: fn() -> vk::MultiDrawInfoEXT = vk::MultiDrawInfoEXT::new;
 	let _: fn(vk::MultiDrawInfoEXT, u32) -> vk::MultiDrawInfoEXT =
 		vk::MultiDrawInfoEXT::set_first_vertex;
 	let _: fn(vk::MultiDrawInfoEXT, u32) -> vk::MultiDrawInfoEXT =
@@ -2829,6 +3240,7 @@ fn vk_multi_draw_info_ext_construction_contract() {
 
 #[test]
 fn vk_multi_draw_indexed_info_ext_construction_contract() {
+	let _: fn() -> vk::MultiDrawIndexedInfoEXT = vk::MultiDrawIndexedInfoEXT::new;
 	let _: fn(vk::MultiDrawIndexedInfoEXT, u32) -> vk::MultiDrawIndexedInfoEXT =
 		vk::MultiDrawIndexedInfoEXT::set_first_index;
 	let _: fn(vk::MultiDrawIndexedInfoEXT, u32) -> vk::MultiDrawIndexedInfoEXT =
@@ -2839,7 +3251,11 @@ fn vk_multi_draw_indexed_info_ext_construction_contract() {
 
 #[test]
 fn vk_submit_info_construction_contract() {
+	let _: fn() -> vk::SubmitInfo<'static> = vk::SubmitInfo::new;
 	let value = vk::SubmitInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::SUBMIT_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::SubmitInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::SUBMIT_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::SubmitInfo<'static>, u32) -> vk::SubmitInfo<'static> =
@@ -2868,6 +3284,7 @@ fn vk_submit_info_construction_contract() {
 
 #[test]
 fn vk_display_properties_khr_construction_contract() {
+	let _: fn() -> vk::DisplayPropertiesKHR<'static> = vk::DisplayPropertiesKHR::new;
 	let _: fn(
 		vk::DisplayPropertiesKHR<'static>,
 		vk::DisplayKHR,
@@ -2892,6 +3309,7 @@ fn vk_display_properties_khr_construction_contract() {
 
 #[test]
 fn vk_display_plane_properties_khr_construction_contract() {
+	let _: fn() -> vk::DisplayPlanePropertiesKHR = vk::DisplayPlanePropertiesKHR::new;
 	let _: fn(vk::DisplayPlanePropertiesKHR, vk::DisplayKHR) -> vk::DisplayPlanePropertiesKHR =
 		vk::DisplayPlanePropertiesKHR::set_current_display;
 	let _: fn(vk::DisplayPlanePropertiesKHR, u32) -> vk::DisplayPlanePropertiesKHR =
@@ -2900,6 +3318,7 @@ fn vk_display_plane_properties_khr_construction_contract() {
 
 #[test]
 fn vk_display_mode_parameters_khr_construction_contract() {
+	let _: fn() -> vk::DisplayModeParametersKHR = vk::DisplayModeParametersKHR::new;
 	let _: fn(vk::DisplayModeParametersKHR, vk::Extent2D) -> vk::DisplayModeParametersKHR =
 		vk::DisplayModeParametersKHR::set_visible_region;
 	let _: fn(vk::DisplayModeParametersKHR, u32) -> vk::DisplayModeParametersKHR =
@@ -2908,6 +3327,7 @@ fn vk_display_mode_parameters_khr_construction_contract() {
 
 #[test]
 fn vk_display_mode_properties_khr_construction_contract() {
+	let _: fn() -> vk::DisplayModePropertiesKHR = vk::DisplayModePropertiesKHR::new;
 	let _: fn(vk::DisplayModePropertiesKHR, vk::DisplayModeKHR) -> vk::DisplayModePropertiesKHR =
 		vk::DisplayModePropertiesKHR::set_display_mode;
 	let _: fn(
@@ -2918,7 +3338,14 @@ fn vk_display_mode_properties_khr_construction_contract() {
 
 #[test]
 fn vk_display_mode_create_info_khr_construction_contract() {
+	let _: fn() -> vk::DisplayModeCreateInfoKHR<'static> = vk::DisplayModeCreateInfoKHR::new;
 	let value = vk::DisplayModeCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DISPLAY_MODE_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DisplayModeCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DISPLAY_MODE_CREATE_INFO_KHR
@@ -2936,6 +3363,7 @@ fn vk_display_mode_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_display_plane_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::DisplayPlaneCapabilitiesKHR = vk::DisplayPlaneCapabilitiesKHR::new;
 	let _: fn(
 		vk::DisplayPlaneCapabilitiesKHR,
 		vk::DisplayPlaneAlphaFlagsKHR,
@@ -2960,7 +3388,14 @@ fn vk_display_plane_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_display_surface_create_info_khr_construction_contract() {
+	let _: fn() -> vk::DisplaySurfaceCreateInfoKHR<'static> = vk::DisplaySurfaceCreateInfoKHR::new;
 	let value = vk::DisplaySurfaceCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DISPLAY_SURFACE_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DisplaySurfaceCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DISPLAY_SURFACE_CREATE_INFO_KHR
@@ -3003,7 +3438,15 @@ fn vk_display_surface_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_display_surface_stereo_create_info_nv_construction_contract() {
+	let _: fn() -> vk::DisplaySurfaceStereoCreateInfoNV<'static> =
+		vk::DisplaySurfaceStereoCreateInfoNV::new;
 	let value = vk::DisplaySurfaceStereoCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DISPLAY_SURFACE_STEREO_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DisplaySurfaceStereoCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DISPLAY_SURFACE_STEREO_CREATE_INFO_NV
@@ -3018,7 +3461,11 @@ fn vk_display_surface_stereo_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_display_present_info_khr_construction_contract() {
+	let _: fn() -> vk::DisplayPresentInfoKHR<'static> = vk::DisplayPresentInfoKHR::new;
 	let value = vk::DisplayPresentInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::DISPLAY_PRESENT_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::DisplayPresentInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::DISPLAY_PRESENT_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::DisplayPresentInfoKHR<'static>, vk::Rect2D) -> vk::DisplayPresentInfoKHR<'static> =
@@ -3031,6 +3478,7 @@ fn vk_display_present_info_khr_construction_contract() {
 
 #[test]
 fn vk_surface_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::SurfaceCapabilitiesKHR = vk::SurfaceCapabilitiesKHR::new;
 	let _: fn(vk::SurfaceCapabilitiesKHR, u32) -> vk::SurfaceCapabilitiesKHR =
 		vk::SurfaceCapabilitiesKHR::set_min_image_count;
 	let _: fn(vk::SurfaceCapabilitiesKHR, u32) -> vk::SurfaceCapabilitiesKHR =
@@ -3060,7 +3508,14 @@ fn vk_surface_capabilities_khr_construction_contract() {
 #[cfg(feature = "platform-android")]
 #[test]
 fn vk_android_surface_create_info_khr_construction_contract() {
+	let _: fn() -> vk::AndroidSurfaceCreateInfoKHR<'static> = vk::AndroidSurfaceCreateInfoKHR::new;
 	let value = vk::AndroidSurfaceCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ANDROID_SURFACE_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AndroidSurfaceCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ANDROID_SURFACE_CREATE_INFO_KHR
@@ -3079,7 +3534,11 @@ fn vk_android_surface_create_info_khr_construction_contract() {
 #[cfg(feature = "platform-vi")]
 #[test]
 fn vk_vi_surface_create_info_nn_construction_contract() {
+	let _: fn() -> vk::ViSurfaceCreateInfoNN<'static> = vk::ViSurfaceCreateInfoNN::new;
 	let value = vk::ViSurfaceCreateInfoNN::default();
+	assert_eq!(value.s_type, vk::StructureType::VI_SURFACE_CREATE_INFO_NN);
+	assert!(value.p_next.is_null());
+	let value = vk::ViSurfaceCreateInfoNN::new();
 	assert_eq!(value.s_type, vk::StructureType::VI_SURFACE_CREATE_INFO_NN);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -3095,7 +3554,14 @@ fn vk_vi_surface_create_info_nn_construction_contract() {
 #[cfg(feature = "platform-wayland")]
 #[test]
 fn vk_wayland_surface_create_info_khr_construction_contract() {
+	let _: fn() -> vk::WaylandSurfaceCreateInfoKHR<'static> = vk::WaylandSurfaceCreateInfoKHR::new;
 	let value = vk::WaylandSurfaceCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::WAYLAND_SURFACE_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::WaylandSurfaceCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::WAYLAND_SURFACE_CREATE_INFO_KHR
@@ -3118,7 +3584,11 @@ fn vk_wayland_surface_create_info_khr_construction_contract() {
 #[cfg(feature = "platform-ubm")]
 #[test]
 fn vk_ubm_surface_create_info_sec_construction_contract() {
+	let _: fn() -> vk::UbmSurfaceCreateInfoSEC<'static> = vk::UbmSurfaceCreateInfoSEC::new;
 	let value = vk::UbmSurfaceCreateInfoSEC::default();
+	assert_eq!(value.s_type, vk::StructureType::UBM_SURFACE_CREATE_INFO_SEC);
+	assert!(value.p_next.is_null());
+	let value = vk::UbmSurfaceCreateInfoSEC::new();
 	assert_eq!(value.s_type, vk::StructureType::UBM_SURFACE_CREATE_INFO_SEC);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -3138,7 +3608,14 @@ fn vk_ubm_surface_create_info_sec_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_win32_surface_create_info_khr_construction_contract() {
+	let _: fn() -> vk::Win32SurfaceCreateInfoKHR<'static> = vk::Win32SurfaceCreateInfoKHR::new;
 	let value = vk::Win32SurfaceCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::WIN32_SURFACE_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::Win32SurfaceCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::WIN32_SURFACE_CREATE_INFO_KHR
@@ -3161,7 +3638,14 @@ fn vk_win32_surface_create_info_khr_construction_contract() {
 #[cfg(feature = "platform-xlib")]
 #[test]
 fn vk_xlib_surface_create_info_khr_construction_contract() {
+	let _: fn() -> vk::XlibSurfaceCreateInfoKHR<'static> = vk::XlibSurfaceCreateInfoKHR::new;
 	let value = vk::XlibSurfaceCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::XLIB_SURFACE_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::XlibSurfaceCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::XLIB_SURFACE_CREATE_INFO_KHR
@@ -3184,7 +3668,11 @@ fn vk_xlib_surface_create_info_khr_construction_contract() {
 #[cfg(feature = "platform-xcb")]
 #[test]
 fn vk_xcb_surface_create_info_khr_construction_contract() {
+	let _: fn() -> vk::XcbSurfaceCreateInfoKHR<'static> = vk::XcbSurfaceCreateInfoKHR::new;
 	let value = vk::XcbSurfaceCreateInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::XCB_SURFACE_CREATE_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::XcbSurfaceCreateInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::XCB_SURFACE_CREATE_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -3204,7 +3692,14 @@ fn vk_xcb_surface_create_info_khr_construction_contract() {
 #[cfg(feature = "platform-directfb")]
 #[test]
 fn vk_direct_fb_surface_create_info_ext_construction_contract() {
+	let _: fn() -> vk::DirectFBSurfaceCreateInfoEXT<'static> = vk::DirectFBSurfaceCreateInfoEXT::new;
 	let value = vk::DirectFBSurfaceCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DIRECTFB_SURFACE_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DirectFBSurfaceCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DIRECTFB_SURFACE_CREATE_INFO_EXT
@@ -3227,7 +3722,15 @@ fn vk_direct_fb_surface_create_info_ext_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_image_pipe_surface_create_info_fuchsia_construction_contract() {
+	let _: fn() -> vk::ImagePipeSurfaceCreateInfoFUCHSIA<'static> =
+		vk::ImagePipeSurfaceCreateInfoFUCHSIA::new;
 	let value = vk::ImagePipeSurfaceCreateInfoFUCHSIA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImagePipeSurfaceCreateInfoFUCHSIA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA
@@ -3248,7 +3751,15 @@ fn vk_image_pipe_surface_create_info_fuchsia_construction_contract() {
 #[cfg(feature = "platform-ggp")]
 #[test]
 fn vk_stream_descriptor_surface_create_info_ggp_construction_contract() {
+	let _: fn() -> vk::StreamDescriptorSurfaceCreateInfoGGP<'static> =
+		vk::StreamDescriptorSurfaceCreateInfoGGP::new;
 	let value = vk::StreamDescriptorSurfaceCreateInfoGGP::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::StreamDescriptorSurfaceCreateInfoGGP::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP
@@ -3269,7 +3780,14 @@ fn vk_stream_descriptor_surface_create_info_ggp_construction_contract() {
 #[cfg(feature = "platform-screen")]
 #[test]
 fn vk_screen_surface_create_info_qnx_construction_contract() {
+	let _: fn() -> vk::ScreenSurfaceCreateInfoQNX<'static> = vk::ScreenSurfaceCreateInfoQNX::new;
 	let value = vk::ScreenSurfaceCreateInfoQNX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SCREEN_SURFACE_CREATE_INFO_QNX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ScreenSurfaceCreateInfoQNX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SCREEN_SURFACE_CREATE_INFO_QNX
@@ -3291,6 +3809,7 @@ fn vk_screen_surface_create_info_qnx_construction_contract() {
 
 #[test]
 fn vk_surface_format_khr_construction_contract() {
+	let _: fn() -> vk::SurfaceFormatKHR = vk::SurfaceFormatKHR::new;
 	let _: fn(vk::SurfaceFormatKHR, vk::Format) -> vk::SurfaceFormatKHR =
 		vk::SurfaceFormatKHR::set_format;
 	let _: fn(vk::SurfaceFormatKHR, vk::ColorSpaceKHR) -> vk::SurfaceFormatKHR =
@@ -3299,7 +3818,11 @@ fn vk_surface_format_khr_construction_contract() {
 
 #[test]
 fn vk_swapchain_create_info_khr_construction_contract() {
+	let _: fn() -> vk::SwapchainCreateInfoKHR<'static> = vk::SwapchainCreateInfoKHR::new;
 	let value = vk::SwapchainCreateInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::SWAPCHAIN_CREATE_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::SwapchainCreateInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::SWAPCHAIN_CREATE_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -3365,7 +3888,11 @@ fn vk_swapchain_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_present_info_khr_construction_contract() {
+	let _: fn() -> vk::PresentInfoKHR<'static> = vk::PresentInfoKHR::new;
 	let value = vk::PresentInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::PRESENT_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::PresentInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::PRESENT_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::PresentInfoKHR<'static>, u32) -> vk::PresentInfoKHR<'static> =
@@ -3388,7 +3915,15 @@ fn vk_present_info_khr_construction_contract() {
 
 #[test]
 fn vk_debug_report_callback_create_info_ext_construction_contract() {
+	let _: fn() -> vk::DebugReportCallbackCreateInfoEXT<'static> =
+		vk::DebugReportCallbackCreateInfoEXT::new;
 	let value = vk::DebugReportCallbackCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DebugReportCallbackCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT
@@ -3413,7 +3948,11 @@ fn vk_debug_report_callback_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_validation_flags_ext_construction_contract() {
+	let _: fn() -> vk::ValidationFlagsEXT<'static> = vk::ValidationFlagsEXT::new;
 	let value = vk::ValidationFlagsEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::VALIDATION_FLAGS_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::ValidationFlagsEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::VALIDATION_FLAGS_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::ValidationFlagsEXT<'static>, u32) -> vk::ValidationFlagsEXT<'static> =
@@ -3427,7 +3966,11 @@ fn vk_validation_flags_ext_construction_contract() {
 
 #[test]
 fn vk_validation_features_ext_construction_contract() {
+	let _: fn() -> vk::ValidationFeaturesEXT<'static> = vk::ValidationFeaturesEXT::new;
 	let value = vk::ValidationFeaturesEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::VALIDATION_FEATURES_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::ValidationFeaturesEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::VALIDATION_FEATURES_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::ValidationFeaturesEXT<'static>, u32) -> vk::ValidationFeaturesEXT<'static> =
@@ -3448,7 +3991,14 @@ fn vk_validation_features_ext_construction_contract() {
 
 #[test]
 fn vk_layer_settings_create_info_ext_construction_contract() {
+	let _: fn() -> vk::LayerSettingsCreateInfoEXT<'static> = vk::LayerSettingsCreateInfoEXT::new;
 	let value = vk::LayerSettingsCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::LAYER_SETTINGS_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::LayerSettingsCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::LAYER_SETTINGS_CREATE_INFO_EXT
@@ -3468,6 +4018,7 @@ fn vk_layer_settings_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_layer_setting_ext_construction_contract() {
+	let _: fn() -> vk::LayerSettingEXT<'static> = vk::LayerSettingEXT::new;
 	let _: fn(vk::LayerSettingEXT<'static>, &'static std::ffi::CStr) -> vk::LayerSettingEXT<'static> =
 		vk::LayerSettingEXT::set_layer_name;
 	let _: fn(vk::LayerSettingEXT<'static>, &'static std::ffi::CStr) -> vk::LayerSettingEXT<'static> =
@@ -3524,7 +4075,15 @@ fn vk_layer_setting_ext_construction_contract() {
 
 #[test]
 fn vk_pipeline_rasterization_state_rasterization_order_amd_construction_contract() {
+	let _: fn() -> vk::PipelineRasterizationStateRasterizationOrderAMD<'static> =
+		vk::PipelineRasterizationStateRasterizationOrderAMD::new;
 	let value = vk::PipelineRasterizationStateRasterizationOrderAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineRasterizationStateRasterizationOrderAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD
@@ -3539,7 +4098,14 @@ fn vk_pipeline_rasterization_state_rasterization_order_amd_construction_contract
 
 #[test]
 fn vk_debug_marker_object_name_info_ext_construction_contract() {
+	let _: fn() -> vk::DebugMarkerObjectNameInfoEXT<'static> = vk::DebugMarkerObjectNameInfoEXT::new;
 	let value = vk::DebugMarkerObjectNameInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEBUG_MARKER_OBJECT_NAME_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DebugMarkerObjectNameInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEBUG_MARKER_OBJECT_NAME_INFO_EXT
@@ -3561,7 +4127,14 @@ fn vk_debug_marker_object_name_info_ext_construction_contract() {
 
 #[test]
 fn vk_debug_marker_object_tag_info_ext_construction_contract() {
+	let _: fn() -> vk::DebugMarkerObjectTagInfoEXT<'static> = vk::DebugMarkerObjectTagInfoEXT::new;
 	let value = vk::DebugMarkerObjectTagInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEBUG_MARKER_OBJECT_TAG_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DebugMarkerObjectTagInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEBUG_MARKER_OBJECT_TAG_INFO_EXT
@@ -3594,7 +4167,14 @@ fn vk_debug_marker_object_tag_info_ext_construction_contract() {
 
 #[test]
 fn vk_debug_marker_marker_info_ext_construction_contract() {
+	let _: fn() -> vk::DebugMarkerMarkerInfoEXT<'static> = vk::DebugMarkerMarkerInfoEXT::new;
 	let value = vk::DebugMarkerMarkerInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEBUG_MARKER_MARKER_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DebugMarkerMarkerInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEBUG_MARKER_MARKER_INFO_EXT
@@ -3612,7 +4192,15 @@ fn vk_debug_marker_marker_info_ext_construction_contract() {
 
 #[test]
 fn vk_dedicated_allocation_image_create_info_nv_construction_contract() {
+	let _: fn() -> vk::DedicatedAllocationImageCreateInfoNV<'static> =
+		vk::DedicatedAllocationImageCreateInfoNV::new;
 	let value = vk::DedicatedAllocationImageCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DedicatedAllocationImageCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV
@@ -3627,7 +4215,15 @@ fn vk_dedicated_allocation_image_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_dedicated_allocation_buffer_create_info_nv_construction_contract() {
+	let _: fn() -> vk::DedicatedAllocationBufferCreateInfoNV<'static> =
+		vk::DedicatedAllocationBufferCreateInfoNV::new;
 	let value = vk::DedicatedAllocationBufferCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DedicatedAllocationBufferCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV
@@ -3642,7 +4238,15 @@ fn vk_dedicated_allocation_buffer_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_dedicated_allocation_memory_allocate_info_nv_construction_contract() {
+	let _: fn() -> vk::DedicatedAllocationMemoryAllocateInfoNV<'static> =
+		vk::DedicatedAllocationMemoryAllocateInfoNV::new;
 	let value = vk::DedicatedAllocationMemoryAllocateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DedicatedAllocationMemoryAllocateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV
@@ -3662,6 +4266,7 @@ fn vk_dedicated_allocation_memory_allocate_info_nv_construction_contract() {
 
 #[test]
 fn vk_external_image_format_properties_nv_construction_contract() {
+	let _: fn() -> vk::ExternalImageFormatPropertiesNV = vk::ExternalImageFormatPropertiesNV::new;
 	let _: fn(
 		vk::ExternalImageFormatPropertiesNV,
 		vk::ImageFormatProperties,
@@ -3686,7 +4291,15 @@ fn vk_external_image_format_properties_nv_construction_contract() {
 
 #[test]
 fn vk_external_memory_image_create_info_nv_construction_contract() {
+	let _: fn() -> vk::ExternalMemoryImageCreateInfoNV<'static> =
+		vk::ExternalMemoryImageCreateInfoNV::new;
 	let value = vk::ExternalMemoryImageCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalMemoryImageCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV
@@ -3701,7 +4314,14 @@ fn vk_external_memory_image_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_export_memory_allocate_info_nv_construction_contract() {
+	let _: fn() -> vk::ExportMemoryAllocateInfoNV<'static> = vk::ExportMemoryAllocateInfoNV::new;
 	let value = vk::ExportMemoryAllocateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXPORT_MEMORY_ALLOCATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportMemoryAllocateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXPORT_MEMORY_ALLOCATE_INFO_NV
@@ -3716,7 +4336,15 @@ fn vk_export_memory_allocate_info_nv_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_import_memory_win32_handle_info_nv_construction_contract() {
+	let _: fn() -> vk::ImportMemoryWin32HandleInfoNV<'static> =
+		vk::ImportMemoryWin32HandleInfoNV::new;
 	let value = vk::ImportMemoryWin32HandleInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_MEMORY_WIN32_HANDLE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportMemoryWin32HandleInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_MEMORY_WIN32_HANDLE_INFO_NV
@@ -3736,7 +4364,15 @@ fn vk_import_memory_win32_handle_info_nv_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_export_memory_win32_handle_info_nv_construction_contract() {
+	let _: fn() -> vk::ExportMemoryWin32HandleInfoNV<'static> =
+		vk::ExportMemoryWin32HandleInfoNV::new;
 	let value = vk::ExportMemoryWin32HandleInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportMemoryWin32HandleInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_NV
@@ -3756,7 +4392,15 @@ fn vk_export_memory_win32_handle_info_nv_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_win32_keyed_mutex_acquire_release_info_nv_construction_contract() {
+	let _: fn() -> vk::Win32KeyedMutexAcquireReleaseInfoNV<'static> =
+		vk::Win32KeyedMutexAcquireReleaseInfoNV::new;
 	let value = vk::Win32KeyedMutexAcquireReleaseInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::Win32KeyedMutexAcquireReleaseInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV
@@ -3795,7 +4439,15 @@ fn vk_win32_keyed_mutex_acquire_release_info_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_device_generated_commands_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDeviceGeneratedCommandsFeaturesNV<'static> =
+		vk::PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::new;
 	let value = vk::PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDeviceGeneratedCommandsFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV
@@ -3810,7 +4462,11 @@ fn vk_physical_device_device_generated_commands_features_nv_construction_contrac
 
 #[test]
 fn vk_push_constant_bank_info_nv_construction_contract() {
+	let _: fn() -> vk::PushConstantBankInfoNV<'static> = vk::PushConstantBankInfoNV::new;
 	let value = vk::PushConstantBankInfoNV::default();
+	assert_eq!(value.s_type, vk::StructureType::PUSH_CONSTANT_BANK_INFO_NV);
+	assert!(value.p_next.is_null());
+	let value = vk::PushConstantBankInfoNV::new();
 	assert_eq!(value.s_type, vk::StructureType::PUSH_CONSTANT_BANK_INFO_NV);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::PushConstantBankInfoNV<'static>, u32) -> vk::PushConstantBankInfoNV<'static> =
@@ -3819,7 +4475,15 @@ fn vk_push_constant_bank_info_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_push_constant_bank_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePushConstantBankFeaturesNV<'static> =
+		vk::PhysicalDevicePushConstantBankFeaturesNV::new;
 	let value = vk::PhysicalDevicePushConstantBankFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePushConstantBankFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_FEATURES_NV
@@ -3834,7 +4498,15 @@ fn vk_physical_device_push_constant_bank_features_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_push_constant_bank_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePushConstantBankPropertiesNV<'static> =
+		vk::PhysicalDevicePushConstantBankPropertiesNV::new;
 	let value = vk::PhysicalDevicePushConstantBankPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePushConstantBankPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PUSH_CONSTANT_BANK_PROPERTIES_NV
@@ -3864,7 +4536,15 @@ fn vk_physical_device_push_constant_bank_properties_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_device_generated_commands_compute_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV<'static> =
+		vk::PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV::new;
 	let value = vk::PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_COMPUTE_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDeviceGeneratedCommandsComputeFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_COMPUTE_FEATURES_NV
@@ -3881,7 +4561,14 @@ fn vk_physical_device_device_generated_commands_compute_features_nv_construction
 
 #[test]
 fn vk_device_private_data_create_info_construction_contract() {
+	let _: fn() -> vk::DevicePrivateDataCreateInfo<'static> = vk::DevicePrivateDataCreateInfo::new;
 	let value = vk::DevicePrivateDataCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_PRIVATE_DATA_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DevicePrivateDataCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_PRIVATE_DATA_CREATE_INFO
@@ -3896,7 +4583,14 @@ fn vk_device_private_data_create_info_construction_contract() {
 
 #[test]
 fn vk_private_data_slot_create_info_construction_contract() {
+	let _: fn() -> vk::PrivateDataSlotCreateInfo<'static> = vk::PrivateDataSlotCreateInfo::new;
 	let value = vk::PrivateDataSlotCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PRIVATE_DATA_SLOT_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PrivateDataSlotCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PRIVATE_DATA_SLOT_CREATE_INFO
@@ -3910,7 +4604,15 @@ fn vk_private_data_slot_create_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_private_data_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePrivateDataFeatures<'static> =
+		vk::PhysicalDevicePrivateDataFeatures::new;
 	let value = vk::PhysicalDevicePrivateDataFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePrivateDataFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES
@@ -3925,7 +4627,15 @@ fn vk_physical_device_private_data_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_private_data_base_handle_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePrivateDataBaseHandleFeaturesNV<'static> =
+		vk::PhysicalDevicePrivateDataBaseHandleFeaturesNV::new;
 	let value = vk::PhysicalDevicePrivateDataBaseHandleFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PRIVATE_DATA_BASE_HANDLE_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePrivateDataBaseHandleFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PRIVATE_DATA_BASE_HANDLE_FEATURES_NV
@@ -3940,7 +4650,15 @@ fn vk_physical_device_private_data_base_handle_features_nv_construction_contract
 
 #[test]
 fn vk_physical_device_device_generated_commands_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDeviceGeneratedCommandsPropertiesNV<'static> =
+		vk::PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::new;
 	let value = vk::PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV
@@ -3983,7 +4701,15 @@ fn vk_physical_device_device_generated_commands_properties_nv_construction_contr
 
 #[test]
 fn vk_physical_device_cluster_acceleration_structure_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceClusterAccelerationStructureFeaturesNV<'static> =
+		vk::PhysicalDeviceClusterAccelerationStructureFeaturesNV::new;
 	let value = vk::PhysicalDeviceClusterAccelerationStructureFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceClusterAccelerationStructureFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_FEATURES_NV
@@ -3998,7 +4724,15 @@ fn vk_physical_device_cluster_acceleration_structure_features_nv_construction_co
 
 #[test]
 fn vk_physical_device_cluster_acceleration_structure_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceClusterAccelerationStructurePropertiesNV<'static> =
+		vk::PhysicalDeviceClusterAccelerationStructurePropertiesNV::new;
 	let value = vk::PhysicalDeviceClusterAccelerationStructurePropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceClusterAccelerationStructurePropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_CLUSTER_ACCELERATION_STRUCTURE_PROPERTIES_NV
@@ -4040,6 +4774,7 @@ fn vk_physical_device_cluster_acceleration_structure_properties_nv_construction_
 
 #[test]
 fn vk_strided_device_address_nv_construction_contract() {
+	let _: fn() -> vk::StridedDeviceAddressNV = vk::StridedDeviceAddressNV::new;
 	let _: fn(vk::StridedDeviceAddressNV, vk::DeviceAddress) -> vk::StridedDeviceAddressNV =
 		vk::StridedDeviceAddressNV::set_start_address;
 	let _: fn(vk::StridedDeviceAddressNV, vk::DeviceSize) -> vk::StridedDeviceAddressNV =
@@ -4048,7 +4783,15 @@ fn vk_strided_device_address_nv_construction_contract() {
 
 #[test]
 fn vk_ray_tracing_pipeline_cluster_acceleration_structure_create_info_nv_construction_contract() {
+	let _: fn() -> vk::RayTracingPipelineClusterAccelerationStructureCreateInfoNV<'static> =
+		vk::RayTracingPipelineClusterAccelerationStructureCreateInfoNV::new;
 	let value = vk::RayTracingPipelineClusterAccelerationStructureCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RAY_TRACING_PIPELINE_CLUSTER_ACCELERATION_STRUCTURE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RayTracingPipelineClusterAccelerationStructureCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RAY_TRACING_PIPELINE_CLUSTER_ACCELERATION_STRUCTURE_CREATE_INFO_NV
@@ -4058,10 +4801,15 @@ fn vk_ray_tracing_pipeline_cluster_acceleration_structure_create_info_nv_constru
 }
 
 #[test]
-fn vk_cluster_acceleration_structure_geometry_index_and_geometry_flags_nv_construction_contract() {}
+fn vk_cluster_acceleration_structure_geometry_index_and_geometry_flags_nv_construction_contract() {
+	let _: fn() -> vk::ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV =
+		vk::ClusterAccelerationStructureGeometryIndexAndGeometryFlagsNV::new;
+}
 
 #[test]
 fn vk_cluster_acceleration_structure_move_objects_info_nv_construction_contract() {
+	let _: fn() -> vk::ClusterAccelerationStructureMoveObjectsInfoNV =
+		vk::ClusterAccelerationStructureMoveObjectsInfoNV::new;
 	let _: fn(
 		vk::ClusterAccelerationStructureMoveObjectsInfoNV,
 		vk::DeviceAddress,
@@ -4071,6 +4819,8 @@ fn vk_cluster_acceleration_structure_move_objects_info_nv_construction_contract(
 
 #[test]
 fn vk_cluster_acceleration_structure_build_clusters_bottom_level_info_nv_construction_contract() {
+	let _: fn() -> vk::ClusterAccelerationStructureBuildClustersBottomLevelInfoNV =
+		vk::ClusterAccelerationStructureBuildClustersBottomLevelInfoNV::new;
 	let _: fn(
 		vk::ClusterAccelerationStructureBuildClustersBottomLevelInfoNV,
 		u32,
@@ -4090,6 +4840,8 @@ fn vk_cluster_acceleration_structure_build_clusters_bottom_level_info_nv_constru
 
 #[test]
 fn vk_cluster_acceleration_structure_get_template_indices_info_nv_construction_contract() {
+	let _: fn() -> vk::ClusterAccelerationStructureGetTemplateIndicesInfoNV =
+		vk::ClusterAccelerationStructureGetTemplateIndicesInfoNV::new;
 	let _: fn(
 		vk::ClusterAccelerationStructureGetTemplateIndicesInfoNV,
 		vk::DeviceAddress,
@@ -4099,6 +4851,8 @@ fn vk_cluster_acceleration_structure_get_template_indices_info_nv_construction_c
 
 #[test]
 fn vk_cluster_acceleration_structure_build_triangle_cluster_info_nv_construction_contract() {
+	let _: fn() -> vk::ClusterAccelerationStructureBuildTriangleClusterInfoNV =
+		vk::ClusterAccelerationStructureBuildTriangleClusterInfoNV::new;
 	let _: fn(
 		vk::ClusterAccelerationStructureBuildTriangleClusterInfoNV,
 		u32,
@@ -4152,6 +4906,8 @@ fn vk_cluster_acceleration_structure_build_triangle_cluster_info_nv_construction
 #[test]
 fn vk_cluster_acceleration_structure_build_triangle_cluster_template_info_nv_construction_contract()
 {
+	let _: fn() -> vk::ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV =
+		vk::ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV::new;
 	let _: fn(
 		vk::ClusterAccelerationStructureBuildTriangleClusterTemplateInfoNV,
 		u32,
@@ -4197,6 +4953,8 @@ fn vk_cluster_acceleration_structure_build_triangle_cluster_template_info_nv_con
 
 #[test]
 fn vk_cluster_acceleration_structure_instantiate_cluster_info_nv_construction_contract() {
+	let _: fn() -> vk::ClusterAccelerationStructureInstantiateClusterInfoNV =
+		vk::ClusterAccelerationStructureInstantiateClusterInfoNV::new;
 	let _: fn(
 		vk::ClusterAccelerationStructureInstantiateClusterInfoNV,
 		u32,
@@ -4216,7 +4974,15 @@ fn vk_cluster_acceleration_structure_instantiate_cluster_info_nv_construction_co
 
 #[test]
 fn vk_cluster_acceleration_structure_clusters_bottom_level_input_nv_construction_contract() {
+	let _: fn() -> vk::ClusterAccelerationStructureClustersBottomLevelInputNV<'static> =
+		vk::ClusterAccelerationStructureClustersBottomLevelInputNV::new;
 	let value = vk::ClusterAccelerationStructureClustersBottomLevelInputNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_CLUSTERS_BOTTOM_LEVEL_INPUT_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ClusterAccelerationStructureClustersBottomLevelInputNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_CLUSTERS_BOTTOM_LEVEL_INPUT_NV
@@ -4232,7 +4998,15 @@ fn vk_cluster_acceleration_structure_clusters_bottom_level_input_nv_construction
 
 #[test]
 fn vk_cluster_acceleration_structure_triangle_cluster_input_nv_construction_contract() {
+	let _: fn() -> vk::ClusterAccelerationStructureTriangleClusterInputNV<'static> =
+		vk::ClusterAccelerationStructureTriangleClusterInputNV::new;
 	let value = vk::ClusterAccelerationStructureTriangleClusterInputNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_TRIANGLE_CLUSTER_INPUT_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ClusterAccelerationStructureTriangleClusterInputNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_TRIANGLE_CLUSTER_INPUT_NV
@@ -4282,7 +5056,15 @@ fn vk_cluster_acceleration_structure_triangle_cluster_input_nv_construction_cont
 
 #[test]
 fn vk_cluster_acceleration_structure_move_objects_input_nv_construction_contract() {
+	let _: fn() -> vk::ClusterAccelerationStructureMoveObjectsInputNV<'static> =
+		vk::ClusterAccelerationStructureMoveObjectsInputNV::new;
 	let value = vk::ClusterAccelerationStructureMoveObjectsInputNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_MOVE_OBJECTS_INPUT_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ClusterAccelerationStructureMoveObjectsInputNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_MOVE_OBJECTS_INPUT_NV
@@ -4307,6 +5089,8 @@ fn vk_cluster_acceleration_structure_move_objects_input_nv_construction_contract
 
 #[test]
 fn vk_cluster_acceleration_structure_op_input_nv_construction_contract() {
+	let _: fn() -> vk::ClusterAccelerationStructureOpInputNV<'static> =
+		vk::ClusterAccelerationStructureOpInputNV::new;
 	let _: fn(
 		vk::ClusterAccelerationStructureOpInputNV<'static>,
 		&'static mut vk::ClusterAccelerationStructureClustersBottomLevelInputNV<'static>,
@@ -4326,7 +5110,15 @@ fn vk_cluster_acceleration_structure_op_input_nv_construction_contract() {
 
 #[test]
 fn vk_cluster_acceleration_structure_input_info_nv_construction_contract() {
+	let _: fn() -> vk::ClusterAccelerationStructureInputInfoNV<'static> =
+		vk::ClusterAccelerationStructureInputInfoNV::new;
 	let value = vk::ClusterAccelerationStructureInputInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_INPUT_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ClusterAccelerationStructureInputInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_INPUT_INFO_NV
@@ -4361,7 +5153,15 @@ fn vk_cluster_acceleration_structure_input_info_nv_construction_contract() {
 
 #[test]
 fn vk_cluster_acceleration_structure_commands_info_nv_construction_contract() {
+	let _: fn() -> vk::ClusterAccelerationStructureCommandsInfoNV<'static> =
+		vk::ClusterAccelerationStructureCommandsInfoNV::new;
 	let value = vk::ClusterAccelerationStructureCommandsInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_COMMANDS_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ClusterAccelerationStructureCommandsInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::CLUSTER_ACCELERATION_STRUCTURE_COMMANDS_INFO_NV
@@ -4411,7 +5211,15 @@ fn vk_cluster_acceleration_structure_commands_info_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_multi_draw_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMultiDrawPropertiesEXT<'static> =
+		vk::PhysicalDeviceMultiDrawPropertiesEXT::new;
 	let value = vk::PhysicalDeviceMultiDrawPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMultiDrawPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT
@@ -4426,7 +5234,15 @@ fn vk_physical_device_multi_draw_properties_ext_construction_contract() {
 
 #[test]
 fn vk_graphics_shader_group_create_info_nv_construction_contract() {
+	let _: fn() -> vk::GraphicsShaderGroupCreateInfoNV<'static> =
+		vk::GraphicsShaderGroupCreateInfoNV::new;
 	let value = vk::GraphicsShaderGroupCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::GRAPHICS_SHADER_GROUP_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::GraphicsShaderGroupCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::GRAPHICS_SHADER_GROUP_CREATE_INFO_NV
@@ -4458,7 +5274,15 @@ fn vk_graphics_shader_group_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_graphics_pipeline_shader_groups_create_info_nv_construction_contract() {
+	let _: fn() -> vk::GraphicsPipelineShaderGroupsCreateInfoNV<'static> =
+		vk::GraphicsPipelineShaderGroupsCreateInfoNV::new;
 	let value = vk::GraphicsPipelineShaderGroupsCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::GraphicsPipelineShaderGroupsCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV
@@ -4492,12 +5316,14 @@ fn vk_graphics_pipeline_shader_groups_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_bind_shader_group_indirect_command_nv_construction_contract() {
+	let _: fn() -> vk::BindShaderGroupIndirectCommandNV = vk::BindShaderGroupIndirectCommandNV::new;
 	let _: fn(vk::BindShaderGroupIndirectCommandNV, u32) -> vk::BindShaderGroupIndirectCommandNV =
 		vk::BindShaderGroupIndirectCommandNV::set_group_index;
 }
 
 #[test]
 fn vk_bind_index_buffer_indirect_command_nv_construction_contract() {
+	let _: fn() -> vk::BindIndexBufferIndirectCommandNV = vk::BindIndexBufferIndirectCommandNV::new;
 	let _: fn(
 		vk::BindIndexBufferIndirectCommandNV,
 		vk::DeviceAddress,
@@ -4513,6 +5339,7 @@ fn vk_bind_index_buffer_indirect_command_nv_construction_contract() {
 
 #[test]
 fn vk_bind_vertex_buffer_indirect_command_nv_construction_contract() {
+	let _: fn() -> vk::BindVertexBufferIndirectCommandNV = vk::BindVertexBufferIndirectCommandNV::new;
 	let _: fn(
 		vk::BindVertexBufferIndirectCommandNV,
 		vk::DeviceAddress,
@@ -4526,12 +5353,14 @@ fn vk_bind_vertex_buffer_indirect_command_nv_construction_contract() {
 
 #[test]
 fn vk_set_state_flags_indirect_command_nv_construction_contract() {
+	let _: fn() -> vk::SetStateFlagsIndirectCommandNV = vk::SetStateFlagsIndirectCommandNV::new;
 	let _: fn(vk::SetStateFlagsIndirectCommandNV, u32) -> vk::SetStateFlagsIndirectCommandNV =
 		vk::SetStateFlagsIndirectCommandNV::set_data;
 }
 
 #[test]
 fn vk_indirect_commands_stream_nv_construction_contract() {
+	let _: fn() -> vk::IndirectCommandsStreamNV = vk::IndirectCommandsStreamNV::new;
 	let _: fn(vk::IndirectCommandsStreamNV, vk::Buffer) -> vk::IndirectCommandsStreamNV =
 		vk::IndirectCommandsStreamNV::set_buffer;
 	let _: fn(vk::IndirectCommandsStreamNV, vk::DeviceSize) -> vk::IndirectCommandsStreamNV =
@@ -4540,7 +5369,15 @@ fn vk_indirect_commands_stream_nv_construction_contract() {
 
 #[test]
 fn vk_indirect_commands_layout_token_nv_construction_contract() {
+	let _: fn() -> vk::IndirectCommandsLayoutTokenNV<'static> =
+		vk::IndirectCommandsLayoutTokenNV::new;
 	let value = vk::IndirectCommandsLayoutTokenNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::INDIRECT_COMMANDS_LAYOUT_TOKEN_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::IndirectCommandsLayoutTokenNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::INDIRECT_COMMANDS_LAYOUT_TOKEN_NV
@@ -4610,7 +5447,15 @@ fn vk_indirect_commands_layout_token_nv_construction_contract() {
 
 #[test]
 fn vk_indirect_commands_layout_create_info_nv_construction_contract() {
+	let _: fn() -> vk::IndirectCommandsLayoutCreateInfoNV<'static> =
+		vk::IndirectCommandsLayoutCreateInfoNV::new;
 	let value = vk::IndirectCommandsLayoutCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::IndirectCommandsLayoutCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV
@@ -4654,7 +5499,11 @@ fn vk_indirect_commands_layout_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_generated_commands_info_nv_construction_contract() {
+	let _: fn() -> vk::GeneratedCommandsInfoNV<'static> = vk::GeneratedCommandsInfoNV::new;
 	let value = vk::GeneratedCommandsInfoNV::default();
+	assert_eq!(value.s_type, vk::StructureType::GENERATED_COMMANDS_INFO_NV);
+	assert!(value.p_next.is_null());
+	let value = vk::GeneratedCommandsInfoNV::new();
 	assert_eq!(value.s_type, vk::StructureType::GENERATED_COMMANDS_INFO_NV);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -4715,7 +5564,15 @@ fn vk_generated_commands_info_nv_construction_contract() {
 
 #[test]
 fn vk_generated_commands_memory_requirements_info_nv_construction_contract() {
+	let _: fn() -> vk::GeneratedCommandsMemoryRequirementsInfoNV<'static> =
+		vk::GeneratedCommandsMemoryRequirementsInfoNV::new;
 	let value = vk::GeneratedCommandsMemoryRequirementsInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::GeneratedCommandsMemoryRequirementsInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV
@@ -4745,7 +5602,15 @@ fn vk_generated_commands_memory_requirements_info_nv_construction_contract() {
 
 #[test]
 fn vk_pipeline_indirect_device_address_info_nv_construction_contract() {
+	let _: fn() -> vk::PipelineIndirectDeviceAddressInfoNV<'static> =
+		vk::PipelineIndirectDeviceAddressInfoNV::new;
 	let value = vk::PipelineIndirectDeviceAddressInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_INDIRECT_DEVICE_ADDRESS_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineIndirectDeviceAddressInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_INDIRECT_DEVICE_ADDRESS_INFO_NV
@@ -4765,6 +5630,7 @@ fn vk_pipeline_indirect_device_address_info_nv_construction_contract() {
 
 #[test]
 fn vk_bind_pipeline_indirect_command_nv_construction_contract() {
+	let _: fn() -> vk::BindPipelineIndirectCommandNV = vk::BindPipelineIndirectCommandNV::new;
 	let _: fn(
 		vk::BindPipelineIndirectCommandNV,
 		vk::DeviceAddress,
@@ -4773,7 +5639,11 @@ fn vk_bind_pipeline_indirect_command_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_features2_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFeatures2<'static> = vk::PhysicalDeviceFeatures2::new;
 	let value = vk::PhysicalDeviceFeatures2::default();
+	assert_eq!(value.s_type, vk::StructureType::PHYSICAL_DEVICE_FEATURES_2);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFeatures2::new();
 	assert_eq!(value.s_type, vk::StructureType::PHYSICAL_DEVICE_FEATURES_2);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -4784,7 +5654,14 @@ fn vk_physical_device_features2_construction_contract() {
 
 #[test]
 fn vk_physical_device_properties2_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceProperties2<'static> = vk::PhysicalDeviceProperties2::new;
 	let value = vk::PhysicalDeviceProperties2::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PROPERTIES_2
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceProperties2::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PROPERTIES_2
@@ -4798,7 +5675,11 @@ fn vk_physical_device_properties2_construction_contract() {
 
 #[test]
 fn vk_format_properties2_construction_contract() {
+	let _: fn() -> vk::FormatProperties2<'static> = vk::FormatProperties2::new;
 	let value = vk::FormatProperties2::default();
+	assert_eq!(value.s_type, vk::StructureType::FORMAT_PROPERTIES_2);
+	assert!(value.p_next.is_null());
+	let value = vk::FormatProperties2::new();
 	assert_eq!(value.s_type, vk::StructureType::FORMAT_PROPERTIES_2);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -4809,7 +5690,11 @@ fn vk_format_properties2_construction_contract() {
 
 #[test]
 fn vk_image_format_properties2_construction_contract() {
+	let _: fn() -> vk::ImageFormatProperties2<'static> = vk::ImageFormatProperties2::new;
 	let value = vk::ImageFormatProperties2::default();
+	assert_eq!(value.s_type, vk::StructureType::IMAGE_FORMAT_PROPERTIES_2);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageFormatProperties2::new();
 	assert_eq!(value.s_type, vk::StructureType::IMAGE_FORMAT_PROPERTIES_2);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -4820,7 +5705,15 @@ fn vk_image_format_properties2_construction_contract() {
 
 #[test]
 fn vk_physical_device_image_format_info2_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageFormatInfo2<'static> =
+		vk::PhysicalDeviceImageFormatInfo2::new;
 	let value = vk::PhysicalDeviceImageFormatInfo2::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageFormatInfo2::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2
@@ -4850,7 +5743,11 @@ fn vk_physical_device_image_format_info2_construction_contract() {
 
 #[test]
 fn vk_queue_family_properties2_construction_contract() {
+	let _: fn() -> vk::QueueFamilyProperties2<'static> = vk::QueueFamilyProperties2::new;
 	let value = vk::QueueFamilyProperties2::default();
+	assert_eq!(value.s_type, vk::StructureType::QUEUE_FAMILY_PROPERTIES_2);
+	assert!(value.p_next.is_null());
+	let value = vk::QueueFamilyProperties2::new();
 	assert_eq!(value.s_type, vk::StructureType::QUEUE_FAMILY_PROPERTIES_2);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -4861,7 +5758,15 @@ fn vk_queue_family_properties2_construction_contract() {
 
 #[test]
 fn vk_physical_device_memory_properties2_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMemoryProperties2<'static> =
+		vk::PhysicalDeviceMemoryProperties2::new;
 	let value = vk::PhysicalDeviceMemoryProperties2::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MEMORY_PROPERTIES_2
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMemoryProperties2::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MEMORY_PROPERTIES_2
@@ -4876,7 +5781,14 @@ fn vk_physical_device_memory_properties2_construction_contract() {
 
 #[test]
 fn vk_sparse_image_format_properties2_construction_contract() {
+	let _: fn() -> vk::SparseImageFormatProperties2<'static> = vk::SparseImageFormatProperties2::new;
 	let value = vk::SparseImageFormatProperties2::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SPARSE_IMAGE_FORMAT_PROPERTIES_2
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SparseImageFormatProperties2::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SPARSE_IMAGE_FORMAT_PROPERTIES_2
@@ -4890,7 +5802,15 @@ fn vk_sparse_image_format_properties2_construction_contract() {
 
 #[test]
 fn vk_physical_device_sparse_image_format_info2_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSparseImageFormatInfo2<'static> =
+		vk::PhysicalDeviceSparseImageFormatInfo2::new;
 	let value = vk::PhysicalDeviceSparseImageFormatInfo2::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSparseImageFormatInfo2::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2
@@ -4925,7 +5845,15 @@ fn vk_physical_device_sparse_image_format_info2_construction_contract() {
 
 #[test]
 fn vk_physical_device_push_descriptor_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePushDescriptorProperties<'static> =
+		vk::PhysicalDevicePushDescriptorProperties::new;
 	let value = vk::PhysicalDevicePushDescriptorProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePushDescriptorProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES
@@ -4940,6 +5868,7 @@ fn vk_physical_device_push_descriptor_properties_construction_contract() {
 
 #[test]
 fn vk_conformance_version_construction_contract() {
+	let _: fn() -> vk::ConformanceVersion = vk::ConformanceVersion::new;
 	let _: fn(vk::ConformanceVersion, u8) -> vk::ConformanceVersion =
 		vk::ConformanceVersion::set_major;
 	let _: fn(vk::ConformanceVersion, u8) -> vk::ConformanceVersion =
@@ -4952,7 +5881,15 @@ fn vk_conformance_version_construction_contract() {
 
 #[test]
 fn vk_physical_device_driver_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDriverProperties<'static> =
+		vk::PhysicalDeviceDriverProperties::new;
 	let value = vk::PhysicalDeviceDriverProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DRIVER_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDriverProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DRIVER_PROPERTIES
@@ -4982,7 +5919,11 @@ fn vk_physical_device_driver_properties_construction_contract() {
 
 #[test]
 fn vk_present_regions_khr_construction_contract() {
+	let _: fn() -> vk::PresentRegionsKHR<'static> = vk::PresentRegionsKHR::new;
 	let value = vk::PresentRegionsKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::PRESENT_REGIONS_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::PresentRegionsKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::PRESENT_REGIONS_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::PresentRegionsKHR<'static>, u32) -> vk::PresentRegionsKHR<'static> =
@@ -4996,6 +5937,7 @@ fn vk_present_regions_khr_construction_contract() {
 
 #[test]
 fn vk_present_region_khr_construction_contract() {
+	let _: fn() -> vk::PresentRegionKHR<'static> = vk::PresentRegionKHR::new;
 	let _: fn(vk::PresentRegionKHR<'static>, u32) -> vk::PresentRegionKHR<'static> =
 		vk::PresentRegionKHR::set_rectangle_count;
 	let _: fn(
@@ -5007,6 +5949,7 @@ fn vk_present_region_khr_construction_contract() {
 
 #[test]
 fn vk_rect_layer_khr_construction_contract() {
+	let _: fn() -> vk::RectLayerKHR = vk::RectLayerKHR::new;
 	let _: fn(vk::RectLayerKHR, vk::Offset2D) -> vk::RectLayerKHR = vk::RectLayerKHR::set_offset;
 	let _: fn(vk::RectLayerKHR, vk::Extent2D) -> vk::RectLayerKHR = vk::RectLayerKHR::set_extent;
 	let _: fn(vk::RectLayerKHR, u32) -> vk::RectLayerKHR = vk::RectLayerKHR::set_layer;
@@ -5014,7 +5957,15 @@ fn vk_rect_layer_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_variable_pointers_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVariablePointersFeatures<'static> =
+		vk::PhysicalDeviceVariablePointersFeatures::new;
 	let value = vk::PhysicalDeviceVariablePointersFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVariablePointersFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES
@@ -5034,6 +5985,7 @@ fn vk_physical_device_variable_pointers_features_construction_contract() {
 
 #[test]
 fn vk_external_memory_properties_construction_contract() {
+	let _: fn() -> vk::ExternalMemoryProperties = vk::ExternalMemoryProperties::new;
 	let _: fn(
 		vk::ExternalMemoryProperties,
 		vk::ExternalMemoryFeatureFlags,
@@ -5051,7 +6003,15 @@ fn vk_external_memory_properties_construction_contract() {
 
 #[test]
 fn vk_physical_device_external_image_format_info_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExternalImageFormatInfo<'static> =
+		vk::PhysicalDeviceExternalImageFormatInfo::new;
 	let value = vk::PhysicalDeviceExternalImageFormatInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExternalImageFormatInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO
@@ -5066,7 +6026,15 @@ fn vk_physical_device_external_image_format_info_construction_contract() {
 
 #[test]
 fn vk_external_image_format_properties_construction_contract() {
+	let _: fn() -> vk::ExternalImageFormatProperties<'static> =
+		vk::ExternalImageFormatProperties::new;
 	let value = vk::ExternalImageFormatProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXTERNAL_IMAGE_FORMAT_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalImageFormatProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXTERNAL_IMAGE_FORMAT_PROPERTIES
@@ -5081,7 +6049,15 @@ fn vk_external_image_format_properties_construction_contract() {
 
 #[test]
 fn vk_physical_device_external_buffer_info_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExternalBufferInfo<'static> =
+		vk::PhysicalDeviceExternalBufferInfo::new;
 	let value = vk::PhysicalDeviceExternalBufferInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExternalBufferInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO
@@ -5106,7 +6082,11 @@ fn vk_physical_device_external_buffer_info_construction_contract() {
 
 #[test]
 fn vk_external_buffer_properties_construction_contract() {
+	let _: fn() -> vk::ExternalBufferProperties<'static> = vk::ExternalBufferProperties::new;
 	let value = vk::ExternalBufferProperties::default();
+	assert_eq!(value.s_type, vk::StructureType::EXTERNAL_BUFFER_PROPERTIES);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalBufferProperties::new();
 	assert_eq!(value.s_type, vk::StructureType::EXTERNAL_BUFFER_PROPERTIES);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -5118,7 +6098,14 @@ fn vk_external_buffer_properties_construction_contract() {
 
 #[test]
 fn vk_physical_device_id_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceIDProperties<'static> = vk::PhysicalDeviceIDProperties::new;
 	let value = vk::PhysicalDeviceIDProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_ID_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceIDProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_ID_PROPERTIES
@@ -5150,7 +6137,15 @@ fn vk_physical_device_id_properties_construction_contract() {
 
 #[test]
 fn vk_external_memory_image_create_info_construction_contract() {
+	let _: fn() -> vk::ExternalMemoryImageCreateInfo<'static> =
+		vk::ExternalMemoryImageCreateInfo::new;
 	let value = vk::ExternalMemoryImageCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXTERNAL_MEMORY_IMAGE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalMemoryImageCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXTERNAL_MEMORY_IMAGE_CREATE_INFO
@@ -5165,7 +6160,15 @@ fn vk_external_memory_image_create_info_construction_contract() {
 
 #[test]
 fn vk_external_memory_buffer_create_info_construction_contract() {
+	let _: fn() -> vk::ExternalMemoryBufferCreateInfo<'static> =
+		vk::ExternalMemoryBufferCreateInfo::new;
 	let value = vk::ExternalMemoryBufferCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXTERNAL_MEMORY_BUFFER_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalMemoryBufferCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXTERNAL_MEMORY_BUFFER_CREATE_INFO
@@ -5180,7 +6183,11 @@ fn vk_external_memory_buffer_create_info_construction_contract() {
 
 #[test]
 fn vk_export_memory_allocate_info_construction_contract() {
+	let _: fn() -> vk::ExportMemoryAllocateInfo<'static> = vk::ExportMemoryAllocateInfo::new;
 	let value = vk::ExportMemoryAllocateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::EXPORT_MEMORY_ALLOCATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportMemoryAllocateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::EXPORT_MEMORY_ALLOCATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -5192,7 +6199,15 @@ fn vk_export_memory_allocate_info_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_import_memory_win32_handle_info_khr_construction_contract() {
+	let _: fn() -> vk::ImportMemoryWin32HandleInfoKHR<'static> =
+		vk::ImportMemoryWin32HandleInfoKHR::new;
 	let value = vk::ImportMemoryWin32HandleInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportMemoryWin32HandleInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR
@@ -5216,7 +6231,15 @@ fn vk_import_memory_win32_handle_info_khr_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_export_memory_win32_handle_info_khr_construction_contract() {
+	let _: fn() -> vk::ExportMemoryWin32HandleInfoKHR<'static> =
+		vk::ExportMemoryWin32HandleInfoKHR::new;
 	let value = vk::ExportMemoryWin32HandleInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportMemoryWin32HandleInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR
@@ -5241,7 +6264,15 @@ fn vk_export_memory_win32_handle_info_khr_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_import_memory_zircon_handle_info_fuchsia_construction_contract() {
+	let _: fn() -> vk::ImportMemoryZirconHandleInfoFUCHSIA<'static> =
+		vk::ImportMemoryZirconHandleInfoFUCHSIA::new;
 	let value = vk::ImportMemoryZirconHandleInfoFUCHSIA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportMemoryZirconHandleInfoFUCHSIA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA
@@ -5262,7 +6293,15 @@ fn vk_import_memory_zircon_handle_info_fuchsia_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_memory_zircon_handle_properties_fuchsia_construction_contract() {
+	let _: fn() -> vk::MemoryZirconHandlePropertiesFUCHSIA<'static> =
+		vk::MemoryZirconHandlePropertiesFUCHSIA::new;
 	let value = vk::MemoryZirconHandlePropertiesFUCHSIA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryZirconHandlePropertiesFUCHSIA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA
@@ -5278,7 +6317,15 @@ fn vk_memory_zircon_handle_properties_fuchsia_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_memory_get_zircon_handle_info_fuchsia_construction_contract() {
+	let _: fn() -> vk::MemoryGetZirconHandleInfoFUCHSIA<'static> =
+		vk::MemoryGetZirconHandleInfoFUCHSIA::new;
 	let value = vk::MemoryGetZirconHandleInfoFUCHSIA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryGetZirconHandleInfoFUCHSIA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA
@@ -5299,7 +6346,15 @@ fn vk_memory_get_zircon_handle_info_fuchsia_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_memory_win32_handle_properties_khr_construction_contract() {
+	let _: fn() -> vk::MemoryWin32HandlePropertiesKHR<'static> =
+		vk::MemoryWin32HandlePropertiesKHR::new;
 	let value = vk::MemoryWin32HandlePropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_WIN32_HANDLE_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryWin32HandlePropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_WIN32_HANDLE_PROPERTIES_KHR
@@ -5315,7 +6370,14 @@ fn vk_memory_win32_handle_properties_khr_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_memory_get_win32_handle_info_khr_construction_contract() {
+	let _: fn() -> vk::MemoryGetWin32HandleInfoKHR<'static> = vk::MemoryGetWin32HandleInfoKHR::new;
 	let value = vk::MemoryGetWin32HandleInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_GET_WIN32_HANDLE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryGetWin32HandleInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_GET_WIN32_HANDLE_INFO_KHR
@@ -5333,7 +6395,11 @@ fn vk_memory_get_win32_handle_info_khr_construction_contract() {
 
 #[test]
 fn vk_import_memory_fd_info_khr_construction_contract() {
+	let _: fn() -> vk::ImportMemoryFdInfoKHR<'static> = vk::ImportMemoryFdInfoKHR::new;
 	let value = vk::ImportMemoryFdInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::IMPORT_MEMORY_FD_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportMemoryFdInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::IMPORT_MEMORY_FD_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -5346,7 +6412,11 @@ fn vk_import_memory_fd_info_khr_construction_contract() {
 
 #[test]
 fn vk_memory_fd_properties_khr_construction_contract() {
+	let _: fn() -> vk::MemoryFdPropertiesKHR<'static> = vk::MemoryFdPropertiesKHR::new;
 	let value = vk::MemoryFdPropertiesKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::MEMORY_FD_PROPERTIES_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryFdPropertiesKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::MEMORY_FD_PROPERTIES_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::MemoryFdPropertiesKHR<'static>, u32) -> vk::MemoryFdPropertiesKHR<'static> =
@@ -5355,7 +6425,11 @@ fn vk_memory_fd_properties_khr_construction_contract() {
 
 #[test]
 fn vk_memory_get_fd_info_khr_construction_contract() {
+	let _: fn() -> vk::MemoryGetFdInfoKHR<'static> = vk::MemoryGetFdInfoKHR::new;
 	let value = vk::MemoryGetFdInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::MEMORY_GET_FD_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryGetFdInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::MEMORY_GET_FD_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::MemoryGetFdInfoKHR<'static>, vk::DeviceMemory) -> vk::MemoryGetFdInfoKHR<'static> =
@@ -5369,7 +6443,15 @@ fn vk_memory_get_fd_info_khr_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_win32_keyed_mutex_acquire_release_info_khr_construction_contract() {
+	let _: fn() -> vk::Win32KeyedMutexAcquireReleaseInfoKHR<'static> =
+		vk::Win32KeyedMutexAcquireReleaseInfoKHR::new;
 	let value = vk::Win32KeyedMutexAcquireReleaseInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::Win32KeyedMutexAcquireReleaseInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR
@@ -5409,7 +6491,15 @@ fn vk_win32_keyed_mutex_acquire_release_info_khr_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_import_memory_metal_handle_info_ext_construction_contract() {
+	let _: fn() -> vk::ImportMemoryMetalHandleInfoEXT<'static> =
+		vk::ImportMemoryMetalHandleInfoEXT::new;
 	let value = vk::ImportMemoryMetalHandleInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_MEMORY_METAL_HANDLE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportMemoryMetalHandleInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_MEMORY_METAL_HANDLE_INFO_EXT
@@ -5429,7 +6519,15 @@ fn vk_import_memory_metal_handle_info_ext_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_memory_metal_handle_properties_ext_construction_contract() {
+	let _: fn() -> vk::MemoryMetalHandlePropertiesEXT<'static> =
+		vk::MemoryMetalHandlePropertiesEXT::new;
 	let value = vk::MemoryMetalHandlePropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_METAL_HANDLE_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryMetalHandlePropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_METAL_HANDLE_PROPERTIES_EXT
@@ -5445,7 +6543,14 @@ fn vk_memory_metal_handle_properties_ext_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_memory_get_metal_handle_info_ext_construction_contract() {
+	let _: fn() -> vk::MemoryGetMetalHandleInfoEXT<'static> = vk::MemoryGetMetalHandleInfoEXT::new;
 	let value = vk::MemoryGetMetalHandleInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_GET_METAL_HANDLE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryGetMetalHandleInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_GET_METAL_HANDLE_INFO_EXT
@@ -5463,7 +6568,15 @@ fn vk_memory_get_metal_handle_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_external_semaphore_info_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExternalSemaphoreInfo<'static> =
+		vk::PhysicalDeviceExternalSemaphoreInfo::new;
 	let value = vk::PhysicalDeviceExternalSemaphoreInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExternalSemaphoreInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO
@@ -5478,7 +6591,14 @@ fn vk_physical_device_external_semaphore_info_construction_contract() {
 
 #[test]
 fn vk_external_semaphore_properties_construction_contract() {
+	let _: fn() -> vk::ExternalSemaphoreProperties<'static> = vk::ExternalSemaphoreProperties::new;
 	let value = vk::ExternalSemaphoreProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXTERNAL_SEMAPHORE_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalSemaphoreProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXTERNAL_SEMAPHORE_PROPERTIES
@@ -5503,7 +6623,14 @@ fn vk_external_semaphore_properties_construction_contract() {
 
 #[test]
 fn vk_export_semaphore_create_info_construction_contract() {
+	let _: fn() -> vk::ExportSemaphoreCreateInfo<'static> = vk::ExportSemaphoreCreateInfo::new;
 	let value = vk::ExportSemaphoreCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXPORT_SEMAPHORE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportSemaphoreCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXPORT_SEMAPHORE_CREATE_INFO
@@ -5518,7 +6645,15 @@ fn vk_export_semaphore_create_info_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_import_semaphore_win32_handle_info_khr_construction_contract() {
+	let _: fn() -> vk::ImportSemaphoreWin32HandleInfoKHR<'static> =
+		vk::ImportSemaphoreWin32HandleInfoKHR::new;
 	let value = vk::ImportSemaphoreWin32HandleInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportSemaphoreWin32HandleInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR
@@ -5554,7 +6689,15 @@ fn vk_import_semaphore_win32_handle_info_khr_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_export_semaphore_win32_handle_info_khr_construction_contract() {
+	let _: fn() -> vk::ExportSemaphoreWin32HandleInfoKHR<'static> =
+		vk::ExportSemaphoreWin32HandleInfoKHR::new;
 	let value = vk::ExportSemaphoreWin32HandleInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportSemaphoreWin32HandleInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR
@@ -5580,7 +6723,11 @@ fn vk_export_semaphore_win32_handle_info_khr_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_d3_d12_fence_submit_info_khr_construction_contract() {
+	let _: fn() -> vk::D3D12FenceSubmitInfoKHR<'static> = vk::D3D12FenceSubmitInfoKHR::new;
 	let value = vk::D3D12FenceSubmitInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::D3D12_FENCE_SUBMIT_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::D3D12FenceSubmitInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::D3D12_FENCE_SUBMIT_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::D3D12FenceSubmitInfoKHR<'static>, u32) -> vk::D3D12FenceSubmitInfoKHR<'static> =
@@ -5602,7 +6749,15 @@ fn vk_d3_d12_fence_submit_info_khr_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_semaphore_get_win32_handle_info_khr_construction_contract() {
+	let _: fn() -> vk::SemaphoreGetWin32HandleInfoKHR<'static> =
+		vk::SemaphoreGetWin32HandleInfoKHR::new;
 	let value = vk::SemaphoreGetWin32HandleInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SemaphoreGetWin32HandleInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR
@@ -5622,7 +6777,14 @@ fn vk_semaphore_get_win32_handle_info_khr_construction_contract() {
 
 #[test]
 fn vk_import_semaphore_fd_info_khr_construction_contract() {
+	let _: fn() -> vk::ImportSemaphoreFdInfoKHR<'static> = vk::ImportSemaphoreFdInfoKHR::new;
 	let value = vk::ImportSemaphoreFdInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_SEMAPHORE_FD_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportSemaphoreFdInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_SEMAPHORE_FD_INFO_KHR
@@ -5646,7 +6808,11 @@ fn vk_import_semaphore_fd_info_khr_construction_contract() {
 
 #[test]
 fn vk_semaphore_get_fd_info_khr_construction_contract() {
+	let _: fn() -> vk::SemaphoreGetFdInfoKHR<'static> = vk::SemaphoreGetFdInfoKHR::new;
 	let value = vk::SemaphoreGetFdInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::SEMAPHORE_GET_FD_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::SemaphoreGetFdInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::SEMAPHORE_GET_FD_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -5662,7 +6828,15 @@ fn vk_semaphore_get_fd_info_khr_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_import_semaphore_zircon_handle_info_fuchsia_construction_contract() {
+	let _: fn() -> vk::ImportSemaphoreZirconHandleInfoFUCHSIA<'static> =
+		vk::ImportSemaphoreZirconHandleInfoFUCHSIA::new;
 	let value = vk::ImportSemaphoreZirconHandleInfoFUCHSIA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportSemaphoreZirconHandleInfoFUCHSIA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA
@@ -5693,7 +6867,15 @@ fn vk_import_semaphore_zircon_handle_info_fuchsia_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_semaphore_get_zircon_handle_info_fuchsia_construction_contract() {
+	let _: fn() -> vk::SemaphoreGetZirconHandleInfoFUCHSIA<'static> =
+		vk::SemaphoreGetZirconHandleInfoFUCHSIA::new;
 	let value = vk::SemaphoreGetZirconHandleInfoFUCHSIA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SemaphoreGetZirconHandleInfoFUCHSIA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA
@@ -5713,7 +6895,15 @@ fn vk_semaphore_get_zircon_handle_info_fuchsia_construction_contract() {
 
 #[test]
 fn vk_physical_device_external_fence_info_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExternalFenceInfo<'static> =
+		vk::PhysicalDeviceExternalFenceInfo::new;
 	let value = vk::PhysicalDeviceExternalFenceInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExternalFenceInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO
@@ -5728,7 +6918,11 @@ fn vk_physical_device_external_fence_info_construction_contract() {
 
 #[test]
 fn vk_external_fence_properties_construction_contract() {
+	let _: fn() -> vk::ExternalFenceProperties<'static> = vk::ExternalFenceProperties::new;
 	let value = vk::ExternalFenceProperties::default();
+	assert_eq!(value.s_type, vk::StructureType::EXTERNAL_FENCE_PROPERTIES);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalFenceProperties::new();
 	assert_eq!(value.s_type, vk::StructureType::EXTERNAL_FENCE_PROPERTIES);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -5750,7 +6944,11 @@ fn vk_external_fence_properties_construction_contract() {
 
 #[test]
 fn vk_export_fence_create_info_construction_contract() {
+	let _: fn() -> vk::ExportFenceCreateInfo<'static> = vk::ExportFenceCreateInfo::new;
 	let value = vk::ExportFenceCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::EXPORT_FENCE_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportFenceCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::EXPORT_FENCE_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -5762,7 +6960,15 @@ fn vk_export_fence_create_info_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_import_fence_win32_handle_info_khr_construction_contract() {
+	let _: fn() -> vk::ImportFenceWin32HandleInfoKHR<'static> =
+		vk::ImportFenceWin32HandleInfoKHR::new;
 	let value = vk::ImportFenceWin32HandleInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_FENCE_WIN32_HANDLE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportFenceWin32HandleInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_FENCE_WIN32_HANDLE_INFO_KHR
@@ -5794,7 +7000,15 @@ fn vk_import_fence_win32_handle_info_khr_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_export_fence_win32_handle_info_khr_construction_contract() {
+	let _: fn() -> vk::ExportFenceWin32HandleInfoKHR<'static> =
+		vk::ExportFenceWin32HandleInfoKHR::new;
 	let value = vk::ExportFenceWin32HandleInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXPORT_FENCE_WIN32_HANDLE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportFenceWin32HandleInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXPORT_FENCE_WIN32_HANDLE_INFO_KHR
@@ -5818,7 +7032,14 @@ fn vk_export_fence_win32_handle_info_khr_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_fence_get_win32_handle_info_khr_construction_contract() {
+	let _: fn() -> vk::FenceGetWin32HandleInfoKHR<'static> = vk::FenceGetWin32HandleInfoKHR::new;
 	let value = vk::FenceGetWin32HandleInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::FENCE_GET_WIN32_HANDLE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::FenceGetWin32HandleInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::FENCE_GET_WIN32_HANDLE_INFO_KHR
@@ -5836,7 +7057,11 @@ fn vk_fence_get_win32_handle_info_khr_construction_contract() {
 
 #[test]
 fn vk_import_fence_fd_info_khr_construction_contract() {
+	let _: fn() -> vk::ImportFenceFdInfoKHR<'static> = vk::ImportFenceFdInfoKHR::new;
 	let value = vk::ImportFenceFdInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::IMPORT_FENCE_FD_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportFenceFdInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::IMPORT_FENCE_FD_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::ImportFenceFdInfoKHR<'static>, vk::Fence) -> vk::ImportFenceFdInfoKHR<'static> =
@@ -5855,7 +7080,11 @@ fn vk_import_fence_fd_info_khr_construction_contract() {
 
 #[test]
 fn vk_fence_get_fd_info_khr_construction_contract() {
+	let _: fn() -> vk::FenceGetFdInfoKHR<'static> = vk::FenceGetFdInfoKHR::new;
 	let value = vk::FenceGetFdInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::FENCE_GET_FD_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::FenceGetFdInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::FENCE_GET_FD_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::FenceGetFdInfoKHR<'static>, vk::Fence) -> vk::FenceGetFdInfoKHR<'static> =
@@ -5868,7 +7097,15 @@ fn vk_fence_get_fd_info_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_multiview_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMultiviewFeatures<'static> =
+		vk::PhysicalDeviceMultiviewFeatures::new;
 	let value = vk::PhysicalDeviceMultiviewFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMultiviewFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_FEATURES
@@ -5893,7 +7130,15 @@ fn vk_physical_device_multiview_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_multiview_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMultiviewProperties<'static> =
+		vk::PhysicalDeviceMultiviewProperties::new;
 	let value = vk::PhysicalDeviceMultiviewProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMultiviewProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES
@@ -5913,7 +7158,15 @@ fn vk_physical_device_multiview_properties_construction_contract() {
 
 #[test]
 fn vk_render_pass_multiview_create_info_construction_contract() {
+	let _: fn() -> vk::RenderPassMultiviewCreateInfo<'static> =
+		vk::RenderPassMultiviewCreateInfo::new;
 	let value = vk::RenderPassMultiviewCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDER_PASS_MULTIVIEW_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassMultiviewCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDER_PASS_MULTIVIEW_CREATE_INFO
@@ -5959,7 +7212,11 @@ fn vk_render_pass_multiview_create_info_construction_contract() {
 
 #[test]
 fn vk_surface_capabilities2_ext_construction_contract() {
+	let _: fn() -> vk::SurfaceCapabilities2EXT<'static> = vk::SurfaceCapabilities2EXT::new;
 	let value = vk::SurfaceCapabilities2EXT::default();
+	assert_eq!(value.s_type, vk::StructureType::SURFACE_CAPABILITIES_2_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::SurfaceCapabilities2EXT::new();
 	assert_eq!(value.s_type, vk::StructureType::SURFACE_CAPABILITIES_2_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::SurfaceCapabilities2EXT<'static>, u32) -> vk::SurfaceCapabilities2EXT<'static> =
@@ -6006,7 +7263,11 @@ fn vk_surface_capabilities2_ext_construction_contract() {
 
 #[test]
 fn vk_display_power_info_ext_construction_contract() {
+	let _: fn() -> vk::DisplayPowerInfoEXT<'static> = vk::DisplayPowerInfoEXT::new;
 	let value = vk::DisplayPowerInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::DISPLAY_POWER_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::DisplayPowerInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::DISPLAY_POWER_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -6017,7 +7278,11 @@ fn vk_display_power_info_ext_construction_contract() {
 
 #[test]
 fn vk_device_event_info_ext_construction_contract() {
+	let _: fn() -> vk::DeviceEventInfoEXT<'static> = vk::DeviceEventInfoEXT::new;
 	let value = vk::DeviceEventInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::DEVICE_EVENT_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceEventInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::DEVICE_EVENT_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -6028,7 +7293,11 @@ fn vk_device_event_info_ext_construction_contract() {
 
 #[test]
 fn vk_display_event_info_ext_construction_contract() {
+	let _: fn() -> vk::DisplayEventInfoEXT<'static> = vk::DisplayEventInfoEXT::new;
 	let value = vk::DisplayEventInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::DISPLAY_EVENT_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::DisplayEventInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::DISPLAY_EVENT_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -6039,7 +7308,15 @@ fn vk_display_event_info_ext_construction_contract() {
 
 #[test]
 fn vk_swapchain_counter_create_info_ext_construction_contract() {
+	let _: fn() -> vk::SwapchainCounterCreateInfoEXT<'static> =
+		vk::SwapchainCounterCreateInfoEXT::new;
 	let value = vk::SwapchainCounterCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SWAPCHAIN_COUNTER_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SwapchainCounterCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SWAPCHAIN_COUNTER_CREATE_INFO_EXT
@@ -6054,7 +7331,15 @@ fn vk_swapchain_counter_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_group_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceGroupProperties<'static> =
+		vk::PhysicalDeviceGroupProperties::new;
 	let value = vk::PhysicalDeviceGroupProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_GROUP_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceGroupProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_GROUP_PROPERTIES
@@ -6079,7 +7364,11 @@ fn vk_physical_device_group_properties_construction_contract() {
 
 #[test]
 fn vk_memory_allocate_flags_info_construction_contract() {
+	let _: fn() -> vk::MemoryAllocateFlagsInfo<'static> = vk::MemoryAllocateFlagsInfo::new;
 	let value = vk::MemoryAllocateFlagsInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::MEMORY_ALLOCATE_FLAGS_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryAllocateFlagsInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::MEMORY_ALLOCATE_FLAGS_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -6092,7 +7381,11 @@ fn vk_memory_allocate_flags_info_construction_contract() {
 
 #[test]
 fn vk_bind_buffer_memory_info_construction_contract() {
+	let _: fn() -> vk::BindBufferMemoryInfo<'static> = vk::BindBufferMemoryInfo::new;
 	let value = vk::BindBufferMemoryInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::BIND_BUFFER_MEMORY_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::BindBufferMemoryInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::BIND_BUFFER_MEMORY_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::BindBufferMemoryInfo<'static>, vk::Buffer) -> vk::BindBufferMemoryInfo<'static> =
@@ -6109,7 +7402,15 @@ fn vk_bind_buffer_memory_info_construction_contract() {
 
 #[test]
 fn vk_bind_buffer_memory_device_group_info_construction_contract() {
+	let _: fn() -> vk::BindBufferMemoryDeviceGroupInfo<'static> =
+		vk::BindBufferMemoryDeviceGroupInfo::new;
 	let value = vk::BindBufferMemoryDeviceGroupInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BindBufferMemoryDeviceGroupInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO
@@ -6131,7 +7432,11 @@ fn vk_bind_buffer_memory_device_group_info_construction_contract() {
 
 #[test]
 fn vk_bind_image_memory_info_construction_contract() {
+	let _: fn() -> vk::BindImageMemoryInfo<'static> = vk::BindImageMemoryInfo::new;
 	let value = vk::BindImageMemoryInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::BIND_IMAGE_MEMORY_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::BindImageMemoryInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::BIND_IMAGE_MEMORY_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::BindImageMemoryInfo<'static>, vk::Image) -> vk::BindImageMemoryInfo<'static> =
@@ -6146,7 +7451,15 @@ fn vk_bind_image_memory_info_construction_contract() {
 
 #[test]
 fn vk_bind_image_memory_device_group_info_construction_contract() {
+	let _: fn() -> vk::BindImageMemoryDeviceGroupInfo<'static> =
+		vk::BindImageMemoryDeviceGroupInfo::new;
 	let value = vk::BindImageMemoryDeviceGroupInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BindImageMemoryDeviceGroupInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO
@@ -6180,7 +7493,15 @@ fn vk_bind_image_memory_device_group_info_construction_contract() {
 
 #[test]
 fn vk_device_group_render_pass_begin_info_construction_contract() {
+	let _: fn() -> vk::DeviceGroupRenderPassBeginInfo<'static> =
+		vk::DeviceGroupRenderPassBeginInfo::new;
 	let value = vk::DeviceGroupRenderPassBeginInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_GROUP_RENDER_PASS_BEGIN_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceGroupRenderPassBeginInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_GROUP_RENDER_PASS_BEGIN_INFO
@@ -6207,7 +7528,15 @@ fn vk_device_group_render_pass_begin_info_construction_contract() {
 
 #[test]
 fn vk_device_group_command_buffer_begin_info_construction_contract() {
+	let _: fn() -> vk::DeviceGroupCommandBufferBeginInfo<'static> =
+		vk::DeviceGroupCommandBufferBeginInfo::new;
 	let value = vk::DeviceGroupCommandBufferBeginInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceGroupCommandBufferBeginInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO
@@ -6222,7 +7551,11 @@ fn vk_device_group_command_buffer_begin_info_construction_contract() {
 
 #[test]
 fn vk_device_group_submit_info_construction_contract() {
+	let _: fn() -> vk::DeviceGroupSubmitInfo<'static> = vk::DeviceGroupSubmitInfo::new;
 	let value = vk::DeviceGroupSubmitInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::DEVICE_GROUP_SUBMIT_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceGroupSubmitInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::DEVICE_GROUP_SUBMIT_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::DeviceGroupSubmitInfo<'static>, u32) -> vk::DeviceGroupSubmitInfo<'static> =
@@ -6250,7 +7583,14 @@ fn vk_device_group_submit_info_construction_contract() {
 
 #[test]
 fn vk_device_group_bind_sparse_info_construction_contract() {
+	let _: fn() -> vk::DeviceGroupBindSparseInfo<'static> = vk::DeviceGroupBindSparseInfo::new;
 	let value = vk::DeviceGroupBindSparseInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_GROUP_BIND_SPARSE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceGroupBindSparseInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_GROUP_BIND_SPARSE_INFO
@@ -6264,7 +7604,15 @@ fn vk_device_group_bind_sparse_info_construction_contract() {
 
 #[test]
 fn vk_device_group_present_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::DeviceGroupPresentCapabilitiesKHR<'static> =
+		vk::DeviceGroupPresentCapabilitiesKHR::new;
 	let value = vk::DeviceGroupPresentCapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_GROUP_PRESENT_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceGroupPresentCapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_GROUP_PRESENT_CAPABILITIES_KHR
@@ -6284,7 +7632,14 @@ fn vk_device_group_present_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_image_swapchain_create_info_khr_construction_contract() {
+	let _: fn() -> vk::ImageSwapchainCreateInfoKHR<'static> = vk::ImageSwapchainCreateInfoKHR::new;
 	let value = vk::ImageSwapchainCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_SWAPCHAIN_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageSwapchainCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_SWAPCHAIN_CREATE_INFO_KHR
@@ -6298,7 +7653,15 @@ fn vk_image_swapchain_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_bind_image_memory_swapchain_info_khr_construction_contract() {
+	let _: fn() -> vk::BindImageMemorySwapchainInfoKHR<'static> =
+		vk::BindImageMemorySwapchainInfoKHR::new;
 	let value = vk::BindImageMemorySwapchainInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BindImageMemorySwapchainInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR
@@ -6318,7 +7681,11 @@ fn vk_bind_image_memory_swapchain_info_khr_construction_contract() {
 
 #[test]
 fn vk_acquire_next_image_info_khr_construction_contract() {
+	let _: fn() -> vk::AcquireNextImageInfoKHR<'static> = vk::AcquireNextImageInfoKHR::new;
 	let value = vk::AcquireNextImageInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::ACQUIRE_NEXT_IMAGE_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::AcquireNextImageInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::ACQUIRE_NEXT_IMAGE_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -6341,7 +7708,14 @@ fn vk_acquire_next_image_info_khr_construction_contract() {
 
 #[test]
 fn vk_device_group_present_info_khr_construction_contract() {
+	let _: fn() -> vk::DeviceGroupPresentInfoKHR<'static> = vk::DeviceGroupPresentInfoKHR::new;
 	let value = vk::DeviceGroupPresentInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_GROUP_PRESENT_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceGroupPresentInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_GROUP_PRESENT_INFO_KHR
@@ -6363,7 +7737,14 @@ fn vk_device_group_present_info_khr_construction_contract() {
 
 #[test]
 fn vk_device_group_device_create_info_construction_contract() {
+	let _: fn() -> vk::DeviceGroupDeviceCreateInfo<'static> = vk::DeviceGroupDeviceCreateInfo::new;
 	let value = vk::DeviceGroupDeviceCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_GROUP_DEVICE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceGroupDeviceCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_GROUP_DEVICE_CREATE_INFO
@@ -6385,7 +7766,15 @@ fn vk_device_group_device_create_info_construction_contract() {
 
 #[test]
 fn vk_device_group_swapchain_create_info_khr_construction_contract() {
+	let _: fn() -> vk::DeviceGroupSwapchainCreateInfoKHR<'static> =
+		vk::DeviceGroupSwapchainCreateInfoKHR::new;
 	let value = vk::DeviceGroupSwapchainCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceGroupSwapchainCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR
@@ -6400,6 +7789,7 @@ fn vk_device_group_swapchain_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_descriptor_update_template_entry_construction_contract() {
+	let _: fn() -> vk::DescriptorUpdateTemplateEntry = vk::DescriptorUpdateTemplateEntry::new;
 	let _: fn(vk::DescriptorUpdateTemplateEntry, u32) -> vk::DescriptorUpdateTemplateEntry =
 		vk::DescriptorUpdateTemplateEntry::set_dst_binding;
 	let _: fn(vk::DescriptorUpdateTemplateEntry, u32) -> vk::DescriptorUpdateTemplateEntry =
@@ -6418,7 +7808,15 @@ fn vk_descriptor_update_template_entry_construction_contract() {
 
 #[test]
 fn vk_descriptor_update_template_create_info_construction_contract() {
+	let _: fn() -> vk::DescriptorUpdateTemplateCreateInfo<'static> =
+		vk::DescriptorUpdateTemplateCreateInfo::new;
 	let value = vk::DescriptorUpdateTemplateCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorUpdateTemplateCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO
@@ -6470,13 +7868,22 @@ fn vk_descriptor_update_template_create_info_construction_contract() {
 
 #[test]
 fn vk_xy_color_ext_construction_contract() {
+	let _: fn() -> vk::XYColorEXT = vk::XYColorEXT::new;
 	let _: fn(vk::XYColorEXT, f32) -> vk::XYColorEXT = vk::XYColorEXT::set_x;
 	let _: fn(vk::XYColorEXT, f32) -> vk::XYColorEXT = vk::XYColorEXT::set_y;
 }
 
 #[test]
 fn vk_physical_device_present_id_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePresentIdFeaturesKHR<'static> =
+		vk::PhysicalDevicePresentIdFeaturesKHR::new;
 	let value = vk::PhysicalDevicePresentIdFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePresentIdFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR
@@ -6491,7 +7898,11 @@ fn vk_physical_device_present_id_features_khr_construction_contract() {
 
 #[test]
 fn vk_present_id_khr_construction_contract() {
+	let _: fn() -> vk::PresentIdKHR<'static> = vk::PresentIdKHR::new;
 	let value = vk::PresentIdKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::PRESENT_ID_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::PresentIdKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::PRESENT_ID_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::PresentIdKHR<'static>, u32) -> vk::PresentIdKHR<'static> =
@@ -6505,7 +7916,15 @@ fn vk_present_id_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_present_id2_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePresentId2FeaturesKHR<'static> =
+		vk::PhysicalDevicePresentId2FeaturesKHR::new;
 	let value = vk::PhysicalDevicePresentId2FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePresentId2FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PRESENT_ID_2_FEATURES_KHR
@@ -6520,7 +7939,11 @@ fn vk_physical_device_present_id2_features_khr_construction_contract() {
 
 #[test]
 fn vk_present_id2_khr_construction_contract() {
+	let _: fn() -> vk::PresentId2KHR<'static> = vk::PresentId2KHR::new;
 	let value = vk::PresentId2KHR::default();
+	assert_eq!(value.s_type, vk::StructureType::PRESENT_ID_2_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::PresentId2KHR::new();
 	assert_eq!(value.s_type, vk::StructureType::PRESENT_ID_2_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::PresentId2KHR<'static>, u32) -> vk::PresentId2KHR<'static> =
@@ -6534,7 +7957,11 @@ fn vk_present_id2_khr_construction_contract() {
 
 #[test]
 fn vk_present_wait2_info_khr_construction_contract() {
+	let _: fn() -> vk::PresentWait2InfoKHR<'static> = vk::PresentWait2InfoKHR::new;
 	let value = vk::PresentWait2InfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::PRESENT_WAIT_2_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::PresentWait2InfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::PRESENT_WAIT_2_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::PresentWait2InfoKHR<'static>, u64) -> vk::PresentWait2InfoKHR<'static> =
@@ -6545,7 +7972,15 @@ fn vk_present_wait2_info_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_present_wait_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePresentWaitFeaturesKHR<'static> =
+		vk::PhysicalDevicePresentWaitFeaturesKHR::new;
 	let value = vk::PhysicalDevicePresentWaitFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePresentWaitFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR
@@ -6560,7 +7995,15 @@ fn vk_physical_device_present_wait_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_present_wait2_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePresentWait2FeaturesKHR<'static> =
+		vk::PhysicalDevicePresentWait2FeaturesKHR::new;
 	let value = vk::PhysicalDevicePresentWait2FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_2_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePresentWait2FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PRESENT_WAIT_2_FEATURES_KHR
@@ -6575,7 +8018,15 @@ fn vk_physical_device_present_wait2_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_present_timing_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePresentTimingFeaturesEXT<'static> =
+		vk::PhysicalDevicePresentTimingFeaturesEXT::new;
 	let value = vk::PhysicalDevicePresentTimingFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PRESENT_TIMING_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePresentTimingFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PRESENT_TIMING_FEATURES_EXT
@@ -6600,7 +8051,15 @@ fn vk_physical_device_present_timing_features_ext_construction_contract() {
 
 #[test]
 fn vk_present_timing_surface_capabilities_ext_construction_contract() {
+	let _: fn() -> vk::PresentTimingSurfaceCapabilitiesEXT<'static> =
+		vk::PresentTimingSurfaceCapabilitiesEXT::new;
 	let value = vk::PresentTimingSurfaceCapabilitiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PRESENT_TIMING_SURFACE_CAPABILITIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PresentTimingSurfaceCapabilitiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PRESENT_TIMING_SURFACE_CAPABILITIES_EXT
@@ -6630,7 +8089,14 @@ fn vk_present_timing_surface_capabilities_ext_construction_contract() {
 
 #[test]
 fn vk_swapchain_timing_properties_ext_construction_contract() {
+	let _: fn() -> vk::SwapchainTimingPropertiesEXT<'static> = vk::SwapchainTimingPropertiesEXT::new;
 	let value = vk::SwapchainTimingPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SWAPCHAIN_TIMING_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SwapchainTimingPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SWAPCHAIN_TIMING_PROPERTIES_EXT
@@ -6650,7 +8116,15 @@ fn vk_swapchain_timing_properties_ext_construction_contract() {
 
 #[test]
 fn vk_swapchain_time_domain_properties_ext_construction_contract() {
+	let _: fn() -> vk::SwapchainTimeDomainPropertiesEXT<'static> =
+		vk::SwapchainTimeDomainPropertiesEXT::new;
 	let value = vk::SwapchainTimeDomainPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SWAPCHAIN_TIME_DOMAIN_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SwapchainTimeDomainPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SWAPCHAIN_TIME_DOMAIN_PROPERTIES_EXT
@@ -6674,6 +8148,7 @@ fn vk_swapchain_time_domain_properties_ext_construction_contract() {
 
 #[test]
 fn vk_present_stage_time_ext_construction_contract() {
+	let _: fn() -> vk::PresentStageTimeEXT = vk::PresentStageTimeEXT::new;
 	let _: fn(vk::PresentStageTimeEXT, vk::PresentStageFlagsEXT) -> vk::PresentStageTimeEXT =
 		vk::PresentStageTimeEXT::set_stage;
 	let _: fn(vk::PresentStageTimeEXT, u64) -> vk::PresentStageTimeEXT =
@@ -6682,7 +8157,15 @@ fn vk_present_stage_time_ext_construction_contract() {
 
 #[test]
 fn vk_past_presentation_timing_info_ext_construction_contract() {
+	let _: fn() -> vk::PastPresentationTimingInfoEXT<'static> =
+		vk::PastPresentationTimingInfoEXT::new;
 	let value = vk::PastPresentationTimingInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PAST_PRESENTATION_TIMING_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PastPresentationTimingInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PAST_PRESENTATION_TIMING_INFO_EXT
@@ -6700,7 +8183,15 @@ fn vk_past_presentation_timing_info_ext_construction_contract() {
 
 #[test]
 fn vk_past_presentation_timing_properties_ext_construction_contract() {
+	let _: fn() -> vk::PastPresentationTimingPropertiesEXT<'static> =
+		vk::PastPresentationTimingPropertiesEXT::new;
 	let value = vk::PastPresentationTimingPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PAST_PRESENTATION_TIMING_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PastPresentationTimingPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PAST_PRESENTATION_TIMING_PROPERTIES_EXT
@@ -6732,7 +8223,14 @@ fn vk_past_presentation_timing_properties_ext_construction_contract() {
 
 #[test]
 fn vk_past_presentation_timing_ext_construction_contract() {
+	let _: fn() -> vk::PastPresentationTimingEXT<'static> = vk::PastPresentationTimingEXT::new;
 	let value = vk::PastPresentationTimingEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PAST_PRESENTATION_TIMING_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PastPresentationTimingEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PAST_PRESENTATION_TIMING_EXT
@@ -6764,7 +8262,11 @@ fn vk_past_presentation_timing_ext_construction_contract() {
 
 #[test]
 fn vk_present_timings_info_ext_construction_contract() {
+	let _: fn() -> vk::PresentTimingsInfoEXT<'static> = vk::PresentTimingsInfoEXT::new;
 	let value = vk::PresentTimingsInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::PRESENT_TIMINGS_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::PresentTimingsInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::PRESENT_TIMINGS_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::PresentTimingsInfoEXT<'static>, u32) -> vk::PresentTimingsInfoEXT<'static> =
@@ -6778,7 +8280,11 @@ fn vk_present_timings_info_ext_construction_contract() {
 
 #[test]
 fn vk_present_timing_info_ext_construction_contract() {
+	let _: fn() -> vk::PresentTimingInfoEXT<'static> = vk::PresentTimingInfoEXT::new;
 	let value = vk::PresentTimingInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::PRESENT_TIMING_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::PresentTimingInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::PRESENT_TIMING_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -6802,7 +8308,15 @@ fn vk_present_timing_info_ext_construction_contract() {
 
 #[test]
 fn vk_swapchain_calibrated_timestamp_info_ext_construction_contract() {
+	let _: fn() -> vk::SwapchainCalibratedTimestampInfoEXT<'static> =
+		vk::SwapchainCalibratedTimestampInfoEXT::new;
 	let value = vk::SwapchainCalibratedTimestampInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SWAPCHAIN_CALIBRATED_TIMESTAMP_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SwapchainCalibratedTimestampInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SWAPCHAIN_CALIBRATED_TIMESTAMP_INFO_EXT
@@ -6827,7 +8341,11 @@ fn vk_swapchain_calibrated_timestamp_info_ext_construction_contract() {
 
 #[test]
 fn vk_hdr_metadata_ext_construction_contract() {
+	let _: fn() -> vk::HdrMetadataEXT<'static> = vk::HdrMetadataEXT::new;
 	let value = vk::HdrMetadataEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::HDR_METADATA_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::HdrMetadataEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::HDR_METADATA_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::HdrMetadataEXT<'static>, vk::XYColorEXT) -> vk::HdrMetadataEXT<'static> =
@@ -6850,7 +8368,15 @@ fn vk_hdr_metadata_ext_construction_contract() {
 
 #[test]
 fn vk_hdr_vivid_dynamic_metadata_huawei_construction_contract() {
+	let _: fn() -> vk::HdrVividDynamicMetadataHUAWEI<'static> =
+		vk::HdrVividDynamicMetadataHUAWEI::new;
 	let value = vk::HdrVividDynamicMetadataHUAWEI::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::HDR_VIVID_DYNAMIC_METADATA_HUAWEI
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::HdrVividDynamicMetadataHUAWEI::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::HDR_VIVID_DYNAMIC_METADATA_HUAWEI
@@ -6872,7 +8398,15 @@ fn vk_hdr_vivid_dynamic_metadata_huawei_construction_contract() {
 
 #[test]
 fn vk_display_native_hdr_surface_capabilities_amd_construction_contract() {
+	let _: fn() -> vk::DisplayNativeHdrSurfaceCapabilitiesAMD<'static> =
+		vk::DisplayNativeHdrSurfaceCapabilitiesAMD::new;
 	let value = vk::DisplayNativeHdrSurfaceCapabilitiesAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DisplayNativeHdrSurfaceCapabilitiesAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD
@@ -6887,7 +8421,15 @@ fn vk_display_native_hdr_surface_capabilities_amd_construction_contract() {
 
 #[test]
 fn vk_swapchain_display_native_hdr_create_info_amd_construction_contract() {
+	let _: fn() -> vk::SwapchainDisplayNativeHdrCreateInfoAMD<'static> =
+		vk::SwapchainDisplayNativeHdrCreateInfoAMD::new;
 	let value = vk::SwapchainDisplayNativeHdrCreateInfoAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SwapchainDisplayNativeHdrCreateInfoAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD
@@ -6902,12 +8444,14 @@ fn vk_swapchain_display_native_hdr_create_info_amd_construction_contract() {
 
 #[test]
 fn vk_refresh_cycle_duration_google_construction_contract() {
+	let _: fn() -> vk::RefreshCycleDurationGOOGLE = vk::RefreshCycleDurationGOOGLE::new;
 	let _: fn(vk::RefreshCycleDurationGOOGLE, u64) -> vk::RefreshCycleDurationGOOGLE =
 		vk::RefreshCycleDurationGOOGLE::set_refresh_duration;
 }
 
 #[test]
 fn vk_past_presentation_timing_google_construction_contract() {
+	let _: fn() -> vk::PastPresentationTimingGOOGLE = vk::PastPresentationTimingGOOGLE::new;
 	let _: fn(vk::PastPresentationTimingGOOGLE, u32) -> vk::PastPresentationTimingGOOGLE =
 		vk::PastPresentationTimingGOOGLE::set_present_id;
 	let _: fn(vk::PastPresentationTimingGOOGLE, u64) -> vk::PastPresentationTimingGOOGLE =
@@ -6922,7 +8466,11 @@ fn vk_past_presentation_timing_google_construction_contract() {
 
 #[test]
 fn vk_present_times_info_google_construction_contract() {
+	let _: fn() -> vk::PresentTimesInfoGOOGLE<'static> = vk::PresentTimesInfoGOOGLE::new;
 	let value = vk::PresentTimesInfoGOOGLE::default();
+	assert_eq!(value.s_type, vk::StructureType::PRESENT_TIMES_INFO_GOOGLE);
+	assert!(value.p_next.is_null());
+	let value = vk::PresentTimesInfoGOOGLE::new();
 	assert_eq!(value.s_type, vk::StructureType::PRESENT_TIMES_INFO_GOOGLE);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::PresentTimesInfoGOOGLE<'static>, u32) -> vk::PresentTimesInfoGOOGLE<'static> =
@@ -6936,6 +8484,7 @@ fn vk_present_times_info_google_construction_contract() {
 
 #[test]
 fn vk_present_time_google_construction_contract() {
+	let _: fn() -> vk::PresentTimeGOOGLE = vk::PresentTimeGOOGLE::new;
 	let _: fn(vk::PresentTimeGOOGLE, u32) -> vk::PresentTimeGOOGLE =
 		vk::PresentTimeGOOGLE::set_present_id;
 	let _: fn(vk::PresentTimeGOOGLE, u64) -> vk::PresentTimeGOOGLE =
@@ -6945,7 +8494,11 @@ fn vk_present_time_google_construction_contract() {
 #[cfg(feature = "platform-ios")]
 #[test]
 fn vk_ios_surface_create_info_mvk_construction_contract() {
+	let _: fn() -> vk::IOSSurfaceCreateInfoMVK<'static> = vk::IOSSurfaceCreateInfoMVK::new;
 	let value = vk::IOSSurfaceCreateInfoMVK::default();
+	assert_eq!(value.s_type, vk::StructureType::IOS_SURFACE_CREATE_INFO_MVK);
+	assert!(value.p_next.is_null());
+	let value = vk::IOSSurfaceCreateInfoMVK::new();
 	assert_eq!(value.s_type, vk::StructureType::IOS_SURFACE_CREATE_INFO_MVK);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -6961,7 +8514,14 @@ fn vk_ios_surface_create_info_mvk_construction_contract() {
 #[cfg(feature = "platform-macos")]
 #[test]
 fn vk_mac_os_surface_create_info_mvk_construction_contract() {
+	let _: fn() -> vk::MacOSSurfaceCreateInfoMVK<'static> = vk::MacOSSurfaceCreateInfoMVK::new;
 	let value = vk::MacOSSurfaceCreateInfoMVK::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MACOS_SURFACE_CREATE_INFO_MVK
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MacOSSurfaceCreateInfoMVK::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MACOS_SURFACE_CREATE_INFO_MVK
@@ -6980,7 +8540,14 @@ fn vk_mac_os_surface_create_info_mvk_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_metal_surface_create_info_ext_construction_contract() {
+	let _: fn() -> vk::MetalSurfaceCreateInfoEXT<'static> = vk::MetalSurfaceCreateInfoEXT::new;
 	let value = vk::MetalSurfaceCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::METAL_SURFACE_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MetalSurfaceCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::METAL_SURFACE_CREATE_INFO_EXT
@@ -6998,6 +8565,7 @@ fn vk_metal_surface_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_viewport_w_scaling_nv_construction_contract() {
+	let _: fn() -> vk::ViewportWScalingNV = vk::ViewportWScalingNV::new;
 	let _: fn(vk::ViewportWScalingNV, f32) -> vk::ViewportWScalingNV =
 		vk::ViewportWScalingNV::set_xcoeff;
 	let _: fn(vk::ViewportWScalingNV, f32) -> vk::ViewportWScalingNV =
@@ -7006,7 +8574,15 @@ fn vk_viewport_w_scaling_nv_construction_contract() {
 
 #[test]
 fn vk_pipeline_viewport_w_scaling_state_create_info_nv_construction_contract() {
+	let _: fn() -> vk::PipelineViewportWScalingStateCreateInfoNV<'static> =
+		vk::PipelineViewportWScalingStateCreateInfoNV::new;
 	let value = vk::PipelineViewportWScalingStateCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineViewportWScalingStateCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV
@@ -7033,6 +8609,7 @@ fn vk_pipeline_viewport_w_scaling_state_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_viewport_swizzle_nv_construction_contract() {
+	let _: fn() -> vk::ViewportSwizzleNV = vk::ViewportSwizzleNV::new;
 	let _: fn(vk::ViewportSwizzleNV, vk::ViewportCoordinateSwizzleNV) -> vk::ViewportSwizzleNV =
 		vk::ViewportSwizzleNV::set_x;
 	let _: fn(vk::ViewportSwizzleNV, vk::ViewportCoordinateSwizzleNV) -> vk::ViewportSwizzleNV =
@@ -7045,7 +8622,15 @@ fn vk_viewport_swizzle_nv_construction_contract() {
 
 #[test]
 fn vk_pipeline_viewport_swizzle_state_create_info_nv_construction_contract() {
+	let _: fn() -> vk::PipelineViewportSwizzleStateCreateInfoNV<'static> =
+		vk::PipelineViewportSwizzleStateCreateInfoNV::new;
 	let value = vk::PipelineViewportSwizzleStateCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineViewportSwizzleStateCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV
@@ -7072,7 +8657,15 @@ fn vk_pipeline_viewport_swizzle_state_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_discard_rectangle_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDiscardRectanglePropertiesEXT<'static> =
+		vk::PhysicalDeviceDiscardRectanglePropertiesEXT::new;
 	let value = vk::PhysicalDeviceDiscardRectanglePropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDiscardRectanglePropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT
@@ -7087,7 +8680,15 @@ fn vk_physical_device_discard_rectangle_properties_ext_construction_contract() {
 
 #[test]
 fn vk_pipeline_discard_rectangle_state_create_info_ext_construction_contract() {
+	let _: fn() -> vk::PipelineDiscardRectangleStateCreateInfoEXT<'static> =
+		vk::PipelineDiscardRectangleStateCreateInfoEXT::new;
 	let value = vk::PipelineDiscardRectangleStateCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineDiscardRectangleStateCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT
@@ -7119,7 +8720,15 @@ fn vk_pipeline_discard_rectangle_state_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_multiview_per_view_attributes_properties_nvx_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX<'static> =
+		vk::PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX::new;
 	let value = vk::PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX
@@ -7134,6 +8743,7 @@ fn vk_physical_device_multiview_per_view_attributes_properties_nvx_construction_
 
 #[test]
 fn vk_input_attachment_aspect_reference_construction_contract() {
+	let _: fn() -> vk::InputAttachmentAspectReference = vk::InputAttachmentAspectReference::new;
 	let _: fn(vk::InputAttachmentAspectReference, u32) -> vk::InputAttachmentAspectReference =
 		vk::InputAttachmentAspectReference::set_subpass;
 	let _: fn(vk::InputAttachmentAspectReference, u32) -> vk::InputAttachmentAspectReference =
@@ -7146,7 +8756,15 @@ fn vk_input_attachment_aspect_reference_construction_contract() {
 
 #[test]
 fn vk_render_pass_input_attachment_aspect_create_info_construction_contract() {
+	let _: fn() -> vk::RenderPassInputAttachmentAspectCreateInfo<'static> =
+		vk::RenderPassInputAttachmentAspectCreateInfo::new;
 	let value = vk::RenderPassInputAttachmentAspectCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassInputAttachmentAspectCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO
@@ -7168,7 +8786,15 @@ fn vk_render_pass_input_attachment_aspect_create_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_surface_info2_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSurfaceInfo2KHR<'static> =
+		vk::PhysicalDeviceSurfaceInfo2KHR::new;
 	let value = vk::PhysicalDeviceSurfaceInfo2KHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SURFACE_INFO_2_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSurfaceInfo2KHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SURFACE_INFO_2_KHR
@@ -7182,7 +8808,11 @@ fn vk_physical_device_surface_info2_khr_construction_contract() {
 
 #[test]
 fn vk_surface_capabilities2_khr_construction_contract() {
+	let _: fn() -> vk::SurfaceCapabilities2KHR<'static> = vk::SurfaceCapabilities2KHR::new;
 	let value = vk::SurfaceCapabilities2KHR::default();
+	assert_eq!(value.s_type, vk::StructureType::SURFACE_CAPABILITIES_2_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::SurfaceCapabilities2KHR::new();
 	assert_eq!(value.s_type, vk::StructureType::SURFACE_CAPABILITIES_2_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -7193,7 +8823,11 @@ fn vk_surface_capabilities2_khr_construction_contract() {
 
 #[test]
 fn vk_surface_format2_khr_construction_contract() {
+	let _: fn() -> vk::SurfaceFormat2KHR<'static> = vk::SurfaceFormat2KHR::new;
 	let value = vk::SurfaceFormat2KHR::default();
+	assert_eq!(value.s_type, vk::StructureType::SURFACE_FORMAT_2_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::SurfaceFormat2KHR::new();
 	assert_eq!(value.s_type, vk::StructureType::SURFACE_FORMAT_2_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -7204,7 +8838,11 @@ fn vk_surface_format2_khr_construction_contract() {
 
 #[test]
 fn vk_display_properties2_khr_construction_contract() {
+	let _: fn() -> vk::DisplayProperties2KHR<'static> = vk::DisplayProperties2KHR::new;
 	let value = vk::DisplayProperties2KHR::default();
+	assert_eq!(value.s_type, vk::StructureType::DISPLAY_PROPERTIES_2_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::DisplayProperties2KHR::new();
 	assert_eq!(value.s_type, vk::StructureType::DISPLAY_PROPERTIES_2_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -7215,7 +8853,14 @@ fn vk_display_properties2_khr_construction_contract() {
 
 #[test]
 fn vk_display_plane_properties2_khr_construction_contract() {
+	let _: fn() -> vk::DisplayPlaneProperties2KHR<'static> = vk::DisplayPlaneProperties2KHR::new;
 	let value = vk::DisplayPlaneProperties2KHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DISPLAY_PLANE_PROPERTIES_2_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DisplayPlaneProperties2KHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DISPLAY_PLANE_PROPERTIES_2_KHR
@@ -7230,7 +8875,14 @@ fn vk_display_plane_properties2_khr_construction_contract() {
 
 #[test]
 fn vk_display_mode_properties2_khr_construction_contract() {
+	let _: fn() -> vk::DisplayModeProperties2KHR<'static> = vk::DisplayModeProperties2KHR::new;
 	let value = vk::DisplayModeProperties2KHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DISPLAY_MODE_PROPERTIES_2_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DisplayModeProperties2KHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DISPLAY_MODE_PROPERTIES_2_KHR
@@ -7245,7 +8897,15 @@ fn vk_display_mode_properties2_khr_construction_contract() {
 
 #[test]
 fn vk_display_mode_stereo_properties_nv_construction_contract() {
+	let _: fn() -> vk::DisplayModeStereoPropertiesNV<'static> =
+		vk::DisplayModeStereoPropertiesNV::new;
 	let value = vk::DisplayModeStereoPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DISPLAY_MODE_STEREO_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DisplayModeStereoPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DISPLAY_MODE_STEREO_PROPERTIES_NV
@@ -7260,7 +8920,11 @@ fn vk_display_mode_stereo_properties_nv_construction_contract() {
 
 #[test]
 fn vk_display_plane_info2_khr_construction_contract() {
+	let _: fn() -> vk::DisplayPlaneInfo2KHR<'static> = vk::DisplayPlaneInfo2KHR::new;
 	let value = vk::DisplayPlaneInfo2KHR::default();
+	assert_eq!(value.s_type, vk::StructureType::DISPLAY_PLANE_INFO_2_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::DisplayPlaneInfo2KHR::new();
 	assert_eq!(value.s_type, vk::StructureType::DISPLAY_PLANE_INFO_2_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -7273,7 +8937,14 @@ fn vk_display_plane_info2_khr_construction_contract() {
 
 #[test]
 fn vk_display_plane_capabilities2_khr_construction_contract() {
+	let _: fn() -> vk::DisplayPlaneCapabilities2KHR<'static> = vk::DisplayPlaneCapabilities2KHR::new;
 	let value = vk::DisplayPlaneCapabilities2KHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DISPLAY_PLANE_CAPABILITIES_2_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DisplayPlaneCapabilities2KHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DISPLAY_PLANE_CAPABILITIES_2_KHR
@@ -7288,7 +8959,15 @@ fn vk_display_plane_capabilities2_khr_construction_contract() {
 
 #[test]
 fn vk_shared_present_surface_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::SharedPresentSurfaceCapabilitiesKHR<'static> =
+		vk::SharedPresentSurfaceCapabilitiesKHR::new;
 	let value = vk::SharedPresentSurfaceCapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SharedPresentSurfaceCapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_KHR
@@ -7303,7 +8982,15 @@ fn vk_shared_present_surface_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_swapchain_flags_surface_capabilities_ext_construction_contract() {
+	let _: fn() -> vk::SwapchainFlagsSurfaceCapabilitiesEXT<'static> =
+		vk::SwapchainFlagsSurfaceCapabilitiesEXT::new;
 	let value = vk::SwapchainFlagsSurfaceCapabilitiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SWAPCHAIN_FLAGS_SURFACE_CAPABILITIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SwapchainFlagsSurfaceCapabilitiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SWAPCHAIN_FLAGS_SURFACE_CAPABILITIES_EXT
@@ -7318,7 +9005,15 @@ fn vk_swapchain_flags_surface_capabilities_ext_construction_contract() {
 
 #[test]
 fn vk_shared_present_surface_capabilities2_khr_construction_contract() {
+	let _: fn() -> vk::SharedPresentSurfaceCapabilities2KHR<'static> =
+		vk::SharedPresentSurfaceCapabilities2KHR::new;
 	let value = vk::SharedPresentSurfaceCapabilities2KHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_2_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SharedPresentSurfaceCapabilities2KHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SHARED_PRESENT_SURFACE_CAPABILITIES_2_KHR
@@ -7333,7 +9028,15 @@ fn vk_shared_present_surface_capabilities2_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device16_bit_storage_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDevice16BitStorageFeatures<'static> =
+		vk::PhysicalDevice16BitStorageFeatures::new;
 	let value = vk::PhysicalDevice16BitStorageFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevice16BitStorageFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES
@@ -7363,7 +9066,15 @@ fn vk_physical_device16_bit_storage_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_subgroup_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSubgroupProperties<'static> =
+		vk::PhysicalDeviceSubgroupProperties::new;
 	let value = vk::PhysicalDeviceSubgroupProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SUBGROUP_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSubgroupProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SUBGROUP_PROPERTIES
@@ -7393,7 +9104,15 @@ fn vk_physical_device_subgroup_properties_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_subgroup_extended_types_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderSubgroupExtendedTypesFeatures<'static> =
+		vk::PhysicalDeviceShaderSubgroupExtendedTypesFeatures::new;
 	let value = vk::PhysicalDeviceShaderSubgroupExtendedTypesFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderSubgroupExtendedTypesFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES
@@ -7408,7 +9127,15 @@ fn vk_physical_device_shader_subgroup_extended_types_features_construction_contr
 
 #[test]
 fn vk_buffer_memory_requirements_info2_construction_contract() {
+	let _: fn() -> vk::BufferMemoryRequirementsInfo2<'static> =
+		vk::BufferMemoryRequirementsInfo2::new;
 	let value = vk::BufferMemoryRequirementsInfo2::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BUFFER_MEMORY_REQUIREMENTS_INFO_2
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferMemoryRequirementsInfo2::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BUFFER_MEMORY_REQUIREMENTS_INFO_2
@@ -7422,7 +9149,15 @@ fn vk_buffer_memory_requirements_info2_construction_contract() {
 
 #[test]
 fn vk_device_buffer_memory_requirements_construction_contract() {
+	let _: fn() -> vk::DeviceBufferMemoryRequirements<'static> =
+		vk::DeviceBufferMemoryRequirements::new;
 	let value = vk::DeviceBufferMemoryRequirements::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_BUFFER_MEMORY_REQUIREMENTS
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceBufferMemoryRequirements::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_BUFFER_MEMORY_REQUIREMENTS
@@ -7437,7 +9172,14 @@ fn vk_device_buffer_memory_requirements_construction_contract() {
 
 #[test]
 fn vk_image_memory_requirements_info2_construction_contract() {
+	let _: fn() -> vk::ImageMemoryRequirementsInfo2<'static> = vk::ImageMemoryRequirementsInfo2::new;
 	let value = vk::ImageMemoryRequirementsInfo2::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_MEMORY_REQUIREMENTS_INFO_2
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageMemoryRequirementsInfo2::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_MEMORY_REQUIREMENTS_INFO_2
@@ -7451,7 +9193,15 @@ fn vk_image_memory_requirements_info2_construction_contract() {
 
 #[test]
 fn vk_image_sparse_memory_requirements_info2_construction_contract() {
+	let _: fn() -> vk::ImageSparseMemoryRequirementsInfo2<'static> =
+		vk::ImageSparseMemoryRequirementsInfo2::new;
 	let value = vk::ImageSparseMemoryRequirementsInfo2::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageSparseMemoryRequirementsInfo2::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2
@@ -7466,7 +9216,15 @@ fn vk_image_sparse_memory_requirements_info2_construction_contract() {
 
 #[test]
 fn vk_device_image_memory_requirements_construction_contract() {
+	let _: fn() -> vk::DeviceImageMemoryRequirements<'static> =
+		vk::DeviceImageMemoryRequirements::new;
 	let value = vk::DeviceImageMemoryRequirements::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_IMAGE_MEMORY_REQUIREMENTS
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceImageMemoryRequirements::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_IMAGE_MEMORY_REQUIREMENTS
@@ -7486,7 +9244,11 @@ fn vk_device_image_memory_requirements_construction_contract() {
 
 #[test]
 fn vk_memory_requirements2_construction_contract() {
+	let _: fn() -> vk::MemoryRequirements2<'static> = vk::MemoryRequirements2::new;
 	let value = vk::MemoryRequirements2::default();
+	assert_eq!(value.s_type, vk::StructureType::MEMORY_REQUIREMENTS_2);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryRequirements2::new();
 	assert_eq!(value.s_type, vk::StructureType::MEMORY_REQUIREMENTS_2);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -7497,7 +9259,15 @@ fn vk_memory_requirements2_construction_contract() {
 
 #[test]
 fn vk_sparse_image_memory_requirements2_construction_contract() {
+	let _: fn() -> vk::SparseImageMemoryRequirements2<'static> =
+		vk::SparseImageMemoryRequirements2::new;
 	let value = vk::SparseImageMemoryRequirements2::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SPARSE_IMAGE_MEMORY_REQUIREMENTS_2
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SparseImageMemoryRequirements2::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SPARSE_IMAGE_MEMORY_REQUIREMENTS_2
@@ -7512,7 +9282,15 @@ fn vk_sparse_image_memory_requirements2_construction_contract() {
 
 #[test]
 fn vk_physical_device_point_clipping_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePointClippingProperties<'static> =
+		vk::PhysicalDevicePointClippingProperties::new;
 	let value = vk::PhysicalDevicePointClippingProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePointClippingProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES
@@ -7527,7 +9305,14 @@ fn vk_physical_device_point_clipping_properties_construction_contract() {
 
 #[test]
 fn vk_memory_dedicated_requirements_construction_contract() {
+	let _: fn() -> vk::MemoryDedicatedRequirements<'static> = vk::MemoryDedicatedRequirements::new;
 	let value = vk::MemoryDedicatedRequirements::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_DEDICATED_REQUIREMENTS
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryDedicatedRequirements::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_DEDICATED_REQUIREMENTS
@@ -7547,7 +9332,14 @@ fn vk_memory_dedicated_requirements_construction_contract() {
 
 #[test]
 fn vk_memory_dedicated_allocate_info_construction_contract() {
+	let _: fn() -> vk::MemoryDedicatedAllocateInfo<'static> = vk::MemoryDedicatedAllocateInfo::new;
 	let value = vk::MemoryDedicatedAllocateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_DEDICATED_ALLOCATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryDedicatedAllocateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_DEDICATED_ALLOCATE_INFO
@@ -7565,7 +9357,14 @@ fn vk_memory_dedicated_allocate_info_construction_contract() {
 
 #[test]
 fn vk_image_view_usage_create_info_construction_contract() {
+	let _: fn() -> vk::ImageViewUsageCreateInfo<'static> = vk::ImageViewUsageCreateInfo::new;
 	let value = vk::ImageViewUsageCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_VIEW_USAGE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageViewUsageCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_VIEW_USAGE_CREATE_INFO
@@ -7579,7 +9378,14 @@ fn vk_image_view_usage_create_info_construction_contract() {
 
 #[test]
 fn vk_image_view_usage2_create_info_khr_construction_contract() {
+	let _: fn() -> vk::ImageViewUsage2CreateInfoKHR<'static> = vk::ImageViewUsage2CreateInfoKHR::new;
 	let value = vk::ImageViewUsage2CreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_VIEW_USAGE_2_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageViewUsage2CreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_VIEW_USAGE_2_CREATE_INFO_KHR
@@ -7593,7 +9399,14 @@ fn vk_image_view_usage2_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_image_view_sliced_create_info_ext_construction_contract() {
+	let _: fn() -> vk::ImageViewSlicedCreateInfoEXT<'static> = vk::ImageViewSlicedCreateInfoEXT::new;
 	let value = vk::ImageViewSlicedCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_VIEW_SLICED_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageViewSlicedCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_VIEW_SLICED_CREATE_INFO_EXT
@@ -7612,7 +9425,15 @@ fn vk_image_view_sliced_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_pipeline_tessellation_domain_origin_state_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineTessellationDomainOriginStateCreateInfo<'static> =
+		vk::PipelineTessellationDomainOriginStateCreateInfo::new;
 	let value = vk::PipelineTessellationDomainOriginStateCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineTessellationDomainOriginStateCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO
@@ -7627,7 +9448,14 @@ fn vk_pipeline_tessellation_domain_origin_state_create_info_construction_contrac
 
 #[test]
 fn vk_sampler_ycbcr_conversion_info_construction_contract() {
+	let _: fn() -> vk::SamplerYcbcrConversionInfo<'static> = vk::SamplerYcbcrConversionInfo::new;
 	let value = vk::SamplerYcbcrConversionInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SAMPLER_YCBCR_CONVERSION_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SamplerYcbcrConversionInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SAMPLER_YCBCR_CONVERSION_INFO
@@ -7641,7 +9469,15 @@ fn vk_sampler_ycbcr_conversion_info_construction_contract() {
 
 #[test]
 fn vk_sampler_ycbcr_conversion_create_info_construction_contract() {
+	let _: fn() -> vk::SamplerYcbcrConversionCreateInfo<'static> =
+		vk::SamplerYcbcrConversionCreateInfo::new;
 	let value = vk::SamplerYcbcrConversionCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SAMPLER_YCBCR_CONVERSION_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SamplerYcbcrConversionCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SAMPLER_YCBCR_CONVERSION_CREATE_INFO
@@ -7691,7 +9527,14 @@ fn vk_sampler_ycbcr_conversion_create_info_construction_contract() {
 
 #[test]
 fn vk_bind_image_plane_memory_info_construction_contract() {
+	let _: fn() -> vk::BindImagePlaneMemoryInfo<'static> = vk::BindImagePlaneMemoryInfo::new;
 	let value = vk::BindImagePlaneMemoryInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BIND_IMAGE_PLANE_MEMORY_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BindImagePlaneMemoryInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BIND_IMAGE_PLANE_MEMORY_INFO
@@ -7705,7 +9548,15 @@ fn vk_bind_image_plane_memory_info_construction_contract() {
 
 #[test]
 fn vk_image_plane_memory_requirements_info_construction_contract() {
+	let _: fn() -> vk::ImagePlaneMemoryRequirementsInfo<'static> =
+		vk::ImagePlaneMemoryRequirementsInfo::new;
 	let value = vk::ImagePlaneMemoryRequirementsInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImagePlaneMemoryRequirementsInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO
@@ -7720,7 +9571,15 @@ fn vk_image_plane_memory_requirements_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_sampler_ycbcr_conversion_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSamplerYcbcrConversionFeatures<'static> =
+		vk::PhysicalDeviceSamplerYcbcrConversionFeatures::new;
 	let value = vk::PhysicalDeviceSamplerYcbcrConversionFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSamplerYcbcrConversionFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES
@@ -7735,7 +9594,15 @@ fn vk_physical_device_sampler_ycbcr_conversion_features_construction_contract() 
 
 #[test]
 fn vk_sampler_ycbcr_conversion_image_format_properties_construction_contract() {
+	let _: fn() -> vk::SamplerYcbcrConversionImageFormatProperties<'static> =
+		vk::SamplerYcbcrConversionImageFormatProperties::new;
 	let value = vk::SamplerYcbcrConversionImageFormatProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SamplerYcbcrConversionImageFormatProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES
@@ -7750,7 +9617,15 @@ fn vk_sampler_ycbcr_conversion_image_format_properties_construction_contract() {
 
 #[test]
 fn vk_texture_lod_gather_format_properties_amd_construction_contract() {
+	let _: fn() -> vk::TextureLODGatherFormatPropertiesAMD<'static> =
+		vk::TextureLODGatherFormatPropertiesAMD::new;
 	let value = vk::TextureLODGatherFormatPropertiesAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::TextureLODGatherFormatPropertiesAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD
@@ -7765,7 +9640,15 @@ fn vk_texture_lod_gather_format_properties_amd_construction_contract() {
 
 #[test]
 fn vk_conditional_rendering_begin_info_ext_construction_contract() {
+	let _: fn() -> vk::ConditionalRenderingBeginInfoEXT<'static> =
+		vk::ConditionalRenderingBeginInfoEXT::new;
 	let value = vk::ConditionalRenderingBeginInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::CONDITIONAL_RENDERING_BEGIN_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ConditionalRenderingBeginInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::CONDITIONAL_RENDERING_BEGIN_INFO_EXT
@@ -7790,7 +9673,11 @@ fn vk_conditional_rendering_begin_info_ext_construction_contract() {
 
 #[test]
 fn vk_protected_submit_info_construction_contract() {
+	let _: fn() -> vk::ProtectedSubmitInfo<'static> = vk::ProtectedSubmitInfo::new;
 	let value = vk::ProtectedSubmitInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::PROTECTED_SUBMIT_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::ProtectedSubmitInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::PROTECTED_SUBMIT_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::ProtectedSubmitInfo<'static>, vk::Bool32) -> vk::ProtectedSubmitInfo<'static> =
@@ -7799,7 +9686,15 @@ fn vk_protected_submit_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_protected_memory_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceProtectedMemoryFeatures<'static> =
+		vk::PhysicalDeviceProtectedMemoryFeatures::new;
 	let value = vk::PhysicalDeviceProtectedMemoryFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PROTECTED_MEMORY_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceProtectedMemoryFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PROTECTED_MEMORY_FEATURES
@@ -7814,7 +9709,15 @@ fn vk_physical_device_protected_memory_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_protected_memory_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceProtectedMemoryProperties<'static> =
+		vk::PhysicalDeviceProtectedMemoryProperties::new;
 	let value = vk::PhysicalDeviceProtectedMemoryProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PROTECTED_MEMORY_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceProtectedMemoryProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PROTECTED_MEMORY_PROPERTIES
@@ -7829,7 +9732,11 @@ fn vk_physical_device_protected_memory_properties_construction_contract() {
 
 #[test]
 fn vk_device_queue_info2_construction_contract() {
+	let _: fn() -> vk::DeviceQueueInfo2<'static> = vk::DeviceQueueInfo2::new;
 	let value = vk::DeviceQueueInfo2::default();
+	assert_eq!(value.s_type, vk::StructureType::DEVICE_QUEUE_INFO_2);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceQueueInfo2::new();
 	assert_eq!(value.s_type, vk::StructureType::DEVICE_QUEUE_INFO_2);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -7844,7 +9751,15 @@ fn vk_device_queue_info2_construction_contract() {
 
 #[test]
 fn vk_pipeline_coverage_to_color_state_create_info_nv_construction_contract() {
+	let _: fn() -> vk::PipelineCoverageToColorStateCreateInfoNV<'static> =
+		vk::PipelineCoverageToColorStateCreateInfoNV::new;
 	let value = vk::PipelineCoverageToColorStateCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineCoverageToColorStateCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV
@@ -7869,7 +9784,15 @@ fn vk_pipeline_coverage_to_color_state_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_sampler_filter_minmax_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSamplerFilterMinmaxProperties<'static> =
+		vk::PhysicalDeviceSamplerFilterMinmaxProperties::new;
 	let value = vk::PhysicalDeviceSamplerFilterMinmaxProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSamplerFilterMinmaxProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES
@@ -7889,13 +9812,18 @@ fn vk_physical_device_sampler_filter_minmax_properties_construction_contract() {
 
 #[test]
 fn vk_sample_location_ext_construction_contract() {
+	let _: fn() -> vk::SampleLocationEXT = vk::SampleLocationEXT::new;
 	let _: fn(vk::SampleLocationEXT, f32) -> vk::SampleLocationEXT = vk::SampleLocationEXT::set_x;
 	let _: fn(vk::SampleLocationEXT, f32) -> vk::SampleLocationEXT = vk::SampleLocationEXT::set_y;
 }
 
 #[test]
 fn vk_sample_locations_info_ext_construction_contract() {
+	let _: fn() -> vk::SampleLocationsInfoEXT<'static> = vk::SampleLocationsInfoEXT::new;
 	let value = vk::SampleLocationsInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::SAMPLE_LOCATIONS_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::SampleLocationsInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::SAMPLE_LOCATIONS_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -7919,6 +9847,7 @@ fn vk_sample_locations_info_ext_construction_contract() {
 
 #[test]
 fn vk_attachment_sample_locations_ext_construction_contract() {
+	let _: fn() -> vk::AttachmentSampleLocationsEXT<'static> = vk::AttachmentSampleLocationsEXT::new;
 	let _: fn(
 		vk::AttachmentSampleLocationsEXT<'static>,
 		u32,
@@ -7933,6 +9862,7 @@ fn vk_attachment_sample_locations_ext_construction_contract() {
 
 #[test]
 fn vk_subpass_sample_locations_ext_construction_contract() {
+	let _: fn() -> vk::SubpassSampleLocationsEXT<'static> = vk::SubpassSampleLocationsEXT::new;
 	let _: fn(vk::SubpassSampleLocationsEXT<'static>, u32) -> vk::SubpassSampleLocationsEXT<'static> =
 		vk::SubpassSampleLocationsEXT::set_subpass_index;
 	let _: fn(
@@ -7944,7 +9874,15 @@ fn vk_subpass_sample_locations_ext_construction_contract() {
 
 #[test]
 fn vk_render_pass_sample_locations_begin_info_ext_construction_contract() {
+	let _: fn() -> vk::RenderPassSampleLocationsBeginInfoEXT<'static> =
+		vk::RenderPassSampleLocationsBeginInfoEXT::new;
 	let value = vk::RenderPassSampleLocationsBeginInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassSampleLocationsBeginInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT
@@ -7978,7 +9916,15 @@ fn vk_render_pass_sample_locations_begin_info_ext_construction_contract() {
 
 #[test]
 fn vk_pipeline_sample_locations_state_create_info_ext_construction_contract() {
+	let _: fn() -> vk::PipelineSampleLocationsStateCreateInfoEXT<'static> =
+		vk::PipelineSampleLocationsStateCreateInfoEXT::new;
 	let value = vk::PipelineSampleLocationsStateCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineSampleLocationsStateCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT
@@ -7998,7 +9944,15 @@ fn vk_pipeline_sample_locations_state_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_sample_locations_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSampleLocationsPropertiesEXT<'static> =
+		vk::PhysicalDeviceSampleLocationsPropertiesEXT::new;
 	let value = vk::PhysicalDeviceSampleLocationsPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSampleLocationsPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT
@@ -8033,7 +9987,11 @@ fn vk_physical_device_sample_locations_properties_ext_construction_contract() {
 
 #[test]
 fn vk_multisample_properties_ext_construction_contract() {
+	let _: fn() -> vk::MultisamplePropertiesEXT<'static> = vk::MultisamplePropertiesEXT::new;
 	let value = vk::MultisamplePropertiesEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::MULTISAMPLE_PROPERTIES_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::MultisamplePropertiesEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::MULTISAMPLE_PROPERTIES_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -8045,7 +10003,15 @@ fn vk_multisample_properties_ext_construction_contract() {
 
 #[test]
 fn vk_sampler_reduction_mode_create_info_construction_contract() {
+	let _: fn() -> vk::SamplerReductionModeCreateInfo<'static> =
+		vk::SamplerReductionModeCreateInfo::new;
 	let value = vk::SamplerReductionModeCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SAMPLER_REDUCTION_MODE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SamplerReductionModeCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SAMPLER_REDUCTION_MODE_CREATE_INFO
@@ -8060,7 +10026,15 @@ fn vk_sampler_reduction_mode_create_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_blend_operation_advanced_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'static> =
+		vk::PhysicalDeviceBlendOperationAdvancedFeaturesEXT::new;
 	let value = vk::PhysicalDeviceBlendOperationAdvancedFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceBlendOperationAdvancedFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT
@@ -8075,7 +10049,15 @@ fn vk_physical_device_blend_operation_advanced_features_ext_construction_contrac
 
 #[test]
 fn vk_physical_device_multi_draw_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMultiDrawFeaturesEXT<'static> =
+		vk::PhysicalDeviceMultiDrawFeaturesEXT::new;
 	let value = vk::PhysicalDeviceMultiDrawFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMultiDrawFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT
@@ -8090,7 +10072,15 @@ fn vk_physical_device_multi_draw_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_blend_operation_advanced_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'static> =
+		vk::PhysicalDeviceBlendOperationAdvancedPropertiesEXT::new;
 	let value = vk::PhysicalDeviceBlendOperationAdvancedPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceBlendOperationAdvancedPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT
@@ -8122,7 +10112,15 @@ fn vk_physical_device_blend_operation_advanced_properties_ext_construction_contr
 
 #[test]
 fn vk_pipeline_color_blend_advanced_state_create_info_ext_construction_contract() {
+	let _: fn() -> vk::PipelineColorBlendAdvancedStateCreateInfoEXT<'static> =
+		vk::PipelineColorBlendAdvancedStateCreateInfoEXT::new;
 	let value = vk::PipelineColorBlendAdvancedStateCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineColorBlendAdvancedStateCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT
@@ -8147,7 +10145,15 @@ fn vk_pipeline_color_blend_advanced_state_create_info_ext_construction_contract(
 
 #[test]
 fn vk_physical_device_inline_uniform_block_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceInlineUniformBlockFeatures<'static> =
+		vk::PhysicalDeviceInlineUniformBlockFeatures::new;
 	let value = vk::PhysicalDeviceInlineUniformBlockFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceInlineUniformBlockFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES
@@ -8163,7 +10169,15 @@ fn vk_physical_device_inline_uniform_block_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_inline_uniform_block_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceInlineUniformBlockProperties<'static> =
+		vk::PhysicalDeviceInlineUniformBlockProperties::new;
 	let value = vk::PhysicalDeviceInlineUniformBlockProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceInlineUniformBlockProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES
@@ -8186,7 +10200,15 @@ fn vk_physical_device_inline_uniform_block_properties_construction_contract() {
 
 #[test]
 fn vk_write_descriptor_set_inline_uniform_block_construction_contract() {
+	let _: fn() -> vk::WriteDescriptorSetInlineUniformBlock<'static> =
+		vk::WriteDescriptorSetInlineUniformBlock::new;
 	let value = vk::WriteDescriptorSetInlineUniformBlock::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::WriteDescriptorSetInlineUniformBlock::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK
@@ -8208,7 +10230,15 @@ fn vk_write_descriptor_set_inline_uniform_block_construction_contract() {
 
 #[test]
 fn vk_descriptor_pool_inline_uniform_block_create_info_construction_contract() {
+	let _: fn() -> vk::DescriptorPoolInlineUniformBlockCreateInfo<'static> =
+		vk::DescriptorPoolInlineUniformBlockCreateInfo::new;
 	let value = vk::DescriptorPoolInlineUniformBlockCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorPoolInlineUniformBlockCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO
@@ -8223,7 +10253,15 @@ fn vk_descriptor_pool_inline_uniform_block_create_info_construction_contract() {
 
 #[test]
 fn vk_pipeline_coverage_modulation_state_create_info_nv_construction_contract() {
+	let _: fn() -> vk::PipelineCoverageModulationStateCreateInfoNV<'static> =
+		vk::PipelineCoverageModulationStateCreateInfoNV::new;
 	let value = vk::PipelineCoverageModulationStateCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineCoverageModulationStateCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV
@@ -8260,7 +10298,14 @@ fn vk_pipeline_coverage_modulation_state_create_info_nv_construction_contract() 
 
 #[test]
 fn vk_image_format_list_create_info_construction_contract() {
+	let _: fn() -> vk::ImageFormatListCreateInfo<'static> = vk::ImageFormatListCreateInfo::new;
 	let value = vk::ImageFormatListCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_FORMAT_LIST_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageFormatListCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_FORMAT_LIST_CREATE_INFO
@@ -8278,7 +10323,14 @@ fn vk_image_format_list_create_info_construction_contract() {
 
 #[test]
 fn vk_validation_cache_create_info_ext_construction_contract() {
+	let _: fn() -> vk::ValidationCacheCreateInfoEXT<'static> = vk::ValidationCacheCreateInfoEXT::new;
 	let value = vk::ValidationCacheCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VALIDATION_CACHE_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ValidationCacheCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VALIDATION_CACHE_CREATE_INFO_EXT
@@ -8304,7 +10356,15 @@ fn vk_validation_cache_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_shader_module_validation_cache_create_info_ext_construction_contract() {
+	let _: fn() -> vk::ShaderModuleValidationCacheCreateInfoEXT<'static> =
+		vk::ShaderModuleValidationCacheCreateInfoEXT::new;
 	let value = vk::ShaderModuleValidationCacheCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ShaderModuleValidationCacheCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SHADER_MODULE_VALIDATION_CACHE_CREATE_INFO_EXT
@@ -8319,7 +10379,15 @@ fn vk_shader_module_validation_cache_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_maintenance3_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMaintenance3Properties<'static> =
+		vk::PhysicalDeviceMaintenance3Properties::new;
 	let value = vk::PhysicalDeviceMaintenance3Properties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMaintenance3Properties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES
@@ -8339,7 +10407,15 @@ fn vk_physical_device_maintenance3_properties_construction_contract() {
 
 #[test]
 fn vk_physical_device_maintenance4_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMaintenance4Features<'static> =
+		vk::PhysicalDeviceMaintenance4Features::new;
 	let value = vk::PhysicalDeviceMaintenance4Features::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMaintenance4Features::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES
@@ -8354,7 +10430,15 @@ fn vk_physical_device_maintenance4_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_maintenance4_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMaintenance4Properties<'static> =
+		vk::PhysicalDeviceMaintenance4Properties::new;
 	let value = vk::PhysicalDeviceMaintenance4Properties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMaintenance4Properties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES
@@ -8369,7 +10453,15 @@ fn vk_physical_device_maintenance4_properties_construction_contract() {
 
 #[test]
 fn vk_physical_device_maintenance5_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMaintenance5Features<'static> =
+		vk::PhysicalDeviceMaintenance5Features::new;
 	let value = vk::PhysicalDeviceMaintenance5Features::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_5_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMaintenance5Features::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_5_FEATURES
@@ -8384,7 +10476,15 @@ fn vk_physical_device_maintenance5_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_maintenance5_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMaintenance5Properties<'static> =
+		vk::PhysicalDeviceMaintenance5Properties::new;
 	let value = vk::PhysicalDeviceMaintenance5Properties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_5_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMaintenance5Properties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_5_PROPERTIES
@@ -8412,7 +10512,15 @@ fn vk_physical_device_maintenance5_properties_construction_contract() {
 
 #[test]
 fn vk_physical_device_maintenance6_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMaintenance6Features<'static> =
+		vk::PhysicalDeviceMaintenance6Features::new;
 	let value = vk::PhysicalDeviceMaintenance6Features::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMaintenance6Features::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_6_FEATURES
@@ -8427,7 +10535,15 @@ fn vk_physical_device_maintenance6_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_maintenance6_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMaintenance6Properties<'static> =
+		vk::PhysicalDeviceMaintenance6Properties::new;
 	let value = vk::PhysicalDeviceMaintenance6Properties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_6_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMaintenance6Properties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_6_PROPERTIES
@@ -8452,7 +10568,15 @@ fn vk_physical_device_maintenance6_properties_construction_contract() {
 
 #[test]
 fn vk_physical_device_maintenance7_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMaintenance7FeaturesKHR<'static> =
+		vk::PhysicalDeviceMaintenance7FeaturesKHR::new;
 	let value = vk::PhysicalDeviceMaintenance7FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMaintenance7FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_FEATURES_KHR
@@ -8467,7 +10591,15 @@ fn vk_physical_device_maintenance7_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_maintenance7_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMaintenance7PropertiesKHR<'static> =
+		vk::PhysicalDeviceMaintenance7PropertiesKHR::new;
 	let value = vk::PhysicalDeviceMaintenance7PropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMaintenance7PropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_7_PROPERTIES_KHR
@@ -8497,7 +10629,15 @@ fn vk_physical_device_maintenance7_properties_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_layered_api_properties_list_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceLayeredApiPropertiesListKHR<'static> =
+		vk::PhysicalDeviceLayeredApiPropertiesListKHR::new;
 	let value = vk::PhysicalDeviceLayeredApiPropertiesListKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_LIST_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceLayeredApiPropertiesListKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_LIST_KHR
@@ -8519,7 +10659,15 @@ fn vk_physical_device_layered_api_properties_list_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_layered_api_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceLayeredApiPropertiesKHR<'static> =
+		vk::PhysicalDeviceLayeredApiPropertiesKHR::new;
 	let value = vk::PhysicalDeviceLayeredApiPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceLayeredApiPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_KHR
@@ -8549,7 +10697,15 @@ fn vk_physical_device_layered_api_properties_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_layered_api_vulkan_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceLayeredApiVulkanPropertiesKHR<'static> =
+		vk::PhysicalDeviceLayeredApiVulkanPropertiesKHR::new;
 	let value = vk::PhysicalDeviceLayeredApiVulkanPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceLayeredApiVulkanPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR
@@ -8564,7 +10720,15 @@ fn vk_physical_device_layered_api_vulkan_properties_khr_construction_contract() 
 
 #[test]
 fn vk_physical_device_maintenance8_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMaintenance8FeaturesKHR<'static> =
+		vk::PhysicalDeviceMaintenance8FeaturesKHR::new;
 	let value = vk::PhysicalDeviceMaintenance8FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMaintenance8FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_8_FEATURES_KHR
@@ -8579,7 +10743,15 @@ fn vk_physical_device_maintenance8_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_maintenance9_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMaintenance9FeaturesKHR<'static> =
+		vk::PhysicalDeviceMaintenance9FeaturesKHR::new;
 	let value = vk::PhysicalDeviceMaintenance9FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMaintenance9FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_FEATURES_KHR
@@ -8594,7 +10766,15 @@ fn vk_physical_device_maintenance9_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_maintenance9_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMaintenance9PropertiesKHR<'static> =
+		vk::PhysicalDeviceMaintenance9PropertiesKHR::new;
 	let value = vk::PhysicalDeviceMaintenance9PropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMaintenance9PropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_9_PROPERTIES_KHR
@@ -8614,7 +10794,15 @@ fn vk_physical_device_maintenance9_properties_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_maintenance11_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMaintenance11FeaturesKHR<'static> =
+		vk::PhysicalDeviceMaintenance11FeaturesKHR::new;
 	let value = vk::PhysicalDeviceMaintenance11FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_11_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMaintenance11FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_11_FEATURES_KHR
@@ -8629,7 +10817,15 @@ fn vk_physical_device_maintenance11_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_maintenance10_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMaintenance10PropertiesKHR<'static> =
+		vk::PhysicalDeviceMaintenance10PropertiesKHR::new;
 	let value = vk::PhysicalDeviceMaintenance10PropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMaintenance10PropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_PROPERTIES_KHR
@@ -8650,7 +10846,15 @@ fn vk_physical_device_maintenance10_properties_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_maintenance10_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMaintenance10FeaturesKHR<'static> =
+		vk::PhysicalDeviceMaintenance10FeaturesKHR::new;
 	let value = vk::PhysicalDeviceMaintenance10FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMaintenance10FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAINTENANCE_10_FEATURES_KHR
@@ -8665,7 +10869,15 @@ fn vk_physical_device_maintenance10_features_khr_construction_contract() {
 
 #[test]
 fn vk_queue_family_ownership_transfer_properties_khr_construction_contract() {
+	let _: fn() -> vk::QueueFamilyOwnershipTransferPropertiesKHR<'static> =
+		vk::QueueFamilyOwnershipTransferPropertiesKHR::new;
 	let value = vk::QueueFamilyOwnershipTransferPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUEUE_FAMILY_OWNERSHIP_TRANSFER_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueueFamilyOwnershipTransferPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUEUE_FAMILY_OWNERSHIP_TRANSFER_PROPERTIES_KHR
@@ -8680,7 +10892,15 @@ fn vk_queue_family_ownership_transfer_properties_khr_construction_contract() {
 
 #[test]
 fn vk_queue_family_optimal_image_transfer_granularity_properties_khr_construction_contract() {
+	let _: fn() -> vk::QueueFamilyOptimalImageTransferGranularityPropertiesKHR<'static> =
+		vk::QueueFamilyOptimalImageTransferGranularityPropertiesKHR::new;
 	let value = vk::QueueFamilyOptimalImageTransferGranularityPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUEUE_FAMILY_OPTIMAL_IMAGE_TRANSFER_GRANULARITY_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueueFamilyOptimalImageTransferGranularityPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUEUE_FAMILY_OPTIMAL_IMAGE_TRANSFER_GRANULARITY_PROPERTIES_KHR
@@ -8691,7 +10911,11 @@ fn vk_queue_family_optimal_image_transfer_granularity_properties_khr_constructio
 
 #[test]
 fn vk_rendering_area_info_construction_contract() {
+	let _: fn() -> vk::RenderingAreaInfo<'static> = vk::RenderingAreaInfo::new;
 	let value = vk::RenderingAreaInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::RENDERING_AREA_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderingAreaInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::RENDERING_AREA_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::RenderingAreaInfo<'static>, u32) -> vk::RenderingAreaInfo<'static> =
@@ -8711,7 +10935,14 @@ fn vk_rendering_area_info_construction_contract() {
 
 #[test]
 fn vk_descriptor_set_layout_support_construction_contract() {
+	let _: fn() -> vk::DescriptorSetLayoutSupport<'static> = vk::DescriptorSetLayoutSupport::new;
 	let value = vk::DescriptorSetLayoutSupport::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DESCRIPTOR_SET_LAYOUT_SUPPORT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorSetLayoutSupport::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DESCRIPTOR_SET_LAYOUT_SUPPORT
@@ -8725,7 +10956,15 @@ fn vk_descriptor_set_layout_support_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_draw_parameters_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderDrawParametersFeatures<'static> =
+		vk::PhysicalDeviceShaderDrawParametersFeatures::new;
 	let value = vk::PhysicalDeviceShaderDrawParametersFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_DRAW_PARAMETERS_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderDrawParametersFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_DRAW_PARAMETERS_FEATURES
@@ -8740,7 +10979,15 @@ fn vk_physical_device_shader_draw_parameters_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_float16_int8_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderFloat16Int8Features<'static> =
+		vk::PhysicalDeviceShaderFloat16Int8Features::new;
 	let value = vk::PhysicalDeviceShaderFloat16Int8Features::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderFloat16Int8Features::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES
@@ -8760,7 +11007,15 @@ fn vk_physical_device_shader_float16_int8_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_float_controls_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFloatControlsProperties<'static> =
+		vk::PhysicalDeviceFloatControlsProperties::new;
 	let value = vk::PhysicalDeviceFloatControlsProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFloatControlsProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES
@@ -8855,7 +11110,15 @@ fn vk_physical_device_float_controls_properties_construction_contract() {
 
 #[test]
 fn vk_physical_device_host_query_reset_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceHostQueryResetFeatures<'static> =
+		vk::PhysicalDeviceHostQueryResetFeatures::new;
 	let value = vk::PhysicalDeviceHostQueryResetFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceHostQueryResetFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES
@@ -8870,6 +11133,7 @@ fn vk_physical_device_host_query_reset_features_construction_contract() {
 
 #[test]
 fn vk_shader_resource_usage_amd_construction_contract() {
+	let _: fn() -> vk::ShaderResourceUsageAMD = vk::ShaderResourceUsageAMD::new;
 	let _: fn(vk::ShaderResourceUsageAMD, u32) -> vk::ShaderResourceUsageAMD =
 		vk::ShaderResourceUsageAMD::set_num_used_vgprs;
 	let _: fn(vk::ShaderResourceUsageAMD, u32) -> vk::ShaderResourceUsageAMD =
@@ -8884,6 +11148,7 @@ fn vk_shader_resource_usage_amd_construction_contract() {
 
 #[test]
 fn vk_shader_statistics_info_amd_construction_contract() {
+	let _: fn() -> vk::ShaderStatisticsInfoAMD = vk::ShaderStatisticsInfoAMD::new;
 	let _: fn(vk::ShaderStatisticsInfoAMD, vk::ShaderStageFlags) -> vk::ShaderStatisticsInfoAMD =
 		vk::ShaderStatisticsInfoAMD::set_shader_stage_mask;
 	let _: fn(
@@ -8904,7 +11169,15 @@ fn vk_shader_statistics_info_amd_construction_contract() {
 
 #[test]
 fn vk_physical_device_elapsed_timer_query_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceElapsedTimerQueryFeaturesQCOM<'static> =
+		vk::PhysicalDeviceElapsedTimerQueryFeaturesQCOM::new;
 	let value = vk::PhysicalDeviceElapsedTimerQueryFeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_ELAPSED_TIMER_QUERY_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceElapsedTimerQueryFeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_ELAPSED_TIMER_QUERY_FEATURES_QCOM
@@ -8919,7 +11192,15 @@ fn vk_physical_device_elapsed_timer_query_features_qcom_construction_contract() 
 
 #[test]
 fn vk_device_queue_global_priority_create_info_construction_contract() {
+	let _: fn() -> vk::DeviceQueueGlobalPriorityCreateInfo<'static> =
+		vk::DeviceQueueGlobalPriorityCreateInfo::new;
 	let value = vk::DeviceQueueGlobalPriorityCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceQueueGlobalPriorityCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO
@@ -8934,7 +11215,15 @@ fn vk_device_queue_global_priority_create_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_global_priority_query_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceGlobalPriorityQueryFeatures<'static> =
+		vk::PhysicalDeviceGlobalPriorityQueryFeatures::new;
 	let value = vk::PhysicalDeviceGlobalPriorityQueryFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceGlobalPriorityQueryFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES
@@ -8949,7 +11238,15 @@ fn vk_physical_device_global_priority_query_features_construction_contract() {
 
 #[test]
 fn vk_queue_family_global_priority_properties_construction_contract() {
+	let _: fn() -> vk::QueueFamilyGlobalPriorityProperties<'static> =
+		vk::QueueFamilyGlobalPriorityProperties::new;
 	let value = vk::QueueFamilyGlobalPriorityProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueueFamilyGlobalPriorityProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES
@@ -8969,7 +11266,14 @@ fn vk_queue_family_global_priority_properties_construction_contract() {
 
 #[test]
 fn vk_debug_utils_object_name_info_ext_construction_contract() {
+	let _: fn() -> vk::DebugUtilsObjectNameInfoEXT<'static> = vk::DebugUtilsObjectNameInfoEXT::new;
 	let value = vk::DebugUtilsObjectNameInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEBUG_UTILS_OBJECT_NAME_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DebugUtilsObjectNameInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEBUG_UTILS_OBJECT_NAME_INFO_EXT
@@ -8991,7 +11295,14 @@ fn vk_debug_utils_object_name_info_ext_construction_contract() {
 
 #[test]
 fn vk_debug_utils_object_tag_info_ext_construction_contract() {
+	let _: fn() -> vk::DebugUtilsObjectTagInfoEXT<'static> = vk::DebugUtilsObjectTagInfoEXT::new;
 	let value = vk::DebugUtilsObjectTagInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEBUG_UTILS_OBJECT_TAG_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DebugUtilsObjectTagInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEBUG_UTILS_OBJECT_TAG_INFO_EXT
@@ -9023,7 +11334,11 @@ fn vk_debug_utils_object_tag_info_ext_construction_contract() {
 
 #[test]
 fn vk_debug_utils_label_ext_construction_contract() {
+	let _: fn() -> vk::DebugUtilsLabelEXT<'static> = vk::DebugUtilsLabelEXT::new;
 	let value = vk::DebugUtilsLabelEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::DEBUG_UTILS_LABEL_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::DebugUtilsLabelEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::DEBUG_UTILS_LABEL_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -9036,7 +11351,15 @@ fn vk_debug_utils_label_ext_construction_contract() {
 
 #[test]
 fn vk_debug_utils_messenger_create_info_ext_construction_contract() {
+	let _: fn() -> vk::DebugUtilsMessengerCreateInfoEXT<'static> =
+		vk::DebugUtilsMessengerCreateInfoEXT::new;
 	let value = vk::DebugUtilsMessengerCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DebugUtilsMessengerCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT
@@ -9071,7 +11394,15 @@ fn vk_debug_utils_messenger_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_debug_utils_messenger_callback_data_ext_construction_contract() {
+	let _: fn() -> vk::DebugUtilsMessengerCallbackDataEXT<'static> =
+		vk::DebugUtilsMessengerCallbackDataEXT::new;
 	let value = vk::DebugUtilsMessengerCallbackDataEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DebugUtilsMessengerCallbackDataEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT
@@ -9137,7 +11468,15 @@ fn vk_debug_utils_messenger_callback_data_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_device_memory_report_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDeviceMemoryReportFeaturesEXT<'static> =
+		vk::PhysicalDeviceDeviceMemoryReportFeaturesEXT::new;
 	let value = vk::PhysicalDeviceDeviceMemoryReportFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDeviceMemoryReportFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT
@@ -9152,7 +11491,15 @@ fn vk_physical_device_device_memory_report_features_ext_construction_contract() 
 
 #[test]
 fn vk_device_device_memory_report_create_info_ext_construction_contract() {
+	let _: fn() -> vk::DeviceDeviceMemoryReportCreateInfoEXT<'static> =
+		vk::DeviceDeviceMemoryReportCreateInfoEXT::new;
 	let value = vk::DeviceDeviceMemoryReportCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceDeviceMemoryReportCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT
@@ -9177,7 +11524,15 @@ fn vk_device_device_memory_report_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_device_memory_report_callback_data_ext_construction_contract() {
+	let _: fn() -> vk::DeviceMemoryReportCallbackDataEXT<'static> =
+		vk::DeviceMemoryReportCallbackDataEXT::new;
 	let value = vk::DeviceMemoryReportCallbackDataEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceMemoryReportCallbackDataEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT
@@ -9222,7 +11577,15 @@ fn vk_device_memory_report_callback_data_ext_construction_contract() {
 
 #[test]
 fn vk_import_memory_host_pointer_info_ext_construction_contract() {
+	let _: fn() -> vk::ImportMemoryHostPointerInfoEXT<'static> =
+		vk::ImportMemoryHostPointerInfoEXT::new;
 	let value = vk::ImportMemoryHostPointerInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_MEMORY_HOST_POINTER_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportMemoryHostPointerInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_MEMORY_HOST_POINTER_INFO_EXT
@@ -9242,7 +11605,15 @@ fn vk_import_memory_host_pointer_info_ext_construction_contract() {
 
 #[test]
 fn vk_memory_host_pointer_properties_ext_construction_contract() {
+	let _: fn() -> vk::MemoryHostPointerPropertiesEXT<'static> =
+		vk::MemoryHostPointerPropertiesEXT::new;
 	let value = vk::MemoryHostPointerPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_HOST_POINTER_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryHostPointerPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_HOST_POINTER_PROPERTIES_EXT
@@ -9257,7 +11628,15 @@ fn vk_memory_host_pointer_properties_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_external_memory_host_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExternalMemoryHostPropertiesEXT<'static> =
+		vk::PhysicalDeviceExternalMemoryHostPropertiesEXT::new;
 	let value = vk::PhysicalDeviceExternalMemoryHostPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExternalMemoryHostPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT
@@ -9272,7 +11651,15 @@ fn vk_physical_device_external_memory_host_properties_ext_construction_contract(
 
 #[test]
 fn vk_physical_device_conservative_rasterization_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceConservativeRasterizationPropertiesEXT<'static> =
+		vk::PhysicalDeviceConservativeRasterizationPropertiesEXT::new;
 	let value = vk::PhysicalDeviceConservativeRasterizationPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceConservativeRasterizationPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT
@@ -9307,7 +11694,14 @@ fn vk_physical_device_conservative_rasterization_properties_ext_construction_con
 
 #[test]
 fn vk_calibrated_timestamp_info_khr_construction_contract() {
+	let _: fn() -> vk::CalibratedTimestampInfoKHR<'static> = vk::CalibratedTimestampInfoKHR::new;
 	let value = vk::CalibratedTimestampInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::CALIBRATED_TIMESTAMP_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CalibratedTimestampInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::CALIBRATED_TIMESTAMP_INFO_KHR
@@ -9321,7 +11715,15 @@ fn vk_calibrated_timestamp_info_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_core_properties_amd_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderCorePropertiesAMD<'static> =
+		vk::PhysicalDeviceShaderCorePropertiesAMD::new;
 	let value = vk::PhysicalDeviceShaderCorePropertiesAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderCorePropertiesAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD
@@ -9401,7 +11803,15 @@ fn vk_physical_device_shader_core_properties_amd_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_core_properties2_amd_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderCoreProperties2AMD<'static> =
+		vk::PhysicalDeviceShaderCoreProperties2AMD::new;
 	let value = vk::PhysicalDeviceShaderCoreProperties2AMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderCoreProperties2AMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD
@@ -9421,7 +11831,15 @@ fn vk_physical_device_shader_core_properties2_amd_construction_contract() {
 
 #[test]
 fn vk_pipeline_rasterization_conservative_state_create_info_ext_construction_contract() {
+	let _: fn() -> vk::PipelineRasterizationConservativeStateCreateInfoEXT<'static> =
+		vk::PipelineRasterizationConservativeStateCreateInfoEXT::new;
 	let value = vk::PipelineRasterizationConservativeStateCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineRasterizationConservativeStateCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT
@@ -9442,7 +11860,15 @@ fn vk_pipeline_rasterization_conservative_state_create_info_ext_construction_con
 
 #[test]
 fn vk_physical_device_descriptor_indexing_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDescriptorIndexingFeatures<'static> =
+		vk::PhysicalDeviceDescriptorIndexingFeatures::new;
 	let value = vk::PhysicalDeviceDescriptorIndexingFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDescriptorIndexingFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES
@@ -9484,7 +11910,15 @@ fn vk_physical_device_descriptor_indexing_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_descriptor_indexing_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDescriptorIndexingProperties<'static> =
+		vk::PhysicalDeviceDescriptorIndexingProperties::new;
 	let value = vk::PhysicalDeviceDescriptorIndexingProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDescriptorIndexingProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES
@@ -9529,7 +11963,15 @@ fn vk_physical_device_descriptor_indexing_properties_construction_contract() {
 
 #[test]
 fn vk_descriptor_set_layout_binding_flags_create_info_construction_contract() {
+	let _: fn() -> vk::DescriptorSetLayoutBindingFlagsCreateInfo<'static> =
+		vk::DescriptorSetLayoutBindingFlagsCreateInfo::new;
 	let value = vk::DescriptorSetLayoutBindingFlagsCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorSetLayoutBindingFlagsCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO
@@ -9551,7 +11993,15 @@ fn vk_descriptor_set_layout_binding_flags_create_info_construction_contract() {
 
 #[test]
 fn vk_descriptor_set_variable_descriptor_count_allocate_info_construction_contract() {
+	let _: fn() -> vk::DescriptorSetVariableDescriptorCountAllocateInfo<'static> =
+		vk::DescriptorSetVariableDescriptorCountAllocateInfo::new;
 	let value = vk::DescriptorSetVariableDescriptorCountAllocateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorSetVariableDescriptorCountAllocateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_ALLOCATE_INFO
@@ -9573,7 +12023,15 @@ fn vk_descriptor_set_variable_descriptor_count_allocate_info_construction_contra
 
 #[test]
 fn vk_descriptor_set_variable_descriptor_count_layout_support_construction_contract() {
+	let _: fn() -> vk::DescriptorSetVariableDescriptorCountLayoutSupport<'static> =
+		vk::DescriptorSetVariableDescriptorCountLayoutSupport::new;
 	let value = vk::DescriptorSetVariableDescriptorCountLayoutSupport::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorSetVariableDescriptorCountLayoutSupport::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT
@@ -9588,7 +12046,11 @@ fn vk_descriptor_set_variable_descriptor_count_layout_support_construction_contr
 
 #[test]
 fn vk_attachment_description2_construction_contract() {
+	let _: fn() -> vk::AttachmentDescription2<'static> = vk::AttachmentDescription2::new;
 	let value = vk::AttachmentDescription2::default();
+	assert_eq!(value.s_type, vk::StructureType::ATTACHMENT_DESCRIPTION_2);
+	assert!(value.p_next.is_null());
+	let value = vk::AttachmentDescription2::new();
 	assert_eq!(value.s_type, vk::StructureType::ATTACHMENT_DESCRIPTION_2);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -9631,7 +12093,11 @@ fn vk_attachment_description2_construction_contract() {
 
 #[test]
 fn vk_attachment_reference2_construction_contract() {
+	let _: fn() -> vk::AttachmentReference2<'static> = vk::AttachmentReference2::new;
 	let value = vk::AttachmentReference2::default();
+	assert_eq!(value.s_type, vk::StructureType::ATTACHMENT_REFERENCE_2);
+	assert!(value.p_next.is_null());
+	let value = vk::AttachmentReference2::new();
 	assert_eq!(value.s_type, vk::StructureType::ATTACHMENT_REFERENCE_2);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::AttachmentReference2<'static>, u32) -> vk::AttachmentReference2<'static> =
@@ -9648,7 +12114,11 @@ fn vk_attachment_reference2_construction_contract() {
 
 #[test]
 fn vk_subpass_description2_construction_contract() {
+	let _: fn() -> vk::SubpassDescription2<'static> = vk::SubpassDescription2::new;
 	let value = vk::SubpassDescription2::default();
+	assert_eq!(value.s_type, vk::StructureType::SUBPASS_DESCRIPTION_2);
+	assert!(value.p_next.is_null());
+	let value = vk::SubpassDescription2::new();
 	assert_eq!(value.s_type, vk::StructureType::SUBPASS_DESCRIPTION_2);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -9692,7 +12162,11 @@ fn vk_subpass_description2_construction_contract() {
 
 #[test]
 fn vk_subpass_dependency2_construction_contract() {
+	let _: fn() -> vk::SubpassDependency2<'static> = vk::SubpassDependency2::new;
 	let value = vk::SubpassDependency2::default();
+	assert_eq!(value.s_type, vk::StructureType::SUBPASS_DEPENDENCY_2);
+	assert!(value.p_next.is_null());
+	let value = vk::SubpassDependency2::new();
 	assert_eq!(value.s_type, vk::StructureType::SUBPASS_DEPENDENCY_2);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::SubpassDependency2<'static>, u32) -> vk::SubpassDependency2<'static> =
@@ -9721,7 +12195,11 @@ fn vk_subpass_dependency2_construction_contract() {
 
 #[test]
 fn vk_render_pass_create_info2_construction_contract() {
+	let _: fn() -> vk::RenderPassCreateInfo2<'static> = vk::RenderPassCreateInfo2::new;
 	let value = vk::RenderPassCreateInfo2::default();
+	assert_eq!(value.s_type, vk::StructureType::RENDER_PASS_CREATE_INFO_2);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassCreateInfo2::new();
 	assert_eq!(value.s_type, vk::StructureType::RENDER_PASS_CREATE_INFO_2);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -9760,7 +12238,11 @@ fn vk_render_pass_create_info2_construction_contract() {
 
 #[test]
 fn vk_subpass_begin_info_construction_contract() {
+	let _: fn() -> vk::SubpassBeginInfo<'static> = vk::SubpassBeginInfo::new;
 	let value = vk::SubpassBeginInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::SUBPASS_BEGIN_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::SubpassBeginInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::SUBPASS_BEGIN_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::SubpassBeginInfo<'static>, vk::SubpassContents) -> vk::SubpassBeginInfo<'static> =
@@ -9769,14 +12251,26 @@ fn vk_subpass_begin_info_construction_contract() {
 
 #[test]
 fn vk_subpass_end_info_construction_contract() {
+	let _: fn() -> vk::SubpassEndInfo<'static> = vk::SubpassEndInfo::new;
 	let value = vk::SubpassEndInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::SUBPASS_END_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::SubpassEndInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::SUBPASS_END_INFO);
 	assert!(value.p_next.is_null());
 }
 
 #[test]
 fn vk_physical_device_timeline_semaphore_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceTimelineSemaphoreFeatures<'static> =
+		vk::PhysicalDeviceTimelineSemaphoreFeatures::new;
 	let value = vk::PhysicalDeviceTimelineSemaphoreFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceTimelineSemaphoreFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES
@@ -9791,7 +12285,15 @@ fn vk_physical_device_timeline_semaphore_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_timeline_semaphore_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceTimelineSemaphoreProperties<'static> =
+		vk::PhysicalDeviceTimelineSemaphoreProperties::new;
 	let value = vk::PhysicalDeviceTimelineSemaphoreProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceTimelineSemaphoreProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES
@@ -9806,7 +12308,11 @@ fn vk_physical_device_timeline_semaphore_properties_construction_contract() {
 
 #[test]
 fn vk_semaphore_type_create_info_construction_contract() {
+	let _: fn() -> vk::SemaphoreTypeCreateInfo<'static> = vk::SemaphoreTypeCreateInfo::new;
 	let value = vk::SemaphoreTypeCreateInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::SEMAPHORE_TYPE_CREATE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::SemaphoreTypeCreateInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::SEMAPHORE_TYPE_CREATE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -9819,7 +12325,14 @@ fn vk_semaphore_type_create_info_construction_contract() {
 
 #[test]
 fn vk_timeline_semaphore_submit_info_construction_contract() {
+	let _: fn() -> vk::TimelineSemaphoreSubmitInfo<'static> = vk::TimelineSemaphoreSubmitInfo::new;
 	let value = vk::TimelineSemaphoreSubmitInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::TIMELINE_SEMAPHORE_SUBMIT_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::TimelineSemaphoreSubmitInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::TIMELINE_SEMAPHORE_SUBMIT_INFO
@@ -9853,7 +12366,11 @@ fn vk_timeline_semaphore_submit_info_construction_contract() {
 
 #[test]
 fn vk_semaphore_wait_info_construction_contract() {
+	let _: fn() -> vk::SemaphoreWaitInfo<'static> = vk::SemaphoreWaitInfo::new;
 	let value = vk::SemaphoreWaitInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::SEMAPHORE_WAIT_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::SemaphoreWaitInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::SEMAPHORE_WAIT_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -9873,7 +12390,11 @@ fn vk_semaphore_wait_info_construction_contract() {
 
 #[test]
 fn vk_semaphore_signal_info_construction_contract() {
+	let _: fn() -> vk::SemaphoreSignalInfo<'static> = vk::SemaphoreSignalInfo::new;
 	let value = vk::SemaphoreSignalInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::SEMAPHORE_SIGNAL_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::SemaphoreSignalInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::SEMAPHORE_SIGNAL_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::SemaphoreSignalInfo<'static>, vk::Semaphore) -> vk::SemaphoreSignalInfo<'static> =
@@ -9884,6 +12405,8 @@ fn vk_semaphore_signal_info_construction_contract() {
 
 #[test]
 fn vk_vertex_input_binding_divisor_description_construction_contract() {
+	let _: fn() -> vk::VertexInputBindingDivisorDescription =
+		vk::VertexInputBindingDivisorDescription::new;
 	let _: fn(
 		vk::VertexInputBindingDivisorDescription,
 		u32,
@@ -9898,7 +12421,15 @@ fn vk_vertex_input_binding_divisor_description_construction_contract() {
 
 #[test]
 fn vk_pipeline_vertex_input_divisor_state_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineVertexInputDivisorStateCreateInfo<'static> =
+		vk::PipelineVertexInputDivisorStateCreateInfo::new;
 	let value = vk::PipelineVertexInputDivisorStateCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineVertexInputDivisorStateCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO
@@ -9920,7 +12451,15 @@ fn vk_pipeline_vertex_input_divisor_state_create_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_vertex_attribute_divisor_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVertexAttributeDivisorPropertiesEXT<'static> =
+		vk::PhysicalDeviceVertexAttributeDivisorPropertiesEXT::new;
 	let value = vk::PhysicalDeviceVertexAttributeDivisorPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVertexAttributeDivisorPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT
@@ -9935,7 +12474,15 @@ fn vk_physical_device_vertex_attribute_divisor_properties_ext_construction_contr
 
 #[test]
 fn vk_physical_device_vertex_attribute_divisor_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVertexAttributeDivisorProperties<'static> =
+		vk::PhysicalDeviceVertexAttributeDivisorProperties::new;
 	let value = vk::PhysicalDeviceVertexAttributeDivisorProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVertexAttributeDivisorProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES
@@ -9955,7 +12502,15 @@ fn vk_physical_device_vertex_attribute_divisor_properties_construction_contract(
 
 #[test]
 fn vk_physical_device_pci_bus_info_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePCIBusInfoPropertiesEXT<'static> =
+		vk::PhysicalDevicePCIBusInfoPropertiesEXT::new;
 	let value = vk::PhysicalDevicePCIBusInfoPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePCIBusInfoPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT
@@ -9986,7 +12541,15 @@ fn vk_physical_device_pci_bus_info_properties_ext_construction_contract() {
 #[cfg(feature = "platform-android")]
 #[test]
 fn vk_import_android_hardware_buffer_info_android_construction_contract() {
+	let _: fn() -> vk::ImportAndroidHardwareBufferInfoANDROID<'static> =
+		vk::ImportAndroidHardwareBufferInfoANDROID::new;
 	let value = vk::ImportAndroidHardwareBufferInfoANDROID::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportAndroidHardwareBufferInfoANDROID::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID
@@ -10002,7 +12565,15 @@ fn vk_import_android_hardware_buffer_info_android_construction_contract() {
 #[cfg(feature = "platform-android")]
 #[test]
 fn vk_android_hardware_buffer_usage_android_construction_contract() {
+	let _: fn() -> vk::AndroidHardwareBufferUsageANDROID<'static> =
+		vk::AndroidHardwareBufferUsageANDROID::new;
 	let value = vk::AndroidHardwareBufferUsageANDROID::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ANDROID_HARDWARE_BUFFER_USAGE_ANDROID
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AndroidHardwareBufferUsageANDROID::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ANDROID_HARDWARE_BUFFER_USAGE_ANDROID
@@ -10018,7 +12589,15 @@ fn vk_android_hardware_buffer_usage_android_construction_contract() {
 #[cfg(feature = "platform-android")]
 #[test]
 fn vk_android_hardware_buffer_properties_android_construction_contract() {
+	let _: fn() -> vk::AndroidHardwareBufferPropertiesANDROID<'static> =
+		vk::AndroidHardwareBufferPropertiesANDROID::new;
 	let value = vk::AndroidHardwareBufferPropertiesANDROID::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AndroidHardwareBufferPropertiesANDROID::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID
@@ -10039,7 +12618,15 @@ fn vk_android_hardware_buffer_properties_android_construction_contract() {
 #[cfg(feature = "platform-android")]
 #[test]
 fn vk_memory_get_android_hardware_buffer_info_android_construction_contract() {
+	let _: fn() -> vk::MemoryGetAndroidHardwareBufferInfoANDROID<'static> =
+		vk::MemoryGetAndroidHardwareBufferInfoANDROID::new;
 	let value = vk::MemoryGetAndroidHardwareBufferInfoANDROID::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryGetAndroidHardwareBufferInfoANDROID::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID
@@ -10055,7 +12642,15 @@ fn vk_memory_get_android_hardware_buffer_info_android_construction_contract() {
 #[cfg(feature = "platform-android")]
 #[test]
 fn vk_android_hardware_buffer_format_properties_android_construction_contract() {
+	let _: fn() -> vk::AndroidHardwareBufferFormatPropertiesANDROID<'static> =
+		vk::AndroidHardwareBufferFormatPropertiesANDROID::new;
 	let value = vk::AndroidHardwareBufferFormatPropertiesANDROID::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AndroidHardwareBufferFormatPropertiesANDROID::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID
@@ -10105,7 +12700,15 @@ fn vk_android_hardware_buffer_format_properties_android_construction_contract() 
 
 #[test]
 fn vk_command_buffer_inheritance_conditional_rendering_info_ext_construction_contract() {
+	let _: fn() -> vk::CommandBufferInheritanceConditionalRenderingInfoEXT<'static> =
+		vk::CommandBufferInheritanceConditionalRenderingInfoEXT::new;
 	let value = vk::CommandBufferInheritanceConditionalRenderingInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CommandBufferInheritanceConditionalRenderingInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT
@@ -10121,7 +12724,11 @@ fn vk_command_buffer_inheritance_conditional_rendering_info_ext_construction_con
 #[cfg(feature = "platform-android")]
 #[test]
 fn vk_external_format_android_construction_contract() {
+	let _: fn() -> vk::ExternalFormatANDROID<'static> = vk::ExternalFormatANDROID::new;
 	let value = vk::ExternalFormatANDROID::default();
+	assert_eq!(value.s_type, vk::StructureType::EXTERNAL_FORMAT_ANDROID);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalFormatANDROID::new();
 	assert_eq!(value.s_type, vk::StructureType::EXTERNAL_FORMAT_ANDROID);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::ExternalFormatANDROID<'static>, u64) -> vk::ExternalFormatANDROID<'static> =
@@ -10130,7 +12737,15 @@ fn vk_external_format_android_construction_contract() {
 
 #[test]
 fn vk_physical_device8_bit_storage_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDevice8BitStorageFeatures<'static> =
+		vk::PhysicalDevice8BitStorageFeatures::new;
 	let value = vk::PhysicalDevice8BitStorageFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevice8BitStorageFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES
@@ -10155,7 +12770,15 @@ fn vk_physical_device8_bit_storage_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_conditional_rendering_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceConditionalRenderingFeaturesEXT<'static> =
+		vk::PhysicalDeviceConditionalRenderingFeaturesEXT::new;
 	let value = vk::PhysicalDeviceConditionalRenderingFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceConditionalRenderingFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT
@@ -10175,7 +12798,15 @@ fn vk_physical_device_conditional_rendering_features_ext_construction_contract()
 
 #[test]
 fn vk_physical_device_vulkan_memory_model_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVulkanMemoryModelFeatures<'static> =
+		vk::PhysicalDeviceVulkanMemoryModelFeatures::new;
 	let value = vk::PhysicalDeviceVulkanMemoryModelFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVulkanMemoryModelFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES
@@ -10196,7 +12827,15 @@ fn vk_physical_device_vulkan_memory_model_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_atomic_int64_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderAtomicInt64Features<'static> =
+		vk::PhysicalDeviceShaderAtomicInt64Features::new;
 	let value = vk::PhysicalDeviceShaderAtomicInt64Features::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderAtomicInt64Features::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES
@@ -10216,7 +12855,15 @@ fn vk_physical_device_shader_atomic_int64_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_atomic_float_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderAtomicFloatFeaturesEXT<'static> =
+		vk::PhysicalDeviceShaderAtomicFloatFeaturesEXT::new;
 	let value = vk::PhysicalDeviceShaderAtomicFloatFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderAtomicFloatFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT
@@ -10286,7 +12933,15 @@ fn vk_physical_device_shader_atomic_float_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_atomic_float2_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'static> =
+		vk::PhysicalDeviceShaderAtomicFloat2FeaturesEXT::new;
 	let value = vk::PhysicalDeviceShaderAtomicFloat2FeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderAtomicFloat2FeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT
@@ -10356,7 +13011,15 @@ fn vk_physical_device_shader_atomic_float2_features_ext_construction_contract() 
 
 #[test]
 fn vk_physical_device_vertex_attribute_divisor_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVertexAttributeDivisorFeatures<'static> =
+		vk::PhysicalDeviceVertexAttributeDivisorFeatures::new;
 	let value = vk::PhysicalDeviceVertexAttributeDivisorFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVertexAttributeDivisorFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES
@@ -10372,7 +13035,15 @@ fn vk_physical_device_vertex_attribute_divisor_features_construction_contract() 
 
 #[test]
 fn vk_queue_family_checkpoint_properties_nv_construction_contract() {
+	let _: fn() -> vk::QueueFamilyCheckpointPropertiesNV<'static> =
+		vk::QueueFamilyCheckpointPropertiesNV::new;
 	let value = vk::QueueFamilyCheckpointPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueueFamilyCheckpointPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV
@@ -10387,7 +13058,11 @@ fn vk_queue_family_checkpoint_properties_nv_construction_contract() {
 
 #[test]
 fn vk_checkpoint_data_nv_construction_contract() {
+	let _: fn() -> vk::CheckpointDataNV<'static> = vk::CheckpointDataNV::new;
 	let value = vk::CheckpointDataNV::default();
+	assert_eq!(value.s_type, vk::StructureType::CHECKPOINT_DATA_NV);
+	assert!(value.p_next.is_null());
+	let value = vk::CheckpointDataNV::new();
 	assert_eq!(value.s_type, vk::StructureType::CHECKPOINT_DATA_NV);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -10402,7 +13077,15 @@ fn vk_checkpoint_data_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_depth_stencil_resolve_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDepthStencilResolveProperties<'static> =
+		vk::PhysicalDeviceDepthStencilResolveProperties::new;
 	let value = vk::PhysicalDeviceDepthStencilResolveProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDepthStencilResolveProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES
@@ -10432,7 +13115,15 @@ fn vk_physical_device_depth_stencil_resolve_properties_construction_contract() {
 
 #[test]
 fn vk_subpass_description_depth_stencil_resolve_construction_contract() {
+	let _: fn() -> vk::SubpassDescriptionDepthStencilResolve<'static> =
+		vk::SubpassDescriptionDepthStencilResolve::new;
 	let value = vk::SubpassDescriptionDepthStencilResolve::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SubpassDescriptionDepthStencilResolve::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE
@@ -10457,7 +13148,14 @@ fn vk_subpass_description_depth_stencil_resolve_construction_contract() {
 
 #[test]
 fn vk_image_view_astc_decode_mode_ext_construction_contract() {
+	let _: fn() -> vk::ImageViewASTCDecodeModeEXT<'static> = vk::ImageViewASTCDecodeModeEXT::new;
 	let value = vk::ImageViewASTCDecodeModeEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_VIEW_ASTC_DECODE_MODE_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageViewASTCDecodeModeEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_VIEW_ASTC_DECODE_MODE_EXT
@@ -10471,7 +13169,15 @@ fn vk_image_view_astc_decode_mode_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_astc_decode_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceASTCDecodeFeaturesEXT<'static> =
+		vk::PhysicalDeviceASTCDecodeFeaturesEXT::new;
 	let value = vk::PhysicalDeviceASTCDecodeFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceASTCDecodeFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT
@@ -10486,7 +13192,15 @@ fn vk_physical_device_astc_decode_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_transform_feedback_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceTransformFeedbackFeaturesEXT<'static> =
+		vk::PhysicalDeviceTransformFeedbackFeaturesEXT::new;
 	let value = vk::PhysicalDeviceTransformFeedbackFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceTransformFeedbackFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT
@@ -10506,7 +13220,15 @@ fn vk_physical_device_transform_feedback_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_transform_feedback_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceTransformFeedbackPropertiesEXT<'static> =
+		vk::PhysicalDeviceTransformFeedbackPropertiesEXT::new;
 	let value = vk::PhysicalDeviceTransformFeedbackPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceTransformFeedbackPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT
@@ -10558,7 +13280,15 @@ fn vk_physical_device_transform_feedback_properties_ext_construction_contract() 
 
 #[test]
 fn vk_pipeline_rasterization_state_stream_create_info_ext_construction_contract() {
+	let _: fn() -> vk::PipelineRasterizationStateStreamCreateInfoEXT<'static> =
+		vk::PipelineRasterizationStateStreamCreateInfoEXT::new;
 	let value = vk::PipelineRasterizationStateStreamCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineRasterizationStateStreamCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT
@@ -10578,7 +13308,15 @@ fn vk_pipeline_rasterization_state_stream_create_info_ext_construction_contract(
 
 #[test]
 fn vk_physical_device_representative_fragment_test_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'static> =
+		vk::PhysicalDeviceRepresentativeFragmentTestFeaturesNV::new;
 	let value = vk::PhysicalDeviceRepresentativeFragmentTestFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRepresentativeFragmentTestFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV
@@ -10593,7 +13331,15 @@ fn vk_physical_device_representative_fragment_test_features_nv_construction_cont
 
 #[test]
 fn vk_pipeline_representative_fragment_test_state_create_info_nv_construction_contract() {
+	let _: fn() -> vk::PipelineRepresentativeFragmentTestStateCreateInfoNV<'static> =
+		vk::PipelineRepresentativeFragmentTestStateCreateInfoNV::new;
 	let value = vk::PipelineRepresentativeFragmentTestStateCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineRepresentativeFragmentTestStateCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV
@@ -10604,7 +13350,15 @@ fn vk_pipeline_representative_fragment_test_state_create_info_nv_construction_co
 
 #[test]
 fn vk_physical_device_exclusive_scissor_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExclusiveScissorFeaturesNV<'static> =
+		vk::PhysicalDeviceExclusiveScissorFeaturesNV::new;
 	let value = vk::PhysicalDeviceExclusiveScissorFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExclusiveScissorFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV
@@ -10619,7 +13373,15 @@ fn vk_physical_device_exclusive_scissor_features_nv_construction_contract() {
 
 #[test]
 fn vk_pipeline_viewport_exclusive_scissor_state_create_info_nv_construction_contract() {
+	let _: fn() -> vk::PipelineViewportExclusiveScissorStateCreateInfoNV<'static> =
+		vk::PipelineViewportExclusiveScissorStateCreateInfoNV::new;
 	let value = vk::PipelineViewportExclusiveScissorStateCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineViewportExclusiveScissorStateCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV
@@ -10641,7 +13403,15 @@ fn vk_pipeline_viewport_exclusive_scissor_state_create_info_nv_construction_cont
 
 #[test]
 fn vk_physical_device_corner_sampled_image_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCornerSampledImageFeaturesNV<'static> =
+		vk::PhysicalDeviceCornerSampledImageFeaturesNV::new;
 	let value = vk::PhysicalDeviceCornerSampledImageFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCornerSampledImageFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV
@@ -10656,7 +13426,15 @@ fn vk_physical_device_corner_sampled_image_features_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_compute_shader_derivatives_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceComputeShaderDerivativesFeaturesKHR<'static> =
+		vk::PhysicalDeviceComputeShaderDerivativesFeaturesKHR::new;
 	let value = vk::PhysicalDeviceComputeShaderDerivativesFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceComputeShaderDerivativesFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_KHR
@@ -10676,7 +13454,15 @@ fn vk_physical_device_compute_shader_derivatives_features_khr_construction_contr
 
 #[test]
 fn vk_physical_device_compute_shader_derivatives_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceComputeShaderDerivativesPropertiesKHR<'static> =
+		vk::PhysicalDeviceComputeShaderDerivativesPropertiesKHR::new;
 	let value = vk::PhysicalDeviceComputeShaderDerivativesPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceComputeShaderDerivativesPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_PROPERTIES_KHR
@@ -10691,7 +13477,15 @@ fn vk_physical_device_compute_shader_derivatives_properties_khr_construction_con
 
 #[test]
 fn vk_physical_device_shader_image_footprint_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderImageFootprintFeaturesNV<'static> =
+		vk::PhysicalDeviceShaderImageFootprintFeaturesNV::new;
 	let value = vk::PhysicalDeviceShaderImageFootprintFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderImageFootprintFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV
@@ -10706,7 +13500,15 @@ fn vk_physical_device_shader_image_footprint_features_nv_construction_contract()
 
 #[test]
 fn vk_physical_device_dedicated_allocation_image_aliasing_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'static> =
+		vk::PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV::new;
 	let value = vk::PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV
@@ -10717,7 +13519,15 @@ fn vk_physical_device_dedicated_allocation_image_aliasing_features_nv_constructi
 
 #[test]
 fn vk_physical_device_copy_memory_indirect_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCopyMemoryIndirectFeaturesKHR<'static> =
+		vk::PhysicalDeviceCopyMemoryIndirectFeaturesKHR::new;
 	let value = vk::PhysicalDeviceCopyMemoryIndirectFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCopyMemoryIndirectFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_KHR
@@ -10737,7 +13547,15 @@ fn vk_physical_device_copy_memory_indirect_features_khr_construction_contract() 
 
 #[test]
 fn vk_physical_device_copy_memory_indirect_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCopyMemoryIndirectFeaturesNV<'static> =
+		vk::PhysicalDeviceCopyMemoryIndirectFeaturesNV::new;
 	let value = vk::PhysicalDeviceCopyMemoryIndirectFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCopyMemoryIndirectFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_FEATURES_NV
@@ -10752,7 +13570,15 @@ fn vk_physical_device_copy_memory_indirect_features_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_copy_memory_indirect_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCopyMemoryIndirectPropertiesKHR<'static> =
+		vk::PhysicalDeviceCopyMemoryIndirectPropertiesKHR::new;
 	let value = vk::PhysicalDeviceCopyMemoryIndirectPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCopyMemoryIndirectPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COPY_MEMORY_INDIRECT_PROPERTIES_KHR
@@ -10767,7 +13593,15 @@ fn vk_physical_device_copy_memory_indirect_properties_khr_construction_contract(
 
 #[test]
 fn vk_physical_device_memory_decompression_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMemoryDecompressionFeaturesEXT<'static> =
+		vk::PhysicalDeviceMemoryDecompressionFeaturesEXT::new;
 	let value = vk::PhysicalDeviceMemoryDecompressionFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMemoryDecompressionFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_FEATURES_EXT
@@ -10782,7 +13616,15 @@ fn vk_physical_device_memory_decompression_features_ext_construction_contract() 
 
 #[test]
 fn vk_physical_device_memory_decompression_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMemoryDecompressionPropertiesEXT<'static> =
+		vk::PhysicalDeviceMemoryDecompressionPropertiesEXT::new;
 	let value = vk::PhysicalDeviceMemoryDecompressionPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMemoryDecompressionPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MEMORY_DECOMPRESSION_PROPERTIES_EXT
@@ -10802,6 +13644,7 @@ fn vk_physical_device_memory_decompression_properties_ext_construction_contract(
 
 #[test]
 fn vk_shading_rate_palette_nv_construction_contract() {
+	let _: fn() -> vk::ShadingRatePaletteNV<'static> = vk::ShadingRatePaletteNV::new;
 	let _: fn(vk::ShadingRatePaletteNV<'static>, u32) -> vk::ShadingRatePaletteNV<'static> =
 		vk::ShadingRatePaletteNV::set_shading_rate_palette_entry_count;
 	let _: fn(
@@ -10813,7 +13656,15 @@ fn vk_shading_rate_palette_nv_construction_contract() {
 
 #[test]
 fn vk_pipeline_viewport_shading_rate_image_state_create_info_nv_construction_contract() {
+	let _: fn() -> vk::PipelineViewportShadingRateImageStateCreateInfoNV<'static> =
+		vk::PipelineViewportShadingRateImageStateCreateInfoNV::new;
 	let value = vk::PipelineViewportShadingRateImageStateCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineViewportShadingRateImageStateCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV
@@ -10840,7 +13691,15 @@ fn vk_pipeline_viewport_shading_rate_image_state_create_info_nv_construction_con
 
 #[test]
 fn vk_physical_device_shading_rate_image_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShadingRateImageFeaturesNV<'static> =
+		vk::PhysicalDeviceShadingRateImageFeaturesNV::new;
 	let value = vk::PhysicalDeviceShadingRateImageFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShadingRateImageFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_FEATURES_NV
@@ -10860,7 +13719,15 @@ fn vk_physical_device_shading_rate_image_features_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_shading_rate_image_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShadingRateImagePropertiesNV<'static> =
+		vk::PhysicalDeviceShadingRateImagePropertiesNV::new;
 	let value = vk::PhysicalDeviceShadingRateImagePropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShadingRateImagePropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV
@@ -10885,7 +13752,15 @@ fn vk_physical_device_shading_rate_image_properties_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_invocation_mask_features_huawei_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceInvocationMaskFeaturesHUAWEI<'static> =
+		vk::PhysicalDeviceInvocationMaskFeaturesHUAWEI::new;
 	let value = vk::PhysicalDeviceInvocationMaskFeaturesHUAWEI::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceInvocationMaskFeaturesHUAWEI::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI
@@ -10900,6 +13775,7 @@ fn vk_physical_device_invocation_mask_features_huawei_construction_contract() {
 
 #[test]
 fn vk_coarse_sample_location_nv_construction_contract() {
+	let _: fn() -> vk::CoarseSampleLocationNV = vk::CoarseSampleLocationNV::new;
 	let _: fn(vk::CoarseSampleLocationNV, u32) -> vk::CoarseSampleLocationNV =
 		vk::CoarseSampleLocationNV::set_pixel_x;
 	let _: fn(vk::CoarseSampleLocationNV, u32) -> vk::CoarseSampleLocationNV =
@@ -10910,6 +13786,7 @@ fn vk_coarse_sample_location_nv_construction_contract() {
 
 #[test]
 fn vk_coarse_sample_order_custom_nv_construction_contract() {
+	let _: fn() -> vk::CoarseSampleOrderCustomNV<'static> = vk::CoarseSampleOrderCustomNV::new;
 	let _: fn(
 		vk::CoarseSampleOrderCustomNV<'static>,
 		vk::ShadingRatePaletteEntryNV,
@@ -10928,7 +13805,15 @@ fn vk_coarse_sample_order_custom_nv_construction_contract() {
 
 #[test]
 fn vk_pipeline_viewport_coarse_sample_order_state_create_info_nv_construction_contract() {
+	let _: fn() -> vk::PipelineViewportCoarseSampleOrderStateCreateInfoNV<'static> =
+		vk::PipelineViewportCoarseSampleOrderStateCreateInfoNV::new;
 	let value = vk::PipelineViewportCoarseSampleOrderStateCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineViewportCoarseSampleOrderStateCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV
@@ -10955,7 +13840,15 @@ fn vk_pipeline_viewport_coarse_sample_order_state_create_info_nv_construction_co
 
 #[test]
 fn vk_physical_device_mesh_shader_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMeshShaderFeaturesNV<'static> =
+		vk::PhysicalDeviceMeshShaderFeaturesNV::new;
 	let value = vk::PhysicalDeviceMeshShaderFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMeshShaderFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV
@@ -10975,7 +13868,15 @@ fn vk_physical_device_mesh_shader_features_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_mesh_shader_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMeshShaderPropertiesNV<'static> =
+		vk::PhysicalDeviceMeshShaderPropertiesNV::new;
 	let value = vk::PhysicalDeviceMeshShaderPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMeshShaderPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV
@@ -11050,6 +13951,7 @@ fn vk_physical_device_mesh_shader_properties_nv_construction_contract() {
 
 #[test]
 fn vk_draw_mesh_tasks_indirect_command_nv_construction_contract() {
+	let _: fn() -> vk::DrawMeshTasksIndirectCommandNV = vk::DrawMeshTasksIndirectCommandNV::new;
 	let _: fn(vk::DrawMeshTasksIndirectCommandNV, u32) -> vk::DrawMeshTasksIndirectCommandNV =
 		vk::DrawMeshTasksIndirectCommandNV::set_task_count;
 	let _: fn(vk::DrawMeshTasksIndirectCommandNV, u32) -> vk::DrawMeshTasksIndirectCommandNV =
@@ -11058,7 +13960,15 @@ fn vk_draw_mesh_tasks_indirect_command_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_mesh_shader_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMeshShaderFeaturesEXT<'static> =
+		vk::PhysicalDeviceMeshShaderFeaturesEXT::new;
 	let value = vk::PhysicalDeviceMeshShaderFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMeshShaderFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_FEATURES_EXT
@@ -11093,7 +14003,15 @@ fn vk_physical_device_mesh_shader_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_mesh_shader_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMeshShaderPropertiesEXT<'static> =
+		vk::PhysicalDeviceMeshShaderPropertiesEXT::new;
 	let value = vk::PhysicalDeviceMeshShaderPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMeshShaderPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_EXT
@@ -11243,6 +14161,7 @@ fn vk_physical_device_mesh_shader_properties_ext_construction_contract() {
 
 #[test]
 fn vk_draw_mesh_tasks_indirect_command_ext_construction_contract() {
+	let _: fn() -> vk::DrawMeshTasksIndirectCommandEXT = vk::DrawMeshTasksIndirectCommandEXT::new;
 	let _: fn(vk::DrawMeshTasksIndirectCommandEXT, u32) -> vk::DrawMeshTasksIndirectCommandEXT =
 		vk::DrawMeshTasksIndirectCommandEXT::set_group_count_x;
 	let _: fn(vk::DrawMeshTasksIndirectCommandEXT, u32) -> vk::DrawMeshTasksIndirectCommandEXT =
@@ -11253,7 +14172,15 @@ fn vk_draw_mesh_tasks_indirect_command_ext_construction_contract() {
 
 #[test]
 fn vk_ray_tracing_shader_group_create_info_nv_construction_contract() {
+	let _: fn() -> vk::RayTracingShaderGroupCreateInfoNV<'static> =
+		vk::RayTracingShaderGroupCreateInfoNV::new;
 	let value = vk::RayTracingShaderGroupCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RayTracingShaderGroupCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV
@@ -11288,7 +14215,15 @@ fn vk_ray_tracing_shader_group_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_ray_tracing_shader_group_create_info_khr_construction_contract() {
+	let _: fn() -> vk::RayTracingShaderGroupCreateInfoKHR<'static> =
+		vk::RayTracingShaderGroupCreateInfoKHR::new;
 	let value = vk::RayTracingShaderGroupCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RayTracingShaderGroupCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR
@@ -11328,7 +14263,15 @@ fn vk_ray_tracing_shader_group_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_ray_tracing_pipeline_create_info_nv_construction_contract() {
+	let _: fn() -> vk::RayTracingPipelineCreateInfoNV<'static> =
+		vk::RayTracingPipelineCreateInfoNV::new;
 	let value = vk::RayTracingPipelineCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RayTracingPipelineCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_NV
@@ -11385,7 +14328,15 @@ fn vk_ray_tracing_pipeline_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_ray_tracing_pipeline_create_info_khr_construction_contract() {
+	let _: fn() -> vk::RayTracingPipelineCreateInfoKHR<'static> =
+		vk::RayTracingPipelineCreateInfoKHR::new;
 	let value = vk::RayTracingPipelineCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RayTracingPipelineCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RAY_TRACING_PIPELINE_CREATE_INFO_KHR
@@ -11458,7 +14409,11 @@ fn vk_ray_tracing_pipeline_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_geometry_triangles_nv_construction_contract() {
+	let _: fn() -> vk::GeometryTrianglesNV<'static> = vk::GeometryTrianglesNV::new;
 	let value = vk::GeometryTrianglesNV::default();
+	assert_eq!(value.s_type, vk::StructureType::GEOMETRY_TRIANGLES_NV);
+	assert!(value.p_next.is_null());
+	let value = vk::GeometryTrianglesNV::new();
 	assert_eq!(value.s_type, vk::StructureType::GEOMETRY_TRIANGLES_NV);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::GeometryTrianglesNV<'static>, vk::Buffer) -> vk::GeometryTrianglesNV<'static> =
@@ -11487,7 +14442,11 @@ fn vk_geometry_triangles_nv_construction_contract() {
 
 #[test]
 fn vk_geometry_aabbnv_construction_contract() {
+	let _: fn() -> vk::GeometryAABBNV<'static> = vk::GeometryAABBNV::new;
 	let value = vk::GeometryAABBNV::default();
+	assert_eq!(value.s_type, vk::StructureType::GEOMETRY_AABB_NV);
+	assert!(value.p_next.is_null());
+	let value = vk::GeometryAABBNV::new();
 	assert_eq!(value.s_type, vk::StructureType::GEOMETRY_AABB_NV);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::GeometryAABBNV<'static>, vk::Buffer) -> vk::GeometryAABBNV<'static> =
@@ -11502,6 +14461,7 @@ fn vk_geometry_aabbnv_construction_contract() {
 
 #[test]
 fn vk_geometry_data_nv_construction_contract() {
+	let _: fn() -> vk::GeometryDataNV<'static> = vk::GeometryDataNV::new;
 	let _: fn(
 		vk::GeometryDataNV<'static>,
 		vk::GeometryTrianglesNV<'static>,
@@ -11514,7 +14474,11 @@ fn vk_geometry_data_nv_construction_contract() {
 
 #[test]
 fn vk_geometry_nv_construction_contract() {
+	let _: fn() -> vk::GeometryNV<'static> = vk::GeometryNV::new;
 	let value = vk::GeometryNV::default();
+	assert_eq!(value.s_type, vk::StructureType::GEOMETRY_NV);
+	assert!(value.p_next.is_null());
+	let value = vk::GeometryNV::new();
 	assert_eq!(value.s_type, vk::StructureType::GEOMETRY_NV);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::GeometryNV<'static>, vk::GeometryTypeKHR) -> vk::GeometryNV<'static> =
@@ -11527,7 +14491,14 @@ fn vk_geometry_nv_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_info_nv_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureInfoNV<'static> = vk::AccelerationStructureInfoNV::new;
 	let value = vk::AccelerationStructureInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_INFO_NV
@@ -11562,7 +14533,15 @@ fn vk_acceleration_structure_info_nv_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_create_info_nv_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureCreateInfoNV<'static> =
+		vk::AccelerationStructureCreateInfoNV::new;
 	let value = vk::AccelerationStructureCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_NV
@@ -11582,7 +14561,15 @@ fn vk_acceleration_structure_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_bind_acceleration_structure_memory_info_nv_construction_contract() {
+	let _: fn() -> vk::BindAccelerationStructureMemoryInfoNV<'static> =
+		vk::BindAccelerationStructureMemoryInfoNV::new;
 	let value = vk::BindAccelerationStructureMemoryInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BindAccelerationStructureMemoryInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BIND_ACCELERATION_STRUCTURE_MEMORY_INFO_NV
@@ -11619,7 +14606,15 @@ fn vk_bind_acceleration_structure_memory_info_nv_construction_contract() {
 
 #[test]
 fn vk_write_descriptor_set_acceleration_structure_khr_construction_contract() {
+	let _: fn() -> vk::WriteDescriptorSetAccelerationStructureKHR<'static> =
+		vk::WriteDescriptorSetAccelerationStructureKHR::new;
 	let value = vk::WriteDescriptorSetAccelerationStructureKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::WriteDescriptorSetAccelerationStructureKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR
@@ -11641,7 +14636,15 @@ fn vk_write_descriptor_set_acceleration_structure_khr_construction_contract() {
 
 #[test]
 fn vk_write_descriptor_set_acceleration_structure_nv_construction_contract() {
+	let _: fn() -> vk::WriteDescriptorSetAccelerationStructureNV<'static> =
+		vk::WriteDescriptorSetAccelerationStructureNV::new;
 	let value = vk::WriteDescriptorSetAccelerationStructureNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::WriteDescriptorSetAccelerationStructureNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV
@@ -11663,7 +14666,15 @@ fn vk_write_descriptor_set_acceleration_structure_nv_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_memory_requirements_info_nv_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureMemoryRequirementsInfoNV<'static> =
+		vk::AccelerationStructureMemoryRequirementsInfoNV::new;
 	let value = vk::AccelerationStructureMemoryRequirementsInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureMemoryRequirementsInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_INFO_NV
@@ -11683,7 +14694,15 @@ fn vk_acceleration_structure_memory_requirements_info_nv_construction_contract()
 
 #[test]
 fn vk_physical_device_acceleration_structure_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceAccelerationStructureFeaturesKHR<'static> =
+		vk::PhysicalDeviceAccelerationStructureFeaturesKHR::new;
 	let value = vk::PhysicalDeviceAccelerationStructureFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceAccelerationStructureFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR
@@ -11714,7 +14733,15 @@ fn vk_physical_device_acceleration_structure_features_khr_construction_contract(
 
 #[test]
 fn vk_physical_device_ray_tracing_pipeline_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRayTracingPipelineFeaturesKHR<'static> =
+		vk::PhysicalDeviceRayTracingPipelineFeaturesKHR::new;
 	let value = vk::PhysicalDeviceRayTracingPipelineFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRayTracingPipelineFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_FEATURES_KHR
@@ -11741,7 +14768,15 @@ fn vk_physical_device_ray_tracing_pipeline_features_khr_construction_contract() 
 
 #[test]
 fn vk_physical_device_ray_query_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRayQueryFeaturesKHR<'static> =
+		vk::PhysicalDeviceRayQueryFeaturesKHR::new;
 	let value = vk::PhysicalDeviceRayQueryFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRayQueryFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR
@@ -11756,7 +14791,15 @@ fn vk_physical_device_ray_query_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_acceleration_structure_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceAccelerationStructurePropertiesKHR<'static> =
+		vk::PhysicalDeviceAccelerationStructurePropertiesKHR::new;
 	let value = vk::PhysicalDeviceAccelerationStructurePropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceAccelerationStructurePropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR
@@ -11786,7 +14829,15 @@ fn vk_physical_device_acceleration_structure_properties_khr_construction_contrac
 
 #[test]
 fn vk_physical_device_ray_tracing_pipeline_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRayTracingPipelinePropertiesKHR<'static> =
+		vk::PhysicalDeviceRayTracingPipelinePropertiesKHR::new;
 	let value = vk::PhysicalDeviceRayTracingPipelinePropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRayTracingPipelinePropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR
@@ -11836,7 +14887,15 @@ fn vk_physical_device_ray_tracing_pipeline_properties_khr_construction_contract(
 
 #[test]
 fn vk_physical_device_ray_tracing_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRayTracingPropertiesNV<'static> =
+		vk::PhysicalDeviceRayTracingPropertiesNV::new;
 	let value = vk::PhysicalDeviceRayTracingPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRayTracingPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_PROPERTIES_NV
@@ -11886,6 +14945,7 @@ fn vk_physical_device_ray_tracing_properties_nv_construction_contract() {
 
 #[test]
 fn vk_strided_device_address_region_khr_construction_contract() {
+	let _: fn() -> vk::StridedDeviceAddressRegionKHR = vk::StridedDeviceAddressRegionKHR::new;
 	let _: fn(
 		vk::StridedDeviceAddressRegionKHR,
 		vk::DeviceAddress,
@@ -11902,6 +14962,7 @@ fn vk_strided_device_address_region_khr_construction_contract() {
 
 #[test]
 fn vk_trace_rays_indirect_command_khr_construction_contract() {
+	let _: fn() -> vk::TraceRaysIndirectCommandKHR = vk::TraceRaysIndirectCommandKHR::new;
 	let _: fn(vk::TraceRaysIndirectCommandKHR, u32) -> vk::TraceRaysIndirectCommandKHR =
 		vk::TraceRaysIndirectCommandKHR::set_width;
 	let _: fn(vk::TraceRaysIndirectCommandKHR, u32) -> vk::TraceRaysIndirectCommandKHR =
@@ -11912,6 +14973,7 @@ fn vk_trace_rays_indirect_command_khr_construction_contract() {
 
 #[test]
 fn vk_trace_rays_indirect_command2_khr_construction_contract() {
+	let _: fn() -> vk::TraceRaysIndirectCommand2KHR = vk::TraceRaysIndirectCommand2KHR::new;
 	let _: fn(
 		vk::TraceRaysIndirectCommand2KHR,
 		vk::DeviceAddress,
@@ -11956,7 +15018,15 @@ fn vk_trace_rays_indirect_command2_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_ray_tracing_maintenance1_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRayTracingMaintenance1FeaturesKHR<'static> =
+		vk::PhysicalDeviceRayTracingMaintenance1FeaturesKHR::new;
 	let value = vk::PhysicalDeviceRayTracingMaintenance1FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MAINTENANCE_1_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRayTracingMaintenance1FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MAINTENANCE_1_FEATURES_KHR
@@ -11972,7 +15042,15 @@ fn vk_physical_device_ray_tracing_maintenance1_features_khr_construction_contrac
 
 #[test]
 fn vk_drm_format_modifier_properties_list_ext_construction_contract() {
+	let _: fn() -> vk::DrmFormatModifierPropertiesListEXT<'static> =
+		vk::DrmFormatModifierPropertiesListEXT::new;
 	let value = vk::DrmFormatModifierPropertiesListEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DrmFormatModifierPropertiesListEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT
@@ -11994,6 +15072,7 @@ fn vk_drm_format_modifier_properties_list_ext_construction_contract() {
 
 #[test]
 fn vk_drm_format_modifier_properties_ext_construction_contract() {
+	let _: fn() -> vk::DrmFormatModifierPropertiesEXT = vk::DrmFormatModifierPropertiesEXT::new;
 	let _: fn(vk::DrmFormatModifierPropertiesEXT, u64) -> vk::DrmFormatModifierPropertiesEXT =
 		vk::DrmFormatModifierPropertiesEXT::set_drm_format_modifier;
 	let _: fn(vk::DrmFormatModifierPropertiesEXT, u32) -> vk::DrmFormatModifierPropertiesEXT =
@@ -12007,7 +15086,15 @@ fn vk_drm_format_modifier_properties_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_image_drm_format_modifier_info_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageDrmFormatModifierInfoEXT<'static> =
+		vk::PhysicalDeviceImageDrmFormatModifierInfoEXT::new;
 	let value = vk::PhysicalDeviceImageDrmFormatModifierInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageDrmFormatModifierInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT
@@ -12039,7 +15126,15 @@ fn vk_physical_device_image_drm_format_modifier_info_ext_construction_contract()
 
 #[test]
 fn vk_image_drm_format_modifier_list_create_info_ext_construction_contract() {
+	let _: fn() -> vk::ImageDrmFormatModifierListCreateInfoEXT<'static> =
+		vk::ImageDrmFormatModifierListCreateInfoEXT::new;
 	let value = vk::ImageDrmFormatModifierListCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageDrmFormatModifierListCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT
@@ -12061,7 +15156,15 @@ fn vk_image_drm_format_modifier_list_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_image_drm_format_modifier_explicit_create_info_ext_construction_contract() {
+	let _: fn() -> vk::ImageDrmFormatModifierExplicitCreateInfoEXT<'static> =
+		vk::ImageDrmFormatModifierExplicitCreateInfoEXT::new;
 	let value = vk::ImageDrmFormatModifierExplicitCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageDrmFormatModifierExplicitCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT
@@ -12088,7 +15191,15 @@ fn vk_image_drm_format_modifier_explicit_create_info_ext_construction_contract()
 
 #[test]
 fn vk_image_drm_format_modifier_properties_ext_construction_contract() {
+	let _: fn() -> vk::ImageDrmFormatModifierPropertiesEXT<'static> =
+		vk::ImageDrmFormatModifierPropertiesEXT::new;
 	let value = vk::ImageDrmFormatModifierPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageDrmFormatModifierPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT
@@ -12103,7 +15214,14 @@ fn vk_image_drm_format_modifier_properties_ext_construction_contract() {
 
 #[test]
 fn vk_image_stencil_usage_create_info_construction_contract() {
+	let _: fn() -> vk::ImageStencilUsageCreateInfo<'static> = vk::ImageStencilUsageCreateInfo::new;
 	let value = vk::ImageStencilUsageCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_STENCIL_USAGE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageStencilUsageCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_STENCIL_USAGE_CREATE_INFO
@@ -12117,7 +15235,15 @@ fn vk_image_stencil_usage_create_info_construction_contract() {
 
 #[test]
 fn vk_image_stencil_usage2_create_info_khr_construction_contract() {
+	let _: fn() -> vk::ImageStencilUsage2CreateInfoKHR<'static> =
+		vk::ImageStencilUsage2CreateInfoKHR::new;
 	let value = vk::ImageStencilUsage2CreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_STENCIL_USAGE_2_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageStencilUsage2CreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_STENCIL_USAGE_2_CREATE_INFO_KHR
@@ -12132,7 +15258,15 @@ fn vk_image_stencil_usage2_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_device_memory_overallocation_create_info_amd_construction_contract() {
+	let _: fn() -> vk::DeviceMemoryOverallocationCreateInfoAMD<'static> =
+		vk::DeviceMemoryOverallocationCreateInfoAMD::new;
 	let value = vk::DeviceMemoryOverallocationCreateInfoAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceMemoryOverallocationCreateInfoAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD
@@ -12147,7 +15281,15 @@ fn vk_device_memory_overallocation_create_info_amd_construction_contract() {
 
 #[test]
 fn vk_physical_device_fragment_density_map_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentDensityMapFeaturesEXT<'static> =
+		vk::PhysicalDeviceFragmentDensityMapFeaturesEXT::new;
 	let value = vk::PhysicalDeviceFragmentDensityMapFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentDensityMapFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT
@@ -12172,7 +15314,15 @@ fn vk_physical_device_fragment_density_map_features_ext_construction_contract() 
 
 #[test]
 fn vk_physical_device_fragment_density_map2_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentDensityMap2FeaturesEXT<'static> =
+		vk::PhysicalDeviceFragmentDensityMap2FeaturesEXT::new;
 	let value = vk::PhysicalDeviceFragmentDensityMap2FeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentDensityMap2FeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_FEATURES_EXT
@@ -12187,7 +15337,15 @@ fn vk_physical_device_fragment_density_map2_features_ext_construction_contract()
 
 #[test]
 fn vk_physical_device_fragment_density_map_offset_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT<'static> =
+		vk::PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT::new;
 	let value = vk::PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentDensityMapOffsetFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_EXT
@@ -12202,7 +15360,15 @@ fn vk_physical_device_fragment_density_map_offset_features_ext_construction_cont
 
 #[test]
 fn vk_physical_device_fragment_density_map_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentDensityMapPropertiesEXT<'static> =
+		vk::PhysicalDeviceFragmentDensityMapPropertiesEXT::new;
 	let value = vk::PhysicalDeviceFragmentDensityMapPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentDensityMapPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT
@@ -12227,7 +15393,15 @@ fn vk_physical_device_fragment_density_map_properties_ext_construction_contract(
 
 #[test]
 fn vk_physical_device_fragment_density_map2_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentDensityMap2PropertiesEXT<'static> =
+		vk::PhysicalDeviceFragmentDensityMap2PropertiesEXT::new;
 	let value = vk::PhysicalDeviceFragmentDensityMap2PropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentDensityMap2PropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_2_PROPERTIES_EXT
@@ -12253,7 +15427,15 @@ fn vk_physical_device_fragment_density_map2_properties_ext_construction_contract
 
 #[test]
 fn vk_physical_device_fragment_density_map_offset_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT<'static> =
+		vk::PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT::new;
 	let value = vk::PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentDensityMapOffsetPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_EXT
@@ -12264,7 +15446,15 @@ fn vk_physical_device_fragment_density_map_offset_properties_ext_construction_co
 
 #[test]
 fn vk_render_pass_fragment_density_map_create_info_ext_construction_contract() {
+	let _: fn() -> vk::RenderPassFragmentDensityMapCreateInfoEXT<'static> =
+		vk::RenderPassFragmentDensityMapCreateInfoEXT::new;
 	let value = vk::RenderPassFragmentDensityMapCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassFragmentDensityMapCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT
@@ -12279,7 +15469,15 @@ fn vk_render_pass_fragment_density_map_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_render_pass_fragment_density_map_offset_end_info_ext_construction_contract() {
+	let _: fn() -> vk::RenderPassFragmentDensityMapOffsetEndInfoEXT<'static> =
+		vk::RenderPassFragmentDensityMapOffsetEndInfoEXT::new;
 	let value = vk::RenderPassFragmentDensityMapOffsetEndInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassFragmentDensityMapOffsetEndInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDER_PASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_EXT
@@ -12301,7 +15499,15 @@ fn vk_render_pass_fragment_density_map_offset_end_info_ext_construction_contract
 
 #[test]
 fn vk_physical_device_scalar_block_layout_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceScalarBlockLayoutFeatures<'static> =
+		vk::PhysicalDeviceScalarBlockLayoutFeatures::new;
 	let value = vk::PhysicalDeviceScalarBlockLayoutFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceScalarBlockLayoutFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES
@@ -12316,7 +15522,15 @@ fn vk_physical_device_scalar_block_layout_features_construction_contract() {
 
 #[test]
 fn vk_surface_protected_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::SurfaceProtectedCapabilitiesKHR<'static> =
+		vk::SurfaceProtectedCapabilitiesKHR::new;
 	let value = vk::SurfaceProtectedCapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SURFACE_PROTECTED_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SurfaceProtectedCapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SURFACE_PROTECTED_CAPABILITIES_KHR
@@ -12331,7 +15545,15 @@ fn vk_surface_protected_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_uniform_buffer_standard_layout_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceUniformBufferStandardLayoutFeatures<'static> =
+		vk::PhysicalDeviceUniformBufferStandardLayoutFeatures::new;
 	let value = vk::PhysicalDeviceUniformBufferStandardLayoutFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceUniformBufferStandardLayoutFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES
@@ -12346,7 +15568,15 @@ fn vk_physical_device_uniform_buffer_standard_layout_features_construction_contr
 
 #[test]
 fn vk_physical_device_depth_clip_enable_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDepthClipEnableFeaturesEXT<'static> =
+		vk::PhysicalDeviceDepthClipEnableFeaturesEXT::new;
 	let value = vk::PhysicalDeviceDepthClipEnableFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDepthClipEnableFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT
@@ -12361,7 +15591,15 @@ fn vk_physical_device_depth_clip_enable_features_ext_construction_contract() {
 
 #[test]
 fn vk_pipeline_rasterization_depth_clip_state_create_info_ext_construction_contract() {
+	let _: fn() -> vk::PipelineRasterizationDepthClipStateCreateInfoEXT<'static> =
+		vk::PipelineRasterizationDepthClipStateCreateInfoEXT::new;
 	let value = vk::PipelineRasterizationDepthClipStateCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineRasterizationDepthClipStateCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT
@@ -12381,7 +15619,15 @@ fn vk_pipeline_rasterization_depth_clip_state_create_info_ext_construction_contr
 
 #[test]
 fn vk_physical_device_memory_budget_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMemoryBudgetPropertiesEXT<'static> =
+		vk::PhysicalDeviceMemoryBudgetPropertiesEXT::new;
 	let value = vk::PhysicalDeviceMemoryBudgetPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMemoryBudgetPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT
@@ -12401,7 +15647,15 @@ fn vk_physical_device_memory_budget_properties_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_memory_priority_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMemoryPriorityFeaturesEXT<'static> =
+		vk::PhysicalDeviceMemoryPriorityFeaturesEXT::new;
 	let value = vk::PhysicalDeviceMemoryPriorityFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMemoryPriorityFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT
@@ -12416,7 +15670,15 @@ fn vk_physical_device_memory_priority_features_ext_construction_contract() {
 
 #[test]
 fn vk_memory_priority_allocate_info_ext_construction_contract() {
+	let _: fn() -> vk::MemoryPriorityAllocateInfoEXT<'static> =
+		vk::MemoryPriorityAllocateInfoEXT::new;
 	let value = vk::MemoryPriorityAllocateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_PRIORITY_ALLOCATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryPriorityAllocateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_PRIORITY_ALLOCATE_INFO_EXT
@@ -12430,7 +15692,15 @@ fn vk_memory_priority_allocate_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_pageable_device_local_memory_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT<'static> =
+		vk::PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT::new;
 	let value = vk::PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT
@@ -12445,7 +15715,15 @@ fn vk_physical_device_pageable_device_local_memory_features_ext_construction_con
 
 #[test]
 fn vk_physical_device_buffer_device_address_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceBufferDeviceAddressFeatures<'static> =
+		vk::PhysicalDeviceBufferDeviceAddressFeatures::new;
 	let value = vk::PhysicalDeviceBufferDeviceAddressFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceBufferDeviceAddressFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES
@@ -12470,7 +15748,15 @@ fn vk_physical_device_buffer_device_address_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_buffer_device_address_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceBufferDeviceAddressFeaturesEXT<'static> =
+		vk::PhysicalDeviceBufferDeviceAddressFeaturesEXT::new;
 	let value = vk::PhysicalDeviceBufferDeviceAddressFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceBufferDeviceAddressFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT
@@ -12495,7 +15781,11 @@ fn vk_physical_device_buffer_device_address_features_ext_construction_contract()
 
 #[test]
 fn vk_buffer_device_address_info_construction_contract() {
+	let _: fn() -> vk::BufferDeviceAddressInfo<'static> = vk::BufferDeviceAddressInfo::new;
 	let value = vk::BufferDeviceAddressInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::BUFFER_DEVICE_ADDRESS_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferDeviceAddressInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::BUFFER_DEVICE_ADDRESS_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -12506,7 +15796,15 @@ fn vk_buffer_device_address_info_construction_contract() {
 
 #[test]
 fn vk_buffer_opaque_capture_address_create_info_construction_contract() {
+	let _: fn() -> vk::BufferOpaqueCaptureAddressCreateInfo<'static> =
+		vk::BufferOpaqueCaptureAddressCreateInfo::new;
 	let value = vk::BufferOpaqueCaptureAddressCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferOpaqueCaptureAddressCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO
@@ -12521,7 +15819,15 @@ fn vk_buffer_opaque_capture_address_create_info_construction_contract() {
 
 #[test]
 fn vk_buffer_device_address_create_info_ext_construction_contract() {
+	let _: fn() -> vk::BufferDeviceAddressCreateInfoEXT<'static> =
+		vk::BufferDeviceAddressCreateInfoEXT::new;
 	let value = vk::BufferDeviceAddressCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferDeviceAddressCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT
@@ -12536,7 +15842,15 @@ fn vk_buffer_device_address_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_image_view_image_format_info_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageViewImageFormatInfoEXT<'static> =
+		vk::PhysicalDeviceImageViewImageFormatInfoEXT::new;
 	let value = vk::PhysicalDeviceImageViewImageFormatInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageViewImageFormatInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT
@@ -12551,7 +15865,15 @@ fn vk_physical_device_image_view_image_format_info_ext_construction_contract() {
 
 #[test]
 fn vk_filter_cubic_image_view_image_format_properties_ext_construction_contract() {
+	let _: fn() -> vk::FilterCubicImageViewImageFormatPropertiesEXT<'static> =
+		vk::FilterCubicImageViewImageFormatPropertiesEXT::new;
 	let value = vk::FilterCubicImageViewImageFormatPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::FilterCubicImageViewImageFormatPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT
@@ -12571,7 +15893,15 @@ fn vk_filter_cubic_image_view_image_format_properties_ext_construction_contract(
 
 #[test]
 fn vk_physical_device_imageless_framebuffer_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImagelessFramebufferFeatures<'static> =
+		vk::PhysicalDeviceImagelessFramebufferFeatures::new;
 	let value = vk::PhysicalDeviceImagelessFramebufferFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImagelessFramebufferFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES
@@ -12586,7 +15916,15 @@ fn vk_physical_device_imageless_framebuffer_features_construction_contract() {
 
 #[test]
 fn vk_framebuffer_attachments_create_info_construction_contract() {
+	let _: fn() -> vk::FramebufferAttachmentsCreateInfo<'static> =
+		vk::FramebufferAttachmentsCreateInfo::new;
 	let value = vk::FramebufferAttachmentsCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::FRAMEBUFFER_ATTACHMENTS_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::FramebufferAttachmentsCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::FRAMEBUFFER_ATTACHMENTS_CREATE_INFO
@@ -12608,7 +15946,15 @@ fn vk_framebuffer_attachments_create_info_construction_contract() {
 
 #[test]
 fn vk_framebuffer_attachment_image_info_construction_contract() {
+	let _: fn() -> vk::FramebufferAttachmentImageInfo<'static> =
+		vk::FramebufferAttachmentImageInfo::new;
 	let value = vk::FramebufferAttachmentImageInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::FRAMEBUFFER_ATTACHMENT_IMAGE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::FramebufferAttachmentImageInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::FRAMEBUFFER_ATTACHMENT_IMAGE_INFO
@@ -12651,7 +15997,15 @@ fn vk_framebuffer_attachment_image_info_construction_contract() {
 
 #[test]
 fn vk_render_pass_attachment_begin_info_construction_contract() {
+	let _: fn() -> vk::RenderPassAttachmentBeginInfo<'static> =
+		vk::RenderPassAttachmentBeginInfo::new;
 	let value = vk::RenderPassAttachmentBeginInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDER_PASS_ATTACHMENT_BEGIN_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassAttachmentBeginInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDER_PASS_ATTACHMENT_BEGIN_INFO
@@ -12673,7 +16027,15 @@ fn vk_render_pass_attachment_begin_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_texture_compression_astchdr_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceTextureCompressionASTCHDRFeatures<'static> =
+		vk::PhysicalDeviceTextureCompressionASTCHDRFeatures::new;
 	let value = vk::PhysicalDeviceTextureCompressionASTCHDRFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceTextureCompressionASTCHDRFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES
@@ -12688,7 +16050,15 @@ fn vk_physical_device_texture_compression_astchdr_features_construction_contract
 
 #[test]
 fn vk_physical_device_cooperative_matrix_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCooperativeMatrixFeaturesNV<'static> =
+		vk::PhysicalDeviceCooperativeMatrixFeaturesNV::new;
 	let value = vk::PhysicalDeviceCooperativeMatrixFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCooperativeMatrixFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV
@@ -12708,7 +16078,15 @@ fn vk_physical_device_cooperative_matrix_features_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_cooperative_matrix_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCooperativeMatrixPropertiesNV<'static> =
+		vk::PhysicalDeviceCooperativeMatrixPropertiesNV::new;
 	let value = vk::PhysicalDeviceCooperativeMatrixPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCooperativeMatrixPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV
@@ -12723,7 +16101,15 @@ fn vk_physical_device_cooperative_matrix_properties_nv_construction_contract() {
 
 #[test]
 fn vk_cooperative_matrix_properties_nv_construction_contract() {
+	let _: fn() -> vk::CooperativeMatrixPropertiesNV<'static> =
+		vk::CooperativeMatrixPropertiesNV::new;
 	let value = vk::CooperativeMatrixPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COOPERATIVE_MATRIX_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CooperativeMatrixPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COOPERATIVE_MATRIX_PROPERTIES_NV
@@ -12765,7 +16151,15 @@ fn vk_cooperative_matrix_properties_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_ycbcr_image_arrays_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceYcbcrImageArraysFeaturesEXT<'static> =
+		vk::PhysicalDeviceYcbcrImageArraysFeaturesEXT::new;
 	let value = vk::PhysicalDeviceYcbcrImageArraysFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceYcbcrImageArraysFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT
@@ -12780,7 +16174,11 @@ fn vk_physical_device_ycbcr_image_arrays_features_ext_construction_contract() {
 
 #[test]
 fn vk_image_view_handle_info_nvx_construction_contract() {
+	let _: fn() -> vk::ImageViewHandleInfoNVX<'static> = vk::ImageViewHandleInfoNVX::new;
 	let value = vk::ImageViewHandleInfoNVX::default();
+	assert_eq!(value.s_type, vk::StructureType::IMAGE_VIEW_HANDLE_INFO_NVX);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageViewHandleInfoNVX::new();
 	assert_eq!(value.s_type, vk::StructureType::IMAGE_VIEW_HANDLE_INFO_NVX);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -12799,7 +16197,15 @@ fn vk_image_view_handle_info_nvx_construction_contract() {
 
 #[test]
 fn vk_image_view_address_properties_nvx_construction_contract() {
+	let _: fn() -> vk::ImageViewAddressPropertiesNVX<'static> =
+		vk::ImageViewAddressPropertiesNVX::new;
 	let value = vk::ImageViewAddressPropertiesNVX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_VIEW_ADDRESS_PROPERTIES_NVX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageViewAddressPropertiesNVX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_VIEW_ADDRESS_PROPERTIES_NVX
@@ -12819,7 +16225,11 @@ fn vk_image_view_address_properties_nvx_construction_contract() {
 #[cfg(feature = "platform-ggp")]
 #[test]
 fn vk_present_frame_token_ggp_construction_contract() {
+	let _: fn() -> vk::PresentFrameTokenGGP<'static> = vk::PresentFrameTokenGGP::new;
 	let value = vk::PresentFrameTokenGGP::default();
+	assert_eq!(value.s_type, vk::StructureType::PRESENT_FRAME_TOKEN_GGP);
+	assert!(value.p_next.is_null());
+	let value = vk::PresentFrameTokenGGP::new();
 	assert_eq!(value.s_type, vk::StructureType::PRESENT_FRAME_TOKEN_GGP);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -12830,6 +16240,7 @@ fn vk_present_frame_token_ggp_construction_contract() {
 
 #[test]
 fn vk_pipeline_creation_feedback_construction_contract() {
+	let _: fn() -> vk::PipelineCreationFeedback = vk::PipelineCreationFeedback::new;
 	let _: fn(
 		vk::PipelineCreationFeedback,
 		vk::PipelineCreationFeedbackFlags,
@@ -12840,7 +16251,15 @@ fn vk_pipeline_creation_feedback_construction_contract() {
 
 #[test]
 fn vk_pipeline_creation_feedback_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineCreationFeedbackCreateInfo<'static> =
+		vk::PipelineCreationFeedbackCreateInfo::new;
 	let value = vk::PipelineCreationFeedbackCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_CREATION_FEEDBACK_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineCreationFeedbackCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_CREATION_FEEDBACK_CREATE_INFO
@@ -12868,7 +16287,15 @@ fn vk_pipeline_creation_feedback_create_info_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_surface_full_screen_exclusive_info_ext_construction_contract() {
+	let _: fn() -> vk::SurfaceFullScreenExclusiveInfoEXT<'static> =
+		vk::SurfaceFullScreenExclusiveInfoEXT::new;
 	let value = vk::SurfaceFullScreenExclusiveInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SurfaceFullScreenExclusiveInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT
@@ -12884,7 +16311,15 @@ fn vk_surface_full_screen_exclusive_info_ext_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_surface_full_screen_exclusive_win32_info_ext_construction_contract() {
+	let _: fn() -> vk::SurfaceFullScreenExclusiveWin32InfoEXT<'static> =
+		vk::SurfaceFullScreenExclusiveWin32InfoEXT::new;
 	let value = vk::SurfaceFullScreenExclusiveWin32InfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SurfaceFullScreenExclusiveWin32InfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT
@@ -12900,7 +16335,15 @@ fn vk_surface_full_screen_exclusive_win32_info_ext_construction_contract() {
 #[cfg(feature = "platform-win32")]
 #[test]
 fn vk_surface_capabilities_full_screen_exclusive_ext_construction_contract() {
+	let _: fn() -> vk::SurfaceCapabilitiesFullScreenExclusiveEXT<'static> =
+		vk::SurfaceCapabilitiesFullScreenExclusiveEXT::new;
 	let value = vk::SurfaceCapabilitiesFullScreenExclusiveEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SurfaceCapabilitiesFullScreenExclusiveEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT
@@ -12915,7 +16358,15 @@ fn vk_surface_capabilities_full_screen_exclusive_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_present_barrier_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePresentBarrierFeaturesNV<'static> =
+		vk::PhysicalDevicePresentBarrierFeaturesNV::new;
 	let value = vk::PhysicalDevicePresentBarrierFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PRESENT_BARRIER_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePresentBarrierFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PRESENT_BARRIER_FEATURES_NV
@@ -12930,7 +16381,15 @@ fn vk_physical_device_present_barrier_features_nv_construction_contract() {
 
 #[test]
 fn vk_surface_capabilities_present_barrier_nv_construction_contract() {
+	let _: fn() -> vk::SurfaceCapabilitiesPresentBarrierNV<'static> =
+		vk::SurfaceCapabilitiesPresentBarrierNV::new;
 	let value = vk::SurfaceCapabilitiesPresentBarrierNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SURFACE_CAPABILITIES_PRESENT_BARRIER_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SurfaceCapabilitiesPresentBarrierNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SURFACE_CAPABILITIES_PRESENT_BARRIER_NV
@@ -12945,7 +16404,15 @@ fn vk_surface_capabilities_present_barrier_nv_construction_contract() {
 
 #[test]
 fn vk_swapchain_present_barrier_create_info_nv_construction_contract() {
+	let _: fn() -> vk::SwapchainPresentBarrierCreateInfoNV<'static> =
+		vk::SwapchainPresentBarrierCreateInfoNV::new;
 	let value = vk::SwapchainPresentBarrierCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SWAPCHAIN_PRESENT_BARRIER_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SwapchainPresentBarrierCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SWAPCHAIN_PRESENT_BARRIER_CREATE_INFO_NV
@@ -12960,7 +16427,15 @@ fn vk_swapchain_present_barrier_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_performance_query_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePerformanceQueryFeaturesKHR<'static> =
+		vk::PhysicalDevicePerformanceQueryFeaturesKHR::new;
 	let value = vk::PhysicalDevicePerformanceQueryFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePerformanceQueryFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR
@@ -12980,7 +16455,15 @@ fn vk_physical_device_performance_query_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_performance_query_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePerformanceQueryPropertiesKHR<'static> =
+		vk::PhysicalDevicePerformanceQueryPropertiesKHR::new;
 	let value = vk::PhysicalDevicePerformanceQueryPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePerformanceQueryPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR
@@ -12995,7 +16478,11 @@ fn vk_physical_device_performance_query_properties_khr_construction_contract() {
 
 #[test]
 fn vk_performance_counter_khr_construction_contract() {
+	let _: fn() -> vk::PerformanceCounterKHR<'static> = vk::PerformanceCounterKHR::new;
 	let value = vk::PerformanceCounterKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::PERFORMANCE_COUNTER_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::PerformanceCounterKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::PERFORMANCE_COUNTER_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -13018,7 +16505,15 @@ fn vk_performance_counter_khr_construction_contract() {
 
 #[test]
 fn vk_performance_counter_description_khr_construction_contract() {
+	let _: fn() -> vk::PerformanceCounterDescriptionKHR<'static> =
+		vk::PerformanceCounterDescriptionKHR::new;
 	let value = vk::PerformanceCounterDescriptionKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PERFORMANCE_COUNTER_DESCRIPTION_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PerformanceCounterDescriptionKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PERFORMANCE_COUNTER_DESCRIPTION_KHR
@@ -13048,7 +16543,15 @@ fn vk_performance_counter_description_khr_construction_contract() {
 
 #[test]
 fn vk_query_pool_performance_create_info_khr_construction_contract() {
+	let _: fn() -> vk::QueryPoolPerformanceCreateInfoKHR<'static> =
+		vk::QueryPoolPerformanceCreateInfoKHR::new;
 	let value = vk::QueryPoolPerformanceCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueryPoolPerformanceCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR
@@ -13075,6 +16578,7 @@ fn vk_query_pool_performance_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_performance_counter_result_khr_construction_contract() {
+	let _: fn() -> vk::PerformanceCounterResultKHR = vk::PerformanceCounterResultKHR::new;
 	let _: fn(vk::PerformanceCounterResultKHR, i32) -> vk::PerformanceCounterResultKHR =
 		vk::PerformanceCounterResultKHR::set_int32;
 	let _: fn(vk::PerformanceCounterResultKHR, i64) -> vk::PerformanceCounterResultKHR =
@@ -13091,7 +16595,14 @@ fn vk_performance_counter_result_khr_construction_contract() {
 
 #[test]
 fn vk_acquire_profiling_lock_info_khr_construction_contract() {
+	let _: fn() -> vk::AcquireProfilingLockInfoKHR<'static> = vk::AcquireProfilingLockInfoKHR::new;
 	let value = vk::AcquireProfilingLockInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACQUIRE_PROFILING_LOCK_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AcquireProfilingLockInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACQUIRE_PROFILING_LOCK_INFO_KHR
@@ -13109,7 +16620,15 @@ fn vk_acquire_profiling_lock_info_khr_construction_contract() {
 
 #[test]
 fn vk_performance_query_submit_info_khr_construction_contract() {
+	let _: fn() -> vk::PerformanceQuerySubmitInfoKHR<'static> =
+		vk::PerformanceQuerySubmitInfoKHR::new;
 	let value = vk::PerformanceQuerySubmitInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PERFORMANCE_QUERY_SUBMIT_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PerformanceQuerySubmitInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PERFORMANCE_QUERY_SUBMIT_INFO_KHR
@@ -13124,7 +16643,14 @@ fn vk_performance_query_submit_info_khr_construction_contract() {
 
 #[test]
 fn vk_headless_surface_create_info_ext_construction_contract() {
+	let _: fn() -> vk::HeadlessSurfaceCreateInfoEXT<'static> = vk::HeadlessSurfaceCreateInfoEXT::new;
 	let value = vk::HeadlessSurfaceCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::HEADLESS_SURFACE_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::HeadlessSurfaceCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::HEADLESS_SURFACE_CREATE_INFO_EXT
@@ -13138,7 +16664,15 @@ fn vk_headless_surface_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_coverage_reduction_mode_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCoverageReductionModeFeaturesNV<'static> =
+		vk::PhysicalDeviceCoverageReductionModeFeaturesNV::new;
 	let value = vk::PhysicalDeviceCoverageReductionModeFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCoverageReductionModeFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV
@@ -13153,7 +16687,15 @@ fn vk_physical_device_coverage_reduction_mode_features_nv_construction_contract(
 
 #[test]
 fn vk_pipeline_coverage_reduction_state_create_info_nv_construction_contract() {
+	let _: fn() -> vk::PipelineCoverageReductionStateCreateInfoNV<'static> =
+		vk::PipelineCoverageReductionStateCreateInfoNV::new;
 	let value = vk::PipelineCoverageReductionStateCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineCoverageReductionStateCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV
@@ -13173,7 +16715,15 @@ fn vk_pipeline_coverage_reduction_state_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_framebuffer_mixed_samples_combination_nv_construction_contract() {
+	let _: fn() -> vk::FramebufferMixedSamplesCombinationNV<'static> =
+		vk::FramebufferMixedSamplesCombinationNV::new;
 	let value = vk::FramebufferMixedSamplesCombinationNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::FramebufferMixedSamplesCombinationNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV
@@ -13203,7 +16753,15 @@ fn vk_framebuffer_mixed_samples_combination_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_integer_functions2_features_intel_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL<'static> =
+		vk::PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL::new;
 	let value = vk::PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL
@@ -13218,6 +16776,7 @@ fn vk_physical_device_shader_integer_functions2_features_intel_construction_cont
 
 #[test]
 fn vk_performance_value_data_intel_construction_contract() {
+	let _: fn() -> vk::PerformanceValueDataINTEL<'static> = vk::PerformanceValueDataINTEL::new;
 	let _: fn(vk::PerformanceValueDataINTEL<'static>, u32) -> vk::PerformanceValueDataINTEL<'static> =
 		vk::PerformanceValueDataINTEL::set_value32;
 	let _: fn(vk::PerformanceValueDataINTEL<'static>, u64) -> vk::PerformanceValueDataINTEL<'static> =
@@ -13236,6 +16795,7 @@ fn vk_performance_value_data_intel_construction_contract() {
 
 #[test]
 fn vk_performance_value_intel_construction_contract() {
+	let _: fn() -> vk::PerformanceValueINTEL<'static> = vk::PerformanceValueINTEL::new;
 	let _: fn(
 		vk::PerformanceValueINTEL<'static>,
 		vk::PerformanceValueTypeINTEL,
@@ -13248,7 +16808,15 @@ fn vk_performance_value_intel_construction_contract() {
 
 #[test]
 fn vk_initialize_performance_api_info_intel_construction_contract() {
+	let _: fn() -> vk::InitializePerformanceApiInfoINTEL<'static> =
+		vk::InitializePerformanceApiInfoINTEL::new;
 	let value = vk::InitializePerformanceApiInfoINTEL::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::INITIALIZE_PERFORMANCE_API_INFO_INTEL
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::InitializePerformanceApiInfoINTEL::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::INITIALIZE_PERFORMANCE_API_INFO_INTEL
@@ -13263,7 +16831,15 @@ fn vk_initialize_performance_api_info_intel_construction_contract() {
 
 #[test]
 fn vk_query_pool_performance_query_create_info_intel_construction_contract() {
+	let _: fn() -> vk::QueryPoolPerformanceQueryCreateInfoINTEL<'static> =
+		vk::QueryPoolPerformanceQueryCreateInfoINTEL::new;
 	let value = vk::QueryPoolPerformanceQueryCreateInfoINTEL::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueryPoolPerformanceQueryCreateInfoINTEL::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL
@@ -13278,7 +16854,14 @@ fn vk_query_pool_performance_query_create_info_intel_construction_contract() {
 
 #[test]
 fn vk_performance_marker_info_intel_construction_contract() {
+	let _: fn() -> vk::PerformanceMarkerInfoINTEL<'static> = vk::PerformanceMarkerInfoINTEL::new;
 	let value = vk::PerformanceMarkerInfoINTEL::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PERFORMANCE_MARKER_INFO_INTEL
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PerformanceMarkerInfoINTEL::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PERFORMANCE_MARKER_INFO_INTEL
@@ -13292,7 +16875,15 @@ fn vk_performance_marker_info_intel_construction_contract() {
 
 #[test]
 fn vk_performance_stream_marker_info_intel_construction_contract() {
+	let _: fn() -> vk::PerformanceStreamMarkerInfoINTEL<'static> =
+		vk::PerformanceStreamMarkerInfoINTEL::new;
 	let value = vk::PerformanceStreamMarkerInfoINTEL::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PERFORMANCE_STREAM_MARKER_INFO_INTEL
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PerformanceStreamMarkerInfoINTEL::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PERFORMANCE_STREAM_MARKER_INFO_INTEL
@@ -13307,7 +16898,14 @@ fn vk_performance_stream_marker_info_intel_construction_contract() {
 
 #[test]
 fn vk_performance_override_info_intel_construction_contract() {
+	let _: fn() -> vk::PerformanceOverrideInfoINTEL<'static> = vk::PerformanceOverrideInfoINTEL::new;
 	let value = vk::PerformanceOverrideInfoINTEL::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PERFORMANCE_OVERRIDE_INFO_INTEL
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PerformanceOverrideInfoINTEL::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PERFORMANCE_OVERRIDE_INFO_INTEL
@@ -13329,7 +16927,15 @@ fn vk_performance_override_info_intel_construction_contract() {
 
 #[test]
 fn vk_performance_configuration_acquire_info_intel_construction_contract() {
+	let _: fn() -> vk::PerformanceConfigurationAcquireInfoINTEL<'static> =
+		vk::PerformanceConfigurationAcquireInfoINTEL::new;
 	let value = vk::PerformanceConfigurationAcquireInfoINTEL::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PerformanceConfigurationAcquireInfoINTEL::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PERFORMANCE_CONFIGURATION_ACQUIRE_INFO_INTEL
@@ -13344,7 +16950,15 @@ fn vk_performance_configuration_acquire_info_intel_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_clock_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderClockFeaturesKHR<'static> =
+		vk::PhysicalDeviceShaderClockFeaturesKHR::new;
 	let value = vk::PhysicalDeviceShaderClockFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderClockFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR
@@ -13364,7 +16978,15 @@ fn vk_physical_device_shader_clock_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_index_type_uint8_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceIndexTypeUint8Features<'static> =
+		vk::PhysicalDeviceIndexTypeUint8Features::new;
 	let value = vk::PhysicalDeviceIndexTypeUint8Features::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceIndexTypeUint8Features::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES
@@ -13379,7 +17001,15 @@ fn vk_physical_device_index_type_uint8_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_sm_builtins_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderSMBuiltinsPropertiesNV<'static> =
+		vk::PhysicalDeviceShaderSMBuiltinsPropertiesNV::new;
 	let value = vk::PhysicalDeviceShaderSMBuiltinsPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderSMBuiltinsPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV
@@ -13399,7 +17029,15 @@ fn vk_physical_device_shader_sm_builtins_properties_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_sm_builtins_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderSMBuiltinsFeaturesNV<'static> =
+		vk::PhysicalDeviceShaderSMBuiltinsFeaturesNV::new;
 	let value = vk::PhysicalDeviceShaderSMBuiltinsFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderSMBuiltinsFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV
@@ -13414,7 +17052,15 @@ fn vk_physical_device_shader_sm_builtins_features_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_fragment_shader_interlock_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'static> =
+		vk::PhysicalDeviceFragmentShaderInterlockFeaturesEXT::new;
 	let value = vk::PhysicalDeviceFragmentShaderInterlockFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentShaderInterlockFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT
@@ -13435,7 +17081,15 @@ fn vk_physical_device_fragment_shader_interlock_features_ext_construction_contra
 
 #[test]
 fn vk_physical_device_separate_depth_stencil_layouts_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSeparateDepthStencilLayoutsFeatures<'static> =
+		vk::PhysicalDeviceSeparateDepthStencilLayoutsFeatures::new;
 	let value = vk::PhysicalDeviceSeparateDepthStencilLayoutsFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSeparateDepthStencilLayoutsFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES
@@ -13450,7 +17104,15 @@ fn vk_physical_device_separate_depth_stencil_layouts_features_construction_contr
 
 #[test]
 fn vk_attachment_reference_stencil_layout_construction_contract() {
+	let _: fn() -> vk::AttachmentReferenceStencilLayout<'static> =
+		vk::AttachmentReferenceStencilLayout::new;
 	let value = vk::AttachmentReferenceStencilLayout::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ATTACHMENT_REFERENCE_STENCIL_LAYOUT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AttachmentReferenceStencilLayout::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ATTACHMENT_REFERENCE_STENCIL_LAYOUT
@@ -13465,7 +17127,15 @@ fn vk_attachment_reference_stencil_layout_construction_contract() {
 
 #[test]
 fn vk_physical_device_primitive_topology_list_restart_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'static> =
+		vk::PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT::new;
 	let value = vk::PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT
@@ -13481,7 +17151,15 @@ fn vk_physical_device_primitive_topology_list_restart_features_ext_construction_
 
 #[test]
 fn vk_attachment_description_stencil_layout_construction_contract() {
+	let _: fn() -> vk::AttachmentDescriptionStencilLayout<'static> =
+		vk::AttachmentDescriptionStencilLayout::new;
 	let value = vk::AttachmentDescriptionStencilLayout::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AttachmentDescriptionStencilLayout::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT
@@ -13501,7 +17179,15 @@ fn vk_attachment_description_stencil_layout_construction_contract() {
 
 #[test]
 fn vk_physical_device_pipeline_executable_properties_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'static> =
+		vk::PhysicalDevicePipelineExecutablePropertiesFeaturesKHR::new;
 	let value = vk::PhysicalDevicePipelineExecutablePropertiesFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePipelineExecutablePropertiesFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR
@@ -13516,7 +17202,11 @@ fn vk_physical_device_pipeline_executable_properties_features_khr_construction_c
 
 #[test]
 fn vk_pipeline_info_khr_construction_contract() {
+	let _: fn() -> vk::PipelineInfoKHR<'static> = vk::PipelineInfoKHR::new;
 	let value = vk::PipelineInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::PIPELINE_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::PIPELINE_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::PipelineInfoKHR<'static>, vk::Pipeline) -> vk::PipelineInfoKHR<'static> =
@@ -13525,7 +17215,15 @@ fn vk_pipeline_info_khr_construction_contract() {
 
 #[test]
 fn vk_pipeline_executable_properties_khr_construction_contract() {
+	let _: fn() -> vk::PipelineExecutablePropertiesKHR<'static> =
+		vk::PipelineExecutablePropertiesKHR::new;
 	let value = vk::PipelineExecutablePropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_EXECUTABLE_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineExecutablePropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_EXECUTABLE_PROPERTIES_KHR
@@ -13554,7 +17252,14 @@ fn vk_pipeline_executable_properties_khr_construction_contract() {
 
 #[test]
 fn vk_pipeline_executable_info_khr_construction_contract() {
+	let _: fn() -> vk::PipelineExecutableInfoKHR<'static> = vk::PipelineExecutableInfoKHR::new;
 	let value = vk::PipelineExecutableInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_EXECUTABLE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineExecutableInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_EXECUTABLE_INFO_KHR
@@ -13570,6 +17275,8 @@ fn vk_pipeline_executable_info_khr_construction_contract() {
 
 #[test]
 fn vk_pipeline_executable_statistic_value_khr_construction_contract() {
+	let _: fn() -> vk::PipelineExecutableStatisticValueKHR =
+		vk::PipelineExecutableStatisticValueKHR::new;
 	let _: fn(
 		vk::PipelineExecutableStatisticValueKHR,
 		vk::Bool32,
@@ -13590,7 +17297,15 @@ fn vk_pipeline_executable_statistic_value_khr_construction_contract() {
 
 #[test]
 fn vk_pipeline_executable_statistic_khr_construction_contract() {
+	let _: fn() -> vk::PipelineExecutableStatisticKHR<'static> =
+		vk::PipelineExecutableStatisticKHR::new;
 	let value = vk::PipelineExecutableStatisticKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_EXECUTABLE_STATISTIC_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineExecutableStatisticKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_EXECUTABLE_STATISTIC_KHR
@@ -13617,7 +17332,15 @@ fn vk_pipeline_executable_statistic_khr_construction_contract() {
 
 #[test]
 fn vk_pipeline_executable_internal_representation_khr_construction_contract() {
+	let _: fn() -> vk::PipelineExecutableInternalRepresentationKHR<'static> =
+		vk::PipelineExecutableInternalRepresentationKHR::new;
 	let value = vk::PipelineExecutableInternalRepresentationKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineExecutableInternalRepresentationKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR
@@ -13654,7 +17377,15 @@ fn vk_pipeline_executable_internal_representation_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_demote_to_helper_invocation_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderDemoteToHelperInvocationFeatures<'static> =
+		vk::PhysicalDeviceShaderDemoteToHelperInvocationFeatures::new;
 	let value = vk::PhysicalDeviceShaderDemoteToHelperInvocationFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderDemoteToHelperInvocationFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES
@@ -13665,7 +17396,15 @@ fn vk_physical_device_shader_demote_to_helper_invocation_features_construction_c
 
 #[test]
 fn vk_physical_device_texel_buffer_alignment_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'static> =
+		vk::PhysicalDeviceTexelBufferAlignmentFeaturesEXT::new;
 	let value = vk::PhysicalDeviceTexelBufferAlignmentFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceTexelBufferAlignmentFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT
@@ -13680,7 +17419,15 @@ fn vk_physical_device_texel_buffer_alignment_features_ext_construction_contract(
 
 #[test]
 fn vk_physical_device_texel_buffer_alignment_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceTexelBufferAlignmentProperties<'static> =
+		vk::PhysicalDeviceTexelBufferAlignmentProperties::new;
 	let value = vk::PhysicalDeviceTexelBufferAlignmentProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceTexelBufferAlignmentProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES
@@ -13694,7 +17441,15 @@ fn vk_physical_device_texel_buffer_alignment_properties_construction_contract() 
 
 #[test]
 fn vk_physical_device_subgroup_size_control_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSubgroupSizeControlFeatures<'static> =
+		vk::PhysicalDeviceSubgroupSizeControlFeatures::new;
 	let value = vk::PhysicalDeviceSubgroupSizeControlFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSubgroupSizeControlFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES
@@ -13714,7 +17469,15 @@ fn vk_physical_device_subgroup_size_control_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_subgroup_size_control_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSubgroupSizeControlProperties<'static> =
+		vk::PhysicalDeviceSubgroupSizeControlProperties::new;
 	let value = vk::PhysicalDeviceSubgroupSizeControlProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSubgroupSizeControlProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES
@@ -13744,7 +17507,15 @@ fn vk_physical_device_subgroup_size_control_properties_construction_contract() {
 
 #[test]
 fn vk_pipeline_shader_stage_required_subgroup_size_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo<'static> =
+		vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo::new;
 	let value = vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineShaderStageRequiredSubgroupSizeCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO
@@ -13759,7 +17530,15 @@ fn vk_pipeline_shader_stage_required_subgroup_size_create_info_construction_cont
 
 #[test]
 fn vk_subpass_shading_pipeline_create_info_huawei_construction_contract() {
+	let _: fn() -> vk::SubpassShadingPipelineCreateInfoHUAWEI<'static> =
+		vk::SubpassShadingPipelineCreateInfoHUAWEI::new;
 	let value = vk::SubpassShadingPipelineCreateInfoHUAWEI::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SubpassShadingPipelineCreateInfoHUAWEI::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI
@@ -13779,7 +17558,15 @@ fn vk_subpass_shading_pipeline_create_info_huawei_construction_contract() {
 
 #[test]
 fn vk_physical_device_subpass_shading_properties_huawei_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSubpassShadingPropertiesHUAWEI<'static> =
+		vk::PhysicalDeviceSubpassShadingPropertiesHUAWEI::new;
 	let value = vk::PhysicalDeviceSubpassShadingPropertiesHUAWEI::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSubpassShadingPropertiesHUAWEI::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI
@@ -13790,7 +17577,15 @@ fn vk_physical_device_subpass_shading_properties_huawei_construction_contract() 
 
 #[test]
 fn vk_physical_device_cluster_culling_shader_properties_huawei_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceClusterCullingShaderPropertiesHUAWEI<'static> =
+		vk::PhysicalDeviceClusterCullingShaderPropertiesHUAWEI::new;
 	let value = vk::PhysicalDeviceClusterCullingShaderPropertiesHUAWEI::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_PROPERTIES_HUAWEI
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceClusterCullingShaderPropertiesHUAWEI::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_PROPERTIES_HUAWEI
@@ -13820,7 +17615,15 @@ fn vk_physical_device_cluster_culling_shader_properties_huawei_construction_cont
 
 #[test]
 fn vk_memory_opaque_capture_address_allocate_info_construction_contract() {
+	let _: fn() -> vk::MemoryOpaqueCaptureAddressAllocateInfo<'static> =
+		vk::MemoryOpaqueCaptureAddressAllocateInfo::new;
 	let value = vk::MemoryOpaqueCaptureAddressAllocateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryOpaqueCaptureAddressAllocateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO
@@ -13835,7 +17638,15 @@ fn vk_memory_opaque_capture_address_allocate_info_construction_contract() {
 
 #[test]
 fn vk_device_memory_opaque_capture_address_info_construction_contract() {
+	let _: fn() -> vk::DeviceMemoryOpaqueCaptureAddressInfo<'static> =
+		vk::DeviceMemoryOpaqueCaptureAddressInfo::new;
 	let value = vk::DeviceMemoryOpaqueCaptureAddressInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceMemoryOpaqueCaptureAddressInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO
@@ -13850,7 +17661,15 @@ fn vk_device_memory_opaque_capture_address_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_line_rasterization_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceLineRasterizationFeatures<'static> =
+		vk::PhysicalDeviceLineRasterizationFeatures::new;
 	let value = vk::PhysicalDeviceLineRasterizationFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceLineRasterizationFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES
@@ -13890,7 +17709,15 @@ fn vk_physical_device_line_rasterization_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_line_rasterization_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceLineRasterizationProperties<'static> =
+		vk::PhysicalDeviceLineRasterizationProperties::new;
 	let value = vk::PhysicalDeviceLineRasterizationProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceLineRasterizationProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES
@@ -13905,7 +17732,15 @@ fn vk_physical_device_line_rasterization_properties_construction_contract() {
 
 #[test]
 fn vk_pipeline_rasterization_line_state_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineRasterizationLineStateCreateInfo<'static> =
+		vk::PipelineRasterizationLineStateCreateInfo::new;
 	let value = vk::PipelineRasterizationLineStateCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineRasterizationLineStateCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO
@@ -13935,7 +17770,15 @@ fn vk_pipeline_rasterization_line_state_create_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_pipeline_creation_cache_control_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePipelineCreationCacheControlFeatures<'static> =
+		vk::PhysicalDevicePipelineCreationCacheControlFeatures::new;
 	let value = vk::PhysicalDevicePipelineCreationCacheControlFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePipelineCreationCacheControlFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES
@@ -13950,7 +17793,15 @@ fn vk_physical_device_pipeline_creation_cache_control_features_construction_cont
 
 #[test]
 fn vk_physical_device_vulkan11_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVulkan11Features<'static> =
+		vk::PhysicalDeviceVulkan11Features::new;
 	let value = vk::PhysicalDeviceVulkan11Features::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_1_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVulkan11Features::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_1_FEATURES
@@ -14020,7 +17871,15 @@ fn vk_physical_device_vulkan11_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_vulkan11_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVulkan11Properties<'static> =
+		vk::PhysicalDeviceVulkan11Properties::new;
 	let value = vk::PhysicalDeviceVulkan11Properties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVulkan11Properties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES
@@ -14105,7 +17964,15 @@ fn vk_physical_device_vulkan11_properties_construction_contract() {
 
 #[test]
 fn vk_physical_device_vulkan12_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVulkan12Features<'static> =
+		vk::PhysicalDeviceVulkan12Features::new;
 	let value = vk::PhysicalDeviceVulkan12Features::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_2_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVulkan12Features::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_2_FEATURES
@@ -14342,7 +18209,15 @@ fn vk_physical_device_vulkan12_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_vulkan12_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVulkan12Properties<'static> =
+		vk::PhysicalDeviceVulkan12Properties::new;
 	let value = vk::PhysicalDeviceVulkan12Properties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_2_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVulkan12Properties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_2_PROPERTIES
@@ -14560,7 +18435,15 @@ fn vk_physical_device_vulkan12_properties_construction_contract() {
 
 #[test]
 fn vk_physical_device_vulkan13_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVulkan13Features<'static> =
+		vk::PhysicalDeviceVulkan13Features::new;
 	let value = vk::PhysicalDeviceVulkan13Features::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_3_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVulkan13Features::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_3_FEATURES
@@ -14641,7 +18524,15 @@ fn vk_physical_device_vulkan13_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_vulkan13_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVulkan13Properties<'static> =
+		vk::PhysicalDeviceVulkan13Properties::new;
 	let value = vk::PhysicalDeviceVulkan13Properties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_3_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVulkan13Properties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_3_PROPERTIES
@@ -14788,7 +18679,15 @@ fn vk_physical_device_vulkan13_properties_construction_contract() {
 
 #[test]
 fn vk_physical_device_vulkan14_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVulkan14Features<'static> =
+		vk::PhysicalDeviceVulkan14Features::new;
 	let value = vk::PhysicalDeviceVulkan14Features::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_4_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVulkan14Features::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_4_FEATURES
@@ -14903,7 +18802,15 @@ fn vk_physical_device_vulkan14_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_vulkan14_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVulkan14Properties<'static> =
+		vk::PhysicalDeviceVulkan14Properties::new;
 	let value = vk::PhysicalDeviceVulkan14Properties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_4_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVulkan14Properties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VULKAN_1_4_PROPERTIES
@@ -15030,7 +18937,15 @@ fn vk_physical_device_vulkan14_properties_construction_contract() {
 
 #[test]
 fn vk_pipeline_compiler_control_create_info_amd_construction_contract() {
+	let _: fn() -> vk::PipelineCompilerControlCreateInfoAMD<'static> =
+		vk::PipelineCompilerControlCreateInfoAMD::new;
 	let value = vk::PipelineCompilerControlCreateInfoAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineCompilerControlCreateInfoAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD
@@ -15045,7 +18960,15 @@ fn vk_pipeline_compiler_control_create_info_amd_construction_contract() {
 
 #[test]
 fn vk_physical_device_coherent_memory_features_amd_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCoherentMemoryFeaturesAMD<'static> =
+		vk::PhysicalDeviceCoherentMemoryFeaturesAMD::new;
 	let value = vk::PhysicalDeviceCoherentMemoryFeaturesAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCoherentMemoryFeaturesAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD
@@ -15060,6 +18983,7 @@ fn vk_physical_device_coherent_memory_features_amd_construction_contract() {
 
 #[test]
 fn vk_gpa_perf_block_properties_amd_construction_contract() {
+	let _: fn() -> vk::GpaPerfBlockPropertiesAMD = vk::GpaPerfBlockPropertiesAMD::new;
 	let _: fn(vk::GpaPerfBlockPropertiesAMD, vk::GpaPerfBlockAMD) -> vk::GpaPerfBlockPropertiesAMD =
 		vk::GpaPerfBlockPropertiesAMD::set_block_type;
 	let _: fn(
@@ -15080,7 +19004,14 @@ fn vk_gpa_perf_block_properties_amd_construction_contract() {
 
 #[test]
 fn vk_physical_device_gpa_features_amd_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceGpaFeaturesAMD<'static> = vk::PhysicalDeviceGpaFeaturesAMD::new;
 	let value = vk::PhysicalDeviceGpaFeaturesAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_GPA_FEATURES_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceGpaFeaturesAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_GPA_FEATURES_AMD
@@ -15109,7 +19040,15 @@ fn vk_physical_device_gpa_features_amd_construction_contract() {
 
 #[test]
 fn vk_physical_device_gpa_properties_amd_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceGpaPropertiesAMD<'static> =
+		vk::PhysicalDeviceGpaPropertiesAMD::new;
 	let value = vk::PhysicalDeviceGpaPropertiesAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_GPA_PROPERTIES_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceGpaPropertiesAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_GPA_PROPERTIES_AMD
@@ -15145,7 +19084,15 @@ fn vk_physical_device_gpa_properties_amd_construction_contract() {
 
 #[test]
 fn vk_physical_device_gpa_properties2_amd_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceGpaProperties2AMD<'static> =
+		vk::PhysicalDeviceGpaProperties2AMD::new;
 	let value = vk::PhysicalDeviceGpaProperties2AMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_GPA_PROPERTIES_2_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceGpaProperties2AMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_GPA_PROPERTIES_2_AMD
@@ -15160,6 +19107,7 @@ fn vk_physical_device_gpa_properties2_amd_construction_contract() {
 
 #[test]
 fn vk_gpa_perf_counter_amd_construction_contract() {
+	let _: fn() -> vk::GpaPerfCounterAMD = vk::GpaPerfCounterAMD::new;
 	let _: fn(vk::GpaPerfCounterAMD, vk::GpaPerfBlockAMD) -> vk::GpaPerfCounterAMD =
 		vk::GpaPerfCounterAMD::set_block_type;
 	let _: fn(vk::GpaPerfCounterAMD, u32) -> vk::GpaPerfCounterAMD =
@@ -15170,7 +19118,11 @@ fn vk_gpa_perf_counter_amd_construction_contract() {
 
 #[test]
 fn vk_gpa_sample_begin_info_amd_construction_contract() {
+	let _: fn() -> vk::GpaSampleBeginInfoAMD<'static> = vk::GpaSampleBeginInfoAMD::new;
 	let value = vk::GpaSampleBeginInfoAMD::default();
+	assert_eq!(value.s_type, vk::StructureType::GPA_SAMPLE_BEGIN_INFO_AMD);
+	assert!(value.p_next.is_null());
+	let value = vk::GpaSampleBeginInfoAMD::new();
 	assert_eq!(value.s_type, vk::StructureType::GPA_SAMPLE_BEGIN_INFO_AMD);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -15222,7 +19174,14 @@ fn vk_gpa_sample_begin_info_amd_construction_contract() {
 
 #[test]
 fn vk_gpa_device_clock_mode_info_amd_construction_contract() {
+	let _: fn() -> vk::GpaDeviceClockModeInfoAMD<'static> = vk::GpaDeviceClockModeInfoAMD::new;
 	let value = vk::GpaDeviceClockModeInfoAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::GPA_DEVICE_CLOCK_MODE_INFO_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::GpaDeviceClockModeInfoAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::GPA_DEVICE_CLOCK_MODE_INFO_AMD
@@ -15240,7 +19199,14 @@ fn vk_gpa_device_clock_mode_info_amd_construction_contract() {
 
 #[test]
 fn vk_gpa_device_get_clock_info_amd_construction_contract() {
+	let _: fn() -> vk::GpaDeviceGetClockInfoAMD<'static> = vk::GpaDeviceGetClockInfoAMD::new;
 	let value = vk::GpaDeviceGetClockInfoAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::GPA_DEVICE_GET_CLOCK_INFO_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::GpaDeviceGetClockInfoAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::GPA_DEVICE_GET_CLOCK_INFO_AMD
@@ -15258,7 +19224,11 @@ fn vk_gpa_device_get_clock_info_amd_construction_contract() {
 
 #[test]
 fn vk_gpa_session_create_info_amd_construction_contract() {
+	let _: fn() -> vk::GpaSessionCreateInfoAMD<'static> = vk::GpaSessionCreateInfoAMD::new;
 	let value = vk::GpaSessionCreateInfoAMD::default();
+	assert_eq!(value.s_type, vk::StructureType::GPA_SESSION_CREATE_INFO_AMD);
+	assert!(value.p_next.is_null());
+	let value = vk::GpaSessionCreateInfoAMD::new();
 	assert_eq!(value.s_type, vk::StructureType::GPA_SESSION_CREATE_INFO_AMD);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -15269,7 +19239,14 @@ fn vk_gpa_session_create_info_amd_construction_contract() {
 
 #[test]
 fn vk_physical_device_tool_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceToolProperties<'static> = vk::PhysicalDeviceToolProperties::new;
 	let value = vk::PhysicalDeviceToolProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TOOL_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceToolProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TOOL_PROPERTIES
@@ -15299,7 +19276,15 @@ fn vk_physical_device_tool_properties_construction_contract() {
 
 #[test]
 fn vk_sampler_custom_border_color_create_info_ext_construction_contract() {
+	let _: fn() -> vk::SamplerCustomBorderColorCreateInfoEXT<'static> =
+		vk::SamplerCustomBorderColorCreateInfoEXT::new;
 	let value = vk::SamplerCustomBorderColorCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SamplerCustomBorderColorCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT
@@ -15319,7 +19304,15 @@ fn vk_sampler_custom_border_color_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_custom_border_color_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCustomBorderColorPropertiesEXT<'static> =
+		vk::PhysicalDeviceCustomBorderColorPropertiesEXT::new;
 	let value = vk::PhysicalDeviceCustomBorderColorPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCustomBorderColorPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT
@@ -15334,7 +19327,15 @@ fn vk_physical_device_custom_border_color_properties_ext_construction_contract()
 
 #[test]
 fn vk_physical_device_custom_border_color_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCustomBorderColorFeaturesEXT<'static> =
+		vk::PhysicalDeviceCustomBorderColorFeaturesEXT::new;
 	let value = vk::PhysicalDeviceCustomBorderColorFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCustomBorderColorFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT
@@ -15354,7 +19355,15 @@ fn vk_physical_device_custom_border_color_features_ext_construction_contract() {
 
 #[test]
 fn vk_sampler_border_color_component_mapping_create_info_ext_construction_contract() {
+	let _: fn() -> vk::SamplerBorderColorComponentMappingCreateInfoEXT<'static> =
+		vk::SamplerBorderColorComponentMappingCreateInfoEXT::new;
 	let value = vk::SamplerBorderColorComponentMappingCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SAMPLER_BORDER_COLOR_COMPONENT_MAPPING_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SamplerBorderColorComponentMappingCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SAMPLER_BORDER_COLOR_COMPONENT_MAPPING_CREATE_INFO_EXT
@@ -15374,7 +19383,15 @@ fn vk_sampler_border_color_component_mapping_create_info_ext_construction_contra
 
 #[test]
 fn vk_physical_device_border_color_swizzle_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceBorderColorSwizzleFeaturesEXT<'static> =
+		vk::PhysicalDeviceBorderColorSwizzleFeaturesEXT::new;
 	let value = vk::PhysicalDeviceBorderColorSwizzleFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_BORDER_COLOR_SWIZZLE_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceBorderColorSwizzleFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_BORDER_COLOR_SWIZZLE_FEATURES_EXT
@@ -15394,6 +19411,7 @@ fn vk_physical_device_border_color_swizzle_features_ext_construction_contract() 
 
 #[test]
 fn vk_device_or_host_address_khr_construction_contract() {
+	let _: fn() -> vk::DeviceOrHostAddressKHR = vk::DeviceOrHostAddressKHR::new;
 	let _: fn(vk::DeviceOrHostAddressKHR, vk::DeviceAddress) -> vk::DeviceOrHostAddressKHR =
 		vk::DeviceOrHostAddressKHR::set_device_address;
 	let _: unsafe fn(
@@ -15404,6 +19422,7 @@ fn vk_device_or_host_address_khr_construction_contract() {
 
 #[test]
 fn vk_device_or_host_address_const_khr_construction_contract() {
+	let _: fn() -> vk::DeviceOrHostAddressConstKHR = vk::DeviceOrHostAddressConstKHR::new;
 	let _: fn(vk::DeviceOrHostAddressConstKHR, vk::DeviceAddress) -> vk::DeviceOrHostAddressConstKHR =
 		vk::DeviceOrHostAddressConstKHR::set_device_address;
 	let _: unsafe fn(
@@ -15415,6 +19434,7 @@ fn vk_device_or_host_address_const_khr_construction_contract() {
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_device_or_host_address_const_amdx_construction_contract() {
+	let _: fn() -> vk::DeviceOrHostAddressConstAMDX = vk::DeviceOrHostAddressConstAMDX::new;
 	let _: fn(
 		vk::DeviceOrHostAddressConstAMDX,
 		vk::DeviceAddress,
@@ -15427,7 +19447,15 @@ fn vk_device_or_host_address_const_amdx_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_geometry_triangles_data_khr_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureGeometryTrianglesDataKHR<'static> =
+		vk::AccelerationStructureGeometryTrianglesDataKHR::new;
 	let value = vk::AccelerationStructureGeometryTrianglesDataKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureGeometryTrianglesDataKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR
@@ -15472,7 +19500,15 @@ fn vk_acceleration_structure_geometry_triangles_data_khr_construction_contract()
 
 #[test]
 fn vk_acceleration_structure_geometry_aabbs_data_khr_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureGeometryAabbsDataKHR<'static> =
+		vk::AccelerationStructureGeometryAabbsDataKHR::new;
 	let value = vk::AccelerationStructureGeometryAabbsDataKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureGeometryAabbsDataKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR
@@ -15492,7 +19528,15 @@ fn vk_acceleration_structure_geometry_aabbs_data_khr_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_geometry_instances_data_khr_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureGeometryInstancesDataKHR<'static> =
+		vk::AccelerationStructureGeometryInstancesDataKHR::new;
 	let value = vk::AccelerationStructureGeometryInstancesDataKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureGeometryInstancesDataKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR
@@ -15512,7 +19556,15 @@ fn vk_acceleration_structure_geometry_instances_data_khr_construction_contract()
 
 #[test]
 fn vk_acceleration_structure_geometry_linear_swept_spheres_data_nv_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureGeometryLinearSweptSpheresDataNV<'static> =
+		vk::AccelerationStructureGeometryLinearSweptSpheresDataNV::new;
 	let value = vk::AccelerationStructureGeometryLinearSweptSpheresDataNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_LINEAR_SWEPT_SPHERES_DATA_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureGeometryLinearSweptSpheresDataNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_LINEAR_SWEPT_SPHERES_DATA_NV
@@ -15577,7 +19629,15 @@ fn vk_acceleration_structure_geometry_linear_swept_spheres_data_nv_construction_
 
 #[test]
 fn vk_acceleration_structure_geometry_spheres_data_nv_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureGeometrySpheresDataNV<'static> =
+		vk::AccelerationStructureGeometrySpheresDataNV::new;
 	let value = vk::AccelerationStructureGeometrySpheresDataNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_SPHERES_DATA_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureGeometrySpheresDataNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_SPHERES_DATA_NV
@@ -15632,6 +19692,8 @@ fn vk_acceleration_structure_geometry_spheres_data_nv_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_geometry_data_khr_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureGeometryDataKHR<'static> =
+		vk::AccelerationStructureGeometryDataKHR::new;
 	let _: fn(
 		vk::AccelerationStructureGeometryDataKHR<'static>,
 		vk::AccelerationStructureGeometryTrianglesDataKHR<'static>,
@@ -15651,7 +19713,15 @@ fn vk_acceleration_structure_geometry_data_khr_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_geometry_khr_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureGeometryKHR<'static> =
+		vk::AccelerationStructureGeometryKHR::new;
 	let value = vk::AccelerationStructureGeometryKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureGeometryKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_KHR
@@ -15676,7 +19746,15 @@ fn vk_acceleration_structure_geometry_khr_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_build_geometry_info_khr_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureBuildGeometryInfoKHR<'static> =
+		vk::AccelerationStructureBuildGeometryInfoKHR::new;
 	let value = vk::AccelerationStructureBuildGeometryInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureBuildGeometryInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR
@@ -15735,6 +19813,8 @@ fn vk_acceleration_structure_build_geometry_info_khr_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_build_range_info_khr_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureBuildRangeInfoKHR =
+		vk::AccelerationStructureBuildRangeInfoKHR::new;
 	let _: fn(
 		vk::AccelerationStructureBuildRangeInfoKHR,
 		u32,
@@ -15759,7 +19839,15 @@ fn vk_acceleration_structure_build_range_info_khr_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_create_info_khr_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureCreateInfoKHR<'static> =
+		vk::AccelerationStructureCreateInfoKHR::new;
 	let value = vk::AccelerationStructureCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_KHR
@@ -15799,6 +19887,7 @@ fn vk_acceleration_structure_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_aabb_positions_khr_construction_contract() {
+	let _: fn() -> vk::AabbPositionsKHR = vk::AabbPositionsKHR::new;
 	let _: fn(vk::AabbPositionsKHR, f32) -> vk::AabbPositionsKHR = vk::AabbPositionsKHR::set_min_x;
 	let _: fn(vk::AabbPositionsKHR, f32) -> vk::AabbPositionsKHR = vk::AabbPositionsKHR::set_min_y;
 	let _: fn(vk::AabbPositionsKHR, f32) -> vk::AabbPositionsKHR = vk::AabbPositionsKHR::set_min_z;
@@ -15809,12 +19898,14 @@ fn vk_aabb_positions_khr_construction_contract() {
 
 #[test]
 fn vk_transform_matrix_khr_construction_contract() {
+	let _: fn() -> vk::TransformMatrixKHR = vk::TransformMatrixKHR::new;
 	let _: fn(vk::TransformMatrixKHR, [[f32; 4]; 3]) -> vk::TransformMatrixKHR =
 		vk::TransformMatrixKHR::set_matrix;
 }
 
 #[test]
 fn vk_acceleration_structure_instance_khr_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureInstanceKHR = vk::AccelerationStructureInstanceKHR::new;
 	let _: fn(
 		vk::AccelerationStructureInstanceKHR,
 		vk::TransformMatrixKHR,
@@ -15825,7 +19916,15 @@ fn vk_acceleration_structure_instance_khr_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_device_address_info_khr_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureDeviceAddressInfoKHR<'static> =
+		vk::AccelerationStructureDeviceAddressInfoKHR::new;
 	let value = vk::AccelerationStructureDeviceAddressInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureDeviceAddressInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR
@@ -15840,7 +19939,15 @@ fn vk_acceleration_structure_device_address_info_khr_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_version_info_khr_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureVersionInfoKHR<'static> =
+		vk::AccelerationStructureVersionInfoKHR::new;
 	let value = vk::AccelerationStructureVersionInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_VERSION_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureVersionInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_VERSION_INFO_KHR
@@ -15855,7 +19962,15 @@ fn vk_acceleration_structure_version_info_khr_construction_contract() {
 
 #[test]
 fn vk_copy_acceleration_structure_info_khr_construction_contract() {
+	let _: fn() -> vk::CopyAccelerationStructureInfoKHR<'static> =
+		vk::CopyAccelerationStructureInfoKHR::new;
 	let value = vk::CopyAccelerationStructureInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COPY_ACCELERATION_STRUCTURE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyAccelerationStructureInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COPY_ACCELERATION_STRUCTURE_INFO_KHR
@@ -15878,7 +19993,15 @@ fn vk_copy_acceleration_structure_info_khr_construction_contract() {
 
 #[test]
 fn vk_copy_acceleration_structure_to_memory_info_khr_construction_contract() {
+	let _: fn() -> vk::CopyAccelerationStructureToMemoryInfoKHR<'static> =
+		vk::CopyAccelerationStructureToMemoryInfoKHR::new;
 	let value = vk::CopyAccelerationStructureToMemoryInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyAccelerationStructureToMemoryInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR
@@ -15903,7 +20026,15 @@ fn vk_copy_acceleration_structure_to_memory_info_khr_construction_contract() {
 
 #[test]
 fn vk_copy_memory_to_acceleration_structure_info_khr_construction_contract() {
+	let _: fn() -> vk::CopyMemoryToAccelerationStructureInfoKHR<'static> =
+		vk::CopyMemoryToAccelerationStructureInfoKHR::new;
 	let value = vk::CopyMemoryToAccelerationStructureInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyMemoryToAccelerationStructureInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR
@@ -15928,7 +20059,15 @@ fn vk_copy_memory_to_acceleration_structure_info_khr_construction_contract() {
 
 #[test]
 fn vk_ray_tracing_pipeline_interface_create_info_khr_construction_contract() {
+	let _: fn() -> vk::RayTracingPipelineInterfaceCreateInfoKHR<'static> =
+		vk::RayTracingPipelineInterfaceCreateInfoKHR::new;
 	let value = vk::RayTracingPipelineInterfaceCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RayTracingPipelineInterfaceCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR
@@ -15948,7 +20087,14 @@ fn vk_ray_tracing_pipeline_interface_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_pipeline_library_create_info_khr_construction_contract() {
+	let _: fn() -> vk::PipelineLibraryCreateInfoKHR<'static> = vk::PipelineLibraryCreateInfoKHR::new;
 	let value = vk::PipelineLibraryCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_LIBRARY_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineLibraryCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_LIBRARY_CREATE_INFO_KHR
@@ -15970,7 +20116,15 @@ fn vk_pipeline_library_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_extended_dynamic_state_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExtendedDynamicStateFeaturesEXT<'static> =
+		vk::PhysicalDeviceExtendedDynamicStateFeaturesEXT::new;
 	let value = vk::PhysicalDeviceExtendedDynamicStateFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExtendedDynamicStateFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT
@@ -15985,7 +20139,15 @@ fn vk_physical_device_extended_dynamic_state_features_ext_construction_contract(
 
 #[test]
 fn vk_physical_device_extended_dynamic_state2_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExtendedDynamicState2FeaturesEXT<'static> =
+		vk::PhysicalDeviceExtendedDynamicState2FeaturesEXT::new;
 	let value = vk::PhysicalDeviceExtendedDynamicState2FeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExtendedDynamicState2FeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT
@@ -16006,7 +20168,15 @@ fn vk_physical_device_extended_dynamic_state2_features_ext_construction_contract
 
 #[test]
 fn vk_physical_device_extended_dynamic_state3_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExtendedDynamicState3FeaturesEXT<'static> =
+		vk::PhysicalDeviceExtendedDynamicState3FeaturesEXT::new;
 	let value = vk::PhysicalDeviceExtendedDynamicState3FeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExtendedDynamicState3FeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_FEATURES_EXT
@@ -16059,7 +20229,15 @@ fn vk_physical_device_extended_dynamic_state3_features_ext_construction_contract
 
 #[test]
 fn vk_physical_device_extended_dynamic_state3_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExtendedDynamicState3PropertiesEXT<'static> =
+		vk::PhysicalDeviceExtendedDynamicState3PropertiesEXT::new;
 	let value = vk::PhysicalDeviceExtendedDynamicState3PropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExtendedDynamicState3PropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_3_PROPERTIES_EXT
@@ -16070,7 +20248,15 @@ fn vk_physical_device_extended_dynamic_state3_properties_ext_construction_contra
 
 #[test]
 fn vk_physical_device_extended_flags_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExtendedFlagsFeaturesKHR<'static> =
+		vk::PhysicalDeviceExtendedFlagsFeaturesKHR::new;
 	let value = vk::PhysicalDeviceExtendedFlagsFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTENDED_FLAGS_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExtendedFlagsFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTENDED_FLAGS_FEATURES_KHR
@@ -16085,6 +20271,7 @@ fn vk_physical_device_extended_flags_features_khr_construction_contract() {
 
 #[test]
 fn vk_color_blend_equation_ext_construction_contract() {
+	let _: fn() -> vk::ColorBlendEquationEXT = vk::ColorBlendEquationEXT::new;
 	let _: fn(vk::ColorBlendEquationEXT, vk::BlendFactor) -> vk::ColorBlendEquationEXT =
 		vk::ColorBlendEquationEXT::set_src_color_blend_factor;
 	let _: fn(vk::ColorBlendEquationEXT, vk::BlendFactor) -> vk::ColorBlendEquationEXT =
@@ -16101,6 +20288,7 @@ fn vk_color_blend_equation_ext_construction_contract() {
 
 #[test]
 fn vk_color_blend_advanced_ext_construction_contract() {
+	let _: fn() -> vk::ColorBlendAdvancedEXT = vk::ColorBlendAdvancedEXT::new;
 	let _: fn(vk::ColorBlendAdvancedEXT, vk::BlendOp) -> vk::ColorBlendAdvancedEXT =
 		vk::ColorBlendAdvancedEXT::set_advanced_blend_op;
 	let _: fn(vk::ColorBlendAdvancedEXT, vk::Bool32) -> vk::ColorBlendAdvancedEXT =
@@ -16115,7 +20303,15 @@ fn vk_color_blend_advanced_ext_construction_contract() {
 
 #[test]
 fn vk_render_pass_transform_begin_info_qcom_construction_contract() {
+	let _: fn() -> vk::RenderPassTransformBeginInfoQCOM<'static> =
+		vk::RenderPassTransformBeginInfoQCOM::new;
 	let value = vk::RenderPassTransformBeginInfoQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassTransformBeginInfoQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM
@@ -16130,7 +20326,14 @@ fn vk_render_pass_transform_begin_info_qcom_construction_contract() {
 
 #[test]
 fn vk_copy_command_transform_info_qcom_construction_contract() {
+	let _: fn() -> vk::CopyCommandTransformInfoQCOM<'static> = vk::CopyCommandTransformInfoQCOM::new;
 	let value = vk::CopyCommandTransformInfoQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COPY_COMMAND_TRANSFORM_INFO_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyCommandTransformInfoQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COPY_COMMAND_TRANSFORM_INFO_QCOM
@@ -16144,7 +20347,15 @@ fn vk_copy_command_transform_info_qcom_construction_contract() {
 
 #[test]
 fn vk_command_buffer_inheritance_render_pass_transform_info_qcom_construction_contract() {
+	let _: fn() -> vk::CommandBufferInheritanceRenderPassTransformInfoQCOM<'static> =
+		vk::CommandBufferInheritanceRenderPassTransformInfoQCOM::new;
 	let value = vk::CommandBufferInheritanceRenderPassTransformInfoQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CommandBufferInheritanceRenderPassTransformInfoQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM
@@ -16164,7 +20375,15 @@ fn vk_command_buffer_inheritance_render_pass_transform_info_qcom_construction_co
 
 #[test]
 fn vk_physical_device_partitioned_acceleration_structure_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePartitionedAccelerationStructureFeaturesNV<'static> =
+		vk::PhysicalDevicePartitionedAccelerationStructureFeaturesNV::new;
 	let value = vk::PhysicalDevicePartitionedAccelerationStructureFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePartitionedAccelerationStructureFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_FEATURES_NV
@@ -16175,7 +20394,15 @@ fn vk_physical_device_partitioned_acceleration_structure_features_nv_constructio
 
 #[test]
 fn vk_physical_device_partitioned_acceleration_structure_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePartitionedAccelerationStructurePropertiesNV<'static> =
+		vk::PhysicalDevicePartitionedAccelerationStructurePropertiesNV::new;
 	let value = vk::PhysicalDevicePartitionedAccelerationStructurePropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePartitionedAccelerationStructurePropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PARTITIONED_ACCELERATION_STRUCTURE_PROPERTIES_NV
@@ -16190,6 +20417,8 @@ fn vk_physical_device_partitioned_acceleration_structure_properties_nv_construct
 
 #[test]
 fn vk_build_partitioned_acceleration_structure_indirect_command_nv_construction_contract() {
+	let _: fn() -> vk::BuildPartitionedAccelerationStructureIndirectCommandNV =
+		vk::BuildPartitionedAccelerationStructureIndirectCommandNV::new;
 	let _: fn(
 		vk::BuildPartitionedAccelerationStructureIndirectCommandNV,
 		vk::PartitionedAccelerationStructureOpTypeNV,
@@ -16209,7 +20438,15 @@ fn vk_build_partitioned_acceleration_structure_indirect_command_nv_construction_
 
 #[test]
 fn vk_partitioned_acceleration_structure_flags_nv_construction_contract() {
+	let _: fn() -> vk::PartitionedAccelerationStructureFlagsNV<'static> =
+		vk::PartitionedAccelerationStructureFlagsNV::new;
 	let value = vk::PartitionedAccelerationStructureFlagsNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PARTITIONED_ACCELERATION_STRUCTURE_FLAGS_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PartitionedAccelerationStructureFlagsNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PARTITIONED_ACCELERATION_STRUCTURE_FLAGS_NV
@@ -16224,6 +20461,8 @@ fn vk_partitioned_acceleration_structure_flags_nv_construction_contract() {
 
 #[test]
 fn vk_partitioned_acceleration_structure_write_instance_data_nv_construction_contract() {
+	let _: fn() -> vk::PartitionedAccelerationStructureWriteInstanceDataNV =
+		vk::PartitionedAccelerationStructureWriteInstanceDataNV::new;
 	let _: fn(
 		vk::PartitionedAccelerationStructureWriteInstanceDataNV,
 		vk::TransformMatrixKHR,
@@ -16269,6 +20508,8 @@ fn vk_partitioned_acceleration_structure_write_instance_data_nv_construction_con
 
 #[test]
 fn vk_partitioned_acceleration_structure_update_instance_data_nv_construction_contract() {
+	let _: fn() -> vk::PartitionedAccelerationStructureUpdateInstanceDataNV =
+		vk::PartitionedAccelerationStructureUpdateInstanceDataNV::new;
 	let _: fn(
 		vk::PartitionedAccelerationStructureUpdateInstanceDataNV,
 		u32,
@@ -16285,6 +20526,8 @@ fn vk_partitioned_acceleration_structure_update_instance_data_nv_construction_co
 #[test]
 fn vk_partitioned_acceleration_structure_write_partition_translation_data_nv_construction_contract()
 {
+	let _: fn() -> vk::PartitionedAccelerationStructureWritePartitionTranslationDataNV =
+		vk::PartitionedAccelerationStructureWritePartitionTranslationDataNV::new;
 	let _: fn(
 		vk::PartitionedAccelerationStructureWritePartitionTranslationDataNV,
 		u32,
@@ -16299,7 +20542,15 @@ fn vk_partitioned_acceleration_structure_write_partition_translation_data_nv_con
 
 #[test]
 fn vk_write_descriptor_set_partitioned_acceleration_structure_nv_construction_contract() {
+	let _: fn() -> vk::WriteDescriptorSetPartitionedAccelerationStructureNV<'static> =
+		vk::WriteDescriptorSetPartitionedAccelerationStructureNV::new;
 	let value = vk::WriteDescriptorSetPartitionedAccelerationStructureNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::WRITE_DESCRIPTOR_SET_PARTITIONED_ACCELERATION_STRUCTURE_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::WriteDescriptorSetPartitionedAccelerationStructureNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::WRITE_DESCRIPTOR_SET_PARTITIONED_ACCELERATION_STRUCTURE_NV
@@ -16321,7 +20572,15 @@ fn vk_write_descriptor_set_partitioned_acceleration_structure_nv_construction_co
 
 #[test]
 fn vk_partitioned_acceleration_structure_instances_input_nv_construction_contract() {
+	let _: fn() -> vk::PartitionedAccelerationStructureInstancesInputNV<'static> =
+		vk::PartitionedAccelerationStructureInstancesInputNV::new;
 	let value = vk::PartitionedAccelerationStructureInstancesInputNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PARTITIONED_ACCELERATION_STRUCTURE_INSTANCES_INPUT_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PartitionedAccelerationStructureInstancesInputNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PARTITIONED_ACCELERATION_STRUCTURE_INSTANCES_INPUT_NV
@@ -16352,7 +20611,15 @@ fn vk_partitioned_acceleration_structure_instances_input_nv_construction_contrac
 
 #[test]
 fn vk_build_partitioned_acceleration_structure_info_nv_construction_contract() {
+	let _: fn() -> vk::BuildPartitionedAccelerationStructureInfoNV<'static> =
+		vk::BuildPartitionedAccelerationStructureInfoNV::new;
 	let value = vk::BuildPartitionedAccelerationStructureInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BUILD_PARTITIONED_ACCELERATION_STRUCTURE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BuildPartitionedAccelerationStructureInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BUILD_PARTITIONED_ACCELERATION_STRUCTURE_INFO_NV
@@ -16392,7 +20659,15 @@ fn vk_build_partitioned_acceleration_structure_info_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_diagnostics_config_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDiagnosticsConfigFeaturesNV<'static> =
+		vk::PhysicalDeviceDiagnosticsConfigFeaturesNV::new;
 	let value = vk::PhysicalDeviceDiagnosticsConfigFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDiagnosticsConfigFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV
@@ -16407,7 +20682,15 @@ fn vk_physical_device_diagnostics_config_features_nv_construction_contract() {
 
 #[test]
 fn vk_device_diagnostics_config_create_info_nv_construction_contract() {
+	let _: fn() -> vk::DeviceDiagnosticsConfigCreateInfoNV<'static> =
+		vk::DeviceDiagnosticsConfigCreateInfoNV::new;
 	let value = vk::DeviceDiagnosticsConfigCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceDiagnosticsConfigCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV
@@ -16422,7 +20705,15 @@ fn vk_device_diagnostics_config_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_zero_initialize_workgroup_memory_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures<'static> =
+		vk::PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures::new;
 	let value = vk::PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES
@@ -16433,7 +20724,15 @@ fn vk_physical_device_zero_initialize_workgroup_memory_features_construction_con
 
 #[test]
 fn vk_physical_device_shader_subgroup_uniform_control_flow_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'static> =
+		vk::PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR::new;
 	let value = vk::PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR
@@ -16444,7 +20743,15 @@ fn vk_physical_device_shader_subgroup_uniform_control_flow_features_khr_construc
 
 #[test]
 fn vk_physical_device_robustness2_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRobustness2FeaturesKHR<'static> =
+		vk::PhysicalDeviceRobustness2FeaturesKHR::new;
 	let value = vk::PhysicalDeviceRobustness2FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRobustness2FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_KHR
@@ -16469,7 +20776,15 @@ fn vk_physical_device_robustness2_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_robustness2_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRobustness2PropertiesKHR<'static> =
+		vk::PhysicalDeviceRobustness2PropertiesKHR::new;
 	let value = vk::PhysicalDeviceRobustness2PropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRobustness2PropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_KHR
@@ -16489,7 +20804,15 @@ fn vk_physical_device_robustness2_properties_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_image_robustness_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageRobustnessFeatures<'static> =
+		vk::PhysicalDeviceImageRobustnessFeatures::new;
 	let value = vk::PhysicalDeviceImageRobustnessFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageRobustnessFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES
@@ -16504,7 +20827,15 @@ fn vk_physical_device_image_robustness_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_workgroup_memory_explicit_layout_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR<'static> =
+		vk::PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR::new;
 	let value = vk::PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR
@@ -16519,7 +20850,15 @@ fn vk_physical_device_workgroup_memory_explicit_layout_features_khr_construction
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_physical_device_portability_subset_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePortabilitySubsetFeaturesKHR<'static> =
+		vk::PhysicalDevicePortabilitySubsetFeaturesKHR::new;
 	let value = vk::PhysicalDevicePortabilitySubsetFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePortabilitySubsetFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR
@@ -16605,7 +20944,15 @@ fn vk_physical_device_portability_subset_features_khr_construction_contract() {
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_physical_device_portability_subset_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePortabilitySubsetPropertiesKHR<'static> =
+		vk::PhysicalDevicePortabilitySubsetPropertiesKHR::new;
 	let value = vk::PhysicalDevicePortabilitySubsetPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePortabilitySubsetPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR
@@ -16620,7 +20967,15 @@ fn vk_physical_device_portability_subset_properties_khr_construction_contract() 
 
 #[test]
 fn vk_physical_device4444_formats_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDevice4444FormatsFeaturesEXT<'static> =
+		vk::PhysicalDevice4444FormatsFeaturesEXT::new;
 	let value = vk::PhysicalDevice4444FormatsFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevice4444FormatsFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT
@@ -16640,7 +20995,15 @@ fn vk_physical_device4444_formats_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_subpass_shading_features_huawei_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSubpassShadingFeaturesHUAWEI<'static> =
+		vk::PhysicalDeviceSubpassShadingFeaturesHUAWEI::new;
 	let value = vk::PhysicalDeviceSubpassShadingFeaturesHUAWEI::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSubpassShadingFeaturesHUAWEI::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI
@@ -16655,7 +21018,15 @@ fn vk_physical_device_subpass_shading_features_huawei_construction_contract() {
 
 #[test]
 fn vk_physical_device_cluster_culling_shader_features_huawei_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceClusterCullingShaderFeaturesHUAWEI<'static> =
+		vk::PhysicalDeviceClusterCullingShaderFeaturesHUAWEI::new;
 	let value = vk::PhysicalDeviceClusterCullingShaderFeaturesHUAWEI::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceClusterCullingShaderFeaturesHUAWEI::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_FEATURES_HUAWEI
@@ -16675,7 +21046,15 @@ fn vk_physical_device_cluster_culling_shader_features_huawei_construction_contra
 
 #[test]
 fn vk_physical_device_cluster_culling_shader_vrs_features_huawei_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI<'static> =
+		vk::PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI::new;
 	let value = vk::PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_VRS_FEATURES_HUAWEI
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceClusterCullingShaderVrsFeaturesHUAWEI::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_CLUSTER_CULLING_SHADER_VRS_FEATURES_HUAWEI
@@ -16690,7 +21069,11 @@ fn vk_physical_device_cluster_culling_shader_vrs_features_huawei_construction_co
 
 #[test]
 fn vk_buffer_copy2_construction_contract() {
+	let _: fn() -> vk::BufferCopy2<'static> = vk::BufferCopy2::new;
 	let value = vk::BufferCopy2::default();
+	assert_eq!(value.s_type, vk::StructureType::BUFFER_COPY_2);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferCopy2::new();
 	assert_eq!(value.s_type, vk::StructureType::BUFFER_COPY_2);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::BufferCopy2<'static>, vk::DeviceSize) -> vk::BufferCopy2<'static> =
@@ -16703,7 +21086,11 @@ fn vk_buffer_copy2_construction_contract() {
 
 #[test]
 fn vk_image_copy2_construction_contract() {
+	let _: fn() -> vk::ImageCopy2<'static> = vk::ImageCopy2::new;
 	let value = vk::ImageCopy2::default();
+	assert_eq!(value.s_type, vk::StructureType::IMAGE_COPY_2);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageCopy2::new();
 	assert_eq!(value.s_type, vk::StructureType::IMAGE_COPY_2);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::ImageCopy2<'static>, vk::ImageSubresourceLayers) -> vk::ImageCopy2<'static> =
@@ -16720,7 +21107,11 @@ fn vk_image_copy2_construction_contract() {
 
 #[test]
 fn vk_image_blit2_construction_contract() {
+	let _: fn() -> vk::ImageBlit2<'static> = vk::ImageBlit2::new;
 	let value = vk::ImageBlit2::default();
+	assert_eq!(value.s_type, vk::StructureType::IMAGE_BLIT_2);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageBlit2::new();
 	assert_eq!(value.s_type, vk::StructureType::IMAGE_BLIT_2);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::ImageBlit2<'static>, vk::ImageSubresourceLayers) -> vk::ImageBlit2<'static> =
@@ -16735,7 +21126,11 @@ fn vk_image_blit2_construction_contract() {
 
 #[test]
 fn vk_buffer_image_copy2_construction_contract() {
+	let _: fn() -> vk::BufferImageCopy2<'static> = vk::BufferImageCopy2::new;
 	let value = vk::BufferImageCopy2::default();
+	assert_eq!(value.s_type, vk::StructureType::BUFFER_IMAGE_COPY_2);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferImageCopy2::new();
 	assert_eq!(value.s_type, vk::StructureType::BUFFER_IMAGE_COPY_2);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::BufferImageCopy2<'static>, vk::DeviceSize) -> vk::BufferImageCopy2<'static> =
@@ -16756,7 +21151,11 @@ fn vk_buffer_image_copy2_construction_contract() {
 
 #[test]
 fn vk_image_resolve2_construction_contract() {
+	let _: fn() -> vk::ImageResolve2<'static> = vk::ImageResolve2::new;
 	let value = vk::ImageResolve2::default();
+	assert_eq!(value.s_type, vk::StructureType::IMAGE_RESOLVE_2);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageResolve2::new();
 	assert_eq!(value.s_type, vk::StructureType::IMAGE_RESOLVE_2);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::ImageResolve2<'static>, vk::ImageSubresourceLayers) -> vk::ImageResolve2<'static> =
@@ -16773,7 +21172,11 @@ fn vk_image_resolve2_construction_contract() {
 
 #[test]
 fn vk_copy_buffer_info2_construction_contract() {
+	let _: fn() -> vk::CopyBufferInfo2<'static> = vk::CopyBufferInfo2::new;
 	let value = vk::CopyBufferInfo2::default();
+	assert_eq!(value.s_type, vk::StructureType::COPY_BUFFER_INFO_2);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyBufferInfo2::new();
 	assert_eq!(value.s_type, vk::StructureType::COPY_BUFFER_INFO_2);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::CopyBufferInfo2<'static>, vk::Buffer) -> vk::CopyBufferInfo2<'static> =
@@ -16791,7 +21194,11 @@ fn vk_copy_buffer_info2_construction_contract() {
 
 #[test]
 fn vk_copy_image_info2_construction_contract() {
+	let _: fn() -> vk::CopyImageInfo2<'static> = vk::CopyImageInfo2::new;
 	let value = vk::CopyImageInfo2::default();
+	assert_eq!(value.s_type, vk::StructureType::COPY_IMAGE_INFO_2);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyImageInfo2::new();
 	assert_eq!(value.s_type, vk::StructureType::COPY_IMAGE_INFO_2);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::CopyImageInfo2<'static>, vk::Image) -> vk::CopyImageInfo2<'static> =
@@ -16813,7 +21220,11 @@ fn vk_copy_image_info2_construction_contract() {
 
 #[test]
 fn vk_blit_image_info2_construction_contract() {
+	let _: fn() -> vk::BlitImageInfo2<'static> = vk::BlitImageInfo2::new;
 	let value = vk::BlitImageInfo2::default();
+	assert_eq!(value.s_type, vk::StructureType::BLIT_IMAGE_INFO_2);
+	assert!(value.p_next.is_null());
+	let value = vk::BlitImageInfo2::new();
 	assert_eq!(value.s_type, vk::StructureType::BLIT_IMAGE_INFO_2);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::BlitImageInfo2<'static>, vk::Image) -> vk::BlitImageInfo2<'static> =
@@ -16837,7 +21248,11 @@ fn vk_blit_image_info2_construction_contract() {
 
 #[test]
 fn vk_copy_buffer_to_image_info2_construction_contract() {
+	let _: fn() -> vk::CopyBufferToImageInfo2<'static> = vk::CopyBufferToImageInfo2::new;
 	let value = vk::CopyBufferToImageInfo2::default();
+	assert_eq!(value.s_type, vk::StructureType::COPY_BUFFER_TO_IMAGE_INFO_2);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyBufferToImageInfo2::new();
 	assert_eq!(value.s_type, vk::StructureType::COPY_BUFFER_TO_IMAGE_INFO_2);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -16861,7 +21276,11 @@ fn vk_copy_buffer_to_image_info2_construction_contract() {
 
 #[test]
 fn vk_copy_image_to_buffer_info2_construction_contract() {
+	let _: fn() -> vk::CopyImageToBufferInfo2<'static> = vk::CopyImageToBufferInfo2::new;
 	let value = vk::CopyImageToBufferInfo2::default();
+	assert_eq!(value.s_type, vk::StructureType::COPY_IMAGE_TO_BUFFER_INFO_2);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyImageToBufferInfo2::new();
 	assert_eq!(value.s_type, vk::StructureType::COPY_IMAGE_TO_BUFFER_INFO_2);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::CopyImageToBufferInfo2<'static>, vk::Image) -> vk::CopyImageToBufferInfo2<'static> =
@@ -16885,7 +21304,11 @@ fn vk_copy_image_to_buffer_info2_construction_contract() {
 
 #[test]
 fn vk_resolve_image_info2_construction_contract() {
+	let _: fn() -> vk::ResolveImageInfo2<'static> = vk::ResolveImageInfo2::new;
 	let value = vk::ResolveImageInfo2::default();
+	assert_eq!(value.s_type, vk::StructureType::RESOLVE_IMAGE_INFO_2);
+	assert!(value.p_next.is_null());
+	let value = vk::ResolveImageInfo2::new();
 	assert_eq!(value.s_type, vk::StructureType::RESOLVE_IMAGE_INFO_2);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::ResolveImageInfo2<'static>, vk::Image) -> vk::ResolveImageInfo2<'static> =
@@ -16907,7 +21330,15 @@ fn vk_resolve_image_info2_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_image_atomic_int64_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderImageAtomicInt64FeaturesEXT<'static> =
+		vk::PhysicalDeviceShaderImageAtomicInt64FeaturesEXT::new;
 	let value = vk::PhysicalDeviceShaderImageAtomicInt64FeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderImageAtomicInt64FeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT
@@ -16927,7 +21358,15 @@ fn vk_physical_device_shader_image_atomic_int64_features_ext_construction_contra
 
 #[test]
 fn vk_fragment_shading_rate_attachment_info_khr_construction_contract() {
+	let _: fn() -> vk::FragmentShadingRateAttachmentInfoKHR<'static> =
+		vk::FragmentShadingRateAttachmentInfoKHR::new;
 	let value = vk::FragmentShadingRateAttachmentInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::FragmentShadingRateAttachmentInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR
@@ -16947,7 +21386,15 @@ fn vk_fragment_shading_rate_attachment_info_khr_construction_contract() {
 
 #[test]
 fn vk_pipeline_fragment_shading_rate_state_create_info_khr_construction_contract() {
+	let _: fn() -> vk::PipelineFragmentShadingRateStateCreateInfoKHR<'static> =
+		vk::PipelineFragmentShadingRateStateCreateInfoKHR::new;
 	let value = vk::PipelineFragmentShadingRateStateCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineFragmentShadingRateStateCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_FRAGMENT_SHADING_RATE_STATE_CREATE_INFO_KHR
@@ -16967,7 +21414,15 @@ fn vk_pipeline_fragment_shading_rate_state_create_info_khr_construction_contract
 
 #[test]
 fn vk_physical_device_fragment_shading_rate_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentShadingRateFeaturesKHR<'static> =
+		vk::PhysicalDeviceFragmentShadingRateFeaturesKHR::new;
 	let value = vk::PhysicalDeviceFragmentShadingRateFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentShadingRateFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR
@@ -16992,7 +21447,15 @@ fn vk_physical_device_fragment_shading_rate_features_khr_construction_contract()
 
 #[test]
 fn vk_physical_device_fragment_shading_rate_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentShadingRatePropertiesKHR<'static> =
+		vk::PhysicalDeviceFragmentShadingRatePropertiesKHR::new;
 	let value = vk::PhysicalDeviceFragmentShadingRatePropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentShadingRatePropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_PROPERTIES_KHR
@@ -17035,7 +21498,15 @@ fn vk_physical_device_fragment_shading_rate_properties_khr_construction_contract
 
 #[test]
 fn vk_physical_device_fragment_shading_rate_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentShadingRateKHR<'static> =
+		vk::PhysicalDeviceFragmentShadingRateKHR::new;
 	let value = vk::PhysicalDeviceFragmentShadingRateKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentShadingRateKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_KHR
@@ -17055,7 +21526,15 @@ fn vk_physical_device_fragment_shading_rate_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_terminate_invocation_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderTerminateInvocationFeatures<'static> =
+		vk::PhysicalDeviceShaderTerminateInvocationFeatures::new;
 	let value = vk::PhysicalDeviceShaderTerminateInvocationFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderTerminateInvocationFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES
@@ -17070,7 +21549,15 @@ fn vk_physical_device_shader_terminate_invocation_features_construction_contract
 
 #[test]
 fn vk_physical_device_fragment_shading_rate_enums_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'static> =
+		vk::PhysicalDeviceFragmentShadingRateEnumsFeaturesNV::new;
 	let value = vk::PhysicalDeviceFragmentShadingRateEnumsFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentShadingRateEnumsFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV
@@ -17095,7 +21582,15 @@ fn vk_physical_device_fragment_shading_rate_enums_features_nv_construction_contr
 
 #[test]
 fn vk_physical_device_fragment_shading_rate_enums_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'static> =
+		vk::PhysicalDeviceFragmentShadingRateEnumsPropertiesNV::new;
 	let value = vk::PhysicalDeviceFragmentShadingRateEnumsPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentShadingRateEnumsPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV
@@ -17106,7 +21601,15 @@ fn vk_physical_device_fragment_shading_rate_enums_properties_nv_construction_con
 
 #[test]
 fn vk_pipeline_fragment_shading_rate_enum_state_create_info_nv_construction_contract() {
+	let _: fn() -> vk::PipelineFragmentShadingRateEnumStateCreateInfoNV<'static> =
+		vk::PipelineFragmentShadingRateEnumStateCreateInfoNV::new;
 	let value = vk::PipelineFragmentShadingRateEnumStateCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineFragmentShadingRateEnumStateCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV
@@ -17131,7 +21634,15 @@ fn vk_pipeline_fragment_shading_rate_enum_state_create_info_nv_construction_cont
 
 #[test]
 fn vk_acceleration_structure_build_sizes_info_khr_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureBuildSizesInfoKHR<'static> =
+		vk::AccelerationStructureBuildSizesInfoKHR::new;
 	let value = vk::AccelerationStructureBuildSizesInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureBuildSizesInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR
@@ -17156,7 +21667,15 @@ fn vk_acceleration_structure_build_sizes_info_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_image2_d_view_of3_d_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImage2DViewOf3DFeaturesEXT<'static> =
+		vk::PhysicalDeviceImage2DViewOf3DFeaturesEXT::new;
 	let value = vk::PhysicalDeviceImage2DViewOf3DFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImage2DViewOf3DFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_2D_VIEW_OF_3D_FEATURES_EXT
@@ -17176,7 +21695,15 @@ fn vk_physical_device_image2_d_view_of3_d_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_image_sliced_view_of3_d_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageSlicedViewOf3DFeaturesEXT<'static> =
+		vk::PhysicalDeviceImageSlicedViewOf3DFeaturesEXT::new;
 	let value = vk::PhysicalDeviceImageSlicedViewOf3DFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageSlicedViewOf3DFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_SLICED_VIEW_OF_3D_FEATURES_EXT
@@ -17191,7 +21718,15 @@ fn vk_physical_device_image_sliced_view_of3_d_features_ext_construction_contract
 
 #[test]
 fn vk_physical_device_attachment_feedback_loop_dynamic_state_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT<'static> =
+		vk::PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT::new;
 	let value = vk::PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_DYNAMIC_STATE_FEATURES_EXT
@@ -17202,7 +21737,15 @@ fn vk_physical_device_attachment_feedback_loop_dynamic_state_features_ext_constr
 
 #[test]
 fn vk_physical_device_legacy_vertex_attributes_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceLegacyVertexAttributesFeaturesEXT<'static> =
+		vk::PhysicalDeviceLegacyVertexAttributesFeaturesEXT::new;
 	let value = vk::PhysicalDeviceLegacyVertexAttributesFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceLegacyVertexAttributesFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_FEATURES_EXT
@@ -17217,7 +21760,15 @@ fn vk_physical_device_legacy_vertex_attributes_features_ext_construction_contrac
 
 #[test]
 fn vk_physical_device_legacy_vertex_attributes_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceLegacyVertexAttributesPropertiesEXT<'static> =
+		vk::PhysicalDeviceLegacyVertexAttributesPropertiesEXT::new;
 	let value = vk::PhysicalDeviceLegacyVertexAttributesPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceLegacyVertexAttributesPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_LEGACY_VERTEX_ATTRIBUTES_PROPERTIES_EXT
@@ -17232,7 +21783,15 @@ fn vk_physical_device_legacy_vertex_attributes_properties_ext_construction_contr
 
 #[test]
 fn vk_physical_device_mutable_descriptor_type_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMutableDescriptorTypeFeaturesEXT<'static> =
+		vk::PhysicalDeviceMutableDescriptorTypeFeaturesEXT::new;
 	let value = vk::PhysicalDeviceMutableDescriptorTypeFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMutableDescriptorTypeFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_EXT
@@ -17247,6 +21806,7 @@ fn vk_physical_device_mutable_descriptor_type_features_ext_construction_contract
 
 #[test]
 fn vk_mutable_descriptor_type_list_ext_construction_contract() {
+	let _: fn() -> vk::MutableDescriptorTypeListEXT<'static> = vk::MutableDescriptorTypeListEXT::new;
 	let _: fn(
 		vk::MutableDescriptorTypeListEXT<'static>,
 		u32,
@@ -17263,7 +21823,15 @@ fn vk_mutable_descriptor_type_list_ext_construction_contract() {
 
 #[test]
 fn vk_mutable_descriptor_type_create_info_ext_construction_contract() {
+	let _: fn() -> vk::MutableDescriptorTypeCreateInfoEXT<'static> =
+		vk::MutableDescriptorTypeCreateInfoEXT::new;
 	let value = vk::MutableDescriptorTypeCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MutableDescriptorTypeCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_EXT
@@ -17285,7 +21853,15 @@ fn vk_mutable_descriptor_type_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_depth_clip_control_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDepthClipControlFeaturesEXT<'static> =
+		vk::PhysicalDeviceDepthClipControlFeaturesEXT::new;
 	let value = vk::PhysicalDeviceDepthClipControlFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDepthClipControlFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT
@@ -17300,7 +21876,15 @@ fn vk_physical_device_depth_clip_control_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_zero_initialize_device_memory_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT<'static> =
+		vk::PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT::new;
 	let value = vk::PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_ZERO_INITIALIZE_DEVICE_MEMORY_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceZeroInitializeDeviceMemoryFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_ZERO_INITIALIZE_DEVICE_MEMORY_FEATURES_EXT
@@ -17315,7 +21899,14 @@ fn vk_physical_device_zero_initialize_device_memory_features_ext_construction_co
 
 #[test]
 fn vk_begin_custom_resolve_info_ext_construction_contract() {
+	let _: fn() -> vk::BeginCustomResolveInfoEXT<'static> = vk::BeginCustomResolveInfoEXT::new;
 	let value = vk::BeginCustomResolveInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BEGIN_CUSTOM_RESOLVE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BeginCustomResolveInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BEGIN_CUSTOM_RESOLVE_INFO_EXT
@@ -17325,7 +21916,15 @@ fn vk_begin_custom_resolve_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_custom_resolve_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCustomResolveFeaturesEXT<'static> =
+		vk::PhysicalDeviceCustomResolveFeaturesEXT::new;
 	let value = vk::PhysicalDeviceCustomResolveFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCustomResolveFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_CUSTOM_RESOLVE_FEATURES_EXT
@@ -17340,7 +21939,14 @@ fn vk_physical_device_custom_resolve_features_ext_construction_contract() {
 
 #[test]
 fn vk_custom_resolve_create_info_ext_construction_contract() {
+	let _: fn() -> vk::CustomResolveCreateInfoEXT<'static> = vk::CustomResolveCreateInfoEXT::new;
 	let value = vk::CustomResolveCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::CUSTOM_RESOLVE_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CustomResolveCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::CUSTOM_RESOLVE_CREATE_INFO_EXT
@@ -17375,7 +21981,15 @@ fn vk_custom_resolve_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_device_generated_commands_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT<'static> =
+		vk::PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT::new;
 	let value = vk::PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDeviceGeneratedCommandsFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_EXT
@@ -17395,7 +22009,15 @@ fn vk_physical_device_device_generated_commands_features_ext_construction_contra
 
 #[test]
 fn vk_physical_device_device_generated_commands_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT<'static> =
+		vk::PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT::new;
 	let value = vk::PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDeviceGeneratedCommandsPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_EXT
@@ -17437,7 +22059,15 @@ fn vk_physical_device_device_generated_commands_properties_ext_construction_cont
 
 #[test]
 fn vk_generated_commands_pipeline_info_ext_construction_contract() {
+	let _: fn() -> vk::GeneratedCommandsPipelineInfoEXT<'static> =
+		vk::GeneratedCommandsPipelineInfoEXT::new;
 	let value = vk::GeneratedCommandsPipelineInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::GENERATED_COMMANDS_PIPELINE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::GeneratedCommandsPipelineInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::GENERATED_COMMANDS_PIPELINE_INFO_EXT
@@ -17452,7 +22082,15 @@ fn vk_generated_commands_pipeline_info_ext_construction_contract() {
 
 #[test]
 fn vk_generated_commands_shader_info_ext_construction_contract() {
+	let _: fn() -> vk::GeneratedCommandsShaderInfoEXT<'static> =
+		vk::GeneratedCommandsShaderInfoEXT::new;
 	let value = vk::GeneratedCommandsShaderInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::GENERATED_COMMANDS_SHADER_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::GeneratedCommandsShaderInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::GENERATED_COMMANDS_SHADER_INFO_EXT
@@ -17474,7 +22112,15 @@ fn vk_generated_commands_shader_info_ext_construction_contract() {
 
 #[test]
 fn vk_generated_commands_memory_requirements_info_ext_construction_contract() {
+	let _: fn() -> vk::GeneratedCommandsMemoryRequirementsInfoEXT<'static> =
+		vk::GeneratedCommandsMemoryRequirementsInfoEXT::new;
 	let value = vk::GeneratedCommandsMemoryRequirementsInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::GeneratedCommandsMemoryRequirementsInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_EXT
@@ -17504,7 +22150,15 @@ fn vk_generated_commands_memory_requirements_info_ext_construction_contract() {
 
 #[test]
 fn vk_indirect_execution_set_pipeline_info_ext_construction_contract() {
+	let _: fn() -> vk::IndirectExecutionSetPipelineInfoEXT<'static> =
+		vk::IndirectExecutionSetPipelineInfoEXT::new;
 	let value = vk::IndirectExecutionSetPipelineInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::INDIRECT_EXECUTION_SET_PIPELINE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::IndirectExecutionSetPipelineInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::INDIRECT_EXECUTION_SET_PIPELINE_INFO_EXT
@@ -17524,7 +22178,15 @@ fn vk_indirect_execution_set_pipeline_info_ext_construction_contract() {
 
 #[test]
 fn vk_indirect_execution_set_shader_layout_info_ext_construction_contract() {
+	let _: fn() -> vk::IndirectExecutionSetShaderLayoutInfoEXT<'static> =
+		vk::IndirectExecutionSetShaderLayoutInfoEXT::new;
 	let value = vk::IndirectExecutionSetShaderLayoutInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::INDIRECT_EXECUTION_SET_SHADER_LAYOUT_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::IndirectExecutionSetShaderLayoutInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::INDIRECT_EXECUTION_SET_SHADER_LAYOUT_INFO_EXT
@@ -17546,7 +22208,15 @@ fn vk_indirect_execution_set_shader_layout_info_ext_construction_contract() {
 
 #[test]
 fn vk_indirect_execution_set_shader_info_ext_construction_contract() {
+	let _: fn() -> vk::IndirectExecutionSetShaderInfoEXT<'static> =
+		vk::IndirectExecutionSetShaderInfoEXT::new;
 	let value = vk::IndirectExecutionSetShaderInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::INDIRECT_EXECUTION_SET_SHADER_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::IndirectExecutionSetShaderInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::INDIRECT_EXECUTION_SET_SHADER_INFO_EXT
@@ -17587,6 +22257,7 @@ fn vk_indirect_execution_set_shader_info_ext_construction_contract() {
 
 #[test]
 fn vk_indirect_execution_set_info_ext_construction_contract() {
+	let _: fn() -> vk::IndirectExecutionSetInfoEXT<'static> = vk::IndirectExecutionSetInfoEXT::new;
 	let _: fn(
 		vk::IndirectExecutionSetInfoEXT<'static>,
 		&'static vk::IndirectExecutionSetPipelineInfoEXT<'static>,
@@ -17599,7 +22270,15 @@ fn vk_indirect_execution_set_info_ext_construction_contract() {
 
 #[test]
 fn vk_indirect_execution_set_create_info_ext_construction_contract() {
+	let _: fn() -> vk::IndirectExecutionSetCreateInfoEXT<'static> =
+		vk::IndirectExecutionSetCreateInfoEXT::new;
 	let value = vk::IndirectExecutionSetCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::INDIRECT_EXECUTION_SET_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::IndirectExecutionSetCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::INDIRECT_EXECUTION_SET_CREATE_INFO_EXT
@@ -17619,7 +22298,11 @@ fn vk_indirect_execution_set_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_generated_commands_info_ext_construction_contract() {
+	let _: fn() -> vk::GeneratedCommandsInfoEXT<'static> = vk::GeneratedCommandsInfoEXT::new;
 	let value = vk::GeneratedCommandsInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::GENERATED_COMMANDS_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::GeneratedCommandsInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::GENERATED_COMMANDS_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -17666,7 +22349,15 @@ fn vk_generated_commands_info_ext_construction_contract() {
 
 #[test]
 fn vk_write_indirect_execution_set_pipeline_ext_construction_contract() {
+	let _: fn() -> vk::WriteIndirectExecutionSetPipelineEXT<'static> =
+		vk::WriteIndirectExecutionSetPipelineEXT::new;
 	let value = vk::WriteIndirectExecutionSetPipelineEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::WRITE_INDIRECT_EXECUTION_SET_PIPELINE_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::WriteIndirectExecutionSetPipelineEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::WRITE_INDIRECT_EXECUTION_SET_PIPELINE_EXT
@@ -17686,7 +22377,15 @@ fn vk_write_indirect_execution_set_pipeline_ext_construction_contract() {
 
 #[test]
 fn vk_write_indirect_execution_set_shader_ext_construction_contract() {
+	let _: fn() -> vk::WriteIndirectExecutionSetShaderEXT<'static> =
+		vk::WriteIndirectExecutionSetShaderEXT::new;
 	let value = vk::WriteIndirectExecutionSetShaderEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::WRITE_INDIRECT_EXECUTION_SET_SHADER_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::WriteIndirectExecutionSetShaderEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::WRITE_INDIRECT_EXECUTION_SET_SHADER_EXT
@@ -17706,7 +22405,15 @@ fn vk_write_indirect_execution_set_shader_ext_construction_contract() {
 
 #[test]
 fn vk_indirect_commands_layout_create_info_ext_construction_contract() {
+	let _: fn() -> vk::IndirectCommandsLayoutCreateInfoEXT<'static> =
+		vk::IndirectCommandsLayoutCreateInfoEXT::new;
 	let value = vk::IndirectCommandsLayoutCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::IndirectCommandsLayoutCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_EXT
@@ -17748,7 +22455,15 @@ fn vk_indirect_commands_layout_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_indirect_commands_layout_token_ext_construction_contract() {
+	let _: fn() -> vk::IndirectCommandsLayoutTokenEXT<'static> =
+		vk::IndirectCommandsLayoutTokenEXT::new;
 	let value = vk::IndirectCommandsLayoutTokenEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::INDIRECT_COMMANDS_LAYOUT_TOKEN_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::IndirectCommandsLayoutTokenEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::INDIRECT_COMMANDS_LAYOUT_TOKEN_EXT
@@ -17770,6 +22485,8 @@ fn vk_indirect_commands_layout_token_ext_construction_contract() {
 
 #[test]
 fn vk_draw_indirect_count_indirect_command_ext_construction_contract() {
+	let _: fn() -> vk::DrawIndirectCountIndirectCommandEXT =
+		vk::DrawIndirectCountIndirectCommandEXT::new;
 	let _: fn(
 		vk::DrawIndirectCountIndirectCommandEXT,
 		vk::DeviceAddress,
@@ -17788,6 +22505,8 @@ fn vk_draw_indirect_count_indirect_command_ext_construction_contract() {
 
 #[test]
 fn vk_indirect_commands_vertex_buffer_token_ext_construction_contract() {
+	let _: fn() -> vk::IndirectCommandsVertexBufferTokenEXT =
+		vk::IndirectCommandsVertexBufferTokenEXT::new;
 	let _: fn(
 		vk::IndirectCommandsVertexBufferTokenEXT,
 		u32,
@@ -17797,6 +22516,8 @@ fn vk_indirect_commands_vertex_buffer_token_ext_construction_contract() {
 
 #[test]
 fn vk_bind_vertex_buffer_indirect_command_ext_construction_contract() {
+	let _: fn() -> vk::BindVertexBufferIndirectCommandEXT =
+		vk::BindVertexBufferIndirectCommandEXT::new;
 	let _: fn(
 		vk::BindVertexBufferIndirectCommandEXT,
 		vk::DeviceAddress,
@@ -17810,6 +22531,8 @@ fn vk_bind_vertex_buffer_indirect_command_ext_construction_contract() {
 
 #[test]
 fn vk_indirect_commands_index_buffer_token_ext_construction_contract() {
+	let _: fn() -> vk::IndirectCommandsIndexBufferTokenEXT =
+		vk::IndirectCommandsIndexBufferTokenEXT::new;
 	let _: fn(
 		vk::IndirectCommandsIndexBufferTokenEXT,
 		vk::IndirectCommandsInputModeFlagBitsEXT,
@@ -17818,6 +22541,7 @@ fn vk_indirect_commands_index_buffer_token_ext_construction_contract() {
 
 #[test]
 fn vk_bind_index_buffer_indirect_command_ext_construction_contract() {
+	let _: fn() -> vk::BindIndexBufferIndirectCommandEXT = vk::BindIndexBufferIndirectCommandEXT::new;
 	let _: fn(
 		vk::BindIndexBufferIndirectCommandEXT,
 		vk::DeviceAddress,
@@ -17833,6 +22557,8 @@ fn vk_bind_index_buffer_indirect_command_ext_construction_contract() {
 
 #[test]
 fn vk_indirect_commands_push_constant_token_ext_construction_contract() {
+	let _: fn() -> vk::IndirectCommandsPushConstantTokenEXT =
+		vk::IndirectCommandsPushConstantTokenEXT::new;
 	let _: fn(
 		vk::IndirectCommandsPushConstantTokenEXT,
 		vk::PushConstantRange,
@@ -17842,6 +22568,8 @@ fn vk_indirect_commands_push_constant_token_ext_construction_contract() {
 
 #[test]
 fn vk_indirect_commands_execution_set_token_ext_construction_contract() {
+	let _: fn() -> vk::IndirectCommandsExecutionSetTokenEXT =
+		vk::IndirectCommandsExecutionSetTokenEXT::new;
 	let _: fn(
 		vk::IndirectCommandsExecutionSetTokenEXT,
 		vk::IndirectExecutionSetInfoTypeEXT,
@@ -17855,6 +22583,7 @@ fn vk_indirect_commands_execution_set_token_ext_construction_contract() {
 
 #[test]
 fn vk_indirect_commands_token_data_ext_construction_contract() {
+	let _: fn() -> vk::IndirectCommandsTokenDataEXT<'static> = vk::IndirectCommandsTokenDataEXT::new;
 	let _: fn(
 		vk::IndirectCommandsTokenDataEXT<'static>,
 		&'static vk::IndirectCommandsPushConstantTokenEXT,
@@ -17879,7 +22608,15 @@ fn vk_indirect_commands_token_data_ext_construction_contract() {
 
 #[test]
 fn vk_pipeline_viewport_depth_clip_control_create_info_ext_construction_contract() {
+	let _: fn() -> vk::PipelineViewportDepthClipControlCreateInfoEXT<'static> =
+		vk::PipelineViewportDepthClipControlCreateInfoEXT::new;
 	let value = vk::PipelineViewportDepthClipControlCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineViewportDepthClipControlCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT
@@ -17894,7 +22631,15 @@ fn vk_pipeline_viewport_depth_clip_control_create_info_ext_construction_contract
 
 #[test]
 fn vk_physical_device_depth_clamp_control_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDepthClampControlFeaturesEXT<'static> =
+		vk::PhysicalDeviceDepthClampControlFeaturesEXT::new;
 	let value = vk::PhysicalDeviceDepthClampControlFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLAMP_CONTROL_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDepthClampControlFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLAMP_CONTROL_FEATURES_EXT
@@ -17909,7 +22654,15 @@ fn vk_physical_device_depth_clamp_control_features_ext_construction_contract() {
 
 #[test]
 fn vk_pipeline_viewport_depth_clamp_control_create_info_ext_construction_contract() {
+	let _: fn() -> vk::PipelineViewportDepthClampControlCreateInfoEXT<'static> =
+		vk::PipelineViewportDepthClampControlCreateInfoEXT::new;
 	let value = vk::PipelineViewportDepthClampControlCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_VIEWPORT_DEPTH_CLAMP_CONTROL_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineViewportDepthClampControlCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_VIEWPORT_DEPTH_CLAMP_CONTROL_CREATE_INFO_EXT
@@ -17929,7 +22682,15 @@ fn vk_pipeline_viewport_depth_clamp_control_create_info_ext_construction_contrac
 
 #[test]
 fn vk_physical_device_vertex_input_dynamic_state_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVertexInputDynamicStateFeaturesEXT<'static> =
+		vk::PhysicalDeviceVertexInputDynamicStateFeaturesEXT::new;
 	let value = vk::PhysicalDeviceVertexInputDynamicStateFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVertexInputDynamicStateFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT
@@ -17944,7 +22705,15 @@ fn vk_physical_device_vertex_input_dynamic_state_features_ext_construction_contr
 
 #[test]
 fn vk_physical_device_external_memory_rdma_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExternalMemoryRDMAFeaturesNV<'static> =
+		vk::PhysicalDeviceExternalMemoryRDMAFeaturesNV::new;
 	let value = vk::PhysicalDeviceExternalMemoryRDMAFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExternalMemoryRDMAFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV
@@ -17959,7 +22728,15 @@ fn vk_physical_device_external_memory_rdma_features_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_relaxed_extended_instruction_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR<'static> =
+		vk::PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR::new;
 	let value = vk::PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_RELAXED_EXTENDED_INSTRUCTION_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderRelaxedExtendedInstructionFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_RELAXED_EXTENDED_INSTRUCTION_FEATURES_KHR
@@ -17970,7 +22747,15 @@ fn vk_physical_device_shader_relaxed_extended_instruction_features_khr_construct
 
 #[test]
 fn vk_vertex_input_binding_description2_ext_construction_contract() {
+	let _: fn() -> vk::VertexInputBindingDescription2EXT<'static> =
+		vk::VertexInputBindingDescription2EXT::new;
 	let value = vk::VertexInputBindingDescription2EXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VertexInputBindingDescription2EXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT
@@ -18000,7 +22785,15 @@ fn vk_vertex_input_binding_description2_ext_construction_contract() {
 
 #[test]
 fn vk_vertex_input_attribute_description2_ext_construction_contract() {
+	let _: fn() -> vk::VertexInputAttributeDescription2EXT<'static> =
+		vk::VertexInputAttributeDescription2EXT::new;
 	let value = vk::VertexInputAttributeDescription2EXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VertexInputAttributeDescription2EXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT
@@ -18030,7 +22823,15 @@ fn vk_vertex_input_attribute_description2_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_color_write_enable_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceColorWriteEnableFeaturesEXT<'static> =
+		vk::PhysicalDeviceColorWriteEnableFeaturesEXT::new;
 	let value = vk::PhysicalDeviceColorWriteEnableFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceColorWriteEnableFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT
@@ -18045,7 +22846,15 @@ fn vk_physical_device_color_write_enable_features_ext_construction_contract() {
 
 #[test]
 fn vk_pipeline_color_write_create_info_ext_construction_contract() {
+	let _: fn() -> vk::PipelineColorWriteCreateInfoEXT<'static> =
+		vk::PipelineColorWriteCreateInfoEXT::new;
 	let value = vk::PipelineColorWriteCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_COLOR_WRITE_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineColorWriteCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_COLOR_WRITE_CREATE_INFO_EXT
@@ -18067,7 +22876,11 @@ fn vk_pipeline_color_write_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_memory_barrier2_construction_contract() {
+	let _: fn() -> vk::MemoryBarrier2<'static> = vk::MemoryBarrier2::new;
 	let value = vk::MemoryBarrier2::default();
+	assert_eq!(value.s_type, vk::StructureType::MEMORY_BARRIER_2);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryBarrier2::new();
 	assert_eq!(value.s_type, vk::StructureType::MEMORY_BARRIER_2);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::MemoryBarrier2<'static>, vk::PipelineStageFlags2) -> vk::MemoryBarrier2<'static> =
@@ -18082,7 +22895,11 @@ fn vk_memory_barrier2_construction_contract() {
 
 #[test]
 fn vk_image_memory_barrier2_construction_contract() {
+	let _: fn() -> vk::ImageMemoryBarrier2<'static> = vk::ImageMemoryBarrier2::new;
 	let value = vk::ImageMemoryBarrier2::default();
+	assert_eq!(value.s_type, vk::StructureType::IMAGE_MEMORY_BARRIER_2);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageMemoryBarrier2::new();
 	assert_eq!(value.s_type, vk::StructureType::IMAGE_MEMORY_BARRIER_2);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -18119,7 +22936,11 @@ fn vk_image_memory_barrier2_construction_contract() {
 
 #[test]
 fn vk_buffer_memory_barrier2_construction_contract() {
+	let _: fn() -> vk::BufferMemoryBarrier2<'static> = vk::BufferMemoryBarrier2::new;
 	let value = vk::BufferMemoryBarrier2::default();
+	assert_eq!(value.s_type, vk::StructureType::BUFFER_MEMORY_BARRIER_2);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferMemoryBarrier2::new();
 	assert_eq!(value.s_type, vk::StructureType::BUFFER_MEMORY_BARRIER_2);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -18156,7 +22977,14 @@ fn vk_buffer_memory_barrier2_construction_contract() {
 
 #[test]
 fn vk_memory_barrier_access_flags3_khr_construction_contract() {
+	let _: fn() -> vk::MemoryBarrierAccessFlags3KHR<'static> = vk::MemoryBarrierAccessFlags3KHR::new;
 	let value = vk::MemoryBarrierAccessFlags3KHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_BARRIER_ACCESS_FLAGS_3_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryBarrierAccessFlags3KHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_BARRIER_ACCESS_FLAGS_3_KHR
@@ -18176,7 +23004,11 @@ fn vk_memory_barrier_access_flags3_khr_construction_contract() {
 
 #[test]
 fn vk_dependency_info_construction_contract() {
+	let _: fn() -> vk::DependencyInfo<'static> = vk::DependencyInfo::new;
 	let value = vk::DependencyInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::DEPENDENCY_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::DependencyInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::DEPENDENCY_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::DependencyInfo<'static>, vk::DependencyFlags) -> vk::DependencyInfo<'static> =
@@ -18206,7 +23038,11 @@ fn vk_dependency_info_construction_contract() {
 
 #[test]
 fn vk_semaphore_submit_info_construction_contract() {
+	let _: fn() -> vk::SemaphoreSubmitInfo<'static> = vk::SemaphoreSubmitInfo::new;
 	let value = vk::SemaphoreSubmitInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::SEMAPHORE_SUBMIT_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::SemaphoreSubmitInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::SEMAPHORE_SUBMIT_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::SemaphoreSubmitInfo<'static>, vk::Semaphore) -> vk::SemaphoreSubmitInfo<'static> =
@@ -18223,7 +23059,11 @@ fn vk_semaphore_submit_info_construction_contract() {
 
 #[test]
 fn vk_command_buffer_submit_info_construction_contract() {
+	let _: fn() -> vk::CommandBufferSubmitInfo<'static> = vk::CommandBufferSubmitInfo::new;
 	let value = vk::CommandBufferSubmitInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::COMMAND_BUFFER_SUBMIT_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::CommandBufferSubmitInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::COMMAND_BUFFER_SUBMIT_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -18236,7 +23076,11 @@ fn vk_command_buffer_submit_info_construction_contract() {
 
 #[test]
 fn vk_submit_info2_construction_contract() {
+	let _: fn() -> vk::SubmitInfo2<'static> = vk::SubmitInfo2::new;
 	let value = vk::SubmitInfo2::default();
+	assert_eq!(value.s_type, vk::StructureType::SUBMIT_INFO_2);
+	assert!(value.p_next.is_null());
+	let value = vk::SubmitInfo2::new();
 	assert_eq!(value.s_type, vk::StructureType::SUBMIT_INFO_2);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::SubmitInfo2<'static>, vk::SubmitFlags) -> vk::SubmitInfo2<'static> =
@@ -18266,7 +23110,15 @@ fn vk_submit_info2_construction_contract() {
 
 #[test]
 fn vk_queue_family_checkpoint_properties2_nv_construction_contract() {
+	let _: fn() -> vk::QueueFamilyCheckpointProperties2NV<'static> =
+		vk::QueueFamilyCheckpointProperties2NV::new;
 	let value = vk::QueueFamilyCheckpointProperties2NV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueueFamilyCheckpointProperties2NV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV
@@ -18281,7 +23133,11 @@ fn vk_queue_family_checkpoint_properties2_nv_construction_contract() {
 
 #[test]
 fn vk_checkpoint_data2_nv_construction_contract() {
+	let _: fn() -> vk::CheckpointData2NV<'static> = vk::CheckpointData2NV::new;
 	let value = vk::CheckpointData2NV::default();
+	assert_eq!(value.s_type, vk::StructureType::CHECKPOINT_DATA_2_NV);
+	assert!(value.p_next.is_null());
+	let value = vk::CheckpointData2NV::new();
 	assert_eq!(value.s_type, vk::StructureType::CHECKPOINT_DATA_2_NV);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -18296,7 +23152,15 @@ fn vk_checkpoint_data2_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_synchronization2_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSynchronization2Features<'static> =
+		vk::PhysicalDeviceSynchronization2Features::new;
 	let value = vk::PhysicalDeviceSynchronization2Features::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSynchronization2Features::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES
@@ -18311,7 +23175,15 @@ fn vk_physical_device_synchronization2_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_unified_image_layouts_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceUnifiedImageLayoutsFeaturesKHR<'static> =
+		vk::PhysicalDeviceUnifiedImageLayoutsFeaturesKHR::new;
 	let value = vk::PhysicalDeviceUnifiedImageLayoutsFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_UNIFIED_IMAGE_LAYOUTS_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceUnifiedImageLayoutsFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_UNIFIED_IMAGE_LAYOUTS_FEATURES_KHR
@@ -18331,7 +23203,15 @@ fn vk_physical_device_unified_image_layouts_features_khr_construction_contract()
 
 #[test]
 fn vk_physical_device_host_image_copy_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceHostImageCopyFeatures<'static> =
+		vk::PhysicalDeviceHostImageCopyFeatures::new;
 	let value = vk::PhysicalDeviceHostImageCopyFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceHostImageCopyFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_HOST_IMAGE_COPY_FEATURES
@@ -18346,7 +23226,15 @@ fn vk_physical_device_host_image_copy_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_host_image_copy_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceHostImageCopyProperties<'static> =
+		vk::PhysicalDeviceHostImageCopyProperties::new;
 	let value = vk::PhysicalDeviceHostImageCopyProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_HOST_IMAGE_COPY_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceHostImageCopyProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_HOST_IMAGE_COPY_PROPERTIES
@@ -18390,7 +23278,11 @@ fn vk_physical_device_host_image_copy_properties_construction_contract() {
 
 #[test]
 fn vk_memory_to_image_copy_construction_contract() {
+	let _: fn() -> vk::MemoryToImageCopy<'static> = vk::MemoryToImageCopy::new;
 	let value = vk::MemoryToImageCopy::default();
+	assert_eq!(value.s_type, vk::StructureType::MEMORY_TO_IMAGE_COPY);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryToImageCopy::new();
 	assert_eq!(value.s_type, vk::StructureType::MEMORY_TO_IMAGE_COPY);
 	assert!(value.p_next.is_null());
 	let _: unsafe fn(
@@ -18413,7 +23305,11 @@ fn vk_memory_to_image_copy_construction_contract() {
 
 #[test]
 fn vk_image_to_memory_copy_construction_contract() {
+	let _: fn() -> vk::ImageToMemoryCopy<'static> = vk::ImageToMemoryCopy::new;
 	let value = vk::ImageToMemoryCopy::default();
+	assert_eq!(value.s_type, vk::StructureType::IMAGE_TO_MEMORY_COPY);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageToMemoryCopy::new();
 	assert_eq!(value.s_type, vk::StructureType::IMAGE_TO_MEMORY_COPY);
 	assert!(value.p_next.is_null());
 	let _: unsafe fn(
@@ -18436,7 +23332,11 @@ fn vk_image_to_memory_copy_construction_contract() {
 
 #[test]
 fn vk_copy_memory_to_image_info_construction_contract() {
+	let _: fn() -> vk::CopyMemoryToImageInfo<'static> = vk::CopyMemoryToImageInfo::new;
 	let value = vk::CopyMemoryToImageInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::COPY_MEMORY_TO_IMAGE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyMemoryToImageInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::COPY_MEMORY_TO_IMAGE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -18460,7 +23360,11 @@ fn vk_copy_memory_to_image_info_construction_contract() {
 
 #[test]
 fn vk_copy_image_to_memory_info_construction_contract() {
+	let _: fn() -> vk::CopyImageToMemoryInfo<'static> = vk::CopyImageToMemoryInfo::new;
 	let value = vk::CopyImageToMemoryInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::COPY_IMAGE_TO_MEMORY_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyImageToMemoryInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::COPY_IMAGE_TO_MEMORY_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -18484,7 +23388,11 @@ fn vk_copy_image_to_memory_info_construction_contract() {
 
 #[test]
 fn vk_copy_image_to_image_info_construction_contract() {
+	let _: fn() -> vk::CopyImageToImageInfo<'static> = vk::CopyImageToImageInfo::new;
 	let value = vk::CopyImageToImageInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::COPY_IMAGE_TO_IMAGE_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyImageToImageInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::COPY_IMAGE_TO_IMAGE_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -18514,7 +23422,15 @@ fn vk_copy_image_to_image_info_construction_contract() {
 
 #[test]
 fn vk_host_image_layout_transition_info_construction_contract() {
+	let _: fn() -> vk::HostImageLayoutTransitionInfo<'static> =
+		vk::HostImageLayoutTransitionInfo::new;
 	let value = vk::HostImageLayoutTransitionInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::HOST_IMAGE_LAYOUT_TRANSITION_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::HostImageLayoutTransitionInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::HOST_IMAGE_LAYOUT_TRANSITION_INFO
@@ -18543,7 +23459,14 @@ fn vk_host_image_layout_transition_info_construction_contract() {
 
 #[test]
 fn vk_subresource_host_memcpy_size_construction_contract() {
+	let _: fn() -> vk::SubresourceHostMemcpySize<'static> = vk::SubresourceHostMemcpySize::new;
 	let value = vk::SubresourceHostMemcpySize::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SUBRESOURCE_HOST_MEMCPY_SIZE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SubresourceHostMemcpySize::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SUBRESOURCE_HOST_MEMCPY_SIZE
@@ -18557,7 +23480,15 @@ fn vk_subresource_host_memcpy_size_construction_contract() {
 
 #[test]
 fn vk_host_image_copy_device_performance_query_construction_contract() {
+	let _: fn() -> vk::HostImageCopyDevicePerformanceQuery<'static> =
+		vk::HostImageCopyDevicePerformanceQuery::new;
 	let value = vk::HostImageCopyDevicePerformanceQuery::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::HostImageCopyDevicePerformanceQuery::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::HOST_IMAGE_COPY_DEVICE_PERFORMANCE_QUERY
@@ -18577,7 +23508,15 @@ fn vk_host_image_copy_device_performance_query_construction_contract() {
 
 #[test]
 fn vk_physical_device_primitives_generated_query_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT<'static> =
+		vk::PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT::new;
 	let value = vk::PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PRIMITIVES_GENERATED_QUERY_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePrimitivesGeneratedQueryFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PRIMITIVES_GENERATED_QUERY_FEATURES_EXT
@@ -18594,7 +23533,15 @@ fn vk_physical_device_primitives_generated_query_features_ext_construction_contr
 
 #[test]
 fn vk_physical_device_legacy_dithering_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceLegacyDitheringFeaturesEXT<'static> =
+		vk::PhysicalDeviceLegacyDitheringFeaturesEXT::new;
 	let value = vk::PhysicalDeviceLegacyDitheringFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceLegacyDitheringFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_LEGACY_DITHERING_FEATURES_EXT
@@ -18609,7 +23556,15 @@ fn vk_physical_device_legacy_dithering_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_multisampled_render_to_single_sampled_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT<'static> =
+		vk::PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT::new;
 	let value = vk::PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMultisampledRenderToSingleSampledFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_FEATURES_EXT
@@ -18620,7 +23575,15 @@ fn vk_physical_device_multisampled_render_to_single_sampled_features_ext_constru
 
 #[test]
 fn vk_surface_capabilities_present_id2_khr_construction_contract() {
+	let _: fn() -> vk::SurfaceCapabilitiesPresentId2KHR<'static> =
+		vk::SurfaceCapabilitiesPresentId2KHR::new;
 	let value = vk::SurfaceCapabilitiesPresentId2KHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SURFACE_CAPABILITIES_PRESENT_ID_2_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SurfaceCapabilitiesPresentId2KHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SURFACE_CAPABILITIES_PRESENT_ID_2_KHR
@@ -18635,7 +23598,15 @@ fn vk_surface_capabilities_present_id2_khr_construction_contract() {
 
 #[test]
 fn vk_surface_capabilities_present_wait2_khr_construction_contract() {
+	let _: fn() -> vk::SurfaceCapabilitiesPresentWait2KHR<'static> =
+		vk::SurfaceCapabilitiesPresentWait2KHR::new;
 	let value = vk::SurfaceCapabilitiesPresentWait2KHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SURFACE_CAPABILITIES_PRESENT_WAIT_2_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SurfaceCapabilitiesPresentWait2KHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SURFACE_CAPABILITIES_PRESENT_WAIT_2_KHR
@@ -18650,7 +23621,15 @@ fn vk_surface_capabilities_present_wait2_khr_construction_contract() {
 
 #[test]
 fn vk_subpass_resolve_performance_query_ext_construction_contract() {
+	let _: fn() -> vk::SubpassResolvePerformanceQueryEXT<'static> =
+		vk::SubpassResolvePerformanceQueryEXT::new;
 	let value = vk::SubpassResolvePerformanceQueryEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SUBPASS_RESOLVE_PERFORMANCE_QUERY_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SubpassResolvePerformanceQueryEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SUBPASS_RESOLVE_PERFORMANCE_QUERY_EXT
@@ -18665,7 +23644,15 @@ fn vk_subpass_resolve_performance_query_ext_construction_contract() {
 
 #[test]
 fn vk_multisampled_render_to_single_sampled_info_ext_construction_contract() {
+	let _: fn() -> vk::MultisampledRenderToSingleSampledInfoEXT<'static> =
+		vk::MultisampledRenderToSingleSampledInfoEXT::new;
 	let value = vk::MultisampledRenderToSingleSampledInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MultisampledRenderToSingleSampledInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MULTISAMPLED_RENDER_TO_SINGLE_SAMPLED_INFO_EXT
@@ -18685,7 +23672,15 @@ fn vk_multisampled_render_to_single_sampled_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_multisampled_render_to_swapchain_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT<'static> =
+		vk::PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT::new;
 	let value = vk::PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SWAPCHAIN_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMultisampledRenderToSwapchainFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MULTISAMPLED_RENDER_TO_SWAPCHAIN_FEATURES_EXT
@@ -18696,7 +23691,15 @@ fn vk_physical_device_multisampled_render_to_swapchain_features_ext_construction
 
 #[test]
 fn vk_physical_device_pipeline_protected_access_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePipelineProtectedAccessFeatures<'static> =
+		vk::PhysicalDevicePipelineProtectedAccessFeatures::new;
 	let value = vk::PhysicalDevicePipelineProtectedAccessFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_PROTECTED_ACCESS_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePipelineProtectedAccessFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_PROTECTED_ACCESS_FEATURES
@@ -18711,7 +23714,15 @@ fn vk_physical_device_pipeline_protected_access_features_construction_contract()
 
 #[test]
 fn vk_queue_family_video_properties_khr_construction_contract() {
+	let _: fn() -> vk::QueueFamilyVideoPropertiesKHR<'static> =
+		vk::QueueFamilyVideoPropertiesKHR::new;
 	let value = vk::QueueFamilyVideoPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUEUE_FAMILY_VIDEO_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueueFamilyVideoPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUEUE_FAMILY_VIDEO_PROPERTIES_KHR
@@ -18726,7 +23737,15 @@ fn vk_queue_family_video_properties_khr_construction_contract() {
 
 #[test]
 fn vk_queue_family_query_result_status_properties_khr_construction_contract() {
+	let _: fn() -> vk::QueueFamilyQueryResultStatusPropertiesKHR<'static> =
+		vk::QueueFamilyQueryResultStatusPropertiesKHR::new;
 	let value = vk::QueueFamilyQueryResultStatusPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueueFamilyQueryResultStatusPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_KHR
@@ -18741,7 +23760,11 @@ fn vk_queue_family_query_result_status_properties_khr_construction_contract() {
 
 #[test]
 fn vk_video_profile_list_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoProfileListInfoKHR<'static> = vk::VideoProfileListInfoKHR::new;
 	let value = vk::VideoProfileListInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::VIDEO_PROFILE_LIST_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoProfileListInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::VIDEO_PROFILE_LIST_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::VideoProfileListInfoKHR<'static>, u32) -> vk::VideoProfileListInfoKHR<'static> =
@@ -18755,7 +23778,15 @@ fn vk_video_profile_list_info_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_video_format_info_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVideoFormatInfoKHR<'static> =
+		vk::PhysicalDeviceVideoFormatInfoKHR::new;
 	let value = vk::PhysicalDeviceVideoFormatInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVideoFormatInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VIDEO_FORMAT_INFO_KHR
@@ -18770,7 +23801,11 @@ fn vk_physical_device_video_format_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_format_properties_khr_construction_contract() {
+	let _: fn() -> vk::VideoFormatPropertiesKHR<'static> = vk::VideoFormatPropertiesKHR::new;
 	let value = vk::VideoFormatPropertiesKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::VIDEO_FORMAT_PROPERTIES_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoFormatPropertiesKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::VIDEO_FORMAT_PROPERTIES_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -18801,7 +23836,15 @@ fn vk_video_format_properties_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_quantization_map_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeQuantizationMapCapabilitiesKHR<'static> =
+		vk::VideoEncodeQuantizationMapCapabilitiesKHR::new;
 	let value = vk::VideoEncodeQuantizationMapCapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_QUANTIZATION_MAP_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeQuantizationMapCapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_QUANTIZATION_MAP_CAPABILITIES_KHR
@@ -18816,7 +23859,15 @@ fn vk_video_encode_quantization_map_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h264_quantization_map_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264QuantizationMapCapabilitiesKHR<'static> =
+		vk::VideoEncodeH264QuantizationMapCapabilitiesKHR::new;
 	let value = vk::VideoEncodeH264QuantizationMapCapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H264_QUANTIZATION_MAP_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH264QuantizationMapCapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H264_QUANTIZATION_MAP_CAPABILITIES_KHR
@@ -18836,7 +23887,15 @@ fn vk_video_encode_h264_quantization_map_capabilities_khr_construction_contract(
 
 #[test]
 fn vk_video_encode_h265_quantization_map_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265QuantizationMapCapabilitiesKHR<'static> =
+		vk::VideoEncodeH265QuantizationMapCapabilitiesKHR::new;
 	let value = vk::VideoEncodeH265QuantizationMapCapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H265_QUANTIZATION_MAP_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH265QuantizationMapCapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H265_QUANTIZATION_MAP_CAPABILITIES_KHR
@@ -18856,7 +23915,15 @@ fn vk_video_encode_h265_quantization_map_capabilities_khr_construction_contract(
 
 #[test]
 fn vk_video_encode_av1_quantization_map_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeAV1QuantizationMapCapabilitiesKHR<'static> =
+		vk::VideoEncodeAV1QuantizationMapCapabilitiesKHR::new;
 	let value = vk::VideoEncodeAV1QuantizationMapCapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_AV1_QUANTIZATION_MAP_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeAV1QuantizationMapCapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_AV1_QUANTIZATION_MAP_CAPABILITIES_KHR
@@ -18876,7 +23943,15 @@ fn vk_video_encode_av1_quantization_map_capabilities_khr_construction_contract()
 
 #[test]
 fn vk_video_format_quantization_map_properties_khr_construction_contract() {
+	let _: fn() -> vk::VideoFormatQuantizationMapPropertiesKHR<'static> =
+		vk::VideoFormatQuantizationMapPropertiesKHR::new;
 	let value = vk::VideoFormatQuantizationMapPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_FORMAT_QUANTIZATION_MAP_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoFormatQuantizationMapPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_FORMAT_QUANTIZATION_MAP_PROPERTIES_KHR
@@ -18891,7 +23966,15 @@ fn vk_video_format_quantization_map_properties_khr_construction_contract() {
 
 #[test]
 fn vk_video_format_h265_quantization_map_properties_khr_construction_contract() {
+	let _: fn() -> vk::VideoFormatH265QuantizationMapPropertiesKHR<'static> =
+		vk::VideoFormatH265QuantizationMapPropertiesKHR::new;
 	let value = vk::VideoFormatH265QuantizationMapPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_FORMAT_H265_QUANTIZATION_MAP_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoFormatH265QuantizationMapPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_FORMAT_H265_QUANTIZATION_MAP_PROPERTIES_KHR
@@ -18906,7 +23989,15 @@ fn vk_video_format_h265_quantization_map_properties_khr_construction_contract() 
 
 #[test]
 fn vk_video_format_av1_quantization_map_properties_khr_construction_contract() {
+	let _: fn() -> vk::VideoFormatAV1QuantizationMapPropertiesKHR<'static> =
+		vk::VideoFormatAV1QuantizationMapPropertiesKHR::new;
 	let value = vk::VideoFormatAV1QuantizationMapPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_FORMAT_AV1_QUANTIZATION_MAP_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoFormatAV1QuantizationMapPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_FORMAT_AV1_QUANTIZATION_MAP_PROPERTIES_KHR
@@ -18921,7 +24012,11 @@ fn vk_video_format_av1_quantization_map_properties_khr_construction_contract() {
 
 #[test]
 fn vk_video_profile_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoProfileInfoKHR<'static> = vk::VideoProfileInfoKHR::new;
 	let value = vk::VideoProfileInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::VIDEO_PROFILE_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoProfileInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::VIDEO_PROFILE_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -18944,7 +24039,11 @@ fn vk_video_profile_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoCapabilitiesKHR<'static> = vk::VideoCapabilitiesKHR::new;
 	let value = vk::VideoCapabilitiesKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::VIDEO_CAPABILITIES_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoCapabilitiesKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::VIDEO_CAPABILITIES_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -18979,7 +24078,15 @@ fn vk_video_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_video_session_memory_requirements_khr_construction_contract() {
+	let _: fn() -> vk::VideoSessionMemoryRequirementsKHR<'static> =
+		vk::VideoSessionMemoryRequirementsKHR::new;
 	let value = vk::VideoSessionMemoryRequirementsKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_SESSION_MEMORY_REQUIREMENTS_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoSessionMemoryRequirementsKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_SESSION_MEMORY_REQUIREMENTS_KHR
@@ -18999,7 +24106,15 @@ fn vk_video_session_memory_requirements_khr_construction_contract() {
 
 #[test]
 fn vk_bind_video_session_memory_info_khr_construction_contract() {
+	let _: fn() -> vk::BindVideoSessionMemoryInfoKHR<'static> =
+		vk::BindVideoSessionMemoryInfoKHR::new;
 	let value = vk::BindVideoSessionMemoryInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BIND_VIDEO_SESSION_MEMORY_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BindVideoSessionMemoryInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BIND_VIDEO_SESSION_MEMORY_INFO_KHR
@@ -19028,7 +24143,14 @@ fn vk_bind_video_session_memory_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_picture_resource_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoPictureResourceInfoKHR<'static> = vk::VideoPictureResourceInfoKHR::new;
 	let value = vk::VideoPictureResourceInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_PICTURE_RESOURCE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoPictureResourceInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_PICTURE_RESOURCE_INFO_KHR
@@ -19056,7 +24178,14 @@ fn vk_video_picture_resource_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_reference_slot_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoReferenceSlotInfoKHR<'static> = vk::VideoReferenceSlotInfoKHR::new;
 	let value = vk::VideoReferenceSlotInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_REFERENCE_SLOT_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoReferenceSlotInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_REFERENCE_SLOT_INFO_KHR
@@ -19072,7 +24201,14 @@ fn vk_video_reference_slot_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_decode_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeCapabilitiesKHR<'static> = vk::VideoDecodeCapabilitiesKHR::new;
 	let value = vk::VideoDecodeCapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeCapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_CAPABILITIES_KHR
@@ -19086,7 +24222,11 @@ fn vk_video_decode_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_video_decode_usage_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeUsageInfoKHR<'static> = vk::VideoDecodeUsageInfoKHR::new;
 	let value = vk::VideoDecodeUsageInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::VIDEO_DECODE_USAGE_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeUsageInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::VIDEO_DECODE_USAGE_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -19097,7 +24237,11 @@ fn vk_video_decode_usage_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_decode_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeInfoKHR<'static> = vk::VideoDecodeInfoKHR::new;
 	let value = vk::VideoDecodeInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::VIDEO_DECODE_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::VIDEO_DECODE_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -19129,7 +24273,15 @@ fn vk_video_decode_info_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_video_maintenance1_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVideoMaintenance1FeaturesKHR<'static> =
+		vk::PhysicalDeviceVideoMaintenance1FeaturesKHR::new;
 	let value = vk::PhysicalDeviceVideoMaintenance1FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVideoMaintenance1FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_1_FEATURES_KHR
@@ -19144,7 +24296,15 @@ fn vk_physical_device_video_maintenance1_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_video_maintenance2_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVideoMaintenance2FeaturesKHR<'static> =
+		vk::PhysicalDeviceVideoMaintenance2FeaturesKHR::new;
 	let value = vk::PhysicalDeviceVideoMaintenance2FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_2_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVideoMaintenance2FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VIDEO_MAINTENANCE_2_FEATURES_KHR
@@ -19159,7 +24319,11 @@ fn vk_physical_device_video_maintenance2_features_khr_construction_contract() {
 
 #[test]
 fn vk_video_inline_query_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoInlineQueryInfoKHR<'static> = vk::VideoInlineQueryInfoKHR::new;
 	let value = vk::VideoInlineQueryInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::VIDEO_INLINE_QUERY_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoInlineQueryInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::VIDEO_INLINE_QUERY_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -19174,6 +24338,7 @@ fn vk_video_inline_query_info_khr_construction_contract() {
 
 #[test]
 fn std_video_decode_h264_picture_info_construction_contract() {
+	let _: fn() -> vk::StdVideoDecodeH264PictureInfo = vk::StdVideoDecodeH264PictureInfo::new;
 	let _: fn(
 		vk::StdVideoDecodeH264PictureInfo,
 		vk::StdVideoDecodeH264PictureInfoFlags,
@@ -19198,6 +24363,7 @@ fn std_video_decode_h264_picture_info_construction_contract() {
 
 #[test]
 fn std_video_decode_h264_reference_info_construction_contract() {
+	let _: fn() -> vk::StdVideoDecodeH264ReferenceInfo = vk::StdVideoDecodeH264ReferenceInfo::new;
 	let _: fn(
 		vk::StdVideoDecodeH264ReferenceInfo,
 		vk::StdVideoDecodeH264ReferenceInfoFlags,
@@ -19214,7 +24380,15 @@ fn std_video_decode_h264_reference_info_construction_contract() {
 
 #[test]
 fn vk_video_decode_h264_profile_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeH264ProfileInfoKHR<'static> =
+		vk::VideoDecodeH264ProfileInfoKHR::new;
 	let value = vk::VideoDecodeH264ProfileInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_H264_PROFILE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeH264ProfileInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_H264_PROFILE_INFO_KHR
@@ -19234,7 +24408,15 @@ fn vk_video_decode_h264_profile_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_decode_h264_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeH264CapabilitiesKHR<'static> =
+		vk::VideoDecodeH264CapabilitiesKHR::new;
 	let value = vk::VideoDecodeH264CapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_H264_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeH264CapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_H264_CAPABILITIES_KHR
@@ -19254,6 +24436,8 @@ fn vk_video_decode_h264_capabilities_khr_construction_contract() {
 
 #[test]
 fn std_video_h264_sequence_parameter_set_construction_contract() {
+	let _: fn() -> vk::StdVideoH264SequenceParameterSet<'static> =
+		vk::StdVideoH264SequenceParameterSet::new;
 	let _: fn(
 		vk::StdVideoH264SequenceParameterSet<'static>,
 		vk::StdVideoH264SpsFlags,
@@ -19385,6 +24569,8 @@ fn std_video_h264_sequence_parameter_set_construction_contract() {
 
 #[test]
 fn std_video_h264_picture_parameter_set_construction_contract() {
+	let _: fn() -> vk::StdVideoH264PictureParameterSet<'static> =
+		vk::StdVideoH264PictureParameterSet::new;
 	let _: fn(
 		vk::StdVideoH264PictureParameterSet<'static>,
 		vk::StdVideoH264PpsFlags,
@@ -19443,7 +24629,15 @@ fn std_video_h264_picture_parameter_set_construction_contract() {
 
 #[test]
 fn vk_video_decode_h264_session_parameters_add_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeH264SessionParametersAddInfoKHR<'static> =
+		vk::VideoDecodeH264SessionParametersAddInfoKHR::new;
 	let value = vk::VideoDecodeH264SessionParametersAddInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeH264SessionParametersAddInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_H264_SESSION_PARAMETERS_ADD_INFO_KHR
@@ -19477,7 +24671,15 @@ fn vk_video_decode_h264_session_parameters_add_info_khr_construction_contract() 
 
 #[test]
 fn vk_video_decode_h264_session_parameters_create_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeH264SessionParametersCreateInfoKHR<'static> =
+		vk::VideoDecodeH264SessionParametersCreateInfoKHR::new;
 	let value = vk::VideoDecodeH264SessionParametersCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeH264SessionParametersCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR
@@ -19502,7 +24704,15 @@ fn vk_video_decode_h264_session_parameters_create_info_khr_construction_contract
 
 #[test]
 fn vk_video_decode_h264_inline_session_parameters_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeH264InlineSessionParametersInfoKHR<'static> =
+		vk::VideoDecodeH264InlineSessionParametersInfoKHR::new;
 	let value = vk::VideoDecodeH264InlineSessionParametersInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_H264_INLINE_SESSION_PARAMETERS_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeH264InlineSessionParametersInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_H264_INLINE_SESSION_PARAMETERS_INFO_KHR
@@ -19522,7 +24732,15 @@ fn vk_video_decode_h264_inline_session_parameters_info_khr_construction_contract
 
 #[test]
 fn vk_video_decode_h264_picture_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeH264PictureInfoKHR<'static> =
+		vk::VideoDecodeH264PictureInfoKHR::new;
 	let value = vk::VideoDecodeH264PictureInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_H264_PICTURE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeH264PictureInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_H264_PICTURE_INFO_KHR
@@ -19549,7 +24767,15 @@ fn vk_video_decode_h264_picture_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_decode_h264_dpb_slot_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeH264DpbSlotInfoKHR<'static> =
+		vk::VideoDecodeH264DpbSlotInfoKHR::new;
 	let value = vk::VideoDecodeH264DpbSlotInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_H264_DPB_SLOT_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeH264DpbSlotInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_H264_DPB_SLOT_INFO_KHR
@@ -19564,6 +24790,8 @@ fn vk_video_decode_h264_dpb_slot_info_khr_construction_contract() {
 
 #[test]
 fn std_video_h265_video_parameter_set_construction_contract() {
+	let _: fn() -> vk::StdVideoH265VideoParameterSet<'static> =
+		vk::StdVideoH265VideoParameterSet::new;
 	let _: fn(
 		vk::StdVideoH265VideoParameterSet<'static>,
 		vk::StdVideoH265VpsFlags,
@@ -19624,6 +24852,8 @@ fn std_video_h265_video_parameter_set_construction_contract() {
 
 #[test]
 fn std_video_h265_sequence_parameter_set_construction_contract() {
+	let _: fn() -> vk::StdVideoH265SequenceParameterSet<'static> =
+		vk::StdVideoH265SequenceParameterSet::new;
 	let _: fn(
 		vk::StdVideoH265SequenceParameterSet<'static>,
 		vk::StdVideoH265SpsFlags,
@@ -19825,6 +25055,8 @@ fn std_video_h265_sequence_parameter_set_construction_contract() {
 
 #[test]
 fn std_video_h265_picture_parameter_set_construction_contract() {
+	let _: fn() -> vk::StdVideoH265PictureParameterSet<'static> =
+		vk::StdVideoH265PictureParameterSet::new;
 	let _: fn(
 		vk::StdVideoH265PictureParameterSet<'static>,
 		vk::StdVideoH265PpsFlags,
@@ -20008,6 +25240,7 @@ fn std_video_h265_picture_parameter_set_construction_contract() {
 
 #[test]
 fn std_video_decode_h265_picture_info_construction_contract() {
+	let _: fn() -> vk::StdVideoDecodeH265PictureInfo = vk::StdVideoDecodeH265PictureInfo::new;
 	let _: fn(
 		vk::StdVideoDecodeH265PictureInfo,
 		vk::StdVideoDecodeH265PictureInfoFlags,
@@ -20045,6 +25278,7 @@ fn std_video_decode_h265_picture_info_construction_contract() {
 
 #[test]
 fn std_video_decode_h265_reference_info_construction_contract() {
+	let _: fn() -> vk::StdVideoDecodeH265ReferenceInfo = vk::StdVideoDecodeH265ReferenceInfo::new;
 	let _: fn(
 		vk::StdVideoDecodeH265ReferenceInfo,
 		vk::StdVideoDecodeH265ReferenceInfoFlags,
@@ -20055,7 +25289,15 @@ fn std_video_decode_h265_reference_info_construction_contract() {
 
 #[test]
 fn vk_video_decode_h265_profile_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeH265ProfileInfoKHR<'static> =
+		vk::VideoDecodeH265ProfileInfoKHR::new;
 	let value = vk::VideoDecodeH265ProfileInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_H265_PROFILE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeH265ProfileInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_H265_PROFILE_INFO_KHR
@@ -20070,7 +25312,15 @@ fn vk_video_decode_h265_profile_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_decode_h265_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeH265CapabilitiesKHR<'static> =
+		vk::VideoDecodeH265CapabilitiesKHR::new;
 	let value = vk::VideoDecodeH265CapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_H265_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeH265CapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_H265_CAPABILITIES_KHR
@@ -20085,7 +25335,15 @@ fn vk_video_decode_h265_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_video_decode_h265_session_parameters_add_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeH265SessionParametersAddInfoKHR<'static> =
+		vk::VideoDecodeH265SessionParametersAddInfoKHR::new;
 	let value = vk::VideoDecodeH265SessionParametersAddInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeH265SessionParametersAddInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_H265_SESSION_PARAMETERS_ADD_INFO_KHR
@@ -20131,7 +25389,15 @@ fn vk_video_decode_h265_session_parameters_add_info_khr_construction_contract() 
 
 #[test]
 fn vk_video_decode_h265_session_parameters_create_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeH265SessionParametersCreateInfoKHR<'static> =
+		vk::VideoDecodeH265SessionParametersCreateInfoKHR::new;
 	let value = vk::VideoDecodeH265SessionParametersCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeH265SessionParametersCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_KHR
@@ -20161,7 +25427,15 @@ fn vk_video_decode_h265_session_parameters_create_info_khr_construction_contract
 
 #[test]
 fn vk_video_decode_h265_inline_session_parameters_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeH265InlineSessionParametersInfoKHR<'static> =
+		vk::VideoDecodeH265InlineSessionParametersInfoKHR::new;
 	let value = vk::VideoDecodeH265InlineSessionParametersInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_H265_INLINE_SESSION_PARAMETERS_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeH265InlineSessionParametersInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_H265_INLINE_SESSION_PARAMETERS_INFO_KHR
@@ -20186,7 +25460,15 @@ fn vk_video_decode_h265_inline_session_parameters_info_khr_construction_contract
 
 #[test]
 fn vk_video_decode_h265_picture_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeH265PictureInfoKHR<'static> =
+		vk::VideoDecodeH265PictureInfoKHR::new;
 	let value = vk::VideoDecodeH265PictureInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_H265_PICTURE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeH265PictureInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_H265_PICTURE_INFO_KHR
@@ -20213,7 +25495,15 @@ fn vk_video_decode_h265_picture_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_decode_h265_dpb_slot_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeH265DpbSlotInfoKHR<'static> =
+		vk::VideoDecodeH265DpbSlotInfoKHR::new;
 	let value = vk::VideoDecodeH265DpbSlotInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_H265_DPB_SLOT_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeH265DpbSlotInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_H265_DPB_SLOT_INFO_KHR
@@ -20228,6 +25518,7 @@ fn vk_video_decode_h265_dpb_slot_info_khr_construction_contract() {
 
 #[test]
 fn std_video_decode_vp9_picture_info_construction_contract() {
+	let _: fn() -> vk::StdVideoDecodeVP9PictureInfo<'static> = vk::StdVideoDecodeVP9PictureInfo::new;
 	let _: fn(
 		vk::StdVideoDecodeVP9PictureInfo<'static>,
 		vk::StdVideoDecodeVP9PictureInfoFlags,
@@ -20316,7 +25607,15 @@ fn std_video_decode_vp9_picture_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_video_decode_vp9_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVideoDecodeVP9FeaturesKHR<'static> =
+		vk::PhysicalDeviceVideoDecodeVP9FeaturesKHR::new;
 	let value = vk::PhysicalDeviceVideoDecodeVP9FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VIDEO_DECODE_VP9_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVideoDecodeVP9FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VIDEO_DECODE_VP9_FEATURES_KHR
@@ -20331,7 +25630,14 @@ fn vk_physical_device_video_decode_vp9_features_khr_construction_contract() {
 
 #[test]
 fn vk_video_decode_vp9_profile_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeVP9ProfileInfoKHR<'static> = vk::VideoDecodeVP9ProfileInfoKHR::new;
 	let value = vk::VideoDecodeVP9ProfileInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_VP9_PROFILE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeVP9ProfileInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_VP9_PROFILE_INFO_KHR
@@ -20345,7 +25651,15 @@ fn vk_video_decode_vp9_profile_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_decode_vp9_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeVP9CapabilitiesKHR<'static> =
+		vk::VideoDecodeVP9CapabilitiesKHR::new;
 	let value = vk::VideoDecodeVP9CapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_VP9_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeVP9CapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_VP9_CAPABILITIES_KHR
@@ -20359,7 +25673,14 @@ fn vk_video_decode_vp9_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_video_decode_vp9_picture_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeVP9PictureInfoKHR<'static> = vk::VideoDecodeVP9PictureInfoKHR::new;
 	let value = vk::VideoDecodeVP9PictureInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_VP9_PICTURE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeVP9PictureInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_VP9_PICTURE_INFO_KHR
@@ -20394,6 +25715,7 @@ fn vk_video_decode_vp9_picture_info_khr_construction_contract() {
 
 #[test]
 fn std_video_av1_sequence_header_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1SequenceHeader<'static> = vk::StdVideoAV1SequenceHeader::new;
 	let _: fn(
 		vk::StdVideoAV1SequenceHeader<'static>,
 		vk::StdVideoAV1SequenceHeaderFlags,
@@ -20436,6 +25758,7 @@ fn std_video_av1_sequence_header_construction_contract() {
 
 #[test]
 fn std_video_decode_av1_picture_info_construction_contract() {
+	let _: fn() -> vk::StdVideoDecodeAV1PictureInfo<'static> = vk::StdVideoDecodeAV1PictureInfo::new;
 	let _: fn(
 		vk::StdVideoDecodeAV1PictureInfo<'static>,
 		vk::StdVideoDecodeAV1PictureInfoFlags,
@@ -20547,6 +25870,7 @@ fn std_video_decode_av1_picture_info_construction_contract() {
 
 #[test]
 fn std_video_decode_av1_reference_info_construction_contract() {
+	let _: fn() -> vk::StdVideoDecodeAV1ReferenceInfo = vk::StdVideoDecodeAV1ReferenceInfo::new;
 	let _: fn(
 		vk::StdVideoDecodeAV1ReferenceInfo,
 		vk::StdVideoDecodeAV1ReferenceInfoFlags,
@@ -20566,7 +25890,14 @@ fn std_video_decode_av1_reference_info_construction_contract() {
 
 #[test]
 fn vk_video_decode_av1_profile_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeAV1ProfileInfoKHR<'static> = vk::VideoDecodeAV1ProfileInfoKHR::new;
 	let value = vk::VideoDecodeAV1ProfileInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_AV1_PROFILE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeAV1ProfileInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_AV1_PROFILE_INFO_KHR
@@ -20585,7 +25916,15 @@ fn vk_video_decode_av1_profile_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_decode_av1_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeAV1CapabilitiesKHR<'static> =
+		vk::VideoDecodeAV1CapabilitiesKHR::new;
 	let value = vk::VideoDecodeAV1CapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_AV1_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeAV1CapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_AV1_CAPABILITIES_KHR
@@ -20599,7 +25938,15 @@ fn vk_video_decode_av1_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_video_decode_av1_session_parameters_create_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeAV1SessionParametersCreateInfoKHR<'static> =
+		vk::VideoDecodeAV1SessionParametersCreateInfoKHR::new;
 	let value = vk::VideoDecodeAV1SessionParametersCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeAV1SessionParametersCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR
@@ -20614,7 +25961,15 @@ fn vk_video_decode_av1_session_parameters_create_info_khr_construction_contract(
 
 #[test]
 fn vk_video_decode_av1_inline_session_parameters_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeAV1InlineSessionParametersInfoKHR<'static> =
+		vk::VideoDecodeAV1InlineSessionParametersInfoKHR::new;
 	let value = vk::VideoDecodeAV1InlineSessionParametersInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_AV1_INLINE_SESSION_PARAMETERS_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeAV1InlineSessionParametersInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_AV1_INLINE_SESSION_PARAMETERS_INFO_KHR
@@ -20629,7 +25984,14 @@ fn vk_video_decode_av1_inline_session_parameters_info_khr_construction_contract(
 
 #[test]
 fn vk_video_decode_av1_picture_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeAV1PictureInfoKHR<'static> = vk::VideoDecodeAV1PictureInfoKHR::new;
 	let value = vk::VideoDecodeAV1PictureInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_AV1_PICTURE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeAV1PictureInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_AV1_PICTURE_INFO_KHR
@@ -20665,7 +26027,14 @@ fn vk_video_decode_av1_picture_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_decode_av1_dpb_slot_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoDecodeAV1DpbSlotInfoKHR<'static> = vk::VideoDecodeAV1DpbSlotInfoKHR::new;
 	let value = vk::VideoDecodeAV1DpbSlotInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_DECODE_AV1_DPB_SLOT_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoDecodeAV1DpbSlotInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_DECODE_AV1_DPB_SLOT_INFO_KHR
@@ -20680,7 +26049,14 @@ fn vk_video_decode_av1_dpb_slot_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_session_create_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoSessionCreateInfoKHR<'static> = vk::VideoSessionCreateInfoKHR::new;
 	let value = vk::VideoSessionCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_SESSION_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoSessionCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_SESSION_CREATE_INFO_KHR
@@ -20722,7 +26098,15 @@ fn vk_video_session_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_session_parameters_create_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoSessionParametersCreateInfoKHR<'static> =
+		vk::VideoSessionParametersCreateInfoKHR::new;
 	let value = vk::VideoSessionParametersCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoSessionParametersCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR
@@ -20747,7 +26131,15 @@ fn vk_video_session_parameters_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_session_parameters_update_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoSessionParametersUpdateInfoKHR<'static> =
+		vk::VideoSessionParametersUpdateInfoKHR::new;
 	let value = vk::VideoSessionParametersUpdateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoSessionParametersUpdateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR
@@ -20762,7 +26154,15 @@ fn vk_video_session_parameters_update_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_session_parameters_get_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeSessionParametersGetInfoKHR<'static> =
+		vk::VideoEncodeSessionParametersGetInfoKHR::new;
 	let value = vk::VideoEncodeSessionParametersGetInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_SESSION_PARAMETERS_GET_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeSessionParametersGetInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_SESSION_PARAMETERS_GET_INFO_KHR
@@ -20777,7 +26177,15 @@ fn vk_video_encode_session_parameters_get_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_session_parameters_feedback_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeSessionParametersFeedbackInfoKHR<'static> =
+		vk::VideoEncodeSessionParametersFeedbackInfoKHR::new;
 	let value = vk::VideoEncodeSessionParametersFeedbackInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_SESSION_PARAMETERS_FEEDBACK_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeSessionParametersFeedbackInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_SESSION_PARAMETERS_FEEDBACK_INFO_KHR
@@ -20792,7 +26200,11 @@ fn vk_video_encode_session_parameters_feedback_info_khr_construction_contract() 
 
 #[test]
 fn vk_video_begin_coding_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoBeginCodingInfoKHR<'static> = vk::VideoBeginCodingInfoKHR::new;
 	let value = vk::VideoBeginCodingInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::VIDEO_BEGIN_CODING_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoBeginCodingInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::VIDEO_BEGIN_CODING_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -20819,7 +26231,11 @@ fn vk_video_begin_coding_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_end_coding_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEndCodingInfoKHR<'static> = vk::VideoEndCodingInfoKHR::new;
 	let value = vk::VideoEndCodingInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::VIDEO_END_CODING_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEndCodingInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::VIDEO_END_CODING_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -20830,7 +26246,14 @@ fn vk_video_end_coding_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_coding_control_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoCodingControlInfoKHR<'static> = vk::VideoCodingControlInfoKHR::new;
 	let value = vk::VideoCodingControlInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_CODING_CONTROL_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoCodingControlInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_CODING_CONTROL_INFO_KHR
@@ -20844,7 +26267,11 @@ fn vk_video_coding_control_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_usage_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeUsageInfoKHR<'static> = vk::VideoEncodeUsageInfoKHR::new;
 	let value = vk::VideoEncodeUsageInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::VIDEO_ENCODE_USAGE_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeUsageInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::VIDEO_ENCODE_USAGE_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -20863,7 +26290,11 @@ fn vk_video_encode_usage_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeInfoKHR<'static> = vk::VideoEncodeInfoKHR::new;
 	let value = vk::VideoEncodeInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::VIDEO_ENCODE_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::VIDEO_ENCODE_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -20897,7 +26328,15 @@ fn vk_video_encode_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_quantization_map_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeQuantizationMapInfoKHR<'static> =
+		vk::VideoEncodeQuantizationMapInfoKHR::new;
 	let value = vk::VideoEncodeQuantizationMapInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_QUANTIZATION_MAP_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeQuantizationMapInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_QUANTIZATION_MAP_INFO_KHR
@@ -20917,7 +26356,15 @@ fn vk_video_encode_quantization_map_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_quantization_map_session_parameters_create_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeQuantizationMapSessionParametersCreateInfoKHR<'static> =
+		vk::VideoEncodeQuantizationMapSessionParametersCreateInfoKHR::new;
 	let value = vk::VideoEncodeQuantizationMapSessionParametersCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_QUANTIZATION_MAP_SESSION_PARAMETERS_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeQuantizationMapSessionParametersCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_QUANTIZATION_MAP_SESSION_PARAMETERS_CREATE_INFO_KHR
@@ -20932,7 +26379,15 @@ fn vk_video_encode_quantization_map_session_parameters_create_info_khr_construct
 
 #[test]
 fn vk_physical_device_video_encode_quantization_map_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR<'static> =
+		vk::PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR::new;
 	let value = vk::PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_QUANTIZATION_MAP_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVideoEncodeQuantizationMapFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_QUANTIZATION_MAP_FEATURES_KHR
@@ -20947,7 +26402,15 @@ fn vk_physical_device_video_encode_quantization_map_features_khr_construction_co
 
 #[test]
 fn vk_query_pool_video_encode_feedback_create_info_khr_construction_contract() {
+	let _: fn() -> vk::QueryPoolVideoEncodeFeedbackCreateInfoKHR<'static> =
+		vk::QueryPoolVideoEncodeFeedbackCreateInfoKHR::new;
 	let value = vk::QueryPoolVideoEncodeFeedbackCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUERY_POOL_VIDEO_ENCODE_FEEDBACK_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueryPoolVideoEncodeFeedbackCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUERY_POOL_VIDEO_ENCODE_FEEDBACK_CREATE_INFO_KHR
@@ -20962,7 +26425,15 @@ fn vk_query_pool_video_encode_feedback_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_quality_level_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeQualityLevelInfoKHR<'static> =
+		vk::VideoEncodeQualityLevelInfoKHR::new;
 	let value = vk::VideoEncodeQualityLevelInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_QUALITY_LEVEL_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeQualityLevelInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_QUALITY_LEVEL_INFO_KHR
@@ -20977,7 +26448,15 @@ fn vk_video_encode_quality_level_info_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_video_encode_quality_level_info_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR<'static> =
+		vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR::new;
 	let value = vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_QUALITY_LEVEL_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVideoEncodeQualityLevelInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_QUALITY_LEVEL_INFO_KHR
@@ -20997,7 +26476,15 @@ fn vk_physical_device_video_encode_quality_level_info_khr_construction_contract(
 
 #[test]
 fn vk_video_encode_quality_level_properties_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeQualityLevelPropertiesKHR<'static> =
+		vk::VideoEncodeQualityLevelPropertiesKHR::new;
 	let value = vk::VideoEncodeQualityLevelPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_QUALITY_LEVEL_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeQualityLevelPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_QUALITY_LEVEL_PROPERTIES_KHR
@@ -21017,7 +26504,15 @@ fn vk_video_encode_quality_level_properties_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_rate_control_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeRateControlInfoKHR<'static> =
+		vk::VideoEncodeRateControlInfoKHR::new;
 	let value = vk::VideoEncodeRateControlInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_RATE_CONTROL_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeRateControlInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_RATE_CONTROL_INFO_KHR
@@ -21058,7 +26553,15 @@ fn vk_video_encode_rate_control_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_rate_control_layer_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeRateControlLayerInfoKHR<'static> =
+		vk::VideoEncodeRateControlLayerInfoKHR::new;
 	let value = vk::VideoEncodeRateControlLayerInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_RATE_CONTROL_LAYER_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeRateControlLayerInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_RATE_CONTROL_LAYER_INFO_KHR
@@ -21088,7 +26591,14 @@ fn vk_video_encode_rate_control_layer_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeCapabilitiesKHR<'static> = vk::VideoEncodeCapabilitiesKHR::new;
 	let value = vk::VideoEncodeCapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeCapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_CAPABILITIES_KHR
@@ -21131,7 +26641,15 @@ fn vk_video_encode_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_video_encode_feedback2_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVideoEncodeFeedback2FeaturesKHR<'static> =
+		vk::PhysicalDeviceVideoEncodeFeedback2FeaturesKHR::new;
 	let value = vk::PhysicalDeviceVideoEncodeFeedback2FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_FEEDBACK_2_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVideoEncodeFeedback2FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_FEEDBACK_2_FEATURES_KHR
@@ -21146,7 +26664,15 @@ fn vk_physical_device_video_encode_feedback2_features_khr_construction_contract(
 
 #[test]
 fn vk_video_encode_feedback2_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeFeedback2CapabilitiesKHR<'static> =
+		vk::VideoEncodeFeedback2CapabilitiesKHR::new;
 	let value = vk::VideoEncodeFeedback2CapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_FEEDBACK_2_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeFeedback2CapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_FEEDBACK_2_CAPABILITIES_KHR
@@ -21166,7 +26692,15 @@ fn vk_video_encode_feedback2_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_query_pool_video_encode_per_partition_feedback_create_info_khr_construction_contract() {
+	let _: fn() -> vk::QueryPoolVideoEncodePerPartitionFeedbackCreateInfoKHR<'static> =
+		vk::QueryPoolVideoEncodePerPartitionFeedbackCreateInfoKHR::new;
 	let value = vk::QueryPoolVideoEncodePerPartitionFeedbackCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUERY_POOL_VIDEO_ENCODE_PER_PARTITION_FEEDBACK_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueryPoolVideoEncodePerPartitionFeedbackCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUERY_POOL_VIDEO_ENCODE_PER_PARTITION_FEEDBACK_CREATE_INFO_KHR
@@ -21178,7 +26712,15 @@ fn vk_query_pool_video_encode_per_partition_feedback_create_info_khr_constructio
 
 #[test]
 fn vk_video_encode_h264_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264CapabilitiesKHR<'static> =
+		vk::VideoEncodeH264CapabilitiesKHR::new;
 	let value = vk::VideoEncodeH264CapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H264_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH264CapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H264_CAPABILITIES_KHR
@@ -21250,7 +26792,15 @@ fn vk_video_encode_h264_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h264_quality_level_properties_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264QualityLevelPropertiesKHR<'static> =
+		vk::VideoEncodeH264QualityLevelPropertiesKHR::new;
 	let value = vk::VideoEncodeH264QualityLevelPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H264_QUALITY_LEVEL_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH264QualityLevelPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H264_QUALITY_LEVEL_PROPERTIES_KHR
@@ -21305,6 +26855,8 @@ fn vk_video_encode_h264_quality_level_properties_khr_construction_contract() {
 
 #[test]
 fn std_video_encode_h264_slice_header_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH264SliceHeader<'static> =
+		vk::StdVideoEncodeH264SliceHeader::new;
 	let _: fn(
 		vk::StdVideoEncodeH264SliceHeader<'static>,
 		vk::StdVideoEncodeH264SliceHeaderFlags,
@@ -21357,6 +26909,8 @@ fn std_video_encode_h264_slice_header_construction_contract() {
 
 #[test]
 fn std_video_encode_h264_picture_info_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH264PictureInfo<'static> =
+		vk::StdVideoEncodeH264PictureInfo::new;
 	let _: fn(
 		vk::StdVideoEncodeH264PictureInfo<'static>,
 		vk::StdVideoEncodeH264PictureInfoFlags,
@@ -21407,6 +26961,7 @@ fn std_video_encode_h264_picture_info_construction_contract() {
 
 #[test]
 fn std_video_encode_h264_reference_info_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH264ReferenceInfo = vk::StdVideoEncodeH264ReferenceInfo::new;
 	let _: fn(
 		vk::StdVideoEncodeH264ReferenceInfo,
 		vk::StdVideoEncodeH264ReferenceInfoFlags,
@@ -21430,7 +26985,15 @@ fn std_video_encode_h264_reference_info_construction_contract() {
 
 #[test]
 fn vk_video_encode_h264_session_create_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264SessionCreateInfoKHR<'static> =
+		vk::VideoEncodeH264SessionCreateInfoKHR::new;
 	let value = vk::VideoEncodeH264SessionCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H264_SESSION_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH264SessionCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H264_SESSION_CREATE_INFO_KHR
@@ -21450,7 +27013,15 @@ fn vk_video_encode_h264_session_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h264_session_parameters_add_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264SessionParametersAddInfoKHR<'static> =
+		vk::VideoEncodeH264SessionParametersAddInfoKHR::new;
 	let value = vk::VideoEncodeH264SessionParametersAddInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_ADD_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH264SessionParametersAddInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_ADD_INFO_KHR
@@ -21484,7 +27055,15 @@ fn vk_video_encode_h264_session_parameters_add_info_khr_construction_contract() 
 
 #[test]
 fn vk_video_encode_h264_session_parameters_create_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264SessionParametersCreateInfoKHR<'static> =
+		vk::VideoEncodeH264SessionParametersCreateInfoKHR::new;
 	let value = vk::VideoEncodeH264SessionParametersCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH264SessionParametersCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_CREATE_INFO_KHR
@@ -21509,7 +27088,15 @@ fn vk_video_encode_h264_session_parameters_create_info_khr_construction_contract
 
 #[test]
 fn vk_video_encode_h264_session_parameters_get_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264SessionParametersGetInfoKHR<'static> =
+		vk::VideoEncodeH264SessionParametersGetInfoKHR::new;
 	let value = vk::VideoEncodeH264SessionParametersGetInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_GET_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH264SessionParametersGetInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_GET_INFO_KHR
@@ -21539,7 +27126,15 @@ fn vk_video_encode_h264_session_parameters_get_info_khr_construction_contract() 
 
 #[test]
 fn vk_video_encode_h264_session_parameters_feedback_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264SessionParametersFeedbackInfoKHR<'static> =
+		vk::VideoEncodeH264SessionParametersFeedbackInfoKHR::new;
 	let value = vk::VideoEncodeH264SessionParametersFeedbackInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_FEEDBACK_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH264SessionParametersFeedbackInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H264_SESSION_PARAMETERS_FEEDBACK_INFO_KHR
@@ -21559,7 +27154,15 @@ fn vk_video_encode_h264_session_parameters_feedback_info_khr_construction_contra
 
 #[test]
 fn vk_video_encode_h264_dpb_slot_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264DpbSlotInfoKHR<'static> =
+		vk::VideoEncodeH264DpbSlotInfoKHR::new;
 	let value = vk::VideoEncodeH264DpbSlotInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H264_DPB_SLOT_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH264DpbSlotInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H264_DPB_SLOT_INFO_KHR
@@ -21574,7 +27177,15 @@ fn vk_video_encode_h264_dpb_slot_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h264_picture_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264PictureInfoKHR<'static> =
+		vk::VideoEncodeH264PictureInfoKHR::new;
 	let value = vk::VideoEncodeH264PictureInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H264_PICTURE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH264PictureInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H264_PICTURE_INFO_KHR
@@ -21606,7 +27217,15 @@ fn vk_video_encode_h264_picture_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h264_profile_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264ProfileInfoKHR<'static> =
+		vk::VideoEncodeH264ProfileInfoKHR::new;
 	let value = vk::VideoEncodeH264ProfileInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H264_PROFILE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH264ProfileInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H264_PROFILE_INFO_KHR
@@ -21621,7 +27240,15 @@ fn vk_video_encode_h264_profile_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h264_nalu_slice_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264NaluSliceInfoKHR<'static> =
+		vk::VideoEncodeH264NaluSliceInfoKHR::new;
 	let value = vk::VideoEncodeH264NaluSliceInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H264_NALU_SLICE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH264NaluSliceInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H264_NALU_SLICE_INFO_KHR
@@ -21641,7 +27268,15 @@ fn vk_video_encode_h264_nalu_slice_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h264_rate_control_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264RateControlInfoKHR<'static> =
+		vk::VideoEncodeH264RateControlInfoKHR::new;
 	let value = vk::VideoEncodeH264RateControlInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H264_RATE_CONTROL_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH264RateControlInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H264_RATE_CONTROL_INFO_KHR
@@ -21676,6 +27311,7 @@ fn vk_video_encode_h264_rate_control_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h264_qp_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264QpKHR = vk::VideoEncodeH264QpKHR::new;
 	let _: fn(vk::VideoEncodeH264QpKHR, i32) -> vk::VideoEncodeH264QpKHR =
 		vk::VideoEncodeH264QpKHR::set_qp_i;
 	let _: fn(vk::VideoEncodeH264QpKHR, i32) -> vk::VideoEncodeH264QpKHR =
@@ -21686,6 +27322,7 @@ fn vk_video_encode_h264_qp_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h264_frame_size_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264FrameSizeKHR = vk::VideoEncodeH264FrameSizeKHR::new;
 	let _: fn(vk::VideoEncodeH264FrameSizeKHR, u32) -> vk::VideoEncodeH264FrameSizeKHR =
 		vk::VideoEncodeH264FrameSizeKHR::set_frame_i_size;
 	let _: fn(vk::VideoEncodeH264FrameSizeKHR, u32) -> vk::VideoEncodeH264FrameSizeKHR =
@@ -21696,7 +27333,15 @@ fn vk_video_encode_h264_frame_size_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h264_gop_remaining_frame_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264GopRemainingFrameInfoKHR<'static> =
+		vk::VideoEncodeH264GopRemainingFrameInfoKHR::new;
 	let value = vk::VideoEncodeH264GopRemainingFrameInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H264_GOP_REMAINING_FRAME_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH264GopRemainingFrameInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H264_GOP_REMAINING_FRAME_INFO_KHR
@@ -21726,7 +27371,15 @@ fn vk_video_encode_h264_gop_remaining_frame_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h264_rate_control_layer_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH264RateControlLayerInfoKHR<'static> =
+		vk::VideoEncodeH264RateControlLayerInfoKHR::new;
 	let value = vk::VideoEncodeH264RateControlLayerInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H264_RATE_CONTROL_LAYER_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH264RateControlLayerInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H264_RATE_CONTROL_LAYER_INFO_KHR
@@ -21766,7 +27419,15 @@ fn vk_video_encode_h264_rate_control_layer_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h265_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265CapabilitiesKHR<'static> =
+		vk::VideoEncodeH265CapabilitiesKHR::new;
 	let value = vk::VideoEncodeH265CapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H265_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH265CapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H265_CAPABILITIES_KHR
@@ -21853,7 +27514,15 @@ fn vk_video_encode_h265_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h265_quality_level_properties_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265QualityLevelPropertiesKHR<'static> =
+		vk::VideoEncodeH265QualityLevelPropertiesKHR::new;
 	let value = vk::VideoEncodeH265QualityLevelPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H265_QUALITY_LEVEL_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH265QualityLevelPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H265_QUALITY_LEVEL_PROPERTIES_KHR
@@ -21903,6 +27572,8 @@ fn vk_video_encode_h265_quality_level_properties_khr_construction_contract() {
 
 #[test]
 fn std_video_encode_h265_picture_info_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH265PictureInfo<'static> =
+		vk::StdVideoEncodeH265PictureInfo::new;
 	let _: fn(
 		vk::StdVideoEncodeH265PictureInfo<'static>,
 		vk::StdVideoEncodeH265PictureInfoFlags,
@@ -21963,6 +27634,8 @@ fn std_video_encode_h265_picture_info_construction_contract() {
 
 #[test]
 fn std_video_encode_h265_slice_segment_header_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH265SliceSegmentHeader<'static> =
+		vk::StdVideoEncodeH265SliceSegmentHeader::new;
 	let _: fn(
 		vk::StdVideoEncodeH265SliceSegmentHeader<'static>,
 		vk::StdVideoEncodeH265SliceSegmentHeaderFlags,
@@ -22042,6 +27715,7 @@ fn std_video_encode_h265_slice_segment_header_construction_contract() {
 
 #[test]
 fn std_video_encode_h265_reference_info_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH265ReferenceInfo = vk::StdVideoEncodeH265ReferenceInfo::new;
 	let _: fn(
 		vk::StdVideoEncodeH265ReferenceInfo,
 		vk::StdVideoEncodeH265ReferenceInfoFlags,
@@ -22058,7 +27732,15 @@ fn std_video_encode_h265_reference_info_construction_contract() {
 
 #[test]
 fn vk_video_encode_h265_session_create_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265SessionCreateInfoKHR<'static> =
+		vk::VideoEncodeH265SessionCreateInfoKHR::new;
 	let value = vk::VideoEncodeH265SessionCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H265_SESSION_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH265SessionCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H265_SESSION_CREATE_INFO_KHR
@@ -22078,7 +27760,15 @@ fn vk_video_encode_h265_session_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h265_session_parameters_add_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265SessionParametersAddInfoKHR<'static> =
+		vk::VideoEncodeH265SessionParametersAddInfoKHR::new;
 	let value = vk::VideoEncodeH265SessionParametersAddInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H265_SESSION_PARAMETERS_ADD_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH265SessionParametersAddInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H265_SESSION_PARAMETERS_ADD_INFO_KHR
@@ -22124,7 +27814,15 @@ fn vk_video_encode_h265_session_parameters_add_info_khr_construction_contract() 
 
 #[test]
 fn vk_video_encode_h265_session_parameters_create_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265SessionParametersCreateInfoKHR<'static> =
+		vk::VideoEncodeH265SessionParametersCreateInfoKHR::new;
 	let value = vk::VideoEncodeH265SessionParametersCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H265_SESSION_PARAMETERS_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH265SessionParametersCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H265_SESSION_PARAMETERS_CREATE_INFO_KHR
@@ -22154,7 +27852,15 @@ fn vk_video_encode_h265_session_parameters_create_info_khr_construction_contract
 
 #[test]
 fn vk_video_encode_h265_session_parameters_get_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265SessionParametersGetInfoKHR<'static> =
+		vk::VideoEncodeH265SessionParametersGetInfoKHR::new;
 	let value = vk::VideoEncodeH265SessionParametersGetInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H265_SESSION_PARAMETERS_GET_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH265SessionParametersGetInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H265_SESSION_PARAMETERS_GET_INFO_KHR
@@ -22194,7 +27900,15 @@ fn vk_video_encode_h265_session_parameters_get_info_khr_construction_contract() 
 
 #[test]
 fn vk_video_encode_h265_session_parameters_feedback_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265SessionParametersFeedbackInfoKHR<'static> =
+		vk::VideoEncodeH265SessionParametersFeedbackInfoKHR::new;
 	let value = vk::VideoEncodeH265SessionParametersFeedbackInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H265_SESSION_PARAMETERS_FEEDBACK_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH265SessionParametersFeedbackInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H265_SESSION_PARAMETERS_FEEDBACK_INFO_KHR
@@ -22219,7 +27933,15 @@ fn vk_video_encode_h265_session_parameters_feedback_info_khr_construction_contra
 
 #[test]
 fn vk_video_encode_h265_picture_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265PictureInfoKHR<'static> =
+		vk::VideoEncodeH265PictureInfoKHR::new;
 	let value = vk::VideoEncodeH265PictureInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H265_PICTURE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH265PictureInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H265_PICTURE_INFO_KHR
@@ -22246,7 +27968,15 @@ fn vk_video_encode_h265_picture_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h265_nalu_slice_segment_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265NaluSliceSegmentInfoKHR<'static> =
+		vk::VideoEncodeH265NaluSliceSegmentInfoKHR::new;
 	let value = vk::VideoEncodeH265NaluSliceSegmentInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H265_NALU_SLICE_SEGMENT_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH265NaluSliceSegmentInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H265_NALU_SLICE_SEGMENT_INFO_KHR
@@ -22266,7 +27996,15 @@ fn vk_video_encode_h265_nalu_slice_segment_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h265_rate_control_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265RateControlInfoKHR<'static> =
+		vk::VideoEncodeH265RateControlInfoKHR::new;
 	let value = vk::VideoEncodeH265RateControlInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H265_RATE_CONTROL_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH265RateControlInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H265_RATE_CONTROL_INFO_KHR
@@ -22301,6 +28039,7 @@ fn vk_video_encode_h265_rate_control_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h265_qp_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265QpKHR = vk::VideoEncodeH265QpKHR::new;
 	let _: fn(vk::VideoEncodeH265QpKHR, i32) -> vk::VideoEncodeH265QpKHR =
 		vk::VideoEncodeH265QpKHR::set_qp_i;
 	let _: fn(vk::VideoEncodeH265QpKHR, i32) -> vk::VideoEncodeH265QpKHR =
@@ -22311,6 +28050,7 @@ fn vk_video_encode_h265_qp_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h265_frame_size_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265FrameSizeKHR = vk::VideoEncodeH265FrameSizeKHR::new;
 	let _: fn(vk::VideoEncodeH265FrameSizeKHR, u32) -> vk::VideoEncodeH265FrameSizeKHR =
 		vk::VideoEncodeH265FrameSizeKHR::set_frame_i_size;
 	let _: fn(vk::VideoEncodeH265FrameSizeKHR, u32) -> vk::VideoEncodeH265FrameSizeKHR =
@@ -22321,7 +28061,15 @@ fn vk_video_encode_h265_frame_size_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h265_gop_remaining_frame_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265GopRemainingFrameInfoKHR<'static> =
+		vk::VideoEncodeH265GopRemainingFrameInfoKHR::new;
 	let value = vk::VideoEncodeH265GopRemainingFrameInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H265_GOP_REMAINING_FRAME_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH265GopRemainingFrameInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H265_GOP_REMAINING_FRAME_INFO_KHR
@@ -22351,7 +28099,15 @@ fn vk_video_encode_h265_gop_remaining_frame_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h265_rate_control_layer_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265RateControlLayerInfoKHR<'static> =
+		vk::VideoEncodeH265RateControlLayerInfoKHR::new;
 	let value = vk::VideoEncodeH265RateControlLayerInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H265_RATE_CONTROL_LAYER_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH265RateControlLayerInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H265_RATE_CONTROL_LAYER_INFO_KHR
@@ -22391,7 +28147,15 @@ fn vk_video_encode_h265_rate_control_layer_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h265_profile_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265ProfileInfoKHR<'static> =
+		vk::VideoEncodeH265ProfileInfoKHR::new;
 	let value = vk::VideoEncodeH265ProfileInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H265_PROFILE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH265ProfileInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H265_PROFILE_INFO_KHR
@@ -22406,7 +28170,15 @@ fn vk_video_encode_h265_profile_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_h265_dpb_slot_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeH265DpbSlotInfoKHR<'static> =
+		vk::VideoEncodeH265DpbSlotInfoKHR::new;
 	let value = vk::VideoEncodeH265DpbSlotInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_H265_DPB_SLOT_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeH265DpbSlotInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_H265_DPB_SLOT_INFO_KHR
@@ -22421,7 +28193,15 @@ fn vk_video_encode_h265_dpb_slot_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_av1_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeAV1CapabilitiesKHR<'static> =
+		vk::VideoEncodeAV1CapabilitiesKHR::new;
 	let value = vk::VideoEncodeAV1CapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_AV1_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeAV1CapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_AV1_CAPABILITIES_KHR
@@ -22548,7 +28328,15 @@ fn vk_video_encode_av1_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_av1_quality_level_properties_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeAV1QualityLevelPropertiesKHR<'static> =
+		vk::VideoEncodeAV1QualityLevelPropertiesKHR::new;
 	let value = vk::VideoEncodeAV1QualityLevelPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_AV1_QUALITY_LEVEL_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeAV1QualityLevelPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_AV1_QUALITY_LEVEL_PROPERTIES_KHR
@@ -22605,6 +28393,7 @@ fn vk_video_encode_av1_quality_level_properties_khr_construction_contract() {
 
 #[test]
 fn std_video_encode_av1_extension_header_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeAV1ExtensionHeader = vk::StdVideoEncodeAV1ExtensionHeader::new;
 	let _: fn(vk::StdVideoEncodeAV1ExtensionHeader, u8) -> vk::StdVideoEncodeAV1ExtensionHeader =
 		vk::StdVideoEncodeAV1ExtensionHeader::set_temporal_id;
 	let _: fn(vk::StdVideoEncodeAV1ExtensionHeader, u8) -> vk::StdVideoEncodeAV1ExtensionHeader =
@@ -22613,6 +28402,7 @@ fn std_video_encode_av1_extension_header_construction_contract() {
 
 #[test]
 fn std_video_encode_av1_decoder_model_info_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeAV1DecoderModelInfo = vk::StdVideoEncodeAV1DecoderModelInfo::new;
 	let _: fn(vk::StdVideoEncodeAV1DecoderModelInfo, u8) -> vk::StdVideoEncodeAV1DecoderModelInfo =
 		vk::StdVideoEncodeAV1DecoderModelInfo::set_buffer_delay_length_minus_1;
 	let _: fn(vk::StdVideoEncodeAV1DecoderModelInfo, u8) -> vk::StdVideoEncodeAV1DecoderModelInfo =
@@ -22627,6 +28417,8 @@ fn std_video_encode_av1_decoder_model_info_construction_contract() {
 
 #[test]
 fn std_video_encode_av1_operating_point_info_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeAV1OperatingPointInfo =
+		vk::StdVideoEncodeAV1OperatingPointInfo::new;
 	let _: fn(
 		vk::StdVideoEncodeAV1OperatingPointInfo,
 		vk::StdVideoEncodeAV1OperatingPointInfoFlags,
@@ -22665,6 +28457,7 @@ fn std_video_encode_av1_operating_point_info_construction_contract() {
 
 #[test]
 fn std_video_encode_av1_picture_info_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeAV1PictureInfo<'static> = vk::StdVideoEncodeAV1PictureInfo::new;
 	let _: fn(
 		vk::StdVideoEncodeAV1PictureInfo<'static>,
 		vk::StdVideoEncodeAV1PictureInfoFlags,
@@ -22794,6 +28587,8 @@ fn std_video_encode_av1_picture_info_construction_contract() {
 
 #[test]
 fn std_video_encode_av1_reference_info_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeAV1ReferenceInfo<'static> =
+		vk::StdVideoEncodeAV1ReferenceInfo::new;
 	let _: fn(
 		vk::StdVideoEncodeAV1ReferenceInfo<'static>,
 		vk::StdVideoEncodeAV1ReferenceInfoFlags,
@@ -22827,7 +28622,15 @@ fn std_video_encode_av1_reference_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_video_encode_av1_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVideoEncodeAV1FeaturesKHR<'static> =
+		vk::PhysicalDeviceVideoEncodeAV1FeaturesKHR::new;
 	let value = vk::PhysicalDeviceVideoEncodeAV1FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_AV1_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVideoEncodeAV1FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_AV1_FEATURES_KHR
@@ -22842,7 +28645,15 @@ fn vk_physical_device_video_encode_av1_features_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_av1_session_create_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeAV1SessionCreateInfoKHR<'static> =
+		vk::VideoEncodeAV1SessionCreateInfoKHR::new;
 	let value = vk::VideoEncodeAV1SessionCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_AV1_SESSION_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeAV1SessionCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_AV1_SESSION_CREATE_INFO_KHR
@@ -22862,7 +28673,15 @@ fn vk_video_encode_av1_session_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_av1_session_parameters_create_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeAV1SessionParametersCreateInfoKHR<'static> =
+		vk::VideoEncodeAV1SessionParametersCreateInfoKHR::new;
 	let value = vk::VideoEncodeAV1SessionParametersCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeAV1SessionParametersCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_AV1_SESSION_PARAMETERS_CREATE_INFO_KHR
@@ -22894,7 +28713,14 @@ fn vk_video_encode_av1_session_parameters_create_info_khr_construction_contract(
 
 #[test]
 fn vk_video_encode_av1_dpb_slot_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeAV1DpbSlotInfoKHR<'static> = vk::VideoEncodeAV1DpbSlotInfoKHR::new;
 	let value = vk::VideoEncodeAV1DpbSlotInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_AV1_DPB_SLOT_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeAV1DpbSlotInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_AV1_DPB_SLOT_INFO_KHR
@@ -22909,7 +28735,14 @@ fn vk_video_encode_av1_dpb_slot_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_av1_picture_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeAV1PictureInfoKHR<'static> = vk::VideoEncodeAV1PictureInfoKHR::new;
 	let value = vk::VideoEncodeAV1PictureInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_AV1_PICTURE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeAV1PictureInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_AV1_PICTURE_INFO_KHR
@@ -22954,7 +28787,14 @@ fn vk_video_encode_av1_picture_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_av1_profile_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeAV1ProfileInfoKHR<'static> = vk::VideoEncodeAV1ProfileInfoKHR::new;
 	let value = vk::VideoEncodeAV1ProfileInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_AV1_PROFILE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeAV1ProfileInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_AV1_PROFILE_INFO_KHR
@@ -22968,7 +28808,15 @@ fn vk_video_encode_av1_profile_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_av1_rate_control_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeAV1RateControlInfoKHR<'static> =
+		vk::VideoEncodeAV1RateControlInfoKHR::new;
 	let value = vk::VideoEncodeAV1RateControlInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_AV1_RATE_CONTROL_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeAV1RateControlInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_AV1_RATE_CONTROL_INFO_KHR
@@ -23003,6 +28851,7 @@ fn vk_video_encode_av1_rate_control_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_av1_q_index_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeAV1QIndexKHR = vk::VideoEncodeAV1QIndexKHR::new;
 	let _: fn(vk::VideoEncodeAV1QIndexKHR, u32) -> vk::VideoEncodeAV1QIndexKHR =
 		vk::VideoEncodeAV1QIndexKHR::set_intra_q_index;
 	let _: fn(vk::VideoEncodeAV1QIndexKHR, u32) -> vk::VideoEncodeAV1QIndexKHR =
@@ -23013,6 +28862,7 @@ fn vk_video_encode_av1_q_index_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_av1_frame_size_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeAV1FrameSizeKHR = vk::VideoEncodeAV1FrameSizeKHR::new;
 	let _: fn(vk::VideoEncodeAV1FrameSizeKHR, u32) -> vk::VideoEncodeAV1FrameSizeKHR =
 		vk::VideoEncodeAV1FrameSizeKHR::set_intra_frame_size;
 	let _: fn(vk::VideoEncodeAV1FrameSizeKHR, u32) -> vk::VideoEncodeAV1FrameSizeKHR =
@@ -23023,7 +28873,15 @@ fn vk_video_encode_av1_frame_size_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_av1_gop_remaining_frame_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeAV1GopRemainingFrameInfoKHR<'static> =
+		vk::VideoEncodeAV1GopRemainingFrameInfoKHR::new;
 	let value = vk::VideoEncodeAV1GopRemainingFrameInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_AV1_GOP_REMAINING_FRAME_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeAV1GopRemainingFrameInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_AV1_GOP_REMAINING_FRAME_INFO_KHR
@@ -23053,7 +28911,15 @@ fn vk_video_encode_av1_gop_remaining_frame_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_av1_rate_control_layer_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeAV1RateControlLayerInfoKHR<'static> =
+		vk::VideoEncodeAV1RateControlLayerInfoKHR::new;
 	let value = vk::VideoEncodeAV1RateControlLayerInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_AV1_RATE_CONTROL_LAYER_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeAV1RateControlLayerInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_AV1_RATE_CONTROL_LAYER_INFO_KHR
@@ -23093,7 +28959,15 @@ fn vk_video_encode_av1_rate_control_layer_info_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_inherited_viewport_scissor_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceInheritedViewportScissorFeaturesNV<'static> =
+		vk::PhysicalDeviceInheritedViewportScissorFeaturesNV::new;
 	let value = vk::PhysicalDeviceInheritedViewportScissorFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceInheritedViewportScissorFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV
@@ -23108,7 +28982,15 @@ fn vk_physical_device_inherited_viewport_scissor_features_nv_construction_contra
 
 #[test]
 fn vk_command_buffer_inheritance_viewport_scissor_info_nv_construction_contract() {
+	let _: fn() -> vk::CommandBufferInheritanceViewportScissorInfoNV<'static> =
+		vk::CommandBufferInheritanceViewportScissorInfoNV::new;
 	let value = vk::CommandBufferInheritanceViewportScissorInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CommandBufferInheritanceViewportScissorInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV
@@ -23135,7 +29017,15 @@ fn vk_command_buffer_inheritance_viewport_scissor_info_nv_construction_contract(
 
 #[test]
 fn vk_physical_device_ycbcr2_plane444_formats_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT<'static> =
+		vk::PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT::new;
 	let value = vk::PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT
@@ -23150,7 +29040,15 @@ fn vk_physical_device_ycbcr2_plane444_formats_features_ext_construction_contract
 
 #[test]
 fn vk_physical_device_provoking_vertex_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceProvokingVertexFeaturesEXT<'static> =
+		vk::PhysicalDeviceProvokingVertexFeaturesEXT::new;
 	let value = vk::PhysicalDeviceProvokingVertexFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceProvokingVertexFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT
@@ -23170,7 +29068,15 @@ fn vk_physical_device_provoking_vertex_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_provoking_vertex_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceProvokingVertexPropertiesEXT<'static> =
+		vk::PhysicalDeviceProvokingVertexPropertiesEXT::new;
 	let value = vk::PhysicalDeviceProvokingVertexPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceProvokingVertexPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT
@@ -23186,7 +29092,15 @@ fn vk_physical_device_provoking_vertex_properties_ext_construction_contract() {
 
 #[test]
 fn vk_pipeline_rasterization_provoking_vertex_state_create_info_ext_construction_contract() {
+	let _: fn() -> vk::PipelineRasterizationProvokingVertexStateCreateInfoEXT<'static> =
+		vk::PipelineRasterizationProvokingVertexStateCreateInfoEXT::new;
 	let value = vk::PipelineRasterizationProvokingVertexStateCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineRasterizationProvokingVertexStateCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT
@@ -23201,7 +29115,15 @@ fn vk_pipeline_rasterization_provoking_vertex_state_create_info_ext_construction
 
 #[test]
 fn vk_video_encode_intra_refresh_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeIntraRefreshCapabilitiesKHR<'static> =
+		vk::VideoEncodeIntraRefreshCapabilitiesKHR::new;
 	let value = vk::VideoEncodeIntraRefreshCapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_INTRA_REFRESH_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeIntraRefreshCapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_INTRA_REFRESH_CAPABILITIES_KHR
@@ -23236,7 +29158,15 @@ fn vk_video_encode_intra_refresh_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_video_encode_session_intra_refresh_create_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeSessionIntraRefreshCreateInfoKHR<'static> =
+		vk::VideoEncodeSessionIntraRefreshCreateInfoKHR::new;
 	let value = vk::VideoEncodeSessionIntraRefreshCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_SESSION_INTRA_REFRESH_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeSessionIntraRefreshCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_SESSION_INTRA_REFRESH_CREATE_INFO_KHR
@@ -23251,7 +29181,15 @@ fn vk_video_encode_session_intra_refresh_create_info_khr_construction_contract()
 
 #[test]
 fn vk_video_encode_intra_refresh_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoEncodeIntraRefreshInfoKHR<'static> =
+		vk::VideoEncodeIntraRefreshInfoKHR::new;
 	let value = vk::VideoEncodeIntraRefreshInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_INTRA_REFRESH_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeIntraRefreshInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_INTRA_REFRESH_INFO_KHR
@@ -23271,7 +29209,15 @@ fn vk_video_encode_intra_refresh_info_khr_construction_contract() {
 
 #[test]
 fn vk_video_reference_intra_refresh_info_khr_construction_contract() {
+	let _: fn() -> vk::VideoReferenceIntraRefreshInfoKHR<'static> =
+		vk::VideoReferenceIntraRefreshInfoKHR::new;
 	let value = vk::VideoReferenceIntraRefreshInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_REFERENCE_INTRA_REFRESH_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoReferenceIntraRefreshInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_REFERENCE_INTRA_REFRESH_INFO_KHR
@@ -23286,7 +29232,15 @@ fn vk_video_reference_intra_refresh_info_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_video_encode_intra_refresh_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR<'static> =
+		vk::PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR::new;
 	let value = vk::PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_INTRA_REFRESH_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVideoEncodeIntraRefreshFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_INTRA_REFRESH_FEATURES_KHR
@@ -23301,7 +29255,11 @@ fn vk_physical_device_video_encode_intra_refresh_features_khr_construction_contr
 
 #[test]
 fn vk_cu_module_create_info_nvx_construction_contract() {
+	let _: fn() -> vk::CuModuleCreateInfoNVX<'static> = vk::CuModuleCreateInfoNVX::new;
 	let value = vk::CuModuleCreateInfoNVX::default();
+	assert_eq!(value.s_type, vk::StructureType::CU_MODULE_CREATE_INFO_NVX);
+	assert!(value.p_next.is_null());
+	let value = vk::CuModuleCreateInfoNVX::new();
 	assert_eq!(value.s_type, vk::StructureType::CU_MODULE_CREATE_INFO_NVX);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::CuModuleCreateInfoNVX<'static>, usize) -> vk::CuModuleCreateInfoNVX<'static> =
@@ -23315,7 +29273,15 @@ fn vk_cu_module_create_info_nvx_construction_contract() {
 
 #[test]
 fn vk_cu_module_texturing_mode_create_info_nvx_construction_contract() {
+	let _: fn() -> vk::CuModuleTexturingModeCreateInfoNVX<'static> =
+		vk::CuModuleTexturingModeCreateInfoNVX::new;
 	let value = vk::CuModuleTexturingModeCreateInfoNVX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::CU_MODULE_TEXTURING_MODE_CREATE_INFO_NVX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CuModuleTexturingModeCreateInfoNVX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::CU_MODULE_TEXTURING_MODE_CREATE_INFO_NVX
@@ -23330,7 +29296,11 @@ fn vk_cu_module_texturing_mode_create_info_nvx_construction_contract() {
 
 #[test]
 fn vk_cu_function_create_info_nvx_construction_contract() {
+	let _: fn() -> vk::CuFunctionCreateInfoNVX<'static> = vk::CuFunctionCreateInfoNVX::new;
 	let value = vk::CuFunctionCreateInfoNVX::default();
+	assert_eq!(value.s_type, vk::StructureType::CU_FUNCTION_CREATE_INFO_NVX);
+	assert!(value.p_next.is_null());
+	let value = vk::CuFunctionCreateInfoNVX::new();
 	assert_eq!(value.s_type, vk::StructureType::CU_FUNCTION_CREATE_INFO_NVX);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -23345,7 +29315,11 @@ fn vk_cu_function_create_info_nvx_construction_contract() {
 
 #[test]
 fn vk_cu_launch_info_nvx_construction_contract() {
+	let _: fn() -> vk::CuLaunchInfoNVX<'static> = vk::CuLaunchInfoNVX::new;
 	let value = vk::CuLaunchInfoNVX::default();
+	assert_eq!(value.s_type, vk::StructureType::CU_LAUNCH_INFO_NVX);
+	assert!(value.p_next.is_null());
+	let value = vk::CuLaunchInfoNVX::new();
 	assert_eq!(value.s_type, vk::StructureType::CU_LAUNCH_INFO_NVX);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::CuLaunchInfoNVX<'static>, vk::CuFunctionNVX) -> vk::CuLaunchInfoNVX<'static> =
@@ -23382,7 +29356,15 @@ fn vk_cu_launch_info_nvx_construction_contract() {
 
 #[test]
 fn vk_physical_device_descriptor_buffer_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDescriptorBufferFeaturesEXT<'static> =
+		vk::PhysicalDeviceDescriptorBufferFeaturesEXT::new;
 	let value = vk::PhysicalDeviceDescriptorBufferFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDescriptorBufferFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_FEATURES_EXT
@@ -23412,7 +29394,15 @@ fn vk_physical_device_descriptor_buffer_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_descriptor_buffer_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDescriptorBufferPropertiesEXT<'static> =
+		vk::PhysicalDeviceDescriptorBufferPropertiesEXT::new;
 	let value = vk::PhysicalDeviceDescriptorBufferPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDescriptorBufferPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_PROPERTIES_EXT
@@ -23551,7 +29541,15 @@ fn vk_physical_device_descriptor_buffer_properties_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_descriptor_buffer_density_map_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT<'static> =
+		vk::PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT::new;
 	let value = vk::PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_DENSITY_MAP_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDescriptorBufferDensityMapPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_DENSITY_MAP_PROPERTIES_EXT
@@ -23562,7 +29560,11 @@ fn vk_physical_device_descriptor_buffer_density_map_properties_ext_construction_
 
 #[test]
 fn vk_descriptor_address_info_ext_construction_contract() {
+	let _: fn() -> vk::DescriptorAddressInfoEXT<'static> = vk::DescriptorAddressInfoEXT::new;
 	let value = vk::DescriptorAddressInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::DESCRIPTOR_ADDRESS_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorAddressInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::DESCRIPTOR_ADDRESS_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -23581,7 +29583,15 @@ fn vk_descriptor_address_info_ext_construction_contract() {
 
 #[test]
 fn vk_descriptor_buffer_binding_info_ext_construction_contract() {
+	let _: fn() -> vk::DescriptorBufferBindingInfoEXT<'static> =
+		vk::DescriptorBufferBindingInfoEXT::new;
 	let value = vk::DescriptorBufferBindingInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DESCRIPTOR_BUFFER_BINDING_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorBufferBindingInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DESCRIPTOR_BUFFER_BINDING_INFO_EXT
@@ -23599,7 +29609,15 @@ fn vk_descriptor_buffer_binding_info_ext_construction_contract() {
 
 #[test]
 fn vk_descriptor_buffer_binding_push_descriptor_buffer_handle_ext_construction_contract() {
+	let _: fn() -> vk::DescriptorBufferBindingPushDescriptorBufferHandleEXT<'static> =
+		vk::DescriptorBufferBindingPushDescriptorBufferHandleEXT::new;
 	let value = vk::DescriptorBufferBindingPushDescriptorBufferHandleEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DESCRIPTOR_BUFFER_BINDING_PUSH_DESCRIPTOR_BUFFER_HANDLE_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorBufferBindingPushDescriptorBufferHandleEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DESCRIPTOR_BUFFER_BINDING_PUSH_DESCRIPTOR_BUFFER_HANDLE_EXT
@@ -23614,6 +29632,7 @@ fn vk_descriptor_buffer_binding_push_descriptor_buffer_handle_ext_construction_c
 
 #[test]
 fn vk_descriptor_data_ext_construction_contract() {
+	let _: fn() -> vk::DescriptorDataEXT<'static> = vk::DescriptorDataEXT::new;
 	let _: fn(
 		vk::DescriptorDataEXT<'static>,
 		&'static vk::Sampler,
@@ -23656,7 +29675,11 @@ fn vk_descriptor_data_ext_construction_contract() {
 
 #[test]
 fn vk_descriptor_get_info_ext_construction_contract() {
+	let _: fn() -> vk::DescriptorGetInfoEXT<'static> = vk::DescriptorGetInfoEXT::new;
 	let value = vk::DescriptorGetInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::DESCRIPTOR_GET_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorGetInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::DESCRIPTOR_GET_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -23671,7 +29694,15 @@ fn vk_descriptor_get_info_ext_construction_contract() {
 
 #[test]
 fn vk_buffer_capture_descriptor_data_info_ext_construction_contract() {
+	let _: fn() -> vk::BufferCaptureDescriptorDataInfoEXT<'static> =
+		vk::BufferCaptureDescriptorDataInfoEXT::new;
 	let value = vk::BufferCaptureDescriptorDataInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BUFFER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferCaptureDescriptorDataInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BUFFER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT
@@ -23686,7 +29717,15 @@ fn vk_buffer_capture_descriptor_data_info_ext_construction_contract() {
 
 #[test]
 fn vk_image_capture_descriptor_data_info_ext_construction_contract() {
+	let _: fn() -> vk::ImageCaptureDescriptorDataInfoEXT<'static> =
+		vk::ImageCaptureDescriptorDataInfoEXT::new;
 	let value = vk::ImageCaptureDescriptorDataInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageCaptureDescriptorDataInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT
@@ -23701,7 +29740,15 @@ fn vk_image_capture_descriptor_data_info_ext_construction_contract() {
 
 #[test]
 fn vk_image_view_capture_descriptor_data_info_ext_construction_contract() {
+	let _: fn() -> vk::ImageViewCaptureDescriptorDataInfoEXT<'static> =
+		vk::ImageViewCaptureDescriptorDataInfoEXT::new;
 	let value = vk::ImageViewCaptureDescriptorDataInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageViewCaptureDescriptorDataInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_EXT
@@ -23716,7 +29763,15 @@ fn vk_image_view_capture_descriptor_data_info_ext_construction_contract() {
 
 #[test]
 fn vk_sampler_capture_descriptor_data_info_ext_construction_contract() {
+	let _: fn() -> vk::SamplerCaptureDescriptorDataInfoEXT<'static> =
+		vk::SamplerCaptureDescriptorDataInfoEXT::new;
 	let value = vk::SamplerCaptureDescriptorDataInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SAMPLER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SamplerCaptureDescriptorDataInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SAMPLER_CAPTURE_DESCRIPTOR_DATA_INFO_EXT
@@ -23731,7 +29786,15 @@ fn vk_sampler_capture_descriptor_data_info_ext_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_capture_descriptor_data_info_ext_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureCaptureDescriptorDataInfoEXT<'static> =
+		vk::AccelerationStructureCaptureDescriptorDataInfoEXT::new;
 	let value = vk::AccelerationStructureCaptureDescriptorDataInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureCaptureDescriptorDataInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_CAPTURE_DESCRIPTOR_DATA_INFO_EXT
@@ -23751,7 +29814,15 @@ fn vk_acceleration_structure_capture_descriptor_data_info_ext_construction_contr
 
 #[test]
 fn vk_opaque_capture_descriptor_data_create_info_ext_construction_contract() {
+	let _: fn() -> vk::OpaqueCaptureDescriptorDataCreateInfoEXT<'static> =
+		vk::OpaqueCaptureDescriptorDataCreateInfoEXT::new;
 	let value = vk::OpaqueCaptureDescriptorDataCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::OPAQUE_CAPTURE_DESCRIPTOR_DATA_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::OpaqueCaptureDescriptorDataCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::OPAQUE_CAPTURE_DESCRIPTOR_DATA_CREATE_INFO_EXT
@@ -23766,7 +29837,15 @@ fn vk_opaque_capture_descriptor_data_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_integer_dot_product_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderIntegerDotProductFeatures<'static> =
+		vk::PhysicalDeviceShaderIntegerDotProductFeatures::new;
 	let value = vk::PhysicalDeviceShaderIntegerDotProductFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderIntegerDotProductFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES
@@ -23781,7 +29860,15 @@ fn vk_physical_device_shader_integer_dot_product_features_construction_contract(
 
 #[test]
 fn vk_physical_device_shader_integer_dot_product_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderIntegerDotProductProperties<'static> =
+		vk::PhysicalDeviceShaderIntegerDotProductProperties::new;
 	let value = vk::PhysicalDeviceShaderIntegerDotProductProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderIntegerDotProductProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES
@@ -23821,7 +29908,15 @@ fn vk_physical_device_shader_integer_dot_product_properties_construction_contrac
 
 #[test]
 fn vk_physical_device_drm_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDrmPropertiesEXT<'static> =
+		vk::PhysicalDeviceDrmPropertiesEXT::new;
 	let value = vk::PhysicalDeviceDrmPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DRM_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDrmPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DRM_PROPERTIES_EXT
@@ -23861,7 +29956,15 @@ fn vk_physical_device_drm_properties_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_fragment_shader_barycentric_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentShaderBarycentricFeaturesKHR<'static> =
+		vk::PhysicalDeviceFragmentShaderBarycentricFeaturesKHR::new;
 	let value = vk::PhysicalDeviceFragmentShaderBarycentricFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentShaderBarycentricFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_KHR
@@ -23876,7 +29979,15 @@ fn vk_physical_device_fragment_shader_barycentric_features_khr_construction_cont
 
 #[test]
 fn vk_physical_device_fragment_shader_barycentric_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentShaderBarycentricPropertiesKHR<'static> =
+		vk::PhysicalDeviceFragmentShaderBarycentricPropertiesKHR::new;
 	let value = vk::PhysicalDeviceFragmentShaderBarycentricPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentShaderBarycentricPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_PROPERTIES_KHR
@@ -23887,7 +29998,15 @@ fn vk_physical_device_fragment_shader_barycentric_properties_khr_construction_co
 
 #[test]
 fn vk_physical_device_shader_fma_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderFmaFeaturesKHR<'static> =
+		vk::PhysicalDeviceShaderFmaFeaturesKHR::new;
 	let value = vk::PhysicalDeviceShaderFmaFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderFmaFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_FMA_FEATURES_KHR
@@ -23912,7 +30031,15 @@ fn vk_physical_device_shader_fma_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_ray_tracing_motion_blur_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRayTracingMotionBlurFeaturesNV<'static> =
+		vk::PhysicalDeviceRayTracingMotionBlurFeaturesNV::new;
 	let value = vk::PhysicalDeviceRayTracingMotionBlurFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRayTracingMotionBlurFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV
@@ -23928,7 +30055,15 @@ fn vk_physical_device_ray_tracing_motion_blur_features_nv_construction_contract(
 
 #[test]
 fn vk_physical_device_ray_tracing_validation_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRayTracingValidationFeaturesNV<'static> =
+		vk::PhysicalDeviceRayTracingValidationFeaturesNV::new;
 	let value = vk::PhysicalDeviceRayTracingValidationFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_VALIDATION_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRayTracingValidationFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_VALIDATION_FEATURES_NV
@@ -23943,7 +30078,15 @@ fn vk_physical_device_ray_tracing_validation_features_nv_construction_contract()
 
 #[test]
 fn vk_physical_device_ray_tracing_linear_swept_spheres_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV<'static> =
+		vk::PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV::new;
 	let value = vk::PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_LINEAR_SWEPT_SPHERES_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRayTracingLinearSweptSpheresFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_LINEAR_SWEPT_SPHERES_FEATURES_NV
@@ -23963,7 +30106,15 @@ fn vk_physical_device_ray_tracing_linear_swept_spheres_features_nv_construction_
 
 #[test]
 fn vk_acceleration_structure_geometry_motion_triangles_data_nv_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureGeometryMotionTrianglesDataNV<'static> =
+		vk::AccelerationStructureGeometryMotionTrianglesDataNV::new;
 	let value = vk::AccelerationStructureGeometryMotionTrianglesDataNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureGeometryMotionTrianglesDataNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV
@@ -23978,7 +30129,15 @@ fn vk_acceleration_structure_geometry_motion_triangles_data_nv_construction_cont
 
 #[test]
 fn vk_acceleration_structure_motion_info_nv_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureMotionInfoNV<'static> =
+		vk::AccelerationStructureMotionInfoNV::new;
 	let value = vk::AccelerationStructureMotionInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_MOTION_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureMotionInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_MOTION_INFO_NV
@@ -23998,6 +30157,7 @@ fn vk_acceleration_structure_motion_info_nv_construction_contract() {
 
 #[test]
 fn vk_srt_data_nv_construction_contract() {
+	let _: fn() -> vk::SRTDataNV = vk::SRTDataNV::new;
 	let _: fn(vk::SRTDataNV, f32) -> vk::SRTDataNV = vk::SRTDataNV::set_sx;
 	let _: fn(vk::SRTDataNV, f32) -> vk::SRTDataNV = vk::SRTDataNV::set_a;
 	let _: fn(vk::SRTDataNV, f32) -> vk::SRTDataNV = vk::SRTDataNV::set_b;
@@ -24018,6 +30178,8 @@ fn vk_srt_data_nv_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_srt_motion_instance_nv_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureSRTMotionInstanceNV =
+		vk::AccelerationStructureSRTMotionInstanceNV::new;
 	let _: fn(
 		vk::AccelerationStructureSRTMotionInstanceNV,
 		vk::SRTDataNV,
@@ -24037,6 +30199,8 @@ fn vk_acceleration_structure_srt_motion_instance_nv_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_matrix_motion_instance_nv_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureMatrixMotionInstanceNV =
+		vk::AccelerationStructureMatrixMotionInstanceNV::new;
 	let _: fn(
 		vk::AccelerationStructureMatrixMotionInstanceNV,
 		vk::TransformMatrixKHR,
@@ -24056,6 +30220,8 @@ fn vk_acceleration_structure_matrix_motion_instance_nv_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_motion_instance_data_nv_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureMotionInstanceDataNV =
+		vk::AccelerationStructureMotionInstanceDataNV::new;
 	let _: fn(
 		vk::AccelerationStructureMotionInstanceDataNV,
 		vk::AccelerationStructureInstanceKHR,
@@ -24075,6 +30241,8 @@ fn vk_acceleration_structure_motion_instance_data_nv_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_motion_instance_nv_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureMotionInstanceNV =
+		vk::AccelerationStructureMotionInstanceNV::new;
 	let _: fn(
 		vk::AccelerationStructureMotionInstanceNV,
 		vk::AccelerationStructureMotionInstanceTypeNV,
@@ -24094,7 +30262,14 @@ fn vk_acceleration_structure_motion_instance_nv_construction_contract() {
 
 #[test]
 fn vk_memory_get_remote_address_info_nv_construction_contract() {
+	let _: fn() -> vk::MemoryGetRemoteAddressInfoNV<'static> = vk::MemoryGetRemoteAddressInfoNV::new;
 	let value = vk::MemoryGetRemoteAddressInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_GET_REMOTE_ADDRESS_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryGetRemoteAddressInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_GET_REMOTE_ADDRESS_INFO_NV
@@ -24113,7 +30288,15 @@ fn vk_memory_get_remote_address_info_nv_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_import_memory_buffer_collection_fuchsia_construction_contract() {
+	let _: fn() -> vk::ImportMemoryBufferCollectionFUCHSIA<'static> =
+		vk::ImportMemoryBufferCollectionFUCHSIA::new;
 	let value = vk::ImportMemoryBufferCollectionFUCHSIA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportMemoryBufferCollectionFUCHSIA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA
@@ -24134,7 +30317,15 @@ fn vk_import_memory_buffer_collection_fuchsia_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_buffer_collection_image_create_info_fuchsia_construction_contract() {
+	let _: fn() -> vk::BufferCollectionImageCreateInfoFUCHSIA<'static> =
+		vk::BufferCollectionImageCreateInfoFUCHSIA::new;
 	let value = vk::BufferCollectionImageCreateInfoFUCHSIA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferCollectionImageCreateInfoFUCHSIA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA
@@ -24155,7 +30346,15 @@ fn vk_buffer_collection_image_create_info_fuchsia_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_buffer_collection_buffer_create_info_fuchsia_construction_contract() {
+	let _: fn() -> vk::BufferCollectionBufferCreateInfoFUCHSIA<'static> =
+		vk::BufferCollectionBufferCreateInfoFUCHSIA::new;
 	let value = vk::BufferCollectionBufferCreateInfoFUCHSIA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferCollectionBufferCreateInfoFUCHSIA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA
@@ -24176,7 +30375,15 @@ fn vk_buffer_collection_buffer_create_info_fuchsia_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_buffer_collection_create_info_fuchsia_construction_contract() {
+	let _: fn() -> vk::BufferCollectionCreateInfoFUCHSIA<'static> =
+		vk::BufferCollectionCreateInfoFUCHSIA::new;
 	let value = vk::BufferCollectionCreateInfoFUCHSIA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BUFFER_COLLECTION_CREATE_INFO_FUCHSIA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferCollectionCreateInfoFUCHSIA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BUFFER_COLLECTION_CREATE_INFO_FUCHSIA
@@ -24192,7 +30399,15 @@ fn vk_buffer_collection_create_info_fuchsia_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_buffer_collection_properties_fuchsia_construction_contract() {
+	let _: fn() -> vk::BufferCollectionPropertiesFUCHSIA<'static> =
+		vk::BufferCollectionPropertiesFUCHSIA::new;
 	let value = vk::BufferCollectionPropertiesFUCHSIA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BUFFER_COLLECTION_PROPERTIES_FUCHSIA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferCollectionPropertiesFUCHSIA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BUFFER_COLLECTION_PROPERTIES_FUCHSIA
@@ -24258,7 +30473,14 @@ fn vk_buffer_collection_properties_fuchsia_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_buffer_constraints_info_fuchsia_construction_contract() {
+	let _: fn() -> vk::BufferConstraintsInfoFUCHSIA<'static> = vk::BufferConstraintsInfoFUCHSIA::new;
 	let value = vk::BufferConstraintsInfoFUCHSIA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BUFFER_CONSTRAINTS_INFO_FUCHSIA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferConstraintsInfoFUCHSIA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BUFFER_CONSTRAINTS_INFO_FUCHSIA
@@ -24283,7 +30505,11 @@ fn vk_buffer_constraints_info_fuchsia_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_sysmem_color_space_fuchsia_construction_contract() {
+	let _: fn() -> vk::SysmemColorSpaceFUCHSIA<'static> = vk::SysmemColorSpaceFUCHSIA::new;
 	let value = vk::SysmemColorSpaceFUCHSIA::default();
+	assert_eq!(value.s_type, vk::StructureType::SYSMEM_COLOR_SPACE_FUCHSIA);
+	assert!(value.p_next.is_null());
+	let value = vk::SysmemColorSpaceFUCHSIA::new();
 	assert_eq!(value.s_type, vk::StructureType::SYSMEM_COLOR_SPACE_FUCHSIA);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::SysmemColorSpaceFUCHSIA<'static>, u32) -> vk::SysmemColorSpaceFUCHSIA<'static> =
@@ -24293,7 +30519,15 @@ fn vk_sysmem_color_space_fuchsia_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_image_format_constraints_info_fuchsia_construction_contract() {
+	let _: fn() -> vk::ImageFormatConstraintsInfoFUCHSIA<'static> =
+		vk::ImageFormatConstraintsInfoFUCHSIA::new;
 	let value = vk::ImageFormatConstraintsInfoFUCHSIA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageFormatConstraintsInfoFUCHSIA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA
@@ -24336,7 +30570,14 @@ fn vk_image_format_constraints_info_fuchsia_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_image_constraints_info_fuchsia_construction_contract() {
+	let _: fn() -> vk::ImageConstraintsInfoFUCHSIA<'static> = vk::ImageConstraintsInfoFUCHSIA::new;
 	let value = vk::ImageConstraintsInfoFUCHSIA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_CONSTRAINTS_INFO_FUCHSIA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageConstraintsInfoFUCHSIA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_CONSTRAINTS_INFO_FUCHSIA
@@ -24368,7 +30609,15 @@ fn vk_image_constraints_info_fuchsia_construction_contract() {
 #[cfg(feature = "platform-fuchsia")]
 #[test]
 fn vk_buffer_collection_constraints_info_fuchsia_construction_contract() {
+	let _: fn() -> vk::BufferCollectionConstraintsInfoFUCHSIA<'static> =
+		vk::BufferCollectionConstraintsInfoFUCHSIA::new;
 	let value = vk::BufferCollectionConstraintsInfoFUCHSIA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferCollectionConstraintsInfoFUCHSIA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA
@@ -24404,7 +30653,11 @@ fn vk_buffer_collection_constraints_info_fuchsia_construction_contract() {
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_cuda_module_create_info_nv_construction_contract() {
+	let _: fn() -> vk::CudaModuleCreateInfoNV<'static> = vk::CudaModuleCreateInfoNV::new;
 	let value = vk::CudaModuleCreateInfoNV::default();
+	assert_eq!(value.s_type, vk::StructureType::CUDA_MODULE_CREATE_INFO_NV);
+	assert!(value.p_next.is_null());
+	let value = vk::CudaModuleCreateInfoNV::new();
 	assert_eq!(value.s_type, vk::StructureType::CUDA_MODULE_CREATE_INFO_NV);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::CudaModuleCreateInfoNV<'static>, usize) -> vk::CudaModuleCreateInfoNV<'static> =
@@ -24419,7 +30672,14 @@ fn vk_cuda_module_create_info_nv_construction_contract() {
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_cuda_function_create_info_nv_construction_contract() {
+	let _: fn() -> vk::CudaFunctionCreateInfoNV<'static> = vk::CudaFunctionCreateInfoNV::new;
 	let value = vk::CudaFunctionCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::CUDA_FUNCTION_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CudaFunctionCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::CUDA_FUNCTION_CREATE_INFO_NV
@@ -24438,7 +30698,11 @@ fn vk_cuda_function_create_info_nv_construction_contract() {
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_cuda_launch_info_nv_construction_contract() {
+	let _: fn() -> vk::CudaLaunchInfoNV<'static> = vk::CudaLaunchInfoNV::new;
 	let value = vk::CudaLaunchInfoNV::default();
+	assert_eq!(value.s_type, vk::StructureType::CUDA_LAUNCH_INFO_NV);
+	assert!(value.p_next.is_null());
+	let value = vk::CudaLaunchInfoNV::new();
 	assert_eq!(value.s_type, vk::StructureType::CUDA_LAUNCH_INFO_NV);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::CudaLaunchInfoNV<'static>, vk::CudaFunctionNV) -> vk::CudaLaunchInfoNV<'static> =
@@ -24475,7 +30739,15 @@ fn vk_cuda_launch_info_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_rgba10_x6_formats_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRGBA10X6FormatsFeaturesEXT<'static> =
+		vk::PhysicalDeviceRGBA10X6FormatsFeaturesEXT::new;
 	let value = vk::PhysicalDeviceRGBA10X6FormatsFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRGBA10X6FormatsFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT
@@ -24490,7 +30762,11 @@ fn vk_physical_device_rgba10_x6_formats_features_ext_construction_contract() {
 
 #[test]
 fn vk_format_properties3_construction_contract() {
+	let _: fn() -> vk::FormatProperties3<'static> = vk::FormatProperties3::new;
 	let value = vk::FormatProperties3::default();
+	assert_eq!(value.s_type, vk::StructureType::FORMAT_PROPERTIES_3);
+	assert!(value.p_next.is_null());
+	let value = vk::FormatProperties3::new();
 	assert_eq!(value.s_type, vk::StructureType::FORMAT_PROPERTIES_3);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -24509,7 +30785,11 @@ fn vk_format_properties3_construction_contract() {
 
 #[test]
 fn vk_format_properties4_khr_construction_contract() {
+	let _: fn() -> vk::FormatProperties4KHR<'static> = vk::FormatProperties4KHR::new;
 	let value = vk::FormatProperties4KHR::default();
+	assert_eq!(value.s_type, vk::StructureType::FORMAT_PROPERTIES_4_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::FormatProperties4KHR::new();
 	assert_eq!(value.s_type, vk::StructureType::FORMAT_PROPERTIES_4_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -24528,7 +30808,15 @@ fn vk_format_properties4_khr_construction_contract() {
 
 #[test]
 fn vk_drm_format_modifier_properties_list2_ext_construction_contract() {
+	let _: fn() -> vk::DrmFormatModifierPropertiesList2EXT<'static> =
+		vk::DrmFormatModifierPropertiesList2EXT::new;
 	let value = vk::DrmFormatModifierPropertiesList2EXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DrmFormatModifierPropertiesList2EXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT
@@ -24550,6 +30838,7 @@ fn vk_drm_format_modifier_properties_list2_ext_construction_contract() {
 
 #[test]
 fn vk_drm_format_modifier_properties2_ext_construction_contract() {
+	let _: fn() -> vk::DrmFormatModifierProperties2EXT = vk::DrmFormatModifierProperties2EXT::new;
 	let _: fn(vk::DrmFormatModifierProperties2EXT, u64) -> vk::DrmFormatModifierProperties2EXT =
 		vk::DrmFormatModifierProperties2EXT::set_drm_format_modifier;
 	let _: fn(vk::DrmFormatModifierProperties2EXT, u32) -> vk::DrmFormatModifierProperties2EXT =
@@ -24564,7 +30853,15 @@ fn vk_drm_format_modifier_properties2_ext_construction_contract() {
 #[cfg(feature = "platform-android")]
 #[test]
 fn vk_android_hardware_buffer_format_properties2_android_construction_contract() {
+	let _: fn() -> vk::AndroidHardwareBufferFormatProperties2ANDROID<'static> =
+		vk::AndroidHardwareBufferFormatProperties2ANDROID::new;
 	let value = vk::AndroidHardwareBufferFormatProperties2ANDROID::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AndroidHardwareBufferFormatProperties2ANDROID::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID
@@ -24614,7 +30911,14 @@ fn vk_android_hardware_buffer_format_properties2_android_construction_contract()
 
 #[test]
 fn vk_pipeline_rendering_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineRenderingCreateInfo<'static> = vk::PipelineRenderingCreateInfo::new;
 	let value = vk::PipelineRenderingCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_RENDERING_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineRenderingCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_RENDERING_CREATE_INFO
@@ -24650,7 +30954,11 @@ fn vk_pipeline_rendering_create_info_construction_contract() {
 
 #[test]
 fn vk_rendering_info_construction_contract() {
+	let _: fn() -> vk::RenderingInfo<'static> = vk::RenderingInfo::new;
 	let value = vk::RenderingInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::RENDERING_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderingInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::RENDERING_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::RenderingInfo<'static>, vk::RenderingFlags) -> vk::RenderingInfo<'static> =
@@ -24680,14 +30988,22 @@ fn vk_rendering_info_construction_contract() {
 
 #[test]
 fn vk_rendering_end_info_khr_construction_contract() {
+	let _: fn() -> vk::RenderingEndInfoKHR<'static> = vk::RenderingEndInfoKHR::new;
 	let value = vk::RenderingEndInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::RENDERING_END_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderingEndInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::RENDERING_END_INFO_KHR);
 	assert!(value.p_next.is_null());
 }
 
 #[test]
 fn vk_rendering_attachment_info_construction_contract() {
+	let _: fn() -> vk::RenderingAttachmentInfo<'static> = vk::RenderingAttachmentInfo::new;
 	let value = vk::RenderingAttachmentInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::RENDERING_ATTACHMENT_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderingAttachmentInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::RENDERING_ATTACHMENT_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -24726,7 +31042,15 @@ fn vk_rendering_attachment_info_construction_contract() {
 
 #[test]
 fn vk_rendering_fragment_shading_rate_attachment_info_khr_construction_contract() {
+	let _: fn() -> vk::RenderingFragmentShadingRateAttachmentInfoKHR<'static> =
+		vk::RenderingFragmentShadingRateAttachmentInfoKHR::new;
 	let value = vk::RenderingFragmentShadingRateAttachmentInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderingFragmentShadingRateAttachmentInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR
@@ -24751,7 +31075,15 @@ fn vk_rendering_fragment_shading_rate_attachment_info_khr_construction_contract(
 
 #[test]
 fn vk_rendering_fragment_density_map_attachment_info_ext_construction_contract() {
+	let _: fn() -> vk::RenderingFragmentDensityMapAttachmentInfoEXT<'static> =
+		vk::RenderingFragmentDensityMapAttachmentInfoEXT::new;
 	let value = vk::RenderingFragmentDensityMapAttachmentInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderingFragmentDensityMapAttachmentInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT
@@ -24771,7 +31103,15 @@ fn vk_rendering_fragment_density_map_attachment_info_ext_construction_contract()
 
 #[test]
 fn vk_physical_device_dynamic_rendering_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDynamicRenderingFeatures<'static> =
+		vk::PhysicalDeviceDynamicRenderingFeatures::new;
 	let value = vk::PhysicalDeviceDynamicRenderingFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDynamicRenderingFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES
@@ -24786,7 +31126,15 @@ fn vk_physical_device_dynamic_rendering_features_construction_contract() {
 
 #[test]
 fn vk_command_buffer_inheritance_rendering_info_construction_contract() {
+	let _: fn() -> vk::CommandBufferInheritanceRenderingInfo<'static> =
+		vk::CommandBufferInheritanceRenderingInfo::new;
 	let value = vk::CommandBufferInheritanceRenderingInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COMMAND_BUFFER_INHERITANCE_RENDERING_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CommandBufferInheritanceRenderingInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COMMAND_BUFFER_INHERITANCE_RENDERING_INFO
@@ -24833,7 +31181,14 @@ fn vk_command_buffer_inheritance_rendering_info_construction_contract() {
 
 #[test]
 fn vk_attachment_sample_count_info_amd_construction_contract() {
+	let _: fn() -> vk::AttachmentSampleCountInfoAMD<'static> = vk::AttachmentSampleCountInfoAMD::new;
 	let value = vk::AttachmentSampleCountInfoAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ATTACHMENT_SAMPLE_COUNT_INFO_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AttachmentSampleCountInfoAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ATTACHMENT_SAMPLE_COUNT_INFO_AMD
@@ -24860,7 +31215,15 @@ fn vk_attachment_sample_count_info_amd_construction_contract() {
 
 #[test]
 fn vk_multiview_per_view_attributes_info_nvx_construction_contract() {
+	let _: fn() -> vk::MultiviewPerViewAttributesInfoNVX<'static> =
+		vk::MultiviewPerViewAttributesInfoNVX::new;
 	let value = vk::MultiviewPerViewAttributesInfoNVX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MultiviewPerViewAttributesInfoNVX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX
@@ -24880,7 +31243,15 @@ fn vk_multiview_per_view_attributes_info_nvx_construction_contract() {
 
 #[test]
 fn vk_physical_device_image_view_min_lod_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageViewMinLodFeaturesEXT<'static> =
+		vk::PhysicalDeviceImageViewMinLodFeaturesEXT::new;
 	let value = vk::PhysicalDeviceImageViewMinLodFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageViewMinLodFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT
@@ -24895,7 +31266,14 @@ fn vk_physical_device_image_view_min_lod_features_ext_construction_contract() {
 
 #[test]
 fn vk_image_view_min_lod_create_info_ext_construction_contract() {
+	let _: fn() -> vk::ImageViewMinLodCreateInfoEXT<'static> = vk::ImageViewMinLodCreateInfoEXT::new;
 	let value = vk::ImageViewMinLodCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageViewMinLodCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT
@@ -24909,7 +31287,15 @@ fn vk_image_view_min_lod_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_rasterization_order_attachment_access_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT<'static> =
+		vk::PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT::new;
 	let value = vk::PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_EXT
@@ -24922,7 +31308,15 @@ fn vk_physical_device_rasterization_order_attachment_access_features_ext_constru
 
 #[test]
 fn vk_physical_device_linear_color_attachment_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceLinearColorAttachmentFeaturesNV<'static> =
+		vk::PhysicalDeviceLinearColorAttachmentFeaturesNV::new;
 	let value = vk::PhysicalDeviceLinearColorAttachmentFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceLinearColorAttachmentFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV
@@ -24937,7 +31331,15 @@ fn vk_physical_device_linear_color_attachment_features_nv_construction_contract(
 
 #[test]
 fn vk_physical_device_graphics_pipeline_library_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT<'static> =
+		vk::PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT::new;
 	let value = vk::PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceGraphicsPipelineLibraryFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_FEATURES_EXT
@@ -24952,7 +31354,15 @@ fn vk_physical_device_graphics_pipeline_library_features_ext_construction_contra
 
 #[test]
 fn vk_physical_device_pipeline_binary_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePipelineBinaryFeaturesKHR<'static> =
+		vk::PhysicalDevicePipelineBinaryFeaturesKHR::new;
 	let value = vk::PhysicalDevicePipelineBinaryFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_BINARY_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePipelineBinaryFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_BINARY_FEATURES_KHR
@@ -24967,7 +31377,15 @@ fn vk_physical_device_pipeline_binary_features_khr_construction_contract() {
 
 #[test]
 fn vk_device_pipeline_binary_internal_cache_control_khr_construction_contract() {
+	let _: fn() -> vk::DevicePipelineBinaryInternalCacheControlKHR<'static> =
+		vk::DevicePipelineBinaryInternalCacheControlKHR::new;
 	let value = vk::DevicePipelineBinaryInternalCacheControlKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_PIPELINE_BINARY_INTERNAL_CACHE_CONTROL_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DevicePipelineBinaryInternalCacheControlKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_PIPELINE_BINARY_INTERNAL_CACHE_CONTROL_KHR
@@ -24982,7 +31400,15 @@ fn vk_device_pipeline_binary_internal_cache_control_khr_construction_contract() 
 
 #[test]
 fn vk_physical_device_pipeline_binary_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePipelineBinaryPropertiesKHR<'static> =
+		vk::PhysicalDevicePipelineBinaryPropertiesKHR::new;
 	let value = vk::PhysicalDevicePipelineBinaryPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_BINARY_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePipelineBinaryPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_BINARY_PROPERTIES_KHR
@@ -25017,7 +31443,15 @@ fn vk_physical_device_pipeline_binary_properties_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_graphics_pipeline_library_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT<'static> =
+		vk::PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT::new;
 	let value = vk::PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceGraphicsPipelineLibraryPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_GRAPHICS_PIPELINE_LIBRARY_PROPERTIES_EXT
@@ -25029,7 +31463,15 @@ fn vk_physical_device_graphics_pipeline_library_properties_ext_construction_cont
 
 #[test]
 fn vk_graphics_pipeline_library_create_info_ext_construction_contract() {
+	let _: fn() -> vk::GraphicsPipelineLibraryCreateInfoEXT<'static> =
+		vk::GraphicsPipelineLibraryCreateInfoEXT::new;
 	let value = vk::GraphicsPipelineLibraryCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::GRAPHICS_PIPELINE_LIBRARY_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::GraphicsPipelineLibraryCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::GRAPHICS_PIPELINE_LIBRARY_CREATE_INFO_EXT
@@ -25045,7 +31487,15 @@ fn vk_graphics_pipeline_library_create_info_ext_construction_contract() {
 #[test]
 fn vk_physical_device_data_graph_neural_accelerator_statistics_features_arm_construction_contract()
 {
+	let _: fn() -> vk::PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM<'static> =
+		vk::PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM::new;
 	let value = vk::PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_NEURAL_ACCELERATOR_STATISTICS_FEATURES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDataGraphNeuralAcceleratorStatisticsFeaturesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_NEURAL_ACCELERATOR_STATISTICS_FEATURES_ARM
@@ -25056,7 +31506,15 @@ fn vk_physical_device_data_graph_neural_accelerator_statistics_features_arm_cons
 
 #[test]
 fn vk_data_graph_pipeline_neural_statistics_create_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineNeuralStatisticsCreateInfoARM<'static> =
+		vk::DataGraphPipelineNeuralStatisticsCreateInfoARM::new;
 	let value = vk::DataGraphPipelineNeuralStatisticsCreateInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_NEURAL_STATISTICS_CREATE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineNeuralStatisticsCreateInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_NEURAL_STATISTICS_CREATE_INFO_ARM
@@ -25071,7 +31529,15 @@ fn vk_data_graph_pipeline_neural_statistics_create_info_arm_construction_contrac
 
 #[test]
 fn vk_data_graph_pipeline_session_neural_statistics_create_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineSessionNeuralStatisticsCreateInfoARM<'static> =
+		vk::DataGraphPipelineSessionNeuralStatisticsCreateInfoARM::new;
 	let value = vk::DataGraphPipelineSessionNeuralStatisticsCreateInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_NEURAL_STATISTICS_CREATE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineSessionNeuralStatisticsCreateInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_NEURAL_STATISTICS_CREATE_INFO_ARM
@@ -25086,7 +31552,15 @@ fn vk_data_graph_pipeline_session_neural_statistics_create_info_arm_construction
 
 #[test]
 fn vk_tensor_explicit_tiling_format_properties_arm_construction_contract() {
+	let _: fn() -> vk::TensorExplicitTilingFormatPropertiesARM<'static> =
+		vk::TensorExplicitTilingFormatPropertiesARM::new;
 	let value = vk::TensorExplicitTilingFormatPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::TENSOR_EXPLICIT_TILING_FORMAT_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::TensorExplicitTilingFormatPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::TENSOR_EXPLICIT_TILING_FORMAT_PROPERTIES_ARM
@@ -25121,7 +31595,15 @@ fn vk_tensor_explicit_tiling_format_properties_arm_construction_contract() {
 
 #[test]
 fn vk_tensor_rolling_backing_create_info_arm_construction_contract() {
+	let _: fn() -> vk::TensorRollingBackingCreateInfoARM<'static> =
+		vk::TensorRollingBackingCreateInfoARM::new;
 	let value = vk::TensorRollingBackingCreateInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::TENSOR_ROLLING_BACKING_CREATE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::TensorRollingBackingCreateInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::TENSOR_ROLLING_BACKING_CREATE_INFO_ARM
@@ -25136,7 +31618,15 @@ fn vk_tensor_rolling_backing_create_info_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_descriptor_set_host_mapping_features_valve_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'static> =
+		vk::PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE::new;
 	let value = vk::PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE
@@ -25151,7 +31641,15 @@ fn vk_physical_device_descriptor_set_host_mapping_features_valve_construction_co
 
 #[test]
 fn vk_descriptor_set_binding_reference_valve_construction_contract() {
+	let _: fn() -> vk::DescriptorSetBindingReferenceVALVE<'static> =
+		vk::DescriptorSetBindingReferenceVALVE::new;
 	let value = vk::DescriptorSetBindingReferenceVALVE::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DESCRIPTOR_SET_BINDING_REFERENCE_VALVE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorSetBindingReferenceVALVE::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DESCRIPTOR_SET_BINDING_REFERENCE_VALVE
@@ -25171,7 +31669,15 @@ fn vk_descriptor_set_binding_reference_valve_construction_contract() {
 
 #[test]
 fn vk_descriptor_set_layout_host_mapping_info_valve_construction_contract() {
+	let _: fn() -> vk::DescriptorSetLayoutHostMappingInfoVALVE<'static> =
+		vk::DescriptorSetLayoutHostMappingInfoVALVE::new;
 	let value = vk::DescriptorSetLayoutHostMappingInfoVALVE::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorSetLayoutHostMappingInfoVALVE::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE
@@ -25191,7 +31697,15 @@ fn vk_descriptor_set_layout_host_mapping_info_valve_construction_contract() {
 
 #[test]
 fn vk_physical_device_nested_command_buffer_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceNestedCommandBufferFeaturesEXT<'static> =
+		vk::PhysicalDeviceNestedCommandBufferFeaturesEXT::new;
 	let value = vk::PhysicalDeviceNestedCommandBufferFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceNestedCommandBufferFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_FEATURES_EXT
@@ -25216,7 +31730,15 @@ fn vk_physical_device_nested_command_buffer_features_ext_construction_contract()
 
 #[test]
 fn vk_physical_device_nested_command_buffer_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceNestedCommandBufferPropertiesEXT<'static> =
+		vk::PhysicalDeviceNestedCommandBufferPropertiesEXT::new;
 	let value = vk::PhysicalDeviceNestedCommandBufferPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceNestedCommandBufferPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_NESTED_COMMAND_BUFFER_PROPERTIES_EXT
@@ -25231,7 +31753,15 @@ fn vk_physical_device_nested_command_buffer_properties_ext_construction_contract
 
 #[test]
 fn vk_physical_device_shader_module_identifier_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderModuleIdentifierFeaturesEXT<'static> =
+		vk::PhysicalDeviceShaderModuleIdentifierFeaturesEXT::new;
 	let value = vk::PhysicalDeviceShaderModuleIdentifierFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderModuleIdentifierFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_FEATURES_EXT
@@ -25246,7 +31776,15 @@ fn vk_physical_device_shader_module_identifier_features_ext_construction_contrac
 
 #[test]
 fn vk_physical_device_shader_module_identifier_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderModuleIdentifierPropertiesEXT<'static> =
+		vk::PhysicalDeviceShaderModuleIdentifierPropertiesEXT::new;
 	let value = vk::PhysicalDeviceShaderModuleIdentifierPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderModuleIdentifierPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_MODULE_IDENTIFIER_PROPERTIES_EXT
@@ -25257,7 +31795,15 @@ fn vk_physical_device_shader_module_identifier_properties_ext_construction_contr
 
 #[test]
 fn vk_pipeline_shader_stage_module_identifier_create_info_ext_construction_contract() {
+	let _: fn() -> vk::PipelineShaderStageModuleIdentifierCreateInfoEXT<'static> =
+		vk::PipelineShaderStageModuleIdentifierCreateInfoEXT::new;
 	let value = vk::PipelineShaderStageModuleIdentifierCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_SHADER_STAGE_MODULE_IDENTIFIER_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineShaderStageModuleIdentifierCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_SHADER_STAGE_MODULE_IDENTIFIER_CREATE_INFO_EXT
@@ -25279,7 +31825,14 @@ fn vk_pipeline_shader_stage_module_identifier_create_info_ext_construction_contr
 
 #[test]
 fn vk_shader_module_identifier_ext_construction_contract() {
+	let _: fn() -> vk::ShaderModuleIdentifierEXT<'static> = vk::ShaderModuleIdentifierEXT::new;
 	let value = vk::ShaderModuleIdentifierEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SHADER_MODULE_IDENTIFIER_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ShaderModuleIdentifierEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SHADER_MODULE_IDENTIFIER_EXT
@@ -25295,7 +31848,14 @@ fn vk_shader_module_identifier_ext_construction_contract() {
 
 #[test]
 fn vk_image_compression_control_ext_construction_contract() {
+	let _: fn() -> vk::ImageCompressionControlEXT<'static> = vk::ImageCompressionControlEXT::new;
 	let value = vk::ImageCompressionControlEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_COMPRESSION_CONTROL_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageCompressionControlEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_COMPRESSION_CONTROL_EXT
@@ -25320,7 +31880,15 @@ fn vk_image_compression_control_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_image_compression_control_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageCompressionControlFeaturesEXT<'static> =
+		vk::PhysicalDeviceImageCompressionControlFeaturesEXT::new;
 	let value = vk::PhysicalDeviceImageCompressionControlFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageCompressionControlFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_FEATURES_EXT
@@ -25335,7 +31903,15 @@ fn vk_physical_device_image_compression_control_features_ext_construction_contra
 
 #[test]
 fn vk_image_compression_properties_ext_construction_contract() {
+	let _: fn() -> vk::ImageCompressionPropertiesEXT<'static> =
+		vk::ImageCompressionPropertiesEXT::new;
 	let value = vk::ImageCompressionPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_COMPRESSION_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageCompressionPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_COMPRESSION_PROPERTIES_EXT
@@ -25355,7 +31931,15 @@ fn vk_image_compression_properties_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_image_compression_control_swapchain_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT<'static> =
+		vk::PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT::new;
 	let value = vk::PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageCompressionControlSwapchainFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_COMPRESSION_CONTROL_SWAPCHAIN_FEATURES_EXT
@@ -25366,7 +31950,11 @@ fn vk_physical_device_image_compression_control_swapchain_features_ext_construct
 
 #[test]
 fn vk_image_subresource2_construction_contract() {
+	let _: fn() -> vk::ImageSubresource2<'static> = vk::ImageSubresource2::new;
 	let value = vk::ImageSubresource2::default();
+	assert_eq!(value.s_type, vk::StructureType::IMAGE_SUBRESOURCE_2);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageSubresource2::new();
 	assert_eq!(value.s_type, vk::StructureType::IMAGE_SUBRESOURCE_2);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -25377,7 +31965,11 @@ fn vk_image_subresource2_construction_contract() {
 
 #[test]
 fn vk_subresource_layout2_construction_contract() {
+	let _: fn() -> vk::SubresourceLayout2<'static> = vk::SubresourceLayout2::new;
 	let value = vk::SubresourceLayout2::default();
+	assert_eq!(value.s_type, vk::StructureType::SUBRESOURCE_LAYOUT_2);
+	assert!(value.p_next.is_null());
+	let value = vk::SubresourceLayout2::new();
 	assert_eq!(value.s_type, vk::StructureType::SUBRESOURCE_LAYOUT_2);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -25388,7 +31980,14 @@ fn vk_subresource_layout2_construction_contract() {
 
 #[test]
 fn vk_render_pass_creation_control_ext_construction_contract() {
+	let _: fn() -> vk::RenderPassCreationControlEXT<'static> = vk::RenderPassCreationControlEXT::new;
 	let value = vk::RenderPassCreationControlEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDER_PASS_CREATION_CONTROL_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassCreationControlEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDER_PASS_CREATION_CONTROL_EXT
@@ -25403,13 +32002,22 @@ fn vk_render_pass_creation_control_ext_construction_contract() {
 
 #[test]
 fn vk_render_pass_creation_feedback_info_ext_construction_contract() {
+	let _: fn() -> vk::RenderPassCreationFeedbackInfoEXT = vk::RenderPassCreationFeedbackInfoEXT::new;
 	let _: fn(vk::RenderPassCreationFeedbackInfoEXT, u32) -> vk::RenderPassCreationFeedbackInfoEXT =
 		vk::RenderPassCreationFeedbackInfoEXT::set_post_merge_subpass_count;
 }
 
 #[test]
 fn vk_render_pass_creation_feedback_create_info_ext_construction_contract() {
+	let _: fn() -> vk::RenderPassCreationFeedbackCreateInfoEXT<'static> =
+		vk::RenderPassCreationFeedbackCreateInfoEXT::new;
 	let value = vk::RenderPassCreationFeedbackCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDER_PASS_CREATION_FEEDBACK_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassCreationFeedbackCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDER_PASS_CREATION_FEEDBACK_CREATE_INFO_EXT
@@ -25424,6 +32032,7 @@ fn vk_render_pass_creation_feedback_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_render_pass_subpass_feedback_info_ext_construction_contract() {
+	let _: fn() -> vk::RenderPassSubpassFeedbackInfoEXT = vk::RenderPassSubpassFeedbackInfoEXT::new;
 	let _: fn(
 		vk::RenderPassSubpassFeedbackInfoEXT,
 		vk::SubpassMergeStatusEXT,
@@ -25439,7 +32048,15 @@ fn vk_render_pass_subpass_feedback_info_ext_construction_contract() {
 
 #[test]
 fn vk_render_pass_subpass_feedback_create_info_ext_construction_contract() {
+	let _: fn() -> vk::RenderPassSubpassFeedbackCreateInfoEXT<'static> =
+		vk::RenderPassSubpassFeedbackCreateInfoEXT::new;
 	let value = vk::RenderPassSubpassFeedbackCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDER_PASS_SUBPASS_FEEDBACK_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassSubpassFeedbackCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDER_PASS_SUBPASS_FEEDBACK_CREATE_INFO_EXT
@@ -25454,7 +32071,15 @@ fn vk_render_pass_subpass_feedback_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_subpass_merge_feedback_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSubpassMergeFeedbackFeaturesEXT<'static> =
+		vk::PhysicalDeviceSubpassMergeFeedbackFeaturesEXT::new;
 	let value = vk::PhysicalDeviceSubpassMergeFeedbackFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SUBPASS_MERGE_FEEDBACK_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSubpassMergeFeedbackFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SUBPASS_MERGE_FEEDBACK_FEATURES_EXT
@@ -25469,7 +32094,11 @@ fn vk_physical_device_subpass_merge_feedback_features_ext_construction_contract(
 
 #[test]
 fn vk_micromap_build_info_ext_construction_contract() {
+	let _: fn() -> vk::MicromapBuildInfoEXT<'static> = vk::MicromapBuildInfoEXT::new;
 	let value = vk::MicromapBuildInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::MICROMAP_BUILD_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::MicromapBuildInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::MICROMAP_BUILD_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -25520,7 +32149,15 @@ fn vk_micromap_build_info_ext_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_geometry_micromap_data_khr_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureGeometryMicromapDataKHR<'static> =
+		vk::AccelerationStructureGeometryMicromapDataKHR::new;
 	let value = vk::AccelerationStructureGeometryMicromapDataKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MICROMAP_DATA_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureGeometryMicromapDataKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_GEOMETRY_MICROMAP_DATA_KHR
@@ -25564,7 +32201,11 @@ fn vk_acceleration_structure_geometry_micromap_data_khr_construction_contract() 
 
 #[test]
 fn vk_micromap_create_info_ext_construction_contract() {
+	let _: fn() -> vk::MicromapCreateInfoEXT<'static> = vk::MicromapCreateInfoEXT::new;
 	let value = vk::MicromapCreateInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::MICROMAP_CREATE_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::MicromapCreateInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::MICROMAP_CREATE_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -25593,7 +32234,11 @@ fn vk_micromap_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_micromap_version_info_ext_construction_contract() {
+	let _: fn() -> vk::MicromapVersionInfoEXT<'static> = vk::MicromapVersionInfoEXT::new;
 	let value = vk::MicromapVersionInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::MICROMAP_VERSION_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::MicromapVersionInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::MICROMAP_VERSION_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -25604,7 +32249,11 @@ fn vk_micromap_version_info_ext_construction_contract() {
 
 #[test]
 fn vk_copy_micromap_info_ext_construction_contract() {
+	let _: fn() -> vk::CopyMicromapInfoEXT<'static> = vk::CopyMicromapInfoEXT::new;
 	let value = vk::CopyMicromapInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::COPY_MICROMAP_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyMicromapInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::COPY_MICROMAP_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::CopyMicromapInfoEXT<'static>, vk::MicromapEXT) -> vk::CopyMicromapInfoEXT<'static> =
@@ -25619,7 +32268,14 @@ fn vk_copy_micromap_info_ext_construction_contract() {
 
 #[test]
 fn vk_copy_micromap_to_memory_info_ext_construction_contract() {
+	let _: fn() -> vk::CopyMicromapToMemoryInfoEXT<'static> = vk::CopyMicromapToMemoryInfoEXT::new;
 	let value = vk::CopyMicromapToMemoryInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COPY_MICROMAP_TO_MEMORY_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyMicromapToMemoryInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COPY_MICROMAP_TO_MEMORY_INFO_EXT
@@ -25641,7 +32297,14 @@ fn vk_copy_micromap_to_memory_info_ext_construction_contract() {
 
 #[test]
 fn vk_copy_memory_to_micromap_info_ext_construction_contract() {
+	let _: fn() -> vk::CopyMemoryToMicromapInfoEXT<'static> = vk::CopyMemoryToMicromapInfoEXT::new;
 	let value = vk::CopyMemoryToMicromapInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COPY_MEMORY_TO_MICROMAP_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyMemoryToMicromapInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COPY_MEMORY_TO_MICROMAP_INFO_EXT
@@ -25663,7 +32326,14 @@ fn vk_copy_memory_to_micromap_info_ext_construction_contract() {
 
 #[test]
 fn vk_micromap_build_sizes_info_ext_construction_contract() {
+	let _: fn() -> vk::MicromapBuildSizesInfoEXT<'static> = vk::MicromapBuildSizesInfoEXT::new;
 	let value = vk::MicromapBuildSizesInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MICROMAP_BUILD_SIZES_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MicromapBuildSizesInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MICROMAP_BUILD_SIZES_INFO_EXT
@@ -25686,6 +32356,7 @@ fn vk_micromap_build_sizes_info_ext_construction_contract() {
 
 #[test]
 fn vk_micromap_usage_khr_construction_contract() {
+	let _: fn() -> vk::MicromapUsageKHR = vk::MicromapUsageKHR::new;
 	let _: fn(vk::MicromapUsageKHR, u32) -> vk::MicromapUsageKHR = vk::MicromapUsageKHR::set_count;
 	let _: fn(vk::MicromapUsageKHR, u32) -> vk::MicromapUsageKHR =
 		vk::MicromapUsageKHR::set_subdivision_level;
@@ -25695,6 +32366,7 @@ fn vk_micromap_usage_khr_construction_contract() {
 
 #[test]
 fn vk_micromap_usage_ext_construction_contract() {
+	let _: fn() -> vk::MicromapUsageEXT = vk::MicromapUsageEXT::new;
 	let _: fn(vk::MicromapUsageEXT, u32) -> vk::MicromapUsageEXT = vk::MicromapUsageEXT::set_count;
 	let _: fn(vk::MicromapUsageEXT, u32) -> vk::MicromapUsageEXT =
 		vk::MicromapUsageEXT::set_subdivision_level;
@@ -25703,6 +32375,7 @@ fn vk_micromap_usage_ext_construction_contract() {
 
 #[test]
 fn vk_micromap_triangle_khr_construction_contract() {
+	let _: fn() -> vk::MicromapTriangleKHR = vk::MicromapTriangleKHR::new;
 	let _: fn(vk::MicromapTriangleKHR, u32) -> vk::MicromapTriangleKHR =
 		vk::MicromapTriangleKHR::set_data_offset;
 	let _: fn(vk::MicromapTriangleKHR, u16) -> vk::MicromapTriangleKHR =
@@ -25713,7 +32386,15 @@ fn vk_micromap_triangle_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_opacity_micromap_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceOpacityMicromapFeaturesKHR<'static> =
+		vk::PhysicalDeviceOpacityMicromapFeaturesKHR::new;
 	let value = vk::PhysicalDeviceOpacityMicromapFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceOpacityMicromapFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_FEATURES_KHR
@@ -25728,7 +32409,15 @@ fn vk_physical_device_opacity_micromap_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_opacity_micromap_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceOpacityMicromapFeaturesEXT<'static> =
+		vk::PhysicalDeviceOpacityMicromapFeaturesEXT::new;
 	let value = vk::PhysicalDeviceOpacityMicromapFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceOpacityMicromapFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_FEATURES_EXT
@@ -25753,7 +32442,15 @@ fn vk_physical_device_opacity_micromap_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_opacity_micromap_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceOpacityMicromapPropertiesKHR<'static> =
+		vk::PhysicalDeviceOpacityMicromapPropertiesKHR::new;
 	let value = vk::PhysicalDeviceOpacityMicromapPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceOpacityMicromapPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_PROPERTIES_KHR
@@ -25783,7 +32480,15 @@ fn vk_physical_device_opacity_micromap_properties_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_opacity_micromap_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceOpacityMicromapPropertiesEXT<'static> =
+		vk::PhysicalDeviceOpacityMicromapPropertiesEXT::new;
 	let value = vk::PhysicalDeviceOpacityMicromapPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceOpacityMicromapPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_OPACITY_MICROMAP_PROPERTIES_EXT
@@ -25803,7 +32508,15 @@ fn vk_physical_device_opacity_micromap_properties_ext_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_triangles_opacity_micromap_khr_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureTrianglesOpacityMicromapKHR<'static> =
+		vk::AccelerationStructureTrianglesOpacityMicromapKHR::new;
 	let value = vk::AccelerationStructureTrianglesOpacityMicromapKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_OPACITY_MICROMAP_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureTrianglesOpacityMicromapKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_OPACITY_MICROMAP_KHR
@@ -25838,7 +32551,15 @@ fn vk_acceleration_structure_triangles_opacity_micromap_khr_construction_contrac
 
 #[test]
 fn vk_acceleration_structure_triangles_opacity_micromap_ext_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureTrianglesOpacityMicromapEXT<'static> =
+		vk::AccelerationStructureTrianglesOpacityMicromapEXT::new;
 	let value = vk::AccelerationStructureTrianglesOpacityMicromapEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_OPACITY_MICROMAP_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureTrianglesOpacityMicromapEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_OPACITY_MICROMAP_EXT
@@ -25893,7 +32614,15 @@ fn vk_acceleration_structure_triangles_opacity_micromap_ext_construction_contrac
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_physical_device_displacement_micromap_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDisplacementMicromapFeaturesNV<'static> =
+		vk::PhysicalDeviceDisplacementMicromapFeaturesNV::new;
 	let value = vk::PhysicalDeviceDisplacementMicromapFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDisplacementMicromapFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_FEATURES_NV
@@ -25909,7 +32638,15 @@ fn vk_physical_device_displacement_micromap_features_nv_construction_contract() 
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_physical_device_displacement_micromap_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDisplacementMicromapPropertiesNV<'static> =
+		vk::PhysicalDeviceDisplacementMicromapPropertiesNV::new;
 	let value = vk::PhysicalDeviceDisplacementMicromapPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDisplacementMicromapPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DISPLACEMENT_MICROMAP_PROPERTIES_NV
@@ -25921,7 +32658,15 @@ fn vk_physical_device_displacement_micromap_properties_nv_construction_contract(
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_acceleration_structure_triangles_displacement_micromap_nv_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureTrianglesDisplacementMicromapNV<'static> =
+		vk::AccelerationStructureTrianglesDisplacementMicromapNV::new;
 	let value = vk::AccelerationStructureTrianglesDisplacementMicromapNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_DISPLACEMENT_MICROMAP_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureTrianglesDisplacementMicromapNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_TRIANGLES_DISPLACEMENT_MICROMAP_NV
@@ -25995,7 +32740,15 @@ fn vk_acceleration_structure_triangles_displacement_micromap_nv_construction_con
 
 #[test]
 fn vk_pipeline_properties_identifier_ext_construction_contract() {
+	let _: fn() -> vk::PipelinePropertiesIdentifierEXT<'static> =
+		vk::PipelinePropertiesIdentifierEXT::new;
 	let value = vk::PipelinePropertiesIdentifierEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_PROPERTIES_IDENTIFIER_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelinePropertiesIdentifierEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_PROPERTIES_IDENTIFIER_EXT
@@ -26010,7 +32763,15 @@ fn vk_pipeline_properties_identifier_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_pipeline_properties_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePipelinePropertiesFeaturesEXT<'static> =
+		vk::PhysicalDevicePipelinePropertiesFeaturesEXT::new;
 	let value = vk::PhysicalDevicePipelinePropertiesFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_PROPERTIES_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePipelinePropertiesFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_PROPERTIES_FEATURES_EXT
@@ -26025,7 +32786,15 @@ fn vk_physical_device_pipeline_properties_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_early_and_late_fragment_tests_features_amd_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD<'static> =
+		vk::PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD::new;
 	let value = vk::PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_FEATURES_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_EARLY_AND_LATE_FRAGMENT_TESTS_FEATURES_AMD
@@ -26036,7 +32805,15 @@ fn vk_physical_device_shader_early_and_late_fragment_tests_features_amd_construc
 
 #[test]
 fn vk_external_memory_acquire_unmodified_ext_construction_contract() {
+	let _: fn() -> vk::ExternalMemoryAcquireUnmodifiedEXT<'static> =
+		vk::ExternalMemoryAcquireUnmodifiedEXT::new;
 	let value = vk::ExternalMemoryAcquireUnmodifiedEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalMemoryAcquireUnmodifiedEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXTERNAL_MEMORY_ACQUIRE_UNMODIFIED_EXT
@@ -26052,7 +32829,15 @@ fn vk_external_memory_acquire_unmodified_ext_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_export_metal_object_create_info_ext_construction_contract() {
+	let _: fn() -> vk::ExportMetalObjectCreateInfoEXT<'static> =
+		vk::ExportMetalObjectCreateInfoEXT::new;
 	let value = vk::ExportMetalObjectCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXPORT_METAL_OBJECT_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportMetalObjectCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXPORT_METAL_OBJECT_CREATE_INFO_EXT
@@ -26068,7 +32853,14 @@ fn vk_export_metal_object_create_info_ext_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_export_metal_objects_info_ext_construction_contract() {
+	let _: fn() -> vk::ExportMetalObjectsInfoEXT<'static> = vk::ExportMetalObjectsInfoEXT::new;
 	let value = vk::ExportMetalObjectsInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXPORT_METAL_OBJECTS_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportMetalObjectsInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXPORT_METAL_OBJECTS_INFO_EXT
@@ -26079,7 +32871,14 @@ fn vk_export_metal_objects_info_ext_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_export_metal_device_info_ext_construction_contract() {
+	let _: fn() -> vk::ExportMetalDeviceInfoEXT<'static> = vk::ExportMetalDeviceInfoEXT::new;
 	let value = vk::ExportMetalDeviceInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXPORT_METAL_DEVICE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportMetalDeviceInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXPORT_METAL_DEVICE_INFO_EXT
@@ -26094,7 +32893,15 @@ fn vk_export_metal_device_info_ext_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_export_metal_command_queue_info_ext_construction_contract() {
+	let _: fn() -> vk::ExportMetalCommandQueueInfoEXT<'static> =
+		vk::ExportMetalCommandQueueInfoEXT::new;
 	let value = vk::ExportMetalCommandQueueInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXPORT_METAL_COMMAND_QUEUE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportMetalCommandQueueInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXPORT_METAL_COMMAND_QUEUE_INFO_EXT
@@ -26114,7 +32921,14 @@ fn vk_export_metal_command_queue_info_ext_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_export_metal_buffer_info_ext_construction_contract() {
+	let _: fn() -> vk::ExportMetalBufferInfoEXT<'static> = vk::ExportMetalBufferInfoEXT::new;
 	let value = vk::ExportMetalBufferInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXPORT_METAL_BUFFER_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportMetalBufferInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXPORT_METAL_BUFFER_INFO_EXT
@@ -26133,7 +32947,14 @@ fn vk_export_metal_buffer_info_ext_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_import_metal_buffer_info_ext_construction_contract() {
+	let _: fn() -> vk::ImportMetalBufferInfoEXT<'static> = vk::ImportMetalBufferInfoEXT::new;
 	let value = vk::ImportMetalBufferInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_METAL_BUFFER_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportMetalBufferInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_METAL_BUFFER_INFO_EXT
@@ -26148,7 +32969,14 @@ fn vk_import_metal_buffer_info_ext_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_export_metal_texture_info_ext_construction_contract() {
+	let _: fn() -> vk::ExportMetalTextureInfoEXT<'static> = vk::ExportMetalTextureInfoEXT::new;
 	let value = vk::ExportMetalTextureInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXPORT_METAL_TEXTURE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportMetalTextureInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXPORT_METAL_TEXTURE_INFO_EXT
@@ -26179,7 +33007,14 @@ fn vk_export_metal_texture_info_ext_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_import_metal_texture_info_ext_construction_contract() {
+	let _: fn() -> vk::ImportMetalTextureInfoEXT<'static> = vk::ImportMetalTextureInfoEXT::new;
 	let value = vk::ImportMetalTextureInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_METAL_TEXTURE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportMetalTextureInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_METAL_TEXTURE_INFO_EXT
@@ -26198,7 +33033,14 @@ fn vk_import_metal_texture_info_ext_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_export_metal_io_surface_info_ext_construction_contract() {
+	let _: fn() -> vk::ExportMetalIOSurfaceInfoEXT<'static> = vk::ExportMetalIOSurfaceInfoEXT::new;
 	let value = vk::ExportMetalIOSurfaceInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXPORT_METAL_IO_SURFACE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportMetalIOSurfaceInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXPORT_METAL_IO_SURFACE_INFO_EXT
@@ -26217,7 +33059,14 @@ fn vk_export_metal_io_surface_info_ext_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_import_metal_io_surface_info_ext_construction_contract() {
+	let _: fn() -> vk::ImportMetalIOSurfaceInfoEXT<'static> = vk::ImportMetalIOSurfaceInfoEXT::new;
 	let value = vk::ImportMetalIOSurfaceInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_METAL_IO_SURFACE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportMetalIOSurfaceInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_METAL_IO_SURFACE_INFO_EXT
@@ -26232,7 +33081,15 @@ fn vk_import_metal_io_surface_info_ext_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_export_metal_shared_event_info_ext_construction_contract() {
+	let _: fn() -> vk::ExportMetalSharedEventInfoEXT<'static> =
+		vk::ExportMetalSharedEventInfoEXT::new;
 	let value = vk::ExportMetalSharedEventInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXPORT_METAL_SHARED_EVENT_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExportMetalSharedEventInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXPORT_METAL_SHARED_EVENT_INFO_EXT
@@ -26256,7 +33113,15 @@ fn vk_export_metal_shared_event_info_ext_construction_contract() {
 #[cfg(feature = "platform-metal")]
 #[test]
 fn vk_import_metal_shared_event_info_ext_construction_contract() {
+	let _: fn() -> vk::ImportMetalSharedEventInfoEXT<'static> =
+		vk::ImportMetalSharedEventInfoEXT::new;
 	let value = vk::ImportMetalSharedEventInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_METAL_SHARED_EVENT_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportMetalSharedEventInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_METAL_SHARED_EVENT_INFO_EXT
@@ -26271,7 +33136,15 @@ fn vk_import_metal_shared_event_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_non_seamless_cube_map_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceNonSeamlessCubeMapFeaturesEXT<'static> =
+		vk::PhysicalDeviceNonSeamlessCubeMapFeaturesEXT::new;
 	let value = vk::PhysicalDeviceNonSeamlessCubeMapFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceNonSeamlessCubeMapFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_NON_SEAMLESS_CUBE_MAP_FEATURES_EXT
@@ -26286,7 +33159,15 @@ fn vk_physical_device_non_seamless_cube_map_features_ext_construction_contract()
 
 #[test]
 fn vk_physical_device_pipeline_robustness_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePipelineRobustnessFeatures<'static> =
+		vk::PhysicalDevicePipelineRobustnessFeatures::new;
 	let value = vk::PhysicalDevicePipelineRobustnessFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePipelineRobustnessFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_FEATURES
@@ -26301,7 +33182,14 @@ fn vk_physical_device_pipeline_robustness_features_construction_contract() {
 
 #[test]
 fn vk_pipeline_robustness_create_info_construction_contract() {
+	let _: fn() -> vk::PipelineRobustnessCreateInfo<'static> = vk::PipelineRobustnessCreateInfo::new;
 	let value = vk::PipelineRobustnessCreateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_ROBUSTNESS_CREATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineRobustnessCreateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_ROBUSTNESS_CREATE_INFO
@@ -26330,7 +33218,15 @@ fn vk_pipeline_robustness_create_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_pipeline_robustness_properties_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePipelineRobustnessProperties<'static> =
+		vk::PhysicalDevicePipelineRobustnessProperties::new;
 	let value = vk::PhysicalDevicePipelineRobustnessProperties::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_PROPERTIES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePipelineRobustnessProperties::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_ROBUSTNESS_PROPERTIES
@@ -26360,7 +33256,15 @@ fn vk_physical_device_pipeline_robustness_properties_construction_contract() {
 
 #[test]
 fn vk_image_view_sample_weight_create_info_qcom_construction_contract() {
+	let _: fn() -> vk::ImageViewSampleWeightCreateInfoQCOM<'static> =
+		vk::ImageViewSampleWeightCreateInfoQCOM::new;
 	let value = vk::ImageViewSampleWeightCreateInfoQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_VIEW_SAMPLE_WEIGHT_CREATE_INFO_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageViewSampleWeightCreateInfoQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_VIEW_SAMPLE_WEIGHT_CREATE_INFO_QCOM
@@ -26385,7 +33289,15 @@ fn vk_image_view_sample_weight_create_info_qcom_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_multiple_wait_queues_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderMultipleWaitQueuesFeaturesQCOM<'static> =
+		vk::PhysicalDeviceShaderMultipleWaitQueuesFeaturesQCOM::new;
 	let value = vk::PhysicalDeviceShaderMultipleWaitQueuesFeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_MULTIPLE_WAIT_QUEUES_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderMultipleWaitQueuesFeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_MULTIPLE_WAIT_QUEUES_FEATURES_QCOM
@@ -26400,7 +33312,15 @@ fn vk_physical_device_shader_multiple_wait_queues_features_qcom_construction_con
 
 #[test]
 fn vk_physical_device_shader_multiple_wait_queues_properties_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderMultipleWaitQueuesPropertiesQCOM<'static> =
+		vk::PhysicalDeviceShaderMultipleWaitQueuesPropertiesQCOM::new;
 	let value = vk::PhysicalDeviceShaderMultipleWaitQueuesPropertiesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_MULTIPLE_WAIT_QUEUES_PROPERTIES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderMultipleWaitQueuesPropertiesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_MULTIPLE_WAIT_QUEUES_PROPERTIES_QCOM
@@ -26415,7 +33335,15 @@ fn vk_physical_device_shader_multiple_wait_queues_properties_qcom_construction_c
 
 #[test]
 fn vk_physical_device_image_processing_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageProcessingFeaturesQCOM<'static> =
+		vk::PhysicalDeviceImageProcessingFeaturesQCOM::new;
 	let value = vk::PhysicalDeviceImageProcessingFeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageProcessingFeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_FEATURES_QCOM
@@ -26440,7 +33368,15 @@ fn vk_physical_device_image_processing_features_qcom_construction_contract() {
 
 #[test]
 fn vk_physical_device_image_processing_properties_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageProcessingPropertiesQCOM<'static> =
+		vk::PhysicalDeviceImageProcessingPropertiesQCOM::new;
 	let value = vk::PhysicalDeviceImageProcessingPropertiesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_PROPERTIES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageProcessingPropertiesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_PROPERTIES_QCOM
@@ -26470,7 +33406,15 @@ fn vk_physical_device_image_processing_properties_qcom_construction_contract() {
 
 #[test]
 fn vk_physical_device_tile_properties_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceTilePropertiesFeaturesQCOM<'static> =
+		vk::PhysicalDeviceTilePropertiesFeaturesQCOM::new;
 	let value = vk::PhysicalDeviceTilePropertiesFeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceTilePropertiesFeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TILE_PROPERTIES_FEATURES_QCOM
@@ -26485,7 +33429,11 @@ fn vk_physical_device_tile_properties_features_qcom_construction_contract() {
 
 #[test]
 fn vk_tile_properties_qcom_construction_contract() {
+	let _: fn() -> vk::TilePropertiesQCOM<'static> = vk::TilePropertiesQCOM::new;
 	let value = vk::TilePropertiesQCOM::default();
+	assert_eq!(value.s_type, vk::StructureType::TILE_PROPERTIES_QCOM);
+	assert!(value.p_next.is_null());
+	let value = vk::TilePropertiesQCOM::new();
 	assert_eq!(value.s_type, vk::StructureType::TILE_PROPERTIES_QCOM);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::TilePropertiesQCOM<'static>, vk::Extent3D) -> vk::TilePropertiesQCOM<'static> =
@@ -26498,7 +33446,11 @@ fn vk_tile_properties_qcom_construction_contract() {
 
 #[test]
 fn vk_tile_memory_bind_info_qcom_construction_contract() {
+	let _: fn() -> vk::TileMemoryBindInfoQCOM<'static> = vk::TileMemoryBindInfoQCOM::new;
 	let value = vk::TileMemoryBindInfoQCOM::default();
+	assert_eq!(value.s_type, vk::StructureType::TILE_MEMORY_BIND_INFO_QCOM);
+	assert!(value.p_next.is_null());
+	let value = vk::TileMemoryBindInfoQCOM::new();
 	assert_eq!(value.s_type, vk::StructureType::TILE_MEMORY_BIND_INFO_QCOM);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -26509,7 +33461,15 @@ fn vk_tile_memory_bind_info_qcom_construction_contract() {
 
 #[test]
 fn vk_physical_device_amigo_profiling_features_sec_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceAmigoProfilingFeaturesSEC<'static> =
+		vk::PhysicalDeviceAmigoProfilingFeaturesSEC::new;
 	let value = vk::PhysicalDeviceAmigoProfilingFeaturesSEC::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceAmigoProfilingFeaturesSEC::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_AMIGO_PROFILING_FEATURES_SEC
@@ -26524,7 +33484,14 @@ fn vk_physical_device_amigo_profiling_features_sec_construction_contract() {
 
 #[test]
 fn vk_amigo_profiling_submit_info_sec_construction_contract() {
+	let _: fn() -> vk::AmigoProfilingSubmitInfoSEC<'static> = vk::AmigoProfilingSubmitInfoSEC::new;
 	let value = vk::AmigoProfilingSubmitInfoSEC::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::AMIGO_PROFILING_SUBMIT_INFO_SEC
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AmigoProfilingSubmitInfoSEC::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::AMIGO_PROFILING_SUBMIT_INFO_SEC
@@ -26544,7 +33511,15 @@ fn vk_amigo_profiling_submit_info_sec_construction_contract() {
 
 #[test]
 fn vk_physical_device_attachment_feedback_loop_layout_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT<'static> =
+		vk::PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT::new;
 	let value = vk::PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceAttachmentFeedbackLoopLayoutFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_ATTACHMENT_FEEDBACK_LOOP_LAYOUT_FEATURES_EXT
@@ -26559,7 +33534,15 @@ fn vk_physical_device_attachment_feedback_loop_layout_features_ext_construction_
 
 #[test]
 fn vk_attachment_feedback_loop_info_ext_construction_contract() {
+	let _: fn() -> vk::AttachmentFeedbackLoopInfoEXT<'static> =
+		vk::AttachmentFeedbackLoopInfoEXT::new;
 	let value = vk::AttachmentFeedbackLoopInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ATTACHMENT_FEEDBACK_LOOP_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AttachmentFeedbackLoopInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ATTACHMENT_FEEDBACK_LOOP_INFO_EXT
@@ -26574,7 +33557,15 @@ fn vk_attachment_feedback_loop_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_address_binding_report_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceAddressBindingReportFeaturesEXT<'static> =
+		vk::PhysicalDeviceAddressBindingReportFeaturesEXT::new;
 	let value = vk::PhysicalDeviceAddressBindingReportFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceAddressBindingReportFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_ADDRESS_BINDING_REPORT_FEATURES_EXT
@@ -26589,7 +33580,15 @@ fn vk_physical_device_address_binding_report_features_ext_construction_contract(
 
 #[test]
 fn vk_rendering_attachment_flags_info_khr_construction_contract() {
+	let _: fn() -> vk::RenderingAttachmentFlagsInfoKHR<'static> =
+		vk::RenderingAttachmentFlagsInfoKHR::new;
 	let value = vk::RenderingAttachmentFlagsInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDERING_ATTACHMENT_FLAGS_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderingAttachmentFlagsInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDERING_ATTACHMENT_FLAGS_INFO_KHR
@@ -26603,7 +33602,11 @@ fn vk_rendering_attachment_flags_info_khr_construction_contract() {
 
 #[test]
 fn vk_resolve_image_mode_info_khr_construction_contract() {
+	let _: fn() -> vk::ResolveImageModeInfoKHR<'static> = vk::ResolveImageModeInfoKHR::new;
 	let value = vk::ResolveImageModeInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::RESOLVE_IMAGE_MODE_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::ResolveImageModeInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::RESOLVE_IMAGE_MODE_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -26622,7 +33625,15 @@ fn vk_resolve_image_mode_info_khr_construction_contract() {
 
 #[test]
 fn vk_device_address_binding_callback_data_ext_construction_contract() {
+	let _: fn() -> vk::DeviceAddressBindingCallbackDataEXT<'static> =
+		vk::DeviceAddressBindingCallbackDataEXT::new;
 	let value = vk::DeviceAddressBindingCallbackDataEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceAddressBindingCallbackDataEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_ADDRESS_BINDING_CALLBACK_DATA_EXT
@@ -26652,7 +33663,15 @@ fn vk_device_address_binding_callback_data_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_optical_flow_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceOpticalFlowFeaturesNV<'static> =
+		vk::PhysicalDeviceOpticalFlowFeaturesNV::new;
 	let value = vk::PhysicalDeviceOpticalFlowFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceOpticalFlowFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_FEATURES_NV
@@ -26667,7 +33686,15 @@ fn vk_physical_device_optical_flow_features_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_optical_flow_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceOpticalFlowPropertiesNV<'static> =
+		vk::PhysicalDeviceOpticalFlowPropertiesNV::new;
 	let value = vk::PhysicalDeviceOpticalFlowPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceOpticalFlowPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_OPTICAL_FLOW_PROPERTIES_NV
@@ -26732,7 +33759,14 @@ fn vk_physical_device_optical_flow_properties_nv_construction_contract() {
 
 #[test]
 fn vk_optical_flow_image_format_info_nv_construction_contract() {
+	let _: fn() -> vk::OpticalFlowImageFormatInfoNV<'static> = vk::OpticalFlowImageFormatInfoNV::new;
 	let value = vk::OpticalFlowImageFormatInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::OpticalFlowImageFormatInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_INFO_NV
@@ -26746,7 +33780,15 @@ fn vk_optical_flow_image_format_info_nv_construction_contract() {
 
 #[test]
 fn vk_optical_flow_image_format_properties_nv_construction_contract() {
+	let _: fn() -> vk::OpticalFlowImageFormatPropertiesNV<'static> =
+		vk::OpticalFlowImageFormatPropertiesNV::new;
 	let value = vk::OpticalFlowImageFormatPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::OpticalFlowImageFormatPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_NV
@@ -26761,7 +33803,15 @@ fn vk_optical_flow_image_format_properties_nv_construction_contract() {
 
 #[test]
 fn vk_optical_flow_session_create_info_nv_construction_contract() {
+	let _: fn() -> vk::OpticalFlowSessionCreateInfoNV<'static> =
+		vk::OpticalFlowSessionCreateInfoNV::new;
 	let value = vk::OpticalFlowSessionCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::OpticalFlowSessionCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_INFO_NV
@@ -26813,7 +33863,15 @@ fn vk_optical_flow_session_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_optical_flow_session_create_private_data_info_nv_construction_contract() {
+	let _: fn() -> vk::OpticalFlowSessionCreatePrivateDataInfoNV<'static> =
+		vk::OpticalFlowSessionCreatePrivateDataInfoNV::new;
 	let value = vk::OpticalFlowSessionCreatePrivateDataInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_PRIVATE_DATA_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::OpticalFlowSessionCreatePrivateDataInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::OPTICAL_FLOW_SESSION_CREATE_PRIVATE_DATA_INFO_NV
@@ -26838,7 +33896,14 @@ fn vk_optical_flow_session_create_private_data_info_nv_construction_contract() {
 
 #[test]
 fn vk_optical_flow_execute_info_nv_construction_contract() {
+	let _: fn() -> vk::OpticalFlowExecuteInfoNV<'static> = vk::OpticalFlowExecuteInfoNV::new;
 	let value = vk::OpticalFlowExecuteInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::OPTICAL_FLOW_EXECUTE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::OpticalFlowExecuteInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::OPTICAL_FLOW_EXECUTE_INFO_NV
@@ -26859,7 +33924,15 @@ fn vk_optical_flow_execute_info_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_fault_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFaultFeaturesEXT<'static> =
+		vk::PhysicalDeviceFaultFeaturesEXT::new;
 	let value = vk::PhysicalDeviceFaultFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FAULT_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFaultFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FAULT_FEATURES_EXT
@@ -26879,6 +33952,7 @@ fn vk_physical_device_fault_features_ext_construction_contract() {
 
 #[test]
 fn vk_device_fault_address_info_khr_construction_contract() {
+	let _: fn() -> vk::DeviceFaultAddressInfoKHR = vk::DeviceFaultAddressInfoKHR::new;
 	let _: fn(
 		vk::DeviceFaultAddressInfoKHR,
 		vk::DeviceFaultAddressTypeKHR,
@@ -26891,6 +33965,7 @@ fn vk_device_fault_address_info_khr_construction_contract() {
 
 #[test]
 fn vk_device_fault_vendor_info_khr_construction_contract() {
+	let _: fn() -> vk::DeviceFaultVendorInfoKHR = vk::DeviceFaultVendorInfoKHR::new;
 	let _: fn(
 		vk::DeviceFaultVendorInfoKHR,
 		[std::ffi::c_char; vk::MAX_DESCRIPTION_SIZE as usize],
@@ -26903,7 +33978,11 @@ fn vk_device_fault_vendor_info_khr_construction_contract() {
 
 #[test]
 fn vk_device_fault_info_khr_construction_contract() {
+	let _: fn() -> vk::DeviceFaultInfoKHR<'static> = vk::DeviceFaultInfoKHR::new;
 	let value = vk::DeviceFaultInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::DEVICE_FAULT_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceFaultInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::DEVICE_FAULT_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -26932,7 +34011,11 @@ fn vk_device_fault_info_khr_construction_contract() {
 
 #[test]
 fn vk_device_fault_debug_info_khr_construction_contract() {
+	let _: fn() -> vk::DeviceFaultDebugInfoKHR<'static> = vk::DeviceFaultDebugInfoKHR::new;
 	let value = vk::DeviceFaultDebugInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::DEVICE_FAULT_DEBUG_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceFaultDebugInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::DEVICE_FAULT_DEBUG_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::DeviceFaultDebugInfoKHR<'static>, u32) -> vk::DeviceFaultDebugInfoKHR<'static> =
@@ -26946,7 +34029,11 @@ fn vk_device_fault_debug_info_khr_construction_contract() {
 
 #[test]
 fn vk_device_fault_counts_ext_construction_contract() {
+	let _: fn() -> vk::DeviceFaultCountsEXT<'static> = vk::DeviceFaultCountsEXT::new;
 	let value = vk::DeviceFaultCountsEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::DEVICE_FAULT_COUNTS_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceFaultCountsEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::DEVICE_FAULT_COUNTS_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::DeviceFaultCountsEXT<'static>, u32) -> vk::DeviceFaultCountsEXT<'static> =
@@ -26961,7 +34048,11 @@ fn vk_device_fault_counts_ext_construction_contract() {
 
 #[test]
 fn vk_device_fault_info_ext_construction_contract() {
+	let _: fn() -> vk::DeviceFaultInfoEXT<'static> = vk::DeviceFaultInfoEXT::new;
 	let value = vk::DeviceFaultInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::DEVICE_FAULT_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceFaultInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::DEVICE_FAULT_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -26981,6 +34072,8 @@ fn vk_device_fault_info_ext_construction_contract() {
 
 #[test]
 fn vk_device_fault_vendor_binary_header_version_one_khr_construction_contract() {
+	let _: fn() -> vk::DeviceFaultVendorBinaryHeaderVersionOneKHR =
+		vk::DeviceFaultVendorBinaryHeaderVersionOneKHR::new;
 	let _: fn(
 		vk::DeviceFaultVendorBinaryHeaderVersionOneKHR,
 		u32,
@@ -27040,7 +34133,15 @@ fn vk_device_fault_vendor_binary_header_version_one_khr_construction_contract() 
 
 #[test]
 fn vk_physical_device_fault_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFaultFeaturesKHR<'static> =
+		vk::PhysicalDeviceFaultFeaturesKHR::new;
 	let value = vk::PhysicalDeviceFaultFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FAULT_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFaultFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FAULT_FEATURES_KHR
@@ -27070,7 +34171,15 @@ fn vk_physical_device_fault_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_fault_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFaultPropertiesKHR<'static> =
+		vk::PhysicalDeviceFaultPropertiesKHR::new;
 	let value = vk::PhysicalDeviceFaultPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FAULT_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFaultPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FAULT_PROPERTIES_KHR
@@ -27085,7 +34194,15 @@ fn vk_physical_device_fault_properties_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_pipeline_library_group_handles_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePipelineLibraryGroupHandlesFeaturesKHR<'static> =
+		vk::PhysicalDevicePipelineLibraryGroupHandlesFeaturesKHR::new;
 	let value = vk::PhysicalDevicePipelineLibraryGroupHandlesFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_LIBRARY_GROUP_HANDLES_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePipelineLibraryGroupHandlesFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_LIBRARY_GROUP_HANDLES_FEATURES_KHR
@@ -27100,7 +34217,11 @@ fn vk_physical_device_pipeline_library_group_handles_features_khr_construction_c
 
 #[test]
 fn vk_depth_bias_info_ext_construction_contract() {
+	let _: fn() -> vk::DepthBiasInfoEXT<'static> = vk::DepthBiasInfoEXT::new;
 	let value = vk::DepthBiasInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::DEPTH_BIAS_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::DepthBiasInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::DEPTH_BIAS_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::DepthBiasInfoEXT<'static>, f32) -> vk::DepthBiasInfoEXT<'static> =
@@ -27113,7 +34234,15 @@ fn vk_depth_bias_info_ext_construction_contract() {
 
 #[test]
 fn vk_depth_bias_representation_info_ext_construction_contract() {
+	let _: fn() -> vk::DepthBiasRepresentationInfoEXT<'static> =
+		vk::DepthBiasRepresentationInfoEXT::new;
 	let value = vk::DepthBiasRepresentationInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEPTH_BIAS_REPRESENTATION_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DepthBiasRepresentationInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEPTH_BIAS_REPRESENTATION_INFO_EXT
@@ -27133,6 +34262,7 @@ fn vk_depth_bias_representation_info_ext_construction_contract() {
 
 #[test]
 fn vk_decompress_memory_region_nv_construction_contract() {
+	let _: fn() -> vk::DecompressMemoryRegionNV = vk::DecompressMemoryRegionNV::new;
 	let _: fn(vk::DecompressMemoryRegionNV, vk::DeviceAddress) -> vk::DecompressMemoryRegionNV =
 		vk::DecompressMemoryRegionNV::set_src_address;
 	let _: fn(vk::DecompressMemoryRegionNV, vk::DeviceAddress) -> vk::DecompressMemoryRegionNV =
@@ -27149,6 +34279,7 @@ fn vk_decompress_memory_region_nv_construction_contract() {
 
 #[test]
 fn vk_decompress_memory_region_ext_construction_contract() {
+	let _: fn() -> vk::DecompressMemoryRegionEXT = vk::DecompressMemoryRegionEXT::new;
 	let _: fn(vk::DecompressMemoryRegionEXT, vk::DeviceAddress) -> vk::DecompressMemoryRegionEXT =
 		vk::DecompressMemoryRegionEXT::set_src_address;
 	let _: fn(vk::DecompressMemoryRegionEXT, vk::DeviceAddress) -> vk::DecompressMemoryRegionEXT =
@@ -27161,7 +34292,11 @@ fn vk_decompress_memory_region_ext_construction_contract() {
 
 #[test]
 fn vk_decompress_memory_info_ext_construction_contract() {
+	let _: fn() -> vk::DecompressMemoryInfoEXT<'static> = vk::DecompressMemoryInfoEXT::new;
 	let value = vk::DecompressMemoryInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::DECOMPRESS_MEMORY_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::DecompressMemoryInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::DECOMPRESS_MEMORY_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -27179,7 +34314,15 @@ fn vk_decompress_memory_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_core_builtins_properties_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderCoreBuiltinsPropertiesARM<'static> =
+		vk::PhysicalDeviceShaderCoreBuiltinsPropertiesARM::new;
 	let value = vk::PhysicalDeviceShaderCoreBuiltinsPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_BUILTINS_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderCoreBuiltinsPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_BUILTINS_PROPERTIES_ARM
@@ -27204,7 +34347,15 @@ fn vk_physical_device_shader_core_builtins_properties_arm_construction_contract(
 
 #[test]
 fn vk_physical_device_shader_core_builtins_features_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderCoreBuiltinsFeaturesARM<'static> =
+		vk::PhysicalDeviceShaderCoreBuiltinsFeaturesARM::new;
 	let value = vk::PhysicalDeviceShaderCoreBuiltinsFeaturesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_BUILTINS_FEATURES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderCoreBuiltinsFeaturesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_BUILTINS_FEATURES_ARM
@@ -27219,7 +34370,11 @@ fn vk_physical_device_shader_core_builtins_features_arm_construction_contract() 
 
 #[test]
 fn vk_frame_boundary_ext_construction_contract() {
+	let _: fn() -> vk::FrameBoundaryEXT<'static> = vk::FrameBoundaryEXT::new;
 	let value = vk::FrameBoundaryEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::FRAME_BOUNDARY_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::FrameBoundaryEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::FRAME_BOUNDARY_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -27255,7 +34410,15 @@ fn vk_frame_boundary_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_frame_boundary_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFrameBoundaryFeaturesEXT<'static> =
+		vk::PhysicalDeviceFrameBoundaryFeaturesEXT::new;
 	let value = vk::PhysicalDeviceFrameBoundaryFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFrameBoundaryFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAME_BOUNDARY_FEATURES_EXT
@@ -27270,7 +34433,15 @@ fn vk_physical_device_frame_boundary_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_dynamic_rendering_unused_attachments_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT<'static> =
+		vk::PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT::new;
 	let value = vk::PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DYNAMIC_RENDERING_UNUSED_ATTACHMENTS_FEATURES_EXT
@@ -27281,7 +34452,15 @@ fn vk_physical_device_dynamic_rendering_unused_attachments_features_ext_construc
 
 #[test]
 fn vk_physical_device_internally_synchronized_queues_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR<'static> =
+		vk::PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR::new;
 	let value = vk::PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceInternallySynchronizedQueuesFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_INTERNALLY_SYNCHRONIZED_QUEUES_FEATURES_KHR
@@ -27296,7 +34475,11 @@ fn vk_physical_device_internally_synchronized_queues_features_khr_construction_c
 
 #[test]
 fn vk_surface_present_mode_khr_construction_contract() {
+	let _: fn() -> vk::SurfacePresentModeKHR<'static> = vk::SurfacePresentModeKHR::new;
 	let value = vk::SurfacePresentModeKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::SURFACE_PRESENT_MODE_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::SurfacePresentModeKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::SURFACE_PRESENT_MODE_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -27307,7 +34490,15 @@ fn vk_surface_present_mode_khr_construction_contract() {
 
 #[test]
 fn vk_surface_present_scaling_capabilities_khr_construction_contract() {
+	let _: fn() -> vk::SurfacePresentScalingCapabilitiesKHR<'static> =
+		vk::SurfacePresentScalingCapabilitiesKHR::new;
 	let value = vk::SurfacePresentScalingCapabilitiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SURFACE_PRESENT_SCALING_CAPABILITIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SurfacePresentScalingCapabilitiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SURFACE_PRESENT_SCALING_CAPABILITIES_KHR
@@ -27342,7 +34533,15 @@ fn vk_surface_present_scaling_capabilities_khr_construction_contract() {
 
 #[test]
 fn vk_surface_present_mode_compatibility_khr_construction_contract() {
+	let _: fn() -> vk::SurfacePresentModeCompatibilityKHR<'static> =
+		vk::SurfacePresentModeCompatibilityKHR::new;
 	let value = vk::SurfacePresentModeCompatibilityKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SURFACE_PRESENT_MODE_COMPATIBILITY_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SurfacePresentModeCompatibilityKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SURFACE_PRESENT_MODE_COMPATIBILITY_KHR
@@ -27364,7 +34563,15 @@ fn vk_surface_present_mode_compatibility_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_swapchain_maintenance1_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSwapchainMaintenance1FeaturesKHR<'static> =
+		vk::PhysicalDeviceSwapchainMaintenance1FeaturesKHR::new;
 	let value = vk::PhysicalDeviceSwapchainMaintenance1FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSwapchainMaintenance1FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SWAPCHAIN_MAINTENANCE_1_FEATURES_KHR
@@ -27379,7 +34586,14 @@ fn vk_physical_device_swapchain_maintenance1_features_khr_construction_contract(
 
 #[test]
 fn vk_swapchain_present_fence_info_khr_construction_contract() {
+	let _: fn() -> vk::SwapchainPresentFenceInfoKHR<'static> = vk::SwapchainPresentFenceInfoKHR::new;
 	let value = vk::SwapchainPresentFenceInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SWAPCHAIN_PRESENT_FENCE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SwapchainPresentFenceInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SWAPCHAIN_PRESENT_FENCE_INFO_KHR
@@ -27401,7 +34615,15 @@ fn vk_swapchain_present_fence_info_khr_construction_contract() {
 
 #[test]
 fn vk_swapchain_present_modes_create_info_khr_construction_contract() {
+	let _: fn() -> vk::SwapchainPresentModesCreateInfoKHR<'static> =
+		vk::SwapchainPresentModesCreateInfoKHR::new;
 	let value = vk::SwapchainPresentModesCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SWAPCHAIN_PRESENT_MODES_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SwapchainPresentModesCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SWAPCHAIN_PRESENT_MODES_CREATE_INFO_KHR
@@ -27423,7 +34645,14 @@ fn vk_swapchain_present_modes_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_swapchain_present_mode_info_khr_construction_contract() {
+	let _: fn() -> vk::SwapchainPresentModeInfoKHR<'static> = vk::SwapchainPresentModeInfoKHR::new;
 	let value = vk::SwapchainPresentModeInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SWAPCHAIN_PRESENT_MODE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SwapchainPresentModeInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SWAPCHAIN_PRESENT_MODE_INFO_KHR
@@ -27445,7 +34674,15 @@ fn vk_swapchain_present_mode_info_khr_construction_contract() {
 
 #[test]
 fn vk_swapchain_present_scaling_create_info_khr_construction_contract() {
+	let _: fn() -> vk::SwapchainPresentScalingCreateInfoKHR<'static> =
+		vk::SwapchainPresentScalingCreateInfoKHR::new;
 	let value = vk::SwapchainPresentScalingCreateInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SwapchainPresentScalingCreateInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SWAPCHAIN_PRESENT_SCALING_CREATE_INFO_KHR
@@ -27470,7 +34707,15 @@ fn vk_swapchain_present_scaling_create_info_khr_construction_contract() {
 
 #[test]
 fn vk_release_swapchain_images_info_khr_construction_contract() {
+	let _: fn() -> vk::ReleaseSwapchainImagesInfoKHR<'static> =
+		vk::ReleaseSwapchainImagesInfoKHR::new;
 	let value = vk::ReleaseSwapchainImagesInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RELEASE_SWAPCHAIN_IMAGES_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ReleaseSwapchainImagesInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RELEASE_SWAPCHAIN_IMAGES_INFO_KHR
@@ -27496,7 +34741,15 @@ fn vk_release_swapchain_images_info_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_depth_bias_control_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDepthBiasControlFeaturesEXT<'static> =
+		vk::PhysicalDeviceDepthBiasControlFeaturesEXT::new;
 	let value = vk::PhysicalDeviceDepthBiasControlFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DEPTH_BIAS_CONTROL_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDepthBiasControlFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DEPTH_BIAS_CONTROL_FEATURES_EXT
@@ -27522,7 +34775,15 @@ fn vk_physical_device_depth_bias_control_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_ray_tracing_invocation_reorder_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRayTracingInvocationReorderFeaturesEXT<'static> =
+		vk::PhysicalDeviceRayTracingInvocationReorderFeaturesEXT::new;
 	let value = vk::PhysicalDeviceRayTracingInvocationReorderFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRayTracingInvocationReorderFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_EXT
@@ -27537,7 +34798,15 @@ fn vk_physical_device_ray_tracing_invocation_reorder_features_ext_construction_c
 
 #[test]
 fn vk_physical_device_ray_tracing_invocation_reorder_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRayTracingInvocationReorderFeaturesNV<'static> =
+		vk::PhysicalDeviceRayTracingInvocationReorderFeaturesNV::new;
 	let value = vk::PhysicalDeviceRayTracingInvocationReorderFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRayTracingInvocationReorderFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_FEATURES_NV
@@ -27552,7 +34821,15 @@ fn vk_physical_device_ray_tracing_invocation_reorder_features_nv_construction_co
 
 #[test]
 fn vk_physical_device_ray_tracing_invocation_reorder_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRayTracingInvocationReorderPropertiesEXT<'static> =
+		vk::PhysicalDeviceRayTracingInvocationReorderPropertiesEXT::new;
 	let value = vk::PhysicalDeviceRayTracingInvocationReorderPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRayTracingInvocationReorderPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_EXT
@@ -27564,7 +34841,15 @@ fn vk_physical_device_ray_tracing_invocation_reorder_properties_ext_construction
 
 #[test]
 fn vk_physical_device_ray_tracing_invocation_reorder_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRayTracingInvocationReorderPropertiesNV<'static> =
+		vk::PhysicalDeviceRayTracingInvocationReorderPropertiesNV::new;
 	let value = vk::PhysicalDeviceRayTracingInvocationReorderPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRayTracingInvocationReorderPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_INVOCATION_REORDER_PROPERTIES_NV
@@ -27575,7 +34860,15 @@ fn vk_physical_device_ray_tracing_invocation_reorder_properties_nv_construction_
 
 #[test]
 fn vk_physical_device_extended_sparse_address_space_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV<'static> =
+		vk::PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV::new;
 	let value = vk::PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExtendedSparseAddressSpaceFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_FEATURES_NV
@@ -27590,7 +34883,15 @@ fn vk_physical_device_extended_sparse_address_space_features_nv_construction_con
 
 #[test]
 fn vk_physical_device_extended_sparse_address_space_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExtendedSparseAddressSpacePropertiesNV<'static> =
+		vk::PhysicalDeviceExtendedSparseAddressSpacePropertiesNV::new;
 	let value = vk::PhysicalDeviceExtendedSparseAddressSpacePropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExtendedSparseAddressSpacePropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTENDED_SPARSE_ADDRESS_SPACE_PROPERTIES_NV
@@ -27607,7 +34908,15 @@ fn vk_physical_device_extended_sparse_address_space_properties_nv_construction_c
 
 #[test]
 fn vk_direct_driver_loading_info_lunarg_construction_contract() {
+	let _: fn() -> vk::DirectDriverLoadingInfoLUNARG<'static> =
+		vk::DirectDriverLoadingInfoLUNARG::new;
 	let value = vk::DirectDriverLoadingInfoLUNARG::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DIRECT_DRIVER_LOADING_INFO_LUNARG
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DirectDriverLoadingInfoLUNARG::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DIRECT_DRIVER_LOADING_INFO_LUNARG
@@ -27626,7 +34935,15 @@ fn vk_direct_driver_loading_info_lunarg_construction_contract() {
 
 #[test]
 fn vk_direct_driver_loading_list_lunarg_construction_contract() {
+	let _: fn() -> vk::DirectDriverLoadingListLUNARG<'static> =
+		vk::DirectDriverLoadingListLUNARG::new;
 	let value = vk::DirectDriverLoadingListLUNARG::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DIRECT_DRIVER_LOADING_LIST_LUNARG
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DirectDriverLoadingListLUNARG::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DIRECT_DRIVER_LOADING_LIST_LUNARG
@@ -27652,7 +34969,15 @@ fn vk_direct_driver_loading_list_lunarg_construction_contract() {
 
 #[test]
 fn vk_physical_device_multiview_per_view_viewports_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM<'static> =
+		vk::PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM::new;
 	let value = vk::PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_VIEWPORTS_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_VIEWPORTS_FEATURES_QCOM
@@ -27667,7 +34992,15 @@ fn vk_physical_device_multiview_per_view_viewports_features_qcom_construction_co
 
 #[test]
 fn vk_physical_device_ray_tracing_position_fetch_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRayTracingPositionFetchFeaturesKHR<'static> =
+		vk::PhysicalDeviceRayTracingPositionFetchFeaturesKHR::new;
 	let value = vk::PhysicalDeviceRayTracingPositionFetchFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_POSITION_FETCH_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRayTracingPositionFetchFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RAY_TRACING_POSITION_FETCH_FEATURES_KHR
@@ -27682,7 +35015,14 @@ fn vk_physical_device_ray_tracing_position_fetch_features_khr_construction_contr
 
 #[test]
 fn vk_device_image_subresource_info_construction_contract() {
+	let _: fn() -> vk::DeviceImageSubresourceInfo<'static> = vk::DeviceImageSubresourceInfo::new;
 	let value = vk::DeviceImageSubresourceInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_IMAGE_SUBRESOURCE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceImageSubresourceInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_IMAGE_SUBRESOURCE_INFO
@@ -27700,7 +35040,15 @@ fn vk_device_image_subresource_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_core_properties_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderCorePropertiesARM<'static> =
+		vk::PhysicalDeviceShaderCorePropertiesARM::new;
 	let value = vk::PhysicalDeviceShaderCorePropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderCorePropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_ARM
@@ -27725,7 +35073,15 @@ fn vk_physical_device_shader_core_properties_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_multiview_per_view_render_areas_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM<'static> =
+		vk::PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM::new;
 	let value = vk::PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_RENDER_AREAS_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_RENDER_AREAS_FEATURES_QCOM
@@ -27740,7 +35096,15 @@ fn vk_physical_device_multiview_per_view_render_areas_features_qcom_construction
 
 #[test]
 fn vk_multiview_per_view_render_areas_render_pass_begin_info_qcom_construction_contract() {
+	let _: fn() -> vk::MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM<'static> =
+		vk::MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM::new;
 	let value = vk::MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MULTIVIEW_PER_VIEW_RENDER_AREAS_RENDER_PASS_BEGIN_INFO_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MULTIVIEW_PER_VIEW_RENDER_AREAS_RENDER_PASS_BEGIN_INFO_QCOM
@@ -27762,7 +35126,14 @@ fn vk_multiview_per_view_render_areas_render_pass_begin_info_qcom_construction_c
 
 #[test]
 fn vk_query_low_latency_support_nv_construction_contract() {
+	let _: fn() -> vk::QueryLowLatencySupportNV<'static> = vk::QueryLowLatencySupportNV::new;
 	let value = vk::QueryLowLatencySupportNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUERY_LOW_LATENCY_SUPPORT_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueryLowLatencySupportNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUERY_LOW_LATENCY_SUPPORT_NV
@@ -27777,7 +35148,11 @@ fn vk_query_low_latency_support_nv_construction_contract() {
 
 #[test]
 fn vk_memory_map_info_construction_contract() {
+	let _: fn() -> vk::MemoryMapInfo<'static> = vk::MemoryMapInfo::new;
 	let value = vk::MemoryMapInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::MEMORY_MAP_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryMapInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::MEMORY_MAP_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::MemoryMapInfo<'static>, vk::MemoryMapFlags) -> vk::MemoryMapInfo<'static> =
@@ -27792,7 +35167,11 @@ fn vk_memory_map_info_construction_contract() {
 
 #[test]
 fn vk_memory_unmap_info_construction_contract() {
+	let _: fn() -> vk::MemoryUnmapInfo<'static> = vk::MemoryUnmapInfo::new;
 	let value = vk::MemoryUnmapInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::MEMORY_UNMAP_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryUnmapInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::MEMORY_UNMAP_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::MemoryUnmapInfo<'static>, vk::MemoryUnmapFlags) -> vk::MemoryUnmapInfo<'static> =
@@ -27803,7 +35182,15 @@ fn vk_memory_unmap_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_object_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderObjectFeaturesEXT<'static> =
+		vk::PhysicalDeviceShaderObjectFeaturesEXT::new;
 	let value = vk::PhysicalDeviceShaderObjectFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_OBJECT_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderObjectFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_OBJECT_FEATURES_EXT
@@ -27818,7 +35205,15 @@ fn vk_physical_device_shader_object_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_object_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderObjectPropertiesEXT<'static> =
+		vk::PhysicalDeviceShaderObjectPropertiesEXT::new;
 	let value = vk::PhysicalDeviceShaderObjectPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_OBJECT_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderObjectPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_OBJECT_PROPERTIES_EXT
@@ -27838,7 +35233,11 @@ fn vk_physical_device_shader_object_properties_ext_construction_contract() {
 
 #[test]
 fn vk_shader_create_info_ext_construction_contract() {
+	let _: fn() -> vk::ShaderCreateInfoEXT<'static> = vk::ShaderCreateInfoEXT::new;
 	let value = vk::ShaderCreateInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::SHADER_CREATE_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::ShaderCreateInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::SHADER_CREATE_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -27890,7 +35289,15 @@ fn vk_shader_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_tile_image_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderTileImageFeaturesEXT<'static> =
+		vk::PhysicalDeviceShaderTileImageFeaturesEXT::new;
 	let value = vk::PhysicalDeviceShaderTileImageFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderTileImageFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_FEATURES_EXT
@@ -27915,7 +35322,15 @@ fn vk_physical_device_shader_tile_image_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_tile_image_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderTileImagePropertiesEXT<'static> =
+		vk::PhysicalDeviceShaderTileImagePropertiesEXT::new;
 	let value = vk::PhysicalDeviceShaderTileImagePropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderTileImagePropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_TILE_IMAGE_PROPERTIES_EXT
@@ -27933,7 +35348,14 @@ fn vk_physical_device_shader_tile_image_properties_ext_construction_contract() {
 #[cfg(feature = "platform-screen")]
 #[test]
 fn vk_import_screen_buffer_info_qnx_construction_contract() {
+	let _: fn() -> vk::ImportScreenBufferInfoQNX<'static> = vk::ImportScreenBufferInfoQNX::new;
 	let value = vk::ImportScreenBufferInfoQNX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_SCREEN_BUFFER_INFO_QNX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportScreenBufferInfoQNX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_SCREEN_BUFFER_INFO_QNX
@@ -27948,7 +35370,14 @@ fn vk_import_screen_buffer_info_qnx_construction_contract() {
 #[cfg(feature = "platform-screen")]
 #[test]
 fn vk_screen_buffer_properties_qnx_construction_contract() {
+	let _: fn() -> vk::ScreenBufferPropertiesQNX<'static> = vk::ScreenBufferPropertiesQNX::new;
 	let value = vk::ScreenBufferPropertiesQNX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SCREEN_BUFFER_PROPERTIES_QNX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ScreenBufferPropertiesQNX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SCREEN_BUFFER_PROPERTIES_QNX
@@ -27965,7 +35394,15 @@ fn vk_screen_buffer_properties_qnx_construction_contract() {
 #[cfg(feature = "platform-screen")]
 #[test]
 fn vk_screen_buffer_format_properties_qnx_construction_contract() {
+	let _: fn() -> vk::ScreenBufferFormatPropertiesQNX<'static> =
+		vk::ScreenBufferFormatPropertiesQNX::new;
 	let value = vk::ScreenBufferFormatPropertiesQNX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SCREEN_BUFFER_FORMAT_PROPERTIES_QNX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ScreenBufferFormatPropertiesQNX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SCREEN_BUFFER_FORMAT_PROPERTIES_QNX
@@ -28021,7 +35458,11 @@ fn vk_screen_buffer_format_properties_qnx_construction_contract() {
 #[cfg(feature = "platform-screen")]
 #[test]
 fn vk_external_format_qnx_construction_contract() {
+	let _: fn() -> vk::ExternalFormatQNX<'static> = vk::ExternalFormatQNX::new;
 	let value = vk::ExternalFormatQNX::default();
+	assert_eq!(value.s_type, vk::StructureType::EXTERNAL_FORMAT_QNX);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalFormatQNX::new();
 	assert_eq!(value.s_type, vk::StructureType::EXTERNAL_FORMAT_QNX);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::ExternalFormatQNX<'static>, u64) -> vk::ExternalFormatQNX<'static> =
@@ -28031,7 +35472,15 @@ fn vk_external_format_qnx_construction_contract() {
 #[cfg(feature = "platform-screen")]
 #[test]
 fn vk_physical_device_external_memory_screen_buffer_features_qnx_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX<'static> =
+		vk::PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX::new;
 	let value = vk::PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_SCREEN_BUFFER_FEATURES_QNX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExternalMemoryScreenBufferFeaturesQNX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_MEMORY_SCREEN_BUFFER_FEATURES_QNX
@@ -28046,7 +35495,15 @@ fn vk_physical_device_external_memory_screen_buffer_features_qnx_construction_co
 
 #[test]
 fn vk_physical_device_cooperative_matrix_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCooperativeMatrixFeaturesKHR<'static> =
+		vk::PhysicalDeviceCooperativeMatrixFeaturesKHR::new;
 	let value = vk::PhysicalDeviceCooperativeMatrixFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCooperativeMatrixFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_KHR
@@ -28066,7 +35523,15 @@ fn vk_physical_device_cooperative_matrix_features_khr_construction_contract() {
 
 #[test]
 fn vk_cooperative_matrix_properties_khr_construction_contract() {
+	let _: fn() -> vk::CooperativeMatrixPropertiesKHR<'static> =
+		vk::CooperativeMatrixPropertiesKHR::new;
 	let value = vk::CooperativeMatrixPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COOPERATIVE_MATRIX_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CooperativeMatrixPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COOPERATIVE_MATRIX_PROPERTIES_KHR
@@ -28114,7 +35579,15 @@ fn vk_cooperative_matrix_properties_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_cooperative_matrix_info2_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCooperativeMatrixInfo2EXT<'static> =
+		vk::PhysicalDeviceCooperativeMatrixInfo2EXT::new;
 	let value = vk::PhysicalDeviceCooperativeMatrixInfo2EXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_INFO_2_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCooperativeMatrixInfo2EXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_INFO_2_EXT
@@ -28144,7 +35617,15 @@ fn vk_physical_device_cooperative_matrix_info2_ext_construction_contract() {
 
 #[test]
 fn vk_cooperative_matrix_properties2_ext_construction_contract() {
+	let _: fn() -> vk::CooperativeMatrixProperties2EXT<'static> =
+		vk::CooperativeMatrixProperties2EXT::new;
 	let value = vk::CooperativeMatrixProperties2EXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COOPERATIVE_MATRIX_PROPERTIES_2_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CooperativeMatrixProperties2EXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COOPERATIVE_MATRIX_PROPERTIES_2_EXT
@@ -28189,7 +35670,15 @@ fn vk_cooperative_matrix_properties2_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_cooperative_matrix_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCooperativeMatrixPropertiesKHR<'static> =
+		vk::PhysicalDeviceCooperativeMatrixPropertiesKHR::new;
 	let value = vk::PhysicalDeviceCooperativeMatrixPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCooperativeMatrixPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_KHR
@@ -28204,7 +35693,15 @@ fn vk_physical_device_cooperative_matrix_properties_khr_construction_contract() 
 
 #[test]
 fn vk_physical_device_cooperative_matrix_conversion_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM<'static> =
+		vk::PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM::new;
 	let value = vk::PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_CONVERSION_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCooperativeMatrixConversionFeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_CONVERSION_FEATURES_QCOM
@@ -28220,7 +35717,15 @@ fn vk_physical_device_cooperative_matrix_conversion_features_qcom_construction_c
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_physical_device_shader_enqueue_properties_amdx_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderEnqueuePropertiesAMDX<'static> =
+		vk::PhysicalDeviceShaderEnqueuePropertiesAMDX::new;
 	let value = vk::PhysicalDeviceShaderEnqueuePropertiesAMDX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_PROPERTIES_AMDX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderEnqueuePropertiesAMDX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_PROPERTIES_AMDX
@@ -28266,7 +35771,15 @@ fn vk_physical_device_shader_enqueue_properties_amdx_construction_contract() {
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_physical_device_shader_enqueue_features_amdx_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderEnqueueFeaturesAMDX<'static> =
+		vk::PhysicalDeviceShaderEnqueueFeaturesAMDX::new;
 	let value = vk::PhysicalDeviceShaderEnqueueFeaturesAMDX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_FEATURES_AMDX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderEnqueueFeaturesAMDX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_ENQUEUE_FEATURES_AMDX
@@ -28287,7 +35800,15 @@ fn vk_physical_device_shader_enqueue_features_amdx_construction_contract() {
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_execution_graph_pipeline_create_info_amdx_construction_contract() {
+	let _: fn() -> vk::ExecutionGraphPipelineCreateInfoAMDX<'static> =
+		vk::ExecutionGraphPipelineCreateInfoAMDX::new;
 	let value = vk::ExecutionGraphPipelineCreateInfoAMDX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXECUTION_GRAPH_PIPELINE_CREATE_INFO_AMDX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExecutionGraphPipelineCreateInfoAMDX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXECUTION_GRAPH_PIPELINE_CREATE_INFO_AMDX
@@ -28335,7 +35856,15 @@ fn vk_execution_graph_pipeline_create_info_amdx_construction_contract() {
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_pipeline_shader_stage_node_create_info_amdx_construction_contract() {
+	let _: fn() -> vk::PipelineShaderStageNodeCreateInfoAMDX<'static> =
+		vk::PipelineShaderStageNodeCreateInfoAMDX::new;
 	let value = vk::PipelineShaderStageNodeCreateInfoAMDX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_SHADER_STAGE_NODE_CREATE_INFO_AMDX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineShaderStageNodeCreateInfoAMDX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_SHADER_STAGE_NODE_CREATE_INFO_AMDX
@@ -28356,7 +35885,15 @@ fn vk_pipeline_shader_stage_node_create_info_amdx_construction_contract() {
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_execution_graph_pipeline_scratch_size_amdx_construction_contract() {
+	let _: fn() -> vk::ExecutionGraphPipelineScratchSizeAMDX<'static> =
+		vk::ExecutionGraphPipelineScratchSizeAMDX::new;
 	let value = vk::ExecutionGraphPipelineScratchSizeAMDX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXECUTION_GRAPH_PIPELINE_SCRATCH_SIZE_AMDX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExecutionGraphPipelineScratchSizeAMDX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXECUTION_GRAPH_PIPELINE_SCRATCH_SIZE_AMDX
@@ -28382,6 +35919,7 @@ fn vk_execution_graph_pipeline_scratch_size_amdx_construction_contract() {
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_dispatch_graph_info_amdx_construction_contract() {
+	let _: fn() -> vk::DispatchGraphInfoAMDX = vk::DispatchGraphInfoAMDX::new;
 	let _: fn(vk::DispatchGraphInfoAMDX, u32) -> vk::DispatchGraphInfoAMDX =
 		vk::DispatchGraphInfoAMDX::set_node_index;
 	let _: fn(vk::DispatchGraphInfoAMDX, u32) -> vk::DispatchGraphInfoAMDX =
@@ -28397,6 +35935,7 @@ fn vk_dispatch_graph_info_amdx_construction_contract() {
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_dispatch_graph_count_info_amdx_construction_contract() {
+	let _: fn() -> vk::DispatchGraphCountInfoAMDX = vk::DispatchGraphCountInfoAMDX::new;
 	let _: fn(vk::DispatchGraphCountInfoAMDX, u32) -> vk::DispatchGraphCountInfoAMDX =
 		vk::DispatchGraphCountInfoAMDX::set_count;
 	let _: fn(
@@ -28409,7 +35948,15 @@ fn vk_dispatch_graph_count_info_amdx_construction_contract() {
 
 #[test]
 fn vk_physical_device_anti_lag_features_amd_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceAntiLagFeaturesAMD<'static> =
+		vk::PhysicalDeviceAntiLagFeaturesAMD::new;
 	let value = vk::PhysicalDeviceAntiLagFeaturesAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_ANTI_LAG_FEATURES_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceAntiLagFeaturesAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_ANTI_LAG_FEATURES_AMD
@@ -28424,7 +35971,11 @@ fn vk_physical_device_anti_lag_features_amd_construction_contract() {
 
 #[test]
 fn vk_anti_lag_data_amd_construction_contract() {
+	let _: fn() -> vk::AntiLagDataAMD<'static> = vk::AntiLagDataAMD::new;
 	let value = vk::AntiLagDataAMD::default();
+	assert_eq!(value.s_type, vk::StructureType::ANTI_LAG_DATA_AMD);
+	assert!(value.p_next.is_null());
+	let value = vk::AntiLagDataAMD::new();
 	assert_eq!(value.s_type, vk::StructureType::ANTI_LAG_DATA_AMD);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::AntiLagDataAMD<'static>, vk::AntiLagModeAMD) -> vk::AntiLagDataAMD<'static> =
@@ -28439,7 +35990,14 @@ fn vk_anti_lag_data_amd_construction_contract() {
 
 #[test]
 fn vk_anti_lag_presentation_info_amd_construction_contract() {
+	let _: fn() -> vk::AntiLagPresentationInfoAMD<'static> = vk::AntiLagPresentationInfoAMD::new;
 	let value = vk::AntiLagPresentationInfoAMD::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ANTI_LAG_PRESENTATION_INFO_AMD
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AntiLagPresentationInfoAMD::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ANTI_LAG_PRESENTATION_INFO_AMD
@@ -28457,7 +36015,11 @@ fn vk_anti_lag_presentation_info_amd_construction_contract() {
 
 #[test]
 fn vk_bind_memory_status_construction_contract() {
+	let _: fn() -> vk::BindMemoryStatus<'static> = vk::BindMemoryStatus::new;
 	let value = vk::BindMemoryStatus::default();
+	assert_eq!(value.s_type, vk::StructureType::BIND_MEMORY_STATUS);
+	assert!(value.p_next.is_null());
+	let value = vk::BindMemoryStatus::new();
 	assert_eq!(value.s_type, vk::StructureType::BIND_MEMORY_STATUS);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -28468,7 +36030,15 @@ fn vk_bind_memory_status_construction_contract() {
 
 #[test]
 fn vk_physical_device_tile_memory_heap_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceTileMemoryHeapFeaturesQCOM<'static> =
+		vk::PhysicalDeviceTileMemoryHeapFeaturesQCOM::new;
 	let value = vk::PhysicalDeviceTileMemoryHeapFeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceTileMemoryHeapFeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_FEATURES_QCOM
@@ -28483,7 +36053,15 @@ fn vk_physical_device_tile_memory_heap_features_qcom_construction_contract() {
 
 #[test]
 fn vk_physical_device_tile_memory_heap_properties_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceTileMemoryHeapPropertiesQCOM<'static> =
+		vk::PhysicalDeviceTileMemoryHeapPropertiesQCOM::new;
 	let value = vk::PhysicalDeviceTileMemoryHeapPropertiesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_PROPERTIES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceTileMemoryHeapPropertiesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TILE_MEMORY_HEAP_PROPERTIES_QCOM
@@ -28503,7 +36081,11 @@ fn vk_physical_device_tile_memory_heap_properties_qcom_construction_contract() {
 
 #[test]
 fn vk_tile_memory_size_info_qcom_construction_contract() {
+	let _: fn() -> vk::TileMemorySizeInfoQCOM<'static> = vk::TileMemorySizeInfoQCOM::new;
 	let value = vk::TileMemorySizeInfoQCOM::default();
+	assert_eq!(value.s_type, vk::StructureType::TILE_MEMORY_SIZE_INFO_QCOM);
+	assert!(value.p_next.is_null());
+	let value = vk::TileMemorySizeInfoQCOM::new();
 	assert_eq!(value.s_type, vk::StructureType::TILE_MEMORY_SIZE_INFO_QCOM);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -28514,7 +36096,14 @@ fn vk_tile_memory_size_info_qcom_construction_contract() {
 
 #[test]
 fn vk_tile_memory_requirements_qcom_construction_contract() {
+	let _: fn() -> vk::TileMemoryRequirementsQCOM<'static> = vk::TileMemoryRequirementsQCOM::new;
 	let value = vk::TileMemoryRequirementsQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::TILE_MEMORY_REQUIREMENTS_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::TileMemoryRequirementsQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::TILE_MEMORY_REQUIREMENTS_QCOM
@@ -28532,7 +36121,11 @@ fn vk_tile_memory_requirements_qcom_construction_contract() {
 
 #[test]
 fn vk_bind_descriptor_sets_info_construction_contract() {
+	let _: fn() -> vk::BindDescriptorSetsInfo<'static> = vk::BindDescriptorSetsInfo::new;
 	let value = vk::BindDescriptorSetsInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::BIND_DESCRIPTOR_SETS_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::BindDescriptorSetsInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::BIND_DESCRIPTOR_SETS_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -28563,7 +36156,11 @@ fn vk_bind_descriptor_sets_info_construction_contract() {
 
 #[test]
 fn vk_push_constants_info_construction_contract() {
+	let _: fn() -> vk::PushConstantsInfo<'static> = vk::PushConstantsInfo::new;
 	let value = vk::PushConstantsInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::PUSH_CONSTANTS_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::PushConstantsInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::PUSH_CONSTANTS_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::PushConstantsInfo<'static>, vk::PipelineLayout) -> vk::PushConstantsInfo<'static> =
@@ -28585,7 +36182,11 @@ fn vk_push_constants_info_construction_contract() {
 
 #[test]
 fn vk_push_descriptor_set_info_construction_contract() {
+	let _: fn() -> vk::PushDescriptorSetInfo<'static> = vk::PushDescriptorSetInfo::new;
 	let value = vk::PushDescriptorSetInfo::default();
+	assert_eq!(value.s_type, vk::StructureType::PUSH_DESCRIPTOR_SET_INFO);
+	assert!(value.p_next.is_null());
+	let value = vk::PushDescriptorSetInfo::new();
 	assert_eq!(value.s_type, vk::StructureType::PUSH_DESCRIPTOR_SET_INFO);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -28609,7 +36210,15 @@ fn vk_push_descriptor_set_info_construction_contract() {
 
 #[test]
 fn vk_push_descriptor_set_with_template_info_construction_contract() {
+	let _: fn() -> vk::PushDescriptorSetWithTemplateInfo<'static> =
+		vk::PushDescriptorSetWithTemplateInfo::new;
 	let value = vk::PushDescriptorSetWithTemplateInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PUSH_DESCRIPTOR_SET_WITH_TEMPLATE_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PushDescriptorSetWithTemplateInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PUSH_DESCRIPTOR_SET_WITH_TEMPLATE_INFO
@@ -28639,7 +36248,15 @@ fn vk_push_descriptor_set_with_template_info_construction_contract() {
 
 #[test]
 fn vk_set_descriptor_buffer_offsets_info_ext_construction_contract() {
+	let _: fn() -> vk::SetDescriptorBufferOffsetsInfoEXT<'static> =
+		vk::SetDescriptorBufferOffsetsInfoEXT::new;
 	let value = vk::SetDescriptorBufferOffsetsInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SET_DESCRIPTOR_BUFFER_OFFSETS_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SetDescriptorBufferOffsetsInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SET_DESCRIPTOR_BUFFER_OFFSETS_INFO_EXT
@@ -28678,7 +36295,15 @@ fn vk_set_descriptor_buffer_offsets_info_ext_construction_contract() {
 
 #[test]
 fn vk_bind_descriptor_buffer_embedded_samplers_info_ext_construction_contract() {
+	let _: fn() -> vk::BindDescriptorBufferEmbeddedSamplersInfoEXT<'static> =
+		vk::BindDescriptorBufferEmbeddedSamplersInfoEXT::new;
 	let value = vk::BindDescriptorBufferEmbeddedSamplersInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BIND_DESCRIPTOR_BUFFER_EMBEDDED_SAMPLERS_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BindDescriptorBufferEmbeddedSamplersInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BIND_DESCRIPTOR_BUFFER_EMBEDDED_SAMPLERS_INFO_EXT
@@ -28703,7 +36328,15 @@ fn vk_bind_descriptor_buffer_embedded_samplers_info_ext_construction_contract() 
 
 #[test]
 fn vk_physical_device_cubic_clamp_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCubicClampFeaturesQCOM<'static> =
+		vk::PhysicalDeviceCubicClampFeaturesQCOM::new;
 	let value = vk::PhysicalDeviceCubicClampFeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCubicClampFeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_CUBIC_CLAMP_FEATURES_QCOM
@@ -28718,7 +36351,15 @@ fn vk_physical_device_cubic_clamp_features_qcom_construction_contract() {
 
 #[test]
 fn vk_physical_device_ycbcr_degamma_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceYcbcrDegammaFeaturesQCOM<'static> =
+		vk::PhysicalDeviceYcbcrDegammaFeaturesQCOM::new;
 	let value = vk::PhysicalDeviceYcbcrDegammaFeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_YCBCR_DEGAMMA_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceYcbcrDegammaFeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_YCBCR_DEGAMMA_FEATURES_QCOM
@@ -28733,7 +36374,15 @@ fn vk_physical_device_ycbcr_degamma_features_qcom_construction_contract() {
 
 #[test]
 fn vk_sampler_ycbcr_conversion_ycbcr_degamma_create_info_qcom_construction_contract() {
+	let _: fn() -> vk::SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM<'static> =
+		vk::SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM::new;
 	let value = vk::SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SAMPLER_YCBCR_CONVERSION_YCBCR_DEGAMMA_CREATE_INFO_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SamplerYcbcrConversionYcbcrDegammaCreateInfoQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SAMPLER_YCBCR_CONVERSION_YCBCR_DEGAMMA_CREATE_INFO_QCOM
@@ -28753,7 +36402,15 @@ fn vk_sampler_ycbcr_conversion_ycbcr_degamma_create_info_qcom_construction_contr
 
 #[test]
 fn vk_physical_device_cubic_weights_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCubicWeightsFeaturesQCOM<'static> =
+		vk::PhysicalDeviceCubicWeightsFeaturesQCOM::new;
 	let value = vk::PhysicalDeviceCubicWeightsFeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_CUBIC_WEIGHTS_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCubicWeightsFeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_CUBIC_WEIGHTS_FEATURES_QCOM
@@ -28768,7 +36425,15 @@ fn vk_physical_device_cubic_weights_features_qcom_construction_contract() {
 
 #[test]
 fn vk_sampler_cubic_weights_create_info_qcom_construction_contract() {
+	let _: fn() -> vk::SamplerCubicWeightsCreateInfoQCOM<'static> =
+		vk::SamplerCubicWeightsCreateInfoQCOM::new;
 	let value = vk::SamplerCubicWeightsCreateInfoQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SAMPLER_CUBIC_WEIGHTS_CREATE_INFO_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SamplerCubicWeightsCreateInfoQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SAMPLER_CUBIC_WEIGHTS_CREATE_INFO_QCOM
@@ -28783,7 +36448,15 @@ fn vk_sampler_cubic_weights_create_info_qcom_construction_contract() {
 
 #[test]
 fn vk_blit_image_cubic_weights_info_qcom_construction_contract() {
+	let _: fn() -> vk::BlitImageCubicWeightsInfoQCOM<'static> =
+		vk::BlitImageCubicWeightsInfoQCOM::new;
 	let value = vk::BlitImageCubicWeightsInfoQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BLIT_IMAGE_CUBIC_WEIGHTS_INFO_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BlitImageCubicWeightsInfoQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BLIT_IMAGE_CUBIC_WEIGHTS_INFO_QCOM
@@ -28798,7 +36471,15 @@ fn vk_blit_image_cubic_weights_info_qcom_construction_contract() {
 
 #[test]
 fn vk_physical_device_image_processing2_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageProcessing2FeaturesQCOM<'static> =
+		vk::PhysicalDeviceImageProcessing2FeaturesQCOM::new;
 	let value = vk::PhysicalDeviceImageProcessing2FeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageProcessing2FeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_FEATURES_QCOM
@@ -28813,7 +36494,15 @@ fn vk_physical_device_image_processing2_features_qcom_construction_contract() {
 
 #[test]
 fn vk_physical_device_image_processing2_properties_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageProcessing2PropertiesQCOM<'static> =
+		vk::PhysicalDeviceImageProcessing2PropertiesQCOM::new;
 	let value = vk::PhysicalDeviceImageProcessing2PropertiesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_PROPERTIES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageProcessing2PropertiesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_2_PROPERTIES_QCOM
@@ -28828,7 +36517,15 @@ fn vk_physical_device_image_processing2_properties_qcom_construction_contract() 
 
 #[test]
 fn vk_sampler_block_match_window_create_info_qcom_construction_contract() {
+	let _: fn() -> vk::SamplerBlockMatchWindowCreateInfoQCOM<'static> =
+		vk::SamplerBlockMatchWindowCreateInfoQCOM::new;
 	let value = vk::SamplerBlockMatchWindowCreateInfoQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SAMPLER_BLOCK_MATCH_WINDOW_CREATE_INFO_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SamplerBlockMatchWindowCreateInfoQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SAMPLER_BLOCK_MATCH_WINDOW_CREATE_INFO_QCOM
@@ -28848,7 +36545,15 @@ fn vk_sampler_block_match_window_create_info_qcom_construction_contract() {
 
 #[test]
 fn vk_physical_device_image_processing3_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageProcessing3FeaturesQCOM<'static> =
+		vk::PhysicalDeviceImageProcessing3FeaturesQCOM::new;
 	let value = vk::PhysicalDeviceImageProcessing3FeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_3_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageProcessing3FeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_PROCESSING_3_FEATURES_QCOM
@@ -28873,7 +36578,15 @@ fn vk_physical_device_image_processing3_features_qcom_construction_contract() {
 
 #[test]
 fn vk_physical_device_descriptor_pool_overallocation_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDescriptorPoolOverallocationFeaturesNV<'static> =
+		vk::PhysicalDeviceDescriptorPoolOverallocationFeaturesNV::new;
 	let value = vk::PhysicalDeviceDescriptorPoolOverallocationFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_POOL_OVERALLOCATION_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDescriptorPoolOverallocationFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_POOL_OVERALLOCATION_FEATURES_NV
@@ -28888,7 +36601,15 @@ fn vk_physical_device_descriptor_pool_overallocation_features_nv_construction_co
 
 #[test]
 fn vk_physical_device_layered_driver_properties_msft_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceLayeredDriverPropertiesMSFT<'static> =
+		vk::PhysicalDeviceLayeredDriverPropertiesMSFT::new;
 	let value = vk::PhysicalDeviceLayeredDriverPropertiesMSFT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceLayeredDriverPropertiesMSFT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_LAYERED_DRIVER_PROPERTIES_MSFT
@@ -28903,7 +36624,15 @@ fn vk_physical_device_layered_driver_properties_msft_construction_contract() {
 
 #[test]
 fn vk_physical_device_per_stage_descriptor_set_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePerStageDescriptorSetFeaturesNV<'static> =
+		vk::PhysicalDevicePerStageDescriptorSetFeaturesNV::new;
 	let value = vk::PhysicalDevicePerStageDescriptorSetFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PER_STAGE_DESCRIPTOR_SET_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePerStageDescriptorSetFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PER_STAGE_DESCRIPTOR_SET_FEATURES_NV
@@ -28924,7 +36653,15 @@ fn vk_physical_device_per_stage_descriptor_set_features_nv_construction_contract
 #[cfg(feature = "platform-android")]
 #[test]
 fn vk_physical_device_external_format_resolve_features_android_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExternalFormatResolveFeaturesANDROID<'static> =
+		vk::PhysicalDeviceExternalFormatResolveFeaturesANDROID::new;
 	let value = vk::PhysicalDeviceExternalFormatResolveFeaturesANDROID::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExternalFormatResolveFeaturesANDROID::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_FEATURES_ANDROID
@@ -28940,7 +36677,15 @@ fn vk_physical_device_external_format_resolve_features_android_construction_cont
 #[cfg(feature = "platform-android")]
 #[test]
 fn vk_physical_device_external_format_resolve_properties_android_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExternalFormatResolvePropertiesANDROID<'static> =
+		vk::PhysicalDeviceExternalFormatResolvePropertiesANDROID::new;
 	let value = vk::PhysicalDeviceExternalFormatResolvePropertiesANDROID::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExternalFormatResolvePropertiesANDROID::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_FORMAT_RESOLVE_PROPERTIES_ANDROID
@@ -28954,7 +36699,15 @@ fn vk_physical_device_external_format_resolve_properties_android_construction_co
 #[cfg(feature = "platform-android")]
 #[test]
 fn vk_android_hardware_buffer_format_resolve_properties_android_construction_contract() {
+	let _: fn() -> vk::AndroidHardwareBufferFormatResolvePropertiesANDROID<'static> =
+		vk::AndroidHardwareBufferFormatResolvePropertiesANDROID::new;
 	let value = vk::AndroidHardwareBufferFormatResolvePropertiesANDROID::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AndroidHardwareBufferFormatResolvePropertiesANDROID::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ANDROID_HARDWARE_BUFFER_FORMAT_RESOLVE_PROPERTIES_ANDROID
@@ -28969,7 +36722,11 @@ fn vk_android_hardware_buffer_format_resolve_properties_android_construction_con
 
 #[test]
 fn vk_latency_sleep_mode_info_nv_construction_contract() {
+	let _: fn() -> vk::LatencySleepModeInfoNV<'static> = vk::LatencySleepModeInfoNV::new;
 	let value = vk::LatencySleepModeInfoNV::default();
+	assert_eq!(value.s_type, vk::StructureType::LATENCY_SLEEP_MODE_INFO_NV);
+	assert!(value.p_next.is_null());
+	let value = vk::LatencySleepModeInfoNV::new();
 	assert_eq!(value.s_type, vk::StructureType::LATENCY_SLEEP_MODE_INFO_NV);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -28986,7 +36743,11 @@ fn vk_latency_sleep_mode_info_nv_construction_contract() {
 
 #[test]
 fn vk_latency_sleep_info_nv_construction_contract() {
+	let _: fn() -> vk::LatencySleepInfoNV<'static> = vk::LatencySleepInfoNV::new;
 	let value = vk::LatencySleepInfoNV::default();
+	assert_eq!(value.s_type, vk::StructureType::LATENCY_SLEEP_INFO_NV);
+	assert!(value.p_next.is_null());
+	let value = vk::LatencySleepInfoNV::new();
 	assert_eq!(value.s_type, vk::StructureType::LATENCY_SLEEP_INFO_NV);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::LatencySleepInfoNV<'static>, vk::Semaphore) -> vk::LatencySleepInfoNV<'static> =
@@ -28997,7 +36758,11 @@ fn vk_latency_sleep_info_nv_construction_contract() {
 
 #[test]
 fn vk_set_latency_marker_info_nv_construction_contract() {
+	let _: fn() -> vk::SetLatencyMarkerInfoNV<'static> = vk::SetLatencyMarkerInfoNV::new;
 	let value = vk::SetLatencyMarkerInfoNV::default();
+	assert_eq!(value.s_type, vk::StructureType::SET_LATENCY_MARKER_INFO_NV);
+	assert!(value.p_next.is_null());
+	let value = vk::SetLatencyMarkerInfoNV::new();
 	assert_eq!(value.s_type, vk::StructureType::SET_LATENCY_MARKER_INFO_NV);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::SetLatencyMarkerInfoNV<'static>, u64) -> vk::SetLatencyMarkerInfoNV<'static> =
@@ -29010,7 +36775,11 @@ fn vk_set_latency_marker_info_nv_construction_contract() {
 
 #[test]
 fn vk_get_latency_marker_info_nv_construction_contract() {
+	let _: fn() -> vk::GetLatencyMarkerInfoNV<'static> = vk::GetLatencyMarkerInfoNV::new;
 	let value = vk::GetLatencyMarkerInfoNV::default();
+	assert_eq!(value.s_type, vk::StructureType::GET_LATENCY_MARKER_INFO_NV);
+	assert!(value.p_next.is_null());
+	let value = vk::GetLatencyMarkerInfoNV::new();
 	assert_eq!(value.s_type, vk::StructureType::GET_LATENCY_MARKER_INFO_NV);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::GetLatencyMarkerInfoNV<'static>, u32) -> vk::GetLatencyMarkerInfoNV<'static> =
@@ -29024,7 +36793,14 @@ fn vk_get_latency_marker_info_nv_construction_contract() {
 
 #[test]
 fn vk_latency_timings_frame_report_nv_construction_contract() {
+	let _: fn() -> vk::LatencyTimingsFrameReportNV<'static> = vk::LatencyTimingsFrameReportNV::new;
 	let value = vk::LatencyTimingsFrameReportNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::LATENCY_TIMINGS_FRAME_REPORT_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::LatencyTimingsFrameReportNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::LATENCY_TIMINGS_FRAME_REPORT_NV
@@ -29103,7 +36879,14 @@ fn vk_latency_timings_frame_report_nv_construction_contract() {
 
 #[test]
 fn vk_out_of_band_queue_type_info_nv_construction_contract() {
+	let _: fn() -> vk::OutOfBandQueueTypeInfoNV<'static> = vk::OutOfBandQueueTypeInfoNV::new;
 	let value = vk::OutOfBandQueueTypeInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::OUT_OF_BAND_QUEUE_TYPE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::OutOfBandQueueTypeInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::OUT_OF_BAND_QUEUE_TYPE_INFO_NV
@@ -29117,7 +36900,14 @@ fn vk_out_of_band_queue_type_info_nv_construction_contract() {
 
 #[test]
 fn vk_latency_submission_present_id_nv_construction_contract() {
+	let _: fn() -> vk::LatencySubmissionPresentIdNV<'static> = vk::LatencySubmissionPresentIdNV::new;
 	let value = vk::LatencySubmissionPresentIdNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::LATENCY_SUBMISSION_PRESENT_ID_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::LatencySubmissionPresentIdNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::LATENCY_SUBMISSION_PRESENT_ID_NV
@@ -29131,7 +36921,14 @@ fn vk_latency_submission_present_id_nv_construction_contract() {
 
 #[test]
 fn vk_swapchain_latency_create_info_nv_construction_contract() {
+	let _: fn() -> vk::SwapchainLatencyCreateInfoNV<'static> = vk::SwapchainLatencyCreateInfoNV::new;
 	let value = vk::SwapchainLatencyCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SWAPCHAIN_LATENCY_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SwapchainLatencyCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SWAPCHAIN_LATENCY_CREATE_INFO_NV
@@ -29146,7 +36943,14 @@ fn vk_swapchain_latency_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_latency_surface_capabilities_nv_construction_contract() {
+	let _: fn() -> vk::LatencySurfaceCapabilitiesNV<'static> = vk::LatencySurfaceCapabilitiesNV::new;
 	let value = vk::LatencySurfaceCapabilitiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::LATENCY_SURFACE_CAPABILITIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::LatencySurfaceCapabilitiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::LATENCY_SURFACE_CAPABILITIES_NV
@@ -29169,7 +36973,15 @@ fn vk_latency_surface_capabilities_nv_construction_contract() {
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_physical_device_cuda_kernel_launch_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCudaKernelLaunchFeaturesNV<'static> =
+		vk::PhysicalDeviceCudaKernelLaunchFeaturesNV::new;
 	let value = vk::PhysicalDeviceCudaKernelLaunchFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCudaKernelLaunchFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_FEATURES_NV
@@ -29185,7 +36997,15 @@ fn vk_physical_device_cuda_kernel_launch_features_nv_construction_contract() {
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_physical_device_cuda_kernel_launch_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCudaKernelLaunchPropertiesNV<'static> =
+		vk::PhysicalDeviceCudaKernelLaunchPropertiesNV::new;
 	let value = vk::PhysicalDeviceCudaKernelLaunchPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCudaKernelLaunchPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_CUDA_KERNEL_LAUNCH_PROPERTIES_NV
@@ -29205,7 +37025,15 @@ fn vk_physical_device_cuda_kernel_launch_properties_nv_construction_contract() {
 
 #[test]
 fn vk_device_queue_shader_core_control_create_info_arm_construction_contract() {
+	let _: fn() -> vk::DeviceQueueShaderCoreControlCreateInfoARM<'static> =
+		vk::DeviceQueueShaderCoreControlCreateInfoARM::new;
 	let value = vk::DeviceQueueShaderCoreControlCreateInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceQueueShaderCoreControlCreateInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_QUEUE_SHADER_CORE_CONTROL_CREATE_INFO_ARM
@@ -29220,7 +37048,15 @@ fn vk_device_queue_shader_core_control_create_info_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_scheduling_controls_features_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSchedulingControlsFeaturesARM<'static> =
+		vk::PhysicalDeviceSchedulingControlsFeaturesARM::new;
 	let value = vk::PhysicalDeviceSchedulingControlsFeaturesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSchedulingControlsFeaturesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_FEATURES_ARM
@@ -29235,7 +37071,15 @@ fn vk_physical_device_scheduling_controls_features_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_scheduling_controls_properties_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceSchedulingControlsPropertiesARM<'static> =
+		vk::PhysicalDeviceSchedulingControlsPropertiesARM::new;
 	let value = vk::PhysicalDeviceSchedulingControlsPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSchedulingControlsPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_PROPERTIES_ARM
@@ -29251,7 +37095,15 @@ fn vk_physical_device_scheduling_controls_properties_arm_construction_contract()
 #[test]
 fn vk_physical_device_scheduling_controls_dispatch_parameters_properties_arm_construction_contract()
 {
+	let _: fn() -> vk::PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM<'static> =
+		vk::PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM::new;
 	let value = vk::PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_DISPATCH_PARAMETERS_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceSchedulingControlsDispatchParametersPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SCHEDULING_CONTROLS_DISPATCH_PARAMETERS_PROPERTIES_ARM
@@ -29264,7 +37116,11 @@ fn vk_physical_device_scheduling_controls_dispatch_parameters_properties_arm_con
 
 #[test]
 fn vk_dispatch_parameters_arm_construction_contract() {
+	let _: fn() -> vk::DispatchParametersARM<'static> = vk::DispatchParametersARM::new;
 	let value = vk::DispatchParametersARM::default();
+	assert_eq!(value.s_type, vk::StructureType::DISPATCH_PARAMETERS_ARM);
+	assert!(value.p_next.is_null());
+	let value = vk::DispatchParametersARM::new();
 	assert_eq!(value.s_type, vk::StructureType::DISPATCH_PARAMETERS_ARM);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::DispatchParametersARM<'static>, u32) -> vk::DispatchParametersARM<'static> =
@@ -29277,7 +37133,15 @@ fn vk_dispatch_parameters_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_relaxed_line_rasterization_features_img_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRelaxedLineRasterizationFeaturesIMG<'static> =
+		vk::PhysicalDeviceRelaxedLineRasterizationFeaturesIMG::new;
 	let value = vk::PhysicalDeviceRelaxedLineRasterizationFeaturesIMG::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RELAXED_LINE_RASTERIZATION_FEATURES_IMG
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRelaxedLineRasterizationFeaturesIMG::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RELAXED_LINE_RASTERIZATION_FEATURES_IMG
@@ -29292,7 +37156,15 @@ fn vk_physical_device_relaxed_line_rasterization_features_img_construction_contr
 
 #[test]
 fn vk_physical_device_render_pass_striped_features_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRenderPassStripedFeaturesARM<'static> =
+		vk::PhysicalDeviceRenderPassStripedFeaturesARM::new;
 	let value = vk::PhysicalDeviceRenderPassStripedFeaturesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RENDER_PASS_STRIPED_FEATURES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRenderPassStripedFeaturesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RENDER_PASS_STRIPED_FEATURES_ARM
@@ -29307,7 +37179,15 @@ fn vk_physical_device_render_pass_striped_features_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_render_pass_striped_properties_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRenderPassStripedPropertiesARM<'static> =
+		vk::PhysicalDeviceRenderPassStripedPropertiesARM::new;
 	let value = vk::PhysicalDeviceRenderPassStripedPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RENDER_PASS_STRIPED_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRenderPassStripedPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RENDER_PASS_STRIPED_PROPERTIES_ARM
@@ -29327,7 +37207,11 @@ fn vk_physical_device_render_pass_striped_properties_arm_construction_contract()
 
 #[test]
 fn vk_render_pass_stripe_info_arm_construction_contract() {
+	let _: fn() -> vk::RenderPassStripeInfoARM<'static> = vk::RenderPassStripeInfoARM::new;
 	let value = vk::RenderPassStripeInfoARM::default();
+	assert_eq!(value.s_type, vk::StructureType::RENDER_PASS_STRIPE_INFO_ARM);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassStripeInfoARM::new();
 	assert_eq!(value.s_type, vk::StructureType::RENDER_PASS_STRIPE_INFO_ARM);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -29338,7 +37222,14 @@ fn vk_render_pass_stripe_info_arm_construction_contract() {
 
 #[test]
 fn vk_render_pass_stripe_begin_info_arm_construction_contract() {
+	let _: fn() -> vk::RenderPassStripeBeginInfoARM<'static> = vk::RenderPassStripeBeginInfoARM::new;
 	let value = vk::RenderPassStripeBeginInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDER_PASS_STRIPE_BEGIN_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassStripeBeginInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDER_PASS_STRIPE_BEGIN_INFO_ARM
@@ -29360,7 +37251,15 @@ fn vk_render_pass_stripe_begin_info_arm_construction_contract() {
 
 #[test]
 fn vk_render_pass_stripe_submit_info_arm_construction_contract() {
+	let _: fn() -> vk::RenderPassStripeSubmitInfoARM<'static> =
+		vk::RenderPassStripeSubmitInfoARM::new;
 	let value = vk::RenderPassStripeSubmitInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDER_PASS_STRIPE_SUBMIT_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassStripeSubmitInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDER_PASS_STRIPE_SUBMIT_INFO_ARM
@@ -29382,7 +37281,15 @@ fn vk_render_pass_stripe_submit_info_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_pipeline_opacity_micromap_features_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePipelineOpacityMicromapFeaturesARM<'static> =
+		vk::PhysicalDevicePipelineOpacityMicromapFeaturesARM::new;
 	let value = vk::PhysicalDevicePipelineOpacityMicromapFeaturesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_OPACITY_MICROMAP_FEATURES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePipelineOpacityMicromapFeaturesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_OPACITY_MICROMAP_FEATURES_ARM
@@ -29397,7 +37304,15 @@ fn vk_physical_device_pipeline_opacity_micromap_features_arm_construction_contra
 
 #[test]
 fn vk_physical_device_shader_maximal_reconvergence_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR<'static> =
+		vk::PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR::new;
 	let value = vk::PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_MAXIMAL_RECONVERGENCE_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderMaximalReconvergenceFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_MAXIMAL_RECONVERGENCE_FEATURES_KHR
@@ -29412,7 +37327,15 @@ fn vk_physical_device_shader_maximal_reconvergence_features_khr_construction_con
 
 #[test]
 fn vk_physical_device_shader_subgroup_rotate_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderSubgroupRotateFeatures<'static> =
+		vk::PhysicalDeviceShaderSubgroupRotateFeatures::new;
 	let value = vk::PhysicalDeviceShaderSubgroupRotateFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderSubgroupRotateFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_ROTATE_FEATURES
@@ -29432,7 +37355,15 @@ fn vk_physical_device_shader_subgroup_rotate_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_expect_assume_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderExpectAssumeFeatures<'static> =
+		vk::PhysicalDeviceShaderExpectAssumeFeatures::new;
 	let value = vk::PhysicalDeviceShaderExpectAssumeFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_EXPECT_ASSUME_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderExpectAssumeFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_EXPECT_ASSUME_FEATURES
@@ -29447,7 +37378,15 @@ fn vk_physical_device_shader_expect_assume_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_float_controls2_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderFloatControls2Features<'static> =
+		vk::PhysicalDeviceShaderFloatControls2Features::new;
 	let value = vk::PhysicalDeviceShaderFloatControls2Features::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_FLOAT_CONTROLS_2_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderFloatControls2Features::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_FLOAT_CONTROLS_2_FEATURES
@@ -29462,7 +37401,15 @@ fn vk_physical_device_shader_float_controls2_features_construction_contract() {
 
 #[test]
 fn vk_physical_device_dynamic_rendering_local_read_features_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDynamicRenderingLocalReadFeatures<'static> =
+		vk::PhysicalDeviceDynamicRenderingLocalReadFeatures::new;
 	let value = vk::PhysicalDeviceDynamicRenderingLocalReadFeatures::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DYNAMIC_RENDERING_LOCAL_READ_FEATURES
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDynamicRenderingLocalReadFeatures::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DYNAMIC_RENDERING_LOCAL_READ_FEATURES
@@ -29477,7 +37424,15 @@ fn vk_physical_device_dynamic_rendering_local_read_features_construction_contrac
 
 #[test]
 fn vk_rendering_attachment_location_info_construction_contract() {
+	let _: fn() -> vk::RenderingAttachmentLocationInfo<'static> =
+		vk::RenderingAttachmentLocationInfo::new;
 	let value = vk::RenderingAttachmentLocationInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDERING_ATTACHMENT_LOCATION_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderingAttachmentLocationInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDERING_ATTACHMENT_LOCATION_INFO
@@ -29499,7 +37454,15 @@ fn vk_rendering_attachment_location_info_construction_contract() {
 
 #[test]
 fn vk_rendering_input_attachment_index_info_construction_contract() {
+	let _: fn() -> vk::RenderingInputAttachmentIndexInfo<'static> =
+		vk::RenderingInputAttachmentIndexInfo::new;
 	let value = vk::RenderingInputAttachmentIndexInfo::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDERING_INPUT_ATTACHMENT_INDEX_INFO
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderingInputAttachmentIndexInfo::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDERING_INPUT_ATTACHMENT_INDEX_INFO
@@ -29531,7 +37494,15 @@ fn vk_rendering_input_attachment_index_info_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_quad_control_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderQuadControlFeaturesKHR<'static> =
+		vk::PhysicalDeviceShaderQuadControlFeaturesKHR::new;
 	let value = vk::PhysicalDeviceShaderQuadControlFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_QUAD_CONTROL_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderQuadControlFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_QUAD_CONTROL_FEATURES_KHR
@@ -29546,7 +37517,15 @@ fn vk_physical_device_shader_quad_control_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_atomic_float16_vector_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV<'static> =
+		vk::PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV::new;
 	let value = vk::PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderAtomicFloat16VectorFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT16_VECTOR_FEATURES_NV
@@ -29561,7 +37540,15 @@ fn vk_physical_device_shader_atomic_float16_vector_features_nv_construction_cont
 
 #[test]
 fn vk_physical_device_map_memory_placed_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMapMemoryPlacedFeaturesEXT<'static> =
+		vk::PhysicalDeviceMapMemoryPlacedFeaturesEXT::new;
 	let value = vk::PhysicalDeviceMapMemoryPlacedFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMapMemoryPlacedFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_FEATURES_EXT
@@ -29586,7 +37573,15 @@ fn vk_physical_device_map_memory_placed_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_map_memory_placed_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceMapMemoryPlacedPropertiesEXT<'static> =
+		vk::PhysicalDeviceMapMemoryPlacedPropertiesEXT::new;
 	let value = vk::PhysicalDeviceMapMemoryPlacedPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceMapMemoryPlacedPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_MAP_MEMORY_PLACED_PROPERTIES_EXT
@@ -29601,7 +37596,11 @@ fn vk_physical_device_map_memory_placed_properties_ext_construction_contract() {
 
 #[test]
 fn vk_memory_map_placed_info_ext_construction_contract() {
+	let _: fn() -> vk::MemoryMapPlacedInfoEXT<'static> = vk::MemoryMapPlacedInfoEXT::new;
 	let value = vk::MemoryMapPlacedInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::MEMORY_MAP_PLACED_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryMapPlacedInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::MEMORY_MAP_PLACED_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: unsafe fn(
@@ -29612,7 +37611,15 @@ fn vk_memory_map_placed_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_bfloat16_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderBfloat16FeaturesKHR<'static> =
+		vk::PhysicalDeviceShaderBfloat16FeaturesKHR::new;
 	let value = vk::PhysicalDeviceShaderBfloat16FeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderBfloat16FeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_BFLOAT16_FEATURES_KHR
@@ -29637,7 +37644,15 @@ fn vk_physical_device_shader_bfloat16_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_raw_access_chains_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceRawAccessChainsFeaturesNV<'static> =
+		vk::PhysicalDeviceRawAccessChainsFeaturesNV::new;
 	let value = vk::PhysicalDeviceRawAccessChainsFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceRawAccessChainsFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_RAW_ACCESS_CHAINS_FEATURES_NV
@@ -29652,7 +37667,15 @@ fn vk_physical_device_raw_access_chains_features_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_command_buffer_inheritance_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCommandBufferInheritanceFeaturesNV<'static> =
+		vk::PhysicalDeviceCommandBufferInheritanceFeaturesNV::new;
 	let value = vk::PhysicalDeviceCommandBufferInheritanceFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCommandBufferInheritanceFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COMMAND_BUFFER_INHERITANCE_FEATURES_NV
@@ -29667,7 +37690,15 @@ fn vk_physical_device_command_buffer_inheritance_features_nv_construction_contra
 
 #[test]
 fn vk_physical_device_image_alignment_control_features_mesa_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageAlignmentControlFeaturesMESA<'static> =
+		vk::PhysicalDeviceImageAlignmentControlFeaturesMESA::new;
 	let value = vk::PhysicalDeviceImageAlignmentControlFeaturesMESA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageAlignmentControlFeaturesMESA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_FEATURES_MESA
@@ -29682,7 +37713,15 @@ fn vk_physical_device_image_alignment_control_features_mesa_construction_contrac
 
 #[test]
 fn vk_physical_device_image_alignment_control_properties_mesa_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageAlignmentControlPropertiesMESA<'static> =
+		vk::PhysicalDeviceImageAlignmentControlPropertiesMESA::new;
 	let value = vk::PhysicalDeviceImageAlignmentControlPropertiesMESA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageAlignmentControlPropertiesMESA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_ALIGNMENT_CONTROL_PROPERTIES_MESA
@@ -29697,7 +37736,15 @@ fn vk_physical_device_image_alignment_control_properties_mesa_construction_contr
 
 #[test]
 fn vk_image_alignment_control_create_info_mesa_construction_contract() {
+	let _: fn() -> vk::ImageAlignmentControlCreateInfoMESA<'static> =
+		vk::ImageAlignmentControlCreateInfoMESA::new;
 	let value = vk::ImageAlignmentControlCreateInfoMESA::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageAlignmentControlCreateInfoMESA::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_ALIGNMENT_CONTROL_CREATE_INFO_MESA
@@ -29712,7 +37759,15 @@ fn vk_image_alignment_control_create_info_mesa_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_replicated_composites_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderReplicatedCompositesFeaturesEXT<'static> =
+		vk::PhysicalDeviceShaderReplicatedCompositesFeaturesEXT::new;
 	let value = vk::PhysicalDeviceShaderReplicatedCompositesFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderReplicatedCompositesFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_REPLICATED_COMPOSITES_FEATURES_EXT
@@ -29727,7 +37782,15 @@ fn vk_physical_device_shader_replicated_composites_features_ext_construction_con
 
 #[test]
 fn vk_physical_device_present_mode_fifo_latest_ready_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR<'static> =
+		vk::PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR::new;
 	let value = vk::PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePresentModeFifoLatestReadyFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PRESENT_MODE_FIFO_LATEST_READY_FEATURES_KHR
@@ -29742,6 +37805,7 @@ fn vk_physical_device_present_mode_fifo_latest_ready_features_khr_construction_c
 
 #[test]
 fn vk_depth_clamp_range_ext_construction_contract() {
+	let _: fn() -> vk::DepthClampRangeEXT = vk::DepthClampRangeEXT::new;
 	let _: fn(vk::DepthClampRangeEXT, f32) -> vk::DepthClampRangeEXT =
 		vk::DepthClampRangeEXT::set_min_depth_clamp;
 	let _: fn(vk::DepthClampRangeEXT, f32) -> vk::DepthClampRangeEXT =
@@ -29750,7 +37814,15 @@ fn vk_depth_clamp_range_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_cooperative_matrix2_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCooperativeMatrix2FeaturesNV<'static> =
+		vk::PhysicalDeviceCooperativeMatrix2FeaturesNV::new;
 	let value = vk::PhysicalDeviceCooperativeMatrix2FeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCooperativeMatrix2FeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_FEATURES_NV
@@ -29795,7 +37867,15 @@ fn vk_physical_device_cooperative_matrix2_features_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_cooperative_matrix2_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCooperativeMatrix2PropertiesNV<'static> =
+		vk::PhysicalDeviceCooperativeMatrix2PropertiesNV::new;
 	let value = vk::PhysicalDeviceCooperativeMatrix2PropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCooperativeMatrix2PropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_2_PROPERTIES_NV
@@ -29808,7 +37888,15 @@ fn vk_physical_device_cooperative_matrix2_properties_nv_construction_contract() 
 
 #[test]
 fn vk_cooperative_matrix_flexible_dimensions_properties_nv_construction_contract() {
+	let _: fn() -> vk::CooperativeMatrixFlexibleDimensionsPropertiesNV<'static> =
+		vk::CooperativeMatrixFlexibleDimensionsPropertiesNV::new;
 	let value = vk::CooperativeMatrixFlexibleDimensionsPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COOPERATIVE_MATRIX_FLEXIBLE_DIMENSIONS_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CooperativeMatrixFlexibleDimensionsPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COOPERATIVE_MATRIX_FLEXIBLE_DIMENSIONS_PROPERTIES_NV
@@ -29868,7 +37956,15 @@ fn vk_cooperative_matrix_flexible_dimensions_properties_nv_construction_contract
 
 #[test]
 fn vk_physical_device_cooperative_matrix_decode_vector_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCooperativeMatrixDecodeVectorFeaturesNV<'static> =
+		vk::PhysicalDeviceCooperativeMatrixDecodeVectorFeaturesNV::new;
 	let value = vk::PhysicalDeviceCooperativeMatrixDecodeVectorFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_DECODE_VECTOR_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCooperativeMatrixDecodeVectorFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_DECODE_VECTOR_FEATURES_NV
@@ -29883,7 +37979,15 @@ fn vk_physical_device_cooperative_matrix_decode_vector_features_nv_construction_
 
 #[test]
 fn vk_physical_device_hdr_vivid_features_huawei_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceHdrVividFeaturesHUAWEI<'static> =
+		vk::PhysicalDeviceHdrVividFeaturesHUAWEI::new;
 	let value = vk::PhysicalDeviceHdrVividFeaturesHUAWEI::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceHdrVividFeaturesHUAWEI::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_HDR_VIVID_FEATURES_HUAWEI
@@ -29898,7 +38002,15 @@ fn vk_physical_device_hdr_vivid_features_huawei_construction_contract() {
 
 #[test]
 fn vk_physical_device_vertex_attribute_robustness_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVertexAttributeRobustnessFeaturesEXT<'static> =
+		vk::PhysicalDeviceVertexAttributeRobustnessFeaturesEXT::new;
 	let value = vk::PhysicalDeviceVertexAttributeRobustnessFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_ROBUSTNESS_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVertexAttributeRobustnessFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_ROBUSTNESS_FEATURES_EXT
@@ -29914,7 +38026,15 @@ fn vk_physical_device_vertex_attribute_robustness_features_ext_construction_cont
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_physical_device_dense_geometry_format_features_amdx_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDenseGeometryFormatFeaturesAMDX<'static> =
+		vk::PhysicalDeviceDenseGeometryFormatFeaturesAMDX::new;
 	let value = vk::PhysicalDeviceDenseGeometryFormatFeaturesAMDX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDenseGeometryFormatFeaturesAMDX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DENSE_GEOMETRY_FORMAT_FEATURES_AMDX
@@ -29930,7 +38050,15 @@ fn vk_physical_device_dense_geometry_format_features_amdx_construction_contract(
 #[cfg(feature = "provisional")]
 #[test]
 fn vk_acceleration_structure_dense_geometry_format_triangles_data_amdx_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureDenseGeometryFormatTrianglesDataAMDX<'static> =
+		vk::AccelerationStructureDenseGeometryFormatTrianglesDataAMDX::new;
 	let value = vk::AccelerationStructureDenseGeometryFormatTrianglesDataAMDX::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_DENSE_GEOMETRY_FORMAT_TRIANGLES_DATA_AMDX
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureDenseGeometryFormatTrianglesDataAMDX::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_DENSE_GEOMETRY_FORMAT_TRIANGLES_DATA_AMDX
@@ -29975,7 +38103,15 @@ fn vk_acceleration_structure_dense_geometry_format_triangles_data_amdx_construct
 
 #[test]
 fn vk_physical_device_depth_clamp_zero_one_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDepthClampZeroOneFeaturesKHR<'static> =
+		vk::PhysicalDeviceDepthClampZeroOneFeaturesKHR::new;
 	let value = vk::PhysicalDeviceDepthClampZeroOneFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDepthClampZeroOneFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DEPTH_CLAMP_ZERO_ONE_FEATURES_KHR
@@ -29990,7 +38126,15 @@ fn vk_physical_device_depth_clamp_zero_one_features_khr_construction_contract() 
 
 #[test]
 fn vk_physical_device_cooperative_vector_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCooperativeVectorFeaturesNV<'static> =
+		vk::PhysicalDeviceCooperativeVectorFeaturesNV::new;
 	let value = vk::PhysicalDeviceCooperativeVectorFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCooperativeVectorFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_FEATURES_NV
@@ -30010,7 +38154,15 @@ fn vk_physical_device_cooperative_vector_features_nv_construction_contract() {
 
 #[test]
 fn vk_cooperative_vector_properties_nv_construction_contract() {
+	let _: fn() -> vk::CooperativeVectorPropertiesNV<'static> =
+		vk::CooperativeVectorPropertiesNV::new;
 	let value = vk::CooperativeVectorPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COOPERATIVE_VECTOR_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CooperativeVectorPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COOPERATIVE_VECTOR_PROPERTIES_NV
@@ -30049,7 +38201,15 @@ fn vk_cooperative_vector_properties_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_cooperative_vector_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCooperativeVectorPropertiesNV<'static> =
+		vk::PhysicalDeviceCooperativeVectorPropertiesNV::new;
 	let value = vk::PhysicalDeviceCooperativeVectorPropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCooperativeVectorPropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_VECTOR_PROPERTIES_NV
@@ -30071,7 +38231,15 @@ fn vk_physical_device_cooperative_vector_properties_nv_construction_contract() {
 
 #[test]
 fn vk_convert_cooperative_vector_matrix_info_nv_construction_contract() {
+	let _: fn() -> vk::ConvertCooperativeVectorMatrixInfoNV<'static> =
+		vk::ConvertCooperativeVectorMatrixInfoNV::new;
 	let value = vk::ConvertCooperativeVectorMatrixInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::CONVERT_COOPERATIVE_VECTOR_MATRIX_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ConvertCooperativeVectorMatrixInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::CONVERT_COOPERATIVE_VECTOR_MATRIX_INFO_NV
@@ -30141,7 +38309,15 @@ fn vk_convert_cooperative_vector_matrix_info_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_tile_shading_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceTileShadingFeaturesQCOM<'static> =
+		vk::PhysicalDeviceTileShadingFeaturesQCOM::new;
 	let value = vk::PhysicalDeviceTileShadingFeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceTileShadingFeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_FEATURES_QCOM
@@ -30221,7 +38397,15 @@ fn vk_physical_device_tile_shading_features_qcom_construction_contract() {
 
 #[test]
 fn vk_physical_device_tile_shading_properties_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceTileShadingPropertiesQCOM<'static> =
+		vk::PhysicalDeviceTileShadingPropertiesQCOM::new;
 	let value = vk::PhysicalDeviceTileShadingPropertiesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_PROPERTIES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceTileShadingPropertiesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TILE_SHADING_PROPERTIES_QCOM
@@ -30251,7 +38435,15 @@ fn vk_physical_device_tile_shading_properties_qcom_construction_contract() {
 
 #[test]
 fn vk_render_pass_tile_shading_create_info_qcom_construction_contract() {
+	let _: fn() -> vk::RenderPassTileShadingCreateInfoQCOM<'static> =
+		vk::RenderPassTileShadingCreateInfoQCOM::new;
 	let value = vk::RenderPassTileShadingCreateInfoQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDER_PASS_TILE_SHADING_CREATE_INFO_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassTileShadingCreateInfoQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDER_PASS_TILE_SHADING_CREATE_INFO_QCOM
@@ -30271,28 +38463,48 @@ fn vk_render_pass_tile_shading_create_info_qcom_construction_contract() {
 
 #[test]
 fn vk_per_tile_begin_info_qcom_construction_contract() {
+	let _: fn() -> vk::PerTileBeginInfoQCOM<'static> = vk::PerTileBeginInfoQCOM::new;
 	let value = vk::PerTileBeginInfoQCOM::default();
+	assert_eq!(value.s_type, vk::StructureType::PER_TILE_BEGIN_INFO_QCOM);
+	assert!(value.p_next.is_null());
+	let value = vk::PerTileBeginInfoQCOM::new();
 	assert_eq!(value.s_type, vk::StructureType::PER_TILE_BEGIN_INFO_QCOM);
 	assert!(value.p_next.is_null());
 }
 
 #[test]
 fn vk_per_tile_end_info_qcom_construction_contract() {
+	let _: fn() -> vk::PerTileEndInfoQCOM<'static> = vk::PerTileEndInfoQCOM::new;
 	let value = vk::PerTileEndInfoQCOM::default();
+	assert_eq!(value.s_type, vk::StructureType::PER_TILE_END_INFO_QCOM);
+	assert!(value.p_next.is_null());
+	let value = vk::PerTileEndInfoQCOM::new();
 	assert_eq!(value.s_type, vk::StructureType::PER_TILE_END_INFO_QCOM);
 	assert!(value.p_next.is_null());
 }
 
 #[test]
 fn vk_dispatch_tile_info_qcom_construction_contract() {
+	let _: fn() -> vk::DispatchTileInfoQCOM<'static> = vk::DispatchTileInfoQCOM::new;
 	let value = vk::DispatchTileInfoQCOM::default();
+	assert_eq!(value.s_type, vk::StructureType::DISPATCH_TILE_INFO_QCOM);
+	assert!(value.p_next.is_null());
+	let value = vk::DispatchTileInfoQCOM::new();
 	assert_eq!(value.s_type, vk::StructureType::DISPATCH_TILE_INFO_QCOM);
 	assert!(value.p_next.is_null());
 }
 
 #[test]
 fn vk_physical_device_fragment_density_map_layered_properties_valve_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE<'static> =
+		vk::PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE::new;
 	let value = vk::PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_PROPERTIES_VALVE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentDensityMapLayeredPropertiesVALVE::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_PROPERTIES_VALVE
@@ -30307,7 +38519,15 @@ fn vk_physical_device_fragment_density_map_layered_properties_valve_construction
 
 #[test]
 fn vk_physical_device_fragment_density_map_layered_features_valve_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE<'static> =
+		vk::PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE::new;
 	let value = vk::PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_FEATURES_VALVE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFragmentDensityMapLayeredFeaturesVALVE::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_LAYERED_FEATURES_VALVE
@@ -30322,7 +38542,15 @@ fn vk_physical_device_fragment_density_map_layered_features_valve_construction_c
 
 #[test]
 fn vk_pipeline_fragment_density_map_layered_create_info_valve_construction_contract() {
+	let _: fn() -> vk::PipelineFragmentDensityMapLayeredCreateInfoVALVE<'static> =
+		vk::PipelineFragmentDensityMapLayeredCreateInfoVALVE::new;
 	let value = vk::PipelineFragmentDensityMapLayeredCreateInfoVALVE::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PIPELINE_FRAGMENT_DENSITY_MAP_LAYERED_CREATE_INFO_VALVE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PipelineFragmentDensityMapLayeredCreateInfoVALVE::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PIPELINE_FRAGMENT_DENSITY_MAP_LAYERED_CREATE_INFO_VALVE
@@ -30337,7 +38565,11 @@ fn vk_pipeline_fragment_density_map_layered_create_info_valve_construction_contr
 
 #[test]
 fn vk_set_present_config_nv_construction_contract() {
+	let _: fn() -> vk::SetPresentConfigNV<'static> = vk::SetPresentConfigNV::new;
 	let value = vk::SetPresentConfigNV::default();
+	assert_eq!(value.s_type, vk::StructureType::SET_PRESENT_CONFIG_NV);
+	assert!(value.p_next.is_null());
+	let value = vk::SetPresentConfigNV::new();
 	assert_eq!(value.s_type, vk::StructureType::SET_PRESENT_CONFIG_NV);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::SetPresentConfigNV<'static>, u32) -> vk::SetPresentConfigNV<'static> =
@@ -30348,7 +38580,15 @@ fn vk_set_present_config_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_present_metering_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePresentMeteringFeaturesNV<'static> =
+		vk::PhysicalDevicePresentMeteringFeaturesNV::new;
 	let value = vk::PhysicalDevicePresentMeteringFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePresentMeteringFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PRESENT_METERING_FEATURES_NV
@@ -30363,7 +38603,15 @@ fn vk_physical_device_present_metering_features_nv_construction_contract() {
 
 #[test]
 fn vk_external_compute_queue_device_create_info_nv_construction_contract() {
+	let _: fn() -> vk::ExternalComputeQueueDeviceCreateInfoNV<'static> =
+		vk::ExternalComputeQueueDeviceCreateInfoNV::new;
 	let value = vk::ExternalComputeQueueDeviceCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXTERNAL_COMPUTE_QUEUE_DEVICE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalComputeQueueDeviceCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXTERNAL_COMPUTE_QUEUE_DEVICE_CREATE_INFO_NV
@@ -30378,7 +38626,15 @@ fn vk_external_compute_queue_device_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_external_compute_queue_create_info_nv_construction_contract() {
+	let _: fn() -> vk::ExternalComputeQueueCreateInfoNV<'static> =
+		vk::ExternalComputeQueueCreateInfoNV::new;
 	let value = vk::ExternalComputeQueueCreateInfoNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXTERNAL_COMPUTE_QUEUE_CREATE_INFO_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalComputeQueueCreateInfoNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXTERNAL_COMPUTE_QUEUE_CREATE_INFO_NV
@@ -30393,7 +38649,15 @@ fn vk_external_compute_queue_create_info_nv_construction_contract() {
 
 #[test]
 fn vk_external_compute_queue_data_params_nv_construction_contract() {
+	let _: fn() -> vk::ExternalComputeQueueDataParamsNV<'static> =
+		vk::ExternalComputeQueueDataParamsNV::new;
 	let value = vk::ExternalComputeQueueDataParamsNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXTERNAL_COMPUTE_QUEUE_DATA_PARAMS_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalComputeQueueDataParamsNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXTERNAL_COMPUTE_QUEUE_DATA_PARAMS_NV
@@ -30408,7 +38672,15 @@ fn vk_external_compute_queue_data_params_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_external_compute_queue_properties_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExternalComputeQueuePropertiesNV<'static> =
+		vk::PhysicalDeviceExternalComputeQueuePropertiesNV::new;
 	let value = vk::PhysicalDeviceExternalComputeQueuePropertiesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_COMPUTE_QUEUE_PROPERTIES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExternalComputeQueuePropertiesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_COMPUTE_QUEUE_PROPERTIES_NV
@@ -30428,7 +38700,15 @@ fn vk_physical_device_external_compute_queue_properties_nv_construction_contract
 
 #[test]
 fn vk_physical_device_shader_uniform_buffer_unsized_array_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT<'static> =
+		vk::PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT::new;
 	let value = vk::PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_UNIFORM_BUFFER_UNSIZED_ARRAY_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderUniformBufferUnsizedArrayFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_UNIFORM_BUFFER_UNSIZED_ARRAY_FEATURES_EXT
@@ -30439,7 +38719,15 @@ fn vk_physical_device_shader_uniform_buffer_unsized_array_features_ext_construct
 
 #[test]
 fn vk_physical_device_shader_mixed_float_dot_product_features_valve_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE<'static> =
+		vk::PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE::new;
 	let value = vk::PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderMixedFloatDotProductFeaturesVALVE::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_MIXED_FLOAT_DOT_PRODUCT_FEATURES_VALVE
@@ -30453,7 +38741,15 @@ fn vk_physical_device_shader_mixed_float_dot_product_features_valve_construction
 
 #[test]
 fn vk_physical_device_primitive_restart_index_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePrimitiveRestartIndexFeaturesEXT<'static> =
+		vk::PhysicalDevicePrimitiveRestartIndexFeaturesEXT::new;
 	let value = vk::PhysicalDevicePrimitiveRestartIndexFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PRIMITIVE_RESTART_INDEX_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePrimitiveRestartIndexFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PRIMITIVE_RESTART_INDEX_FEATURES_EXT
@@ -30468,7 +38764,15 @@ fn vk_physical_device_primitive_restart_index_features_ext_construction_contract
 
 #[test]
 fn vk_physical_device_format_pack_features_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceFormatPackFeaturesARM<'static> =
+		vk::PhysicalDeviceFormatPackFeaturesARM::new;
 	let value = vk::PhysicalDeviceFormatPackFeaturesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceFormatPackFeaturesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_FORMAT_PACK_FEATURES_ARM
@@ -30483,7 +38787,15 @@ fn vk_physical_device_format_pack_features_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_throttle_hint_features_sec_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceThrottleHintFeaturesSEC<'static> =
+		vk::PhysicalDeviceThrottleHintFeaturesSEC::new;
 	let value = vk::PhysicalDeviceThrottleHintFeaturesSEC::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_THROTTLE_HINT_FEATURES_SEC
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceThrottleHintFeaturesSEC::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_THROTTLE_HINT_FEATURES_SEC
@@ -30498,7 +38810,14 @@ fn vk_physical_device_throttle_hint_features_sec_construction_contract() {
 
 #[test]
 fn vk_throttle_hint_submit_info_sec_construction_contract() {
+	let _: fn() -> vk::ThrottleHintSubmitInfoSEC<'static> = vk::ThrottleHintSubmitInfoSEC::new;
 	let value = vk::ThrottleHintSubmitInfoSEC::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::THROTTLE_HINT_SUBMIT_INFO_SEC
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ThrottleHintSubmitInfoSEC::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::THROTTLE_HINT_SUBMIT_INFO_SEC
@@ -30512,7 +38831,11 @@ fn vk_throttle_hint_submit_info_sec_construction_contract() {
 
 #[test]
 fn vk_tensor_description_arm_construction_contract() {
+	let _: fn() -> vk::TensorDescriptionARM<'static> = vk::TensorDescriptionARM::new;
 	let value = vk::TensorDescriptionARM::default();
+	assert_eq!(value.s_type, vk::StructureType::TENSOR_DESCRIPTION_ARM);
+	assert!(value.p_next.is_null());
+	let value = vk::TensorDescriptionARM::new();
 	assert_eq!(value.s_type, vk::StructureType::TENSOR_DESCRIPTION_ARM);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -30538,7 +38861,11 @@ fn vk_tensor_description_arm_construction_contract() {
 
 #[test]
 fn vk_tensor_create_info_arm_construction_contract() {
+	let _: fn() -> vk::TensorCreateInfoARM<'static> = vk::TensorCreateInfoARM::new;
 	let value = vk::TensorCreateInfoARM::default();
+	assert_eq!(value.s_type, vk::StructureType::TENSOR_CREATE_INFO_ARM);
+	assert!(value.p_next.is_null());
+	let value = vk::TensorCreateInfoARM::new();
 	assert_eq!(value.s_type, vk::StructureType::TENSOR_CREATE_INFO_ARM);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -30562,7 +38889,11 @@ fn vk_tensor_create_info_arm_construction_contract() {
 
 #[test]
 fn vk_tensor_view_create_info_arm_construction_contract() {
+	let _: fn() -> vk::TensorViewCreateInfoARM<'static> = vk::TensorViewCreateInfoARM::new;
 	let value = vk::TensorViewCreateInfoARM::default();
+	assert_eq!(value.s_type, vk::StructureType::TENSOR_VIEW_CREATE_INFO_ARM);
+	assert!(value.p_next.is_null());
+	let value = vk::TensorViewCreateInfoARM::new();
 	assert_eq!(value.s_type, vk::StructureType::TENSOR_VIEW_CREATE_INFO_ARM);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -30581,7 +38912,15 @@ fn vk_tensor_view_create_info_arm_construction_contract() {
 
 #[test]
 fn vk_tensor_memory_requirements_info_arm_construction_contract() {
+	let _: fn() -> vk::TensorMemoryRequirementsInfoARM<'static> =
+		vk::TensorMemoryRequirementsInfoARM::new;
 	let value = vk::TensorMemoryRequirementsInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::TENSOR_MEMORY_REQUIREMENTS_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::TensorMemoryRequirementsInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::TENSOR_MEMORY_REQUIREMENTS_INFO_ARM
@@ -30596,7 +38935,11 @@ fn vk_tensor_memory_requirements_info_arm_construction_contract() {
 
 #[test]
 fn vk_bind_tensor_memory_info_arm_construction_contract() {
+	let _: fn() -> vk::BindTensorMemoryInfoARM<'static> = vk::BindTensorMemoryInfoARM::new;
 	let value = vk::BindTensorMemoryInfoARM::default();
+	assert_eq!(value.s_type, vk::StructureType::BIND_TENSOR_MEMORY_INFO_ARM);
+	assert!(value.p_next.is_null());
+	let value = vk::BindTensorMemoryInfoARM::new();
 	assert_eq!(value.s_type, vk::StructureType::BIND_TENSOR_MEMORY_INFO_ARM);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -30615,7 +38958,14 @@ fn vk_bind_tensor_memory_info_arm_construction_contract() {
 
 #[test]
 fn vk_write_descriptor_set_tensor_arm_construction_contract() {
+	let _: fn() -> vk::WriteDescriptorSetTensorARM<'static> = vk::WriteDescriptorSetTensorARM::new;
 	let value = vk::WriteDescriptorSetTensorARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::WRITE_DESCRIPTOR_SET_TENSOR_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::WriteDescriptorSetTensorARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::WRITE_DESCRIPTOR_SET_TENSOR_ARM
@@ -30637,7 +38987,14 @@ fn vk_write_descriptor_set_tensor_arm_construction_contract() {
 
 #[test]
 fn vk_tensor_format_properties_arm_construction_contract() {
+	let _: fn() -> vk::TensorFormatPropertiesARM<'static> = vk::TensorFormatPropertiesARM::new;
 	let value = vk::TensorFormatPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::TENSOR_FORMAT_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::TensorFormatPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::TENSOR_FORMAT_PROPERTIES_ARM
@@ -30657,7 +39014,15 @@ fn vk_tensor_format_properties_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_tensor_properties_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceTensorPropertiesARM<'static> =
+		vk::PhysicalDeviceTensorPropertiesARM::new;
 	let value = vk::PhysicalDeviceTensorPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TENSOR_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceTensorPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TENSOR_PROPERTIES_ARM
@@ -30724,7 +39089,11 @@ fn vk_physical_device_tensor_properties_arm_construction_contract() {
 
 #[test]
 fn vk_tensor_memory_barrier_arm_construction_contract() {
+	let _: fn() -> vk::TensorMemoryBarrierARM<'static> = vk::TensorMemoryBarrierARM::new;
 	let value = vk::TensorMemoryBarrierARM::default();
+	assert_eq!(value.s_type, vk::StructureType::TENSOR_MEMORY_BARRIER_ARM);
+	assert!(value.p_next.is_null());
+	let value = vk::TensorMemoryBarrierARM::new();
 	assert_eq!(value.s_type, vk::StructureType::TENSOR_MEMORY_BARRIER_ARM);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -30755,7 +39124,11 @@ fn vk_tensor_memory_barrier_arm_construction_contract() {
 
 #[test]
 fn vk_tensor_dependency_info_arm_construction_contract() {
+	let _: fn() -> vk::TensorDependencyInfoARM<'static> = vk::TensorDependencyInfoARM::new;
 	let value = vk::TensorDependencyInfoARM::default();
+	assert_eq!(value.s_type, vk::StructureType::TENSOR_DEPENDENCY_INFO_ARM);
+	assert!(value.p_next.is_null());
+	let value = vk::TensorDependencyInfoARM::new();
 	assert_eq!(value.s_type, vk::StructureType::TENSOR_DEPENDENCY_INFO_ARM);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::TensorDependencyInfoARM<'static>, u32) -> vk::TensorDependencyInfoARM<'static> =
@@ -30769,7 +39142,15 @@ fn vk_tensor_dependency_info_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_tensor_features_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceTensorFeaturesARM<'static> =
+		vk::PhysicalDeviceTensorFeaturesARM::new;
 	let value = vk::PhysicalDeviceTensorFeaturesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TENSOR_FEATURES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceTensorFeaturesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TENSOR_FEATURES_ARM
@@ -30809,7 +39190,15 @@ fn vk_physical_device_tensor_features_arm_construction_contract() {
 
 #[test]
 fn vk_device_tensor_memory_requirements_arm_construction_contract() {
+	let _: fn() -> vk::DeviceTensorMemoryRequirementsARM<'static> =
+		vk::DeviceTensorMemoryRequirementsARM::new;
 	let value = vk::DeviceTensorMemoryRequirementsARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_TENSOR_MEMORY_REQUIREMENTS_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceTensorMemoryRequirementsARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_TENSOR_MEMORY_REQUIREMENTS_ARM
@@ -30824,7 +39213,11 @@ fn vk_device_tensor_memory_requirements_arm_construction_contract() {
 
 #[test]
 fn vk_copy_tensor_info_arm_construction_contract() {
+	let _: fn() -> vk::CopyTensorInfoARM<'static> = vk::CopyTensorInfoARM::new;
 	let value = vk::CopyTensorInfoARM::default();
+	assert_eq!(value.s_type, vk::StructureType::COPY_TENSOR_INFO_ARM);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyTensorInfoARM::new();
 	assert_eq!(value.s_type, vk::StructureType::COPY_TENSOR_INFO_ARM);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::CopyTensorInfoARM<'static>, vk::TensorARM) -> vk::CopyTensorInfoARM<'static> =
@@ -30842,7 +39235,11 @@ fn vk_copy_tensor_info_arm_construction_contract() {
 
 #[test]
 fn vk_tensor_copy_arm_construction_contract() {
+	let _: fn() -> vk::TensorCopyARM<'static> = vk::TensorCopyARM::new;
 	let value = vk::TensorCopyARM::default();
+	assert_eq!(value.s_type, vk::StructureType::TENSOR_COPY_ARM);
+	assert!(value.p_next.is_null());
+	let value = vk::TensorCopyARM::new();
 	assert_eq!(value.s_type, vk::StructureType::TENSOR_COPY_ARM);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::TensorCopyARM<'static>, u32) -> vk::TensorCopyARM<'static> =
@@ -30859,7 +39256,15 @@ fn vk_tensor_copy_arm_construction_contract() {
 
 #[test]
 fn vk_memory_dedicated_allocate_info_tensor_arm_construction_contract() {
+	let _: fn() -> vk::MemoryDedicatedAllocateInfoTensorARM<'static> =
+		vk::MemoryDedicatedAllocateInfoTensorARM::new;
 	let value = vk::MemoryDedicatedAllocateInfoTensorARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_DEDICATED_ALLOCATE_INFO_TENSOR_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryDedicatedAllocateInfoTensorARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_DEDICATED_ALLOCATE_INFO_TENSOR_ARM
@@ -30874,7 +39279,15 @@ fn vk_memory_dedicated_allocate_info_tensor_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_descriptor_buffer_tensor_properties_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDescriptorBufferTensorPropertiesARM<'static> =
+		vk::PhysicalDeviceDescriptorBufferTensorPropertiesARM::new;
 	let value = vk::PhysicalDeviceDescriptorBufferTensorPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDescriptorBufferTensorPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_PROPERTIES_ARM
@@ -30891,7 +39304,15 @@ fn vk_physical_device_descriptor_buffer_tensor_properties_arm_construction_contr
 
 #[test]
 fn vk_physical_device_descriptor_buffer_tensor_features_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDescriptorBufferTensorFeaturesARM<'static> =
+		vk::PhysicalDeviceDescriptorBufferTensorFeaturesARM::new;
 	let value = vk::PhysicalDeviceDescriptorBufferTensorFeaturesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_FEATURES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDescriptorBufferTensorFeaturesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_BUFFER_TENSOR_FEATURES_ARM
@@ -30906,7 +39327,15 @@ fn vk_physical_device_descriptor_buffer_tensor_features_arm_construction_contrac
 
 #[test]
 fn vk_tensor_capture_descriptor_data_info_arm_construction_contract() {
+	let _: fn() -> vk::TensorCaptureDescriptorDataInfoARM<'static> =
+		vk::TensorCaptureDescriptorDataInfoARM::new;
 	let value = vk::TensorCaptureDescriptorDataInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::TENSOR_CAPTURE_DESCRIPTOR_DATA_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::TensorCaptureDescriptorDataInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::TENSOR_CAPTURE_DESCRIPTOR_DATA_INFO_ARM
@@ -30921,7 +39350,15 @@ fn vk_tensor_capture_descriptor_data_info_arm_construction_contract() {
 
 #[test]
 fn vk_tensor_view_capture_descriptor_data_info_arm_construction_contract() {
+	let _: fn() -> vk::TensorViewCaptureDescriptorDataInfoARM<'static> =
+		vk::TensorViewCaptureDescriptorDataInfoARM::new;
 	let value = vk::TensorViewCaptureDescriptorDataInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::TENSOR_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::TensorViewCaptureDescriptorDataInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::TENSOR_VIEW_CAPTURE_DESCRIPTOR_DATA_INFO_ARM
@@ -30936,7 +39373,14 @@ fn vk_tensor_view_capture_descriptor_data_info_arm_construction_contract() {
 
 #[test]
 fn vk_descriptor_get_tensor_info_arm_construction_contract() {
+	let _: fn() -> vk::DescriptorGetTensorInfoARM<'static> = vk::DescriptorGetTensorInfoARM::new;
 	let value = vk::DescriptorGetTensorInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DESCRIPTOR_GET_TENSOR_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorGetTensorInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DESCRIPTOR_GET_TENSOR_INFO_ARM
@@ -30950,7 +39394,11 @@ fn vk_descriptor_get_tensor_info_arm_construction_contract() {
 
 #[test]
 fn vk_frame_boundary_tensors_arm_construction_contract() {
+	let _: fn() -> vk::FrameBoundaryTensorsARM<'static> = vk::FrameBoundaryTensorsARM::new;
 	let value = vk::FrameBoundaryTensorsARM::default();
+	assert_eq!(value.s_type, vk::StructureType::FRAME_BOUNDARY_TENSORS_ARM);
+	assert!(value.p_next.is_null());
+	let value = vk::FrameBoundaryTensorsARM::new();
 	assert_eq!(value.s_type, vk::StructureType::FRAME_BOUNDARY_TENSORS_ARM);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::FrameBoundaryTensorsARM<'static>, u32) -> vk::FrameBoundaryTensorsARM<'static> =
@@ -30964,7 +39412,15 @@ fn vk_frame_boundary_tensors_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_external_tensor_info_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceExternalTensorInfoARM<'static> =
+		vk::PhysicalDeviceExternalTensorInfoARM::new;
 	let value = vk::PhysicalDeviceExternalTensorInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_TENSOR_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceExternalTensorInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_EXTERNAL_TENSOR_INFO_ARM
@@ -30989,7 +39445,14 @@ fn vk_physical_device_external_tensor_info_arm_construction_contract() {
 
 #[test]
 fn vk_external_tensor_properties_arm_construction_contract() {
+	let _: fn() -> vk::ExternalTensorPropertiesARM<'static> = vk::ExternalTensorPropertiesARM::new;
 	let value = vk::ExternalTensorPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXTERNAL_TENSOR_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalTensorPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXTERNAL_TENSOR_PROPERTIES_ARM
@@ -31004,7 +39467,15 @@ fn vk_external_tensor_properties_arm_construction_contract() {
 
 #[test]
 fn vk_external_memory_tensor_create_info_arm_construction_contract() {
+	let _: fn() -> vk::ExternalMemoryTensorCreateInfoARM<'static> =
+		vk::ExternalMemoryTensorCreateInfoARM::new;
 	let value = vk::ExternalMemoryTensorCreateInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::EXTERNAL_MEMORY_TENSOR_CREATE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalMemoryTensorCreateInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::EXTERNAL_MEMORY_TENSOR_CREATE_INFO_ARM
@@ -31019,7 +39490,15 @@ fn vk_external_memory_tensor_create_info_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_float8_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderFloat8FeaturesEXT<'static> =
+		vk::PhysicalDeviceShaderFloat8FeaturesEXT::new;
 	let value = vk::PhysicalDeviceShaderFloat8FeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_FLOAT8_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderFloat8FeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_FLOAT8_FEATURES_EXT
@@ -31040,7 +39519,11 @@ fn vk_physical_device_shader_float8_features_ext_construction_contract() {
 #[cfg(feature = "platform-ohos")]
 #[test]
 fn vk_surface_create_info_ohos_construction_contract() {
+	let _: fn() -> vk::SurfaceCreateInfoOHOS<'static> = vk::SurfaceCreateInfoOHOS::new;
 	let value = vk::SurfaceCreateInfoOHOS::default();
+	assert_eq!(value.s_type, vk::StructureType::SURFACE_CREATE_INFO_OHOS);
+	assert!(value.p_next.is_null());
+	let value = vk::SurfaceCreateInfoOHOS::new();
 	assert_eq!(value.s_type, vk::StructureType::SURFACE_CREATE_INFO_OHOS);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -31055,7 +39538,15 @@ fn vk_surface_create_info_ohos_construction_contract() {
 
 #[test]
 fn vk_physical_device_data_graph_features_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDataGraphFeaturesARM<'static> =
+		vk::PhysicalDeviceDataGraphFeaturesARM::new;
 	let value = vk::PhysicalDeviceDataGraphFeaturesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_FEATURES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDataGraphFeaturesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_FEATURES_ARM
@@ -31091,7 +39582,15 @@ fn vk_physical_device_data_graph_features_arm_construction_contract() {
 #[test]
 fn vk_data_graph_pipeline_constant_tensor_semi_structured_sparsity_info_arm_construction_contract()
 {
+	let _: fn() -> vk::DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM<'static> =
+		vk::DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM::new;
 	let value = vk::DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_CONSTANT_TENSOR_SEMI_STRUCTURED_SPARSITY_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineConstantTensorSemiStructuredSparsityInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_CONSTANT_TENSOR_SEMI_STRUCTURED_SPARSITY_INFO_ARM
@@ -31116,7 +39615,14 @@ fn vk_data_graph_pipeline_constant_tensor_semi_structured_sparsity_info_arm_cons
 
 #[test]
 fn vk_data_graph_pipeline_constant_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineConstantARM<'static> = vk::DataGraphPipelineConstantARM::new;
 	let value = vk::DataGraphPipelineConstantARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_CONSTANT_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineConstantARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_CONSTANT_ARM
@@ -31135,7 +39641,15 @@ fn vk_data_graph_pipeline_constant_arm_construction_contract() {
 
 #[test]
 fn vk_data_graph_pipeline_resource_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineResourceInfoARM<'static> =
+		vk::DataGraphPipelineResourceInfoARM::new;
 	let value = vk::DataGraphPipelineResourceInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_RESOURCE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineResourceInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_RESOURCE_INFO_ARM
@@ -31160,7 +39674,15 @@ fn vk_data_graph_pipeline_resource_info_arm_construction_contract() {
 
 #[test]
 fn vk_data_graph_pipeline_resource_info_image_layout_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineResourceInfoImageLayoutARM<'static> =
+		vk::DataGraphPipelineResourceInfoImageLayoutARM::new;
 	let value = vk::DataGraphPipelineResourceInfoImageLayoutARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_RESOURCE_INFO_IMAGE_LAYOUT_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineResourceInfoImageLayoutARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_RESOURCE_INFO_IMAGE_LAYOUT_ARM
@@ -31175,7 +39697,15 @@ fn vk_data_graph_pipeline_resource_info_image_layout_arm_construction_contract()
 
 #[test]
 fn vk_data_graph_pipeline_compiler_control_create_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineCompilerControlCreateInfoARM<'static> =
+		vk::DataGraphPipelineCompilerControlCreateInfoARM::new;
 	let value = vk::DataGraphPipelineCompilerControlCreateInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_COMPILER_CONTROL_CREATE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineCompilerControlCreateInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_COMPILER_CONTROL_CREATE_INFO_ARM
@@ -31190,7 +39720,15 @@ fn vk_data_graph_pipeline_compiler_control_create_info_arm_construction_contract
 
 #[test]
 fn vk_data_graph_pipeline_create_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineCreateInfoARM<'static> =
+		vk::DataGraphPipelineCreateInfoARM::new;
 	let value = vk::DataGraphPipelineCreateInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_CREATE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineCreateInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_CREATE_INFO_ARM
@@ -31220,7 +39758,15 @@ fn vk_data_graph_pipeline_create_info_arm_construction_contract() {
 
 #[test]
 fn vk_data_graph_pipeline_shader_module_create_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineShaderModuleCreateInfoARM<'static> =
+		vk::DataGraphPipelineShaderModuleCreateInfoARM::new;
 	let value = vk::DataGraphPipelineShaderModuleCreateInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_SHADER_MODULE_CREATE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineShaderModuleCreateInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_SHADER_MODULE_CREATE_INFO_ARM
@@ -31257,7 +39803,15 @@ fn vk_data_graph_pipeline_shader_module_create_info_arm_construction_contract() 
 
 #[test]
 fn vk_data_graph_pipeline_session_create_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineSessionCreateInfoARM<'static> =
+		vk::DataGraphPipelineSessionCreateInfoARM::new;
 	let value = vk::DataGraphPipelineSessionCreateInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_CREATE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineSessionCreateInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_CREATE_INFO_ARM
@@ -31277,7 +39831,15 @@ fn vk_data_graph_pipeline_session_create_info_arm_construction_contract() {
 
 #[test]
 fn vk_data_graph_pipeline_session_bind_point_requirements_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineSessionBindPointRequirementsInfoARM<'static> =
+		vk::DataGraphPipelineSessionBindPointRequirementsInfoARM::new;
 	let value = vk::DataGraphPipelineSessionBindPointRequirementsInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENTS_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineSessionBindPointRequirementsInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENTS_INFO_ARM
@@ -31292,7 +39854,15 @@ fn vk_data_graph_pipeline_session_bind_point_requirements_info_arm_construction_
 
 #[test]
 fn vk_data_graph_pipeline_session_bind_point_requirement_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineSessionBindPointRequirementARM<'static> =
+		vk::DataGraphPipelineSessionBindPointRequirementARM::new;
 	let value = vk::DataGraphPipelineSessionBindPointRequirementARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENT_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineSessionBindPointRequirementARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_BIND_POINT_REQUIREMENT_ARM
@@ -31317,7 +39887,15 @@ fn vk_data_graph_pipeline_session_bind_point_requirement_arm_construction_contra
 
 #[test]
 fn vk_data_graph_pipeline_session_memory_requirements_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineSessionMemoryRequirementsInfoARM<'static> =
+		vk::DataGraphPipelineSessionMemoryRequirementsInfoARM::new;
 	let value = vk::DataGraphPipelineSessionMemoryRequirementsInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_MEMORY_REQUIREMENTS_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineSessionMemoryRequirementsInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_SESSION_MEMORY_REQUIREMENTS_INFO_ARM
@@ -31342,7 +39920,15 @@ fn vk_data_graph_pipeline_session_memory_requirements_info_arm_construction_cont
 
 #[test]
 fn vk_bind_data_graph_pipeline_session_memory_info_arm_construction_contract() {
+	let _: fn() -> vk::BindDataGraphPipelineSessionMemoryInfoARM<'static> =
+		vk::BindDataGraphPipelineSessionMemoryInfoARM::new;
 	let value = vk::BindDataGraphPipelineSessionMemoryInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BIND_DATA_GRAPH_PIPELINE_SESSION_MEMORY_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BindDataGraphPipelineSessionMemoryInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BIND_DATA_GRAPH_PIPELINE_SESSION_MEMORY_INFO_ARM
@@ -31377,7 +39963,14 @@ fn vk_bind_data_graph_pipeline_session_memory_info_arm_construction_contract() {
 
 #[test]
 fn vk_data_graph_pipeline_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineInfoARM<'static> = vk::DataGraphPipelineInfoARM::new;
 	let value = vk::DataGraphPipelineInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_INFO_ARM
@@ -31391,7 +39984,15 @@ fn vk_data_graph_pipeline_info_arm_construction_contract() {
 
 #[test]
 fn vk_data_graph_pipeline_property_query_result_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelinePropertyQueryResultARM<'static> =
+		vk::DataGraphPipelinePropertyQueryResultARM::new;
 	let value = vk::DataGraphPipelinePropertyQueryResultARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_PROPERTY_QUERY_RESULT_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelinePropertyQueryResultARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_PROPERTY_QUERY_RESULT_ARM
@@ -31423,7 +40024,15 @@ fn vk_data_graph_pipeline_property_query_result_arm_construction_contract() {
 
 #[test]
 fn vk_data_graph_pipeline_identifier_create_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineIdentifierCreateInfoARM<'static> =
+		vk::DataGraphPipelineIdentifierCreateInfoARM::new;
 	let value = vk::DataGraphPipelineIdentifierCreateInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_IDENTIFIER_CREATE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineIdentifierCreateInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_IDENTIFIER_CREATE_INFO_ARM
@@ -31445,7 +40054,15 @@ fn vk_data_graph_pipeline_identifier_create_info_arm_construction_contract() {
 
 #[test]
 fn vk_data_graph_pipeline_dispatch_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineDispatchInfoARM<'static> =
+		vk::DataGraphPipelineDispatchInfoARM::new;
 	let value = vk::DataGraphPipelineDispatchInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_DISPATCH_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineDispatchInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_DISPATCH_INFO_ARM
@@ -31460,6 +40077,8 @@ fn vk_data_graph_pipeline_dispatch_info_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_data_graph_processing_engine_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDataGraphProcessingEngineARM =
+		vk::PhysicalDeviceDataGraphProcessingEngineARM::new;
 	let _: fn(
 		vk::PhysicalDeviceDataGraphProcessingEngineARM,
 		vk::PhysicalDeviceDataGraphProcessingEngineTypeARM,
@@ -31474,6 +40093,8 @@ fn vk_physical_device_data_graph_processing_engine_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_data_graph_operation_support_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDataGraphOperationSupportARM =
+		vk::PhysicalDeviceDataGraphOperationSupportARM::new;
 	let _: fn(
 		vk::PhysicalDeviceDataGraphOperationSupportARM,
 		vk::PhysicalDeviceDataGraphOperationTypeARM,
@@ -31493,7 +40114,15 @@ fn vk_physical_device_data_graph_operation_support_arm_construction_contract() {
 
 #[test]
 fn vk_queue_family_data_graph_properties_arm_construction_contract() {
+	let _: fn() -> vk::QueueFamilyDataGraphPropertiesARM<'static> =
+		vk::QueueFamilyDataGraphPropertiesARM::new;
 	let value = vk::QueueFamilyDataGraphPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueueFamilyDataGraphPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_PROPERTIES_ARM
@@ -31513,7 +40142,15 @@ fn vk_queue_family_data_graph_properties_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_queue_family_data_graph_processing_engine_info_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM<'static> =
+		vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM::new;
 	let value = vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_INFO_ARM
@@ -31533,7 +40170,15 @@ fn vk_physical_device_queue_family_data_graph_processing_engine_info_arm_constru
 
 #[test]
 fn vk_queue_family_data_graph_processing_engine_properties_arm_construction_contract() {
+	let _: fn() -> vk::QueueFamilyDataGraphProcessingEnginePropertiesARM<'static> =
+		vk::QueueFamilyDataGraphProcessingEnginePropertiesARM::new;
 	let value = vk::QueueFamilyDataGraphProcessingEnginePropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueueFamilyDataGraphProcessingEnginePropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_PROCESSING_ENGINE_PROPERTIES_ARM
@@ -31553,7 +40198,15 @@ fn vk_queue_family_data_graph_processing_engine_properties_arm_construction_cont
 
 #[test]
 fn vk_data_graph_processing_engine_create_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphProcessingEngineCreateInfoARM<'static> =
+		vk::DataGraphProcessingEngineCreateInfoARM::new;
 	let value = vk::DataGraphProcessingEngineCreateInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PROCESSING_ENGINE_CREATE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphProcessingEngineCreateInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PROCESSING_ENGINE_CREATE_INFO_ARM
@@ -31575,7 +40228,15 @@ fn vk_data_graph_processing_engine_create_info_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_pipeline_cache_incremental_mode_features_sec_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC<'static> =
+		vk::PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC::new;
 	let value = vk::PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePipelineCacheIncrementalModeFeaturesSEC::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PIPELINE_CACHE_INCREMENTAL_MODE_FEATURES_SEC
@@ -31590,7 +40251,15 @@ fn vk_physical_device_pipeline_cache_incremental_mode_features_sec_construction_
 
 #[test]
 fn vk_data_graph_pipeline_builtin_model_create_info_qcom_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineBuiltinModelCreateInfoQCOM<'static> =
+		vk::DataGraphPipelineBuiltinModelCreateInfoQCOM::new;
 	let value = vk::DataGraphPipelineBuiltinModelCreateInfoQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_BUILTIN_MODEL_CREATE_INFO_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineBuiltinModelCreateInfoQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_BUILTIN_MODEL_CREATE_INFO_QCOM
@@ -31605,7 +40274,15 @@ fn vk_data_graph_pipeline_builtin_model_create_info_qcom_construction_contract()
 
 #[test]
 fn vk_physical_device_data_graph_model_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDataGraphModelFeaturesQCOM<'static> =
+		vk::PhysicalDeviceDataGraphModelFeaturesQCOM::new;
 	let value = vk::PhysicalDeviceDataGraphModelFeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_MODEL_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDataGraphModelFeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_MODEL_FEATURES_QCOM
@@ -31620,7 +40297,15 @@ fn vk_physical_device_data_graph_model_features_qcom_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_untyped_pointers_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderUntypedPointersFeaturesKHR<'static> =
+		vk::PhysicalDeviceShaderUntypedPointersFeaturesKHR::new;
 	let value = vk::PhysicalDeviceShaderUntypedPointersFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_UNTYPED_POINTERS_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderUntypedPointersFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_UNTYPED_POINTERS_FEATURES_KHR
@@ -31635,7 +40320,15 @@ fn vk_physical_device_shader_untyped_pointers_features_khr_construction_contract
 
 #[test]
 fn vk_physical_device_video_encode_rgb_conversion_features_valve_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE<'static> =
+		vk::PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE::new;
 	let value = vk::PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_RGB_CONVERSION_FEATURES_VALVE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceVideoEncodeRgbConversionFeaturesVALVE::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_VIDEO_ENCODE_RGB_CONVERSION_FEATURES_VALVE
@@ -31650,7 +40343,15 @@ fn vk_physical_device_video_encode_rgb_conversion_features_valve_construction_co
 
 #[test]
 fn vk_video_encode_rgb_conversion_capabilities_valve_construction_contract() {
+	let _: fn() -> vk::VideoEncodeRgbConversionCapabilitiesVALVE<'static> =
+		vk::VideoEncodeRgbConversionCapabilitiesVALVE::new;
 	let value = vk::VideoEncodeRgbConversionCapabilitiesVALVE::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_RGB_CONVERSION_CAPABILITIES_VALVE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeRgbConversionCapabilitiesVALVE::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_RGB_CONVERSION_CAPABILITIES_VALVE
@@ -31680,7 +40381,15 @@ fn vk_video_encode_rgb_conversion_capabilities_valve_construction_contract() {
 
 #[test]
 fn vk_video_encode_profile_rgb_conversion_info_valve_construction_contract() {
+	let _: fn() -> vk::VideoEncodeProfileRgbConversionInfoVALVE<'static> =
+		vk::VideoEncodeProfileRgbConversionInfoVALVE::new;
 	let value = vk::VideoEncodeProfileRgbConversionInfoVALVE::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_PROFILE_RGB_CONVERSION_INFO_VALVE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeProfileRgbConversionInfoVALVE::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_PROFILE_RGB_CONVERSION_INFO_VALVE
@@ -31695,7 +40404,15 @@ fn vk_video_encode_profile_rgb_conversion_info_valve_construction_contract() {
 
 #[test]
 fn vk_video_encode_session_rgb_conversion_create_info_valve_construction_contract() {
+	let _: fn() -> vk::VideoEncodeSessionRgbConversionCreateInfoVALVE<'static> =
+		vk::VideoEncodeSessionRgbConversionCreateInfoVALVE::new;
 	let value = vk::VideoEncodeSessionRgbConversionCreateInfoVALVE::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::VIDEO_ENCODE_SESSION_RGB_CONVERSION_CREATE_INFO_VALVE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::VideoEncodeSessionRgbConversionCreateInfoVALVE::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::VIDEO_ENCODE_SESSION_RGB_CONVERSION_CREATE_INFO_VALVE
@@ -31725,7 +40442,15 @@ fn vk_video_encode_session_rgb_conversion_create_info_valve_construction_contrac
 
 #[test]
 fn vk_physical_device_shader64_bit_indexing_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShader64BitIndexingFeaturesEXT<'static> =
+		vk::PhysicalDeviceShader64BitIndexingFeaturesEXT::new;
 	let value = vk::PhysicalDeviceShader64BitIndexingFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_64_BIT_INDEXING_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShader64BitIndexingFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_64_BIT_INDEXING_FEATURES_EXT
@@ -31741,7 +40466,11 @@ fn vk_physical_device_shader64_bit_indexing_features_ext_construction_contract()
 #[cfg(feature = "platform-ohos")]
 #[test]
 fn vk_native_buffer_usage_ohos_construction_contract() {
+	let _: fn() -> vk::NativeBufferUsageOHOS<'static> = vk::NativeBufferUsageOHOS::new;
 	let value = vk::NativeBufferUsageOHOS::default();
+	assert_eq!(value.s_type, vk::StructureType::NATIVE_BUFFER_USAGE_OHOS);
+	assert!(value.p_next.is_null());
+	let value = vk::NativeBufferUsageOHOS::new();
 	assert_eq!(value.s_type, vk::StructureType::NATIVE_BUFFER_USAGE_OHOS);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::NativeBufferUsageOHOS<'static>, u64) -> vk::NativeBufferUsageOHOS<'static> =
@@ -31751,7 +40480,14 @@ fn vk_native_buffer_usage_ohos_construction_contract() {
 #[cfg(feature = "platform-ohos")]
 #[test]
 fn vk_native_buffer_properties_ohos_construction_contract() {
+	let _: fn() -> vk::NativeBufferPropertiesOHOS<'static> = vk::NativeBufferPropertiesOHOS::new;
 	let value = vk::NativeBufferPropertiesOHOS::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::NATIVE_BUFFER_PROPERTIES_OHOS
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::NativeBufferPropertiesOHOS::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::NATIVE_BUFFER_PROPERTIES_OHOS
@@ -31771,7 +40507,15 @@ fn vk_native_buffer_properties_ohos_construction_contract() {
 #[cfg(feature = "platform-ohos")]
 #[test]
 fn vk_native_buffer_format_properties_ohos_construction_contract() {
+	let _: fn() -> vk::NativeBufferFormatPropertiesOHOS<'static> =
+		vk::NativeBufferFormatPropertiesOHOS::new;
 	let value = vk::NativeBufferFormatPropertiesOHOS::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::NATIVE_BUFFER_FORMAT_PROPERTIES_OHOS
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::NativeBufferFormatPropertiesOHOS::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::NATIVE_BUFFER_FORMAT_PROPERTIES_OHOS
@@ -31822,7 +40566,14 @@ fn vk_native_buffer_format_properties_ohos_construction_contract() {
 #[cfg(feature = "platform-ohos")]
 #[test]
 fn vk_import_native_buffer_info_ohos_construction_contract() {
+	let _: fn() -> vk::ImportNativeBufferInfoOHOS<'static> = vk::ImportNativeBufferInfoOHOS::new;
 	let value = vk::ImportNativeBufferInfoOHOS::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMPORT_NATIVE_BUFFER_INFO_OHOS
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImportNativeBufferInfoOHOS::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMPORT_NATIVE_BUFFER_INFO_OHOS
@@ -31837,7 +40588,15 @@ fn vk_import_native_buffer_info_ohos_construction_contract() {
 #[cfg(feature = "platform-ohos")]
 #[test]
 fn vk_memory_get_native_buffer_info_ohos_construction_contract() {
+	let _: fn() -> vk::MemoryGetNativeBufferInfoOHOS<'static> =
+		vk::MemoryGetNativeBufferInfoOHOS::new;
 	let value = vk::MemoryGetNativeBufferInfoOHOS::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_GET_NATIVE_BUFFER_INFO_OHOS
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryGetNativeBufferInfoOHOS::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_GET_NATIVE_BUFFER_INFO_OHOS
@@ -31852,7 +40611,11 @@ fn vk_memory_get_native_buffer_info_ohos_construction_contract() {
 #[cfg(feature = "platform-ohos")]
 #[test]
 fn vk_external_format_ohos_construction_contract() {
+	let _: fn() -> vk::ExternalFormatOHOS<'static> = vk::ExternalFormatOHOS::new;
 	let value = vk::ExternalFormatOHOS::default();
+	assert_eq!(value.s_type, vk::StructureType::EXTERNAL_FORMAT_OHOS);
+	assert!(value.p_next.is_null());
+	let value = vk::ExternalFormatOHOS::new();
 	assert_eq!(value.s_type, vk::StructureType::EXTERNAL_FORMAT_OHOS);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::ExternalFormatOHOS<'static>, u64) -> vk::ExternalFormatOHOS<'static> =
@@ -31861,7 +40624,11 @@ fn vk_external_format_ohos_construction_contract() {
 
 #[test]
 fn vk_perf_hint_info_qcom_construction_contract() {
+	let _: fn() -> vk::PerfHintInfoQCOM<'static> = vk::PerfHintInfoQCOM::new;
 	let value = vk::PerfHintInfoQCOM::default();
+	assert_eq!(value.s_type, vk::StructureType::PERF_HINT_INFO_QCOM);
+	assert!(value.p_next.is_null());
+	let value = vk::PerfHintInfoQCOM::new();
 	assert_eq!(value.s_type, vk::StructureType::PERF_HINT_INFO_QCOM);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::PerfHintInfoQCOM<'static>, vk::PerfHintTypeQCOM) -> vk::PerfHintInfoQCOM<'static> =
@@ -31872,7 +40639,15 @@ fn vk_perf_hint_info_qcom_construction_contract() {
 
 #[test]
 fn vk_physical_device_queue_perf_hint_features_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceQueuePerfHintFeaturesQCOM<'static> =
+		vk::PhysicalDeviceQueuePerfHintFeaturesQCOM::new;
 	let value = vk::PhysicalDeviceQueuePerfHintFeaturesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_QUEUE_PERF_HINT_FEATURES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceQueuePerfHintFeaturesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_QUEUE_PERF_HINT_FEATURES_QCOM
@@ -31887,7 +40662,15 @@ fn vk_physical_device_queue_perf_hint_features_qcom_construction_contract() {
 
 #[test]
 fn vk_physical_device_queue_perf_hint_properties_qcom_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceQueuePerfHintPropertiesQCOM<'static> =
+		vk::PhysicalDeviceQueuePerfHintPropertiesQCOM::new;
 	let value = vk::PhysicalDeviceQueuePerfHintPropertiesQCOM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_QUEUE_PERF_HINT_PROPERTIES_QCOM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceQueuePerfHintPropertiesQCOM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_QUEUE_PERF_HINT_PROPERTIES_QCOM
@@ -31902,7 +40685,15 @@ fn vk_physical_device_queue_perf_hint_properties_qcom_construction_contract() {
 
 #[test]
 fn vk_physical_device_performance_counters_by_region_features_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePerformanceCountersByRegionFeaturesARM<'static> =
+		vk::PhysicalDevicePerformanceCountersByRegionFeaturesARM::new;
 	let value = vk::PhysicalDevicePerformanceCountersByRegionFeaturesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_FEATURES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePerformanceCountersByRegionFeaturesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_FEATURES_ARM
@@ -31917,7 +40708,15 @@ fn vk_physical_device_performance_counters_by_region_features_arm_construction_c
 
 #[test]
 fn vk_physical_device_performance_counters_by_region_properties_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDevicePerformanceCountersByRegionPropertiesARM<'static> =
+		vk::PhysicalDevicePerformanceCountersByRegionPropertiesARM::new;
 	let value = vk::PhysicalDevicePerformanceCountersByRegionPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDevicePerformanceCountersByRegionPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_PERFORMANCE_COUNTERS_BY_REGION_PROPERTIES_ARM
@@ -31948,7 +40747,11 @@ fn vk_physical_device_performance_counters_by_region_properties_arm_construction
 
 #[test]
 fn vk_performance_counter_arm_construction_contract() {
+	let _: fn() -> vk::PerformanceCounterARM<'static> = vk::PerformanceCounterARM::new;
 	let value = vk::PerformanceCounterARM::default();
+	assert_eq!(value.s_type, vk::StructureType::PERFORMANCE_COUNTER_ARM);
+	assert!(value.p_next.is_null());
+	let value = vk::PerformanceCounterARM::new();
 	assert_eq!(value.s_type, vk::StructureType::PERFORMANCE_COUNTER_ARM);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::PerformanceCounterARM<'static>, u32) -> vk::PerformanceCounterARM<'static> =
@@ -31957,7 +40760,15 @@ fn vk_performance_counter_arm_construction_contract() {
 
 #[test]
 fn vk_performance_counter_description_arm_construction_contract() {
+	let _: fn() -> vk::PerformanceCounterDescriptionARM<'static> =
+		vk::PerformanceCounterDescriptionARM::new;
 	let value = vk::PerformanceCounterDescriptionARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PERFORMANCE_COUNTER_DESCRIPTION_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PerformanceCounterDescriptionARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PERFORMANCE_COUNTER_DESCRIPTION_ARM
@@ -31977,7 +40788,15 @@ fn vk_performance_counter_description_arm_construction_contract() {
 
 #[test]
 fn vk_render_pass_performance_counters_by_region_begin_info_arm_construction_contract() {
+	let _: fn() -> vk::RenderPassPerformanceCountersByRegionBeginInfoARM<'static> =
+		vk::RenderPassPerformanceCountersByRegionBeginInfoARM::new;
 	let value = vk::RenderPassPerformanceCountersByRegionBeginInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RENDER_PASS_PERFORMANCE_COUNTERS_BY_REGION_BEGIN_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::RenderPassPerformanceCountersByRegionBeginInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RENDER_PASS_PERFORMANCE_COUNTERS_BY_REGION_BEGIN_INFO_ARM
@@ -32016,7 +40835,15 @@ fn vk_render_pass_performance_counters_by_region_begin_info_arm_construction_con
 
 #[test]
 fn vk_compute_occupancy_priority_parameters_nv_construction_contract() {
+	let _: fn() -> vk::ComputeOccupancyPriorityParametersNV<'static> =
+		vk::ComputeOccupancyPriorityParametersNV::new;
 	let value = vk::ComputeOccupancyPriorityParametersNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COMPUTE_OCCUPANCY_PRIORITY_PARAMETERS_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ComputeOccupancyPriorityParametersNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COMPUTE_OCCUPANCY_PRIORITY_PARAMETERS_NV
@@ -32036,7 +40863,15 @@ fn vk_compute_occupancy_priority_parameters_nv_construction_contract() {
 
 #[test]
 fn vk_physical_device_compute_occupancy_priority_features_nv_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceComputeOccupancyPriorityFeaturesNV<'static> =
+		vk::PhysicalDeviceComputeOccupancyPriorityFeaturesNV::new;
 	let value = vk::PhysicalDeviceComputeOccupancyPriorityFeaturesNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COMPUTE_OCCUPANCY_PRIORITY_FEATURES_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceComputeOccupancyPriorityFeaturesNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COMPUTE_OCCUPANCY_PRIORITY_FEATURES_NV
@@ -32051,7 +40886,15 @@ fn vk_physical_device_compute_occupancy_priority_features_nv_construction_contra
 
 #[test]
 fn vk_physical_device_shader_long_vector_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderLongVectorFeaturesEXT<'static> =
+		vk::PhysicalDeviceShaderLongVectorFeaturesEXT::new;
 	let value = vk::PhysicalDeviceShaderLongVectorFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_LONG_VECTOR_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderLongVectorFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_LONG_VECTOR_FEATURES_EXT
@@ -32066,7 +40909,15 @@ fn vk_physical_device_shader_long_vector_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_long_vector_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderLongVectorPropertiesEXT<'static> =
+		vk::PhysicalDeviceShaderLongVectorPropertiesEXT::new;
 	let value = vk::PhysicalDeviceShaderLongVectorPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_LONG_VECTOR_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderLongVectorPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_LONG_VECTOR_PROPERTIES_EXT
@@ -32081,7 +40932,15 @@ fn vk_physical_device_shader_long_vector_properties_ext_construction_contract() 
 
 #[test]
 fn vk_physical_device_texture_compression_astc3_d_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceTextureCompressionASTC3DFeaturesEXT<'static> =
+		vk::PhysicalDeviceTextureCompressionASTC3DFeaturesEXT::new;
 	let value = vk::PhysicalDeviceTextureCompressionASTC3DFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_3D_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceTextureCompressionASTC3DFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_3D_FEATURES_EXT
@@ -32096,7 +40955,15 @@ fn vk_physical_device_texture_compression_astc3_d_features_ext_construction_cont
 
 #[test]
 fn vk_physical_device_shader_subgroup_partitioned_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT<'static> =
+		vk::PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT::new;
 	let value = vk::PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_PARTITIONED_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderSubgroupPartitionedFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_SUBGROUP_PARTITIONED_FEATURES_EXT
@@ -32111,6 +40978,7 @@ fn vk_physical_device_shader_subgroup_partitioned_features_ext_construction_cont
 
 #[test]
 fn vk_host_address_range_ext_construction_contract() {
+	let _: fn() -> vk::HostAddressRangeEXT<'static> = vk::HostAddressRangeEXT::new;
 	let _: fn(
 		vk::HostAddressRangeEXT<'static>,
 		&'static mut [u8],
@@ -32122,6 +40990,7 @@ fn vk_host_address_range_ext_construction_contract() {
 
 #[test]
 fn vk_host_address_range_const_ext_construction_contract() {
+	let _: fn() -> vk::HostAddressRangeConstEXT<'static> = vk::HostAddressRangeConstEXT::new;
 	let _: fn(
 		vk::HostAddressRangeConstEXT<'static>,
 		&'static [u8],
@@ -32133,7 +41002,14 @@ fn vk_host_address_range_const_ext_construction_contract() {
 
 #[test]
 fn vk_texel_buffer_descriptor_info_ext_construction_contract() {
+	let _: fn() -> vk::TexelBufferDescriptorInfoEXT<'static> = vk::TexelBufferDescriptorInfoEXT::new;
 	let value = vk::TexelBufferDescriptorInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::TEXEL_BUFFER_DESCRIPTOR_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::TexelBufferDescriptorInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::TEXEL_BUFFER_DESCRIPTOR_INFO_EXT
@@ -32152,7 +41028,11 @@ fn vk_texel_buffer_descriptor_info_ext_construction_contract() {
 
 #[test]
 fn vk_image_descriptor_info_ext_construction_contract() {
+	let _: fn() -> vk::ImageDescriptorInfoEXT<'static> = vk::ImageDescriptorInfoEXT::new;
 	let value = vk::ImageDescriptorInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::IMAGE_DESCRIPTOR_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageDescriptorInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::IMAGE_DESCRIPTOR_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -32167,6 +41047,7 @@ fn vk_image_descriptor_info_ext_construction_contract() {
 
 #[test]
 fn vk_resource_descriptor_data_ext_construction_contract() {
+	let _: fn() -> vk::ResourceDescriptorDataEXT<'static> = vk::ResourceDescriptorDataEXT::new;
 	let _: fn(
 		vk::ResourceDescriptorDataEXT<'static>,
 		&'static vk::ImageDescriptorInfoEXT<'static>,
@@ -32187,7 +41068,14 @@ fn vk_resource_descriptor_data_ext_construction_contract() {
 
 #[test]
 fn vk_resource_descriptor_info_ext_construction_contract() {
+	let _: fn() -> vk::ResourceDescriptorInfoEXT<'static> = vk::ResourceDescriptorInfoEXT::new;
 	let value = vk::ResourceDescriptorInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::RESOURCE_DESCRIPTOR_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ResourceDescriptorInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::RESOURCE_DESCRIPTOR_INFO_EXT
@@ -32205,7 +41093,11 @@ fn vk_resource_descriptor_info_ext_construction_contract() {
 
 #[test]
 fn vk_bind_heap_info_ext_construction_contract() {
+	let _: fn() -> vk::BindHeapInfoEXT<'static> = vk::BindHeapInfoEXT::new;
 	let value = vk::BindHeapInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::BIND_HEAP_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::BindHeapInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::BIND_HEAP_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -32220,7 +41112,11 @@ fn vk_bind_heap_info_ext_construction_contract() {
 
 #[test]
 fn vk_push_data_info_ext_construction_contract() {
+	let _: fn() -> vk::PushDataInfoEXT<'static> = vk::PushDataInfoEXT::new;
 	let value = vk::PushDataInfoEXT::default();
+	assert_eq!(value.s_type, vk::StructureType::PUSH_DATA_INFO_EXT);
+	assert!(value.p_next.is_null());
+	let value = vk::PushDataInfoEXT::new();
 	assert_eq!(value.s_type, vk::StructureType::PUSH_DATA_INFO_EXT);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::PushDataInfoEXT<'static>, u32) -> vk::PushDataInfoEXT<'static> =
@@ -32233,6 +41129,8 @@ fn vk_push_data_info_ext_construction_contract() {
 
 #[test]
 fn vk_descriptor_mapping_source_constant_offset_ext_construction_contract() {
+	let _: fn() -> vk::DescriptorMappingSourceConstantOffsetEXT<'static> =
+		vk::DescriptorMappingSourceConstantOffsetEXT::new;
 	let _: fn(
 		vk::DescriptorMappingSourceConstantOffsetEXT<'static>,
 		u32,
@@ -32262,6 +41160,8 @@ fn vk_descriptor_mapping_source_constant_offset_ext_construction_contract() {
 
 #[test]
 fn vk_descriptor_mapping_source_push_index_ext_construction_contract() {
+	let _: fn() -> vk::DescriptorMappingSourcePushIndexEXT<'static> =
+		vk::DescriptorMappingSourcePushIndexEXT::new;
 	let _: fn(
 		vk::DescriptorMappingSourcePushIndexEXT<'static>,
 		u32,
@@ -32316,6 +41216,8 @@ fn vk_descriptor_mapping_source_push_index_ext_construction_contract() {
 
 #[test]
 fn vk_descriptor_mapping_source_indirect_index_ext_construction_contract() {
+	let _: fn() -> vk::DescriptorMappingSourceIndirectIndexEXT<'static> =
+		vk::DescriptorMappingSourceIndirectIndexEXT::new;
 	let _: fn(
 		vk::DescriptorMappingSourceIndirectIndexEXT<'static>,
 		u32,
@@ -32380,6 +41282,8 @@ fn vk_descriptor_mapping_source_indirect_index_ext_construction_contract() {
 
 #[test]
 fn vk_descriptor_mapping_source_indirect_index_array_ext_construction_contract() {
+	let _: fn() -> vk::DescriptorMappingSourceIndirectIndexArrayEXT<'static> =
+		vk::DescriptorMappingSourceIndirectIndexArrayEXT::new;
 	let _: fn(
 		vk::DescriptorMappingSourceIndirectIndexArrayEXT<'static>,
 		u32,
@@ -32434,6 +41338,8 @@ fn vk_descriptor_mapping_source_indirect_index_array_ext_construction_contract()
 
 #[test]
 fn vk_descriptor_mapping_source_heap_data_ext_construction_contract() {
+	let _: fn() -> vk::DescriptorMappingSourceHeapDataEXT =
+		vk::DescriptorMappingSourceHeapDataEXT::new;
 	let _: fn(vk::DescriptorMappingSourceHeapDataEXT, u32) -> vk::DescriptorMappingSourceHeapDataEXT =
 		vk::DescriptorMappingSourceHeapDataEXT::set_heap_offset;
 	let _: fn(vk::DescriptorMappingSourceHeapDataEXT, u32) -> vk::DescriptorMappingSourceHeapDataEXT =
@@ -32442,6 +41348,8 @@ fn vk_descriptor_mapping_source_heap_data_ext_construction_contract() {
 
 #[test]
 fn vk_descriptor_mapping_source_shader_record_index_ext_construction_contract() {
+	let _: fn() -> vk::DescriptorMappingSourceShaderRecordIndexEXT<'static> =
+		vk::DescriptorMappingSourceShaderRecordIndexEXT::new;
 	let _: fn(
 		vk::DescriptorMappingSourceShaderRecordIndexEXT<'static>,
 		u32,
@@ -32496,6 +41404,8 @@ fn vk_descriptor_mapping_source_shader_record_index_ext_construction_contract() 
 
 #[test]
 fn vk_descriptor_mapping_source_indirect_address_ext_construction_contract() {
+	let _: fn() -> vk::DescriptorMappingSourceIndirectAddressEXT =
+		vk::DescriptorMappingSourceIndirectAddressEXT::new;
 	let _: fn(
 		vk::DescriptorMappingSourceIndirectAddressEXT,
 		u32,
@@ -32510,6 +41420,8 @@ fn vk_descriptor_mapping_source_indirect_address_ext_construction_contract() {
 
 #[test]
 fn vk_descriptor_mapping_source_data_ext_construction_contract() {
+	let _: fn() -> vk::DescriptorMappingSourceDataEXT<'static> =
+		vk::DescriptorMappingSourceDataEXT::new;
 	let _: fn(
 		vk::DescriptorMappingSourceDataEXT<'static>,
 		vk::DescriptorMappingSourceConstantOffsetEXT<'static>,
@@ -32569,7 +41481,15 @@ fn vk_descriptor_mapping_source_data_ext_construction_contract() {
 
 #[test]
 fn vk_descriptor_set_and_binding_mapping_ext_construction_contract() {
+	let _: fn() -> vk::DescriptorSetAndBindingMappingEXT<'static> =
+		vk::DescriptorSetAndBindingMappingEXT::new;
 	let value = vk::DescriptorSetAndBindingMappingEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DESCRIPTOR_SET_AND_BINDING_MAPPING_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DescriptorSetAndBindingMappingEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DESCRIPTOR_SET_AND_BINDING_MAPPING_EXT
@@ -32609,7 +41529,15 @@ fn vk_descriptor_set_and_binding_mapping_ext_construction_contract() {
 
 #[test]
 fn vk_shader_descriptor_set_and_binding_mapping_info_ext_construction_contract() {
+	let _: fn() -> vk::ShaderDescriptorSetAndBindingMappingInfoEXT<'static> =
+		vk::ShaderDescriptorSetAndBindingMappingInfoEXT::new;
 	let value = vk::ShaderDescriptorSetAndBindingMappingInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SHADER_DESCRIPTOR_SET_AND_BINDING_MAPPING_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ShaderDescriptorSetAndBindingMappingInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SHADER_DESCRIPTOR_SET_AND_BINDING_MAPPING_INFO_EXT
@@ -32631,7 +41559,15 @@ fn vk_shader_descriptor_set_and_binding_mapping_info_ext_construction_contract()
 
 #[test]
 fn vk_sampler_custom_border_color_index_create_info_ext_construction_contract() {
+	let _: fn() -> vk::SamplerCustomBorderColorIndexCreateInfoEXT<'static> =
+		vk::SamplerCustomBorderColorIndexCreateInfoEXT::new;
 	let value = vk::SamplerCustomBorderColorIndexCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SAMPLER_CUSTOM_BORDER_COLOR_INDEX_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SamplerCustomBorderColorIndexCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SAMPLER_CUSTOM_BORDER_COLOR_INDEX_CREATE_INFO_EXT
@@ -32646,7 +41582,15 @@ fn vk_sampler_custom_border_color_index_create_info_ext_construction_contract() 
 
 #[test]
 fn vk_opaque_capture_data_create_info_ext_construction_contract() {
+	let _: fn() -> vk::OpaqueCaptureDataCreateInfoEXT<'static> =
+		vk::OpaqueCaptureDataCreateInfoEXT::new;
 	let value = vk::OpaqueCaptureDataCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::OPAQUE_CAPTURE_DATA_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::OpaqueCaptureDataCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::OPAQUE_CAPTURE_DATA_CREATE_INFO_EXT
@@ -32660,7 +41604,15 @@ fn vk_opaque_capture_data_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_indirect_commands_layout_push_data_token_nv_construction_contract() {
+	let _: fn() -> vk::IndirectCommandsLayoutPushDataTokenNV<'static> =
+		vk::IndirectCommandsLayoutPushDataTokenNV::new;
 	let value = vk::IndirectCommandsLayoutPushDataTokenNV::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::INDIRECT_COMMANDS_LAYOUT_PUSH_DATA_TOKEN_NV
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::IndirectCommandsLayoutPushDataTokenNV::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::INDIRECT_COMMANDS_LAYOUT_PUSH_DATA_TOKEN_NV
@@ -32680,7 +41632,15 @@ fn vk_indirect_commands_layout_push_data_token_nv_construction_contract() {
 
 #[test]
 fn vk_subsampled_image_format_properties_ext_construction_contract() {
+	let _: fn() -> vk::SubsampledImageFormatPropertiesEXT<'static> =
+		vk::SubsampledImageFormatPropertiesEXT::new;
 	let value = vk::SubsampledImageFormatPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SUBSAMPLED_IMAGE_FORMAT_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::SubsampledImageFormatPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SUBSAMPLED_IMAGE_FORMAT_PROPERTIES_EXT
@@ -32695,7 +41655,15 @@ fn vk_subsampled_image_format_properties_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_split_barrier_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderSplitBarrierFeaturesEXT<'static> =
+		vk::PhysicalDeviceShaderSplitBarrierFeaturesEXT::new;
 	let value = vk::PhysicalDeviceShaderSplitBarrierFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_SPLIT_BARRIER_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderSplitBarrierFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_SPLIT_BARRIER_FEATURES_EXT
@@ -32710,7 +41678,15 @@ fn vk_physical_device_shader_split_barrier_features_ext_construction_contract() 
 
 #[test]
 fn vk_physical_device_shader_split_barrier_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderSplitBarrierPropertiesEXT<'static> =
+		vk::PhysicalDeviceShaderSplitBarrierPropertiesEXT::new;
 	let value = vk::PhysicalDeviceShaderSplitBarrierPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_SPLIT_BARRIER_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderSplitBarrierPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_SPLIT_BARRIER_PROPERTIES_EXT
@@ -32725,7 +41701,15 @@ fn vk_physical_device_shader_split_barrier_properties_ext_construction_contract(
 
 #[test]
 fn vk_physical_device_descriptor_heap_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDescriptorHeapFeaturesEXT<'static> =
+		vk::PhysicalDeviceDescriptorHeapFeaturesEXT::new;
 	let value = vk::PhysicalDeviceDescriptorHeapFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDescriptorHeapFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_FEATURES_EXT
@@ -32745,7 +41729,15 @@ fn vk_physical_device_descriptor_heap_features_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_descriptor_heap_properties_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDescriptorHeapPropertiesEXT<'static> =
+		vk::PhysicalDeviceDescriptorHeapPropertiesEXT::new;
 	let value = vk::PhysicalDeviceDescriptorHeapPropertiesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_PROPERTIES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDescriptorHeapPropertiesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_PROPERTIES_EXT
@@ -32846,7 +41838,15 @@ fn vk_physical_device_descriptor_heap_properties_ext_construction_contract() {
 
 #[test]
 fn vk_command_buffer_inheritance_descriptor_heap_info_ext_construction_contract() {
+	let _: fn() -> vk::CommandBufferInheritanceDescriptorHeapInfoEXT<'static> =
+		vk::CommandBufferInheritanceDescriptorHeapInfoEXT::new;
 	let value = vk::CommandBufferInheritanceDescriptorHeapInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COMMAND_BUFFER_INHERITANCE_DESCRIPTOR_HEAP_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CommandBufferInheritanceDescriptorHeapInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COMMAND_BUFFER_INHERITANCE_DESCRIPTOR_HEAP_INFO_EXT
@@ -32866,7 +41866,15 @@ fn vk_command_buffer_inheritance_descriptor_heap_info_ext_construction_contract(
 
 #[test]
 fn vk_physical_device_descriptor_heap_tensor_properties_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDescriptorHeapTensorPropertiesARM<'static> =
+		vk::PhysicalDeviceDescriptorHeapTensorPropertiesARM::new;
 	let value = vk::PhysicalDeviceDescriptorHeapTensorPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_TENSOR_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDescriptorHeapTensorPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DESCRIPTOR_HEAP_TENSOR_PROPERTIES_ARM
@@ -32891,7 +41899,15 @@ fn vk_physical_device_descriptor_heap_tensor_properties_arm_construction_contrac
 
 #[test]
 fn vk_physical_device_shader_instrumentation_features_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderInstrumentationFeaturesARM<'static> =
+		vk::PhysicalDeviceShaderInstrumentationFeaturesARM::new;
 	let value = vk::PhysicalDeviceShaderInstrumentationFeaturesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_FEATURES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderInstrumentationFeaturesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_FEATURES_ARM
@@ -32906,7 +41922,15 @@ fn vk_physical_device_shader_instrumentation_features_arm_construction_contract(
 
 #[test]
 fn vk_physical_device_shader_instrumentation_properties_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderInstrumentationPropertiesARM<'static> =
+		vk::PhysicalDeviceShaderInstrumentationPropertiesARM::new;
 	let value = vk::PhysicalDeviceShaderInstrumentationPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderInstrumentationPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_INSTRUMENTATION_PROPERTIES_ARM
@@ -32926,7 +41950,15 @@ fn vk_physical_device_shader_instrumentation_properties_arm_construction_contrac
 
 #[test]
 fn vk_shader_instrumentation_create_info_arm_construction_contract() {
+	let _: fn() -> vk::ShaderInstrumentationCreateInfoARM<'static> =
+		vk::ShaderInstrumentationCreateInfoARM::new;
 	let value = vk::ShaderInstrumentationCreateInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SHADER_INSTRUMENTATION_CREATE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ShaderInstrumentationCreateInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SHADER_INSTRUMENTATION_CREATE_INFO_ARM
@@ -32936,7 +41968,15 @@ fn vk_shader_instrumentation_create_info_arm_construction_contract() {
 
 #[test]
 fn vk_shader_instrumentation_metric_description_arm_construction_contract() {
+	let _: fn() -> vk::ShaderInstrumentationMetricDescriptionARM<'static> =
+		vk::ShaderInstrumentationMetricDescriptionARM::new;
 	let value = vk::ShaderInstrumentationMetricDescriptionARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::SHADER_INSTRUMENTATION_METRIC_DESCRIPTION_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ShaderInstrumentationMetricDescriptionARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::SHADER_INSTRUMENTATION_METRIC_DESCRIPTION_ARM
@@ -32956,6 +41996,8 @@ fn vk_shader_instrumentation_metric_description_arm_construction_contract() {
 
 #[test]
 fn vk_shader_instrumentation_metric_data_header_arm_construction_contract() {
+	let _: fn() -> vk::ShaderInstrumentationMetricDataHeaderARM =
+		vk::ShaderInstrumentationMetricDataHeaderARM::new;
 	let _: fn(
 		vk::ShaderInstrumentationMetricDataHeaderARM,
 		u32,
@@ -32980,6 +42022,7 @@ fn vk_shader_instrumentation_metric_data_header_arm_construction_contract() {
 
 #[test]
 fn vk_device_address_range_khr_construction_contract() {
+	let _: fn() -> vk::DeviceAddressRangeKHR = vk::DeviceAddressRangeKHR::new;
 	let _: fn(vk::DeviceAddressRangeKHR, vk::DeviceAddress) -> vk::DeviceAddressRangeKHR =
 		vk::DeviceAddressRangeKHR::set_address;
 	let _: fn(vk::DeviceAddressRangeKHR, vk::DeviceSize) -> vk::DeviceAddressRangeKHR =
@@ -32988,7 +42031,11 @@ fn vk_device_address_range_khr_construction_contract() {
 
 #[test]
 fn vk_device_memory_copy_khr_construction_contract() {
+	let _: fn() -> vk::DeviceMemoryCopyKHR<'static> = vk::DeviceMemoryCopyKHR::new;
 	let value = vk::DeviceMemoryCopyKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::DEVICE_MEMORY_COPY_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceMemoryCopyKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::DEVICE_MEMORY_COPY_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -33011,7 +42058,11 @@ fn vk_device_memory_copy_khr_construction_contract() {
 
 #[test]
 fn vk_copy_device_memory_info_khr_construction_contract() {
+	let _: fn() -> vk::CopyDeviceMemoryInfoKHR<'static> = vk::CopyDeviceMemoryInfoKHR::new;
 	let value = vk::CopyDeviceMemoryInfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::COPY_DEVICE_MEMORY_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyDeviceMemoryInfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::COPY_DEVICE_MEMORY_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(vk::CopyDeviceMemoryInfoKHR<'static>, u32) -> vk::CopyDeviceMemoryInfoKHR<'static> =
@@ -33025,7 +42076,14 @@ fn vk_copy_device_memory_info_khr_construction_contract() {
 
 #[test]
 fn vk_device_memory_image_copy_khr_construction_contract() {
+	let _: fn() -> vk::DeviceMemoryImageCopyKHR<'static> = vk::DeviceMemoryImageCopyKHR::new;
 	let value = vk::DeviceMemoryImageCopyKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_MEMORY_IMAGE_COPY_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceMemoryImageCopyKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_MEMORY_IMAGE_COPY_KHR
@@ -33063,7 +42121,14 @@ fn vk_device_memory_image_copy_khr_construction_contract() {
 
 #[test]
 fn vk_copy_device_memory_image_info_khr_construction_contract() {
+	let _: fn() -> vk::CopyDeviceMemoryImageInfoKHR<'static> = vk::CopyDeviceMemoryImageInfoKHR::new;
 	let value = vk::CopyDeviceMemoryImageInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::COPY_DEVICE_MEMORY_IMAGE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::CopyDeviceMemoryImageInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::COPY_DEVICE_MEMORY_IMAGE_INFO_KHR
@@ -33089,7 +42154,14 @@ fn vk_copy_device_memory_image_info_khr_construction_contract() {
 
 #[test]
 fn vk_memory_range_barriers_info_khr_construction_contract() {
+	let _: fn() -> vk::MemoryRangeBarriersInfoKHR<'static> = vk::MemoryRangeBarriersInfoKHR::new;
 	let value = vk::MemoryRangeBarriersInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::MEMORY_RANGE_BARRIERS_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryRangeBarriersInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::MEMORY_RANGE_BARRIERS_INFO_KHR
@@ -33110,7 +42182,11 @@ fn vk_memory_range_barriers_info_khr_construction_contract() {
 
 #[test]
 fn vk_memory_range_barrier_khr_construction_contract() {
+	let _: fn() -> vk::MemoryRangeBarrierKHR<'static> = vk::MemoryRangeBarrierKHR::new;
 	let value = vk::MemoryRangeBarrierKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::MEMORY_RANGE_BARRIER_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryRangeBarrierKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::MEMORY_RANGE_BARRIER_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -33145,7 +42221,15 @@ fn vk_memory_range_barrier_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_device_address_commands_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDeviceAddressCommandsFeaturesKHR<'static> =
+		vk::PhysicalDeviceDeviceAddressCommandsFeaturesKHR::new;
 	let value = vk::PhysicalDeviceDeviceAddressCommandsFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DEVICE_ADDRESS_COMMANDS_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDeviceAddressCommandsFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DEVICE_ADDRESS_COMMANDS_FEATURES_KHR
@@ -33160,7 +42244,15 @@ fn vk_physical_device_device_address_commands_features_khr_construction_contract
 
 #[test]
 fn vk_conditional_rendering_begin_info2_ext_construction_contract() {
+	let _: fn() -> vk::ConditionalRenderingBeginInfo2EXT<'static> =
+		vk::ConditionalRenderingBeginInfo2EXT::new;
 	let value = vk::ConditionalRenderingBeginInfo2EXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::CONDITIONAL_RENDERING_BEGIN_INFO_2_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ConditionalRenderingBeginInfo2EXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::CONDITIONAL_RENDERING_BEGIN_INFO_2_EXT
@@ -33185,7 +42277,15 @@ fn vk_conditional_rendering_begin_info2_ext_construction_contract() {
 
 #[test]
 fn vk_acceleration_structure_create_info2_khr_construction_contract() {
+	let _: fn() -> vk::AccelerationStructureCreateInfo2KHR<'static> =
+		vk::AccelerationStructureCreateInfo2KHR::new;
 	let value = vk::AccelerationStructureCreateInfo2KHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_2_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::AccelerationStructureCreateInfo2KHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::ACCELERATION_STRUCTURE_CREATE_INFO_2_KHR
@@ -33215,7 +42315,14 @@ fn vk_acceleration_structure_create_info2_khr_construction_contract() {
 
 #[test]
 fn vk_bind_index_buffer3_info_khr_construction_contract() {
+	let _: fn() -> vk::BindIndexBuffer3InfoKHR<'static> = vk::BindIndexBuffer3InfoKHR::new;
 	let value = vk::BindIndexBuffer3InfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BIND_INDEX_BUFFER_3_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BindIndexBuffer3InfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BIND_INDEX_BUFFER_3_INFO_KHR
@@ -33237,7 +42344,14 @@ fn vk_bind_index_buffer3_info_khr_construction_contract() {
 
 #[test]
 fn vk_bind_vertex_buffer3_info_khr_construction_contract() {
+	let _: fn() -> vk::BindVertexBuffer3InfoKHR<'static> = vk::BindVertexBuffer3InfoKHR::new;
 	let value = vk::BindVertexBuffer3InfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BIND_VERTEX_BUFFER_3_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BindVertexBuffer3InfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BIND_VERTEX_BUFFER_3_INFO_KHR
@@ -33259,7 +42373,11 @@ fn vk_bind_vertex_buffer3_info_khr_construction_contract() {
 
 #[test]
 fn vk_draw_indirect2_info_khr_construction_contract() {
+	let _: fn() -> vk::DrawIndirect2InfoKHR<'static> = vk::DrawIndirect2InfoKHR::new;
 	let value = vk::DrawIndirect2InfoKHR::default();
+	assert_eq!(value.s_type, vk::StructureType::DRAW_INDIRECT_2_INFO_KHR);
+	assert!(value.p_next.is_null());
+	let value = vk::DrawIndirect2InfoKHR::new();
 	assert_eq!(value.s_type, vk::StructureType::DRAW_INDIRECT_2_INFO_KHR);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -33276,7 +42394,14 @@ fn vk_draw_indirect2_info_khr_construction_contract() {
 
 #[test]
 fn vk_draw_indirect_count2_info_khr_construction_contract() {
+	let _: fn() -> vk::DrawIndirectCount2InfoKHR<'static> = vk::DrawIndirectCount2InfoKHR::new;
 	let value = vk::DrawIndirectCount2InfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DRAW_INDIRECT_COUNT_2_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DrawIndirectCount2InfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DRAW_INDIRECT_COUNT_2_INFO_KHR
@@ -33306,7 +42431,14 @@ fn vk_draw_indirect_count2_info_khr_construction_contract() {
 
 #[test]
 fn vk_dispatch_indirect2_info_khr_construction_contract() {
+	let _: fn() -> vk::DispatchIndirect2InfoKHR<'static> = vk::DispatchIndirect2InfoKHR::new;
 	let value = vk::DispatchIndirect2InfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DISPATCH_INDIRECT_2_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DispatchIndirect2InfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DISPATCH_INDIRECT_2_INFO_KHR
@@ -33324,7 +42456,15 @@ fn vk_dispatch_indirect2_info_khr_construction_contract() {
 
 #[test]
 fn vk_bind_transform_feedback_buffer2_info_ext_construction_contract() {
+	let _: fn() -> vk::BindTransformFeedbackBuffer2InfoEXT<'static> =
+		vk::BindTransformFeedbackBuffer2InfoEXT::new;
 	let value = vk::BindTransformFeedbackBuffer2InfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BIND_TRANSFORM_FEEDBACK_BUFFER_2_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BindTransformFeedbackBuffer2InfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BIND_TRANSFORM_FEEDBACK_BUFFER_2_INFO_EXT
@@ -33344,7 +42484,11 @@ fn vk_bind_transform_feedback_buffer2_info_ext_construction_contract() {
 
 #[test]
 fn vk_memory_marker_info_amd_construction_contract() {
+	let _: fn() -> vk::MemoryMarkerInfoAMD<'static> = vk::MemoryMarkerInfoAMD::new;
 	let value = vk::MemoryMarkerInfoAMD::default();
+	assert_eq!(value.s_type, vk::StructureType::MEMORY_MARKER_INFO_AMD);
+	assert!(value.p_next.is_null());
+	let value = vk::MemoryMarkerInfoAMD::new();
 	assert_eq!(value.s_type, vk::StructureType::MEMORY_MARKER_INFO_AMD);
 	assert!(value.p_next.is_null());
 	let _: fn(
@@ -33365,7 +42509,15 @@ fn vk_memory_marker_info_amd_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_constant_data_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderConstantDataFeaturesKHR<'static> =
+		vk::PhysicalDeviceShaderConstantDataFeaturesKHR::new;
 	let value = vk::PhysicalDeviceShaderConstantDataFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_CONSTANT_DATA_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderConstantDataFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_CONSTANT_DATA_FEATURES_KHR
@@ -33380,7 +42532,15 @@ fn vk_physical_device_shader_constant_data_features_khr_construction_contract() 
 
 #[test]
 fn vk_physical_device_shader_abort_features_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderAbortFeaturesKHR<'static> =
+		vk::PhysicalDeviceShaderAbortFeaturesKHR::new;
 	let value = vk::PhysicalDeviceShaderAbortFeaturesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_ABORT_FEATURES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderAbortFeaturesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_ABORT_FEATURES_KHR
@@ -33395,7 +42555,15 @@ fn vk_physical_device_shader_abort_features_khr_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_abort_properties_khr_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderAbortPropertiesKHR<'static> =
+		vk::PhysicalDeviceShaderAbortPropertiesKHR::new;
 	let value = vk::PhysicalDeviceShaderAbortPropertiesKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_ABORT_PROPERTIES_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderAbortPropertiesKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_ABORT_PROPERTIES_KHR
@@ -33410,7 +42578,15 @@ fn vk_physical_device_shader_abort_properties_khr_construction_contract() {
 
 #[test]
 fn vk_device_fault_shader_abort_message_info_khr_construction_contract() {
+	let _: fn() -> vk::DeviceFaultShaderAbortMessageInfoKHR<'static> =
+		vk::DeviceFaultShaderAbortMessageInfoKHR::new;
 	let value = vk::DeviceFaultShaderAbortMessageInfoKHR::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DEVICE_FAULT_SHADER_ABORT_MESSAGE_INFO_KHR
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DeviceFaultShaderAbortMessageInfoKHR::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DEVICE_FAULT_SHADER_ABORT_MESSAGE_INFO_KHR
@@ -33432,6 +42608,7 @@ fn vk_device_fault_shader_abort_message_info_khr_construction_contract() {
 
 #[test]
 fn vk_data_graph_tosa_name_quality_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphTOSANameQualityARM = vk::DataGraphTOSANameQualityARM::new;
 	let _: fn(
 		vk::DataGraphTOSANameQualityARM,
 		[std::ffi::c_char; vk::MAX_DATA_GRAPH_TOSA_NAME_SIZE_ARM as usize],
@@ -33444,7 +42621,15 @@ fn vk_data_graph_tosa_name_quality_arm_construction_contract() {
 
 #[test]
 fn vk_queue_family_data_graph_tosa_properties_arm_construction_contract() {
+	let _: fn() -> vk::QueueFamilyDataGraphTOSAPropertiesARM<'static> =
+		vk::QueueFamilyDataGraphTOSAPropertiesARM::new;
 	let value = vk::QueueFamilyDataGraphTOSAPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueueFamilyDataGraphTOSAPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_TOSA_PROPERTIES_ARM
@@ -33483,7 +42668,15 @@ fn vk_queue_family_data_graph_tosa_properties_arm_construction_contract() {
 
 #[test]
 fn vk_data_graph_pipeline_single_node_connection_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineSingleNodeConnectionARM<'static> =
+		vk::DataGraphPipelineSingleNodeConnectionARM::new;
 	let value = vk::DataGraphPipelineSingleNodeConnectionARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CONNECTION_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineSingleNodeConnectionARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CONNECTION_ARM
@@ -33508,7 +42701,15 @@ fn vk_data_graph_pipeline_single_node_connection_arm_construction_contract() {
 
 #[test]
 fn vk_physical_device_data_graph_optical_flow_features_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceDataGraphOpticalFlowFeaturesARM<'static> =
+		vk::PhysicalDeviceDataGraphOpticalFlowFeaturesARM::new;
 	let value = vk::PhysicalDeviceDataGraphOpticalFlowFeaturesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_OPTICAL_FLOW_FEATURES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceDataGraphOpticalFlowFeaturesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_DATA_GRAPH_OPTICAL_FLOW_FEATURES_ARM
@@ -33523,7 +42724,15 @@ fn vk_physical_device_data_graph_optical_flow_features_arm_construction_contract
 
 #[test]
 fn vk_queue_family_data_graph_optical_flow_properties_arm_construction_contract() {
+	let _: fn() -> vk::QueueFamilyDataGraphOpticalFlowPropertiesARM<'static> =
+		vk::QueueFamilyDataGraphOpticalFlowPropertiesARM::new;
 	let value = vk::QueueFamilyDataGraphOpticalFlowPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_OPTICAL_FLOW_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::QueueFamilyDataGraphOpticalFlowPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::QUEUE_FAMILY_DATA_GRAPH_OPTICAL_FLOW_PROPERTIES_ARM
@@ -33573,7 +42782,15 @@ fn vk_queue_family_data_graph_optical_flow_properties_arm_construction_contract(
 
 #[test]
 fn vk_data_graph_optical_flow_image_format_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphOpticalFlowImageFormatInfoARM<'static> =
+		vk::DataGraphOpticalFlowImageFormatInfoARM::new;
 	let value = vk::DataGraphOpticalFlowImageFormatInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphOpticalFlowImageFormatInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_INFO_ARM
@@ -33588,7 +42805,15 @@ fn vk_data_graph_optical_flow_image_format_info_arm_construction_contract() {
 
 #[test]
 fn vk_data_graph_optical_flow_image_format_properties_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphOpticalFlowImageFormatPropertiesARM<'static> =
+		vk::DataGraphOpticalFlowImageFormatPropertiesARM::new;
 	let value = vk::DataGraphOpticalFlowImageFormatPropertiesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphOpticalFlowImageFormatPropertiesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_OPTICAL_FLOW_IMAGE_FORMAT_PROPERTIES_ARM
@@ -33603,7 +42828,15 @@ fn vk_data_graph_optical_flow_image_format_properties_arm_construction_contract(
 
 #[test]
 fn vk_data_graph_pipeline_single_node_create_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineSingleNodeCreateInfoARM<'static> =
+		vk::DataGraphPipelineSingleNodeCreateInfoARM::new;
 	let value = vk::DataGraphPipelineSingleNodeCreateInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CREATE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineSingleNodeCreateInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_SINGLE_NODE_CREATE_INFO_ARM
@@ -33630,7 +42863,15 @@ fn vk_data_graph_pipeline_single_node_create_info_arm_construction_contract() {
 
 #[test]
 fn vk_data_graph_pipeline_optical_flow_create_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineOpticalFlowCreateInfoARM<'static> =
+		vk::DataGraphPipelineOpticalFlowCreateInfoARM::new;
 	let value = vk::DataGraphPipelineOpticalFlowCreateInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_CREATE_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineOpticalFlowCreateInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_CREATE_INFO_ARM
@@ -33685,7 +42926,15 @@ fn vk_data_graph_pipeline_optical_flow_create_info_arm_construction_contract() {
 
 #[test]
 fn vk_data_graph_pipeline_optical_flow_dispatch_info_arm_construction_contract() {
+	let _: fn() -> vk::DataGraphPipelineOpticalFlowDispatchInfoARM<'static> =
+		vk::DataGraphPipelineOpticalFlowDispatchInfoARM::new;
 	let value = vk::DataGraphPipelineOpticalFlowDispatchInfoARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_DISPATCH_INFO_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::DataGraphPipelineOpticalFlowDispatchInfoARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::DATA_GRAPH_PIPELINE_OPTICAL_FLOW_DISPATCH_INFO_ARM
@@ -33705,7 +42954,15 @@ fn vk_data_graph_pipeline_optical_flow_dispatch_info_arm_construction_contract()
 
 #[test]
 fn vk_physical_device_image_tiling_control_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceImageTilingControlFeaturesEXT<'static> =
+		vk::PhysicalDeviceImageTilingControlFeaturesEXT::new;
 	let value = vk::PhysicalDeviceImageTilingControlFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_IMAGE_TILING_CONTROL_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceImageTilingControlFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_IMAGE_TILING_CONTROL_FEATURES_EXT
@@ -33720,7 +42977,15 @@ fn vk_physical_device_image_tiling_control_features_ext_construction_contract() 
 
 #[test]
 fn vk_image_tiling_control_create_info_ext_construction_contract() {
+	let _: fn() -> vk::ImageTilingControlCreateInfoEXT<'static> =
+		vk::ImageTilingControlCreateInfoEXT::new;
 	let value = vk::ImageTilingControlCreateInfoEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::IMAGE_TILING_CONTROL_CREATE_INFO_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::ImageTilingControlCreateInfoEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::IMAGE_TILING_CONTROL_CREATE_INFO_EXT
@@ -33735,7 +43000,15 @@ fn vk_image_tiling_control_create_info_ext_construction_contract() {
 
 #[test]
 fn vk_physical_device_shader_ocp_microscaling_types_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT<'static> =
+		vk::PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT::new;
 	let value = vk::PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_SHADER_OCP_MICROSCALING_TYPES_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceShaderOCPMicroscalingTypesFeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_SHADER_OCP_MICROSCALING_TYPES_FEATURES_EXT
@@ -33765,7 +43038,15 @@ fn vk_physical_device_shader_ocp_microscaling_types_features_ext_construction_co
 
 #[test]
 fn vk_physical_device_cooperative_matrix_maintenance1_features_ext_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCooperativeMatrixMaintenance1FeaturesEXT<'static> =
+		vk::PhysicalDeviceCooperativeMatrixMaintenance1FeaturesEXT::new;
 	let value = vk::PhysicalDeviceCooperativeMatrixMaintenance1FeaturesEXT::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_MAINTENANCE_1_FEATURES_EXT
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCooperativeMatrixMaintenance1FeaturesEXT::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_MAINTENANCE_1_FEATURES_EXT
@@ -33793,7 +43074,15 @@ fn vk_physical_device_cooperative_matrix_maintenance1_features_ext_construction_
 #[test]
 fn vk_physical_device_buffer_device_address_allocation_alignment_features_valve_construction_contract()
  {
+	let _: fn() -> vk::PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeaturesVALVE<'static> =
+		vk::PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeaturesVALVE::new;
 	let value = vk::PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeaturesVALVE::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_FEATURES_VALVE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceBufferDeviceAddressAllocationAlignmentFeaturesVALVE::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_FEATURES_VALVE
@@ -33805,7 +43094,15 @@ fn vk_physical_device_buffer_device_address_allocation_alignment_features_valve_
 #[test]
 fn vk_physical_device_buffer_device_address_allocation_alignment_properties_valve_construction_contract()
  {
+	let _: fn() -> vk::PhysicalDeviceBufferDeviceAddressAllocationAlignmentPropertiesVALVE<'static> =
+		vk::PhysicalDeviceBufferDeviceAddressAllocationAlignmentPropertiesVALVE::new;
 	let value = vk::PhysicalDeviceBufferDeviceAddressAllocationAlignmentPropertiesVALVE::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_PROPERTIES_VALVE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceBufferDeviceAddressAllocationAlignmentPropertiesVALVE::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_ALLOCATION_ALIGNMENT_PROPERTIES_VALVE
@@ -33816,7 +43113,15 @@ fn vk_physical_device_buffer_device_address_allocation_alignment_properties_valv
 
 #[test]
 fn vk_buffer_device_address_alignment_allocate_info_valve_construction_contract() {
+	let _: fn() -> vk::BufferDeviceAddressAlignmentAllocateInfoVALVE<'static> =
+		vk::BufferDeviceAddressAlignmentAllocateInfoVALVE::new;
 	let value = vk::BufferDeviceAddressAlignmentAllocateInfoVALVE::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::BUFFER_DEVICE_ADDRESS_ALIGNMENT_ALLOCATE_INFO_VALVE
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::BufferDeviceAddressAlignmentAllocateInfoVALVE::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::BUFFER_DEVICE_ADDRESS_ALIGNMENT_ALLOCATE_INFO_VALVE
@@ -33831,7 +43136,15 @@ fn vk_buffer_device_address_alignment_allocate_info_valve_construction_contract(
 
 #[test]
 fn vk_physical_device_info_properties_intel_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceInfoPropertiesINTEL<'static> =
+		vk::PhysicalDeviceInfoPropertiesINTEL::new;
 	let value = vk::PhysicalDeviceInfoPropertiesINTEL::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_INFO_PROPERTIES_INTEL
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceInfoPropertiesINTEL::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_INFO_PROPERTIES_INTEL
@@ -33856,7 +43169,15 @@ fn vk_physical_device_info_properties_intel_construction_contract() {
 
 #[test]
 fn vk_physical_device_cooperative_matrix_layouts_features_arm_construction_contract() {
+	let _: fn() -> vk::PhysicalDeviceCooperativeMatrixLayoutsFeaturesARM<'static> =
+		vk::PhysicalDeviceCooperativeMatrixLayoutsFeaturesARM::new;
 	let value = vk::PhysicalDeviceCooperativeMatrixLayoutsFeaturesARM::default();
+	assert_eq!(
+		value.s_type,
+		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_LAYOUTS_FEATURES_ARM
+	);
+	assert!(value.p_next.is_null());
+	let value = vk::PhysicalDeviceCooperativeMatrixLayoutsFeaturesARM::new();
 	assert_eq!(
 		value.s_type,
 		vk::StructureType::PHYSICAL_DEVICE_COOPERATIVE_MATRIX_LAYOUTS_FEATURES_ARM
@@ -33870,10 +43191,13 @@ fn vk_physical_device_cooperative_matrix_layouts_features_arm_construction_contr
 }
 
 #[test]
-fn std_video_h264_sps_vui_flags_construction_contract() {}
+fn std_video_h264_sps_vui_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoH264SpsVuiFlags = vk::StdVideoH264SpsVuiFlags::new;
+}
 
 #[test]
 fn std_video_h264_hrd_parameters_construction_contract() {
+	let _: fn() -> vk::StdVideoH264HrdParameters = vk::StdVideoH264HrdParameters::new;
 	let _: fn(vk::StdVideoH264HrdParameters, u8) -> vk::StdVideoH264HrdParameters =
 		vk::StdVideoH264HrdParameters::set_cpb_cnt_minus1;
 	let _: fn(vk::StdVideoH264HrdParameters, u8) -> vk::StdVideoH264HrdParameters =
@@ -33906,6 +43230,8 @@ fn std_video_h264_hrd_parameters_construction_contract() {
 
 #[test]
 fn std_video_h264_sequence_parameter_set_vui_construction_contract() {
+	let _: fn() -> vk::StdVideoH264SequenceParameterSetVui<'static> =
+		vk::StdVideoH264SequenceParameterSetVui::new;
 	let _: fn(
 		vk::StdVideoH264SequenceParameterSetVui<'static>,
 		vk::StdVideoH264SpsVuiFlags,
@@ -33989,10 +43315,13 @@ fn std_video_h264_sequence_parameter_set_vui_construction_contract() {
 }
 
 #[test]
-fn std_video_h264_sps_flags_construction_contract() {}
+fn std_video_h264_sps_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoH264SpsFlags = vk::StdVideoH264SpsFlags::new;
+}
 
 #[test]
 fn std_video_h264_scaling_lists_construction_contract() {
+	let _: fn() -> vk::StdVideoH264ScalingLists = vk::StdVideoH264ScalingLists::new;
 	let _: fn(vk::StdVideoH264ScalingLists, u16) -> vk::StdVideoH264ScalingLists =
 		vk::StdVideoH264ScalingLists::set_scaling_list_present_mask;
 	let _: fn(vk::StdVideoH264ScalingLists, u16) -> vk::StdVideoH264ScalingLists =
@@ -34010,16 +43339,26 @@ fn std_video_h264_scaling_lists_construction_contract() {
 }
 
 #[test]
-fn std_video_h264_pps_flags_construction_contract() {}
+fn std_video_h264_pps_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoH264PpsFlags = vk::StdVideoH264PpsFlags::new;
+}
 
 #[test]
-fn std_video_decode_h264_picture_info_flags_construction_contract() {}
+fn std_video_decode_h264_picture_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoDecodeH264PictureInfoFlags =
+		vk::StdVideoDecodeH264PictureInfoFlags::new;
+}
 
 #[test]
-fn std_video_decode_h264_reference_info_flags_construction_contract() {}
+fn std_video_decode_h264_reference_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoDecodeH264ReferenceInfoFlags =
+		vk::StdVideoDecodeH264ReferenceInfoFlags::new;
+}
 
 #[test]
 fn std_video_encode_h264_weight_table_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH264WeightTableFlags =
+		vk::StdVideoEncodeH264WeightTableFlags::new;
 	let _: fn(vk::StdVideoEncodeH264WeightTableFlags, u32) -> vk::StdVideoEncodeH264WeightTableFlags =
 		vk::StdVideoEncodeH264WeightTableFlags::set_luma_weight_l0_flag;
 	let _: fn(vk::StdVideoEncodeH264WeightTableFlags, u32) -> vk::StdVideoEncodeH264WeightTableFlags =
@@ -34032,6 +43371,7 @@ fn std_video_encode_h264_weight_table_flags_construction_contract() {
 
 #[test]
 fn std_video_encode_h264_weight_table_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH264WeightTable = vk::StdVideoEncodeH264WeightTable::new;
 	let _: fn(
 		vk::StdVideoEncodeH264WeightTable,
 		vk::StdVideoEncodeH264WeightTableFlags,
@@ -34079,19 +43419,32 @@ fn std_video_encode_h264_weight_table_construction_contract() {
 }
 
 #[test]
-fn std_video_encode_h264_slice_header_flags_construction_contract() {}
+fn std_video_encode_h264_slice_header_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH264SliceHeaderFlags =
+		vk::StdVideoEncodeH264SliceHeaderFlags::new;
+}
 
 #[test]
-fn std_video_encode_h264_picture_info_flags_construction_contract() {}
+fn std_video_encode_h264_picture_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH264PictureInfoFlags =
+		vk::StdVideoEncodeH264PictureInfoFlags::new;
+}
 
 #[test]
-fn std_video_encode_h264_reference_info_flags_construction_contract() {}
+fn std_video_encode_h264_reference_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH264ReferenceInfoFlags =
+		vk::StdVideoEncodeH264ReferenceInfoFlags::new;
+}
 
 #[test]
-fn std_video_encode_h264_reference_lists_info_flags_construction_contract() {}
+fn std_video_encode_h264_reference_lists_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH264ReferenceListsInfoFlags =
+		vk::StdVideoEncodeH264ReferenceListsInfoFlags::new;
+}
 
 #[test]
 fn std_video_encode_h264_ref_list_mod_entry_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH264RefListModEntry = vk::StdVideoEncodeH264RefListModEntry::new;
 	let _: fn(
 		vk::StdVideoEncodeH264RefListModEntry,
 		vk::StdVideoH264ModificationOfPicNumsIdc,
@@ -34105,6 +43458,8 @@ fn std_video_encode_h264_ref_list_mod_entry_construction_contract() {
 
 #[test]
 fn std_video_encode_h264_ref_pic_marking_entry_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH264RefPicMarkingEntry =
+		vk::StdVideoEncodeH264RefPicMarkingEntry::new;
 	let _: fn(
 		vk::StdVideoEncodeH264RefPicMarkingEntry,
 		vk::StdVideoH264MemMgmtControlOp,
@@ -34134,6 +43489,8 @@ fn std_video_encode_h264_ref_pic_marking_entry_construction_contract() {
 
 #[test]
 fn std_video_encode_h264_reference_lists_info_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH264ReferenceListsInfo<'static> =
+		vk::StdVideoEncodeH264ReferenceListsInfo::new;
 	let _: fn(
 		vk::StdVideoEncodeH264ReferenceListsInfo<'static>,
 		vk::StdVideoEncodeH264ReferenceListsInfoFlags,
@@ -34203,10 +43560,13 @@ fn std_video_encode_h264_reference_lists_info_construction_contract() {
 }
 
 #[test]
-fn std_video_h265_profile_tier_level_flags_construction_contract() {}
+fn std_video_h265_profile_tier_level_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoH265ProfileTierLevelFlags = vk::StdVideoH265ProfileTierLevelFlags::new;
+}
 
 #[test]
 fn std_video_h265_profile_tier_level_construction_contract() {
+	let _: fn() -> vk::StdVideoH265ProfileTierLevel = vk::StdVideoH265ProfileTierLevel::new;
 	let _: fn(
 		vk::StdVideoH265ProfileTierLevel,
 		vk::StdVideoH265ProfileTierLevelFlags,
@@ -34223,6 +43583,7 @@ fn std_video_h265_profile_tier_level_construction_contract() {
 
 #[test]
 fn std_video_h265_dec_pic_buf_mgr_construction_contract() {
+	let _: fn() -> vk::StdVideoH265DecPicBufMgr = vk::StdVideoH265DecPicBufMgr::new;
 	let _: fn(
 		vk::StdVideoH265DecPicBufMgr,
 		[u32; vk::STD_VIDEO_H265_SUBLAYERS_LIST_SIZE as usize],
@@ -34239,6 +43600,7 @@ fn std_video_h265_dec_pic_buf_mgr_construction_contract() {
 
 #[test]
 fn std_video_h265_sub_layer_hrd_parameters_construction_contract() {
+	let _: fn() -> vk::StdVideoH265SubLayerHrdParameters = vk::StdVideoH265SubLayerHrdParameters::new;
 	let _: fn(
 		vk::StdVideoH265SubLayerHrdParameters,
 		[u32; vk::STD_VIDEO_H265_CPB_CNT_LIST_SIZE as usize],
@@ -34264,10 +43626,13 @@ fn std_video_h265_sub_layer_hrd_parameters_construction_contract() {
 }
 
 #[test]
-fn std_video_h265_hrd_flags_construction_contract() {}
+fn std_video_h265_hrd_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoH265HrdFlags = vk::StdVideoH265HrdFlags::new;
+}
 
 #[test]
 fn std_video_h265_hrd_parameters_construction_contract() {
+	let _: fn() -> vk::StdVideoH265HrdParameters<'static> = vk::StdVideoH265HrdParameters::new;
 	let _: fn(
 		vk::StdVideoH265HrdParameters<'static>,
 		vk::StdVideoH265HrdFlags,
@@ -34320,10 +43685,13 @@ fn std_video_h265_hrd_parameters_construction_contract() {
 }
 
 #[test]
-fn std_video_h265_vps_flags_construction_contract() {}
+fn std_video_h265_vps_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoH265VpsFlags = vk::StdVideoH265VpsFlags::new;
+}
 
 #[test]
 fn std_video_h265_scaling_lists_construction_contract() {
+	let _: fn() -> vk::StdVideoH265ScalingLists = vk::StdVideoH265ScalingLists::new;
 	let _: fn(
 		vk::StdVideoH265ScalingLists,
 		[[u8; vk::STD_VIDEO_H265_SCALING_LIST_4X4_NUM_ELEMENTS as usize];
@@ -34355,10 +43723,14 @@ fn std_video_h265_scaling_lists_construction_contract() {
 }
 
 #[test]
-fn std_video_h265_short_term_ref_pic_set_flags_construction_contract() {}
+fn std_video_h265_short_term_ref_pic_set_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoH265ShortTermRefPicSetFlags =
+		vk::StdVideoH265ShortTermRefPicSetFlags::new;
+}
 
 #[test]
 fn std_video_h265_short_term_ref_pic_set_construction_contract() {
+	let _: fn() -> vk::StdVideoH265ShortTermRefPicSet = vk::StdVideoH265ShortTermRefPicSet::new;
 	let _: fn(
 		vk::StdVideoH265ShortTermRefPicSet,
 		vk::StdVideoH265ShortTermRefPicSetFlags,
@@ -34399,6 +43771,7 @@ fn std_video_h265_short_term_ref_pic_set_construction_contract() {
 
 #[test]
 fn std_video_h265_long_term_ref_pics_sps_construction_contract() {
+	let _: fn() -> vk::StdVideoH265LongTermRefPicsSps = vk::StdVideoH265LongTermRefPicsSps::new;
 	let _: fn(vk::StdVideoH265LongTermRefPicsSps, u32) -> vk::StdVideoH265LongTermRefPicsSps =
 		vk::StdVideoH265LongTermRefPicsSps::set_used_by_curr_pic_lt_sps_flag;
 	let _: fn(
@@ -34409,10 +43782,14 @@ fn std_video_h265_long_term_ref_pics_sps_construction_contract() {
 }
 
 #[test]
-fn std_video_h265_sps_vui_flags_construction_contract() {}
+fn std_video_h265_sps_vui_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoH265SpsVuiFlags = vk::StdVideoH265SpsVuiFlags::new;
+}
 
 #[test]
 fn std_video_h265_sequence_parameter_set_vui_construction_contract() {
+	let _: fn() -> vk::StdVideoH265SequenceParameterSetVui<'static> =
+		vk::StdVideoH265SequenceParameterSetVui::new;
 	let _: fn(
 		vk::StdVideoH265SequenceParameterSetVui<'static>,
 		vk::StdVideoH265SpsVuiFlags,
@@ -34547,6 +43924,8 @@ fn std_video_h265_sequence_parameter_set_vui_construction_contract() {
 
 #[test]
 fn std_video_h265_predictor_palette_entries_construction_contract() {
+	let _: fn() -> vk::StdVideoH265PredictorPaletteEntries =
+		vk::StdVideoH265PredictorPaletteEntries::new;
 	let _: fn(
 		vk::StdVideoH265PredictorPaletteEntries,
 		[[u16; vk::STD_VIDEO_H265_PREDICTOR_PALETTE_COMP_ENTRIES_LIST_SIZE as usize];
@@ -34556,19 +43935,31 @@ fn std_video_h265_predictor_palette_entries_construction_contract() {
 }
 
 #[test]
-fn std_video_h265_sps_flags_construction_contract() {}
+fn std_video_h265_sps_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoH265SpsFlags = vk::StdVideoH265SpsFlags::new;
+}
 
 #[test]
-fn std_video_h265_pps_flags_construction_contract() {}
+fn std_video_h265_pps_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoH265PpsFlags = vk::StdVideoH265PpsFlags::new;
+}
 
 #[test]
-fn std_video_decode_h265_picture_info_flags_construction_contract() {}
+fn std_video_decode_h265_picture_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoDecodeH265PictureInfoFlags =
+		vk::StdVideoDecodeH265PictureInfoFlags::new;
+}
 
 #[test]
-fn std_video_decode_h265_reference_info_flags_construction_contract() {}
+fn std_video_decode_h265_reference_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoDecodeH265ReferenceInfoFlags =
+		vk::StdVideoDecodeH265ReferenceInfoFlags::new;
+}
 
 #[test]
 fn std_video_encode_h265_weight_table_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH265WeightTableFlags =
+		vk::StdVideoEncodeH265WeightTableFlags::new;
 	let _: fn(vk::StdVideoEncodeH265WeightTableFlags, u16) -> vk::StdVideoEncodeH265WeightTableFlags =
 		vk::StdVideoEncodeH265WeightTableFlags::set_luma_weight_l0_flag;
 	let _: fn(vk::StdVideoEncodeH265WeightTableFlags, u16) -> vk::StdVideoEncodeH265WeightTableFlags =
@@ -34581,6 +43972,7 @@ fn std_video_encode_h265_weight_table_flags_construction_contract() {
 
 #[test]
 fn std_video_encode_h265_weight_table_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH265WeightTable = vk::StdVideoEncodeH265WeightTable::new;
 	let _: fn(
 		vk::StdVideoEncodeH265WeightTable,
 		vk::StdVideoEncodeH265WeightTableFlags,
@@ -34635,6 +44027,7 @@ fn std_video_encode_h265_weight_table_construction_contract() {
 
 #[test]
 fn std_video_encode_h265_long_term_ref_pics_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH265LongTermRefPics = vk::StdVideoEncodeH265LongTermRefPics::new;
 	let _: fn(vk::StdVideoEncodeH265LongTermRefPics, u8) -> vk::StdVideoEncodeH265LongTermRefPics =
 		vk::StdVideoEncodeH265LongTermRefPics::set_num_long_term_sps;
 	let _: fn(vk::StdVideoEncodeH265LongTermRefPics, u8) -> vk::StdVideoEncodeH265LongTermRefPics =
@@ -34662,13 +44055,21 @@ fn std_video_encode_h265_long_term_ref_pics_construction_contract() {
 }
 
 #[test]
-fn std_video_encode_h265_slice_segment_header_flags_construction_contract() {}
+fn std_video_encode_h265_slice_segment_header_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH265SliceSegmentHeaderFlags =
+		vk::StdVideoEncodeH265SliceSegmentHeaderFlags::new;
+}
 
 #[test]
-fn std_video_encode_h265_reference_lists_info_flags_construction_contract() {}
+fn std_video_encode_h265_reference_lists_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH265ReferenceListsInfoFlags =
+		vk::StdVideoEncodeH265ReferenceListsInfoFlags::new;
+}
 
 #[test]
 fn std_video_encode_h265_reference_lists_info_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH265ReferenceListsInfo =
+		vk::StdVideoEncodeH265ReferenceListsInfo::new;
 	let _: fn(
 		vk::StdVideoEncodeH265ReferenceListsInfo,
 		vk::StdVideoEncodeH265ReferenceListsInfoFlags,
@@ -34707,16 +44108,25 @@ fn std_video_encode_h265_reference_lists_info_construction_contract() {
 }
 
 #[test]
-fn std_video_encode_h265_picture_info_flags_construction_contract() {}
+fn std_video_encode_h265_picture_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH265PictureInfoFlags =
+		vk::StdVideoEncodeH265PictureInfoFlags::new;
+}
 
 #[test]
-fn std_video_encode_h265_reference_info_flags_construction_contract() {}
+fn std_video_encode_h265_reference_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeH265ReferenceInfoFlags =
+		vk::StdVideoEncodeH265ReferenceInfoFlags::new;
+}
 
 #[test]
-fn std_video_vp9_color_config_flags_construction_contract() {}
+fn std_video_vp9_color_config_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoVP9ColorConfigFlags = vk::StdVideoVP9ColorConfigFlags::new;
+}
 
 #[test]
 fn std_video_vp9_color_config_construction_contract() {
+	let _: fn() -> vk::StdVideoVP9ColorConfig = vk::StdVideoVP9ColorConfig::new;
 	let _: fn(
 		vk::StdVideoVP9ColorConfig,
 		vk::StdVideoVP9ColorConfigFlags,
@@ -34734,10 +44144,13 @@ fn std_video_vp9_color_config_construction_contract() {
 }
 
 #[test]
-fn std_video_vp9_loop_filter_flags_construction_contract() {}
+fn std_video_vp9_loop_filter_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoVP9LoopFilterFlags = vk::StdVideoVP9LoopFilterFlags::new;
+}
 
 #[test]
 fn std_video_vp9_loop_filter_construction_contract() {
+	let _: fn() -> vk::StdVideoVP9LoopFilter = vk::StdVideoVP9LoopFilter::new;
 	let _: fn(
 		vk::StdVideoVP9LoopFilter,
 		vk::StdVideoVP9LoopFilterFlags,
@@ -34761,10 +44174,13 @@ fn std_video_vp9_loop_filter_construction_contract() {
 }
 
 #[test]
-fn std_video_vp9_segmentation_flags_construction_contract() {}
+fn std_video_vp9_segmentation_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoVP9SegmentationFlags = vk::StdVideoVP9SegmentationFlags::new;
+}
 
 #[test]
 fn std_video_vp9_segmentation_construction_contract() {
+	let _: fn() -> vk::StdVideoVP9Segmentation = vk::StdVideoVP9Segmentation::new;
 	let _: fn(
 		vk::StdVideoVP9Segmentation,
 		vk::StdVideoVP9SegmentationFlags,
@@ -34788,13 +44204,18 @@ fn std_video_vp9_segmentation_construction_contract() {
 }
 
 #[test]
-fn std_video_decode_vp9_picture_info_flags_construction_contract() {}
+fn std_video_decode_vp9_picture_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoDecodeVP9PictureInfoFlags = vk::StdVideoDecodeVP9PictureInfoFlags::new;
+}
 
 #[test]
-fn std_video_av1_color_config_flags_construction_contract() {}
+fn std_video_av1_color_config_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1ColorConfigFlags = vk::StdVideoAV1ColorConfigFlags::new;
+}
 
 #[test]
 fn std_video_av1_color_config_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1ColorConfig = vk::StdVideoAV1ColorConfig::new;
 	let _: fn(
 		vk::StdVideoAV1ColorConfig,
 		vk::StdVideoAV1ColorConfigFlags,
@@ -34826,10 +44247,13 @@ fn std_video_av1_color_config_construction_contract() {
 }
 
 #[test]
-fn std_video_av1_timing_info_flags_construction_contract() {}
+fn std_video_av1_timing_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1TimingInfoFlags = vk::StdVideoAV1TimingInfoFlags::new;
+}
 
 #[test]
 fn std_video_av1_timing_info_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1TimingInfo = vk::StdVideoAV1TimingInfo::new;
 	let _: fn(
 		vk::StdVideoAV1TimingInfo,
 		vk::StdVideoAV1TimingInfoFlags,
@@ -34843,13 +44267,18 @@ fn std_video_av1_timing_info_construction_contract() {
 }
 
 #[test]
-fn std_video_av1_sequence_header_flags_construction_contract() {}
+fn std_video_av1_sequence_header_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1SequenceHeaderFlags = vk::StdVideoAV1SequenceHeaderFlags::new;
+}
 
 #[test]
-fn std_video_av1_loop_filter_flags_construction_contract() {}
+fn std_video_av1_loop_filter_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1LoopFilterFlags = vk::StdVideoAV1LoopFilterFlags::new;
+}
 
 #[test]
 fn std_video_av1_loop_filter_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1LoopFilter = vk::StdVideoAV1LoopFilter::new;
 	let _: fn(
 		vk::StdVideoAV1LoopFilter,
 		vk::StdVideoAV1LoopFilterFlags,
@@ -34875,10 +44304,13 @@ fn std_video_av1_loop_filter_construction_contract() {
 }
 
 #[test]
-fn std_video_av1_quantization_flags_construction_contract() {}
+fn std_video_av1_quantization_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1QuantizationFlags = vk::StdVideoAV1QuantizationFlags::new;
+}
 
 #[test]
 fn std_video_av1_quantization_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1Quantization = vk::StdVideoAV1Quantization::new;
 	let _: fn(
 		vk::StdVideoAV1Quantization,
 		vk::StdVideoAV1QuantizationFlags,
@@ -34905,6 +44337,7 @@ fn std_video_av1_quantization_construction_contract() {
 
 #[test]
 fn std_video_av1_segmentation_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1Segmentation = vk::StdVideoAV1Segmentation::new;
 	let _: fn(
 		vk::StdVideoAV1Segmentation,
 		[u8; vk::STD_VIDEO_AV1_MAX_SEGMENTS as usize],
@@ -34916,10 +44349,13 @@ fn std_video_av1_segmentation_construction_contract() {
 }
 
 #[test]
-fn std_video_av1_tile_info_flags_construction_contract() {}
+fn std_video_av1_tile_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1TileInfoFlags = vk::StdVideoAV1TileInfoFlags::new;
+}
 
 #[test]
 fn std_video_av1_tile_info_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1TileInfo<'static> = vk::StdVideoAV1TileInfo::new;
 	let _: fn(
 		vk::StdVideoAV1TileInfo<'static>,
 		vk::StdVideoAV1TileInfoFlags,
@@ -34952,6 +44388,7 @@ fn std_video_av1_tile_info_construction_contract() {
 
 #[test]
 fn std_video_av1_cdef_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1CDEF = vk::StdVideoAV1CDEF::new;
 	let _: fn(vk::StdVideoAV1CDEF, u8) -> vk::StdVideoAV1CDEF =
 		vk::StdVideoAV1CDEF::set_cdef_damping_minus_3;
 	let _: fn(vk::StdVideoAV1CDEF, u8) -> vk::StdVideoAV1CDEF = vk::StdVideoAV1CDEF::set_cdef_bits;
@@ -34975,6 +44412,7 @@ fn std_video_av1_cdef_construction_contract() {
 
 #[test]
 fn std_video_av1_loop_restoration_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1LoopRestoration = vk::StdVideoAV1LoopRestoration::new;
 	let _: fn(
 		vk::StdVideoAV1LoopRestoration,
 		[vk::StdVideoAV1FrameRestorationType; vk::STD_VIDEO_AV1_MAX_NUM_PLANES as usize],
@@ -34987,6 +44425,7 @@ fn std_video_av1_loop_restoration_construction_contract() {
 
 #[test]
 fn std_video_av1_global_motion_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1GlobalMotion = vk::StdVideoAV1GlobalMotion::new;
 	let _: fn(
 		vk::StdVideoAV1GlobalMotion,
 		[u8; vk::STD_VIDEO_AV1_NUM_REF_FRAMES as usize],
@@ -34999,10 +44438,13 @@ fn std_video_av1_global_motion_construction_contract() {
 }
 
 #[test]
-fn std_video_av1_film_grain_flags_construction_contract() {}
+fn std_video_av1_film_grain_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1FilmGrainFlags = vk::StdVideoAV1FilmGrainFlags::new;
+}
 
 #[test]
 fn std_video_av1_film_grain_construction_contract() {
+	let _: fn() -> vk::StdVideoAV1FilmGrain = vk::StdVideoAV1FilmGrain::new;
 	let _: fn(vk::StdVideoAV1FilmGrain, vk::StdVideoAV1FilmGrainFlags) -> vk::StdVideoAV1FilmGrain =
 		vk::StdVideoAV1FilmGrain::set_flags;
 	let _: fn(vk::StdVideoAV1FilmGrain, u8) -> vk::StdVideoAV1FilmGrain =
@@ -35074,16 +44516,29 @@ fn std_video_av1_film_grain_construction_contract() {
 }
 
 #[test]
-fn std_video_decode_av1_picture_info_flags_construction_contract() {}
+fn std_video_decode_av1_picture_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoDecodeAV1PictureInfoFlags = vk::StdVideoDecodeAV1PictureInfoFlags::new;
+}
 
 #[test]
-fn std_video_decode_av1_reference_info_flags_construction_contract() {}
+fn std_video_decode_av1_reference_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoDecodeAV1ReferenceInfoFlags =
+		vk::StdVideoDecodeAV1ReferenceInfoFlags::new;
+}
 
 #[test]
-fn std_video_encode_av1_operating_point_info_flags_construction_contract() {}
+fn std_video_encode_av1_operating_point_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeAV1OperatingPointInfoFlags =
+		vk::StdVideoEncodeAV1OperatingPointInfoFlags::new;
+}
 
 #[test]
-fn std_video_encode_av1_picture_info_flags_construction_contract() {}
+fn std_video_encode_av1_picture_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeAV1PictureInfoFlags = vk::StdVideoEncodeAV1PictureInfoFlags::new;
+}
 
 #[test]
-fn std_video_encode_av1_reference_info_flags_construction_contract() {}
+fn std_video_encode_av1_reference_info_flags_construction_contract() {
+	let _: fn() -> vk::StdVideoEncodeAV1ReferenceInfoFlags =
+		vk::StdVideoEncodeAV1ReferenceInfoFlags::new;
+}

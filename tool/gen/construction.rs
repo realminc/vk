@@ -809,6 +809,15 @@ pub fn emit_setters(out: &mut String, reg: &Registry, ty: &TypeDecl) -> Result<(
 		"{guard}impl{generic} {} {{",
 		declaration(reg, ty, "'a")
 	)?;
+	let new_doc = if tagged(ty) {
+		"Construct the record with its canonical `sType` tag and default native state."
+	} else {
+		"Construct the record with its default native state."
+	};
+	writeln!(
+		out,
+		"/// {new_doc}\n#[inline]\n#[must_use]\npub fn new() -> Self {{ Self::default() }}"
+	)?;
 	for recipe in recipes(reg, ty, "'a", false)? {
 		writeln!(out, "/// {}", recipe.doc)?;
 		for member in members(ty)
@@ -906,11 +915,17 @@ pub fn emit_tests(reg: &Registry) -> Result<String> {
 			"{guard}#[test]\nfn {}_construction_contract() {{",
 			names::member_name(&ty.c_name)
 		)?;
+		writeln!(
+			out,
+			"let _: fn() -> vk::{name} = vk::{}::new;",
+			names::type_name(&ty.c_name)
+		)?;
 		if tagged(ty) {
 			let tag = names::enum_variant(members(ty)[0].values.as_deref().unwrap(), "VkStructureType");
 			writeln!(
 				out,
-				"let value = vk::{}::default();\nassert_eq!(value.s_type, vk::StructureType::{tag});\nassert!(value.p_next.is_null());",
+				"let value = vk::{}::default();\nassert_eq!(value.s_type, vk::StructureType::{tag});\nassert!(value.p_next.is_null());\nlet value = vk::{}::new();\nassert_eq!(value.s_type, vk::StructureType::{tag});\nassert!(value.p_next.is_null());",
+				names::type_name(&ty.c_name),
 				names::type_name(&ty.c_name)
 			)?;
 		}

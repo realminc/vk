@@ -43,7 +43,7 @@ unsafe fn query_requirements(
 		plane_aspect: plane.unwrap_or_default(),
 		..Default::default()
 	};
-	let mut dedication = vk::MemoryDedicatedRequirements::default();
+	let mut dedication = vk::MemoryDedicatedRequirements::new();
 	let mut output = vk::MemoryRequirements2 {
 		p_next: std::ptr::from_mut(&mut dedication).cast(),
 		..Default::default()
@@ -184,7 +184,7 @@ pub(super) unsafe fn allocate_resource(
 		required_flags: required,
 		preferred_flags: preferred,
 	};
-	let mut dedicated = vk::MemoryDedicatedAllocateInfo::default();
+	let mut dedicated = vk::MemoryDedicatedAllocateInfo::new();
 	match resource {
 		Resource::Buffer(buffer) => dedicated.buffer = buffer,
 		Resource::Image(image) => dedicated.image = image,

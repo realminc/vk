@@ -180,6 +180,15 @@ pub struct DebugMemorySettings {
 	pub poison_frees: bool,
 }
 
+impl DebugMemorySettings {
+	/// Construct the record with its default state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
+
 /// Informative notifications for actual native memory allocation/free effects.
 /// Callbacks do not allocate Rust metadata and do not own the native memory.
 #[derive(Clone, Copy, Default)]
@@ -191,6 +200,15 @@ pub struct DeviceMemoryCallbacks {
 		unsafe extern "system" fn(vk::DeviceHandle, vk::DeviceMemory, u64, u32, *mut std::ffi::c_void),
 	>,
 	pub p_user_data: *mut std::ffi::c_void,
+}
+
+impl DeviceMemoryCallbacks {
+	/// Construct the record with its default state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
 }
 
 /// Captured native identities. Manual metadata constructors do not invent parent identities.
@@ -311,6 +329,15 @@ impl Default for AllocationCreateInfo<'_> {
 	}
 }
 
+impl<'pool> AllocationCreateInfo<'pool> {
+	/// Construct the record with its default state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
+
 /// Checked binding and mapping snapshot of one live allocation.
 ///
 /// Offsets and sizes are native bytes. `size` is the queried memory requirement,
@@ -355,6 +382,15 @@ pub struct AllocatorStats {
 	pub mapped_native_count: usize,
 }
 
+impl AllocatorStats {
+	/// Construct the record with its default state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
+
 /// Budget provenance. Heap-size/local accounting does not measure external pressure.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub enum BudgetSource {
@@ -373,11 +409,29 @@ pub struct HeapBudget {
 	pub native_bytes: u64,
 }
 
+impl HeapBudget {
+	/// Construct the record with its default state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
+
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub struct BudgetSnapshot {
 	pub source: BudgetSource,
 	pub heap_count: u32,
 	pub heaps: [HeapBudget; 16],
+}
+
+impl BudgetSnapshot {
+	/// Construct the record with its default state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
 }
 
 #[cfg(test)]

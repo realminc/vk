@@ -357,7 +357,23 @@ pub struct MemoryStatistics {
 	pub heaps: [DetailedStatistics; 16],
 }
 
+impl MemoryStatistics {
+	/// Construct the record with its default state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+}
+
 impl DetailedStatistics {
+	/// Construct the record with its default state.
+	#[inline]
+	#[must_use]
+	pub fn new() -> Self {
+		Self::default()
+	}
+
 	fn include(&mut self, other: Self) {
 		self.native_count += other.native_count;
 		self.native_bytes += other.native_bytes;
@@ -426,7 +442,7 @@ fn collect_statistics(
 	pool_filter: Option<u64>,
 ) -> Result<MemoryStatistics, AllocError> {
 	allocator.ensure_open()?;
-	let mut result = MemoryStatistics::default();
+	let mut result = MemoryStatistics::new();
 	for block in &allocator.blocks {
 		if pool_filter.is_some() && block.pool != pool_filter {
 			continue;

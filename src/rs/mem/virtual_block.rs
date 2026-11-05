@@ -257,7 +257,7 @@ impl<'callbacks> VirtualBlock<'callbacks> {
 	/// # use vk::{VirtualBlock, mem::AllocationAlgorithm};
 	/// let mut block;
 	/// {
-	///     let callbacks = vk::AllocationCallbacks::default();
+	///     let callbacks = vk::AllocationCallbacks::new();
 	///     // SAFETY: demonstration of record lifetime; null functions are rejected at runtime.
 	///     block = unsafe {
 	///         VirtualBlock::new_with_callbacks(1024, AllocationAlgorithm::Tlsf, &callbacks)
