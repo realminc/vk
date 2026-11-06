@@ -3,11 +3,7 @@ use super::*;
 use crate::mem::{AllocationChain, ImportMemoryInfo, ImportResource};
 
 fn metadata() -> ImportMemoryInfo {
-	ImportMemoryInfo {
-		allocation_size: 4096,
-		memory_type_bits: 2,
-		resource: None,
-	}
+	ImportMemoryInfo::new(4096, 2)
 }
 
 fn exercise(
@@ -26,10 +22,7 @@ fn exercise(
 		state.pooled = true;
 		state.import_tag = Some(tag);
 	});
-	let options = AllocationCreateInfo {
-		memory_allocate_next: Some(chain),
-		..Default::default()
-	};
+	let options = AllocationCreateInfo::new().set_memory_allocate_next(Some(chain));
 	let resource = chain.data.import_info.unwrap().resource;
 	// SAFETY: synthetic handles are consumed only by exact mock PFNs; explicit
 	// metadata represents this mock payload, with no real OS import/ownership transfer.
@@ -95,13 +88,7 @@ macro_rules! platform {
 			));
 			// SAFETY: exact synthetic payload extent/types/resource for mock PFNs only.
 			let chain = unsafe {
-				AllocationChain::new_from_record_with_import(
-					&record,
-					ImportMemoryInfo {
-						resource: $resource,
-						..metadata()
-					},
-				)
+				AllocationChain::new_from_record_with_import(&record, metadata().set_resource($resource))
 			}
 			.unwrap();
 			exercise(chain, $extension, vk::StructureType::$tag, $zero);

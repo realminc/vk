@@ -12,6 +12,43 @@ pub struct CacheRange<'a> {
 	pub size: u64,
 }
 
+impl<'a> CacheRange<'a> {
+	/// Describe the whole allocation from byte zero without acquiring a mapping hold.
+	#[inline]
+	#[must_use]
+	pub fn new(allocation: &'a Allocation) -> Self {
+		Self {
+			allocation,
+			offset: 0,
+			size: vk::WHOLE_SIZE,
+		}
+	}
+
+	/// Set [`allocation`](Self::allocation) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_allocation(mut self, value: &'a Allocation) -> Self {
+		self.allocation = value;
+		self
+	}
+
+	/// Set [`offset`](Self::offset) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_offset(mut self, value: u64) -> Self {
+		self.offset = value;
+		self
+	}
+
+	/// Set [`size`](Self::size) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_size(mut self, value: u64) -> Self {
+		self.size = value;
+		self
+	}
+}
+
 /// Allocate identical ordinary requirement pages; failure releases new pages only.
 ///
 /// Host result storage is reserved before native effects. Generations may advance
@@ -349,7 +386,7 @@ pub struct DetailedStatistics {
 	pub free_range_size_max: Option<u64>,
 }
 
-/// Immutable explicit diagnostic snapshot, indexed by native memory type and heap.
+/// Explicit diagnostic snapshot, indexed by native memory type and heap.
 #[derive(Clone, Debug, Default, PartialEq, Eq)]
 pub struct MemoryStatistics {
 	pub total: DetailedStatistics,
@@ -364,6 +401,30 @@ impl MemoryStatistics {
 	pub fn new() -> Self {
 		Self::default()
 	}
+
+	/// Set [`total`](Self::total) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_total(mut self, value: DetailedStatistics) -> Self {
+		self.total = value;
+		self
+	}
+
+	/// Set [`memory_types`](Self::memory_types) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_memory_types(mut self, value: [DetailedStatistics; 32]) -> Self {
+		self.memory_types = value;
+		self
+	}
+
+	/// Set [`heaps`](Self::heaps) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_heaps(mut self, value: [DetailedStatistics; 16]) -> Self {
+		self.heaps = value;
+		self
+	}
 }
 
 impl DetailedStatistics {
@@ -372,6 +433,94 @@ impl DetailedStatistics {
 	#[must_use]
 	pub fn new() -> Self {
 		Self::default()
+	}
+
+	/// Set [`native_count`](Self::native_count) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_native_count(mut self, value: usize) -> Self {
+		self.native_count = value;
+		self
+	}
+
+	/// Set [`native_bytes`](Self::native_bytes) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_native_bytes(mut self, value: u64) -> Self {
+		self.native_bytes = value;
+		self
+	}
+
+	/// Set [`allocation_count`](Self::allocation_count) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_allocation_count(mut self, value: usize) -> Self {
+		self.allocation_count = value;
+		self
+	}
+
+	/// Set [`allocation_bytes`](Self::allocation_bytes) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_allocation_bytes(mut self, value: u64) -> Self {
+		self.allocation_bytes = value;
+		self
+	}
+
+	/// Set [`reserved_bytes`](Self::reserved_bytes) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_reserved_bytes(mut self, value: u64) -> Self {
+		self.reserved_bytes = value;
+		self
+	}
+
+	/// Set [`free_range_count`](Self::free_range_count) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_free_range_count(mut self, value: usize) -> Self {
+		self.free_range_count = value;
+		self
+	}
+
+	/// Set [`free_bytes`](Self::free_bytes) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_free_bytes(mut self, value: u64) -> Self {
+		self.free_bytes = value;
+		self
+	}
+
+	/// Set [`allocation_size_min`](Self::allocation_size_min) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_allocation_size_min(mut self, value: Option<u64>) -> Self {
+		self.allocation_size_min = value;
+		self
+	}
+
+	/// Set [`allocation_size_max`](Self::allocation_size_max) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_allocation_size_max(mut self, value: Option<u64>) -> Self {
+		self.allocation_size_max = value;
+		self
+	}
+
+	/// Set [`free_range_size_min`](Self::free_range_size_min) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_free_range_size_min(mut self, value: Option<u64>) -> Self {
+		self.free_range_size_min = value;
+		self
+	}
+
+	/// Set [`free_range_size_max`](Self::free_range_size_max) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_free_range_size_max(mut self, value: Option<u64>) -> Self {
+		self.free_range_size_max = value;
+		self
 	}
 
 	fn include(&mut self, other: Self) {

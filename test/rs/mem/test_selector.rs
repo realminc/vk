@@ -19,13 +19,7 @@ fn properties() -> vk::PhysicalDeviceMemoryProperties {
 }
 
 fn request() -> AllocRequest {
-	AllocRequest {
-		size: 1024,
-		alignment: 64,
-		memory_type_bits: 7,
-		required_flags: vk::MemoryPropertyFlagBits::HOST_VISIBLE_BIT,
-		preferred_flags: vk::MemoryPropertyFlags::empty(),
-	}
+	AllocRequest::new(1024, 64, 7).set_required_flags(vk::MemoryPropertyFlagBits::HOST_VISIBLE_BIT)
 }
 
 #[test]

@@ -53,6 +53,38 @@ impl<'pool> DefragmentationInfo<'pool> {
 	pub fn new() -> Self {
 		Self::default()
 	}
+
+	/// Set [`pool`](Self::pool) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_pool(mut self, value: Option<&'pool Pool>) -> Self {
+		self.pool = value;
+		self
+	}
+
+	/// Set [`max_bytes`](Self::max_bytes) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_max_bytes(mut self, value: u64) -> Self {
+		self.max_bytes = value;
+		self
+	}
+
+	/// Set [`max_allocations`](Self::max_allocations) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_max_allocations(mut self, value: usize) -> Self {
+		self.max_allocations = value;
+		self
+	}
+
+	/// Set [`algorithm`](Self::algorithm) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_algorithm(mut self, value: DefragmentationAlgorithm) -> Self {
+		self.algorithm = value;
+		self
+	}
 }
 
 /// Allocator-recorded primary resource, or raw storage, associated with a move.
@@ -79,6 +111,40 @@ pub struct DefragmentationMove {
 	pub can_alias: bool,
 }
 
+impl DefragmentationMove {
+	/// Set [`source`](Self::source) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_source(mut self, value: AllocationInfo) -> Self {
+		self.source = value;
+		self
+	}
+
+	/// Set [`destination`](Self::destination) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_destination(mut self, value: AllocationInfo) -> Self {
+		self.destination = value;
+		self
+	}
+
+	/// Set [`resource`](Self::resource) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_resource(mut self, value: DefragmentationResource) -> Self {
+		self.resource = value;
+		self
+	}
+
+	/// Set [`can_alias`](Self::can_alias) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_can_alias(mut self, value: bool) -> Self {
+		self.can_alias = value;
+		self
+	}
+}
+
 /// Actual completed work; proposed or ignored moves are not counted as moved bytes.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub struct DefragmentationStats {
@@ -96,6 +162,54 @@ impl DefragmentationStats {
 	#[must_use]
 	pub fn new() -> Self {
 		Self::default()
+	}
+
+	/// Set [`moved_allocations`](Self::moved_allocations) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_moved_allocations(mut self, value: usize) -> Self {
+		self.moved_allocations = value;
+		self
+	}
+
+	/// Set [`moved_bytes`](Self::moved_bytes) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_moved_bytes(mut self, value: u64) -> Self {
+		self.moved_bytes = value;
+		self
+	}
+
+	/// Set [`freed_blocks`](Self::freed_blocks) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_freed_blocks(mut self, value: usize) -> Self {
+		self.freed_blocks = value;
+		self
+	}
+
+	/// Set [`freed_bytes`](Self::freed_bytes) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_freed_bytes(mut self, value: u64) -> Self {
+		self.freed_bytes = value;
+		self
+	}
+
+	/// Set [`ignored_allocations`](Self::ignored_allocations) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_ignored_allocations(mut self, value: usize) -> Self {
+		self.ignored_allocations = value;
+		self
+	}
+
+	/// Set [`destroyed_allocations`](Self::destroyed_allocations) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_destroyed_allocations(mut self, value: usize) -> Self {
+		self.destroyed_allocations = value;
+		self
 	}
 }
 

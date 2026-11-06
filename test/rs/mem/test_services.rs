@@ -7,10 +7,7 @@ fn automatic_defaults_reuse_heap_sized_blocks_and_close_releases_the_spare() {
 	let fixture = Fixture::new(vk::API_VERSION_1_1, &[], true, None);
 	let mut allocator = fixture.allocator();
 	STATE.with_borrow_mut(|state| state.pooled = true);
-	let options = AllocationCreateInfo {
-		policy: AllocationPolicy::Automatic,
-		..Default::default()
-	};
+	let options = AllocationCreateInfo::new().set_policy(AllocationPolicy::Automatic);
 	let requirements = vk::MemoryRequirements {
 		size: 257,
 		alignment: 64,
@@ -22,13 +19,7 @@ fn automatic_defaults_reuse_heap_sized_blocks_and_close_releases_the_spare() {
 			.allocate_with_options(&requirements, &options)
 			.unwrap();
 		let mut second = allocator
-			.allocate_with_options(
-				&requirements,
-				&AllocationCreateInfo {
-					never_allocate: true,
-					..options
-				},
-			)
+			.allocate_with_options(&requirements, &options.set_never_allocate(true))
 			.unwrap();
 		assert_eq!(first.handle(), second.handle());
 		assert_ne!(first.offset(), second.offset());
@@ -55,11 +46,9 @@ fn explicit_separate_override_bypasses_automatic_pooling_and_rejects_reuse_confl
 		alignment: 64,
 		memory_type_bits: 1,
 	};
-	let options = AllocationCreateInfo {
-		policy: AllocationPolicy::Automatic,
-		dedicated_memory: true,
-		..Default::default()
-	};
+	let options = AllocationCreateInfo::new()
+		.set_policy(AllocationPolicy::Automatic)
+		.set_dedicated_memory(true);
 	// SAFETY: synthetic native context and valid raw requirements.
 	unsafe {
 		let mut allocation = allocator

@@ -23,6 +23,22 @@ impl TrimStats {
 	pub fn new() -> Self {
 		Self::default()
 	}
+
+	/// Set [`block_count`](Self::block_count) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_block_count(mut self, value: usize) -> Self {
+		self.block_count = value;
+		self
+	}
+
+	/// Set [`block_bytes`](Self::block_bytes) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_block_bytes(mut self, value: u64) -> Self {
+		self.block_bytes = value;
+		self
+	}
 }
 
 impl Allocator<'_> {

@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.12.0+1.4.365 — 2026-11-06
+
+- Unify allocator record construction with the binding API: all 125 public
+  fields across 22 plain `vk::mem` records gain consuming `set_*` methods.
+  Add required-input constructors for `AllocRequest`, `ImportMemoryInfo` and
+  `CacheRange`; preserve defaults, public fields, borrows and checked operations.
+- Promote `new(...).set_*()` throughout the README. Source-compatible additions;
+  native ABI, dispatch and allocation policies are unchanged.
+- See the [release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.12.0.md).
+
 ## 0.11.0+1.4.365 — 2026-11-05
 
 - Add `Type::new()` to every generated Vulkan record and to public `vk::mem`

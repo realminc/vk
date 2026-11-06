@@ -3,11 +3,9 @@ use super::*;
 use crate::mem::{AllocationCreateInfo, PoolCreateInfo, PoolStats};
 
 fn info() -> PoolCreateInfo {
-	PoolCreateInfo {
-		block_size: 1024,
-		max_block_count: 2,
-		..Default::default()
-	}
+	PoolCreateInfo::new()
+		.set_block_size(1024)
+		.set_max_block_count(2)
 }
 
 fn configure() {
@@ -22,10 +20,7 @@ fn minimum_blocks_are_preallocated_retained_reused_and_explicitly_destroyed() {
 	// SAFETY: synthetic ordinary memory; explicit cleanup, no host/GPU accesses.
 	unsafe {
 		let mut pool = allocator
-			.create_pool(&PoolCreateInfo {
-				min_block_count: 2,
-				..info()
-			})
+			.create_pool(&info().set_min_block_count(2))
 			.unwrap();
 		assert_eq!(
 			STATE.with_borrow(|s| s.allocated.clone()),
@@ -41,10 +36,7 @@ fn minimum_blocks_are_preallocated_retained_reused_and_explicitly_destroyed() {
 		assert_eq!(allocator.pool_statistics(&pool).unwrap(), empty);
 		assert_eq!(allocator.close(), Err(AllocError::LivePools));
 		allocator.allocation_limit = 2;
-		let opts = AllocationCreateInfo {
-			pool: Some(&pool),
-			..Default::default()
-		};
+		let opts = AllocationCreateInfo::new().set_pool(Some(&pool));
 		clear();
 		let (buffer, mut allocation) = allocator
 			.create_buffer_with_options(&buffer_info(), &opts)

@@ -58,10 +58,7 @@ fn cooperative_stop_is_distinct_from_completion_and_resumes_every_algorithm() {
 			}
 			let mut context = DefragmentationContext::new(
 				&mut allocator,
-				&DefragmentationInfo {
-					algorithm,
-					..Default::default()
-				},
+				&DefragmentationInfo::new().set_algorithm(algorithm),
 			)
 			.unwrap();
 			clear();
@@ -442,10 +439,7 @@ fn relocation_guard_metadata_survives_and_failed_destroy_keeps_both_regions_live
 		unsafe { Allocator::new_with_granularity(&fixture.device, properties, 64, 64) }.unwrap();
 	allocator.set_mapping_hysteresis(false).unwrap();
 	allocator
-		.set_debug_memory_settings(crate::mem::DebugMemorySettings {
-			margin: 16,
-			..Default::default()
-		})
+		.set_debug_memory_settings(crate::mem::DebugMemorySettings::new().set_margin(16))
 		.unwrap();
 	let options = AllocationCreateInfo {
 		policy: AllocationPolicy::Pooled { block_size: 256 },

@@ -63,6 +63,14 @@ fn local_limits_enforce_native_bytes_without_pretending_to_measure_external_pres
 			),
 			(1, 257, 300)
 		);
+		// Editing caller-owned diagnostic records cannot change allocator accounting.
+		let mut heaps = snapshot.heaps;
+		heaps[0] = heaps[0].set_native_bytes(0).set_limit(0);
+		let edited = snapshot
+			.set_heaps(heaps)
+			.set_source(BudgetSource::Extension);
+		assert_ne!(edited, snapshot);
+		assert_eq!(allocator.budget_snapshot(), snapshot);
 		assert!(allocator.set_heap_limit(0, 256).is_err());
 		clear();
 		assert!(allocator.allocate(&request()).is_err());

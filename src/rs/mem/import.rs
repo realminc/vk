@@ -24,3 +24,41 @@ pub struct ImportMemoryInfo {
 	/// Its requirements must fit the supplied extent and type mask. Binding remains explicit.
 	pub resource: Option<ImportResource>,
 }
+
+impl ImportMemoryInfo {
+	/// Describe explicit backing size/types without resource-specific dedication.
+	/// The unsafe import operation still requires authoritative payload/device metadata.
+	#[inline]
+	#[must_use]
+	pub fn new(allocation_size: u64, memory_type_bits: u32) -> Self {
+		Self {
+			allocation_size,
+			memory_type_bits,
+			resource: None,
+		}
+	}
+
+	/// Set [`allocation_size`](Self::allocation_size) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_allocation_size(mut self, value: u64) -> Self {
+		self.allocation_size = value;
+		self
+	}
+
+	/// Set [`memory_type_bits`](Self::memory_type_bits) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_memory_type_bits(mut self, value: u32) -> Self {
+		self.memory_type_bits = value;
+		self
+	}
+
+	/// Set [`resource`](Self::resource) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_resource(mut self, value: Option<ImportResource>) -> Self {
+		self.resource = value;
+		self
+	}
+}

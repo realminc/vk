@@ -45,6 +45,32 @@ pub struct VirtualAllocationInfo {
 	pub size: u64,
 }
 
+impl VirtualAllocationInfo {
+	/// Set [`user_data`](Self::user_data) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_user_data(mut self, value: usize) -> Self {
+		self.user_data = value;
+		self
+	}
+
+	/// Set [`offset`](Self::offset) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_offset(mut self, value: u64) -> Self {
+		self.offset = value;
+		self
+	}
+
+	/// Set [`size`](Self::size) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_size(mut self, value: u64) -> Self {
+		self.size = value;
+		self
+	}
+}
+
 /// Host metadata statistics. Alignment holes remain free, not reserved to a token.
 /// Linear free spans can include holes that placement cannot immediately reuse.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -55,6 +81,56 @@ pub struct VirtualBlockStats {
 	pub free_bytes: u64,
 	pub free_region_count: usize,
 	pub largest_free_region: u64,
+}
+
+impl VirtualBlockStats {
+	/// Set [`size`](Self::size) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_size(mut self, value: u64) -> Self {
+		self.size = value;
+		self
+	}
+
+	/// Set [`allocation_count`](Self::allocation_count) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_allocation_count(mut self, value: usize) -> Self {
+		self.allocation_count = value;
+		self
+	}
+
+	/// Set [`allocated_bytes`](Self::allocated_bytes) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_allocated_bytes(mut self, value: u64) -> Self {
+		self.allocated_bytes = value;
+		self
+	}
+
+	/// Set [`free_bytes`](Self::free_bytes) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_free_bytes(mut self, value: u64) -> Self {
+		self.free_bytes = value;
+		self
+	}
+
+	/// Set [`free_region_count`](Self::free_region_count) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_free_region_count(mut self, value: usize) -> Self {
+		self.free_region_count = value;
+		self
+	}
+
+	/// Set [`largest_free_region`](Self::largest_free_region) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_largest_free_region(mut self, value: u64) -> Self {
+		self.largest_free_region = value;
+		self
+	}
 }
 
 /// Virtual TLSF or linear allocator; owns host metadata and no native objects.
@@ -76,6 +152,48 @@ pub struct VirtualBlockDetails {
 	pub allocation_size_max: Option<u64>,
 	pub free_range_size_min: Option<u64>,
 	pub free_range_size_max: Option<u64>,
+}
+
+impl VirtualBlockDetails {
+	/// Set [`statistics`](Self::statistics) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_statistics(mut self, value: VirtualBlockStats) -> Self {
+		self.statistics = value;
+		self
+	}
+
+	/// Set [`allocation_size_min`](Self::allocation_size_min) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_allocation_size_min(mut self, value: Option<u64>) -> Self {
+		self.allocation_size_min = value;
+		self
+	}
+
+	/// Set [`allocation_size_max`](Self::allocation_size_max) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_allocation_size_max(mut self, value: Option<u64>) -> Self {
+		self.allocation_size_max = value;
+		self
+	}
+
+	/// Set [`free_range_size_min`](Self::free_range_size_min) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_free_range_size_min(mut self, value: Option<u64>) -> Self {
+		self.free_range_size_min = value;
+		self
+	}
+
+	/// Set [`free_range_size_max`](Self::free_range_size_max) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_free_range_size_max(mut self, value: Option<u64>) -> Self {
+		self.free_range_size_max = value;
+		self
+	}
 }
 
 /// Set checked per-region opaque metadata without native effects or ownership transfer.

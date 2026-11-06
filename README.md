@@ -27,7 +27,7 @@ and runtime qualification are separate; see the
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.11" }
+vk = { package = "vkrust", version = "0.12" }
 ```
 
 No Vulkan SDK, C compiler, C++ library or consumer-side generator is needed.
@@ -35,16 +35,16 @@ The default `loader` feature loads the system Vulkan library at runtime.
 
 ## Library and Vulkan versions
 
-The package version is **`0.11.0+1.4.365`**:
+The package version is **`0.12.0+1.4.365`**:
 
 | Version | Meaning |
 | --- | --- |
-| `0.11.0` | This Rust library's API release; Git tag `v0.11.0` |
+| `0.12.0` | This Rust library's API release; Git tag `v0.12.0` |
 | `+1.4.365` | Generated from Vulkan 1.4 headers, revision 365 |
 | `ApplicationInfo::api_version` | The Vulkan API version your application requests at runtime |
 
 Cargo treats the suffix as build metadata, so the dependency requirement stays
-`version = "0.11"`. The suffix identifies the pinned API snapshot; it is not a
+`version = "0.12"`. The suffix identifies the pinned API snapshot; it is not a
 Vulkan 1.4 driver requirement or runtime qualification claim. Applications can
 request Vulkan 1.0, 1.1 or 1.2 and use the commands/features admitted by their
 actual implementation. The examples below request Vulkan 1.0.
@@ -60,8 +60,9 @@ Use free functions when you prefer Vulkan's C-style flow, or associated methods
 when you prefer an object-oriented, Python-like spelling. Both use the same
 cached PFNs and canonical operation body.
 
-The examples use borrowed record setters, which retain backing host storage
-while preparing arguments for either calling style.
+Prefer `Type::new(...).set_*()` to prepare records throughout the bindings and
+`vk::mem`. This is the shared construction style for both calling APIs;
+borrowed setters retain the backing host storage needed by native arguments.
 
 | Operation | Free function | Constructor or method |
 | --- | --- | --- |
@@ -137,8 +138,9 @@ the short examples propagate it to their caller.
 
 ### Borrowed record construction
 
-Use `Type::new()` followed by generated setters to prepare native arguments.
-`Type::default()` produces the same generated initial state.
+Use `Type::new().set_*()` to prepare native arguments. Allocator records use
+the same construction style, with required arguments passed to `new(...)` where
+needed. `Type::default()` produces the same initial state for default-backed records.
 This is the default construction approach, available without an additional
 feature flag. It works with both free functions and methods;
 these setters construct the same Vulkan records passed to either calling style.
@@ -202,8 +204,8 @@ and reviewed parent/cross-record capacities. Opaque addresses and foreign
 objects without a known host extent use explicit unsafe pointer setters. See
 the [changelog](CHANGELOG.md) for compatibility changes.
 
-Use `Type { field: value, ..Default::default() }` rather than an
-exhaustive literal, and declare stored borrowed records as `Type<'a>`. Records
+For direct-field construction, prefer `Type { field: value, ..Default::default() }`
+over exhaustive literals. Declare stored borrowed records as `Type<'a>`. Records
 retaining exclusive chain borrows no longer implement `Copy` or `Clone`; create
 fresh array elements with `std::array::from_fn` and borrow single records with
 `std::slice::from_ref`. The native union
@@ -327,7 +329,7 @@ Enable `features = ["allocator"]` for the Rust-native, VMA-derived allocator:
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.11", features = ["allocator"] }
+vk = { package = "vkrust", version = "0.12", features = ["allocator"] }
 ```
 
 `vk::mem` owns allocator operations and configuration; `vk::Allocator` is the
@@ -336,6 +338,17 @@ from the native binding `vk::create_buffer`, which creates an unbound buffer.
 Use `use vk::mem as vma;` for a familiar local alias without another crate,
 wrapper or runtime cost. Both spellings are equally valid; the canonical module
 name in this repository is `mem`.
+
+Use `new(...).set_*()` for allocator record construction too.
+Every public field on a plain `vk::mem` record has a chainable `set_*` method,
+including requests, configuration, callbacks, import metadata, cache ranges,
+budgets and diagnostic snapshots. Default-backed records use `new().set_*()`.
+`AllocRequest::new(size, alignment, memory_type_bits)`,
+`ImportMemoryInfo::new(allocation_size, memory_type_bits)` and
+`CacheRange::new(&allocation)` retain their required inputs. Setters consume and
+return the same record; public fields and struct literals remain available.
+Editing a snapshot changes only that record. Live resources keep their checked
+operation APIs, and operations still own validation.
 
 Allocator free functions and methods share one implementation, just like the
 binding API. They take the allocator explicitly and retain Rust naming rather
@@ -370,13 +383,11 @@ unsafe fn create_upload_buffer(
 		.set_size(4096)
 		.set_usage(vk::BufferUsageFlags::TRANSFER_SRC_BIT)
 		.set_sharing_mode(vk::SharingMode::EXCLUSIVE);
-	let options = vma::AllocationCreateInfo {
-		usage: vma::MemoryUsage::PreferHost,
-		host_access: vma::HostAccess::SequentialWrite,
-		required_flags: vk::MemoryPropertyFlags::HOST_VISIBLE_BIT,
-		policy: vma::AllocationPolicy::Automatic,
-		..Default::default()
-	};
+	let options = vma::AllocationCreateInfo::new()
+		.set_usage(vma::MemoryUsage::PreferHost)
+		.set_host_access(vma::HostAccess::SequentialWrite)
+		.set_required_flags(vk::MemoryPropertyFlags::HOST_VISIBLE_BIT)
+		.set_policy(vma::AllocationPolicy::Automatic);
 
 	// Method spelling: allocator.create_buffer_with_options(&info, &options).
 	// SAFETY: the caller establishes the native valid-usage requirements.

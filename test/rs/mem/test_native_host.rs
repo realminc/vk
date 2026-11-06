@@ -47,11 +47,7 @@ fn complete_native_pool_name_map_diagnostics_and_relocation_path_avoids_global_m
 			allocator.set_allocation_name(&b, Some("buffer 雪"))?;
 			allocator.set_allocation_user_data(&b, 17)?;
 			allocator.map(&b)?;
-			allocator.flush_many(&[crate::mem::CacheRange {
-				allocation: &b,
-				offset: 0,
-				size: 64,
-			}])?;
+			allocator.flush_many(&[crate::mem::CacheRange::new(&b).set_size(64)])?;
 			allocator.unmap(&b)?;
 			allocator.write_statistics_json(&mut std::io::sink(), true)?;
 			allocator.destroy_buffer(first, &mut a)?;

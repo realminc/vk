@@ -49,6 +49,62 @@ impl PoolCreateInfo {
 	pub fn new() -> Self {
 		Self::default()
 	}
+
+	/// Set [`priority`](Self::priority) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_priority(mut self, value: MemoryPriority) -> Self {
+		self.priority = value;
+		self
+	}
+
+	/// Set [`memory_type_index`](Self::memory_type_index) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_memory_type_index(mut self, value: u32) -> Self {
+		self.memory_type_index = value;
+		self
+	}
+
+	/// Set [`algorithm`](Self::algorithm) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_algorithm(mut self, value: AllocationAlgorithm) -> Self {
+		self.algorithm = value;
+		self
+	}
+
+	/// Set [`block_size`](Self::block_size) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_block_size(mut self, value: u64) -> Self {
+		self.block_size = value;
+		self
+	}
+
+	/// Set [`min_block_count`](Self::min_block_count) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_min_block_count(mut self, value: usize) -> Self {
+		self.min_block_count = value;
+		self
+	}
+
+	/// Set [`max_block_count`](Self::max_block_count) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_max_block_count(mut self, value: usize) -> Self {
+		self.max_block_count = value;
+		self
+	}
+
+	/// Set [`min_allocation_alignment`](Self::min_allocation_alignment) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_min_allocation_alignment(mut self, value: u64) -> Self {
+		self.min_allocation_alignment = value;
+		self
+	}
 }
 
 /// Local pool statistics. No native budget query or host allocation is performed.
@@ -72,6 +128,62 @@ impl PoolStats {
 	#[must_use]
 	pub fn new() -> Self {
 		Self::default()
+	}
+
+	/// Set [`allocation_count`](Self::allocation_count) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_allocation_count(mut self, value: usize) -> Self {
+		self.allocation_count = value;
+		self
+	}
+
+	/// Set [`allocation_bytes`](Self::allocation_bytes) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_allocation_bytes(mut self, value: u64) -> Self {
+		self.allocation_bytes = value;
+		self
+	}
+
+	/// Set [`reserved_bytes`](Self::reserved_bytes) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_reserved_bytes(mut self, value: u64) -> Self {
+		self.reserved_bytes = value;
+		self
+	}
+
+	/// Set [`block_count`](Self::block_count) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_block_count(mut self, value: usize) -> Self {
+		self.block_count = value;
+		self
+	}
+
+	/// Set [`block_bytes`](Self::block_bytes) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_block_bytes(mut self, value: u64) -> Self {
+		self.block_bytes = value;
+		self
+	}
+
+	/// Set [`free_bytes`](Self::free_bytes) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_free_bytes(mut self, value: u64) -> Self {
+		self.free_bytes = value;
+		self
+	}
+
+	/// Set [`largest_free_region`](Self::largest_free_region) and return the updated record.
+	#[inline]
+	#[must_use]
+	pub fn set_largest_free_region(mut self, value: u64) -> Self {
+		self.largest_free_region = value;
+		self
 	}
 }
 
