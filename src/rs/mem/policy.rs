@@ -1,6 +1,6 @@
 //! Resource-aware memory preferences, ported from pinned VMA 3.4.0
 //! `FindMemoryPreferences` and `VmaBufferImageUsage::ContainsDeviceAccess`.
-//! See LICENSE-VMA-MIT.
+//! See license/vma/MIT.txt.
 //! Adaptation: typed exclusive host intent, explicit flags by default, no implicit staging.
 use super::{AllocError, AllocationCreateInfo};
 use crate as vk;

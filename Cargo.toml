@@ -17,8 +17,8 @@ include = [
   "/Cargo.toml", "/Cargo.lock", "/src/rs/**", "/test/rs/test_*.rs",
   "/test/rs/construction/**", "/test/rs/load/**", "/test/rs/mem/**",
   "/README.md", "/CHANGELOG.md", "/NOTICE.md", "/rustfmt.toml",
-  "/LICENSE", "/license/khronos/Apache-2.0.txt", "/LICENSE-VMA-MIT",
-  "/docs/external/qualification.md", "/registry/SOURCES.md",
+  "/LICENSE", "/license/khronos/Apache-2.0.txt", "/license/khronos/MIT.txt", "/license/README.md", "/license/vma/MIT.txt",
+  "/docs/external/qualification.md", "/docs/external/platforms.md", "/registry/SOURCES.md",
 ]
 
 [package.metadata.docs.rs]
@@ -32,10 +32,11 @@ path = "src/rs/lib.rs"
 [workspace]
 resolver = "3"
 members = ["tool/gen"]
+exclude = ["sdk"]
 default-members = [".", "tool/gen"]
 
 [workspace.package]
-version = "0.12.0+1.4.365"
+version = "0.13.0+1.4.365"
 edition = "2024"
 rust-version = "1.98.1"
 license = "MIT"

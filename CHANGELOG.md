@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.13.0+1.4.365 — 2026-11-13
+
+- Qualify the runtime on physical hardware: the Surface Laptop 5 baseline
+  records 32 native profiles under Khronos core and synchronization validation,
+  an offscreen Vulkan 1.3 graphics oracle and paired Ash/VMA/Vulkano timings
+  on Intel Iris Xe (Vulkan 1.4.354, Mesa 26.2.7).
+- Index managed resource associations: per-allocator handle/serial plane slots
+  replace the per-operation live scan, removing the superlinear create/bind
+  term; pooled create/allocate/bind measures 2.04x VMA on the baseline.
+- Add the optional `sdk/` qualification workspace with fresh-process Ash and
+  pinned C++ VMA timing consumers, a checked Vulkano comparison and explicit
+  native-test profiles. It builds outside the workspace and is not packaged.
+- Drop the experimental designation; scope and limits remain in the
+  qualification report.
+- See the [release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.13.0.md).
+
 ## 0.12.0+1.4.365 — 2026-11-06
 
 - Unify allocator record construction with the binding API: all 125 public

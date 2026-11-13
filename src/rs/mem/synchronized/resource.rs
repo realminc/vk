@@ -20,13 +20,7 @@ pub(super) struct Resources<'device> {
 }
 
 fn slot(plane: Option<vk::ImageAspectFlagBits>) -> usize {
-	match plane {
-		Some(vk::ImageAspectFlagBits::PLANE_0_BIT) => 1,
-		Some(vk::ImageAspectFlagBits::PLANE_1_BIT) => 2,
-		Some(vk::ImageAspectFlagBits::PLANE_2_BIT) => 3,
-		None => 0,
-		_ => unreachable!("canonical binding validates plane aspects"),
-	}
+	binding::plane_slot(plane)
 }
 
 impl<'device> Resources<'device> {
@@ -136,11 +130,10 @@ impl<'device> Claim<'device> {
 	}
 
 	pub fn commit(mut self, serial: u64) {
-		self
-			.shared()
-			.lock()
-			.resources
-			.commit(self.resource, self.plane, serial);
+		let mut state = self.shared().lock();
+		state.resources.commit(self.resource, self.plane, serial);
+		state.associated.record(self.resource, self.plane, serial);
+		drop(state);
 		self.acquired = false;
 	}
 }
@@ -173,10 +166,14 @@ pub(in crate::mem::allocator) fn claim<'device>(
 	let pointer = pointer.cast::<Shared<'device>>();
 	let shared = unsafe { pointer.as_ref() };
 	let domain = allocator.partition_id;
-	let acquired = shared
-		.lock()
-		.resources
-		.claim(resource, plane, domain, existing)?;
+	let mut state = shared.lock();
+	// The committed bound association publishes into the shared handle index.
+	// Reserve headroom for every domain's outstanding claim before acquiring
+	// the pending registry claim; commits after this point stay infallible.
+	let domains = state.domains;
+	state.associated.try_reserve(domains)?;
+	let acquired = state.resources.claim(resource, plane, domain, existing)?;
+	drop(state);
 	Ok(Some(Claim {
 		shared: pointer,
 		resource,

@@ -1,7 +1,7 @@
 //! Native block and shared mapping state.
 //!
 //! Donor: pinned VMA `VmaDeviceMemoryBlock::{Map,Unmap}` and
-//! `GetMemoryTypeMinAlignment`. See LICENSE-VMA-MIT.
+//! `GetMemoryTypeMinAlignment`. See license/vma/MIT.txt.
 //! Adaptation: exclusive placement, optional stable map/bind ownership, checked counts and explicit release;
 //! donor mapping hysteresis and no Vulkan destruction in Drop. Placement metadata owns page separation.
 

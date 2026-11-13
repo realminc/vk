@@ -32,7 +32,8 @@ SPDX-License-Identifier: Apache-2.0 OR MIT
 
 This project selects the MIT option for derived material. Project MIT terms
 are preserved in `LICENSE`; the upstream Apache option is retained separately
-in `license/khronos/Apache-2.0.txt`. See `NOTICE.md` for Khronos copyright notices.
+in `license/khronos/Apache-2.0.txt`; the upstream MIT text is in
+`license/khronos/MIT.txt`. See `NOTICE.md` for Khronos copyright notices.
 `ABI_SHA256SUMS` separately pins the headers used by the development ABI oracle.
 
 ## Regeneration

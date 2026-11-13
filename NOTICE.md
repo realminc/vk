@@ -1,6 +1,7 @@
 # Third-party notices
 
-vk's original code and published crate are licensed under MIT. The following upstream
+vk's original code is Copyright (c) 2024-2026 Lukasz Biernat (trading as Realm).
+The original code and published crate are licensed under MIT. The following upstream
 notices and licenses also apply to the derived material.
 
 ## Khronos registries
@@ -13,7 +14,8 @@ Copyright 2021-2026 The Khronos Group Inc. (video.xml).
 
 Upstream offers Apache-2.0 OR MIT; this project uses the MIT option.
 The upstream declaration is preserved in the pinned inputs.
-Project MIT terms are in LICENSE. The upstream Apache option is retained
+Project MIT terms are in LICENSE. The upstream MIT text is in
+license/khronos/MIT.txt. The upstream Apache option is retained
 separately in license/khronos/Apache-2.0.txt; it is not the project license.
 
 ## Vulkan Memory Allocator
@@ -23,7 +25,7 @@ Allocator 3.4.0, commit `3aa921224c154a0d2c43912bc88e1c42ce1f7607`.
 Source comments identify individual donor algorithms and Rust adaptations.
 
 Copyright (c) 2017-2026 Advanced Micro Devices, Inc. All rights reserved.
-The complete upstream MIT notice is preserved in LICENSE-VMA-MIT.
+The complete upstream MIT notice is preserved in license/vma/MIT.txt.
 
 The runtime does not link VMA or compile its C++ implementation. Development
 oracles fetch and verify the pinned donor separately. This attribution does

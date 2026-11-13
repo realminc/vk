@@ -1,5 +1,5 @@
 //! Pinned VMA 3.4.0 page allocation/free, batched cache maintenance, host-copy
-//! helpers and allocation/pool metadata (LICENSE-VMA-MIT).
+//! helpers and allocation/pool metadata (license/vma/MIT.txt).
 //! Adaptation: fallible Rust containers, checked tokens/ranges, explicit mapping
 //! holds and cleanup; no implicit synchronization, native Drop or raw-data ownership.
 use super::*;

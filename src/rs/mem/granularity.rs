@@ -1,6 +1,6 @@
 //! Buffer/image page separation, derived from pinned VMA 3.4.0
 //! `VmaIsBufferImageGranularityConflict` and linear neighbor checks.
-//! See LICENSE-VMA-MIT. Ordinary buffers and images are admitted.
+//! See license/vma/MIT.txt. Ordinary buffers and images are admitted.
 //! Raw/unclassified storage and unknown image tiling conflict with every native class, including
 //! themselves, and therefore occupy otherwise unshared pages. Known classes have
 //! two compatibility groups. Within valid placements the nearest live

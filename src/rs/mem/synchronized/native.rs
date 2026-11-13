@@ -80,13 +80,21 @@ impl<'owner, 'device> Lease<'owner, 'device> {
 			.lock()
 			.unwrap_or_else(PoisonError::into_inner);
 		let result = operation(&mut owner.allocator);
-		let live = owner
-			.allocator
-			.live
-			.get_mut(&self.serial)
-			.expect("leased live region");
-		live.native_users = 0;
-		live.pending_binding = None;
+		let pending = {
+			let live = owner
+				.allocator
+				.live
+				.get_mut(&self.serial)
+				.expect("leased live region");
+			live.native_users = 0;
+			live.pending_binding.take()
+		};
+		if let Some((resource, plane)) = pending {
+			owner
+				.allocator
+				.associated
+				.release(resource, plane, self.serial);
+		}
 		owner.active -= 1;
 		self.finished = true;
 		self.shared.notify_idle();
@@ -105,13 +113,21 @@ impl Drop for Lease<'_, '_> {
 				.lock()
 				.unwrap_or_else(PoisonError::into_inner);
 			owner.poisoned = true;
-			let live = owner
-				.allocator
-				.live
-				.get_mut(&self.serial)
-				.expect("leased live region");
-			live.native_users = 0;
-			live.pending_binding = None;
+			let pending = {
+				let live = owner
+					.allocator
+					.live
+					.get_mut(&self.serial)
+					.expect("leased live region");
+				live.native_users = 0;
+				live.pending_binding.take()
+			};
+			if let Some((resource, plane)) = pending {
+				owner
+					.allocator
+					.associated
+					.release(resource, plane, self.serial);
+			}
 			owner.active -= 1;
 			self.shared.notify_idle();
 		}
@@ -225,7 +241,7 @@ pub(in crate::mem) unsafe fn bind(
 	// SAFETY: caller keeps this resource and bind chain live for the complete call.
 	let operation = unsafe {
 		binding::prepare_bind(
-			&owner.allocator,
+			&mut owner.allocator,
 			resource,
 			allocation,
 			local_offset,
@@ -235,12 +251,18 @@ pub(in crate::mem) unsafe fn bind(
 		)
 	}?;
 	let lease = Lease::new(shared, &mut owner, allocation)?;
+	{
+		let live = owner
+			.allocator
+			.live
+			.get_mut(&allocation.serial)
+			.expect("leased live region");
+		live.pending_binding = Some((resource, operation.plane));
+	}
 	owner
 		.allocator
-		.live
-		.get_mut(&allocation.serial)
-		.expect("leased live region")
-		.pending_binding = Some((resource, operation.plane));
+		.associated
+		.record(resource, operation.plane, allocation.serial);
 	drop(owner);
 	let result = {
 		let _backing = lease.mapping.lock();

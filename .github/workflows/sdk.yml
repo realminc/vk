@@ -1,0 +1,75 @@
+name: Optional SDK preparation
+
+# Development-only. Never publishes and never substitutes hosted checks for a
+# physical laptop run. Explicit dispatch keeps comparison builds out of library CI.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_INCREMENTAL: "0"
+  CARGO_BUILD_JOBS: "1"
+  CC: clang
+  CXX: clang++
+  AR: llvm-ar
+
+jobs:
+  sdk:
+    if: github.repository == 'realminc/vk'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Install SDK compilers and pinned Rust
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends clang llvm lld glslang-tools
+          toolchain=$(python3 -c 'import tomllib; print(tomllib.load(open("rust-toolchain.toml", "rb"))["toolchain"]["channel"])')
+          rustup toolchain install "$toolchain" --profile minimal --component rustfmt --component clippy
+      - run: cargo fmt --manifest-path sdk/Cargo.toml --check
+      - run: python3 -m unittest discover -s sdk/test/py -v
+      - run: python3 sdk/tool/bench.py build
+      - run: python3 sdk/tool/bench.py build --reference vulkano --build target/sdk/build-vulkano
+      - run: python3 sdk/tool/triangle.py build
+      - run: cargo clippy --manifest-path sdk/Cargo.toml --all-targets --all-features --locked -- -D warnings
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: sdk-build-evidence
+          path: |
+            target/sdk/build/*.json
+            target/sdk/build/*.stdout
+            target/sdk/build/*.stderr
+            target/sdk/build-vulkano/*.json
+            target/sdk/build-vulkano/*.stdout
+            target/sdk/build-vulkano/*.stderr
+            target/sdk/triangle/*.json
+            target/sdk/triangle/*.stdout
+            target/sdk/triangle/*.stderr
+          retention-days: 14
+
+  cross-check:
+    if: github.repository == 'realminc/vk'
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [aarch64-linux-android, aarch64-unknown-linux-gnu, x86_64-pc-windows-gnu, aarch64-apple-ios]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Install target standard library
+        run: |
+          toolchain=$(python3 -c 'import tomllib; print(tomllib.load(open("rust-toolchain.toml", "rb"))["toolchain"]["channel"])')
+          rustup toolchain install "$toolchain" --profile minimal --target '${{ matrix.target }}'
+      - name: Check raw, loader and allocator builds (no linking or execution)
+        run: |
+          cargo check -p vkrust --locked --target '${{ matrix.target }}' --no-default-features
+          cargo check -p vkrust --locked --target '${{ matrix.target }}'
+          cargo check -p vkrust --locked --target '${{ matrix.target }}' --all-features

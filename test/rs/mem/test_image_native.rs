@@ -157,42 +157,82 @@ fn image_transfer(
 			usage: vk::ImageUsageFlagBits::TRANSFER_SRC_BIT | vk::ImageUsageFlagBits::TRANSFER_DST_BIT,
 			..Default::default()
 		};
-		let mut memory_pool = if let Some(algorithm) = custom_pool {
-			let probe = device.create_image(&image_info, None).unwrap();
-			let mut requirements = vk::MemoryRequirements::default();
+		const BYTES: u64 = 7 * 9 * 4;
+		let buffer_info = vk::BufferCreateInfo {
+			size: BYTES,
+			usage: vk::BufferUsageFlagBits::TRANSFER_DST_BIT,
+			..Default::default()
+		};
+		let (mut memory_pool, custom_pool_block_size) = if let Some(algorithm) = custom_pool {
+			let image_probe = device.create_image(&image_info, None).unwrap();
+			let mut image_requirements = vk::MemoryRequirements::default();
 			device
-				.get_image_memory_requirements(probe, &mut requirements)
+				.get_image_memory_requirements(image_probe, &mut image_requirements)
 				.unwrap();
+			let buffer_probe = device.create_buffer(&buffer_info, None).unwrap();
+			let buffer_requirements = device.get_buffer_memory_requirements(buffer_probe).unwrap();
 			let properties = instance
 				.get_physical_device_memory_properties(physical)
 				.unwrap();
 			let native = instance.get_physical_device_properties(physical).unwrap();
+			let atom = native.limits.non_coherent_atom_size;
+			let align_up = |size: u64, alignment: u64| {
+				size
+					.checked_add(alignment - 1)
+					.map(|value| value & !(alignment - 1))
+					.unwrap()
+			};
+			let image_reserved = align_up(image_requirements.size, atom);
+			let buffer_reserved = align_up(buffer_requirements.size, atom);
+			let separation = image_requirements
+				.alignment
+				.max(buffer_requirements.alignment)
+				.max(native.limits.buffer_image_granularity)
+				.max(atom);
+			let block_size = image_reserved
+				.checked_add(buffer_reserved)
+				.and_then(|size| size.checked_add(separation))
+				.and_then(u64::checked_next_power_of_two)
+				.unwrap();
+			let memory_type_bits =
+				image_requirements.memory_type_bits & buffer_requirements.memory_type_bits;
 			let selector =
 				vk::mem::MemoryTypeSelector::new(properties, native.limits.non_coherent_atom_size).unwrap();
 			let index = selector
 				.find_memory_type(&vk::AllocRequest {
-					size: requirements.size,
-					alignment: requirements.alignment,
-					memory_type_bits: requirements.memory_type_bits,
+					size: block_size,
+					alignment: separation,
+					memory_type_bits,
 					required_flags: vk::MemoryPropertyFlagBits::HOST_VISIBLE_BIT,
 					preferred_flags: vk::MemoryPropertyFlagBits::DEVICE_LOCAL_BIT,
 				})
 				.unwrap();
-			device.destroy_image(probe, None).unwrap();
-			Some(
+			eprintln!(
+				"mixed custom pool: image=({},{},0x{:x}), buffer=({},{},0x{:x}), block_size={block_size}, memory_type={index}",
+				image_requirements.size,
+				image_requirements.alignment,
+				image_requirements.memory_type_bits,
+				buffer_requirements.size,
+				buffer_requirements.alignment,
+				buffer_requirements.memory_type_bits,
+			);
+			device.destroy_buffer(buffer_probe, None).unwrap();
+			device.destroy_image(image_probe, None).unwrap();
+			let pool = Some(
 				allocator
 					.create_pool(&vk::mem::PoolCreateInfo {
 						memory_type_index: index,
 						algorithm,
-						block_size: 65536,
+						block_size,
 						min_block_count: 0,
 						max_block_count: 1,
 						..Default::default()
 					})
 					.unwrap(),
-			)
+			);
+			(pool, block_size)
 		} else {
-			None
+			(None, 0)
 		};
 		let image_options = AllocationCreateInfo {
 			pool: memory_pool.as_ref(),
@@ -225,12 +265,6 @@ fn image_transfer(
 			allocator
 				.create_image_with_options(&image_info, &image_options)
 				.unwrap()
-		};
-		const BYTES: u64 = 7 * 9 * 4;
-		let buffer_info = vk::BufferCreateInfo {
-			size: BYTES,
-			usage: vk::BufferUsageFlagBits::TRANSFER_DST_BIT,
-			..Default::default()
 		};
 		let buffer_options = AllocationCreateInfo {
 			pool: memory_pool.as_ref(),
@@ -418,7 +452,7 @@ fn image_transfer(
 				vk::mem::trim(&mut allocator).unwrap(),
 				vk::mem::TrimStats {
 					block_count: 1,
-					block_bytes: 65536
+					block_bytes: custom_pool_block_size
 				}
 			);
 			assert_eq!(allocator.pool_statistics(pool).unwrap().block_count, 0);

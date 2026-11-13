@@ -1,7 +1,7 @@
 //! Fallible host storage for VMA-owned metadata, not Vulkan device memory.
 //!
 //! Donor: pinned VMA 3.4.0 `VmaMalloc`, `VmaFree` and `VmaVector`.
-//! See LICENSE-VMA-MIT. Adaptation: borrowed callbacks, checked Rust layouts,
+//! See license/vma/MIT.txt. Adaptation: borrowed callbacks, checked Rust layouts,
 //! initialized-element ownership and allocation failure before buffer mutation.
 
 mod map;

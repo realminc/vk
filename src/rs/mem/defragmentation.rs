@@ -1,6 +1,6 @@
 //! Explicit relocation passes derived from pinned VMA 3.4.0
 //! `ComputeDefragmentation_{Fast,Balanced,Full,Extensive}`, `UpdateVectorStatistics`,
-//! `AllocInOtherBlock` and `EndPass` (LICENSE-VMA-MIT).
+//! `AllocInOtherBlock` and `EndPass` (license/vma/MIT.txt).
 //! Adaptation: exclusive allocator borrow, bounded existing-block reservations,
 //! checked consumer replacement/copy/completion, cooperative stop predicates,
 //! raw/alias-group and counted mapping transfer, and no implicit work in Drop.

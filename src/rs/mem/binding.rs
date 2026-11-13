@@ -1,6 +1,6 @@
 //! Existing-resource allocation and checked binding, following pinned VMA 3.4.0
 //! `vmaAllocateMemoryForBuffer`, `vmaAllocateMemoryForImage`, and ordinary binds.
-//! See LICENSE-VMA-MIT. Raw handles reveal no creation usage/tiling; automatic
+//! See license/vma/MIT.txt. Raw handles reveal no creation usage/tiling; automatic
 //! usage policies are rejected and unknown image placement is conservative.
 use super::*;
 
@@ -102,6 +102,121 @@ unsafe fn query_requirements(
 	})
 }
 
+/// Plane slot shared by the local association index and the synchronized owner
+/// registry: ordinary bindings occupy slot zero and disjoint planes occupy
+/// slots one through three, so one resource can own independent plane storage.
+pub(in crate::mem) fn plane_slot(plane: Option<vk::ImageAspectFlagBits>) -> usize {
+	match plane {
+		Some(vk::ImageAspectFlagBits::PLANE_0_BIT) => 1,
+		Some(vk::ImageAspectFlagBits::PLANE_1_BIT) => 2,
+		Some(vk::ImageAspectFlagBits::PLANE_2_BIT) => 3,
+		None => 0,
+		_ => unreachable!("canonical binding validates plane aspects"),
+	}
+}
+
+/// Raw-handle association index mirroring each allocator's `live` resource and
+/// pending-binding claims. Values hold the claiming allocation serial per plane
+/// slot (zero means unclaimed). An independent allocator indexes its bound
+/// resources here; a partitioned child indexes only its own pending bindings
+/// because the shared owner registry already covers bound resources.
+pub(super) struct Associations<'device> {
+	buffers: HostMap<'device, [u64; 4]>,
+	images: HostMap<'device, [u64; 4]>,
+}
+
+impl<'device> Associations<'device> {
+	pub fn new(host: HostMemory<'device>) -> Self {
+		Self {
+			buffers: HostMap::new(host),
+			images: HostMap::new(host),
+		}
+	}
+
+	fn registry(&self, resource: Resource) -> (&HostMap<'device, [u64; 4]>, u64) {
+		match resource {
+			Resource::Buffer(buffer) => (&self.buffers, buffer.as_raw()),
+			Resource::Image(image) => (&self.images, image.as_raw()),
+		}
+	}
+
+	fn registry_mut(&mut self, resource: Resource) -> (&mut HostMap<'device, [u64; 4]>, u64) {
+		match resource {
+			Resource::Buffer(buffer) => (&mut self.buffers, buffer.as_raw()),
+			Resource::Image(image) => (&mut self.images, image.as_raw()),
+		}
+	}
+
+	// Keys with no claimed slot are always removed, so presence is the check.
+	pub fn associated(&self, resource: Resource) -> bool {
+		let (registry, key) = self.registry(resource);
+		registry.get(&key).is_some()
+	}
+
+	/// Duplicate rule for a raw binding of `resource` at `plane`: an ordinary
+	/// claim rejects every owner, while a plane claim rejects the ordinary slot
+	/// and the matching plane slot only.
+	pub fn conflicts(&self, resource: Resource, plane: Option<vk::ImageAspectFlagBits>) -> bool {
+		let (registry, key) = self.registry(resource);
+		let Some(slots) = registry.get(&key) else {
+			return false;
+		};
+		match plane {
+			None => true,
+			Some(_) => slots[0] != 0 || slots[plane_slot(plane)] != 0,
+		}
+	}
+
+	pub fn try_reserve_for(&mut self, resource: Resource) -> Result<(), AllocError> {
+		let (registry, _) = self.registry_mut(resource);
+		registry.try_reserve(1)
+	}
+
+	/// Reserve `additional` keys in both registries. The shared index uses this
+	/// because up to `domains` uncommitted claims can be outstanding at once.
+	pub fn try_reserve(&mut self, additional: usize) -> Result<(), AllocError> {
+		self.buffers.try_reserve(additional)?;
+		self.images.try_reserve(additional)
+	}
+
+	// Capacity for the resource key must already be reserved.
+	pub fn record(
+		&mut self,
+		resource: Resource,
+		plane: Option<vk::ImageAspectFlagBits>,
+		serial: u64,
+	) {
+		let (registry, key) = self.registry_mut(resource);
+		if registry.get(&key).is_none() {
+			registry.insert_reserved(key, [0; 4]);
+		}
+		registry.get_mut(&key).expect("reserved resource")[plane_slot(plane)] = serial;
+	}
+
+	/// Release the claim owned by `serial`; other serials keep the slot so a
+	/// recycled native handle cannot lose a newer association.
+	pub fn release(
+		&mut self,
+		resource: Resource,
+		plane: Option<vk::ImageAspectFlagBits>,
+		serial: u64,
+	) {
+		let (registry, key) = self.registry_mut(resource);
+		let empty = if let Some(slots) = registry.get_mut(&key) {
+			let slot = plane_slot(plane);
+			if slots[slot] == serial {
+				slots[slot] = 0;
+			}
+			slots.iter().all(|owner| *owner == 0)
+		} else {
+			return;
+		};
+		if empty {
+			registry.remove(&key);
+		}
+	}
+}
+
 pub(super) fn associated(allocator: &Allocator<'_>, resource: Resource) -> bool {
 	if let Some(shared) = allocator.parallel_state() {
 		let domain = allocator.partition_id;
@@ -109,12 +224,7 @@ pub(super) fn associated(allocator: &Allocator<'_>, resource: Resource) -> bool 
 			return true;
 		}
 	}
-	allocator.live.values().any(|live| {
-		live.resource == Some(resource)
-			|| live
-				.pending_binding
-				.is_some_and(|(pending, _)| pending == resource)
-	})
+	allocator.associated.associated(resource)
 }
 
 pub(super) unsafe fn allocate_resource(
@@ -143,6 +253,11 @@ pub(super) unsafe fn allocate_resource(
 		)?;
 	}
 	allocator.reserve()?;
+	if allocator.parallel.is_none() {
+		// Independent allocators publish bound resources into the local index;
+		// partitioned claims publish the shared index instead.
+		allocator.associated.try_reserve_for(resource)?;
+	}
 	let claim = parallel::claim(allocator, resource, None, None)?;
 	let imported = options
 		.memory_allocate_next
@@ -222,6 +337,10 @@ pub(super) unsafe fn allocate_resource(
 	live.can_alias = options.can_alias;
 	if let Some(claim) = claim {
 		claim.commit(allocation.serial);
+	} else {
+		allocator
+			.associated
+			.record(resource, None, allocation.serial);
 	}
 	Ok(allocation)
 }
@@ -512,7 +631,7 @@ pub(super) struct BindOperation<'device> {
 }
 
 pub(super) unsafe fn prepare_bind<'device>(
-	allocator: &Allocator<'device>,
+	allocator: &mut Allocator<'device>,
 	resource: Resource,
 	allocation: &Allocation,
 	local_offset: u64,
@@ -585,19 +704,12 @@ pub(super) unsafe fn prepare_bind<'device>(
 		return Err(AllocError::WrongResource);
 	}
 	let raw = alias || live.resource.is_none();
-	if raw
-		&& allocator.live.values().any(|other| {
-			(other.resource == Some(resource)
-				&& (plane.is_none() || other.plane.is_none() || other.plane == plane))
-				|| other
-					.pending_binding
-					.is_some_and(|(pending, pending_plane)| {
-						pending == resource
-							&& (plane.is_none() || pending_plane.is_none() || pending_plane == plane)
-					})
-		}) {
+	// Partitioned children cover bound resources through the shared owner claim
+	// below; the local index always covers this allocator's own pending binds.
+	if raw && allocator.associated.conflicts(resource, plane) {
 		return Err(AllocError::WrongResource);
 	}
+	allocator.associated.try_reserve_for(resource)?;
 	let claim = parallel::claim(
 		allocator,
 		resource,
@@ -763,6 +875,10 @@ impl BindOperation<'_> {
 		live.bound = true;
 		if let Some(claim) = self.claim {
 			claim.commit(self.allocation.serial);
+		} else {
+			allocator
+				.associated
+				.record(self.resource, self.plane, self.allocation.serial);
 		}
 		Ok(())
 	}
@@ -900,3 +1016,7 @@ impl Allocator<'_> {
 		unsafe { bind_image_memory(self, image, allocation) }
 	}
 }
+
+#[cfg(test)]
+#[path = "../../../test/rs/mem/test_associated.rs"]
+mod tests;

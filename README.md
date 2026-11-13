@@ -19,8 +19,8 @@ package is **`vkrust`**; the Rust library and import namespace are **`vk`**.
 
 [Realm](https://realm.software/) · [Developer guide](https://dev.realm.software/vk) · [Rust API reference](https://docs.rs/vkrust/latest/vk/)
 
-The project is **experimental**. Registry coverage, enabled device capabilities
-and runtime qualification are separate; see the
+Registry coverage, enabled device capabilities and runtime qualification are
+separate; see the
 [qualification and limitations](https://github.com/realminc/vk/blob/main/docs/external/qualification.md).
 
 ## Install
@@ -427,9 +427,10 @@ letting an allocator outlive its construction scope and finish on a dedicated
 cleanup thread; `SynchronizedAllocator::new_owned` adopts it directly.
 
 The pinned VMA implementation is a development oracle; consumers need no C++
-allocator or FFI bridge. The broad allocator service surface is implemented,
-but remains **experimental**. Full VMA equivalence, wider concurrent stress,
-platform and hardware execution, and comparative performance remain unqualified.
+allocator or FFI bridge. The broad allocator service surface is implemented and
+hardware-qualified on the recorded baseline. Full VMA equivalence, wider
+concurrent stress, multi-driver execution and additional platforms remain
+unqualified.
 Allocations and native resources need explicit cleanup. Host locks do not order
 GPU work or protect escaped mapped bytes; operations and `Drop` never submit or
 wait for the GPU. See [qualification and limitations](https://github.com/realminc/vk/blob/main/docs/external/qualification.md)
@@ -440,13 +441,17 @@ for the exact scope.
 | Cargo feature | Compiled functionality |
 | --- | --- |
 | `loader` (default) | Dynamic loading, instance/device wrappers and native operations |
-| `allocator` | Experimental Rust-native allocator in `vk::mem`; enables `loader` |
+| `allocator` | Rust-native allocator in `vk::mem`; enables `loader` |
 | `platform-*` | Matching platform-specific ABI declarations |
 | `provisional` | Provisional registry declarations |
 
 Set `default-features = false` for ABI declarations and raw dispatch tables
 without the dynamic loader. Cargo features do not enable Vulkan device
 extensions or features.
+
+This build still uses Rust `std`. Android/iOS do not require `no_std`; see
+[platform and standard-library scope](https://github.com/realminc/vk/blob/main/docs/external/platforms.md)
+for loader paths, portability setup and cross-build limits.
 
 ## Development
 
@@ -460,6 +465,15 @@ Runtime source lives in `src/rs`, generation in `tool/gen`, and tests in
 subdirectories. Generated files use singular `*.gen.rs` names. Dev/test builds
 disable incremental compilation and debug information.
 
+The optional [SDK](https://github.com/realminc/vk/tree/main/sdk) isolates Ash/Vulkano and
+C++ VMA comparison dependencies from the library. It prepares explicit hardware
+profiles, fresh-process benchmarks and an offscreen Vulkan 1.3 triangle using
+the same `new().set_*()` records and allocator methods. The current
+[Surface Laptop 5 baseline](https://github.com/realminc/vk/blob/main/docs/external/benchmarks/surface-laptop-5-2026-11-13.md)
+records 32-profile core/synchronization validation, the graphics oracle and
+paired [Ash and VMA confirmation](https://github.com/realminc/vk/blob/main/docs/external/benchmarks/surface-laptop-5-2026-11-13.md#ash-and-vma-confirmation)
+host-latency ratios on Intel Iris Xe. Broader qualification remains open.
+
 <p align="center">
   <a href="https://realm.software/">
     <img src="https://raw.githubusercontent.com/realminc/oa/main/sdk/asset/docs/readme/realmIdentityAscii.gif" width="100%" alt="Realm animated ASCII identity">
@@ -469,6 +483,7 @@ disable incremental compilation and debug information.
 ## License
 
 [MIT](https://github.com/realminc/vk/blob/main/LICENSE). See
+[license texts](https://github.com/realminc/vk/tree/main/license) and
 [third-party notices](https://github.com/realminc/vk/blob/main/NOTICE.md) for
 Khronos registry and AMD allocator provenance. Realm animation shared with
 [OA](https://github.com/realminc/oa).

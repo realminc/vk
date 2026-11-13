@@ -1,6 +1,6 @@
 //! Pinned VMA 3.4.0 `ComputeDefragmentation_Extensive`, `MoveDataToFreeBlocks`
 //! and the Extensive ignored-block branch in `DefragmentPassEnd`.
-//! See LICENSE-VMA-MIT. Adaptation: wait for explicit pass resolution before
+//! See license/vma/MIT.txt. Adaptation: wait for explicit pass resolution before
 //! considering a proposed evacuation empty; retain native blocks through the
 //! exclusive context and publish phase/order changes only after planning succeeds.
 use super::*;

@@ -3,7 +3,7 @@
 //! Donor: VMA 3.4.0, 3aa921224c154a0d2c43912bc88e1c42ce1f7607,
 //! `VmaBlockMetadata_Linear::{CreateAllocationRequest_LowerAddress,
 //! CreateAllocationRequest_UpperAddress,Alloc,Free,CleanupAfterFree,Clear}`.
-//! See LICENSE-VMA-MIT. Adaptation: checked arithmetic and generations, fallible
+//! See license/vma/MIT.txt. Adaptation: checked arithmetic and generations, fallible
 //! reserve before publication, live-neighbor granularity checks and atom padding.
 //! Ring wrap is explicitly disabled for multi-block pools. Invalid ring/upper
 //! combinations return errors rather than invoking the donor's debug assertion.

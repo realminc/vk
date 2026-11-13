@@ -1,6 +1,6 @@
 //! Fixed-type TLSF/linear pools following pinned VMA 3.4.0 `CreatePool`,
 //! `VmaBlockVector::{CreateMinBlocks,AllocatePage,Free}` and `GetPoolStatistics`.
-//! See LICENSE-VMA-MIT.
+//! See license/vma/MIT.txt.
 //! Adaptation: checked tokens, fallible metadata, explicit cleanup, and the
 //! shared resource-aware placement, atom isolation and native mapping/accounting.
 

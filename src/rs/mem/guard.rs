@@ -1,4 +1,4 @@
-//! Opt-in VMA 3.4.0 debug fill and corruption guards (LICENSE-VMA-MIT).
+//! Opt-in VMA 3.4.0 debug fill and corruption guards (license/vma/MIT.txt).
 //! Donor: `IsCorruptionDetectionEnabled`, `WriteMagicValueAfterAllocation`,
 //! `ValidateMagicValueAfterAllocation`, `CheckCorruption` and `FillAllocation`.
 //! Adaptation: explicit settings/errors, balanced map holds, no assertion abort

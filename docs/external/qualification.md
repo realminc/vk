@@ -1,7 +1,16 @@
 # Qualification and limitations
 
-Status: Experimental. Publication makes the implementation available; it does
-not establish Vulkan conformance, production readiness or performance parity.
+Publication makes the implementation available; it does not establish Vulkan
+conformance, production readiness or performance parity.
+
+The optional [qualification SDK](https://github.com/realminc/vk/tree/main/sdk)
+prepares Ash/VMA timing consumers, an optional Vulkano checked-resource comparison,
+explicit native-test profiles and an
+offscreen Vulkan 1.3 graphics oracle. The current
+[Surface Laptop 5 baseline](https://github.com/realminc/vk/blob/main/docs/external/benchmarks/surface-laptop-5-2026-11-13.md)
+records two complete 32-profile validation modes, the graphics oracle and
+exploratory Ash/VMA/Vulkano timings on physical Vulkan 1.4. [Platform and standard-library
+scope](platforms.md) distinguishes mobile builds, `std` and future `no_std` work.
 
 ## Binding coverage
 
@@ -44,16 +53,23 @@ enumeration and failure recovery. Independent pinned-header C/Rust oracles
 compare layouts, bitfields and available prototypes. Protected-platform and
 provisional C signatures remain separately unqualified.
 
+The exact-PFN tests are deliberate failure-injection evidence, not substitutes
+for driver execution: they force missing commands, poisoned/partial outputs,
+duplicate or null successful handles, OOM, callback failure and rollback states
+that a healthy physical driver cannot reproducibly provide. Successful resource,
+submission and data-path claims additionally require the named native profiles.
+
 The public CI configuration adds Linux host checks, Windows/macOS host tests,
 an extracted-crate consumer and explicit Lavapipe compute/load/mem tests.
 These are configured gates until an actual workflow run succeeds. Software
 Vulkan execution is correctness evidence for that profile, not physical GPU,
 presentation, video, ray-tracing or performance qualification.
 
-Recorded physical execution is limited to x86-64 Linux, Intel HD Graphics 4400
-(Haswell), Vulkan 1.2 and Mesa. Physical Vulkan 1.3/1.4 execution, other drivers
-and architectures, WSI, positive codec/ray-tracing workloads and broader external
-interop remain open. The scoped Linux memory-import profile is described below. Feature promotion/equivalence semantics are also incomplete;
+Recorded physical execution covers x86-64 Linux Intel HD Graphics 4400/Haswell
+with Vulkan 1.2 and Intel Iris Xe/Alder Lake with Vulkan 1.4, both through Mesa.
+Other drivers and architectures, WSI, positive codec/ray-tracing workloads and
+broader external interop remain open. The scoped Linux memory-import profile is
+described below. Feature promotion/equivalence semantics are also incomplete;
 pointer availability alone does not establish command valid usage.
 
 ## Integrated allocator
@@ -65,8 +81,8 @@ implementations; native Vulkan operations remain at the root. For example,
 `vk::create_buffer` creates an unbound native buffer, while
 `vk::mem::create_buffer_with_options` creates, allocates and binds it.
 
-The broad VMA-derived service surface is implemented in Rust. It remains
-Experimental; service presence is distinct from full donor equivalence.
+The broad VMA-derived service surface is implemented in Rust. Service presence
+is distinct from full donor equivalence.
 
 | Area | Implemented scope |
 | --- | --- |
@@ -120,13 +136,21 @@ new sanitizer, donor or hardware profile.
 See the [v0.10.0 release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.10.0.md)
 and actual CI artifacts for the release snapshot's rerun results.
 
-Recorded physical memory profiles use Intel HD Graphics 4400 (Haswell), Mesa,
-Vulkan 1.2, x86-64 Linux. Separate core/thread-safety and
-synchronization/thread-safety runs cover serialized work, concurrent custom
-pools, default-memory-type scopes and independent backing blocks. Each of the
-first three profiles completes 512 buffer lifecycles per validation mode;
-the block profile uses four backings and 128 cycles. Only one host-visible type
-is available on that device; cross-type overlap is proved by mocks, not hardware.
+Recorded physical memory profiles cover Intel HD Graphics 4400/Haswell Vulkan
+1.2 and Intel Iris Xe/Alder Lake Vulkan 1.4 through Mesa on x86-64 Linux.
+Separate core/thread-safety and synchronization/thread-safety runs cover
+serialized work, concurrent custom pools, default-memory-type scopes and
+independent backing blocks. On Iris Xe, all 32 named profiles pass in each
+validation mode, including positive buffer-device-address, timeline, OPAQUE_FD,
+DMA-BUF, mixed buffer/image execution and fragmented pooled relocations of
+buffers and an optimal image, including persistent-context Extensive multi-pass
+ignored-source exclusion, Balanced/Full intra-block compaction, alias-group
+recreation and post-commit descriptor rebind proven by a re-dispatched shader.
+Each relocation creates and binds a replacement, records a GPU copy, waits on a
+fence, commits the move, verifies mapped payload or readback pixels and trims
+or releases the empty block. Cross-type overlap remains
+proved by mocks rather than a physical profile selecting multiple simultaneous
+types.
 
 Real Linux OPAQUE_FD and DMA-BUF buffer round trips and an OPAQUE_FD linear-image
 round trip also pass both validation modes, checking exact type/size accounting
@@ -148,17 +172,18 @@ cross-compiled; native Windows execution remains open.
   remain open. Rust retains granularity padding as free space and does not add a fallible
   driver budget query after resource destruction during free. These placement and budget policies differ from the donor; equivalent
   API availability does not establish identical VMA behavior.
-- Defragmentation's full native copy/data-correctness workloads, external
-  GPU ownership handoff and platform-specific import execution beyond the
-  recorded Linux profiles need broader qualification.
+- Other defragmentation tilings, device-address replacement and external GPU
+  ownership handoff; platform-specific import execution beyond the recorded
+  Linux profiles needs qualification.
 - Native Windows, Android, Metal, Fuchsia, QNX and OHOS execution; non-coherent,
-  granularity-greater-than-one, positive device-address and device-group hardware
+  granularity-greater-than-one and device-group hardware
   profiles remain unqualified. Import property queries and platform resource
   creation remain caller-owned. Managed disjoint construction and tile heaps
   are not admitted.
-- Comparative latency, throughput, fragmentation, metadata cost and contention
-  versus VMA are unmeasured. No performance superiority or production-readiness
-  claim follows from removing the C++ bridge or from Rust syntax.
+- The SDK records bounded unfragmented latency comparisons against VMA, Ash and
+  Vulkano. Fragmentation, throughput, metadata/RSS cost, native-call attribution,
+  relocation and contention remain unmeasured. No performance superiority or
+  production-readiness claim follows from removing the C++ bridge or from Rust syntax.
 
 Leave `allocator` disabled when using another memory manager. Native Vulkan
 requirements continue to apply to either route.

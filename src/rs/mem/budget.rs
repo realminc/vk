@@ -2,7 +2,7 @@
 //! Donor: pinned VMA GetHeapBudgets/SetCurrentFrameIndex budget separation.
 //! Adaptation: queries are explicit; no hot-path driver queries or stale-budget promises.
 //! Empty-block eviction follows `VmaBlockVector::Free`; explicit trim is an
-//! additional Rust maintenance boundary. See LICENSE-VMA-MIT.
+//! additional Rust maintenance boundary. See license/vma/MIT.txt.
 use super::Allocator;
 use crate::{
 	self as vk,

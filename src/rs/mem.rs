@@ -7,8 +7,8 @@
 //!
 //! Use `use vk::mem as vma;` for a caller-local alias. This adds no wrapper,
 //! runtime cost or second allocator type; [`crate::Allocator`] is [`Allocator`].
-//! The allocator is Experimental. Full VMA equivalence, broad concurrent stress,
-//! platform execution and comparative performance remain
+//! Full VMA equivalence, broad concurrent stress, multi-driver execution and
+//! additional platforms remain
 //! unqualified. See the [qualification report](https://github.com/realminc/vk/blob/main/docs/external/qualification.md).
 //!
 //! Every public field on a plain record has a consuming `set_*()` method alongside

@@ -1,7 +1,7 @@
 //! Separate and pooled ordinary buffers with explicit native lifetime management.
 //!
 //! Donor: VMA 3.4.0, commit 3aa921224c154a0d2c43912bc88e1c42ce1f7607,
-//! `GetBufferMemoryRequirements` and `AllocateDedicatedMemory`. See LICENSE-VMA-MIT.
+//! `GetBufferMemoryRequirements` and `AllocateDedicatedMemory`. See license/vma/MIT.txt.
 //! Adaptation: owned capability admission, checked tokens, fallible host reservation,
 //! cached PFNs and explicit Rust error-bearing cleanup; no implicit native Drop.
 
@@ -135,6 +135,7 @@ pub struct Allocator<'device> {
 	owner: Identity,
 	next_serial: u64,
 	live: HostMap<'device, Live<'device>>,
+	associated: binding::Associations<'device>,
 	pools: HostMap<'device, pool::PoolState<'device>>,
 	blocks: HostVec<'device, Block<'device>>,
 	native_count: usize,
@@ -288,6 +289,7 @@ impl<'device> Allocator<'device> {
 			owner: Identity::new()?,
 			next_serial: 1,
 			live: HostMap::new(HostMemory::default()),
+			associated: binding::Associations::new(HostMemory::default()),
 			pools: HostMap::new(HostMemory::default()),
 			blocks: HostVec::new(HostMemory::default()),
 			native_count: 0,
@@ -616,6 +618,7 @@ impl<'device> Allocator<'device> {
 		let host = unsafe { HostMemory::new_from_callbacks(callbacks) }?;
 		self.host = host;
 		self.live = HostMap::new(host);
+		self.associated = binding::Associations::new(host);
 		self.pools = HostMap::new(host);
 		self.blocks = HostVec::new(host);
 		#[cfg(all(windows, feature = "platform-win32"))]
@@ -1321,6 +1324,11 @@ unsafe fn allocate_storage(
 		return Err(AllocError::AllocationLimit);
 	}
 	allocator.reserve()?;
+	if let Some(resource) = imported.and_then(|info| import_resource(info.resource))
+		&& allocator.parallel.is_none()
+	{
+		allocator.associated.try_reserve_for(resource)?;
+	}
 	let mut bits = request.memory_type_bits;
 	let mut last = None;
 	loop {
@@ -1385,6 +1393,10 @@ unsafe fn allocate_storage(
 		live.export_types = exports;
 		if let Some(claim) = claim {
 			claim.commit(allocation.serial);
+		} else if let Some(resource) = live.resource {
+			allocator
+				.associated
+				.record(resource, None, allocation.serial);
 		}
 		return Ok(allocation);
 	}
@@ -1548,6 +1560,7 @@ unsafe fn free_region(
 	let live = allocator.validate(allocation)?;
 	let resource = live.resource;
 	let plane = live.plane;
+	let pending = live.pending_binding;
 	let placement = live.placement;
 	let holds = live
 		.map_count
@@ -1621,6 +1634,16 @@ unsafe fn free_region(
 		);
 	}
 	allocator.live.remove(&allocation.serial);
+	if let Some(resource) = resource {
+		allocator
+			.associated
+			.release(resource, plane, allocation.serial);
+	}
+	if let Some((resource, plane)) = pending {
+		allocator
+			.associated
+			.release(resource, plane, allocation.serial);
+	}
 	if let Some(shared) = allocator.parallel_state() {
 		shared.retire(resource, plane, allocation.serial);
 	}

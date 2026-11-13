@@ -12,7 +12,7 @@ python3 tool/verify_memory/fetch_donor.py --check
 `fetch_donor.py` owns the exact VMA 3.4.0 commit and SHA-256 inventory. Inputs
 are cached under ignored `target/verify_memory/donor/<commit>/`. A corrupt or
 modified cache fails verification. No local source archive is substituted for
-the pin. The upstream license is also shipped as `LICENSE-VMA-MIT`.
+the pin. The upstream license is also shipped as `license/vma/MIT.txt`.
 
 The first native port follows `VmaAllocator_T::GetBufferMemoryRequirements`
 and `VmaAllocator_T::AllocateDedicatedMemory`: core 1.1 or explicitly enabled

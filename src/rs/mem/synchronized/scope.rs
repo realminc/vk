@@ -1,7 +1,7 @@
 //! Scoped vector and native-block concurrency over the canonical allocation implementation.
 //!
 //! Donor: VMA 3.4.0 VmaBlockVector's mutex and allocator-wide allocation-count /
-//! heap accounting (LICENSE-VMA-MIT). Rust adaptation: borrowed worker scope,
+//! heap accounting (license/vma/MIT.txt). Rust adaptation: borrowed worker scope,
 //! one pool mutex, short shared reservation lock and allocation-free restoration.
 #[path = "resource.rs"]
 pub(in crate::mem::allocator) mod resource;
@@ -138,6 +138,7 @@ struct State<'device> {
 	preserve_budget: bool,
 	domains: usize,
 	resources: resource::Resources<'device>,
+	associated: binding::Associations<'device>,
 	restore_order: HostMap<'device, usize>,
 	#[cfg(all(windows, feature = "platform-win32"))]
 	external_handles: HostVec<'device, external::CachedHandle>,
@@ -227,6 +228,9 @@ impl<'device> Shared<'device> {
 		let mut state = self.lock();
 		state.live_count -= 1;
 		resource::retire(&mut state, target, plane, serial);
+		if let Some(target) = target {
+			state.associated.release(target, plane, serial);
+		}
 	}
 
 	pub fn release_resource(
@@ -360,6 +364,7 @@ impl Drop for Scope<'_, '_> {
 		#[cfg(all(windows, feature = "platform-win32"))]
 		std::mem::swap(&mut self.root.external_handles, &mut state.external_handles);
 		std::mem::swap(&mut self.root.live, &mut state.live);
+		std::mem::swap(&mut self.root.associated, &mut state.associated);
 		std::mem::swap(&mut self.root.blocks, &mut state.blocks);
 		self.root.next_serial = state.next_serial;
 		self.root.native_count = state.native_count;
@@ -395,6 +400,7 @@ fn new_child<'device>(root: &Allocator<'device>, domain: Domain) -> Allocator<'d
 		owner: root.owner,
 		next_serial: root.next_serial,
 		live: HostMap::new(root.host),
+		associated: binding::Associations::new(root.host),
 		pools: HostMap::new(root.host),
 		blocks: HostVec::new(root.host),
 		native_count: 0,
@@ -498,6 +504,7 @@ pub(in crate::mem) unsafe fn with_domains<'device, R>(
 	let state = State {
 		live_count: root.live.len(),
 		live: std::mem::replace(&mut root.live, HostMap::new(root.host)),
+		associated: std::mem::replace(&mut root.associated, binding::Associations::new(root.host)),
 		blocks: std::mem::replace(&mut root.blocks, HostVec::new(root.host)),
 		next_serial: root.next_serial,
 		native_count: root.native_count,

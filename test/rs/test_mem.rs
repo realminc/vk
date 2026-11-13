@@ -25,3 +25,6 @@ mod synchronized;
 
 #[path = "mem/test_import_native.rs"]
 mod import;
+
+#[path = "mem/test_defragmentation_native.rs"]
+mod defragmentation;

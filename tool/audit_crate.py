@@ -14,7 +14,8 @@ def audit(path, version, repository=None):
     allowed = {
         "Cargo.toml", "Cargo.toml.orig", "Cargo.lock", ".cargo_vcs_info.json",
         "README.md", "CHANGELOG.md", "NOTICE.md", "LICENSE", "license/khronos/Apache-2.0.txt",
-        "LICENSE-VMA-MIT", "rustfmt.toml", "docs/external/qualification.md", "registry/SOURCES.md",
+        "license/vma/MIT.txt", "license/khronos/MIT.txt", "license/README.md", "rustfmt.toml",
+        "docs/external/qualification.md", "docs/external/platforms.md", "registry/SOURCES.md",
     }
     prefixes = ("src/rs/", "test/rs/construction/", "test/rs/load/", "test/rs/mem/")
     umbrellas = {f"test/rs/test_{name}.rs" for name in ("lib", "load", "mem")}

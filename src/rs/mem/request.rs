@@ -1,6 +1,6 @@
 //! Resource-aware type queries and unclassified native requests, ported from
 //! pinned VMA 3.4.0 `FindMemoryTypeIndexForBufferInfo`,
-//! `FindMemoryTypeIndexForImageInfo` and `vmaAllocateMemory` (LICENSE-VMA-MIT).
+//! `FindMemoryTypeIndexForImageInfo` and `vmaAllocateMemory` (license/vma/MIT.txt).
 //! Adaptation: cached exact PFNs, checked identities, conservative native pages
 //! and the same fallible placement, mapping and accounting as managed resources.
 use super::*;

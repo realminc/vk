@@ -2,7 +2,7 @@
 //!
 //! Donor: VMA 3.4.0, 3aa921224c154a0d2c43912bc88e1c42ce1f7607,
 //! `VmaBlockMetadata_TLSF::{CreateAllocationRequest,Alloc,Free,SizeToMemoryClass,
-//! SizeToSecondIndex,FindFreeBlock,CheckBlock}`. See LICENSE-VMA-MIT.
+//! SizeToSecondIndex,FindFreeBlock,CheckBlock}`. See license/vma/MIT.txt.
 //! Adaptation: stable arena indices, checked arithmetic/generations, fallible
 //! reservation before mutation and a 64-bit first-level map for the full u64 domain.
 //! Bucket geometry follows donor virtual mode. Native resource blocks
