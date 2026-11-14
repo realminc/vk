@@ -20,7 +20,7 @@ pub struct AllocationChain<'a> {
 	borrow: PhantomData<&'a c_void>,
 }
 
-#[derive(Clone, Copy, Debug, Default)]
+#[derive(Clone, Copy, Debug)]
 pub(super) struct ChainData {
 	pub next: *const c_void,
 	pub flags: Option<vk::MemoryAllocateFlags>,
@@ -30,6 +30,27 @@ pub(super) struct ChainData {
 	pub import_extension: Option<&'static std::ffi::CStr>,
 	pub import_kind: ImportKind,
 	pub import_info: Option<ImportMemoryInfo>,
+}
+
+impl ChainData {
+	// Shared immutable empty policy; native calls borrow it instead of copying
+	// the full optional platform-import metadata through every allocation layer.
+	pub(super) const EMPTY: Self = Self {
+		next: ptr::null(),
+		flags: None,
+		exports: vk::ExternalMemoryHandleTypeFlags::empty(),
+		has_export: false,
+		imports: false,
+		import_extension: None,
+		import_kind: ImportKind::Ordinary,
+		import_info: None,
+	};
+}
+
+impl Default for ChainData {
+	fn default() -> Self {
+		Self::EMPTY
+	}
 }
 
 impl<'a> AllocationChain<'a> {

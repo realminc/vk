@@ -48,16 +48,23 @@ impl<'callbacks, V> HostMap<'callbacks, V> {
 		self.length == 0
 	}
 
+	#[inline]
 	pub fn try_reserve(&mut self, additional: usize) -> Result<(), AllocError> {
 		let required = self
 			.length
 			.checked_add(additional)
 			.ok_or(AllocError::HostAllocationFailed)?;
-		let mut capacity = self.buckets.len();
+		let capacity = self.buckets.len();
 		if required <= capacity - capacity / 4 {
 			return Ok(());
 		}
-		capacity = capacity.max(8);
+		self.grow(required)
+	}
+
+	#[cold]
+	#[inline(never)]
+	fn grow(&mut self, required: usize) -> Result<(), AllocError> {
+		let mut capacity = self.buckets.len().max(8);
 		while required > capacity - capacity / 4 {
 			capacity = capacity
 				.checked_mul(2)
@@ -152,6 +159,7 @@ impl<'callbacks, V> HostMap<'callbacks, V> {
 		})
 	}
 
+	#[inline]
 	pub fn get_mut(&mut self, key: &u64) -> Option<&mut V> {
 		self.find(*key).map(|slot| {
 			&mut self.buckets[slot]
@@ -162,26 +170,53 @@ impl<'callbacks, V> HostMap<'callbacks, V> {
 	}
 
 	pub fn insert_reserved(&mut self, key: u64, value: V) -> Option<V> {
-		if let Some(slot) = self.find(key) {
-			return Some(std::mem::replace(
-				&mut self.buckets[slot]
-					.as_mut()
-					.expect("occupied registry slot")
-					.value,
-				value,
-			));
+		let capacity = self.buckets.len();
+		let mask = capacity.wrapping_sub(1);
+		let mut slot = index(key, mask);
+		loop {
+			let bucket = self
+				.buckets
+				.get_mut(slot)
+				.expect("registry insertion requires reserved capacity");
+			match bucket {
+				Some(entry) if entry.key == key => {
+					return Some(std::mem::replace(&mut entry.value, value));
+				}
+				Some(_) => slot = (slot + 1) & mask,
+				None => {
+					assert!(
+						self.length < capacity - capacity / 4,
+						"registry insertion requires reserved capacity"
+					);
+					*bucket = Some(Entry { key, value });
+					self.length += 1;
+					return None;
+				}
+			}
 		}
-		assert!(
-			self.length < self.buckets.len() - self.buckets.len() / 4,
-			"registry insertion requires reserved capacity"
-		);
-		Self::place(&mut self.buckets, Entry { key, value });
-		self.length += 1;
-		None
 	}
 
 	pub fn remove(&mut self, key: &u64) -> Option<V> {
-		let mut hole = self.find(*key)?;
+		let hole = self.find(*key)?;
+		Some(self.remove_at(hole))
+	}
+
+	// Association retirement changes one plane and conditionally drops the key.
+	// Retain its already-found slot rather than hashing/probing it a second time.
+	pub fn remove_if(&mut self, key: &u64, remove: impl FnOnce(&mut V) -> bool) -> Option<V> {
+		let hole = self.find(*key)?;
+		if !remove(
+			&mut self.buckets[hole]
+				.as_mut()
+				.expect("occupied registry slot")
+				.value,
+		) {
+			return None;
+		}
+		Some(self.remove_at(hole))
+	}
+
+	fn remove_at(&mut self, mut hole: usize) -> V {
 		let entry = self.buckets[hole].take().expect("occupied registry slot");
 		self.length -= 1;
 		let mask = self.buckets.len() - 1;
@@ -194,7 +229,7 @@ impl<'callbacks, V> HostMap<'callbacks, V> {
 			}
 			current = (current + 1) & mask;
 		}
-		Some(entry.value)
+		entry.value
 	}
 
 	pub fn iter(&self) -> Iter<'_, V> {

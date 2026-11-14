@@ -3,6 +3,51 @@ use super::*;
 use crate::mem::test_host_allocator::FAIL_NEXT_HOST_ALLOCATION;
 
 #[test]
+fn edge_retirement_compaction_and_reuse_never_admit_stale_generations() {
+	for upper in [false, true] {
+		let mut block = Linear::new(16384, true).unwrap();
+		let mut live = Vec::new();
+		let mut retired = Vec::new();
+		for _ in 0..96 {
+			let Placement::Linear { offset, serial } = block.allocate(64, 64, upper).unwrap() else {
+				unreachable!();
+			};
+			live.push((offset, serial));
+		}
+		// Prefix, suffix and interior releases cross the donor's compaction
+		// threshold. The independent token list retains every generation.
+		for index in (0..64).chain((64..96).rev()) {
+			let (offset, serial) = live[index];
+			block.free(offset, serial).unwrap();
+			retired.push((offset, serial));
+			for &(offset, serial) in &retired {
+				assert_eq!(
+					block.free(offset, serial),
+					Err(AllocError::UnknownAllocation)
+				);
+				assert!(matches!(
+					block.info(offset, serial),
+					Err(AllocError::UnknownAllocation)
+				));
+			}
+			assert_eq!(block.statistics().allocation_count, 96 - retired.len());
+		}
+		let Placement::Linear { offset, serial } = block.allocate(64, 64, upper).unwrap() else {
+			unreachable!();
+		};
+		assert_eq!(offset, live[0].0);
+		assert_ne!(serial, live[0].1);
+		assert_eq!(
+			block.free(offset, live[0].1),
+			Err(AllocError::UnknownAllocation)
+		);
+		assert_eq!(block.info(offset, serial).unwrap().size, 64);
+		block.free(offset, serial).unwrap();
+		assert_eq!(block.statistics().free_bytes, 16384);
+	}
+}
+
+#[test]
 fn failed_metadata_reservation_preserves_mode_cursor_and_generation() {
 	for upper in [false, true] {
 		let mut block = Linear::new(4099, true).unwrap();

@@ -406,6 +406,7 @@ impl<'callbacks> VirtualBlock<'callbacks> {
 	}
 
 	/// Allocate an aligned region. Linear placement ignores the TLSF search strategy.
+	#[inline]
 	pub fn allocate(
 		&mut self,
 		size: u64,
@@ -427,6 +428,7 @@ impl<'callbacks> VirtualBlock<'callbacks> {
 	}
 
 	/// Release a matching live identity. No native resource is destroyed or waited on.
+	#[inline]
 	pub fn free(&mut self, allocation: &mut VirtualAllocation) -> Result<(), AllocError> {
 		free(self, allocation)
 	}
@@ -455,6 +457,7 @@ impl<'callbacks> VirtualBlock<'callbacks> {
 ///
 /// Failure leaves placements and donor free-list ordering unchanged. Only host
 /// metadata is allocated; no Vulkan calls or memory mapping occur.
+#[inline]
 pub fn allocate(
 	block: &mut VirtualBlock,
 	size: u64,
@@ -499,11 +502,15 @@ pub fn allocation_info(
 }
 
 /// Free a checked live region and invalidate its token; no native effects.
+#[inline]
 pub fn free(
 	block: &mut VirtualBlock,
 	allocation: &mut VirtualAllocation,
 ) -> Result<(), AllocError> {
-	allocation_info(block, allocation)?;
+	if block.owner != allocation.owner {
+		return Err(AllocError::WrongAllocator);
+	}
+	// Metadata::free performs the generation/liveness check before mutation.
 	block
 		.metadata
 		.free(allocation.placement.ok_or(AllocError::UnknownAllocation)?)?;

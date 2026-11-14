@@ -174,15 +174,29 @@ pub(super) unsafe fn required_resource_types(
 	types
 }
 
-pub(super) unsafe fn resource_options<'a>(
+#[inline]
+pub(super) unsafe fn resource_options<'options, 'a>(
 	allocator: &Allocator<'_>,
-	options: &AllocationCreateInfo<'a>,
+	options: &'options AllocationCreateInfo<'a>,
 	chain: *const std::ffi::c_void,
-) -> Result<AllocationCreateInfo<'a>, AllocError> {
+) -> Result<std::borrow::Cow<'options, AllocationCreateInfo<'a>>, AllocError> {
+	if chain.is_null() {
+		return Ok(std::borrow::Cow::Borrowed(options));
+	}
+	// SAFETY: preceding resource validation established the readable chain contract.
+	unsafe { external_resource_options(allocator, options, chain) }
+}
+
+#[inline(never)]
+unsafe fn external_resource_options<'options, 'a>(
+	allocator: &Allocator<'_>,
+	options: &'options AllocationCreateInfo<'a>,
+	chain: *const std::ffi::c_void,
+) -> Result<std::borrow::Cow<'options, AllocationCreateInfo<'a>>, AllocError> {
 	// SAFETY: resource validation already established a bounded readable chain.
 	let required = unsafe { required_resource_types(chain) };
 	if required.as_raw() == 0 {
-		return Ok(*options);
+		return Ok(std::borrow::Cow::Borrowed(options));
 	}
 	let tail = options.memory_allocate_next.map_or_else(
 		|| {
@@ -195,7 +209,7 @@ pub(super) unsafe fn resource_options<'a>(
 	);
 	// Imported payloads need not be re-exportable; native compatibility is caller-owned.
 	if tail.imports {
-		return Ok(*options);
+		return Ok(std::borrow::Cow::Borrowed(options));
 	}
 	let mut bits = 0;
 	for index in 0..allocator.selector.properties.memory_type_count {
@@ -219,10 +233,10 @@ pub(super) unsafe fn resource_options<'a>(
 	if bits & options.memory_type_bits == 0 {
 		return Err(AllocError::NoCompatibleMemoryType);
 	}
-	Ok(AllocationCreateInfo {
+	Ok(std::borrow::Cow::Owned(AllocationCreateInfo {
 		memory_type_bits: options.memory_type_bits & bits,
 		..*options
-	})
+	}))
 }
 
 impl<'device> Allocator<'device> {

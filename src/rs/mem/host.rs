@@ -124,6 +124,7 @@ impl<'callbacks, T> HostVec<'callbacks, T> {
 		self.reserve(additional, true)
 	}
 
+	#[inline]
 	fn reserve(&mut self, additional: usize, amortized: bool) -> Result<(), AllocError> {
 		let required = self
 			.length
@@ -132,6 +133,13 @@ impl<'callbacks, T> HostVec<'callbacks, T> {
 		if required <= self.capacity {
 			return Ok(());
 		}
+		self.grow(required, amortized)
+	}
+
+	// Keep callback allocation, relocation and cleanup off the reserved-capacity path.
+	#[cold]
+	#[inline(never)]
+	fn grow(&mut self, required: usize, amortized: bool) -> Result<(), AllocError> {
 		let capacity = if amortized {
 			required.max(self.capacity.saturating_mul(2)).max(4)
 		} else {

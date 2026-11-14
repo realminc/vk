@@ -113,6 +113,59 @@ No tutorial code or Ash implementation has been copied.
 
 ## Honest comparisons
 
+The allocator matrix extends the original reverse-free baseline with FIFO,
+seeded shuffled retirement and fragmented replacement while half the regions
+remain live. It covers TLSF/linear virtual and native pools, all TLSF strategies,
+separate buffer/image storage, live counts 1/32/128/256 and explicit host
+map/write/unmap with untimed independent remapping/payload checks. R8 optimal
+images use 64 × (requested bytes / 64), one mip/layer and transfer usage; no image
+GPU work or linear pixel-layout inference is timed. Mapping image allocations
+only writes backing bytes that no GPU accesses.
+
+```bash
+python3 sdk/tool/memory.py                       # print the eight-cell smoke plan
+python3 sdk/tool/memory.py --suite full          # print all 44 cells
+python3 sdk/tool/bench.py build --build target/sdk/memory-build
+python3 sdk/tool/memory.py run --suite full --build target/sdk/memory-build \
+  --api 1.4 --memory-type 2 --cpu 2 --samples 20 --warmup 3 \
+  --output target/sdk/memory-matrix
+python3 sdk/tool/memory.py validate --suite full --build target/sdk/memory-build \
+  --api 1.4 --memory-type 2 --validation sync \
+  --layer-manifest /usr/share/vulkan/explicit_layer.d/VkLayer_khronos_validation.json \
+  --output target/sdk/memory-matrix-validation
+# Or select one policy explicitly:
+python3 sdk/tool/bench.py run --case buffer-pool --trace churn --algorithm linear \
+  --mapping cycle --api 1.4 --memory-type 2 --cpu 2 --output target/sdk/linear-churn-map
+```
+
+Choose the memory type and CPU from this host. Matrix execution is explicit,
+retains pending/failed cells, never counts skips as passes and never overwrites
+evidence. `vk.sdk.sample.v2` identifies the exact trace/algorithm/strategy/mapping
+policy, eviction checksum, replacement count/bytes, both occupancy snapshots and
+mapping-cycle count. Legacy v1 records are accepted only for default policies.
+Trace permutations and correctness inspection happen outside timing. Churn's
+replacement allocations/frees are included in aggregate counts and timers.
+`map_ns` times map + eight-byte host write + unmap; the second mapping and payload
+check are untimed. No flush/invalidate or GPU visibility is implied. Vulkano
+records its actual FreeList algorithm and automatic mapping policy separately;
+it cannot be selected as a TLSF/linear or explicit-map reference.
+The pinned VMA virtual consumer supplies a never-dereferenced non-null user-data
+sentinel because its linear statistics uses that field to identify live entries,
+matching the existing donor-correctness harness. vk requires no such sentinel.
+The native VMA consumer leaves allocator flags at zero, retaining VMA's default
+internal mutexes. Ordinary vk uses exclusive access; its synchronized wrapper
+is not timed by this matrix. Virtual placement is externally synchronized on
+both sides. Matched synchronization-policy cohorts remain separate work.
+The separate `validate` action runs each selected cell once per backend under
+the installed layer, confirms native layer insertion, rejects diagnostics and
+retains only correctness outcomes. Its instrumented times are never reported
+as benchmark results. Virtual cells remain host-only even in that profile.
+
+This is a bounded host-latency matrix. Multi-block pressure/exhaustion, native
+call and CPU allocation/RSS instrumentation, flush/invalidate, real-copy
+relocation timing, contention, external-memory timing and cross-device testing
+remain separate work. Correctness qualification and timing coverage are distinct.
+
 | Workload | Reference | Timed scope |
 | --- | --- | --- |
 | `startup` | Ash 0.38.0 | Loader opening, instance creation and device creation, separately; cached tables and wrapper metadata are included |

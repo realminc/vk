@@ -194,7 +194,7 @@ The crates.io package is `vkrust`; its library/import name is `vk`:
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.8" }
+vk = { package = "vkrust", version = "0.13" }
 ```
 
 The public source target is `realminc/vk`. Private engineering history and

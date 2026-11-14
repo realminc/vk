@@ -9,6 +9,7 @@ import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tool"))
 import bench
 import qualify
+import memory
 
 
 class EvidenceTest(unittest.TestCase):
@@ -43,6 +44,57 @@ class EvidenceTest(unittest.TestCase):
 
     def test_accept_complete_sample(self):
         self.assertEqual(bench.verify_sample(self.record, "buffer-pool", "vma", self.args), ("allocate_ns", "free_ns"))
+
+    def v2(self):
+        record = copy.deepcopy(self.record)
+        record.update(schema="vk.sdk.sample.v2", trace="churn", algorithm="tlsf", strategy="default", mapping="cycle")
+        self.args.trace, self.args.algorithm, self.args.strategy, self.args.mapping = "churn", "tlsf", "default", "cycle"
+        metrics = record["measurements"]
+        metrics.update(allocations=14, requested_byte_checksum=(sum(bench.SIZES) + 256 + 16384) * 2,
+                       trace_checksum=bench.trace_checksum(5, "churn"), map_ns=25, map_cycles=10,
+                       fragmented_peak=copy.deepcopy(metrics["peak"]))
+        return record
+
+    def test_v2_churn_and_mapping_require_complete_checked_evidence(self):
+        record = self.v2()
+        self.assertEqual(bench.verify_sample(record, "buffer-pool", "vma", self.args), ("allocate_ns", "free_ns", "map_ns"))
+        for mutate in [lambda r: r.update(trace="reverse"),
+                       lambda r: r.update(algorithm="linear"),
+                       lambda r: r["measurements"].update(allocations=10),
+                       lambda r: r["measurements"].update(trace_checksum=0),
+                       lambda r: r["measurements"].update(map_cycles=0),
+                       lambda r: r["measurements"].update(map_ns=0),
+                       lambda r: r["measurements"]["fragmented_peak"].update(live_count=4),
+                       lambda r: r["measurements"]["fragmented_peak"].update(native_count=2)]:
+            poisoned = copy.deepcopy(record)
+            mutate(poisoned)
+            with self.subTest(mutate=mutate), self.assertRaises(ValueError):
+                bench.verify_sample(poisoned, "buffer-pool", "vma", self.args)
+
+    def test_legacy_records_cannot_claim_new_workloads(self):
+        self.args.trace = "churn"
+        with self.assertRaises(ValueError):
+            bench.verify_sample(self.record, "buffer-pool", "vma", self.args)
+
+    def test_matrix_policies_are_supported_unique_and_smoke_is_a_subset(self):
+        full, smoke = memory.cells("full"), memory.cells("smoke")
+        self.assertEqual(len(smoke), 8)
+        self.assertEqual(len(full), 44)
+        self.assertEqual(len({tuple(sorted(cell.items())) for cell in full}), len(full))
+        for cell in full:
+            args = SimpleNamespace(**cell)
+            bench.validate_policies(args, {cell["case"]: "vma"})
+        self.assertTrue(all(cell in full for cell in smoke))
+
+    def test_matrix_validation_requires_native_layer_evidence_and_rejects_diagnostics(self):
+        record = '{"schema":"vk.sdk.sample.v2"}'
+        self.assertEqual(memory.validate_record(record, "", "virtual")["schema"], "vk.sdk.sample.v2")
+        with self.assertRaises(ValueError):
+            memory.validate_record(record, "", "image-pool")
+        for diagnostic in ("Validation Error: VUID-test", "SYNC-HAZARD-WRITE", "Validation Warning"):
+            with self.assertRaises(ValueError):
+                memory.validate_record(record, qualify.LAYER_ACTIVE + diagnostic, "buffer-pool")
+        self.assertEqual(memory.validate_record(record, qualify.LAYER_ACTIVE, "buffer-pool")["schema"], "vk.sdk.sample.v2")
 
     def test_vulkano_selection_keeps_cached_queries_out_of_native_comparison(self):
         self.assertEqual(bench.select_cases("auto", "all"), bench.CASES)

@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.13.1+1.4.365 — 2026-11-14
+
+- Reduce allocator bookkeeping and linear retirement costs while preserving
+  public APIs, checked generations, native-output admission and recoverable
+  allocation failures. Compact TLSF nodes, index native backings, borrow policy
+  metadata and retain the shared ordinary/synchronized binding implementation.
+- Fix duplicate tail reporting in TLSF free-range diagnostics and strengthen
+  generation, compaction/reuse, memory-type-mask and registry-oracle tests.
+- Add the complete 44-case buffer/image/virtual allocation matrix, four mapping
+  measurements and retained before/after/VMA samples. The latest pass improves
+  pooled buffer lifetimes by about 7–13% and linear virtual stack lifetimes by
+  23% against the preceding checkpoint; native creation still trails VMA.
+- Requalify all 32 named native profiles and both benchmark consumers under
+  separate core and synchronization validation. Document policy differences,
+  rejected experiments and measured limits in the benchmark report.
+- See the [release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.13.1.md).
+
 ## 0.13.0+1.4.365 — 2026-11-13
 
 - Qualify the runtime on physical hardware: the Surface Laptop 5 baseline

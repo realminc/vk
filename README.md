@@ -27,7 +27,7 @@ separate; see the
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.12" }
+vk = { package = "vkrust", version = "0.13" }
 ```
 
 No Vulkan SDK, C compiler, C++ library or consumer-side generator is needed.
@@ -35,16 +35,16 @@ The default `loader` feature loads the system Vulkan library at runtime.
 
 ## Library and Vulkan versions
 
-The package version is **`0.12.0+1.4.365`**:
+The package version is **`0.13.1+1.4.365`**:
 
 | Version | Meaning |
 | --- | --- |
-| `0.12.0` | This Rust library's API release; Git tag `v0.12.0` |
+| `0.13.1` | This Rust library's API release; Git tag `v0.13.1` |
 | `+1.4.365` | Generated from Vulkan 1.4 headers, revision 365 |
 | `ApplicationInfo::api_version` | The Vulkan API version your application requests at runtime |
 
 Cargo treats the suffix as build metadata, so the dependency requirement stays
-`version = "0.12"`. The suffix identifies the pinned API snapshot; it is not a
+`version = "0.13"`. The suffix identifies the pinned API snapshot; it is not a
 Vulkan 1.4 driver requirement or runtime qualification claim. Applications can
 request Vulkan 1.0, 1.1 or 1.2 and use the commands/features admitted by their
 actual implementation. The examples below request Vulkan 1.0.
@@ -329,7 +329,7 @@ Enable `features = ["allocator"]` for the Rust-native, VMA-derived allocator:
 
 ```toml
 [dependencies]
-vk = { package = "vkrust", version = "0.12", features = ["allocator"] }
+vk = { package = "vkrust", version = "0.13", features = ["allocator"] }
 ```
 
 `vk::mem` owns allocator operations and configuration; `vk::Allocator` is the
@@ -452,6 +452,32 @@ extensions or features.
 This build still uses Rust `std`. Android/iOS do not require `no_std`; see
 [platform and standard-library scope](https://github.com/realminc/vk/blob/main/docs/external/platforms.md)
 for loader paths, portability setup and cross-build limits.
+
+## Performance
+
+Selected host-latency results on Intel Iris Xe (Surface Laptop 5, November 14,
+2026), with 20 fresh-process samples per backend/workload. **Below 1 favors vk.**
+Allocation rows combine allocation/free and native create/bind/destroy work;
+128 live allocations unless noted. Intervals crossing 1 do not establish a lead.
+
+| Workload | vk / VMA time (95% confidence interval) |
+| --- | ---: |
+| Virtual TLSF, minimum-offset churn | **0.752×** (0.706–0.769) |
+| Virtual linear, LIFO | 0.906× (0.884–0.934) |
+| Virtual linear, churn | 0.942× (0.925–0.953) |
+| Pooled buffer map + 8-byte write + unmap | 1.031× (1.014–1.053) |
+| Separate images, LIFO | 1.128× (1.115–1.149) |
+| Separate buffers, LIFO | 1.232× (1.212–1.274) |
+| Pooled images, TLSF, LIFO | 1.219× (1.195–1.237) |
+| Pooled buffers, TLSF, LIFO | 1.401× (1.374–1.423) |
+| Pooled buffers, TLSF, shuffled free | 1.525× (1.505–1.539) |
+| Pooled buffers, TLSF, churn, 32 live | 1.607× (1.494–1.953) |
+
+These exploratory runs used unlocked clocks and shared workstation load.
+Native VMA uses its default internal locks; ordinary vk uses exclusive access.
+The [full benchmark report](https://github.com/realminc/vk/blob/main/docs/external/benchmarks/surface-laptop-5-2026-11-14.md)
+includes all 44 allocator configurations, separate Ash/Vulkano comparisons,
+methodology and retained evidence.
 
 ## Development
 

@@ -86,6 +86,40 @@ fn malformed_memory_metadata_and_requests_fail_without_panics() {
 }
 
 #[test]
+fn sparse_masks_and_the_highest_memory_type_respect_declared_count_and_ties() {
+	for count in 1..=32 {
+		let mut p = properties();
+		p.memory_type_count = count;
+		let memory = p.memory_types[0];
+		p.memory_types.fill(memory);
+		let selector = MemoryTypeSelector::new(p, 64).unwrap();
+		let req = AllocRequest {
+			memory_type_bits: 1 << (count - 1),
+			required_flags: vk::MemoryPropertyFlags::empty(),
+			preferred_flags: vk::MemoryPropertyFlags::empty(),
+			..request()
+		};
+		assert_eq!(selector.find_memory_type(&req), Ok(count - 1));
+		assert_eq!(
+			selector.find_memory_type(&AllocRequest {
+				memory_type_bits: u32::MAX,
+				..req
+			}),
+			Ok(0)
+		);
+		if count < 32 {
+			assert_eq!(
+				selector.find_memory_type(&AllocRequest {
+					memory_type_bits: 1 << count,
+					..req
+				}),
+				Err(AllocError::NoCompatibleMemoryType)
+			);
+		}
+	}
+}
+
+#[test]
 fn gated_memory_types_are_not_implicitly_selected() {
 	let mut p = properties();
 	p.memory_types[1].property_flags =

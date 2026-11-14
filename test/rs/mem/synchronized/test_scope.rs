@@ -104,6 +104,12 @@ fn default_type_scopes_overlap_and_never_escape_native_type_selection() {
 		assert!(OVERLAP.load(Ordering::SeqCst) > 0);
 		let mut allocator = shared.into_inner().unwrap();
 		assert_eq!(allocator.statistics().allocation_count, 3);
+		// Both returned domains and the untouched pool retain duplicate-handle
+		// admission after allocation/free and allocation-free scope restoration.
+		assert_eq!(allocator.native_handles.len(), allocator.native_count);
+		for block in &allocator.blocks {
+			assert!(allocator.contains_memory(block.handle));
+		}
 		assert_eq!(
 			allocator
 				.pool_statistics(&untouched_pool)
@@ -128,6 +134,7 @@ fn default_type_scopes_overlap_and_never_escape_native_type_selection() {
 			.destroy_buffer(untouched_buffer, &mut untouched)
 			.unwrap();
 		allocator.destroy_pool(&mut untouched_pool).unwrap();
+		assert!(allocator.native_handles.is_empty());
 		allocator.close().unwrap();
 	}
 	empty_native();

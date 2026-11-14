@@ -20,10 +20,12 @@ sys.path.insert(0, str(ROOT / "tool/verify_memory"))
 import fetch_donor
 
 CASES = {"startup": "ash", "query": "ash", "virtual": "vma",
-         "buffer-pool": "vma", "buffer-separate": "vma"}
-REFERENCE_CASES = {"ash": ("startup", "query"), "vma": ("virtual", "buffer-pool", "buffer-separate"),
+         "buffer-pool": "vma", "buffer-separate": "vma", "image-pool": "vma", "image-separate": "vma"}
+REFERENCE_CASES = {"ash": ("startup", "query"), "vma": ("virtual", "buffer-pool", "buffer-separate", "image-pool", "image-separate"),
                    "vulkano": ("startup", "buffer-pool", "buffer-separate")}
 SIZES = [64, 256, 4096, 16384, 65536]
+POLICIES = {"trace": ("reverse", "fifo", "shuffle", "churn"), "algorithm": ("tlsf", "linear"),
+            "strategy": ("default", "min-memory", "min-time", "min-offset"), "mapping": ("none", "cycle")}
 IDENTITY = ("device_uuid", "driver_uuid", "vendor_id", "device_id", "device_type",
             "api_version", "driver_version", "queue_family", "device_count")
 
@@ -107,7 +109,18 @@ def telemetry():
 def verify_sample(record, case, backend, args):
     if backend == "vulkano" and (case not in REFERENCE_CASES["vulkano"] or record.get("comparison_scope") != "checked-managed-api"):
         raise ValueError("Vulkano evidence must identify a supported checked managed-API workload")
-    expected = {"schema": "vk.sdk.sample.v1", "case": case, "backend": backend,
+    policies = {key: getattr(args, key, values[0]) for key, values in POLICIES.items()}
+    schema = record.get("schema")
+    if schema == "vk.sdk.sample.v1":
+        if any(policies[key] != values[0] for key, values in POLICIES.items()):
+            raise ValueError("legacy evidence cannot identify nondefault policies")
+    elif schema == "vk.sdk.sample.v2":
+        expected_policies = {**policies, "algorithm": "free-list" if backend == "vulkano" else policies["algorithm"]}
+        if any(record.get(key) != value for key, value in expected_policies.items()):
+            raise ValueError("sample allocation policy mismatch")
+    else:
+        raise ValueError("unknown sample schema")
+    expected = {"case": case, "backend": backend,
                 "api_requested": (1 << 22) | (int(args.api.split(".")[1]) << 12),
                 "device_index": args.device, "memory_type": args.memory_type,
                 "batches": args.batches, "batch_size": args.batch_size,
@@ -122,20 +135,33 @@ def verify_sample(record, case, backend, args):
             raise ValueError("query count mismatch")
         keys = ("query_ns",)
     else:
-        count = args.batches * args.batch_size
+        replacements = args.batch_size // 2 if policies["trace"] == "churn" else 0
+        count = args.batches * (args.batch_size + replacements)
         requested = sum(SIZES[i % len(SIZES)] for i in range(args.batch_size))
-        if metrics.get("allocations") != count or metrics.get("requested_byte_checksum") != requested * args.batches:
+        replacement_bytes = sum(SIZES[(i * 2 + 1) % len(SIZES)] for i in range(replacements))
+        if metrics.get("allocations") != count or metrics.get("requested_byte_checksum") != (requested + replacement_bytes) * args.batches:
             raise ValueError("allocation count/request checksum mismatch")
-        peak = metrics["peak"]
-        if peak["live_count"] != args.batch_size or peak["allocation_bytes"] < requested:
-            raise ValueError("peak accounting mismatch")
-        if case == "virtual" and peak["allocation_bytes"] != requested:
-            raise ValueError("virtual accounting mismatch")
-        if case == "buffer-pool" and (peak["native_count"], peak["native_bytes"]) != (1, expected["block_size"]):
-            raise ValueError("fixed pool escaped its one-block policy")
-        if case == "buffer-separate" and peak["native_count"] != args.batch_size:
-            raise ValueError("separate storage was suballocated")
+        if schema == "vk.sdk.sample.v2":
+            if metrics.get("trace_checksum") != trace_checksum(args.batch_size, policies["trace"]):
+                raise ValueError("eviction schedule mismatch")
+            cycles = args.batches * args.batch_size if policies["mapping"] == "cycle" else 0
+            if metrics.get("map_cycles") != cycles or (not cycles and metrics.get("map_ns") != 0):
+                raise ValueError("map workload mismatch")
+        peaks = [metrics["peak"]]
+        if replacements:
+            peaks.append(metrics["fragmented_peak"])
+        for peak in peaks:
+            if peak["live_count"] != args.batch_size or peak["allocation_bytes"] < requested:
+                raise ValueError("peak accounting mismatch")
+            if case == "virtual" and peak["allocation_bytes"] != requested:
+                raise ValueError("virtual accounting mismatch")
+            if case.endswith("pool") and (peak["native_count"], peak["native_bytes"]) != (1, expected["block_size"]):
+                raise ValueError("fixed pool escaped its one-block policy")
+            if case.endswith("separate") and peak["native_count"] != args.batch_size:
+                raise ValueError("separate storage was suballocated")
         keys = ("allocate_ns", "free_ns")
+        if policies["mapping"] == "cycle":
+            keys += ("map_ns",)
     for key in keys:
         if type(metrics.get(key)) is not int or metrics[key] <= 0:
             raise ValueError(f"invalid timer: {key}")
@@ -148,6 +174,40 @@ def verify_sample(record, case, backend, args):
         if len(identity["device_uuid"]) != 16 or not any(identity["device_uuid"]):
             raise ValueError("missing device UUID")
     return keys
+
+
+def trace_checksum(count, trace):
+    """Independent permutation model for the workload declaration."""
+    order = list(range(count))
+    if trace == "fifo":
+        order.reverse()
+    elif trace == "shuffle":
+        random = 0x6a09e667f3bcc909
+        for index in range(count - 1, 0, -1):
+            random ^= (random << 13) & ((1 << 64) - 1)
+            random ^= random >> 7
+            random ^= (random << 17) & ((1 << 64) - 1)
+            target = random % (index + 1)
+            order[index], order[target] = order[target], order[index]
+    elif trace == "churn":
+        order = order[::2] + order[1::2]
+    value = 0xcbf29ce484222325
+    for index in reversed(order):
+        value = ((value ^ index) * 0x100000001b3) & ((1 << 64) - 1)
+    return value
+
+
+def validate_policies(args, selected):
+    for case, reference in selected.items():
+        allocation = case == "virtual" or case.startswith(("buffer-", "image-"))
+        if not allocation and any(getattr(args, key) != values[0] for key, values in POLICIES.items()):
+            raise ValueError("allocation policies require allocation cases")
+        if (case.endswith("separate") or reference == "vulkano") and (args.algorithm != "tlsf" or args.strategy != "default"):
+            raise ValueError("requested algorithm/strategy does not apply to this reference/case")
+        if args.mapping != "none" and (case == "virtual" or reference == "vulkano"):
+            raise ValueError("explicit mapping cycles require a native VMA resource comparison")
+        if args.trace == "churn" and args.batch_size < 2:
+            raise ValueError("churn requires batch-size >= 2")
 
 
 def interval(values):
@@ -219,6 +279,8 @@ def main():
     parser.add_argument("--samples", type=int, default=20)
     parser.add_argument("--warmup", type=int, default=2)
     parser.add_argument("--cpu", type=int, help="pin fresh processes to one allowed Linux CPU")
+    for key, values in POLICIES.items():
+        parser.add_argument("--" + key, choices=values, default=values[0])
     parser.add_argument("--allow-driver-warning", action="append", default=[],
                         help="retain and accept only this exact known startup-warning line; never suppress stderr")
     args = parser.parse_args()
@@ -227,6 +289,7 @@ def main():
     env = environment()
     try:
         selected = select_cases(args.reference, args.case)
+        validate_policies(args, selected)
     except ValueError as error:
         parser.error(str(error))
     if args.action == "plan":
@@ -277,7 +340,8 @@ def main():
             for backend in order:
                 before = telemetry()
                 command = [binaries[backend], "--case", case, "--device", args.device, "--api", args.api,
-                           "--memory-type", args.memory_type, "--batches", args.batches, "--batch-size", args.batch_size]
+                           "--memory-type", args.memory_type, "--batches", args.batches, "--batch-size", args.batch_size,
+                           *[item for key in POLICIES for item in ("--" + key, getattr(args, key))]]
                 stdout, stderr = run(command, output, f"{case}-{sample}-{backend}", env)
                 (output / f"{case}-{sample}-{backend}.telemetry.json").write_text(json.dumps({"before": before, "after": telemetry()}, indent=2) + "\n")
                 diagnostics = [line for line in stderr.splitlines() if line.strip()]

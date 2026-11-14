@@ -151,9 +151,8 @@ pub(super) fn validate_options(
 	{
 		return Err(AllocError::UnsupportedCapability("protected allocation"));
 	}
-	if let Some(pool) = options.pool {
-		pool::validate_options(allocator, pool, options)?;
-	} else {
+	// A selected pool's options were checked while deriving its priority above.
+	if options.pool.is_none() {
 		if options.upper_address {
 			return Err(AllocError::UnsupportedCapability(
 				"upper address requires a single-block linear pool",
@@ -464,7 +463,7 @@ pub unsafe fn allocate_with_options(
 			allocator,
 			&request,
 			StorageOptions {
-				chain: Default::default(),
+				chain: &super::super::chain::ChainData::EMPTY,
 				dedicated: None,
 				device_address: allocator.buffer_device_address,
 				priority: options.pool.map_or(options.priority, |pool| {

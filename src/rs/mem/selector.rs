@@ -66,10 +66,13 @@ impl MemoryTypeSelector {
 		}
 		let mut best = None;
 		let mut cost = u32::MAX;
-		for i in 0..self.properties.memory_type_count {
-			if request.memory_type_bits & self.allowed_bits & (1u32 << i) == 0 {
-				continue;
-			}
+		// Visit only admitted bits, still in increasing index order for ties.
+		let mut bits = request.memory_type_bits
+			& self.allowed_bits
+			& (u32::MAX >> (32 - self.properties.memory_type_count));
+		while bits != 0 {
+			let i = bits.trailing_zeros();
+			bits &= bits - 1;
 			let memory = self.properties.memory_types[i as usize];
 			let flags = memory.property_flags.as_raw();
 			let required = request.required_flags.as_raw();
@@ -106,6 +109,10 @@ impl MemoryTypeSelector {
 			if candidate < cost {
 				best = Some(i);
 				cost = candidate;
+				// Costs are nonnegative; the first perfect match also wins every tie.
+				if cost == 0 {
+					break;
+				}
 			}
 		}
 		best.ok_or(AllocError::NoCompatibleMemoryType)

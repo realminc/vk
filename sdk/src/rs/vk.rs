@@ -6,34 +6,111 @@ use std::{ffi::CStr, hint::black_box, time::Instant};
 
 struct Buffers<'a, 'device> {
 	allocator: &'a mut vk::Allocator<'device>,
+	device: &'device vk::Device,
 	options: vk::mem::AllocationCreateInfo<'a>,
+	image: bool,
 }
 
 impl Workload for Buffers<'_, '_> {
-	type Token = (vk::Buffer, vk::Allocation);
+	type Token = (vk::Buffer, vk::Image, vk::Allocation);
 
 	fn allocate(&mut self, size: u64) -> Result<Self::Token> {
+		if self.image {
+			let info = vk::ImageCreateInfo::new()
+				.set_image_type(vk::ImageType::_2D)
+				.set_format(vk::Format::R8_UNORM)
+				.set_extent(
+					vk::Extent3D::new()
+						.set_width(64)
+						.set_height((size / 64) as u32)
+						.set_depth(1),
+				)
+				.set_mip_levels(1)
+				.set_array_layers(1)
+				.set_samples(vk::SampleCountFlagBits::_1_BIT)
+				.set_tiling(vk::ImageTiling::OPTIMAL)
+				.set_usage(vk::ImageUsageFlags::TRANSFER_SRC_BIT | vk::ImageUsageFlags::TRANSFER_DST_BIT)
+				.set_sharing_mode(vk::SharingMode::EXCLUSIVE);
+			// SAFETY: checked fixed dimensions and no submitted image accesses.
+			let (image, allocation) = unsafe {
+				self
+					.allocator
+					.create_image_with_options(&info, &self.options)
+			}?;
+			return Ok((vk::Buffer::NULL, image, allocation));
+		}
 		let info = vk::BufferCreateInfo::new()
 			.set_size(size)
 			.set_usage(vk::BufferUsageFlags::TRANSFER_SRC_BIT | vk::BufferUsageFlags::TRANSFER_DST_BIT)
 			.set_sharing_mode(vk::SharingMode::EXCLUSIVE);
 		// SAFETY: this process owns the device and never submits these buffers.
-		Ok(unsafe {
+		let (buffer, allocation) = unsafe {
 			self
 				.allocator
 				.create_buffer_with_options(&info, &self.options)
-		}?)
+		}?;
+		Ok((buffer, vk::Image::NULL, allocation))
 	}
 
-	fn free(&mut self, (buffer, mut allocation): Self::Token) -> Result<()> {
+	fn free(&mut self, (buffer, image, mut allocation): Self::Token) -> Result<()> {
 		// SAFETY: no submitted GPU work or outstanding maps refer to this buffer.
-		Ok(unsafe { self.allocator.destroy_buffer(buffer, &mut allocation) }?)
+		unsafe {
+			if self.image {
+				self.allocator.destroy_image(image, &mut allocation)?;
+			} else {
+				self.allocator.destroy_buffer(buffer, &mut allocation)?;
+			}
+		}
+		Ok(())
 	}
 
 	fn inspect(&self, tokens: &[Self::Token]) -> Result<Value> {
 		let stats = self.allocator.statistics();
 		if stats.allocation_count != tokens.len() {
 			return Err("allocator live count mismatch".into());
+		}
+		for (buffer, image, allocation) in tokens {
+			let info = self.allocator.allocation_info(allocation)?;
+			// SAFETY: live unpublished resources belong to this process and device.
+			let requirements = unsafe {
+				if self.image {
+					let mut requirements = vk::MemoryRequirements::new();
+					self
+						.device
+						.get_image_memory_requirements(*image, &mut requirements)?;
+					requirements
+				} else {
+					self.device.get_buffer_memory_requirements(*buffer)?
+				}
+			};
+			if info.size < requirements.size
+				|| !info.offset.is_multiple_of(requirements.alignment)
+				|| requirements.memory_type_bits & (1 << info.memory_type_index) == 0
+				|| info
+					.offset
+					.checked_add(info.reserved_size)
+					.is_none_or(|end| end > info.native_size)
+			{
+				return Err("native requirements/range mismatch".into());
+			}
+		}
+		let mut ranges: Vec<_> = tokens
+			.iter()
+			.map(|(_, _, allocation)| {
+				(
+					allocation.handle().as_raw(),
+					allocation.offset(),
+					allocation.reserved_size(),
+				)
+			})
+			.collect();
+		ranges.sort_unstable();
+		if ranges.iter().any(|(_, _, size)| *size == 0)
+			|| ranges
+				.windows(2)
+				.any(|pair| pair[0].0 == pair[1].0 && pair[0].1 + pair[0].2 > pair[1].1)
+		{
+			return Err("native allocation overlap/extent violation".into());
 		}
 		Ok(
 			json!({"live_count": stats.allocation_count, "native_count": stats.native_allocation_count,
@@ -47,19 +124,38 @@ impl Workload for Buffers<'_, '_> {
 		}
 		Ok(())
 	}
+
+	fn map_write(&mut self, (_, _, allocation): &Self::Token, pattern: u64) -> Result<()> {
+		// SAFETY: all benchmark sizes exceed eight bytes; no GPU work or aliased references.
+		unsafe {
+			let pointer = self.allocator.map(allocation)?;
+			pointer.cast::<u64>().write_unaligned(black_box(pattern));
+			self.allocator.unmap(allocation)?;
+		}
+		Ok(())
+	}
+
+	fn map_check(&mut self, (_, _, allocation): &Self::Token, pattern: u64) -> Result<()> {
+		// SAFETY: host-only payload remains within the live allocation; no GPU access exists.
+		unsafe {
+			let pointer = self.allocator.map(allocation)?;
+			let observed = pointer.cast::<u64>().read_unaligned();
+			self.allocator.unmap(allocation)?;
+			if observed != pattern {
+				return Err("mapped payload mismatch".into());
+			}
+		}
+		Ok(())
+	}
 }
 
-struct Virtual<'a>(vk::VirtualBlock<'a>);
+struct Virtual<'a>(vk::VirtualBlock<'a>, vk::mem::PlacementStrategy);
 
 impl Workload for Virtual<'_> {
 	type Token = vk::VirtualAllocation;
 
 	fn allocate(&mut self, size: u64) -> Result<Self::Token> {
-		Ok(
-			self
-				.0
-				.allocate(size, 64, vk::mem::PlacementStrategy::Default)?,
-		)
+		Ok(self.0.allocate(size, 64, self.1)?)
 	}
 
 	fn free(&mut self, mut token: Self::Token) -> Result<()> {
@@ -102,10 +198,24 @@ impl Workload for Virtual<'_> {
 
 fn run() -> Result<()> {
 	let args = Args::new()?;
+	let algorithm = if args.algorithm == "linear" {
+		vk::mem::AllocationAlgorithm::Linear
+	} else {
+		vk::mem::AllocationAlgorithm::Tlsf
+	};
+	let strategy = match args.strategy.as_str() {
+		"min-memory" => vk::mem::PlacementStrategy::MinMemory,
+		"min-time" => vk::mem::PlacementStrategy::MinTime,
+		"min-offset" => vk::mem::PlacementStrategy::MinOffset,
+		_ => vk::mem::PlacementStrategy::Default,
+	};
 	if args.case == "virtual" {
 		let measurements = common::batches(
 			&args,
-			&mut Virtual(vk::VirtualBlock::new(common::BLOCK_SIZE)?),
+			&mut Virtual(
+				vk::VirtualBlock::new_with_algorithm(common::BLOCK_SIZE, algorithm)?,
+				strategy,
+			),
 		)?;
 		common::emit("vkrust", &args, Value::Null, measurements);
 		return Ok(());
@@ -213,12 +323,13 @@ fn run() -> Result<()> {
 				return Err("benchmark requires a host-visible explicit memory type".into());
 			}
 			let mut allocator = vk::Allocator::new_from_physical_device(&instance, physical, &device)?;
-			let mut pool = if args.case == "buffer-pool" {
+			let mut pool = if args.case.ends_with("pool") {
 				Some(
 					allocator.create_pool(
 						&vk::mem::PoolCreateInfo::new()
 							.set_memory_type_index(args.memory_type)
 							.set_block_size(common::BLOCK_SIZE)
+							.set_algorithm(algorithm)
 							.set_min_block_count(1)
 							.set_max_block_count(1),
 					)?,
@@ -229,6 +340,7 @@ fn run() -> Result<()> {
 			let options = vk::mem::AllocationCreateInfo::new()
 				.set_memory_type_bits(1 << args.memory_type)
 				.set_required_flags(vk::MemoryPropertyFlags::HOST_VISIBLE_BIT)
+				.set_strategy(strategy)
 				.set_policy(if pool.is_some() {
 					vk::mem::AllocationPolicy::Automatic
 				} else {
@@ -239,7 +351,9 @@ fn run() -> Result<()> {
 				&args,
 				&mut Buffers {
 					allocator: &mut allocator,
+					device: &device,
 					options,
+					image: args.case.starts_with("image-"),
 				},
 			)?;
 			if let Some(pool) = &mut pool {

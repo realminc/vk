@@ -127,6 +127,7 @@ impl Selection<'_> {
 
 struct State<'device> {
 	live: HostMap<'device, Live<'device>>,
+	native_handles: HostMap<'device, ()>,
 	blocks: HostVec<'device, Block<'device>>,
 	next_serial: u64,
 	live_count: usize,
@@ -210,6 +211,8 @@ impl<'device> Shared<'device> {
 		let extra_blocks = blocks.saturating_sub(state.blocks.len());
 		state.live.try_reserve(extra_live)?;
 		state.blocks.try_reserve(extra_blocks)?;
+		let extra_handles = blocks.saturating_sub(state.native_handles.len());
+		state.native_handles.try_reserve(extra_handles)?;
 		let serial = state.next_serial;
 		state.next_serial = next;
 		Ok(serial)
@@ -347,6 +350,9 @@ impl Drop for Scope<'_, '_> {
 			child.partition = Domain::Global;
 			child.partition_id = 0;
 			state.live.append_reserved(&mut child.live);
+			state
+				.native_handles
+				.append_reserved(&mut child.native_handles);
 			state.blocks.append_reserved(&mut child.blocks);
 			#[cfg(all(windows, feature = "platform-win32"))]
 			state
@@ -364,6 +370,7 @@ impl Drop for Scope<'_, '_> {
 		#[cfg(all(windows, feature = "platform-win32"))]
 		std::mem::swap(&mut self.root.external_handles, &mut state.external_handles);
 		std::mem::swap(&mut self.root.live, &mut state.live);
+		std::mem::swap(&mut self.root.native_handles, &mut state.native_handles);
 		std::mem::swap(&mut self.root.associated, &mut state.associated);
 		std::mem::swap(&mut self.root.blocks, &mut state.blocks);
 		self.root.next_serial = state.next_serial;
@@ -400,6 +407,7 @@ fn new_child<'device>(root: &Allocator<'device>, domain: Domain) -> Allocator<'d
 		owner: root.owner,
 		next_serial: root.next_serial,
 		live: HostMap::new(root.host),
+		native_handles: HostMap::new(root.host),
 		associated: binding::Associations::new(root.host),
 		pools: HostMap::new(root.host),
 		blocks: HostVec::new(root.host),
@@ -457,10 +465,11 @@ pub(in crate::mem) unsafe fn with_domains<'device, R>(
 	let routes = Routes::new(root, &domains)?;
 	let mut counts = HostVec::new(root.host);
 	counts.try_reserve_exact(domains.len())?;
-	counts.resize_reserved(domains.len(), (0_usize, 0_usize, 0_usize));
+	counts.resize_reserved(domains.len(), (0_usize, 0_usize, 0_usize, 0_usize));
 	for live in root.live.values() {
 		if let Some(index) = routes.live(live) {
 			counts[index].0 += 1;
+			counts[index].3 += usize::from(live.placement.is_none());
 		}
 	}
 	for block in &root.blocks {
@@ -482,6 +491,9 @@ pub(in crate::mem) unsafe fn with_domains<'device, R>(
 		}
 		child.live.try_reserve(counts[index].0)?;
 		child.blocks.try_reserve_exact(counts[index].1)?;
+		child
+			.native_handles
+			.try_reserve(counts[index].1 + counts[index].3)?;
 		#[cfg(all(windows, feature = "platform-win32"))]
 		child.external_handles.try_reserve_exact(counts[index].2)?;
 		// SAFETY: the scope inherits the parent's established any-thread contract.
@@ -500,10 +512,12 @@ pub(in crate::mem) unsafe fn with_domains<'device, R>(
 	};
 	root.live.try_reserve(domains.len())?;
 	root.blocks.try_reserve(domains.len())?;
+	root.native_handles.try_reserve(domains.len())?;
 	let resources = resource::Resources::new(root)?;
 	let state = State {
 		live_count: root.live.len(),
 		live: std::mem::replace(&mut root.live, HostMap::new(root.host)),
+		native_handles: std::mem::replace(&mut root.native_handles, HostMap::new(root.host)),
 		associated: std::mem::replace(&mut root.associated, binding::Associations::new(root.host)),
 		blocks: std::mem::replace(&mut root.blocks, HostVec::new(root.host)),
 		next_serial: root.next_serial,
@@ -578,6 +592,10 @@ pub(in crate::mem) unsafe fn with_domains<'device, R>(
 		let child = child.owner_mut();
 
 		for block in &child.blocks {
+			state.native_handles.remove(&block.handle.as_raw());
+			child
+				.native_handles
+				.insert_reserved(block.handle.as_raw(), ());
 			child.native_count += 1;
 			child.native_bytes += block.size;
 			let heap = child.selector.properties.memory_types[block.memory_type_index as usize].heap_index
@@ -585,6 +603,10 @@ pub(in crate::mem) unsafe fn with_domains<'device, R>(
 			child.heap_bytes[heap] += block.size;
 		}
 		for live in child.live.values().filter(|live| live.placement.is_none()) {
+			state.native_handles.remove(&live.handle.as_raw());
+			child
+				.native_handles
+				.insert_reserved(live.handle.as_raw(), ());
 			child.native_count += 1;
 			child.native_bytes += live.size;
 			let heap =

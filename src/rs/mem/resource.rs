@@ -41,7 +41,21 @@ pub(super) fn buffer_device_address(device: &vk::Device) -> bool {
 
 /// The unsafe caller still establishes all pointed-to extents, profile feature
 /// requirements and native valid usage; this is not a replacement validation layer.
+#[inline]
 pub(super) unsafe fn validate_chain(
+	device: &vk::Device,
+	chain: *const c_void,
+	image: bool,
+) -> Result<(), AllocError> {
+	if chain.is_null() {
+		return Ok(());
+	}
+	// SAFETY: caller supplies the same readable chain and native payload contract.
+	unsafe { validate_nonempty_chain(device, chain, image) }
+}
+
+#[inline(never)]
+unsafe fn validate_nonempty_chain(
 	device: &vk::Device,
 	chain: *const c_void,
 	image: bool,

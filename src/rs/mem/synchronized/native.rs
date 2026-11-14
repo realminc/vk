@@ -263,12 +263,15 @@ pub(in crate::mem) unsafe fn bind(
 		.allocator
 		.associated
 		.record(resource, operation.plane, allocation.serial);
+	// Retain the device only when releasing the allocator lock for a native
+	// lease. The ordinary exclusive-owner path borrows its existing device.
+	let device = owner.allocator.device.clone();
 	drop(owner);
 	let result = {
 		let _backing = lease.mapping.lock();
 		// SAFETY: resource claim and native backing remain live, and this
 		// backing's map/bind mutex excludes competing native host operations.
-		unsafe { operation.execute() }
+		unsafe { operation.execute(device.as_device()) }
 	};
 	lease.finish(|allocator| match result {
 		Ok(()) => operation.commit(allocator),

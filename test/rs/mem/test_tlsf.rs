@@ -6,6 +6,7 @@ fn validate(t: &Tlsf) {
 	let mut physical = BTreeSet::new();
 	let mut free = BTreeSet::new();
 	let (mut index, mut previous, mut offset, mut taken, mut bytes) = (t.head, NONE, 0, 0, 0);
+	let mut expected_free = Vec::new();
 	loop {
 		assert!(physical.insert(index));
 		let node = &t.nodes[index];
@@ -13,6 +14,9 @@ fn validate(t: &Tlsf) {
 		assert_eq!(node.previous, previous);
 		assert_eq!(node.offset, offset);
 		offset = offset.checked_add(node.size).unwrap();
+		if node.state == State::Free && node.size != 0 {
+			expected_free.push((node.offset, node.size));
+		}
 		if node.state == State::Taken {
 			taken += 1;
 			bytes += node.size;
@@ -40,12 +44,12 @@ fn validate(t: &Tlsf) {
 		while index != NONE {
 			assert!(listed.insert(index));
 			assert_eq!(list(t.nodes[index].size), bucket);
-			assert_eq!(t.nodes[index].previous_free, previous);
+			assert_eq!(t.nodes[index].previous_free(), previous);
 			assert!(t.nodes[index].state == State::Free);
 			first |= 1 << (bucket / 32);
 			second[bucket / 32] |= 1 << (bucket % 32);
 			previous = index;
-			index = t.nodes[index].next_free;
+			index = t.nodes[index].next_free();
 		}
 	}
 	assert_eq!(free, listed);
@@ -59,15 +63,86 @@ fn validate(t: &Tlsf) {
 	let stats = t.statistics();
 	assert_eq!(stats.allocated_bytes, bytes);
 	assert_eq!(stats.free_bytes, t.size - bytes);
+	let mut visited_free = Vec::new();
+	t.for_each_free(|offset, size| visited_free.push((offset, size)));
+	visited_free.sort_unstable();
+	assert_eq!(
+		visited_free, expected_free,
+		"visit each physical free range exactly once"
+	);
 	let mut recycled = BTreeSet::new();
 	let mut index = t.recycled;
 	while index != NONE {
 		assert!(recycled.insert(index));
 		assert!(t.nodes[index].state == State::Unused);
-		index = t.nodes[index].next_free;
+		index = t.nodes[index].next_free();
 	}
 	assert_eq!(recycled.len(), t.recycled_count);
 	assert_eq!(physical.len() + recycled.len(), t.nodes.len());
+}
+
+#[test]
+fn free_link_storage_never_exposes_user_data_or_revalidates_a_retired_generation() {
+	#[cfg(target_pointer_width = "64")]
+	assert_eq!(
+		std::mem::size_of::<Node>(),
+		56,
+		"compact native metadata budget"
+	);
+	let mut metadata = Tlsf::new(128).unwrap();
+	metadata.next_serial = u64::MAX - 5;
+	let first = metadata
+		.allocate(32, 1, PlacementStrategy::Default)
+		.unwrap();
+	let guard = metadata
+		.allocate(32, 1, PlacementStrategy::Default)
+		.unwrap();
+	let last = metadata
+		.allocate(32, 1, PlacementStrategy::Default)
+		.unwrap();
+	metadata
+		.set_user_data(first.0, first.1, usize::MAX)
+		.unwrap();
+	metadata
+		.set_user_data(guard.0, guard.1, 0xdead_beef)
+		.unwrap();
+	metadata.free(first.0, first.1).unwrap();
+	validate(&metadata);
+	let replacement = metadata
+		.allocate(32, 1, PlacementStrategy::MinOffset)
+		.unwrap();
+	assert_eq!(replacement.0, first.0);
+	assert_ne!(replacement.1, first.1);
+	assert_eq!(
+		metadata
+			.info(replacement.0, replacement.1)
+			.unwrap()
+			.user_data,
+		0
+	);
+	assert!(matches!(
+		metadata.info(first.0, first.1),
+		Err(AllocError::UnknownAllocation)
+	));
+	assert_eq!(
+		metadata.info(guard.0, guard.1).unwrap().user_data,
+		0xdead_beef
+	);
+	for (index, serial) in [replacement, last, guard] {
+		metadata.free(index, serial).unwrap();
+		validate(&metadata);
+	}
+	let whole = metadata
+		.allocate(128, 1, PlacementStrategy::Default)
+		.unwrap();
+	assert_eq!(whole.1, u64::MAX - 1);
+	assert_eq!(metadata.info(whole.0, whole.1).unwrap().user_data, 0);
+	metadata.free(whole.0, whole.1).unwrap();
+	assert!(matches!(
+		metadata.allocate(1, 1, PlacementStrategy::Default),
+		Err(AllocError::SerialExhausted)
+	));
+	validate(&metadata);
 }
 
 #[test]

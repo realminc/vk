@@ -225,10 +225,29 @@ impl<'callbacks> Linear<'callbacks> {
 	fn locate(&self, offset: u64, serial: u64) -> Result<(usize, usize), AllocError> {
 		for side in 0..2 {
 			let vector = self.first ^ side;
+			let nodes = &self.vectors[vector];
+			// Stack retirement and ring-head retirement address the live edges.
+			// Check their complete generation identity before the general search;
+			// compaction and ring swaps do not invalidate offset/generation tokens.
+			let begin = if side == 0 { self.begin } else { 0 };
+			if let Some(node) = nodes.last()
+				&& node.live
+				&& node.offset == offset
+				&& node.serial == serial
+			{
+				return Ok((vector, nodes.len() - 1));
+			}
+			if let Some(node) = nodes.get(begin)
+				&& node.live
+				&& node.offset == offset
+				&& node.serial == serial
+			{
+				return Ok((vector, begin));
+			}
 			let found = if side == 1 && self.mode == Mode::DoubleStack {
-				self.vectors[vector].binary_search_by(|node| offset.cmp(&node.offset))
+				nodes.binary_search_by(|node| offset.cmp(&node.offset))
 			} else {
-				self.vectors[vector].binary_search_by_key(&offset, |node| node.offset)
+				nodes.binary_search_by_key(&offset, |node| node.offset)
 			};
 			if let Ok(index) = found {
 				let node = &self.vectors[vector][index];
@@ -252,13 +271,19 @@ impl<'callbacks> Linear<'callbacks> {
 	pub fn free(&mut self, offset: u64, serial: u64) -> Result<(), AllocError> {
 		let (vector, index) = self.locate(offset, serial)?;
 		let node = &mut self.vectors[vector][index];
-		node.live = false;
 		self.free_bytes += node.size;
 		self.allocations -= 1;
-		if vector == self.first {
-			self.middle += 1;
+		if index + 1 == self.vectors[vector].len() {
+			// A retiring tail creates no tombstone. Cleanup still reclaims older
+			// holes, switches ring vectors and preserves the donor compaction rule.
+			self.vectors[vector].pop();
 		} else {
-			self.second_null += 1;
+			self.vectors[vector][index].live = false;
+			if vector == self.first {
+				self.middle += 1;
+			} else {
+				self.second_null += 1;
+			}
 		}
 		self.cleanup();
 		Ok(())

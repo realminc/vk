@@ -500,6 +500,9 @@ impl BlockDomain {
 	// inverted adjacent pair in this vector, leaving other domains in place.
 	// Linear vectors retain creation order; Extensive retains its own ordering.
 	pub fn incrementally_sort(self, blocks: &mut [Block]) {
+		if blocks.len() < 2 {
+			return;
+		}
 		if blocks.iter().any(|block| {
 			self.contains(block)
 				&& (block.defragmentation_hold || matches!(block.metadata, Metadata::Linear(_)))

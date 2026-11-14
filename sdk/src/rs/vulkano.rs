@@ -131,6 +131,9 @@ impl Workload for Buffers {
 
 fn run() -> Result<()> {
 	let args = Args::new()?;
+	if args.algorithm != "tlsf" || args.strategy != "default" || args.mapping != "none" {
+		return Err("Vulkano uses its own FreeList placement and automatic mapping policy".into());
+	}
 	if !["probe", "startup", "buffer-pool", "buffer-separate"].contains(&args.case.as_str()) {
 		return Err("Vulkano comparison supports startup and managed buffers; its cached getters are not fresh native queries".into());
 	}

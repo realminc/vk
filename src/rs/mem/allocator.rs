@@ -135,6 +135,8 @@ pub struct Allocator<'device> {
 	owner: Identity,
 	next_serial: u64,
 	live: HostMap<'device, Live<'device>>,
+	// One key per native backing, independent of the number of placed regions.
+	native_handles: HostMap<'device, ()>,
 	associated: binding::Associations<'device>,
 	pools: HostMap<'device, pool::PoolState<'device>>,
 	blocks: HostVec<'device, Block<'device>>,
@@ -289,6 +291,7 @@ impl<'device> Allocator<'device> {
 			owner: Identity::new()?,
 			next_serial: 1,
 			live: HostMap::new(HostMemory::default()),
+			native_handles: HostMap::new(HostMemory::default()),
 			associated: binding::Associations::new(HostMemory::default()),
 			pools: HostMap::new(HostMemory::default()),
 			blocks: HostVec::new(HostMemory::default()),
@@ -618,6 +621,7 @@ impl<'device> Allocator<'device> {
 		let host = unsafe { HostMemory::new_from_callbacks(callbacks) }?;
 		self.host = host;
 		self.live = HostMap::new(host);
+		self.native_handles = HostMap::new(host);
 		self.associated = binding::Associations::new(host);
 		self.pools = HostMap::new(host);
 		self.blocks = HostVec::new(host);
@@ -959,6 +963,7 @@ impl<'device> Allocator<'device> {
 	}
 
 	fn add_native(&mut self, size: u64, index: u32, memory: vk::DeviceMemory) {
+		self.native_handles.insert_reserved(memory.as_raw(), ());
 		let heap = self.selector.properties.memory_types[index as usize].heap_index as usize;
 		self.native_count += 1;
 		self.native_bytes += size;
@@ -980,6 +985,7 @@ impl<'device> Allocator<'device> {
 	}
 
 	fn remove_native(&mut self, size: u64, index: u32, memory: vk::DeviceMemory) {
+		self.native_handles.remove(&memory.as_raw());
 		#[cfg(all(windows, feature = "platform-win32"))]
 		{
 			let before = self.external_handles.len();
@@ -1050,8 +1056,7 @@ impl<'device> Allocator<'device> {
 	}
 
 	fn contains_memory(&self, memory: vk::DeviceMemory) -> bool {
-		self.blocks.iter().any(|b| b.handle == memory)
-			|| self.live.values().any(|live| live.handle == memory)
+		self.native_handles.get(&memory.as_raw()).is_some()
 	}
 
 	fn buffer_route(&self) -> Result<RequirementsRoute, AllocError> {
@@ -1159,7 +1164,7 @@ pub unsafe fn allocate(
 			allocator,
 			request,
 			StorageOptions {
-				chain: Default::default(),
+				chain: &super::chain::ChainData::EMPTY,
 				dedicated: None,
 				device_address: allocator.buffer_device_address,
 				priority: MemoryPriority::default(),
@@ -1180,7 +1185,7 @@ pub unsafe fn allocate(
 
 #[derive(Clone, Copy)]
 struct StorageOptions<'a> {
-	chain: super::chain::ChainData,
+	chain: &'a super::chain::ChainData,
 	dedicated: Option<&'a vk::MemoryDedicatedAllocateInfo<'a>>,
 	device_address: bool,
 	priority: MemoryPriority,
@@ -1196,7 +1201,7 @@ unsafe fn allocate_native(
 	if storage.within_budget {
 		budget::admit_native(allocator, index, size)?;
 	}
-	external::allocation_exports(allocator, index, storage.chain)?;
+	external::allocation_exports(allocator, index, *storage.chain)?;
 	let export = vk::ExportMemoryAllocateInfo {
 		handle_types: allocator.external_types[index as usize],
 		p_next: storage.chain.next,
@@ -1257,6 +1262,9 @@ unsafe fn allocate_native(
 		},
 		..Default::default()
 	};
+	// Duplicate-handle detection must remain allocation-free after the driver
+	// publishes a handle. Failed reservation retains all existing native owners.
+	allocator.native_handles.try_reserve(1)?;
 	let reservation = allocator
 		.parallel_state()
 		.map(|shared| {
@@ -1351,7 +1359,7 @@ unsafe fn allocate_storage(
 			}
 			return Err(error);
 		}
-		let exports = external::allocation_exports(allocator, index, storage.chain)?;
+		let exports = external::allocation_exports(allocator, index, *storage.chain)?;
 		// SAFETY: matching requirements, admitted chains and reserved bookkeeping.
 		let handle = match unsafe { allocate_native(allocator, request.size, index, storage) } {
 			Ok(handle) => handle,
@@ -1555,16 +1563,17 @@ unsafe fn free_region(
 	if live.map_count != 0 && !release_explicit {
 		return Err(AllocError::AlreadyMapped);
 	}
-	// SAFETY: caller completed all uses and ended the applicable pointer lifetimes.
-	unsafe { guard::before_free(allocator, allocation) }?;
-	let live = allocator.validate(allocation)?;
 	let resource = live.resource;
 	let plane = live.plane;
 	let pending = live.pending_binding;
 	let placement = live.placement;
-	let holds = live
-		.map_count
-		.checked_add(u32::from(live.persistent))
+	let (map_count, persistent) = (live.map_count, live.persistent);
+	// Guard checks acquire and release only temporary mapping holds. The
+	// exclusive allocator borrow keeps this region and its ownership unchanged.
+	// SAFETY: caller completed all uses and ended the applicable pointer lifetimes.
+	unsafe { guard::before_free(allocator, allocation) }?;
+	let holds = map_count
+		.checked_add(u32::from(persistent))
 		.ok_or(AllocError::InvalidRange)?;
 	if holds != 0 {
 		let device = allocator.device.clone();
@@ -1713,6 +1722,7 @@ pub fn allocation_info(
 	allocation: &Allocation,
 ) -> Result<AllocationInfo, AllocError> {
 	let mapped_pointer = mapped_pointer(allocator, allocation)?;
+	let live = allocator.validate(allocation)?;
 	Ok(AllocationInfo {
 		device_memory: allocation.handle,
 		offset: allocation.offset,
@@ -1722,10 +1732,10 @@ pub fn allocation_info(
 		heap_index: allocation.heap_index,
 		memory_properties: allocation.flags,
 		mapped_pointer,
-		map_count: allocator.validate(allocation)?.map_count,
+		map_count: live.map_count,
 		native_size: allocation.block_size,
-		is_separate: allocator.validate(allocation)?.placement.is_none(),
-		user_data: allocator.validate(allocation)?.user_data,
+		is_separate: live.placement.is_none(),
+		user_data: live.user_data,
 	})
 }
 
@@ -1848,7 +1858,7 @@ pub unsafe fn create_buffer_with_options(
 	request::validate_options(allocator, options, required)?;
 	// SAFETY: preceding resource validation checked the complete bounded native chain.
 	let filtered = unsafe { external::resource_options(allocator, options, info.p_next) }?;
-	let options = &filtered;
+	let options = filtered.as_ref();
 	if options.pool.is_none()
 		&& options.policy == AllocationPolicy::Separate
 		&& allocator.native_count >= allocator.allocation_limit as usize
@@ -1878,7 +1888,7 @@ pub unsafe fn create_buffer_with_options(
 	}
 	// SAFETY: newly created ordinary resource, exact native requirements and preflighted inverses.
 	let result = unsafe {
-		binding::allocate_resource(
+		binding::allocate_prepared_resource(
 			allocator,
 			Resource::Buffer(buffer),
 			options,
@@ -1981,20 +1991,20 @@ unsafe fn allocate_managed(
 	class: ResourceClass,
 	avoided: vk::MemoryPropertyFlags,
 ) -> Result<Allocation, AllocError> {
-	let mut storage = storage;
-	let pool_chain = options.pool.map_or(Default::default(), |pool| {
+	let pool_chain = options.pool.map_or(super::chain::ChainData::EMPTY, |pool| {
 		allocator.pools[&pool.serial].allocation_chain
 	});
-	if let Some(chain) = options.memory_allocate_next {
+	let chain = if let Some(chain) = &options.memory_allocate_next {
 		if !pool_chain.next.is_null() {
 			return Err(AllocError::InvalidRequest(
 				"allocation and pool chains cannot be combined",
 			));
 		}
-		storage.chain = chain.data;
+		&chain.data
 	} else {
-		storage.chain = pool_chain;
-	}
+		&pool_chain
+	};
+	let mut storage = StorageOptions { chain, ..storage };
 	let mut imported_dedicated = vk::MemoryDedicatedAllocateInfo::new();
 	if let Some(resource) = storage
 		.chain
@@ -2417,9 +2427,7 @@ unsafe fn allocate_pooled(
 				block_size,
 				index,
 				StorageOptions {
-					chain: pool.map_or(Default::default(), |serial| {
-						allocator.pools[&serial].allocation_chain
-					}),
+					chain: &chain,
 					dedicated: None,
 					device_address: allocator.buffer_device_address,
 					priority,
@@ -2566,7 +2574,7 @@ pub unsafe fn create_image_with_options(
 	request::validate_options(allocator, options, required)?;
 	// SAFETY: preceding resource validation checked the complete bounded native chain.
 	let filtered = unsafe { external::resource_options(allocator, options, info.p_next) }?;
-	let options = &filtered;
+	let options = filtered.as_ref();
 	allocator.requirements_route(true)?;
 	let fp = allocator.device.fp();
 	require(fp.create_image.is_some(), "vkCreateImage")?;
@@ -2587,7 +2595,7 @@ pub unsafe fn create_image_with_options(
 	}
 	// SAFETY: newly created ordinary image with validated creation metadata.
 	let result = unsafe {
-		binding::allocate_resource(
+		binding::allocate_prepared_resource(
 			allocator,
 			Resource::Image(image),
 			options,

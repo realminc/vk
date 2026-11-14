@@ -610,7 +610,7 @@ unsafe fn create_block(
 			block_size,
 			memory_type_index,
 			StorageOptions {
-				chain,
+				chain: &chain,
 				dedicated: None,
 				device_address: allocator.buffer_device_address,
 				priority: info.priority,

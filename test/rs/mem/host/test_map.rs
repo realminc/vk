@@ -21,7 +21,20 @@ fn seeded_insert_replace_lookup_and_shift_delete_match_an_independent_tree() {
 		random ^= random >> 7;
 		random ^= random << 17;
 		let key = random % 257;
-		if random & 3 == 0 {
+		if random & 7 == 0 {
+			let remove = oracle.get_mut(&key).is_some_and(|value| {
+				*value += 1;
+				*value % 3 == 0
+			});
+			let expected = if remove { oracle.remove(&key) } else { None };
+			assert_eq!(
+				registry.remove_if(&key, |value| {
+					*value += 1;
+					*value % 3 == 0
+				}),
+				expected
+			);
+		} else if random & 3 == 0 {
 			assert_eq!(registry.remove(&key), oracle.remove(&key));
 		} else {
 			registry.try_reserve(1).unwrap();

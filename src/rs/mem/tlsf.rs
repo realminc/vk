@@ -30,9 +30,11 @@ struct Node {
 	size: u64,
 	previous: usize,
 	next: usize,
-	previous_free: usize,
-	next_free: usize,
 	state: State,
+	// Taken: generation and consumer metadata. Free: previous/next free-list
+	// indices. Unused: next recycled index. These lifetimes never overlap.
+	// Donor: VMA TLSF Block's free-link/user-data union; integer storage keeps
+	// the Rust adaptation safe without pointer punning or narrowed generations.
 	serial: u64,
 	class: ResourceClass,
 	user_data: usize,
@@ -45,13 +47,31 @@ impl Node {
 			size,
 			previous,
 			next,
-			previous_free: NONE,
-			next_free: NONE,
 			state: State::Taken,
 			serial: 0,
 			class: ResourceClass::Unassigned,
 			user_data: 0,
 		}
+	}
+
+	fn previous_free(&self) -> usize {
+		debug_assert!(self.state == State::Free);
+		self.serial as usize
+	}
+
+	fn set_previous_free(&mut self, index: usize) {
+		debug_assert!(self.state == State::Free);
+		self.serial = index as u64;
+	}
+
+	fn next_free(&self) -> usize {
+		debug_assert!(self.state != State::Taken);
+		self.user_data
+	}
+
+	fn set_next_free(&mut self, index: usize) {
+		debug_assert!(self.state != State::Taken);
+		self.user_data = index;
 	}
 }
 
@@ -151,12 +171,18 @@ impl<'callbacks> Tlsf<'callbacks> {
 		Some((self.heads[index], index))
 	}
 
+	#[inline]
 	fn fits(&self, index: usize, size: u64, alignment: u64, class: ResourceClass) -> Option<u64> {
 		let node = &self.nodes[index];
 		let end = node.offset + node.size;
 		let mut offset = node.offset.checked_add(alignment - 1)? & !(alignment - 1);
 		if offset > end || size > end - offset {
 			return None;
+		}
+		// Virtual placements have no resource class. A one-byte native page also
+		// cannot be shared by disjoint regions; neither case needs neighbor reads.
+		if class == ResourceClass::Unassigned || self.granularity.0 == Some(1) {
+			return Some(offset);
 		}
 		if node.previous != NONE {
 			let previous = &self.nodes[node.previous];
@@ -197,7 +223,7 @@ impl<'callbacks> Tlsf<'callbacks> {
 			if let Some(offset) = self.fits(index, size, alignment, class) {
 				return Some((index, offset));
 			}
-			index = self.nodes[index].next_free;
+			index = self.nodes[index].next_free();
 		}
 		None
 	}
@@ -370,6 +396,7 @@ impl<'callbacks> Tlsf<'callbacks> {
 		Ok((current, serial))
 	}
 
+	#[inline]
 	fn node(&mut self, node: Node) -> usize {
 		if self.recycled == NONE {
 			let index = self.nodes.len();
@@ -377,7 +404,7 @@ impl<'callbacks> Tlsf<'callbacks> {
 			index
 		} else {
 			let index = self.recycled;
-			self.recycled = self.nodes[index].next_free;
+			self.recycled = self.nodes[index].next_free();
 			self.recycled_count -= 1;
 			self.nodes[index] = node;
 			index
@@ -386,7 +413,7 @@ impl<'callbacks> Tlsf<'callbacks> {
 
 	fn recycle(&mut self, index: usize) {
 		self.nodes[index].state = State::Unused;
-		self.nodes[index].next_free = self.recycled;
+		self.nodes[index].set_next_free(self.recycled);
 		self.recycled = index;
 		self.recycled_count += 1;
 	}
@@ -396,11 +423,11 @@ impl<'callbacks> Tlsf<'callbacks> {
 		let (first, second) = class(node.size);
 		let bucket = first * 32 + second;
 		let head = self.heads[bucket];
-		self.nodes[index].previous_free = NONE;
-		self.nodes[index].next_free = head;
 		self.nodes[index].state = State::Free;
+		self.nodes[index].set_previous_free(NONE);
+		self.nodes[index].set_next_free(head);
 		if head != NONE {
-			self.nodes[head].previous_free = index;
+			self.nodes[head].set_previous_free(index);
 		}
 		self.heads[bucket] = index;
 		self.first_map |= 1u64 << first;
@@ -411,12 +438,12 @@ impl<'callbacks> Tlsf<'callbacks> {
 
 	fn remove_free(&mut self, index: usize) {
 		let node = &self.nodes[index];
-		let (previous, next, size) = (node.previous_free, node.next_free, node.size);
+		let (previous, next, size) = (node.previous_free(), node.next_free(), node.size);
 		if next != NONE {
-			self.nodes[next].previous_free = previous;
+			self.nodes[next].set_previous_free(previous);
 		}
 		if previous != NONE {
-			self.nodes[previous].next_free = next;
+			self.nodes[previous].set_next_free(next);
 		} else {
 			let (first, second) = class(size);
 			self.heads[first * 32 + second] = next;
@@ -428,8 +455,8 @@ impl<'callbacks> Tlsf<'callbacks> {
 			}
 		}
 		self.nodes[index].state = State::Taken;
-		self.nodes[index].previous_free = NONE;
-		self.nodes[index].next_free = NONE;
+		self.nodes[index].serial = 0;
+		self.nodes[index].user_data = 0;
 		self.free_count -= 1;
 		self.free_bytes -= size;
 	}
@@ -528,10 +555,6 @@ impl<'callbacks> Tlsf<'callbacks> {
 			if node.state == State::Free && node.size != 0 {
 				visit(node.offset, node.size);
 			}
-		}
-		let tail = &self.nodes[self.tail];
-		if tail.size != 0 {
-			visit(tail.offset, tail.size);
 		}
 	}
 

@@ -103,6 +103,7 @@ impl<'callbacks> Metadata<'callbacks> {
 		}
 	}
 
+	#[inline]
 	pub fn allocate(
 		&mut self,
 		size: u64,
@@ -158,6 +159,7 @@ impl<'callbacks> Metadata<'callbacks> {
 		}
 	}
 
+	#[inline]
 	pub fn free(&mut self, placement: Placement) -> Result<(), AllocError> {
 		match (self, placement) {
 			(Self::Tlsf(metadata), Placement::Tlsf(index, serial)) => metadata.free(index, serial),

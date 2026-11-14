@@ -1102,6 +1102,63 @@ fn missing_constructor_functions_and_exact_khr_query_fail_before_effects() {
 }
 
 #[test]
+fn native_backing_index_rejects_live_duplicates_and_allows_retired_handle_reuse() {
+	let fixture = Fixture::new(vk::API_VERSION_1_1, &[], true, None);
+	let mut allocator = fixture.allocator();
+	// SAFETY: independent synthetic PFNs; deliberately repeated handles have no native owner.
+	unsafe {
+		let mut first = allocator.allocate(&request()).unwrap();
+		let handle = first.handle;
+		STATE.with_borrow_mut(|state| state.next_memory = handle.as_raw());
+		clear();
+		assert!(matches!(
+			allocator.allocate(&request()),
+			Err(AllocError::Call(CallError::InvalidOutput(_)))
+		));
+		assert_eq!(events(), ["allocate"]);
+		assert_eq!(allocator.live_count(), 1);
+		assert_eq!(allocator.native_handles.len(), 1);
+		allocator.free(&mut first).unwrap();
+		assert!(allocator.native_handles.is_empty());
+		STATE.with_borrow_mut(|state| state.next_memory = handle.as_raw());
+		let mut replacement = allocator.allocate(&request()).unwrap();
+		assert_eq!(replacement.handle, handle);
+		assert_ne!(replacement.serial, first.serial);
+		allocator.free(&mut replacement).unwrap();
+		allocator.close().unwrap();
+	}
+}
+
+#[test]
+fn native_backing_index_growth_failure_precedes_native_effects_and_retains_owners() {
+	let fixture = Fixture::new(vk::API_VERSION_1_1, &[], true, None);
+	let mut allocator = fixture.allocator();
+	allocator.live.try_reserve(32).unwrap();
+	allocator.native_handles.try_reserve(6).unwrap();
+	// SAFETY: synthetic driver; no storage is dereferenced and every successful owner is freed.
+	unsafe {
+		let mut live = Vec::new();
+		for _ in 0..6 {
+			live.push(allocator.allocate(&request()).unwrap());
+		}
+		let before = allocator.statistics();
+		clear();
+		FAIL_NEXT_HOST_ALLOCATION.set(true);
+		let result = allocator.allocate(&request());
+		assert!(!FAIL_NEXT_HOST_ALLOCATION.replace(false));
+		assert!(matches!(result, Err(AllocError::HostAllocationFailed)));
+		assert!(events().is_empty());
+		assert_eq!(allocator.statistics(), before);
+		live.push(allocator.allocate(&request()).unwrap());
+		for allocation in &mut live {
+			allocator.free(allocation).unwrap();
+		}
+		assert!(allocator.native_handles.is_empty());
+		allocator.close().unwrap();
+	}
+}
+
+#[test]
 fn invalid_native_success_outputs_are_not_published() {
 	for (fail, expected) in [
 		("null_buffer", vec!["create"]),
