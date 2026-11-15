@@ -13,13 +13,15 @@ fn allocate(
 	class: ResourceClass,
 	upper: bool,
 ) -> Result<Placement, AllocError> {
-	block.allocate_resource(
+	let (placement, offset) = block.allocate_resource(
 		size,
 		1,
 		super::super::PlacementStrategy::MinOffset,
 		upper,
 		class,
-	)
+	)?;
+	assert_eq!(block.info(placement).unwrap().offset, offset);
+	Ok(placement)
 }
 
 #[test]
@@ -212,8 +214,9 @@ fn seeded_mixed_tlsf_placements_match_an_independent_exhaustive_page_oracle() {
 					false,
 					class,
 				) {
-					Ok(token) => {
+					Ok((token, offset)) => {
 						let actual = block.info(token).unwrap();
+						assert_eq!(actual.offset, offset);
 						assert_eq!(Some(actual.offset), expected, "page {page}");
 						live.push((token, actual.offset, size, kind));
 					}
@@ -292,8 +295,8 @@ fn seeded_mixed_double_stacks_match_independent_chronological_envelopes() {
 					upper,
 					class,
 				) {
-					Ok(token) => {
-						let offset = block.info(token).unwrap().offset;
+					Ok((token, offset)) => {
+						assert_eq!(block.info(token).unwrap().offset, offset);
 						assert_eq!(Some(offset), expected, "page {page}, upper {upper}");
 						live.push((token, offset, size, kind, upper));
 					}

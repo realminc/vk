@@ -6,7 +6,10 @@
 //! independent of the number of previously freed serials; no tombstones remain.
 
 use super::{AllocError, HostMemory, HostVec};
-use std::ops::Index;
+use std::{
+	ops::Index,
+	sync::atomic::{AtomicUsize, Ordering},
+};
 
 struct Entry<V> {
 	key: u64,
@@ -16,15 +19,20 @@ struct Entry<V> {
 pub(in crate::mem) struct HostMap<'callbacks, V> {
 	buckets: HostVec<'callbacks, Option<Entry<V>>>,
 	length: usize,
+	// A hint only: every read checks both the slot bounds and complete key.
+	// Relaxed atomics preserve shared-read Sync; competing readers may replace
+	// the hint, but cannot grant access to a different entry or stale value.
+	last_slot: AtomicUsize,
 }
 
-// SplitMix64's finalizer distributes the allocator's sequential serials. This
-// is private registry indexing, not a hash for adversarial public keys or crypto.
+// Fibonacci hashing: one odd-constant multiply, keeping the top log2(capacity)
+// product bits. Those bits depend on every key bit, which spreads sequential
+// serials and aligned native handles across the table. This is private
+// registry indexing, not a hash for adversarial public keys or crypto.
+#[inline]
 fn index(key: u64, mask: usize) -> usize {
-	let mut mixed = key;
-	mixed = (mixed ^ (mixed >> 30)).wrapping_mul(0xbf58_476d_1ce4_e5b9);
-	mixed = (mixed ^ (mixed >> 27)).wrapping_mul(0x94d0_49bb_1331_11eb);
-	((mixed ^ (mixed >> 31)) as usize) & mask
+	let product = key.wrapping_mul(0x9e37_79b9_7f4a_7c15);
+	(product.checked_shr(64 - mask.count_ones()).unwrap_or(0) as usize) & mask
 }
 
 impl<'callbacks, V> HostMap<'callbacks, V> {
@@ -32,6 +40,7 @@ impl<'callbacks, V> HostMap<'callbacks, V> {
 		Self {
 			buckets: HostVec::new(host),
 			length: 0,
+			last_slot: AtomicUsize::new(usize::MAX),
 		}
 	}
 
@@ -136,6 +145,15 @@ impl<'callbacks, V> HostMap<'callbacks, V> {
 	}
 
 	fn find(&self, key: u64) -> Option<usize> {
+		let cached = self.last_slot.load(Ordering::Relaxed);
+		if self
+			.buckets
+			.get(cached)
+			.and_then(Option::as_ref)
+			.is_some_and(|entry| entry.key == key)
+		{
+			return Some(cached);
+		}
 		if self.buckets.is_empty() {
 			return None;
 		}
@@ -144,6 +162,7 @@ impl<'callbacks, V> HostMap<'callbacks, V> {
 		loop {
 			let entry = self.buckets[slot].as_ref()?;
 			if entry.key == key {
+				self.last_slot.store(slot, Ordering::Relaxed);
 				return Some(slot);
 			}
 			slot = (slot + 1) & mask;
@@ -169,6 +188,66 @@ impl<'callbacks, V> HostMap<'callbacks, V> {
 		})
 	}
 
+	// Fresh monotonic identities cannot replace an entry. Delay construction
+	// until its vacant bucket is known, avoiding a large temporary value and
+	// replacement/drop path during allocation publication. A panicking builder
+	// leaves the registry unchanged; capacity was reserved by the owner.
+	#[inline]
+	pub fn insert_new_reserved_with(&mut self, key: u64, value: impl FnOnce() -> V) {
+		let capacity = self.buckets.len();
+		assert!(
+			self.length < capacity - capacity / 4,
+			"registry insertion requires reserved capacity"
+		);
+		let mask = capacity - 1;
+		let mut slot = index(key, mask);
+		while let Some(entry) = &self.buckets[slot] {
+			assert!(entry.key != key, "registry insertion requires a fresh key");
+			slot = (slot + 1) & mask;
+		}
+		self.buckets[slot] = Some(Entry {
+			key,
+			value: value(),
+		});
+		*self.last_slot.get_mut() = slot;
+		self.length += 1;
+	}
+
+	/// Return the value for `key`, inserting `value()` with one probe when it is
+	/// absent. Capacity for a new key must already be reserved.
+	pub fn get_or_insert_reserved_with(&mut self, key: u64, value: impl FnOnce() -> V) -> &mut V {
+		let capacity = self.buckets.len();
+		let mask = capacity.wrapping_sub(1);
+		let mut slot = index(key, mask);
+		loop {
+			match self
+				.buckets
+				.get(slot)
+				.expect("registry insertion requires reserved capacity")
+			{
+				Some(entry) if entry.key == key => break,
+				Some(_) => slot = (slot + 1) & mask,
+				None => {
+					assert!(
+						self.length < capacity - capacity / 4,
+						"registry insertion requires reserved capacity"
+					);
+					self.buckets[slot] = Some(Entry {
+						key,
+						value: value(),
+					});
+					self.length += 1;
+					break;
+				}
+			}
+		}
+		*self.last_slot.get_mut() = slot;
+		&mut self.buckets[slot]
+			.as_mut()
+			.expect("occupied registry slot")
+			.value
+	}
+
 	pub fn insert_reserved(&mut self, key: u64, value: V) -> Option<V> {
 		let capacity = self.buckets.len();
 		let mask = capacity.wrapping_sub(1);
@@ -180,6 +259,7 @@ impl<'callbacks, V> HostMap<'callbacks, V> {
 				.expect("registry insertion requires reserved capacity");
 			match bucket {
 				Some(entry) if entry.key == key => {
+					*self.last_slot.get_mut() = slot;
 					return Some(std::mem::replace(&mut entry.value, value));
 				}
 				Some(_) => slot = (slot + 1) & mask,
@@ -189,6 +269,7 @@ impl<'callbacks, V> HostMap<'callbacks, V> {
 						"registry insertion requires reserved capacity"
 					);
 					*bucket = Some(Entry { key, value });
+					*self.last_slot.get_mut() = slot;
 					self.length += 1;
 					return None;
 				}
@@ -216,8 +297,25 @@ impl<'callbacks, V> HostMap<'callbacks, V> {
 		Some(self.remove_at(hole))
 	}
 
-	fn remove_at(&mut self, mut hole: usize) -> V {
+	fn remove_at(&mut self, hole: usize) -> V {
 		let entry = self.buckets[hole].take().expect("occupied registry slot");
+		self.close_hole(hole);
+		entry.value
+	}
+
+	/// Remove and drop an entry in its bucket, without moving the value out.
+	/// Returns whether `key` was present.
+	pub fn discard(&mut self, key: &u64) -> bool {
+		let Some(hole) = self.find(*key) else {
+			return false;
+		};
+		self.buckets[hole] = None;
+		self.close_hole(hole);
+		true
+	}
+
+	// Backward-shift deletion after the caller vacated `hole`: no tombstones.
+	fn close_hole(&mut self, mut hole: usize) {
 		self.length -= 1;
 		let mask = self.buckets.len() - 1;
 		let mut current = (hole + 1) & mask;
@@ -229,7 +327,6 @@ impl<'callbacks, V> HostMap<'callbacks, V> {
 			}
 			current = (current + 1) & mask;
 		}
-		entry.value
 	}
 
 	pub fn iter(&self) -> Iter<'_, V> {

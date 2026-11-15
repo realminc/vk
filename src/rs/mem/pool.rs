@@ -205,7 +205,7 @@ pub(super) unsafe fn allocate(
 	options: &AllocationCreateInfo,
 	class: ResourceClass,
 	avoided: vk::MemoryPropertyFlags,
-) -> Result<Allocation, AllocError> {
+) -> Result<u64, AllocError> {
 	let pool = options.pool.expect("selected custom pool");
 	let state = validate(allocator, pool)?;
 	let info = state.info;
@@ -219,10 +219,13 @@ pub(super) unsafe fn allocate(
 		..*request
 	};
 	// Never relax mandatory properties/masks or select outside this fixed type.
-	allocator
+	let selected_type = allocator
 		.selector
 		.find_memory_type_with_preferences(&request, avoided)?;
 	let blocks = BlockOptions {
+		selected_type: Some(selected_type),
+		algorithm: info.algorithm,
+		allow_ring: info.max_block_count == 1,
 		automatic: info.block_size == 0,
 		block_size: preferred_block_size,
 		strategy: options.strategy,
@@ -234,24 +237,25 @@ pub(super) unsafe fn allocate(
 		within_budget: options.within_budget,
 		prefer_mapped: super::super::policy::prefers_mapped(options),
 	};
-	let allocation = if info.block_size != 0 {
+	if info.block_size != 0 {
 		if dedication == Dedication::Required {
 			return Err(AllocError::UnsupportedCapability(
 				"fixed-size pools cannot dedicate resources",
 			));
 		}
 		// SAFETY: exact pool/type, queried requirements and checked resource page separation.
-		unsafe { allocate_pooled(allocator, &request, avoided, blocks) }?
-	} else {
-		// SAFETY: identical native obligations; every success is attached below.
-		unsafe { allocate_automatic(allocator, &request, storage, dedication, avoided, blocks) }?
-	};
+		// Pooled publication records this pool identity.
+		return unsafe { allocate_pooled(allocator, &request, avoided, blocks) };
+	}
+	// SAFETY: identical native obligations; every success is attached below.
+	let serial =
+		unsafe { allocate_automatic(allocator, &request, storage, dedication, avoided, blocks) }?;
 	allocator
 		.live
-		.get_mut(&allocation.serial)
+		.get_mut(&serial)
 		.expect("new pool allocation")
 		.pool = Some(pool.serial);
-	Ok(allocation)
+	Ok(serial)
 }
 
 // Pinned VMA AllocateMemoryOfType and AllocatePage: dedicated preference,
@@ -265,7 +269,7 @@ pub(super) unsafe fn allocate_automatic(
 	dedication: Dedication,
 	avoided: vk::MemoryPropertyFlags,
 	blocks: BlockOptions,
-) -> Result<Allocation, AllocError> {
+) -> Result<u64, AllocError> {
 	if blocks.upper_address && dedication == Dedication::Required {
 		return Err(AllocError::UnsupportedCapability(
 			"upper address cannot use required dedication",
@@ -287,7 +291,7 @@ pub(super) unsafe fn allocate_automatic(
 	if prefer_dedicated {
 		// SAFETY: matching resource-specific chain and fixed compatible type.
 		match unsafe { allocate_storage(allocator, request, storage, avoided) } {
-			Ok(allocation) => return Ok(allocation),
+			Ok(serial) => return Ok(serial),
 			Err(error) if retryable(&error) => {}
 			Err(error) => return Err(error),
 		}
@@ -304,7 +308,7 @@ pub(super) unsafe fn allocate_automatic(
 			},
 		)
 	} {
-		Ok(allocation) => return Ok(allocation),
+		Ok(serial) => return Ok(serial),
 		Err(error) if retryable(&error) => error,
 		Err(error) => return Err(error),
 	};
@@ -373,7 +377,7 @@ pub(super) unsafe fn allocate_automatic(
 					},
 				)
 			} {
-				Ok(allocation) => return Ok(allocation),
+				Ok(serial) => return Ok(serial),
 				Err(error) if retryable(&error) => last = error,
 				Err(error) => return Err(error),
 			}
@@ -893,7 +897,7 @@ pub(super) unsafe fn allocate_default(
 	options: &AllocationCreateInfo,
 	class: ResourceClass,
 	avoided: vk::MemoryPropertyFlags,
-) -> Result<Allocation, AllocError> {
+) -> Result<u64, AllocError> {
 	let mut bits = request.memory_type_bits;
 	let mut last = None;
 	loop {
@@ -914,6 +918,9 @@ pub(super) unsafe fn allocate_default(
 			..*request
 		};
 		let blocks = BlockOptions {
+			selected_type: Some(index),
+			algorithm: AllocationAlgorithm::Tlsf,
+			allow_ring: false,
 			automatic: true,
 			block_size: preferred_block_size(allocator, index)?,
 			strategy: options.strategy,
@@ -927,7 +934,7 @@ pub(super) unsafe fn allocate_default(
 		};
 		// SAFETY: one compatible type at a time; reuse/growth/fallback have the same native requirements.
 		match unsafe { allocate_automatic(allocator, &request, storage, dedication, avoided, blocks) } {
-			Ok(allocation) => return Ok(allocation),
+			Ok(serial) => return Ok(serial),
 			Err(error) if retryable(&error) => last = Some(error),
 			Err(error) => return Err(error),
 		}

@@ -16,6 +16,35 @@ use super::{
 	virtual_block::{VirtualAllocationInfo, VirtualBlockStats},
 };
 
+use std::num::NonZeroU64;
+
+// Private compact placement failure, expanded to the identical public error
+// variants and messages at the metadata boundary.
+#[derive(Clone, Copy)]
+enum PlacementError {
+	InvalidRequest,
+	SerialExhausted,
+	OutOfSpace,
+	UpperDuringRing,
+	HostAllocationFailed,
+}
+
+impl From<PlacementError> for AllocError {
+	fn from(error: PlacementError) -> Self {
+		match error {
+			PlacementError::InvalidRequest => {
+				Self::InvalidRequest("nonzero size and power-of-two alignment required")
+			}
+			PlacementError::SerialExhausted => Self::SerialExhausted,
+			PlacementError::OutOfSpace => Self::OutOfSpace,
+			PlacementError::UpperDuringRing => {
+				Self::InvalidRequest("upper address during active ring placement")
+			}
+			PlacementError::HostAllocationFailed => Self::HostAllocationFailed,
+		}
+	}
+}
+
 #[derive(Clone, Copy, PartialEq)]
 enum Mode {
 	Empty,
@@ -46,6 +75,9 @@ pub(super) struct Linear<'callbacks> {
 	free_bytes: u64,
 	next_serial: u64,
 	allow_ring: bool,
+	// Reason for the most recent failed placement; meaningful only immediately
+	// after `place` returns None. Never part of placement state.
+	failure: PlacementError,
 }
 
 impl<'callbacks> Linear<'callbacks> {
@@ -88,6 +120,7 @@ impl<'callbacks> Linear<'callbacks> {
 			free_bytes: size,
 			next_serial: 1,
 			allow_ring,
+			failure: PlacementError::OutOfSpace,
 		})
 	}
 
@@ -97,42 +130,79 @@ impl<'callbacks> Linear<'callbacks> {
 		alignment: u64,
 		upper: bool,
 	) -> Result<Placement, AllocError> {
-		self.allocate_resource(size, alignment, upper, ResourceClass::Unassigned)
+		self
+			.allocate_resource(size, alignment, upper, ResourceClass::Unassigned)
+			.map(|(placement, _)| placement)
 	}
 
+	#[inline]
 	pub fn allocate_resource(
 		&mut self,
 		size: u64,
 		alignment: u64,
 		upper: bool,
 		class: ResourceClass,
-	) -> Result<Placement, AllocError> {
+	) -> Result<(Placement, u64), AllocError> {
+		match self.place(size, alignment, upper, class) {
+			Some((offset, serial)) => Ok((
+				Placement::Linear {
+					offset,
+					serial: serial.get(),
+				},
+				offset,
+			)),
+			None => Err(self.failure.into()),
+		}
+	}
+
+	#[cold]
+	fn fail(&mut self, error: PlacementError) -> Option<(u64, NonZeroU64)> {
+		self.failure = error;
+		None
+	}
+
+	// Serials start at one and stop before u64::MAX. As in TLSF placement, the
+	// niche-filled Option keeps the out-of-line result in two registers; failure
+	// records its reason in `failure` before returning None.
+	fn place(
+		&mut self,
+		size: u64,
+		alignment: u64,
+		upper: bool,
+		class: ResourceClass,
+	) -> Option<(u64, NonZeroU64)> {
 		if size == 0 || !alignment.is_power_of_two() {
-			return Err(AllocError::InvalidRequest(
-				"nonzero size and power-of-two alignment required",
-			));
+			return self.fail(PlacementError::InvalidRequest);
 		}
-		if self.next_serial == u64::MAX {
-			return Err(AllocError::SerialExhausted);
-		}
+		let Some(serial) = NonZeroU64::new(self.next_serial).filter(|_| self.next_serial != u64::MAX)
+		else {
+			return self.fail(PlacementError::SerialExhausted);
+		};
 		if size > self.size {
-			return Err(AllocError::OutOfSpace);
+			return self.fail(PlacementError::OutOfSpace);
 		}
 		let (offset, second) = if upper {
 			if self.mode == Mode::Ring {
-				return Err(AllocError::InvalidRequest(
-					"upper address during active ring placement",
-				));
+				return self.fail(PlacementError::UpperDuringRing);
 			}
 			let end = self.vectors[self.first ^ 1]
 				.last()
 				.map_or(self.size, |node| node.offset);
-			let mut offset = end.checked_sub(size).ok_or(AllocError::OutOfSpace)? & !(alignment - 1);
+			let Some(mut offset) = end
+				.checked_sub(size)
+				.map(|offset| offset & !(alignment - 1))
+			else {
+				return self.fail(PlacementError::OutOfSpace);
+			};
 			if let Some(next) = self.vectors[self.first ^ 1].last() {
-				offset = self
-					.granularity
-					.before(offset, size, alignment, class, next.offset, next.class)
-					.ok_or(AllocError::OutOfSpace)?;
+				let Some(before) =
+					self
+						.granularity
+						.before(offset, size, alignment, class, next.offset, next.class)
+				else {
+					return self.fail(PlacementError::OutOfSpace);
+				};
+				offset = before;
 			}
 			let lower_end = self.vectors[self.first]
 				.last()
@@ -147,24 +217,24 @@ impl<'callbacks> Linear<'callbacks> {
 						class,
 					)
 				}) {
-				return Err(AllocError::OutOfSpace);
+				return self.fail(PlacementError::OutOfSpace);
 			}
 			(offset, true)
 		} else {
-			self
-				.choose_lower(size, alignment, class)
-				.ok_or(AllocError::OutOfSpace)?
+			let Some(lower) = self.choose_lower(size, alignment, class) else {
+				return self.fail(PlacementError::OutOfSpace);
+			};
+			lower
 		};
 		let vector = self.first ^ usize::from(second);
 		// Allocation/identity failure must not advance cursors or change modes.
-		self.vectors[vector]
-			.try_reserve(1)
-			.map_err(|_| AllocError::HostAllocationFailed)?;
-		let serial = self.next_serial;
+		if self.vectors[vector].try_reserve(1).is_err() {
+			return self.fail(PlacementError::HostAllocationFailed);
+		}
 		self.vectors[vector].push_reserved(Node {
 			offset,
 			size,
-			serial,
+			serial: serial.get(),
 			live: true,
 			user_data: 0,
 			class,
@@ -175,7 +245,7 @@ impl<'callbacks> Linear<'callbacks> {
 		if second {
 			self.mode = if upper { Mode::DoubleStack } else { Mode::Ring };
 		}
-		Ok(Placement::Linear { offset, serial })
+		Some((offset, serial))
 	}
 
 	fn choose_lower(&self, size: u64, alignment: u64, class: ResourceClass) -> Option<(u64, bool)> {

@@ -455,7 +455,7 @@ fn reserve_destination(
 		.iter_mut()
 		.find(|block| block.handle == target)
 		.expect("snapshot target block");
-	let placement = match block.metadata.allocate_resource(
+	let (placement, offset) = match block.metadata.allocate_resource(
 		source.reserved_size,
 		alignment,
 		super::super::PlacementStrategy::MinOffset,
@@ -466,11 +466,6 @@ fn reserve_destination(
 		Err(AllocError::OutOfSpace) => return Ok(None),
 		Err(error) => return Err(error),
 	};
-	let offset = block
-		.metadata
-		.info(placement)
-		.expect("new destination placement")
-		.offset;
 	if target == source.handle && offset >= source.offset {
 		block
 			.metadata
@@ -479,7 +474,8 @@ fn reserve_destination(
 		return Ok(None);
 	}
 	let size = block.size;
-	let allocation = publish(
+	block.mapping.write().post_alloc();
+	let serial = publish(
 		allocator,
 		Region {
 			handle: target,
@@ -490,18 +486,17 @@ fn reserve_destination(
 			alignment,
 			block_size: size,
 			placement: Some(placement),
+			pool: None,
+			class: ResourceClass::Unknown,
 		},
 	);
-	let live = allocator
-		.live
-		.get_mut(&allocation.serial)
-		.expect("new destination");
+	let live = allocator.live.get_mut(&serial).expect("new destination");
 	live.pool = pool;
 	live.class = class;
 	live.can_alias = can_alias;
 	live.guard_size = guard_size;
 	live.guard_offset = guard_offset;
-	Ok(Some(allocation))
+	Ok(Some(allocator.published(serial)))
 }
 
 #[derive(Clone, Copy)]

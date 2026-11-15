@@ -58,6 +58,8 @@ struct Live<'callbacks> {
 	handle: vk::DeviceMemory,
 	size: u64,
 	reserved_size: u64,
+	// Native extent containing this region; never changes after publication.
+	block_size: u64,
 	memory_type_index: u32,
 	offset: u64,
 	alignment: u64,
@@ -902,6 +904,28 @@ impl<'device> Allocator<'device> {
 			serial,
 		})
 	}
+	/// Public token for a serial this allocator has just published.
+	#[inline]
+	fn published(&self, serial: u64) -> Allocation {
+		self.allocation_from_live(self.live.get(&serial).expect("published allocation"))
+	}
+	#[inline]
+	fn allocation_from_live(&self, live: &Live<'_>) -> Allocation {
+		let memory = self.selector.properties.memory_types[live.memory_type_index as usize];
+		Allocation {
+			handle: live.handle,
+			size: live.size,
+			reserved_size: live.reserved_size,
+			offset: live.offset,
+			block_size: live.block_size,
+			memory_type_index: live.memory_type_index,
+			heap_index: memory.heap_index,
+			flags: memory.property_flags,
+			atom: self.selector.atom,
+			owner: self.owner,
+			serial: live.serial,
+		}
+	}
 
 	fn validate(&self, allocation: &Allocation) -> Result<&Live<'device>, AllocError> {
 		self.ensure_open()?;
@@ -1063,6 +1087,7 @@ impl<'device> Allocator<'device> {
 		self.requirements_route(false)
 	}
 
+	#[inline]
 	fn requirements_route(&self, image: bool) -> Result<RequirementsRoute, AllocError> {
 		let capabilities =
 			self
@@ -1072,13 +1097,29 @@ impl<'device> Allocator<'device> {
 				.ok_or(AllocError::UnsupportedCapability(
 					"managed resources require device creation metadata",
 				))?;
+		if capabilities.api_version() < vk::API_VERSION_1_1 {
+			return self.extension_requirements_route(image);
+		}
 		let fp = self.device.fp();
-		let (core, khr, legacy) = if image {
+		if image {
+			require(
+				fp.get_image_memory_requirements2.is_some(),
+				"vkGetImageMemoryRequirements2",
+			)?;
+		} else {
+			require(
+				fp.get_buffer_memory_requirements2.is_some(),
+				"vkGetBufferMemoryRequirements2",
+			)?;
+		}
+		Ok(RequirementsRoute::Core)
+	}
+	// Pre-1.1 devices select KHR dedication or the legacy query once per request.
+	#[cold]
+	fn extension_requirements_route(&self, image: bool) -> Result<RequirementsRoute, AllocError> {
+		let fp = self.device.fp();
+		let (khr, legacy) = if image {
 			(
-				(
-					fp.get_image_memory_requirements2.is_some(),
-					"vkGetImageMemoryRequirements2",
-				),
 				(
 					fp.get_image_memory_requirements2_khr.is_some(),
 					"vkGetImageMemoryRequirements2KHR",
@@ -1091,10 +1132,6 @@ impl<'device> Allocator<'device> {
 		} else {
 			(
 				(
-					fp.get_buffer_memory_requirements2.is_some(),
-					"vkGetBufferMemoryRequirements2",
-				),
-				(
 					fp.get_buffer_memory_requirements2_khr.is_some(),
 					"vkGetBufferMemoryRequirements2KHR",
 				),
@@ -1104,10 +1141,6 @@ impl<'device> Allocator<'device> {
 				),
 			)
 		};
-		if capabilities.api_version() >= vk::API_VERSION_1_1 {
-			require(core.0, core.1)?;
-			return Ok(RequirementsRoute::Core);
-		}
 		if super::resource::extension(self.device.as_device(), c"VK_KHR_dedicated_allocation") {
 			if !super::resource::extension(self.device.as_device(), c"VK_KHR_get_memory_requirements2") {
 				return Err(AllocError::UnsupportedCapability(
@@ -1159,7 +1192,7 @@ pub unsafe fn allocate(
 ) -> Result<Allocation, AllocError> {
 	allocator.ensure_default()?;
 	// SAFETY: caller provides the requirements and ordinary allocation semantics.
-	let mut allocation = unsafe {
+	let serial = unsafe {
 		allocate_storage(
 			allocator,
 			request,
@@ -1173,6 +1206,7 @@ pub unsafe fn allocate(
 			vk::MemoryPropertyFlags::empty(),
 		)
 	}?;
+	let mut allocation = allocator.published(serial);
 	// SAFETY: new unbound raw storage; this helper owns unpublished initialization/rollback.
 	if let Err(error) = unsafe { guard::initialize(allocator, &allocation) } {
 		// SAFETY: initialization failed before publication; no native resource uses exist.
@@ -1287,7 +1321,7 @@ unsafe fn allocate_storage(
 	request: &AllocRequest,
 	storage: StorageOptions<'_>,
 	avoided: vk::MemoryPropertyFlags,
-) -> Result<Allocation, AllocError> {
+) -> Result<u64, AllocError> {
 	allocator.ensure_open()?;
 	let imported = storage.chain.import_info;
 	if let Some(info) = imported {
@@ -1379,7 +1413,7 @@ unsafe fn allocate_storage(
 			);
 		}
 		allocator.add_native(request.size, index, handle);
-		let allocation = publish(
+		let serial = publish(
 			allocator,
 			Region {
 				handle,
@@ -1390,23 +1424,23 @@ unsafe fn allocate_storage(
 				alignment: request.alignment,
 				block_size: request.size,
 				placement: None,
+				pool: None,
+				class: ResourceClass::Unknown,
 			},
 		);
 		let live = allocator
 			.live
-			.get_mut(&allocation.serial)
+			.get_mut(&serial)
 			.expect("new separate allocation");
 		live.imported = storage.chain.imports;
 		live.resource = imported.and_then(|info| import_resource(info.resource));
 		live.export_types = exports;
 		if let Some(claim) = claim {
-			claim.commit(allocation.serial);
+			claim.commit(serial);
 		} else if let Some(resource) = live.resource {
-			allocator
-				.associated
-				.record(resource, None, allocation.serial);
+			allocator.associated.record(resource, None, serial);
 		}
-		return Ok(allocation);
+		return Ok(serial);
 	}
 }
 
@@ -1424,13 +1458,17 @@ struct Region {
 	alignment: u64,
 	block_size: u64,
 	placement: Option<Placement>,
+	pool: Option<u64>,
+	class: ResourceClass,
 }
 
 fn memory_flags(allocator: &Allocator<'_>, index: u32) -> vk::MemoryPropertyFlags {
 	allocator.selector.properties.memory_types[index as usize].property_flags
 }
 
-fn publish(allocator: &mut Allocator<'_>, region: Region) -> Allocation {
+#[inline]
+// Returns the published serial; public tokens are built once by `published`.
+fn publish(allocator: &mut Allocator<'_>, region: Region) -> u64 {
 	let Region {
 		handle,
 		index,
@@ -1440,83 +1478,62 @@ fn publish(allocator: &mut Allocator<'_>, region: Region) -> Allocation {
 		alignment,
 		block_size,
 		placement,
+		pool,
+		class,
 	} = region;
-	if placement.is_some() {
-		allocator
-			.blocks
-			.iter_mut()
-			.find(|block| block.handle == handle)
-			.expect("published pooled block")
-			.mapping
-			.write()
-			.post_alloc();
-	}
 	let serial = allocator.next_serial;
 	allocator.next_serial += 1;
 	if let Some(shared) = allocator.parallel_state() {
 		shared.publish();
 	}
 	allocator.budget_operations = allocator.budget_operations.saturating_add(1);
-	allocator.live.insert_reserved(
+	let guard_size = if allocator.debug_settings.margin != 0
+		&& placement.is_some()
+		&& guard::eligible(memory_flags(allocator, index))
+	{
+		allocator.debug_settings.margin
+	} else {
+		0
+	};
+	let guard_offset = if allocator.debug_settings.margin != 0
+		&& placement.is_some()
+		&& guard::eligible(memory_flags(allocator, index))
+	{
+		size.checked_add(3).expect("preflighted guard extent") & !3
+	} else {
+		0
+	};
+	allocator.live.insert_new_reserved_with(serial, || Live {
 		serial,
-		Live {
-			serial,
-			pool: None,
-			handle,
-			size,
-			reserved_size,
-			memory_type_index: index,
-			offset,
-			alignment,
-			map_count: 0,
-			persistent: false,
-			resource: None,
-			bound: false,
-			name: None,
-			user_data: 0,
-			pinned: false,
-			can_alias: false,
-			imported: false,
-			plane: None,
-			export_types: vk::ExternalMemoryHandleTypeFlags::empty(),
-			guard_size: if allocator.debug_settings.margin != 0
-				&& placement.is_some()
-				&& guard::eligible(memory_flags(allocator, index))
-			{
-				allocator.debug_settings.margin
-			} else {
-				0
-			},
-			guard_offset: if allocator.debug_settings.margin != 0
-				&& placement.is_some()
-				&& guard::eligible(memory_flags(allocator, index))
-			{
-				size.checked_add(3).expect("preflighted guard extent") & !3
-			} else {
-				0
-			},
-			debug_ready: false,
-			class: ResourceClass::Unknown,
-			placement,
-			mapping: MappingOwner::default(),
-			native_users: 0,
-			pending_binding: None,
-		},
-	);
-	let memory = allocator.selector.properties.memory_types[index as usize];
-	Allocation {
+		pool,
 		handle,
 		size,
 		reserved_size,
-		offset,
 		block_size,
 		memory_type_index: index,
-		heap_index: memory.heap_index,
-		flags: memory.property_flags,
-		atom: allocator.selector.atom,
-		owner: allocator.owner,
-		serial,
-	}
+		offset,
+		alignment,
+		map_count: 0,
+		persistent: false,
+		resource: None,
+		bound: false,
+		name: None,
+		user_data: 0,
+		pinned: false,
+		can_alias: false,
+		imported: false,
+		plane: None,
+		export_types: vk::ExternalMemoryHandleTypeFlags::empty(),
+		guard_size,
+		guard_offset,
+		debug_ready: false,
+		class,
+		placement,
+		mapping: MappingOwner::default(),
+		native_users: 0,
+		pending_binding: None,
+	});
+	serial
 }
 
 unsafe fn rollback_allocation(
@@ -1642,7 +1659,7 @@ unsafe fn free_region(
 			allocation.handle,
 		);
 	}
-	allocator.live.remove(&allocation.serial);
+	allocator.live.discard(&allocation.serial);
 	if let Some(resource) = resource {
 		allocator
 			.associated
@@ -1856,9 +1873,16 @@ pub unsafe fn create_buffer_with_options(
 		required,
 	)?;
 	request::validate_options(allocator, options, required)?;
-	// SAFETY: preceding resource validation checked the complete bounded native chain.
-	let filtered = unsafe { external::resource_options(allocator, options, info.p_next) }?;
-	let options = filtered.as_ref();
+	// A null chain borrows the caller's options; keep that common case free of
+	// the large owned-options result.
+	let filtered;
+	let options = if info.p_next.is_null() {
+		options
+	} else {
+		// SAFETY: preceding resource validation checked the complete bounded native chain.
+		filtered = unsafe { external::resource_options(allocator, options, info.p_next) }?;
+		filtered.as_ref()
+	};
 	if options.pool.is_none()
 		&& options.policy == AllocationPolicy::Separate
 		&& allocator.native_count >= allocator.allocation_limit as usize
@@ -1899,7 +1923,7 @@ pub unsafe fn create_buffer_with_options(
 	};
 
 	let mut allocation = match result {
-		Ok(allocation) => allocation,
+		Ok(serial) => allocator.published(serial),
 		Err(error) => {
 			// SAFETY: unbound new buffer, cached immutable destruction PFN preflighted.
 			unsafe { allocator.device.destroy_buffer(buffer, allocator.callbacks) }
@@ -1907,9 +1931,12 @@ pub unsafe fn create_buffer_with_options(
 			return Err(error);
 		}
 	};
-	// SAFETY: new host-visible storage and exact unbound resource/allocation pair.
-	let result = unsafe { binding::persistent(allocator, &allocation, options) }
-		.and_then(|()| unsafe { bind_buffer_memory(allocator, buffer, &allocation) });
+	// SAFETY: new host-visible storage and exact unbound resource/allocation pair;
+	// publication already claimed and recorded this resource association.
+	let result =
+		unsafe { binding::persistent(allocator, &allocation, options) }.and_then(|()| unsafe {
+			binding::bind_prepared(allocator, Resource::Buffer(buffer), &allocation)
+		});
 	if let Err(error) = result {
 		// SAFETY: new unpublished objects only; inverse operations preflighted.
 		unsafe {
@@ -1968,6 +1995,12 @@ impl Dedication {
 
 #[derive(Clone, Copy)]
 struct BlockOptions {
+	// Exact request/type already checked by custom/default pool admission.
+	// Consumed once per search; failed attempts still follow normal retry rules.
+	selected_type: Option<u32>,
+	// Custom-pool placement admission; default vectors use TLSF without rings.
+	algorithm: AllocationAlgorithm,
+	allow_ring: bool,
 	automatic: bool,
 	block_size: u64,
 	strategy: super::PlacementStrategy,
@@ -1990,10 +2023,16 @@ unsafe fn allocate_managed(
 	options: &AllocationCreateInfo,
 	class: ResourceClass,
 	avoided: vk::MemoryPropertyFlags,
-) -> Result<Allocation, AllocError> {
-	let pool_chain = options.pool.map_or(super::chain::ChainData::EMPTY, |pool| {
-		allocator.pools[&pool.serial].allocation_chain
-	});
+) -> Result<u64, AllocError> {
+	// One pool lookup supplies both its allocation chain and the priority that
+	// replaces the request priority for every pool-owned storage path.
+	let (pool_chain, priority) =
+		options
+			.pool
+			.map_or((super::chain::ChainData::EMPTY, storage.priority), |pool| {
+				let state = &allocator.pools[&pool.serial];
+				(state.allocation_chain, state.info.priority)
+			});
 	let chain = if let Some(chain) = &options.memory_allocate_next {
 		if !pool_chain.next.is_null() {
 			return Err(AllocError::InvalidRequest(
@@ -2004,7 +2043,11 @@ unsafe fn allocate_managed(
 	} else {
 		&pool_chain
 	};
-	let mut storage = StorageOptions { chain, ..storage };
+	let mut storage = StorageOptions {
+		chain,
+		priority,
+		..storage
+	};
 	let mut imported_dedicated = vk::MemoryDedicatedAllocateInfo::new();
 	if let Some(resource) = storage
 		.chain
@@ -2095,13 +2138,13 @@ unsafe fn allocate_managed(
 				..*request
 			};
 			// SAFETY: exact compatible pool type and caller's synchronous chain contract.
-			let allocation = unsafe { allocate_storage(allocator, &request, storage, avoided) }?;
+			let serial = unsafe { allocate_storage(allocator, &request, storage, avoided) }?;
 			allocator
 				.live
-				.get_mut(&allocation.serial)
+				.get_mut(&serial)
 				.expect("new separate allocation")
 				.pool = Some(pool.serial);
-			return Ok(allocation);
+			return Ok(serial);
 		}
 		// SAFETY: explicit separate request, admitted tail and original requirements.
 		return unsafe { allocate_storage(allocator, request, storage, avoided) };
@@ -2146,6 +2189,9 @@ unsafe fn allocate_managed(
 						request,
 						avoided,
 						BlockOptions {
+							selected_type: None,
+							algorithm: AllocationAlgorithm::Tlsf,
+							allow_ring: false,
 							automatic: false,
 							block_size,
 							strategy: options.strategy,
@@ -2177,6 +2223,9 @@ unsafe fn allocate_managed(
 								request,
 								avoided,
 								BlockOptions {
+									selected_type: None,
+									algorithm: AllocationAlgorithm::Tlsf,
+									allow_ring: false,
 									automatic: false,
 									block_size: size,
 									strategy: options.strategy,
@@ -2190,7 +2239,7 @@ unsafe fn allocate_managed(
 								},
 							)
 						} {
-							Ok(allocation) => return Ok(allocation),
+							Ok(serial) => return Ok(serial),
 							Err(
 								AllocError::OutOfSpace
 								| AllocError::AllocationLimit
@@ -2226,8 +2275,11 @@ unsafe fn allocate_pooled(
 	request: &AllocRequest,
 	avoided: vk::MemoryPropertyFlags,
 	options: BlockOptions,
-) -> Result<Allocation, AllocError> {
+) -> Result<u64, AllocError> {
 	let BlockOptions {
+		mut selected_type,
+		algorithm,
+		allow_ring,
 		automatic,
 		block_size,
 		strategy,
@@ -2239,10 +2291,6 @@ unsafe fn allocate_pooled(
 		within_budget,
 		prefer_mapped,
 	} = options;
-	let algorithm = pool.map_or(AllocationAlgorithm::Tlsf, |serial| {
-		allocator.pools[&serial].info.algorithm
-	});
-	let allow_ring = pool.is_some_and(|serial| allocator.pools[&serial].info.max_block_count == 1);
 	let exact_size = !automatic;
 	if exact_size {
 		allocator.validate_size(block_size)?;
@@ -2254,12 +2302,16 @@ unsafe fn allocate_pooled(
 			memory_type_bits: bits,
 			..*request
 		};
-		let index = match allocator
-			.selector
-			.find_memory_type_with_preferences(&candidate, avoided)
-		{
-			Ok(index) => index,
-			Err(error) => return Err(last.unwrap_or(error)),
+		let index = if let Some(index) = selected_type.take() {
+			index
+		} else {
+			match allocator
+				.selector
+				.find_memory_type_with_preferences(&candidate, avoided)
+			{
+				Ok(index) => index,
+				Err(error) => return Err(last.unwrap_or(error)),
+			}
 		};
 		bits &= !(1 << index);
 		let flags = allocator.selector.properties.memory_types[index as usize].property_flags;
@@ -2324,7 +2376,8 @@ unsafe fn allocate_pooled(
 			None
 		};
 		let reverse = strategy == super::PlacementStrategy::MinTime;
-		let mapping_groups = algorithm == AllocationAlgorithm::Tlsf
+		let mapping_groups = allocator.blocks.len() > 1
+			&& algorithm == AllocationAlgorithm::Tlsf
 			&& !reverse
 			&& flags.as_raw() & vk::MemoryPropertyFlagBits::HOST_VISIBLE_BIT.as_raw() != 0;
 		for group in 0..if mapping_groups { 2 } else { 1 } {
@@ -2342,7 +2395,7 @@ unsafe fn allocate_pooled(
 				{
 					continue;
 				}
-				let placement = match block.metadata.allocate_resource(
+				let (placement, offset) = match block.metadata.allocate_resource(
 					reserved,
 					alignment,
 					strategy,
@@ -2353,14 +2406,13 @@ unsafe fn allocate_pooled(
 					Err(AllocError::OutOfSpace) => continue,
 					Err(error) => return Err(error),
 				};
-				let offset = block
-					.metadata
-					.info(placement)
-					.expect("new placement")
-					.offset;
 				let handle = block.handle;
 				let actual_size = block.size;
-				let allocation = publish(
+				// Block bookkeeping completes before publication, so the token is
+				// built directly as the return value.
+				block.mapping.write().post_alloc();
+				domain.incrementally_sort(&mut allocator.blocks);
+				return Ok(publish(
 					allocator,
 					Region {
 						handle,
@@ -2371,10 +2423,10 @@ unsafe fn allocate_pooled(
 						alignment,
 						block_size: actual_size,
 						placement: Some(placement),
+						pool,
+						class,
 					},
-				);
-				domain.incrementally_sort(&mut allocator.blocks);
-				return Ok(allocation);
+				));
 			}
 		}
 		if let Some(pool) = pool {
@@ -2413,9 +2465,8 @@ unsafe fn allocate_pooled(
 			allocator.granularity,
 			allocator.host,
 		)?;
-		let placement =
+		let (placement, offset) =
 			metadata.allocate_resource(reserved, alignment, strategy, upper_address, class)?;
-		let offset = metadata.info(placement)?.offset;
 		let chain = pool.map_or(Default::default(), |serial| {
 			allocator.pools[&serial].allocation_chain
 		});
@@ -2463,7 +2514,15 @@ unsafe fn allocate_pooled(
 			mapping: MappingOwner::new_with_hysteresis(allocator.mapping_hysteresis),
 		});
 		allocator.add_native(block_size, index, handle);
-		let allocation = publish(
+		allocator
+			.blocks
+			.last_mut()
+			.expect("new pooled block")
+			.mapping
+			.write()
+			.post_alloc();
+		domain.incrementally_sort(&mut allocator.blocks);
+		return Ok(publish(
 			allocator,
 			Region {
 				handle,
@@ -2474,10 +2533,10 @@ unsafe fn allocate_pooled(
 				alignment,
 				block_size,
 				placement: Some(placement),
+				pool,
+				class,
 			},
-		);
-		domain.incrementally_sort(&mut allocator.blocks);
-		return Ok(allocation);
+		));
 	}
 }
 
@@ -2501,6 +2560,7 @@ pub unsafe fn destroy_buffer(
 	if live.map_count != 0 {
 		return Err(AllocError::AlreadyMapped);
 	}
+	let debug_ready = live.debug_ready;
 	// Both transitions must be possible before any native destruction occurs.
 	require(
 		allocator.device.fp().destroy_buffer.is_some(),
@@ -2515,11 +2575,14 @@ pub unsafe fn destroy_buffer(
 			.device
 			.as_device()
 			.destroy_buffer(buffer, allocator.callbacks)?;
-		allocator
-			.live
-			.get_mut(&allocation.serial)
-			.expect("validated resource allocation")
-			.debug_ready = false;
+		// Only guard initialization sets this flag; skip a second lookup otherwise.
+		if debug_ready {
+			allocator
+				.live
+				.get_mut(&allocation.serial)
+				.expect("validated resource allocation")
+				.debug_ready = false;
+		}
 		free(allocator, allocation)
 	}
 }
@@ -2572,9 +2635,16 @@ pub unsafe fn create_image_with_options(
 		required,
 	)?;
 	request::validate_options(allocator, options, required)?;
-	// SAFETY: preceding resource validation checked the complete bounded native chain.
-	let filtered = unsafe { external::resource_options(allocator, options, info.p_next) }?;
-	let options = filtered.as_ref();
+	// A null chain borrows the caller's options; keep that common case free of
+	// the large owned-options result.
+	let filtered;
+	let options = if info.p_next.is_null() {
+		options
+	} else {
+		// SAFETY: preceding resource validation checked the complete bounded native chain.
+		filtered = unsafe { external::resource_options(allocator, options, info.p_next) }?;
+		filtered.as_ref()
+	};
 	allocator.requirements_route(true)?;
 	let fp = allocator.device.fp();
 	require(fp.create_image.is_some(), "vkCreateImage")?;
@@ -2606,7 +2676,7 @@ pub unsafe fn create_image_with_options(
 	};
 
 	let mut allocation = match result {
-		Ok(allocation) => allocation,
+		Ok(serial) => allocator.published(serial),
 		Err(error) => {
 			// SAFETY: only the unpublished unbound image exists; inverse PFN preflighted.
 			unsafe { allocator.device.destroy_image(image, allocator.callbacks) }
@@ -2614,9 +2684,12 @@ pub unsafe fn create_image_with_options(
 			return Err(error);
 		}
 	};
-	// SAFETY: new host-visible storage and matching unbound image/allocation pair.
-	let result = unsafe { binding::persistent(allocator, &allocation, options) }
-		.and_then(|()| unsafe { bind_image_memory(allocator, image, &allocation) });
+	// SAFETY: new host-visible storage and matching unbound image/allocation pair;
+	// publication already claimed and recorded this resource association.
+	let result =
+		unsafe { binding::persistent(allocator, &allocation, options) }.and_then(|()| unsafe {
+			binding::bind_prepared(allocator, Resource::Image(image), &allocation)
+		});
 
 	if let Err(error) = result {
 		// SAFETY: unpublished objects only; inverse transitions preflighted.
@@ -2659,6 +2732,7 @@ pub unsafe fn destroy_image(
 	if live.map_count != 0 {
 		return Err(AllocError::AlreadyMapped);
 	}
+	let debug_ready = live.debug_ready;
 	require(
 		allocator.device.fp().destroy_image.is_some(),
 		"vkDestroyImage",
@@ -2669,11 +2743,14 @@ pub unsafe fn destroy_image(
 		guard::before_free(allocator, allocation)?;
 		allocator.release_resource_claim(allocation);
 		allocator.device.destroy_image(image, allocator.callbacks)?;
-		allocator
-			.live
-			.get_mut(&allocation.serial)
-			.expect("validated resource allocation")
-			.debug_ready = false;
+		// Only guard initialization sets this flag; skip a second lookup otherwise.
+		if debug_ready {
+			allocator
+				.live
+				.get_mut(&allocation.serial)
+				.expect("validated resource allocation")
+				.debug_ready = false;
+		}
 		free(allocator, allocation)
 	}
 }

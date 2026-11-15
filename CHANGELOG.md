@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.13.2+1.4.365 — 2026-11-15
+
+- Reduce create/bind bookkeeping while preserving public APIs, checked
+  generations, native-output admission, transactional rollback and complete
+  public validation. Managed creation now completes binding through a private
+  prepared operation, publishes live records in place, builds the public
+  token once from the published record, takes the core requirements-route
+  fast path and records resource associations in a single probe.
+- Add a request-scoped pool memory-type reuse, a compact private TLSF
+  placement-failure result, a checked last-slot registry hint and a
+  single-block mapping-preference shortcut; remove the specialized unpadded
+  TLSF tail path and forced TLSF inlining after measured regressions.
+- On the recorded Surface Laptop 5 matrix, 15 of 44 combined workloads now
+  complete below 1.0x VMA including every virtual-placement row; the worst
+  measured gap falls from 1.525x to 1.162x. Native cells span 0.94-1.16x;
+  separate-buffer allocation retains the largest residual at 1.21-1.28x.
+- Requalify all 44 benchmark cells under separate core and synchronization
+  validation on the candidate build. Document experiments, the lock audit and
+  measured limits in the November 15 benchmark report.
+- See the [release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.13.2.md).
+
 ## 0.13.1+1.4.365 — 2026-11-14
 
 - Reduce allocator bookkeeping and linear retirement costs while preserving

@@ -187,13 +187,7 @@ impl<'device> Associations<'device> {
 		serial: u64,
 	) {
 		let (registry, key) = self.registry_mut(resource);
-		if let Some(slots) = registry.get_mut(&key) {
-			slots[plane_slot(plane)] = serial;
-		} else {
-			let mut slots = [0; 4];
-			slots[plane_slot(plane)] = serial;
-			registry.insert_reserved(key, slots);
-		}
+		registry.get_or_insert_reserved_with(key, || [0; 4])[plane_slot(plane)] = serial;
 	}
 
 	/// Release the claim owned by `serial`; other serials keep the slot so a
@@ -244,7 +238,7 @@ pub(super) unsafe fn allocate_prepared_resource(
 	),
 	class: ResourceClass,
 	device_address: bool,
-) -> Result<Allocation, AllocError> {
+) -> Result<u64, AllocError> {
 	let (required, preferred, avoided) = preferences;
 	if allocator.parallel.is_none() {
 		// Independent allocators publish bound resources into the local index;
@@ -298,7 +292,7 @@ pub(super) unsafe fn allocate_prepared_resource(
 		Resource::Image(image) => dedicated.image = image,
 	}
 	// SAFETY: matching queried requirements, exact supported dedication, and admitted class.
-	let allocation = unsafe {
+	let serial = unsafe {
 		allocate_managed(
 			allocator,
 			&request,
@@ -306,9 +300,7 @@ pub(super) unsafe fn allocate_prepared_resource(
 				chain: &super::super::chain::ChainData::EMPTY,
 				dedicated: requirements.dedicated_supported.then_some(&dedicated),
 				device_address,
-				priority: options.pool.map_or(options.priority, |pool| {
-					allocator.pools[&pool.serial].info.priority
-				}),
+				priority: options.priority,
 				within_budget: options.within_budget,
 			},
 			requirements.dedication,
@@ -317,10 +309,7 @@ pub(super) unsafe fn allocate_prepared_resource(
 			avoided,
 		)
 	}?;
-	let live = allocator
-		.live
-		.get_mut(&allocation.serial)
-		.expect("new allocation");
+	let live = allocator.live.get_mut(&serial).expect("new allocation");
 	live.resource = Some(resource);
 	live.class = if options.can_alias {
 		ResourceClass::Unknown
@@ -329,13 +318,11 @@ pub(super) unsafe fn allocate_prepared_resource(
 	};
 	live.can_alias = options.can_alias;
 	if let Some(claim) = claim {
-		claim.commit(allocation.serial);
+		claim.commit(serial);
 	} else {
-		allocator
-			.associated
-			.record(resource, None, allocation.serial);
+		allocator.associated.record(resource, None, serial);
 	}
-	Ok(allocation)
+	Ok(serial)
 }
 
 pub(super) unsafe fn persistent(
@@ -394,9 +381,10 @@ unsafe fn allocate_existing(
 	}
 	allocator.reserve()?;
 	// SAFETY: caller guarantees ordinary resource semantics; unknown usage never enables a feature.
-	let mut allocation = unsafe {
+	let serial = unsafe {
 		allocate_prepared_resource(allocator, resource, options, preferences, class, address)
 	}?;
+	let mut allocation = allocator.published(serial);
 	// SAFETY: unpublished new allocation; no binding or external access exists.
 	if let Err(error) = unsafe { persistent(allocator, &allocation, options) } {
 		// SAFETY: unbound storage only; the caller's resource remains untouched.
@@ -632,6 +620,42 @@ unsafe fn bind_resource(
 	// exact execution/publication route. No registry guard is needed by execute.
 	let backing = allocator.mapping(allocation);
 	// SAFETY: caller owns this native resource and meets bind synchronization.
+	unsafe { operation.execute(allocator.device.as_device()) }?;
+	drop(backing);
+	operation.commit(allocator)
+}
+
+/// Complete binding for a resource claimed and published by
+/// `allocate_prepared_resource` under the same exclusive borrow. Publication
+/// already recorded the exact resource association, so identity, claim,
+/// reservation and chain stages are not repeated; the backing lease, native
+/// call and publication commit keep the canonical operation order. Failure
+/// leaves the claim and unpublished allocation to the caller's rollback.
+/// SAFETY: `allocation` is the fresh result for this exact `resource`, created
+/// unbound within this borrow on a preflighted legacy bind route; the caller
+/// owns the native resource and meets bind synchronization.
+pub(super) unsafe fn bind_prepared(
+	allocator: &mut Allocator<'_>,
+	resource: Resource,
+	allocation: &Allocation,
+) -> Result<(), AllocError> {
+	let operation = BindOperation {
+		route: RequirementsRoute::Legacy,
+		requirements_route: None,
+		resource,
+		serial: allocation.serial,
+		handle: allocation.handle,
+		native_offset: allocation.offset,
+		remaining_size: allocation.size,
+		memory_type_index: allocation.memory_type_index,
+		next: std::ptr::null(),
+		status: None,
+		plane: None,
+		alias: false,
+		claim: None,
+	};
+	let backing = allocator.mapping(allocation);
+	// SAFETY: identical exclusive execution/publication route as `bind_resource`.
 	unsafe { operation.execute(allocator.device.as_device()) }?;
 	drop(backing);
 	operation.commit(allocator)

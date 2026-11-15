@@ -126,6 +126,9 @@ impl<'callbacks> Metadata<'callbacks> {
 		}
 	}
 
+	/// Place a native region and return it with its aligned offset, so callers
+	/// need not re-validate the placement they just received.
+	#[inline]
 	pub fn allocate_resource(
 		&mut self,
 		size: u64,
@@ -133,7 +136,7 @@ impl<'callbacks> Metadata<'callbacks> {
 		strategy: PlacementStrategy,
 		upper: bool,
 		class: ResourceClass,
-	) -> Result<Placement, AllocError> {
+	) -> Result<(Placement, u64), AllocError> {
 		match self {
 			Self::Tlsf(metadata) => {
 				if upper {
@@ -143,7 +146,7 @@ impl<'callbacks> Metadata<'callbacks> {
 				}
 				metadata
 					.allocate_resource(size, alignment, strategy, class)
-					.map(|(index, serial)| Placement::Tlsf(index, serial))
+					.map(|(index, serial)| (Placement::Tlsf(index, serial), metadata.offset(index)))
 			}
 			Self::Linear(metadata) => metadata.allocate_resource(size, alignment, upper, class),
 		}

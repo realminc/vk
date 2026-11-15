@@ -15,6 +15,8 @@ use super::{
 	virtual_block::{PlacementStrategy, VirtualAllocationInfo, VirtualBlockStats},
 };
 
+use std::num::NonZeroU64;
+
 const NONE: usize = usize::MAX;
 const CLASSES: usize = 57;
 
@@ -75,6 +77,30 @@ impl Node {
 	}
 }
 
+// Placement can fail in only these four ways. Keep its private return value
+// compact; expanding the public allocator error inside the inner loop forces
+// large Result copies even on success. Public error variants stay identical.
+#[derive(Clone, Copy)]
+enum PlacementError {
+	InvalidRequest,
+	SerialExhausted,
+	OutOfSpace,
+	HostAllocationFailed,
+}
+
+impl From<PlacementError> for AllocError {
+	fn from(error: PlacementError) -> Self {
+		match error {
+			PlacementError::InvalidRequest => {
+				Self::InvalidRequest("size must be nonzero and alignment a power of two")
+			}
+			PlacementError::SerialExhausted => Self::SerialExhausted,
+			PlacementError::OutOfSpace => Self::OutOfSpace,
+			PlacementError::HostAllocationFailed => Self::HostAllocationFailed,
+		}
+	}
+}
+
 pub(super) struct Tlsf<'callbacks> {
 	pub(super) granularity: Granularity,
 	size: u64,
@@ -90,6 +116,9 @@ pub(super) struct Tlsf<'callbacks> {
 	free_bytes: u64,
 	allocations: usize,
 	next_serial: u64,
+	// Reason for the most recent failed placement; meaningful only immediately
+	// after `place_resource` returns None. Never part of placement state.
+	failure: PlacementError,
 }
 
 fn class(size: u64) -> (usize, usize) {
@@ -153,9 +182,11 @@ impl<'callbacks> Tlsf<'callbacks> {
 			free_bytes: 0,
 			allocations: 0,
 			next_serial: 1,
+			failure: PlacementError::OutOfSpace,
 		})
 	}
 
+	#[inline]
 	fn find_free(&self, size: u64) -> Option<(usize, usize)> {
 		let (mut first, second) = class(size);
 		let mut inner = self.second_maps[first] & (u32::MAX << second);
@@ -265,7 +296,9 @@ impl<'callbacks> Tlsf<'callbacks> {
 			Some(size + 8)
 		};
 		let next = next_size.and_then(|size| self.find_free(size));
-		let previous = self.find_free(size);
+		// The smaller-class head is a pure bitmap query; defer it until the
+		// donor order actually reaches that list.
+		let previous = || self.find_free(size);
 		let chosen = match strategy {
 			PlacementStrategy::MinTime => {
 				let head = next.and_then(|(index, _)| {
@@ -276,16 +309,16 @@ impl<'callbacks> Tlsf<'callbacks> {
 				head
 					.or_else(tail)
 					.or_else(|| self.search_list(next, size, alignment, class))
-					.or_else(|| self.search_list(previous, size, alignment, class))
+					.or_else(|| self.search_list(previous(), size, alignment, class))
 			}
 			PlacementStrategy::MinMemory => self
-				.search_list(previous, size, alignment, class)
+				.search_list(previous(), size, alignment, class)
 				.or_else(tail)
 				.or_else(|| self.search_list(next, size, alignment, class)),
 			PlacementStrategy::Default => self
 				.search_list(next, size, alignment, class)
 				.or_else(tail)
-				.or_else(|| self.search_list(previous, size, alignment, class)),
+				.or_else(|| self.search_list(previous(), size, alignment, class)),
 			PlacementStrategy::MinOffset => unreachable!(),
 		};
 		if chosen.is_some() {
@@ -312,6 +345,7 @@ impl<'callbacks> Tlsf<'callbacks> {
 		self.allocate_resource(size, alignment, strategy, ResourceClass::Unassigned)
 	}
 
+	#[inline]
 	pub(super) fn allocate_resource(
 		&mut self,
 		size: u64,
@@ -319,27 +353,53 @@ impl<'callbacks> Tlsf<'callbacks> {
 		strategy: PlacementStrategy,
 		class: ResourceClass,
 	) -> Result<(usize, u64), AllocError> {
+		match self.place_resource(size, alignment, strategy, class) {
+			Some((index, serial)) => Ok((index, serial.get())),
+			None => Err(self.failure.into()),
+		}
+	}
+
+	#[cold]
+	fn fail(&mut self, error: PlacementError) -> Option<(usize, NonZeroU64)> {
+		self.failure = error;
+		None
+	}
+
+	// Generations start at one and never wrap. Only this niche-filled Option is
+	// returned in two registers: a Result is written through memory and re-read
+	// with mismatched widths by callers, which stalls store forwarding. Failure
+	// records its reason in `failure` before returning None.
+	fn place_resource(
+		&mut self,
+		size: u64,
+		alignment: u64,
+		strategy: PlacementStrategy,
+		class: ResourceClass,
+	) -> Option<(usize, NonZeroU64)> {
 		if size == 0 || !alignment.is_power_of_two() {
-			return Err(AllocError::InvalidRequest(
-				"size must be nonzero and alignment a power of two",
-			));
+			return self.fail(PlacementError::InvalidRequest);
 		}
-		let next_serial = self
-			.next_serial
-			.checked_add(1)
-			.ok_or(AllocError::SerialExhausted)?;
+		let (Some(serial), Some(next_serial)) = (
+			NonZeroU64::new(self.next_serial),
+			self.next_serial.checked_add(1),
+		) else {
+			return self.fail(PlacementError::SerialExhausted);
+		};
 		if size > self.free_bytes + self.nodes[self.tail].size {
-			return Err(AllocError::OutOfSpace);
+			return self.fail(PlacementError::OutOfSpace);
 		}
-		let (current, offset) = self
-			.choose(size, alignment, strategy, class)
-			.ok_or(AllocError::OutOfSpace)?;
+		let Some((current, offset)) = self.choose(size, alignment, strategy, class) else {
+			return self.fail(PlacementError::OutOfSpace);
+		};
 		// At most two new nodes: alignment prefix plus suffix (including empty tail).
 		// Search has no mutations; OOM leaves placement and free-list tie order intact.
-		self
+		if self
 			.nodes
 			.try_reserve(2usize.saturating_sub(self.recycled_count))
-			.map_err(|_| AllocError::HostAllocationFailed)?;
+			.is_err()
+		{
+			return self.fail(PlacementError::HostAllocationFailed);
+		}
 		if current != self.tail {
 			self.remove_free(current);
 		}
@@ -387,13 +447,12 @@ impl<'callbacks> Tlsf<'callbacks> {
 			}
 		}
 		self.nodes[current].state = State::Taken;
-		self.nodes[current].serial = self.next_serial;
+		self.nodes[current].serial = serial.get();
 		self.nodes[current].user_data = 0;
 		self.nodes[current].class = class;
-		let serial = self.next_serial;
 		self.next_serial = next_serial;
 		self.allocations += 1;
-		Ok((current, serial))
+		Some((current, serial))
 	}
 
 	#[inline]
@@ -411,6 +470,7 @@ impl<'callbacks> Tlsf<'callbacks> {
 		}
 	}
 
+	#[inline]
 	fn recycle(&mut self, index: usize) {
 		self.nodes[index].state = State::Unused;
 		self.nodes[index].set_next_free(self.recycled);
@@ -418,6 +478,7 @@ impl<'callbacks> Tlsf<'callbacks> {
 		self.recycled_count += 1;
 	}
 
+	#[inline(always)]
 	fn insert_free(&mut self, index: usize) {
 		let node = &self.nodes[index];
 		let (first, second) = class(node.size);
@@ -436,6 +497,7 @@ impl<'callbacks> Tlsf<'callbacks> {
 		self.free_bytes += self.nodes[index].size;
 	}
 
+	#[inline(always)]
 	fn remove_free(&mut self, index: usize) {
 		let node = &self.nodes[index];
 		let (previous, next, size) = (node.previous_free(), node.next_free(), node.size);
@@ -461,6 +523,7 @@ impl<'callbacks> Tlsf<'callbacks> {
 		self.free_bytes -= size;
 	}
 
+	#[inline]
 	fn merge(&mut self, current: usize, previous: usize) {
 		let node = &self.nodes[previous];
 		let (offset, size, before) = (node.offset, node.size, node.previous);
@@ -473,6 +536,12 @@ impl<'callbacks> Tlsf<'callbacks> {
 			self.nodes[before].next = current;
 		}
 		self.recycle(previous);
+	}
+
+	/// Offset of a placement this metadata has just returned.
+	#[inline]
+	pub(super) fn offset(&self, index: usize) -> u64 {
+		self.nodes[index].offset
 	}
 
 	pub(super) fn info(
@@ -492,8 +561,28 @@ impl<'callbacks> Tlsf<'callbacks> {
 		})
 	}
 
+	#[inline]
+	fn is_live(&self, index: usize, serial: u64) -> bool {
+		self
+			.nodes
+			.get(index)
+			.is_some_and(|node| node.state == State::Taken && node.serial == serial)
+	}
+
+	#[inline]
 	pub(super) fn free(&mut self, index: usize, serial: u64) -> Result<(), AllocError> {
-		self.info(index, serial)?;
+		if self.release(index, serial) {
+			Ok(())
+		} else {
+			Err(AllocError::UnknownAllocation)
+		}
+	}
+
+	// Register-sized result for the out-of-line body; see `place_resource`.
+	fn release(&mut self, index: usize, serial: u64) -> bool {
+		if !self.is_live(index, serial) {
+			return false;
+		}
 		let previous = self.nodes[index].previous;
 		let next = self.nodes[index].next;
 		self.allocations -= 1;
@@ -510,7 +599,7 @@ impl<'callbacks> Tlsf<'callbacks> {
 			self.merge(next, index);
 			self.insert_free(next);
 		}
-		Ok(())
+		true
 	}
 
 	pub(super) fn clear(&mut self) {

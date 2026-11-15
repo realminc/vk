@@ -342,6 +342,14 @@ fn pool_type_is_fixed_required_properties_stay_mandatory_and_dedication_is_exact
 	// SAFETY: independently injected requirements/type mismatches; new resource rollback only.
 	unsafe {
 		let mut pool = allocator.create_pool(&info()).unwrap();
+		// Successful reuse must never cache admission for a later incompatible request.
+		let (warm, mut storage) = allocator
+			.create_buffer_with_options(
+				&buffer_info(),
+				&AllocationCreateInfo::new().set_pool(Some(&pool)),
+			)
+			.unwrap();
+		allocator.destroy_buffer(warm, &mut storage).unwrap();
 		for options in [
 			AllocationCreateInfo {
 				memory_type_bits: 0,

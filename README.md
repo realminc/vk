@@ -455,29 +455,33 @@ for loader paths, portability setup and cross-build limits.
 
 ## Performance
 
-Selected host-latency results on Intel Iris Xe (Surface Laptop 5, November 14,
-2026), with 20 fresh-process samples per backend/workload. **Below 1 favors vk.**
-Allocation rows combine allocation/free and native create/bind/destroy work;
-128 live allocations unless noted. Intervals crossing 1 do not establish a lead.
+Selected host-latency results on Intel Iris Xe (Surface Laptop 5, November 15,
+2026), with 20 fresh-process samples per backend/workload. **Below 1 favors
+vk.** Allocation rows combine allocation/free and native create/bind/destroy
+work; 128 live allocations unless noted. Intervals crossing 1 do not establish
+a lead. 15 of 44 measured workloads complete below 1.0× VMA, including every
+virtual-placement row; the worst measured gap is pooled TLSF shuffled free at
+1.162×.
 
 | Workload | vk / VMA time (95% confidence interval) |
 | --- | ---: |
-| Virtual TLSF, minimum-offset churn | **0.752×** (0.706–0.769) |
-| Virtual linear, LIFO | 0.906× (0.884–0.934) |
-| Virtual linear, churn | 0.942× (0.925–0.953) |
-| Pooled buffer map + 8-byte write + unmap | 1.031× (1.014–1.053) |
-| Separate images, LIFO | 1.128× (1.115–1.149) |
-| Separate buffers, LIFO | 1.232× (1.212–1.274) |
-| Pooled images, TLSF, LIFO | 1.219× (1.195–1.237) |
-| Pooled buffers, TLSF, LIFO | 1.401× (1.374–1.423) |
-| Pooled buffers, TLSF, shuffled free | 1.525× (1.505–1.539) |
-| Pooled buffers, TLSF, churn, 32 live | 1.607× (1.494–1.953) |
+| Virtual TLSF, minimum-offset churn | **0.624×** (0.621–0.629) |
+| Virtual linear, LIFO | **0.708×** (0.699–0.737) |
+| Virtual linear, churn | **0.813×** (0.788–0.845) |
+| Pooled buffers, TLSF, reverse, single live | 0.937× (0.914–1.016) |
+| Separate buffers, LIFO | 1.070× (1.027–1.087) |
+| Separate images, LIFO | 1.072× (1.058–1.089) |
+| Pooled images, TLSF, LIFO | 1.076× (1.063–1.098) |
+| Pooled buffers, TLSF, LIFO | 1.006× (0.984–1.043) |
+| Pooled buffers, TLSF, churn, 32 live | 1.147× (1.139–1.164) |
+| Pooled buffers, TLSF, shuffled free | 1.162× (1.129–1.196) |
+| Pooled buffer map + 8-byte write + unmap | 1.017× (1.007–1.031) |
 
 These exploratory runs used unlocked clocks and shared workstation load.
 Native VMA uses its default internal locks; ordinary vk uses exclusive access.
-The [full benchmark report](https://github.com/realminc/vk/blob/main/docs/external/benchmarks/surface-laptop-5-2026-11-14.md)
-includes all 44 allocator configurations, separate Ash/Vulkano comparisons,
-methodology and retained evidence.
+The [full benchmark report](https://github.com/realminc/vk/blob/main/docs/external/benchmarks/surface-laptop-5-2026-11-15.md)
+includes all 44 allocator configurations, subsequent candidate passes,
+Ash/Vulkano history, methodology and retained evidence.
 
 ## Development
 

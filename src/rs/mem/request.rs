@@ -458,7 +458,7 @@ pub unsafe fn allocate_with_options(
 	};
 	allocator.reserve()?;
 	// SAFETY: validated ordinary requirements; no resource-specific dedication exists.
-	let mut allocation = unsafe {
+	let serial = unsafe {
 		allocate_managed(
 			allocator,
 			&request,
@@ -466,9 +466,7 @@ pub unsafe fn allocate_with_options(
 				chain: &super::super::chain::ChainData::EMPTY,
 				dedicated: None,
 				device_address: allocator.buffer_device_address,
-				priority: options.pool.map_or(options.priority, |pool| {
-					allocator.pools[&pool.serial].info.priority
-				}),
+				priority: options.priority,
 				within_budget: options.within_budget,
 			},
 			Dedication::None,
@@ -479,9 +477,10 @@ pub unsafe fn allocate_with_options(
 	}?;
 	allocator
 		.live
-		.get_mut(&allocation.serial)
+		.get_mut(&serial)
 		.expect("new raw allocation")
 		.can_alias = options.can_alias;
+	let mut allocation = allocator.published(serial);
 	// SAFETY: new unbound host-visible storage; inverse PFNs preflighted.
 	if let Err(error) = unsafe { binding::persistent(allocator, &allocation, options) } {
 		// SAFETY: only unpublished new storage is released, with no resource or GPU use.
