@@ -1896,7 +1896,7 @@ pub unsafe fn create_buffer_with_options(
 			"vkUnmapMemory",
 		)?;
 	}
-	allocator.buffer_route()?;
+	let route = allocator.buffer_route()?;
 	let fp = allocator.device.fp();
 	require(fp.create_buffer.is_some(), "vkCreateBuffer")?;
 	require(fp.destroy_buffer.is_some(), "vkDestroyBuffer")?;
@@ -1907,9 +1907,21 @@ pub unsafe fn create_buffer_with_options(
 	if buffer.is_null() {
 		return Err(CallError::InvalidOutput("vkCreateBuffer returned a null handle").into());
 	}
-	if binding::associated(allocator, Resource::Buffer(buffer)) {
-		return Err(CallError::InvalidOutput("vkCreateBuffer returned an already-live handle").into());
-	}
+	let recorded = match record_created(allocator, Resource::Buffer(buffer), options) {
+		Ok(Admission::Duplicate) => {
+			return Err(
+				CallError::InvalidOutput("vkCreateBuffer returned an already-live handle").into(),
+			);
+		}
+		Ok(Admission::Recorded(serial)) => Some(serial),
+		Ok(Admission::Deferred) => None,
+		Err(error) => {
+			// SAFETY: fresh unbound handle with no association; destruction PFN preflighted.
+			unsafe { allocator.device.destroy_buffer(buffer, allocator.callbacks) }
+				.expect("preflighted cleanup");
+			return Err(error);
+		}
+	};
 	// SAFETY: newly created ordinary resource, exact native requirements and preflighted inverses.
 	let result = unsafe {
 		binding::allocate_prepared_resource(
@@ -1919,12 +1931,24 @@ pub unsafe fn create_buffer_with_options(
 			(required, preferred, avoided),
 			ResourceClass::Buffer,
 			device_address,
+			Some(binding::Created {
+				route,
+				recorded: recorded.is_some(),
+			}),
 		)
 	};
 
 	let mut allocation = match result {
-		Ok(serial) => allocator.published(serial),
+		Ok(serial) => {
+			assert!(recorded.is_none_or(|expected| expected == serial));
+			allocator.published(serial)
+		}
 		Err(error) => {
+			if let Some(serial) = recorded {
+				allocator
+					.associated
+					.release(Resource::Buffer(buffer), None, serial);
+			}
 			// SAFETY: unbound new buffer, cached immutable destruction PFN preflighted.
 			unsafe { allocator.device.destroy_buffer(buffer, allocator.callbacks) }
 				.expect("preflighted cleanup");
@@ -1952,6 +1976,51 @@ pub unsafe fn create_buffer_with_options(
 	}
 
 	Ok((buffer, allocation))
+}
+
+/// How a newly created ordinary resource handle was admitted.
+enum Admission {
+	/// The handle is already associated; the caller must not destroy it.
+	Duplicate,
+	/// Recorded here under the serial `reserve` fixed for the coming publication.
+	Recorded(u64),
+	/// Recorded after allocation, as for imports and partitioned allocators.
+	Deferred,
+}
+
+/// Check a newly created ordinary resource for an existing association. An
+/// unpartitioned allocator without an import chain also records the owner in
+/// the same probe. Host reservation failure is returned for a fresh handle,
+/// which the caller then destroys.
+#[inline(always)]
+fn record_created(
+	allocator: &mut Allocator<'_>,
+	resource: Resource,
+	options: &AllocationCreateInfo,
+) -> Result<Admission, AllocError> {
+	if binding::associated_elsewhere(allocator, resource) {
+		return Ok(Admission::Duplicate);
+	}
+	if allocator.parallel.is_some() || options.memory_allocate_next.is_some() {
+		return Ok(if allocator.associated.associated(resource) {
+			Admission::Duplicate
+		} else {
+			Admission::Deferred
+		});
+	}
+	if let Err(error) = allocator.associated.try_reserve_for(resource) {
+		return if allocator.associated.associated(resource) {
+			Ok(Admission::Duplicate)
+		} else {
+			Err(error)
+		};
+	}
+	let serial = allocator.next_serial;
+	Ok(if allocator.associated.record_fresh(resource, serial) {
+		Admission::Recorded(serial)
+	} else {
+		Admission::Duplicate
+	})
 }
 
 fn validate_policy(policy: AllocationPolicy) -> Result<(), AllocError> {
@@ -2645,7 +2714,7 @@ pub unsafe fn create_image_with_options(
 		filtered = unsafe { external::resource_options(allocator, options, info.p_next) }?;
 		filtered.as_ref()
 	};
-	allocator.requirements_route(true)?;
+	let route = allocator.requirements_route(true)?;
 	let fp = allocator.device.fp();
 	require(fp.create_image.is_some(), "vkCreateImage")?;
 	require(fp.destroy_image.is_some(), "vkDestroyImage")?;
@@ -2660,9 +2729,19 @@ pub unsafe fn create_image_with_options(
 	if image.is_null() {
 		return Err(CallError::InvalidOutput("vkCreateImage returned a null handle").into());
 	}
-	if binding::associated(allocator, Resource::Image(image)) {
-		return Err(CallError::InvalidOutput("vkCreateImage returned an already-live handle").into());
-	}
+	let recorded = match record_created(allocator, Resource::Image(image), options) {
+		Ok(Admission::Duplicate) => {
+			return Err(CallError::InvalidOutput("vkCreateImage returned an already-live handle").into());
+		}
+		Ok(Admission::Recorded(serial)) => Some(serial),
+		Ok(Admission::Deferred) => None,
+		Err(error) => {
+			// SAFETY: fresh unbound handle with no association; destruction PFN preflighted.
+			unsafe { allocator.device.destroy_image(image, allocator.callbacks) }
+				.expect("preflighted cleanup");
+			return Err(error);
+		}
+	};
 	// SAFETY: newly created ordinary image with validated creation metadata.
 	let result = unsafe {
 		binding::allocate_prepared_resource(
@@ -2672,12 +2751,24 @@ pub unsafe fn create_image_with_options(
 			(required, preferred, avoided),
 			class,
 			false,
+			Some(binding::Created {
+				route,
+				recorded: recorded.is_some(),
+			}),
 		)
 	};
 
 	let mut allocation = match result {
-		Ok(serial) => allocator.published(serial),
+		Ok(serial) => {
+			assert!(recorded.is_none_or(|expected| expected == serial));
+			allocator.published(serial)
+		}
 		Err(error) => {
+			if let Some(serial) = recorded {
+				allocator
+					.associated
+					.release(Resource::Image(image), None, serial);
+			}
 			// SAFETY: only the unpublished unbound image exists; inverse PFN preflighted.
 			unsafe { allocator.device.destroy_image(image, allocator.callbacks) }
 				.expect("preflighted cleanup");

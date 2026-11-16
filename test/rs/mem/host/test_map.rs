@@ -310,7 +310,7 @@ fn cached_slots_never_substitute_for_full_key_validation() {
 	// Any cached slot may become stale after shift deletion, rehash or transfer.
 	// Deliberately supply every slot, including out-of-range hints, and compare
 	// the queried key independently of the hinted value.
-	for hint in 0..=registry.buckets.len() {
+	for hint in 0..=registry.keys.len() {
 		for key in [0, 1, 7, 255, u64::MAX - 1, u64::MAX, 42] {
 			registry.last_slot.store(hint, Ordering::Relaxed);
 			let expected = (key != 42).then_some(key ^ 0xfeed);

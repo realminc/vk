@@ -104,6 +104,12 @@ impl MemoryTypeSelector {
 			if request.size > self.properties.memory_heaps[memory.heap_index as usize].size {
 				continue;
 			}
+			// The last admitted candidate wins outright when nothing was chosen,
+			// so its cost (a software bit count on baseline x86-64) is not needed.
+			if best.is_none() && bits == 0 {
+				best = Some(i);
+				break;
+			}
 			let candidate = (request.preferred_flags.as_raw() & !flags).count_ones()
 				+ (avoided.as_raw() & flags).count_ones();
 			if candidate < cost {

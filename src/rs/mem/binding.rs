@@ -10,24 +10,6 @@ struct Requirements {
 	dedicated_supported: bool,
 }
 
-unsafe fn requirements(
-	allocator: &Allocator<'_>,
-	resource: Resource,
-) -> Result<Requirements, AllocError> {
-	// SAFETY: caller supplies a live ordinary resource; no disjoint plane is requested.
-	unsafe { requirements_with_plane(allocator, resource, None) }
-}
-
-unsafe fn requirements_with_plane(
-	allocator: &Allocator<'_>,
-	resource: Resource,
-	plane: Option<vk::ImageAspectFlagBits>,
-) -> Result<Requirements, AllocError> {
-	let route = allocator.requirements_route(matches!(resource, Resource::Image(_)))?;
-	// SAFETY: same live native resource/plane query contract.
-	unsafe { query_requirements(allocator.device.as_device(), route, resource, plane) }
-}
-
 unsafe fn query_requirements(
 	device: &vk::Device,
 	route: RequirementsRoute,
@@ -190,6 +172,14 @@ impl<'device> Associations<'device> {
 		registry.get_or_insert_reserved_with(key, || [0; 4])[plane_slot(plane)] = serial;
 	}
 
+	/// Record `serial` as the ordinary owner of a newly created `resource` with
+	/// one probe. Returns false, changing nothing, when the handle is already
+	/// associated. Capacity for the key must already be reserved.
+	pub fn record_fresh(&mut self, resource: Resource, serial: u64) -> bool {
+		let (registry, key) = self.registry_mut(resource);
+		registry.insert_absent_reserved(key, [serial, 0, 0, 0])
+	}
+
 	/// Release the claim owned by `serial`; other serials keep the slot so a
 	/// recycled native handle cannot lose a newer association.
 	pub fn release(
@@ -210,13 +200,15 @@ impl<'device> Associations<'device> {
 }
 
 pub(super) fn associated(allocator: &Allocator<'_>, resource: Resource) -> bool {
-	if let Some(shared) = allocator.parallel_state() {
-		let domain = allocator.partition_id;
-		if shared.associated(resource, domain) {
-			return true;
-		}
-	}
-	allocator.associated.associated(resource)
+	associated_elsewhere(allocator, resource) || allocator.associated.associated(resource)
+}
+
+/// Shared-owner part of `associated`: a partitioned sibling already holds `resource`.
+#[inline]
+pub(super) fn associated_elsewhere(allocator: &Allocator<'_>, resource: Resource) -> bool {
+	allocator
+		.parallel_state()
+		.is_some_and(|shared| shared.associated(resource, allocator.partition_id))
 }
 
 /// Continue a resource transaction after options, mapping PFNs and publication
@@ -227,6 +219,15 @@ pub(super) fn associated(allocator: &Allocator<'_>, resource: Resource) -> bool 
 /// The resource is live/non-null; the caller has validated these options and
 /// reserved publication before effects. Native requirements are still queried
 /// and checked here, and association reservation remains fallible before binding.
+/// Facts an allocator-owned creation path already established for its new resource.
+#[derive(Clone, Copy)]
+pub(super) struct Created {
+	/// Requirements route preflighted before native creation.
+	pub route: RequirementsRoute,
+	/// The ordinary association was recorded with the creation duplicate check.
+	pub recorded: bool,
+}
+
 pub(super) unsafe fn allocate_prepared_resource(
 	allocator: &mut Allocator<'_>,
 	resource: Resource,
@@ -238,9 +239,11 @@ pub(super) unsafe fn allocate_prepared_resource(
 	),
 	class: ResourceClass,
 	device_address: bool,
+	created: Option<Created>,
 ) -> Result<u64, AllocError> {
 	let (required, preferred, avoided) = preferences;
-	if allocator.parallel.is_none() {
+	let recorded = created.is_some_and(|created| created.recorded);
+	if allocator.parallel.is_none() && !recorded {
 		// Independent allocators publish bound resources into the local index;
 		// partitioned claims publish the shared index instead.
 		allocator.associated.try_reserve_for(resource)?;
@@ -273,8 +276,13 @@ pub(super) unsafe fn allocate_prepared_resource(
 				"platform resource imports require exact resource metadata",
 			));
 		}
+		// Creation paths pass the route they already preflighted.
+		let route = match created {
+			Some(created) => created.route,
+			None => allocator.requirements_route(matches!(resource, Resource::Image(_)))?,
+		};
 		// SAFETY: exact live ordinary resource supplied by caller; no platform pre-bind query.
-		unsafe { requirements(allocator, resource) }?
+		unsafe { query_requirements(allocator.device.as_device(), route, resource, None) }?
 	};
 	let request = AllocRequest {
 		size: requirements.memory.size,
@@ -319,7 +327,7 @@ pub(super) unsafe fn allocate_prepared_resource(
 	live.can_alias = options.can_alias;
 	if let Some(claim) = claim {
 		claim.commit(serial);
-	} else {
+	} else if !recorded {
 		allocator.associated.record(resource, None, serial);
 	}
 	Ok(serial)
@@ -382,7 +390,15 @@ unsafe fn allocate_existing(
 	allocator.reserve()?;
 	// SAFETY: caller guarantees ordinary resource semantics; unknown usage never enables a feature.
 	let serial = unsafe {
-		allocate_prepared_resource(allocator, resource, options, preferences, class, address)
+		allocate_prepared_resource(
+			allocator,
+			resource,
+			options,
+			preferences,
+			class,
+			address,
+			None,
+		)
 	}?;
 	let mut allocation = allocator.published(serial);
 	// SAFETY: unpublished new allocation; no binding or external access exists.

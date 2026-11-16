@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.13.3+1.4.365 — 2026-11-16
+
+- Reduce host-registry and create-path costs while preserving public APIs,
+  checked generations, native-output admission, transactional rollback and
+  complete public validation. Host registries split keys from values so a
+  probe compares a sixteen-byte slot instead of an entry bucket; duplicate
+  handle checking and association recording share one probe; option
+  validation admits each pool once; created resources reuse their
+  preflighted requirements route.
+- On the recorded Surface Laptop 5 matrix, 21 of 44 combined workloads now
+  complete below 1.0x VMA including every virtual-placement row and
+  pooled-buffer reverse/FIFO; the worst measured gap falls from 1.162x to
+  1.104x. Native cells span 0.93-1.10x; separate-buffer churn retains the
+  largest residual.
+- Requalify all 44 benchmark cells under separate core and synchronization
+  validation on the candidate build. Document kept and rejected experiments
+  in the November 16 benchmark report.
+- See the [release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.13.3.md).
+
 ## 0.13.2+1.4.365 — 2026-11-15
 
 - Reduce create/bind bookkeeping while preserving public APIs, checked

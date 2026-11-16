@@ -118,8 +118,12 @@ pub(super) fn validate_options(
 			"separate storage conflicts with reuse/upper placement",
 		));
 	}
-	if let Some(pool) = options.pool {
-		let state = pool::validate(allocator, pool)?;
+	// One admitted pool lookup serves every pool-dependent check below.
+	let pool_state = options
+		.pool
+		.map(|pool| pool::validate(allocator, pool))
+		.transpose()?;
+	if let Some(state) = pool_state {
 		if forced && state.info.block_size != 0 {
 			return Err(AllocError::UnsupportedCapability(
 				"fixed pool cannot dedicate",
@@ -134,10 +138,9 @@ pub(super) fn validate_options(
 	if options.within_budget {
 		budget::validate_profile(allocator)?;
 	}
-	let priority = if let Some(pool) = options.pool {
-		pool::validate_options(allocator, pool, options)?
-			.info
-			.priority
+	let priority = if let Some(state) = pool_state {
+		pool::validate_upper_address(state, options)?;
+		state.info.priority
 	} else {
 		options.priority
 	};

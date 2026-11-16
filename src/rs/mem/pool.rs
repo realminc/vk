@@ -424,12 +424,11 @@ impl Allocator<'_> {
 	}
 }
 
-pub(super) fn validate_options<'a, 'device>(
-	allocator: &'a Allocator<'device>,
-	pool: &Pool,
+/// Upper-address placement needs a single-block linear pool.
+pub(super) fn validate_upper_address(
+	state: &PoolState<'_>,
 	options: &AllocationCreateInfo,
-) -> Result<&'a PoolState<'device>, AllocError> {
-	let state = validate(allocator, pool)?;
+) -> Result<(), AllocError> {
 	if options.upper_address
 		&& (state.info.algorithm != AllocationAlgorithm::Linear || state.info.max_block_count != 1)
 	{
@@ -437,7 +436,7 @@ pub(super) fn validate_options<'a, 'device>(
 			"upper address requires a single-block linear pool",
 		));
 	}
-	Ok(state)
+	Ok(())
 }
 
 pub(super) fn validate<'a, 'device>(

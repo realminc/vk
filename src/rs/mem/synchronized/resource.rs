@@ -152,6 +152,9 @@ impl Drop for Claim<'_> {
 
 // This guard borrows the stable shared context, rather than the child allocator;
 // canonical operations can retain it while exclusively mutating their own domain.
+// Independent allocators have no shared claim; keep that answer inline so the
+// common path does not read back a memory-returned result.
+#[inline]
 pub(in crate::mem::allocator) fn claim<'device>(
 	allocator: &Allocator<'device>,
 	resource: Resource,
@@ -161,6 +164,16 @@ pub(in crate::mem::allocator) fn claim<'device>(
 	let Some(pointer) = allocator.parallel else {
 		return Ok(None);
 	};
+	claim_shared(allocator, pointer, resource, plane, existing)
+}
+
+fn claim_shared<'device>(
+	allocator: &Allocator<'device>,
+	pointer: std::ptr::NonNull<std::ffi::c_void>,
+	resource: Resource,
+	plane: Option<vk::ImageAspectFlagBits>,
+	existing: Option<u64>,
+) -> Result<Option<Claim<'device>>, AllocError> {
 	// SAFETY: scoped child construction keeps this callback-owned context live
 	// until every child/operation/guard finishes; no reference escapes an operation.
 	let pointer = pointer.cast::<Shared<'device>>();
