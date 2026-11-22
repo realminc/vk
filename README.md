@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://dev.realm.software/vk">
-    <img src="https://dev.realm.software/images/realm/coverVulkan.webp" width="100%" alt="VK — native Rust Vulkan bindings, cached dispatch and allocator">
+    <img src="docs/external/asset/image/oaVulkan3.webp" width="100%" alt="VK — native Rust Vulkan bindings, cached dispatch and allocator">
   </a>
 </p>
 
@@ -455,32 +455,32 @@ for loader paths, portability setup and cross-build limits.
 
 ## Performance
 
-Selected host-latency results on Intel Iris Xe (Surface Laptop 5, November 16,
+Selected host-latency results on Intel Iris Xe (Surface Laptop 5, November 22,
 2026), with 20 fresh-process samples per backend/workload. **Below 1 favors
 vk.** Allocation rows combine allocation/free and native create/bind/destroy
 work; 128 live allocations unless noted. Intervals crossing 1 do not establish
-a lead. 21 of 44 measured workloads complete below 1.0× VMA, including every
-virtual-placement row and pooled-buffer reverse/FIFO; the worst measured gap
-is separate-buffer churn at 1.104×.
+a lead. 23 of 44 measured workloads complete below 1.0× VMA, including every
+virtual-placement row, pooled-buffer reverse/FIFO and separate-buffer reverse;
+the worst measured gap is separate-buffer churn at 1.100×.
 
 | Workload | vk / VMA time (95% confidence interval) |
 | --- | ---: |
-| Virtual TLSF, minimum-offset churn | **0.625×** (0.619–0.629) |
-| Virtual linear, LIFO | **0.740×** (0.705–0.749) |
-| Virtual linear, churn | **0.768×** (0.744–0.787) |
-| Pooled buffers, TLSF, reverse, single live | **0.928×** (0.885–0.941) |
-| Pooled buffers, TLSF, LIFO | **0.964×** (0.944–0.980) |
-| Separate buffers, LIFO | 1.049× (1.028–1.058) |
-| Separate images, LIFO | 1.038× (1.029–1.060) |
-| Pooled images, TLSF, LIFO | 1.077× (1.061–1.084) |
-| Pooled buffers, TLSF, churn, 32 live | 1.055× (1.039–1.096) |
-| Pooled buffers, TLSF, shuffled free | 1.095× (1.066–1.119) |
-| Pooled buffer map + 8-byte write + unmap | 1.019× (1.006–1.046) |
+| Virtual TLSF, minimum-offset churn | **0.629×** (0.619–0.637) |
+| Virtual linear, LIFO | **0.714×** (0.695–0.727) |
+| Virtual linear, churn | **0.763×** (0.750–0.773) |
+| Pooled buffers, TLSF, reverse, single live | **0.904×** (0.895–0.923) |
+| Pooled buffers, TLSF, LIFO | **0.961×** (0.938–0.985) |
+| Separate buffers, LIFO | **0.975×** (0.937–0.985) |
+| Separate images, LIFO | 1.036× (1.025–1.045) |
+| Pooled images, TLSF, LIFO | 1.061× (1.041–1.086) |
+| Pooled buffers, TLSF, churn, 32 live | 1.080× (1.062–1.085) |
+| Pooled buffers, TLSF, shuffled free | 1.058× (1.041–1.093) |
+| Pooled buffer map + 8-byte write + unmap | 1.024× (1.013–1.036) |
 
 These exploratory runs used unlocked clocks and shared workstation load.
 Native VMA uses its default internal locks; ordinary vk uses exclusive access.
-The [full benchmark report](https://github.com/realminc/vk/blob/main/docs/external/benchmarks/surface-laptop-5-2026-11-16.md)
-includes all 44 allocator configurations, subsequent candidate passes,
+The [full benchmark report](https://github.com/realminc/vk/blob/main/docs/external/benchmarks/surface-laptop-5-2026-11-22.md)
+includes all 44 allocator configurations, prior candidate passes,
 Ash/Vulkano history, methodology and retained evidence.
 
 ## Development
@@ -504,12 +504,6 @@ records 32-profile core/synchronization validation, the graphics oracle and
 paired [Ash and VMA confirmation](https://github.com/realminc/vk/blob/main/docs/external/benchmarks/surface-laptop-5-2026-11-13.md#ash-and-vma-confirmation)
 host-latency ratios on Intel Iris Xe. Broader qualification remains open.
 
-<p align="center">
-  <a href="https://realm.software/">
-    <img src="https://raw.githubusercontent.com/realminc/oa/main/sdk/asset/docs/readme/realmIdentityAscii.gif" width="100%" alt="Realm animated ASCII identity">
-  </a>
-</p>
-
 ## License
 
 [MIT](https://github.com/realminc/vk/blob/main/LICENSE). See
@@ -517,3 +511,9 @@ host-latency ratios on Intel Iris Xe. Broader qualification remains open.
 [third-party notices](https://github.com/realminc/vk/blob/main/NOTICE.md) for
 Khronos registry and AMD allocator provenance. Realm animation shared with
 [OA](https://github.com/realminc/oa).
+
+<p align="center">
+  <a href="https://realm.software/">
+    <img src="https://raw.githubusercontent.com/realminc/oa/main/sdk/asset/docs/readme/realmIdentityAscii.gif" width="100%" alt="Realm animated ASCII identity">
+  </a>
+</p>

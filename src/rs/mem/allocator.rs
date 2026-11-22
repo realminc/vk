@@ -1487,7 +1487,7 @@ fn publish(allocator: &mut Allocator<'_>, region: Region) -> u64 {
 		shared.publish();
 	}
 	allocator.budget_operations = allocator.budget_operations.saturating_add(1);
-	let guard_size = if allocator.debug_settings.margin != 0
+	let margin = if allocator.debug_settings.margin != 0
 		&& placement.is_some()
 		&& guard::eligible(memory_flags(allocator, index))
 	{
@@ -1495,10 +1495,8 @@ fn publish(allocator: &mut Allocator<'_>, region: Region) -> u64 {
 	} else {
 		0
 	};
-	let guard_offset = if allocator.debug_settings.margin != 0
-		&& placement.is_some()
-		&& guard::eligible(memory_flags(allocator, index))
-	{
+	let guard_size = margin;
+	let guard_offset = if margin != 0 {
 		size.checked_add(3).expect("preflighted guard extent") & !3
 	} else {
 		0

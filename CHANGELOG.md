@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.13.4+1.4.365 — 2026-11-22
+
+- Trim publication and memory-type selection work while preserving public
+  APIs, checked generations, native-output admission, transactional rollback
+  and complete public validation. Publication computes its margin-guard
+  predicate once instead of probing memory flags twice; the memory-type
+  selection loop hoists required/preferred/avoided flag masks and per-type
+  heap records out of the admitted-bit iteration.
+- On the recorded Surface Laptop 5 matrix, 23 of 44 combined workloads now
+  complete below 1.0x VMA including every virtual-placement row,
+  pooled-buffer reverse/FIFO and newly separate-buffer reverse; the worst
+  measured gap is separate-buffer churn at 1.100x. Native cells span
+  0.90-1.10x.
+- Requalify all 44 benchmark cells under separate core and synchronization
+  validation on the committed tree. Replace the README cover asset and ship
+  the image directory in the crate package so it renders on crates.io and
+  docs.rs.
+- See the [release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.13.4.md).
+
 ## 0.13.3+1.4.365 — 2026-11-16
 
 - Reduce host-registry and create-path costs while preserving public APIs,

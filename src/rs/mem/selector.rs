@@ -66,6 +66,12 @@ impl MemoryTypeSelector {
 		}
 		let mut best = None;
 		let mut cost = u32::MAX;
+		let required = request.required_flags.as_raw();
+		let preferred = request.preferred_flags.as_raw();
+		let avoided = avoided.as_raw();
+		let protected = vk::MemoryPropertyFlagBits::PROTECTED_BIT.as_raw();
+		let coherent = vk::MemoryPropertyFlagBits::DEVICE_COHERENT_BIT_AMD.as_raw();
+		let tile = vk::MemoryHeapFlagBits::TILE_MEMORY_BIT_QCOM.as_raw();
 		// Visit only admitted bits, still in increasing index order for ties.
 		let mut bits = request.memory_type_bits
 			& self.allowed_bits
@@ -74,34 +80,25 @@ impl MemoryTypeSelector {
 			let i = bits.trailing_zeros();
 			bits &= bits - 1;
 			let memory = self.properties.memory_types[i as usize];
+			let heap = self.properties.memory_heaps[memory.heap_index as usize];
 			let flags = memory.property_flags.as_raw();
-			let required = request.required_flags.as_raw();
 			if flags & required != required {
 				continue;
 			}
 			// Tile heaps have a separate binding/size contract; ordinary storage
 			// must not acquire them merely because their property flags match.
-			if self.properties.memory_heaps[memory.heap_index as usize]
-				.flags
-				.as_raw()
-				& vk::MemoryHeapFlagBits::TILE_MEMORY_BIT_QCOM.as_raw()
-				!= 0
-			{
+			if heap.flags.as_raw() & tile != 0 {
 				continue;
 			}
 			// AMD device-coherent types require captured enabled feature admission.
 			// A standalone selector is conservative. Protected types require explicit flags.
-			if !self.device_coherent
-				&& flags & vk::MemoryPropertyFlagBits::DEVICE_COHERENT_BIT_AMD.as_raw() != 0
-			{
+			if !self.device_coherent && flags & coherent != 0 {
 				continue;
 			}
-			if flags & vk::MemoryPropertyFlagBits::PROTECTED_BIT.as_raw() != 0
-				&& required & vk::MemoryPropertyFlagBits::PROTECTED_BIT.as_raw() == 0
-			{
+			if flags & protected != 0 && required & protected == 0 {
 				continue;
 			}
-			if request.size > self.properties.memory_heaps[memory.heap_index as usize].size {
+			if request.size > heap.size {
 				continue;
 			}
 			// The last admitted candidate wins outright when nothing was chosen,
@@ -110,8 +107,7 @@ impl MemoryTypeSelector {
 				best = Some(i);
 				break;
 			}
-			let candidate = (request.preferred_flags.as_raw() & !flags).count_ones()
-				+ (avoided.as_raw() & flags).count_ones();
+			let candidate = (preferred & !flags).count_ones() + (avoided & flags).count_ones();
 			if candidate < cost {
 				best = Some(i);
 				cost = candidate;
