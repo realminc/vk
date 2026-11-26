@@ -182,7 +182,7 @@ impl<'callbacks, V> HostMap<'callbacks, V> {
 			.map(|slot| self.values[slot].as_mut().expect("occupied registry slot"))
 	}
 
-	#[inline]
+	#[inline(always)]
 	pub fn insert_new_reserved_with(&mut self, key: u64, value: impl FnOnce() -> V) {
 		let capacity = self.keys.len();
 		assert!(

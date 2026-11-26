@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.13.5+1.4.365 — 2026-11-26
+
+- Inline allocator publication and remove duplicate admission work while
+  preserving public APIs, checked generations, native-output admission,
+  transactional rollback and complete public validation. The new live record
+  is no longer staged through a misaligned stack copy, which removes
+  store-to-load forwarding failures on every publication; `allocate_native`
+  no longer repeats the export admission its callers already performed;
+  managed paths reserve publication once.
+- On the recorded Surface Laptop 5 matrix, 23 of 44 combined workloads
+  complete below 1.0x VMA (unchanged) and 23 of 30 native-resource cells
+  improved. Cells more than 5% slower than VMA fall from 9 to 3; the worst
+  measured gap is pooled-buffer linear shuffle at 1.091x under heavier
+  workstation load, and separate-buffer churn falls from 1.100x to 1.033x.
+- Requalify all 44 benchmark cells under separate core and synchronization
+  validation on the committed tree. Vendor the Realm README banner beside
+  the cover image; the former OA SDK asset URL no longer resolves.
+- See the [release notes](https://github.com/realminc/vk/blob/main/docs/external/release/v0.13.5.md).
+
 ## 0.13.4+1.4.365 — 2026-11-22
 
 - Trim publication and memory-type selection work while preserving public

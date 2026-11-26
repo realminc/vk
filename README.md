@@ -455,33 +455,36 @@ for loader paths, portability setup and cross-build limits.
 
 ## Performance
 
-Selected host-latency results on Intel Iris Xe (Surface Laptop 5, November 22,
+Selected host-latency results on Intel Iris Xe (Surface Laptop 5, November 26,
 2026), with 20 fresh-process samples per backend/workload. **Below 1 favors
 vk.** Allocation rows combine allocation/free and native create/bind/destroy
 work; 128 live allocations unless noted. Intervals crossing 1 do not establish
 a lead. 23 of 44 measured workloads complete below 1.0× VMA, including every
-virtual-placement row, pooled-buffer reverse/FIFO and separate-buffer reverse;
-the worst measured gap is separate-buffer churn at 1.100×.
+virtual-placement row and pooled-buffer reverse/FIFO; 23 of the 30
+native-resource rows improved since November 22, separate-buffer churn moved
+from 1.100× to 1.033×, and the worst measured gap is pooled-buffer linear
+shuffle at 1.091×.
 
 | Workload | vk / VMA time (95% confidence interval) |
 | --- | ---: |
-| Virtual TLSF, minimum-offset churn | **0.629×** (0.619–0.637) |
-| Virtual linear, LIFO | **0.714×** (0.695–0.727) |
-| Virtual linear, churn | **0.763×** (0.750–0.773) |
-| Pooled buffers, TLSF, reverse, single live | **0.904×** (0.895–0.923) |
-| Pooled buffers, TLSF, LIFO | **0.961×** (0.938–0.985) |
-| Separate buffers, LIFO | **0.975×** (0.937–0.985) |
-| Separate images, LIFO | 1.036× (1.025–1.045) |
-| Pooled images, TLSF, LIFO | 1.061× (1.041–1.086) |
-| Pooled buffers, TLSF, churn, 32 live | 1.080× (1.062–1.085) |
-| Pooled buffers, TLSF, shuffled free | 1.058× (1.041–1.093) |
-| Pooled buffer map + 8-byte write + unmap | 1.024× (1.013–1.036) |
+| Virtual TLSF, minimum-offset churn | **0.624×** (0.619–0.630) |
+| Virtual linear, LIFO | **0.697×** (0.607–0.711) |
+| Virtual linear, churn | **0.760×** (0.739–0.806) |
+| Pooled buffers, TLSF, reverse, single live | **0.911×** (0.902–0.928) |
+| Pooled buffers, TLSF, LIFO | **0.924×** (0.903–0.936) |
+| Pooled buffers, linear, churn | **0.950×** (0.930–0.964) |
+| Separate buffers, LIFO | **0.966×** (0.948–1.026) |
+| Pooled buffers, TLSF, churn | 1.024× (1.002–1.046) |
+| Separate buffers, churn | 1.033× (1.018–1.064) |
+| Separate images, LIFO | 1.037× (1.018–1.060) |
+| Pooled images, TLSF, LIFO | 1.045× (1.018–1.058) |
+| Pooled buffer map + 8-byte write + unmap | 1.011× (1.002–1.036) |
 
 These exploratory runs used unlocked clocks and shared workstation load.
 Native VMA uses its default internal locks; ordinary vk uses exclusive access.
-The [full benchmark report](https://github.com/realminc/vk/blob/main/docs/external/benchmarks/surface-laptop-5-2026-11-22.md)
-includes all 44 allocator configurations, prior candidate passes,
-Ash/Vulkano history, methodology and retained evidence.
+The [full benchmark report](https://github.com/realminc/vk/blob/main/docs/external/benchmarks/surface-laptop-5-2026-11-26.md)
+includes all 44 allocator configurations, the November 22 comparison,
+rejected experiments, methodology and retained evidence.
 
 ## Development
 
@@ -514,6 +517,6 @@ Khronos registry and AMD allocator provenance. Realm animation shared with
 
 <p align="center">
   <a href="https://realm.software/">
-    <img src="https://raw.githubusercontent.com/realminc/oa/main/sdk/asset/docs/readme/realmIdentityAscii.gif" width="100%" alt="Realm animated ASCII identity">
+    <img src="docs/external/asset/image/realmIdentityAscii.gif" width="100%" alt="Realm animated ASCII identity">
   </a>
 </p>

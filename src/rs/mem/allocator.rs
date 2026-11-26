@@ -1191,6 +1191,7 @@ pub unsafe fn allocate(
 	request: &AllocRequest,
 ) -> Result<Allocation, AllocError> {
 	allocator.ensure_default()?;
+	allocator.reserve()?;
 	// SAFETY: caller provides the requirements and ordinary allocation semantics.
 	let serial = unsafe {
 		allocate_storage(
@@ -1235,7 +1236,6 @@ unsafe fn allocate_native(
 	if storage.within_budget {
 		budget::admit_native(allocator, index, size)?;
 	}
-	external::allocation_exports(allocator, index, *storage.chain)?;
 	let export = vk::ExportMemoryAllocateInfo {
 		handle_types: allocator.external_types[index as usize],
 		p_next: storage.chain.next,
@@ -1365,7 +1365,6 @@ unsafe fn allocate_storage(
 	if allocator.native_count >= allocator.allocation_limit as usize {
 		return Err(AllocError::AllocationLimit);
 	}
-	allocator.reserve()?;
 	if let Some(resource) = imported.and_then(|info| import_resource(info.resource))
 		&& allocator.parallel.is_none()
 	{
@@ -1466,7 +1465,7 @@ fn memory_flags(allocator: &Allocator<'_>, index: u32) -> vk::MemoryPropertyFlag
 	allocator.selector.properties.memory_types[index as usize].property_flags
 }
 
-#[inline]
+#[inline(always)]
 // Returns the published serial; public tokens are built once by `published`.
 fn publish(allocator: &mut Allocator<'_>, region: Region) -> u64 {
 	let Region {
